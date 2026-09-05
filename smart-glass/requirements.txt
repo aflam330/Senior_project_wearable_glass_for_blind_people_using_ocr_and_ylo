@@ -1,0 +1,23 @@
+# Smart Glass for Blind People — Raspberry Pi 5
+# Install inside a venv: pip install -r requirements.txt
+
+# Core vision & ML
+easyocr>=1.7.1
+ultralytics>=8.3.0
+opencv-python-headless>=4.8.0
+torch>=2.1.0
+torchvision>=0.16.0
+
+# GPIO — REQUIRED for RPi 5 (replaces incompatible RPi.GPIO)
+rpi-lgpio>=0.5
+
+# Utilities
+numpy>=1.24.0
+Pillow>=10.0.0
+
+# Audio / TTS: Windows test uses built-in PowerShell SAPI (no extra package needed)
+# RPi main app uses espeak-ng + optional Piper (installed by install.sh)
+
+# Optional: offline voice commands (English only — no Bangla Vosk model exists)
+# vosk>=0.3.45
+# pyaudio>=0.2.13

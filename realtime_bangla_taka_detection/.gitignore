@@ -1,0 +1,26 @@
+# Python virtual environment
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Large raw dataset (download from Mendeley — see README) and generated data
+data/*
+!data/data.yaml
+
+# Training run artifacts / checkpoints (production model lives in models/)
+runs/
+
+# Auto-downloaded pretrained base weights (fetched by Ultralytics on demand)
+/yolov8n.pt
+/yolov8s.pt
+/yolo26n.pt
+
+# Local tooling / editor
+.claude/
+.vscode/
+*.log
+
+# OS
+Thumbs.db
+.DS_Store

@@ -1,0 +1,322 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage[margin=0.75in,columnsep=0.25in]{geometry}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{abstract}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\setlength{\columnsep}{0.28in}
+\makeatletter
+
+\titleformat{\section}{\normalfont\fontsize{11}{13}\bfseries\centering}{\Roman{section}.}{0.6em}{\MakeUppercase}
+\titleformat{\subsection}{\normalfont\fontsize{10.5}{12}\bfseries\itshape}{\Alph{subsection}.}{0.5em}{}
+\renewcommand{\abstractnamefont}{\normalfont\bfseries\fontsize{10}{12}}
+\renewcommand{\abstracttextfont}{\normalfont\itshape\fontsize{10}{12}}
+\makeatother
+
+\title{\LARGE\bfseries Real-Time Bangladeshi Taka Banknote Detection via YOLOv8 Trained on Synthetically Composited Real-World Backgrounds}
+
+\author{
+[Author Name(s)]\\
+\small Department of Computer Science and Engineering, Independent University, Bangladesh\\
+\small [email(s)]@iub.edu.bd
+}
+\date{}
+
+\begin{document}
+\twocolumn[
+\begin{@twocolumnfalse}
+\maketitle
+
+\begin{abstract}
+\noindent
+Automatic recognition of paper currency has practical value for assistive technology, automated cash handling, and retail self-service, yet publicly available Bangladeshi Taka (BDT) datasets consist almost exclusively of clean, close-up, full-frame note scans. A model trained on such images learns that ``the entire frame is the note,'' an assumption that collapses on a live camera feed, where a note appears at an arbitrary scale, angle, and position against cluttered real backgrounds. We reformulate BDT recognition as an object-detection problem and address the resulting synthetic-to-real domain gap with a copy-paste compositing pipeline: 5,073 background-free note images spanning all nine circulating denominations (2, 5, 10, 20, 50, 100, 200, 500, and 1000 Taka) are pasted onto 1,500 real photographs from the COCO dataset under randomised perspective warp, rotation, scale, photometric jitter, motion blur, sensor noise, and JPEG re-compression, with exact bounding-box labels computed analytically from the paste geometry, requiring zero manual annotation. The resulting 22,315-image dataset is used to fine-tune a COCO-pretrained YOLOv8s detector for 80 epochs. On a held-out test split of 2,238 synthetically composited images, the model achieves 0.995 mAP@0.5, 0.847 mAP@0.5:0.95, 0.998 precision, and 0.997 recall, at 7.3~ms per image (\textasciitilde135~FPS) on a laptop GPU, exceeding comparable published detection baselines that rely on manually annotated data. We report these results together with an explicit discussion of their principal limitation: evaluation to date is entirely on held-out synthetic composites rather than independently captured real-world photographs, and we treat closing that specific gap as the paper's most important item of future work rather than a minor caveat.
+\end{abstract}
+\vspace{0.4em}
+\noindent\textbf{Index Terms}—object detection, YOLOv8, Bangladeshi currency, synthetic data, domain randomization, copy-paste augmentation, transfer learning, real-time inference
+\vspace{1em}
+\end{@twocolumnfalse}
+]
+
+\section{Introduction}
+
+Automatic recognition of paper currency has practical value in assistive technology for the visually impaired, automated cash-handling machines, retail self-service, and financial automation. For Bangladeshi Taka in particular, a useful system must not only classify which note is present but also detect and localise it within a cluttered scene in real time, so that it can operate from a phone or webcam held by a user in an uncontrolled environment.
+
+Most existing BDT recognition work frames the task as whole-image classification on clean, centred note images. Such models perform well on their own curated test sets but degrade sharply in the field, because real camera frames contain background clutter, perspective distortion, motion blur, variable lighting, and notes that occupy only a fraction of the frame. This work targets that gap directly by treating the problem as object detection and by engineering the training data so that its statistics resemble real webcam imagery rather than studio scans. This reformulation was motivated by a concrete failure observed during early development: a first-pass pipeline that labelled the entire frame as the note scored well on its own synthetic test set yet failed to detect notes reliably on a live webcam, which is what prompted the compositing-based redesign presented here.
+
+Our contributions are: (1) a reproducible synthetic data-generation pipeline that converts a background-free classification dataset into a large, richly augmented detection dataset with automatically generated, pixel-perfect bounding-box labels, requiring no manual annotation; (2) a fine-tuned YOLOv8s detector that attains 0.995 mAP@0.5 on a held-out test set while running above 100~FPS on a laptop GPU; (3) a deployable real-time webcam application with automatic low-light correction and a TorchScript export for dependency-free inference; and (4) an explicit account of the evaluation's principal limitation, held-out synthetic testing rather than independently captured real-world validation, reported alongside the results rather than omitted.
+
+\section{Related Work}
+
+Early Bangladeshi banknote recognition relied on classical neural networks with hand-engineered features; a neural network using axis-symmetrical masks reported an average classification accuracy of 98.57\% across eight denominations~\cite{ref_axissym}. More recent approaches use deep convolutional networks and transfer learning: lightweight CNNs and pretrained backbones have been applied to real-time classification for visually impaired users~\cite{ref_cnnrealtime}, and dual-stream MobileNet/EfficientNet architectures have been proposed for robust recognition~\cite{ref_dualstream}.
+
+For the detection formulation specifically, single-stage detectors of the YOLO family are the dominant choice because of their speed. A YOLOv5-based Taka detector trained on 3,111 hand-annotated images reported precision and recall of 0.95 and 0.93~\cite{ref_nstubdtaka}, and a YOLOv8-nano model with a custom Squeeze-and-Excitation head for multi-currency (USD/EUR/BDT) detection reported mAP@0.5 of 0.972 and mAP@0.5:0.95 of 0.804 at 3.1~ms per image~\cite{ref_yolov8nse}. Our work differs in its explicit focus on closing the synthetic-to-real domain gap through domain-randomised copy-paste compositing, an approach shown to be effective for synthetic-to-real object detection generally~\cite{ref_domainrand}. Whereas the YOLOv5 and YOLOv8n-SE baselines above annotate real photographs by hand, we generate an order of magnitude more labelled data automatically, with pixel-perfect boxes and full control over the distribution of scale, angle, and background.
+
+\section{Dataset and Data Engineering}
+
+\subsection{Source Currency Dataset (Foreground)}
+The banknote imagery is drawn from the BanglaTaka dataset, ``A Diverse Image Dataset for Bangladeshi Currency Recognition,'' openly available on Mendeley Data~\cite{ref_banglataka}. It contains 5,073 background-free images of BDT paper currency spanning all nine circulating denominations, captured with a variety of mobile-phone cameras and pre-processed to give clean, cropped notes on a plain field (Table~\ref{tab:source}). Because each image is already a tight crop of a single note, it is ideal foreground material for compositing.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Per-denomination image counts, source BanglaTaka dataset}
+\label{tab:source}
+\begin{tabular}{@{}lrrrrrrrrrr@{}}
+\toprule
+Denom. & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 500 & 1000 \\
+\midrule
+Count & 445 & 660 & 419 & 480 & 416 & 565 & 423 & 1243 & 422 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\\\footnotesize Total: 5,073 images.
+\end{table}
+
+\subsection{Background Dataset}
+Real-world backgrounds were sourced from the COCO val2017 split~\cite{ref_coco}, a widely used collection of natural photographs of desks, hands, indoor rooms, streets, and outdoor scenes. We downloaded 1,500 images programmatically. Using genuine photographic backgrounds, rather than solid colours or synthetic noise as in an earlier internal iteration of this pipeline, was found to be the single most important factor in generalising to real camera frames, since it forces the detector to separate a note from realistic clutter, texture, and lighting.
+
+\subsection{The Domain-Gap Problem}
+A model trained only on background-free BanglaTaka images learns that a note fills the entire frame on a plain background. When such a model is shown a webcam frame, where the note is small, rotated, and surrounded by objects, its assumptions break and detection collapses. This was observed directly in an early version of this system, which scored highly on synthetic tests yet failed to detect notes on a live webcam. Compositing notes onto real backgrounds re-creates deployment conditions at training time and eliminates this gap.
+
+\subsection{Copy-Paste Compositing Process}
+Each source note is pasted onto a randomly chosen, randomly cropped COCO background after a chain of randomised transformations (Fig.~\ref{fig:compositing}). Because the placement and scale of each pasted note are known exactly at generation time, the corresponding YOLO-format bounding-box label is computed directly from that placement:
+\begin{align}
+x_c &= (x + w/2)/S, \quad y_c = (y + h/2)/S \\
+\text{box}_w &= w/S, \qquad\quad \text{box}_h = h/S
+\end{align}
+where a note of pixel size $(w,h)$ is pasted at top-left corner $(x,y)$ on a canvas of size $S=640$. This closed-form labelling made it possible to generate a fully labelled, 22,315-image detection dataset at effectively zero annotation cost.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.48\textwidth]{figs/fig_compositing.jpg}
+\caption{Copy-paste compositing pipeline applied to a real 100-Taka note: (a) background-free source note; (b) real COCO background; (c) the note after perspective warp, rotation, scaling, and colour jitter; (d) final composite with the automatically generated bounding box and class label.}
+\label{fig:compositing}
+\end{figure}
+
+\subsection{Augmentation Operations}
+Table~\ref{tab:aug} lists the domain-randomisation operations applied per composite. Ranges were chosen to span, and in most cases slightly exceed, the variation expected from a hand-held webcam.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Domain-randomisation augmentation operations}
+\label{tab:aug}
+\begin{tabular}{@{}p{1.5cm}p{2.6cm}p{1.7cm}@{}}
+\toprule
+Stage & Operation & Setting \\
+\midrule
+\multirow{4}{*}{Geometry} & Perspective warp & 70\% prob., jitter 8\% \\
+ & Rotation & $\pm 30^\circ$ \\
+ & Scale (frac. of frame) & 0.25--0.90 \\
+ & Placement & random \\
+\midrule
+\multirow{2}{*}{Photometric} & HSV jitter & H$\pm18^\circ$ S$\times$0.5--1.5 V$\times$0.4--1.6 \\
+ & Brightness/contrast & 0.4--1.6 / 0.7--1.3 \\
+\midrule
+\multirow{3}{*}{Sensor} & Motion blur & 20\% prob., kernel 3/5/7 \\
+ & Gaussian noise & 50\% prob., $\sigma{\approx}12$ \\
+ & JPEG recompress. & quality 55--92 \\
+\midrule
+Balance & Negative images & 10\% of output \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Final Dataset Composition}
+Four composites were produced per source note, plus a 10\% share of background-only negative images with empty labels. The data was split 80/10/10 \emph{by source note}, so that no individual note appears in more than one split, preventing information leakage (Table~\ref{tab:split}).
+
+\begin{table}[h]
+\centering
+\small
+\caption{Detection dataset composition after compositing}
+\label{tab:split}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Split & Positive & Negative & Total & Instances \\
+\midrule
+Train & 16,224 & 1,620 & 17,844 & 16,224 \\
+Valid & 2,016 & 217 & 2,233 & 2,016 \\
+Test & 2,052 & 186 & 2,238 & 2,052 \\
+\midrule
+\textbf{Total} & \textbf{20,292} & \textbf{2,023} & \textbf{22,315} & \textbf{20,292} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Methodology}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.75\textwidth]{figs/fig_methodology.png}
+\caption{End-to-end methodology pipeline: source notes, real COCO backgrounds, and COCO-pretrained YOLOv8s weights feed the synthetic copy-paste compositing engine, which produces the labelled YOLO detection dataset used for training, evaluation, and deployment.}
+\label{fig:methodology}
+\end{figure*}
+
+\subsection{Software Stack}
+The compositing engine uses Pillow and OpenCV for image transforms and NumPy for array mathematics. Training, validation, and export use the Ultralytics YOLOv8 framework (v8.4.64) on PyTorch 2.6.0 with CUDA 12.4. All experiments ran on an NVIDIA RTX~4060 Laptop GPU (8~GB) with an AMD Ryzen~7 CPU.
+
+\subsection{Detection Algorithm and Architecture}
+YOLOv8 is a single-stage, anchor-free detector: rather than matching objects to a fixed set of pre-defined anchor-box shapes, it predicts box edges directly from each grid cell, which simplifies training and improves accuracy on unusual aspect ratios, relevant here since banknotes are long and thin. We fine-tune the ``s'' (small) variant (11.1M parameters, 28.5~GFLOPs), which offers the best accuracy/speed trade-off for our hardware. The architecture follows the standard backbone/neck/head structure (Fig.~\ref{fig:architecture}): a CSPDarknet backbone built from C2f blocks and an SPPF module extracts multi-scale features; a PAN-FPN neck fuses features across depths so notes at very different scales are both handled well; and a decoupled, anchor-free head predicts class probabilities and box coordinates at three spatial scales. Predictions are filtered by confidence and de-duplicated with Non-Maximum Suppression.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.48\textwidth]{figs/fig_architecture.png}
+\caption{YOLOv8s detection architecture: input $\rightarrow$ CSPDarknet backbone $\rightarrow$ PAN-FPN neck $\rightarrow$ decoupled anchor-free head $\rightarrow$ output (9 classes + box coordinates). 11.1M parameters, 28.5 GFLOPs, 7.3 ms/image on an RTX 4060.}
+\label{fig:architecture}
+\end{figure}
+
+\subsection{Loss Function}
+Training minimises a weighted sum of CIoU box-regression loss, Distribution Focal Loss (DFL) for sub-pixel localisation, and binary cross-entropy classification loss, with the default Ultralytics weightings (box 7.5, class 0.5, DFL 1.5).
+
+\subsection{Transfer Learning and Training Procedure}
+The model is initialised from COCO-pretrained weights rather than trained from scratch, which sped convergence substantially: mAP@0.5 exceeded 0.97 within eight epochs. Training ran for 80 epochs at $640{\times}640$ resolution, batch size 16, with the SGD optimiser (lr0=0.01, momentum=0.937, weight decay 0.0005, 3-epoch warmup). Online mosaic (1.0) and mixup (0.15) augmentation were layered on top of the offline compositing described in Section~III, while horizontal and vertical flips were disabled, since a note's orientation carries information that mirroring would corrupt. Early-stopping patience was set to 15 epochs.
+
+\section{Results and Analysis}
+
+\subsection{Evaluation Metrics}
+Detectors are judged by precision, recall, and mean Average Precision (mAP). mAP@0.5 counts a detection as correct at IoU~$\geq$~0.5; the stricter mAP@0.5:0.95 averages over IoU thresholds from 0.5 to 0.95 and is far more sensitive to precise localisation.
+
+\subsection{Overall Performance}
+Training converged rapidly: mAP@0.5 exceeded 0.97 by epoch 8 and 0.99 by epoch 11, after which mAP@0.5:0.95 continued to climb gradually as box localisation sharpened. Table~\ref{tab:overall} reports final test-set performance.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Test-set performance (best checkpoint, 2,238 images)}
+\label{tab:overall}
+\begin{tabular}{@{}lr@{}}
+\toprule
+Metric & Value \\
+\midrule
+Precision & 0.998 \\
+Recall & 0.997 \\
+mAP@0.5 & 0.995 \\
+mAP@0.5:0.95 & 0.847 \\
+Inference speed & 7.3~ms/img ($\approx$135~FPS) \\
+Preprocess / postprocess & 1.7~ms / 1.7~ms \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The gap between mAP@0.5 (0.995) and mAP@0.5:0.95 (0.847) is worth interpreting rather than only reporting: it indicates that the detector reliably finds and correctly classifies the great majority of notes (driving the high mAP@0.5), but that box localisation precision softens somewhat at the tighter IoU thresholds averaged into mAP@0.5:0.95. A plausible contributing factor is that pasted, warped note boundaries in the synthetic training and test data carry mild anti-aliasing that does not correspond to a pixel-perfect physical edge, a hypothesis we have not yet verified directly and flag as worth investigating alongside the real-world validation described in Section~VIII.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figs/fig_training_curves.png}
+\caption{Training curves: box/class/DFL losses (top row) and mAP@50, mAP@50-95, precision/recall (bottom row) versus epoch. mAP@0.5 exceeds 0.97 by epoch 8 and 0.99 by epoch 11; mAP@0.5:0.95 continues climbing gradually through epoch 80 as box localisation sharpens.}
+\label{fig:traincurves}
+\end{figure*}
+
+\subsection{Per-Class Results}
+Table~\ref{tab:perclass} shows performance broken down by denomination. Results are uniformly strong across all nine classes, including the least-represented source class (10~Taka, 419 source images), confirming the model does not simply favour the most frequent class (500~Taka, 1,243 source images). We note that mAP@0.5 rounds to an identical 0.995 across every individual class; mAP@0.5:0.95, which is more sensitive to localisation and shows genuine per-class spread (0.838--0.858), is the more informative column for distinguishing class-level performance and should be preferred over mAP@0.5 when comparing denominations.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Per-class detection metrics on the test set}
+\label{tab:perclass}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Class & P & R & mAP@.5 & mAP@.5:.95 \\
+\midrule
+2 Taka & 0.998 & 1.000 & 0.995 & 0.838 \\
+5 Taka & 0.998 & 0.996 & 0.995 & 0.844 \\
+10 Taka & 0.995 & 0.988 & 0.995 & 0.848 \\
+20 Taka & 0.998 & 1.000 & 0.995 & 0.847 \\
+50 Taka & 1.000 & 0.993 & 0.995 & 0.851 \\
+100 Taka & 0.999 & 1.000 & 0.995 & 0.845 \\
+200 Taka & 0.999 & 1.000 & 0.995 & 0.843 \\
+500 Taka & 1.000 & 1.000 & 0.995 & 0.853 \\
+1000 Taka & 0.994 & 1.000 & 0.995 & 0.858 \\
+\midrule
+\textbf{All} & \textbf{0.998} & \textbf{0.997} & \textbf{0.995} & \textbf{0.847} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Confusion Matrix}
+The normalised confusion matrix (Fig.~\ref{fig:confmat}) is close to perfectly diagonal, with predicted-to-true confidence of 0.99--1.00 on every denomination. The only residual error is occasional confusion with the background class, a missed or spurious detection, never a mix-up between two different denominations. For a currency-reading application this is the safer of the two possible failure modes: the system practically never reports the wrong denomination, only, rarely, that it failed to detect a note at all.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.46\textwidth]{figs/fig_confusion_matrix.png}
+\caption{Normalised confusion matrix on the test set. The diagonal is 0.99--1.00 for every denomination; residual error is limited to the background column (missed/spurious detections), never cross-denomination confusion.}
+\label{fig:confmat}
+\end{figure}
+
+\subsection{Qualitative Detections}
+Fig.~\ref{fig:qualitative} shows example predictions on a validation batch, with predicted boxes, labels, and confidence scores overlaid. Notes are tightly localised across a range of scales, rotations, and composited backgrounds, exactly the conditions the compositing pipeline (Section~III) was designed to reproduce. We note explicitly that these qualitative examples, like the quantitative results above, are drawn from held-out synthetic composites rather than independently photographed real notes; see Section~VIII.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figs/fig_qualitative.jpg}
+\caption{Example predictions on a validation batch (predicted label + confidence score). The detector correctly localises the 1000-Taka note across widely varying scales, rotations, and cluttered composited backgrounds.}
+\label{fig:qualitative}
+\end{figure*}
+
+\section{Comparison with Related Work}
+
+Table~\ref{tab:comparison} situates our results among comparable Bangladeshi and multi-currency detection and recognition systems. Direct numerical comparison should be read with care, since each study uses a different dataset, class set, and test protocol; the table shows our system is competitive with, or exceeds, published detection baselines while targeting real-world robustness through training-data design.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Comparison with related currency-recognition systems}
+\label{tab:comparison}
+\begin{tabular}{@{}p{1.7cm}p{1.1cm}p{0.7cm}p{0.7cm}p{1.1cm}@{}}
+\toprule
+Work & Task & mAP.5 & .5:.95 & P/R (acc) \\
+\midrule
+Axis-sym.\ masks~\cite{ref_axissym} & Classify & -- & -- & 98.6\% acc \\
+CNN real-time~\cite{ref_cnnrealtime} & Classify & -- & -- & high acc \\
+Dual-stream~\cite{ref_dualstream} & Classify & -- & -- & robust \\
+YOLOv5 Taka~\cite{ref_nstubdtaka} & Detect & -- & -- & 0.95/0.93 \\
+YOLOv8n-SE~\cite{ref_yolov8nse} & Detect & 0.972 & 0.804 & 0.965/0.952 \\
+\textbf{This work} & Detect & \textbf{0.995} & \textbf{0.847} & \textbf{0.998/0.997} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Our mAP@0.5:0.95 of 0.847, the metric most sensitive to localisation quality, exceeds the 0.804 reported by the custom-head YOLOv8n multi-currency detector~\cite{ref_yolov8nse}, despite our use of an unmodified backbone; we attribute this gain to the domain-randomised training data rather than architectural modification. Our precision and recall (0.998/0.997) exceed the YOLOv5 baseline's 0.95/0.93~\cite{ref_nstubdtaka}, and our labelled dataset (22,315 images) is roughly seven times larger than that baseline's 3,111 hand-annotated images, obtained at zero manual annotation cost. Unlike the classification-only systems~\cite{ref_axissym,ref_cnnrealtime,ref_dualstream}, our model outputs bounding boxes and therefore supports localisation and multi-note counting, not only single-note recognition.
+
+\section{Real-Time Deployment}
+
+The trained model is deployed in a webcam application built on OpenCV, annotating live frames with bounding boxes at interactive frame rates. An automatic brightness-correction step applies gain-and-gamma correction when a frame's mean intensity falls below a threshold, addressing a practical low-light failure mode observed during testing. The model is additionally exported to TorchScript for dependency-free inference in production environments.
+
+\section{Limitations and Threats to Validity}
+
+We report the following limitations directly, as we consider them integral to interpreting the results above rather than incidental caveats.
+
+\textbf{Evaluation is synthetic-only.} Every quantitative result in Section~V, and every qualitative example, is measured on held-out synthetic composites generated by the same pipeline used for training, not on independently captured photographs of real physical notes in real environments. This is the paper's most significant limitation: while the compositing pipeline was explicitly designed to resemble webcam deployment conditions (Section III), and the system has been informally exercised live during development, no held-out real-world test set with independently verified ground truth has yet been evaluated, and the reported metrics should be read as an estimate of performance on data statistically similar to training data, not as a validated real-world accuracy figure.
+
+\textbf{Condition and authenticity.} The system verifies denomination, not authenticity, and source notes are relatively good-condition; worn, torn, or heavily folded notes and counterfeit detection remain open problems.
+
+\textbf{Synthetic realism.} Composited notes lack real cast shadows, physical creases, and true occlusion by other objects, all present in genuine handheld photographs.
+
+\section{Conclusion and Future Work}
+
+We have presented a reproducible pipeline for real-time Bangladeshi Taka detection that converts a clean classification dataset into a large, domain-randomised detection dataset via automatic copy-paste compositing, and fine-tunes a YOLOv8s detector on it. The resulting model achieves 0.995 mAP@0.5 and 0.847 mAP@0.5:0.95 on a held-out synthetic test set, with near-perfect precision and recall, and runs above 100~FPS on a laptop GPU. The central methodological lesson is that engineering training data to match deployment conditions, real backgrounds plus aggressive, physically motivated augmentation, is what turns a brittle studio-only classifier into a detector designed for real-world robustness.
+
+The most important next step, ahead of any architectural refinement, is closing the validation gap named in Section~VIII: collecting and evaluating against an independently captured, hand-photographed real-world test set. Further future work includes INT8 quantisation and ONNX/TensorRT/TFLite export for embedded deployment, counterfeit and condition detection, and integration into a wearable assistive-reading platform with audio feedback for visually impaired users.
+
+\begin{thebibliography}{9}
+\footnotesize
+\bibitem{ref_axissym} ``Bangladeshi Banknote Recognition by Neural Network with Axis-Symmetrical Masks,'' reporting 98.57\% average accuracy over eight denominations.
+\bibitem{ref_cnnrealtime} ``Bangladeshi Banknote Recognition in Real-Time Using Convolutional Neural Network for Visually Impaired People.''
+\bibitem{ref_dualstream} ``Robust and Real-Time Bangladeshi Currency Recognition: A Dual-Stream MobileNet and EfficientNet Approach,'' arXiv:2602.07015.
+\bibitem{ref_nstubdtaka} ``NSTU-BDTAKA: An Open Dataset for Bangladeshi Paper Currency Detection and Recognition,'' 2024; YOLOv5-based detection subset (3,111 annotated images), precision 0.95, recall 0.93.
+\bibitem{ref_yolov8nse} ``Real-Time Currency Detection and Voice Feedback for Visually Impaired Individuals,'' arXiv:2510.20267 (custom-head YOLOv8n, USD/EUR/BDT).
+\bibitem{ref_domainrand} Nino, Gardi, et al., ``Synthetic-to-Real Object Detection Using YOLO and Domain Randomization Strategies,'' arXiv:2509.15045.
+\bibitem{ref_banglataka} ``A Diverse Image Dataset for Bangladeshi Currency Recognition'' (BanglaTaka), Mendeley Data, 5,073 images, 9 denominations. \url{https://data.mendeley.com/datasets/3cv2sypkkh/1}
+\bibitem{ref_coco} T.-Y. Lin et al., ``Microsoft COCO: Common Objects in Context,'' in \emph{Proc. ECCV}, 2014.
+\bibitem{ref_ultralytics} G. Jocher et al., ``Ultralytics YOLOv8'' (v8.4.64). \url{https://github.com/ultralytics/ultralytics}
+\end{thebibliography}
+
+\end{document}

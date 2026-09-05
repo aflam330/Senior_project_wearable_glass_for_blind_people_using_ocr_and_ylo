@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Models (large binary files — download via install.sh)
+models/*.pt
+models/*.onnx
+models/piper/*.onnx
+models/piper/*.json
+models/yolov8n_ncnn_model/
+
+# Logs
+logs/*.log
+logs/*.log.*
+
+# Temp audio files
+*.mp3
+*.wav
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Keep empty model/log folders
+!models/.gitkeep
+!models/piper/.gitkeep
+!logs/.gitkeep

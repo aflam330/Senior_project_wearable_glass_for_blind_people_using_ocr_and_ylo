@@ -1,0 +1,12 @@
+# Force Unix line endings for shell scripts (required for RPi execution)
+*.sh    text eol=lf
+*.service text eol=lf
+
+# Windows files use CRLF
+*.bat   text eol=crlf
+
+# Python and JSON — let git decide per platform
+*.py    text
+*.json  text
+*.txt   text
+*.md    text

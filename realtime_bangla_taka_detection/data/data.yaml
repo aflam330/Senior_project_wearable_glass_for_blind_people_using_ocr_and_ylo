@@ -1,0 +1,21 @@
+# Bangla Taka currency detection dataset config
+# Generated from the BanglaTaka dataset via scripts/generate_synthetic_dataset.py
+# Notes are composited at random scale/rotation/position onto synthetic
+# backgrounds with correct bounding boxes (suited for real-time detection).
+# Dataset lives outside OneDrive sync to avoid I/O contention during training.
+
+train: C:/currency_yolo_data/train/images
+val: C:/currency_yolo_data/valid/images
+test: C:/currency_yolo_data/test/images
+
+nc: 9
+names:
+  - 2_taka
+  - 5_taka
+  - 10_taka
+  - 20_taka
+  - 50_taka
+  - 100_taka
+  - 200_taka
+  - 500_taka
+  - 1000_taka
