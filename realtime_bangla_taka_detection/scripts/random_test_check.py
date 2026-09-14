@@ -8,9 +8,13 @@ from pathlib import Path
 
 from ultralytics import YOLO
 
-MODEL_PATH = "models/best.pt"
-TEST_IMAGES = Path(r"C:\currency_yolo_data\test\images")
-TEST_LABELS = Path(r"C:\currency_yolo_data\test\labels")
+ROOT = Path(__file__).resolve().parents[1]
+MODEL_PATH = str(ROOT / "models" / "best.pt")
+_LOCAL = ROOT.parent / "data set" / "currency_yolo_data"
+_LEGACY = Path(r"C:\currency_yolo_data")
+_DATA = _LOCAL if (_LOCAL / "test" / "images").exists() else _LEGACY
+TEST_IMAGES = _DATA / "test" / "images"
+TEST_LABELS = _DATA / "test" / "labels"
 NUM_SAMPLES = 30
 CONF_THRESHOLD = 0.25
 

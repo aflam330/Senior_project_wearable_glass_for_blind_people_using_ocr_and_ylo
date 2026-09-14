@@ -45,6 +45,8 @@ MODE_NAMES_BN = [
 # ---------------------------------------------------------------------------
 YOLO_MODEL_PATH     = os.path.join(BASE_DIR, "models", "yolov8n.pt")
 CURRENCY_MODEL_PATH = os.path.join(BASE_DIR, "models", "currency_mobilenet.pt")
+CURRENCY_YOLO_PATH  = os.path.join(BASE_DIR, "models", "best.onnx")
+HAPTIC_PIN          = 13   # BCM — vibration motor for note confirmation
 LABELS_BN_PATH      = os.path.join(BASE_DIR, "assets", "labels_bn.json")
 
 # Piper TTS models

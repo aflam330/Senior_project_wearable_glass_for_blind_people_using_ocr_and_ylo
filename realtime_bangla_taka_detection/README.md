@@ -51,6 +51,49 @@ slows the video. Dark frames are auto-brightened before inference.
 
 ---
 
+## RoboEye full stack (authenticity, FER, pose, FedAvg, EWC)
+
+The original detector is still `scripts/realtime_detect.py`. The full wearable
+pipeline lives in `roboeye/` and `scripts/roboeye_live.py`.
+
+```powershell
+# smoke-test every module on a JaalTaka crop
+.\venv\Scripts\python.exe scripts\test_roboeye_modules.py
+
+# train CNN+ViT authenticity + CLIP/MobileNet prototypes + YOLO dual head
+.\venv\Scripts\python.exe scripts\train_authenticity.py --quick
+# fuller train (CPU, slower): drop --quick
+
+# federated averaging / continual learning demos
+.\venv\Scripts\python.exe scripts\run_fedavg.py --quick
+.\venv\Scripts\python.exe scripts\run_ewc.py --quick
+
+# TorchScript + ONNX (+ INT8 when calibration data is present)
+.\venv\Scripts\python.exe scripts\export.py
+
+# live HUD: SPACE speak, v voice, d describe, g Grad-CAM
+.\venv\Scripts\python.exe scripts\roboeye_live.py
+```
+
+| Module | What it does |
+|--------|----------------|
+| `roboeye/authenticity.py` | Multi-view MobileNet + Tiny-ViT, trained on JaalTaka real/fake |
+| `roboeye/clip_zero_shot.py` | Prototype cosine match (CLIP if cached, else ImageNet MobileNet) |
+| `roboeye/dual_head.py` | YOLO denomination head + SPPF authenticity head + ensemble |
+| `roboeye/fer_emotion.py` | FER+ ONNX (7/8 emotions) → slower/calmer TTS |
+| `roboeye/haptics.py` | Genuine/fake/straighten patterns (XInput / Pi GPIO / HUD) |
+| `roboeye/asr.py` | “What is this note?” / “Is it real?” |
+| `roboeye/vlm.py` | BLIP caption if cached, else structured assistive sentence |
+| `roboeye/pose.py` | `solvePnP` roll/pitch/yaw + straighten prompt |
+| `roboeye/fedavg.py` / `ewc.py` | FedAvg clients and EWC+replay on JaalTaka shards |
+| `scripts/export.py` | TorchScript, ONNX, INT8 for Raspberry Pi 5 |
+
+JaalTaka (~8,340 images, 6 views per note) is the authenticity dataset.
+Those weights are **not** a substitute for a bank-lab counterfeit study — report
+the accuracy `train_authenticity.py` prints, not a number from the paper draft.
+
+---
+
 ## Project structure
 
 ```

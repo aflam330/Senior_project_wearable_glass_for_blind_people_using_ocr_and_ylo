@@ -12,9 +12,11 @@ v2 improvements over v1:
   - Falls back to synthetic backgrounds when COCO images run out.
 """
 
+import argparse
 import io
 import random
 import shutil
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
 import cv2
@@ -28,14 +30,13 @@ COMPOSITES_PER_IMAGE = 4
 MAX_SOURCE_DIM = 900
 NEGATIVE_RATIO = 0.10   # fraction of output images with no note
 
-BG_DIR = Path(r"C:\currency_backgrounds\images")
+BG_DIR = Path(r"E:\Final SP\data set\coco2017\val2017")
 
 SOURCE_DIR = Path(
-    r"C:\Users\memod\OneDrive\Desktop\currency\data"
-    r"\A Diverse Image Dataset for Bangladeshi Currency Recognition"
-    r"\extracted\Bangladeshi_Paper_Currency_Raw"
+    r"E:\Final SP\data set\Bangladeshi_Paper_Currency_Raw"
+    r"\Bangladeshi_Paper_Currency_Raw"
 )
-DEST_DIR = Path(r"C:\currency_yolo_data")
+DEST_DIR = Path(r"E:\Final SP\data set\currency_yolo_data")
 
 CLASSES = {
     "2":    (0, "2_taka"),
@@ -231,24 +232,64 @@ def make_negative():
     return bg
 
 
+def _worker_init(dest_str: str):
+    global DEST_DIR
+    DEST_DIR = Path(dest_str)
+    _load_bg_pool()
+
+
+def _composite_job(item):
+    """One composite (+ optional negative). Isolated RNG per job for multiprocessing."""
+    dest_str, split, class_idx, class_name, img_path, i, seed = item
+    dest = Path(dest_str)
+    random.seed(seed)
+    np.random.seed(seed & 0xFFFFFFFF)
+    note_img = load_source(Path(img_path))
+    composite, bbox = make_composite(note_img)
+    stem = f"{class_name}_{Path(img_path).stem}_{i}"
+    composite.save(dest / split / "images" / f"{stem}.jpg", quality=90)
+    x_c, y_c, bw, bh = bbox
+    (dest / split / "labels" / f"{stem}.txt").write_text(
+        f"{class_idx} {x_c:.6f} {y_c:.6f} {bw:.6f} {bh:.6f}\n"
+    )
+    made_neg = 0
+    if random.random() < NEGATIVE_RATIO:
+        neg = make_negative()
+        neg_stem = f"neg_{stem}_{i}"
+        neg.save(dest / split / "images" / f"{neg_stem}.jpg", quality=90)
+        (dest / split / "labels" / f"{neg_stem}.txt").write_text("")
+        made_neg = 1
+    return split, 1, made_neg
+
+
 # ── main ──────────────────────────────────────────────────────────────────────
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--limit", type=int, default=0, help="max source notes per class (0 = all)")
+    parser.add_argument("--composites", type=int, default=COMPOSITES_PER_IMAGE)
+    parser.add_argument("--dest", type=Path, default=DEST_DIR)
+    parser.add_argument("--no-wipe", action="store_true")
+    parser.add_argument("--workers", type=int, default=6)
+    args = parser.parse_args()
+    dest = args.dest
+    n_comp = args.composites
+
     random.seed(RANDOM_SEED)
     np.random.seed(RANDOM_SEED)
 
     _load_bg_pool()
 
     for split in ("train", "valid", "test"):
-        split_dir = DEST_DIR / split
-        if split_dir.exists():
+        split_dir = dest / split
+        if split_dir.exists() and not args.no_wipe:
             shutil.rmtree(split_dir)
         (split_dir / "images").mkdir(parents=True, exist_ok=True)
         (split_dir / "labels").mkdir(parents=True, exist_ok=True)
 
-    counts = {"train": 0, "valid": 0, "test": 0}
-    neg_counts = {"train": 0, "valid": 0, "test": 0}
-
+    jobs = []
+    seed = RANDOM_SEED
+    per_class = {}
     for folder_name, (class_idx, class_name) in CLASSES.items():
         src_folder = SOURCE_DIR / folder_name
         if not src_folder.is_dir():
@@ -260,6 +301,8 @@ def main():
             if p.suffix.lower() in (".jpg", ".jpeg", ".png")
         )
         random.shuffle(images)
+        if args.limit:
+            images = images[: args.limit]
 
         n = len(images)
         n_train = int(n * SPLIT_RATIOS[0])
@@ -269,38 +312,32 @@ def main():
             + ["valid"] * n_valid
             + ["test"] * (n - n_train - n_valid)
         )
-
+        per_class[class_name] = n * n_comp
         for img_path, split in zip(images, splits):
-            try:
-                note_img = load_source(img_path)
-            except Exception as e:
-                print(f"  skipping unreadable {img_path}: {e}")
-                continue
+            for i in range(n_comp):
+                seed += 1
+                jobs.append((str(dest), split, class_idx, class_name, str(img_path), i, seed))
+        print(f"{class_name}: {n} source images -> {n * n_comp} composites queued")
 
-            for i in range(COMPOSITES_PER_IMAGE):
-                composite, bbox = make_composite(note_img)
-                stem = f"{class_name}_{img_path.stem}_{i}"
-                (DEST_DIR / split / "images" / f"{stem}.jpg").parent.mkdir(parents=True, exist_ok=True)
-                composite.save(DEST_DIR / split / "images" / f"{stem}.jpg", quality=90)
-                x_c, y_c, bw, bh = bbox
-                (DEST_DIR / split / "labels" / f"{stem}.txt").write_text(
-                    f"{class_idx} {x_c:.6f} {y_c:.6f} {bw:.6f} {bh:.6f}\n"
-                )
-                counts[split] += 1
-
-                # negative sample after every positive (at NEGATIVE_RATIO)
-                if random.random() < NEGATIVE_RATIO:
-                    neg = make_negative()
-                    neg_stem = f"neg_{stem}_{i}"
-                    neg.save(DEST_DIR / split / "images" / f"{neg_stem}.jpg", quality=90)
-                    (DEST_DIR / split / "labels" / f"{neg_stem}.txt").write_text("")
-                    neg_counts[split] += 1
-
-        print(f"{class_name}: {n} source images -> "
-              f"{n * COMPOSITES_PER_IMAGE} composites")
+    counts = {"train": 0, "valid": 0, "test": 0}
+    neg_counts = {"train": 0, "valid": 0, "test": 0}
+    done = 0
+    workers = max(1, args.workers)
+    print(f"Generating {len(jobs)} composites with {workers} workers → {dest}")
+    with ProcessPoolExecutor(max_workers=workers, initializer=_worker_init, initargs=(str(dest),)) as pool:
+        futures = [pool.submit(_composite_job, job) for job in jobs]
+        for fut in as_completed(futures):
+            split, pos, neg = fut.result()
+            counts[split] += pos
+            neg_counts[split] += neg
+            done += 1
+            if done % 200 == 0 or done == len(jobs):
+                print(f"  {done}/{len(jobs)}", flush=True)
 
     for split in ("train", "valid", "test"):
         print(f"{split}: {counts[split]} positives + {neg_counts[split]} negatives")
+    print(f"TOTAL: {sum(counts.values())} positives + {sum(neg_counts.values())} negatives = "
+          f"{sum(counts.values()) + sum(neg_counts.values())}")
 
 
 if __name__ == "__main__":

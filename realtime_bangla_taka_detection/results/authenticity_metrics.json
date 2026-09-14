@@ -1,0 +1,19 @@
+{
+  "n_jaaltaka_notes": 1390,
+  "n_test_notes": 208,
+  "cnn_vit_1view": 0.7932692307692307,
+  "cnn_vit_2view": 0.8461538461538461,
+  "cnn_vit_6view": 0.9134615384615384,
+  "prototype_backend": "clip",
+  "prototype_1view": 0.8365384615384616,
+  "ensemble": 0.8846153846153846,
+  "bccid_n": 1286,
+  "bccid_cnn_vit": 0.2192846034214619,
+  "bccid_prototype": 0.5466562986003111,
+  "paper_draft_claims": {
+    "cnn_vit": 0.967,
+    "multiview_or_ensemble": 0.981,
+    "clip": 0.965
+  },
+  "note": "These are measured values. Paper draft 96.7/98.1/96.5 must be replaced by cnn_vit_1view / cnn_vit_6view_or_ensemble / prototype_1view (or BCCID transfer)."
+}

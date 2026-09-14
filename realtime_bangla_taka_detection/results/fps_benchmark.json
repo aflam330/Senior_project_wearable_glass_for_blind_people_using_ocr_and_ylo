@@ -1,0 +1,20 @@
+{
+  "imgsz": 640,
+  "iters": 40,
+  "hardware": "CPU",
+  "pt": {
+    "path": "E:\\Final SP\\realtime_bangla_taka_detection\\models\\best.pt",
+    "bytes": 22532835,
+    "ms": 179.2048374991282,
+    "fps": 5.580206505334237,
+    "mb": 22.532835
+  },
+  "int8_onnx": {
+    "path": "E:\\Final SP\\realtime_bangla_taka_detection\\models\\best_int8.onnx",
+    "bytes": 11526651,
+    "mb": 11.526651,
+    "ms": 199.24638750089798,
+    "fps": 5.018911572464485,
+    "runtime": "onnxruntime-cpu"
+  }
+}

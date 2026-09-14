@@ -5,9 +5,12 @@ import random
 
 from ultralytics import YOLO
 
-MODEL_PATH = "models/best.pt"
-DATA_CONFIG = "data/data.yaml"
-TEST_IMAGES = Path(r"C:\currency_yolo_data\test\images")
+ROOT = Path(__file__).resolve().parents[1]
+MODEL_PATH = str(ROOT / "models" / "best.pt")
+DATA_CONFIG = str(ROOT / "data" / "data.yaml")
+_LOCAL_TEST = ROOT.parent / "data set" / "currency_yolo_data" / "test" / "images"
+_LEGACY_TEST = Path(r"C:\currency_yolo_data\test\images")
+TEST_IMAGES = _LOCAL_TEST if _LOCAL_TEST.exists() else _LEGACY_TEST
 NUM_SAMPLES = 10
 
 

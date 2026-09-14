@@ -65,6 +65,7 @@ class CurrencyMode(BaseMode):
     def __init__(self) -> None:
         self._classifier = None
         self._transform  = None
+        self._yolo = None
 
     # ------------------------------------------------------------------
     # Lifecycle
@@ -72,6 +73,7 @@ class CurrencyMode(BaseMode):
 
     def activate(self) -> None:
         logger.info("Currency detection mode activated")
+        self._load_yolo()
         self._load_classifier()
 
     def deactivate(self) -> None:
@@ -79,6 +81,7 @@ class CurrencyMode(BaseMode):
 
     def cleanup(self) -> None:
         self._classifier = None
+        self._yolo = None
 
     # ------------------------------------------------------------------
     # Core processing  (called on ACTION button press)
@@ -89,6 +92,12 @@ class CurrencyMode(BaseMode):
             return "ক্যামেরা প্রস্তুত নয়"
 
         note_roi, bbox = self._detect_note_region(frame)
+
+        # Stage 0 — YOLOv8s / ONNX currency detector when weights are present
+        yolo_text = self._yolo_detect(frame)
+        if yolo_text:
+            self._buzz("detect")
+            return yolo_text
 
         if note_roi is None:
             return "নোট সনাক্ত করা যায়নি। ক্যামেরার সামনে ধরুন।"
@@ -112,6 +121,80 @@ class CurrencyMode(BaseMode):
             return _DENOMINATION_BN.get(color_result, f"{color_result} টাকার নোট")
 
         return "নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।"
+
+    # ------------------------------------------------------------------
+    # Stage 0 — YOLOv8s (PT / ONNX / INT8 ONNX)
+    # ------------------------------------------------------------------
+
+    def _candidate_yolo_paths(self) -> list[str]:
+        here = config.BASE_DIR
+        sibling = os.path.abspath(os.path.join(here, "..", "realtime_bangla_taka_detection", "models"))
+        names = ("best.onnx", "best_int8.onnx", "best.pt")
+        paths = []
+        for root in (os.path.join(here, "models"), sibling, getattr(config, "CURRENCY_YOLO_DIR", "")):
+            if not root:
+                continue
+            for name in names:
+                paths.append(os.path.join(root, name))
+        extra = getattr(config, "CURRENCY_YOLO_PATH", "")
+        if extra:
+            paths.insert(0, extra)
+        return paths
+
+    def _load_yolo(self) -> None:
+        for path in self._candidate_yolo_paths():
+            if not os.path.isfile(path):
+                continue
+            try:
+                from ultralytics import YOLO
+                self._yolo = YOLO(path)
+                logger.info("Currency YOLO loaded from %s", path)
+                return
+            except Exception as exc:
+                logger.warning("Failed to load currency YOLO %s: %s", path, exc)
+        logger.info("No currency YOLO weights — HSV/MobileNet only")
+
+    def _yolo_detect(self, frame: np.ndarray) -> Optional[str]:
+        if self._yolo is None:
+            return None
+        try:
+            results = self._yolo.predict(frame, conf=0.35, verbose=False, imgsz=640)
+        except Exception as exc:
+            logger.warning("YOLO currency infer failed: %s", exc)
+            return None
+        boxes = results[0].boxes
+        if boxes is None or len(boxes) == 0:
+            return None
+        best = int(boxes.conf.argmax())
+        name = results[0].names[int(boxes.cls[best].item())]
+        bn = {
+            "2_taka": "দুই টাকার নোট",
+            "5_taka": "পাঁচ টাকার নোট",
+            "10_taka": "দশ টাকার নোট",
+            "20_taka": "বিশ টাকার নোট",
+            "50_taka": "পঞ্চাশ টাকার নোট",
+            "100_taka": "একশত টাকার নোট",
+            "200_taka": "দুইশত টাকার নোট",
+            "500_taka": "পাঁচশত টাকার নোট",
+            "1000_taka": "এক হাজার টাকার নোট",
+        }.get(name)
+        return bn
+
+    def _buzz(self, _pattern: str) -> None:
+        pin = getattr(config, "HAPTIC_PIN", None)
+        if pin is None:
+            return
+        try:
+            import RPi.GPIO as GPIO
+            GPIO.setwarnings(False)
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setup(pin, GPIO.OUT)
+            GPIO.output(pin, GPIO.HIGH)
+            import time
+            time.sleep(0.08)
+            GPIO.output(pin, GPIO.LOW)
+        except Exception:
+            pass
 
     # ------------------------------------------------------------------
     # Stage 1 — HSV color analysis
