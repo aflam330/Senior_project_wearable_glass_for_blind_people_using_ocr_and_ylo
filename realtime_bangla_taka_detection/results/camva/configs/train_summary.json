@@ -1,0 +1,74 @@
+[
+  {
+    "best_val_acc": 0.9615384615384616,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.49607100587116376,
+        "val_acc": 0.8894230769230769
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.36102198826214127,
+        "val_acc": 0.9182692307692307
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.28641952662986897,
+        "val_acc": 0.9615384615384616
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.31052832732271607,
+        "val_acc": 0.9375
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.2532377517810837,
+        "val_acc": 0.9519230769230769
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.2264211914469574,
+        "val_acc": 0.9567307692307693
+      }
+    ],
+    "ckpt": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\camva\\checkpoints\\baseline_cnnvit_seed42.pt"
+  },
+  {
+    "best_val_acc": 0.9711538461538461,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.45157182589938266,
+        "val_acc": 0.9375
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.23543321079664406,
+        "val_acc": 0.9519230769230769
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.2107619683141581,
+        "val_acc": 0.9615384615384616
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.16478849905762952,
+        "val_acc": 0.9519230769230769
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.14784831829843334,
+        "val_acc": 0.9711538461538461
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.13322445783320455,
+        "val_acc": 0.9615384615384616
+      }
+    ],
+    "ckpt": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\camva\\checkpoints\\camva_quality_attention_seed42.pt"
+  }
+]

@@ -131,10 +131,15 @@ def run_ewc(
         loss = _train_epoch(model, loader2, opt, fisher=fisher, star=star, lam=lam, replay_loader=replay_loader)
         print(f"EWC task2 epoch {ep + 1} loss={loss:.4f}")
 
+    acc1_after = _acc(model, task1)
+    acc2 = _acc(model, task2)
+    forgetting = max(0.0, acc1_before - acc1_after)
     result = {
         "task1_acc_after_task1": acc1_before,
-        "task1_acc_after_task2": _acc(model, task1),
-        "task2_acc": _acc(model, task2),
+        "task1_acc_after_task2": acc1_after,
+        "task2_acc": acc2,
+        "forgetting": forgetting,
+        "forgetting_pct": round(forgetting * 100.0, 2),
         "weights": str(EWC_WEIGHTS),
     }
     MODELS_DIR.mkdir(parents=True, exist_ok=True)

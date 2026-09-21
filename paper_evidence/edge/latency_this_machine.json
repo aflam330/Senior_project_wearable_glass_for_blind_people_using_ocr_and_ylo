@@ -1,0 +1,9 @@
+{
+  "device_name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "source": "evaluate_camva median_ms in views_1_to_6.csv",
+  "rtx4060": "NOT MEASURED",
+  "raspberry_pi_5": "NOT MEASURED",
+  "platform": "Windows-11-10.0.26200-SP0"
+}

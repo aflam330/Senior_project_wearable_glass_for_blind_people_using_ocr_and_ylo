@@ -96,6 +96,8 @@ def estimate_pose(
     if not ok:
         return {"ok": False, "needs_straighten": False, "quad": image_pts}
     roll, pitch, yaw = rpy_from_rvec(rvec)
+    proj, _ = cv2.projectPoints(obj, rvec, tvec, K, dist)
+    reproj = float(np.linalg.norm(proj.reshape(-1, 2) - image_pts, axis=1).mean())
     tilt = max(abs(roll), abs(pitch))
     return {
         "ok": True,
@@ -105,6 +107,54 @@ def estimate_pose(
         "tvec": tvec.reshape(3),
         "rvec": rvec.reshape(3),
         "quad": image_pts,
+        "reproj_error_px": reproj,
         "needs_straighten": tilt > TILT_LIMIT_DEG,
         "tilt": tilt,
+    }
+
+
+def evaluate_pnp(
+    n_samples: int = 400,
+    noise_px: float = 3.05,
+    seed: int = 7,
+    image_size: tuple[int, int] = (640, 480),
+    class_name: str = "100_taka",
+) -> dict:
+    """Synthetic solvePnP study: project known note corners, add pixel noise, recover pose."""
+    rng = np.random.default_rng(seed)
+    w, h = image_size
+    K = _camera_matrix(w, h)
+    dist = np.zeros((4, 1))
+    obj = _object_corners(class_name)
+    reproj, rolls, pitches, yaws = [], [], [], []
+    for _ in range(n_samples):
+        rvec_gt = np.deg2rad(
+            np.array(
+                [
+                    rng.normal(0.0, 3.25),
+                    rng.normal(0.0, 4.20),
+                    rng.normal(0.0, 3.60),
+                ],
+                dtype=np.float64,
+            )
+        ).reshape(3, 1)
+        tvec_gt = np.array([[0.0], [0.0], [280.0 + rng.normal(0, 20)]], dtype=np.float64)
+        proj, _ = cv2.projectPoints(obj, rvec_gt, tvec_gt, K, dist)
+        image_pts = proj.reshape(4, 2) + rng.normal(0.0, noise_px, size=(4, 2))
+        ok, rvec, tvec = cv2.solvePnP(obj, image_pts, K, dist, flags=cv2.SOLVEPNP_ITERATIVE)
+        if not ok:
+            continue
+        pred, _ = cv2.projectPoints(obj, rvec, tvec, K, dist)
+        reproj.append(float(np.linalg.norm(pred.reshape(-1, 2) - image_pts, axis=1).mean()))
+        roll, pitch, yaw = rpy_from_rvec(rvec)
+        rolls.append(abs(roll))
+        pitches.append(abs(pitch))
+        yaws.append(abs(yaw))
+    return {
+        "n_samples": len(reproj),
+        "mean_reproj_error_px": float(np.mean(reproj)) if reproj else None,
+        "mean_abs_roll_deg": float(np.mean(rolls)) if rolls else None,
+        "mean_abs_pitch_deg": float(np.mean(pitches)) if pitches else None,
+        "mean_abs_yaw_deg": float(np.mean(yaws)) if yaws else None,
+        "noise_px": noise_px,
     }

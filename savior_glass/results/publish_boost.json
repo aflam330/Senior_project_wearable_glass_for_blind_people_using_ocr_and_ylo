@@ -1,0 +1,688 @@
+{
+  "started": "2026-09-15 20:50:16",
+  "emotion": {
+    "winner": "hgb",
+    "metrics": {
+      "n_test": 5741,
+      "accuracy": 0.6763630029611566,
+      "macro_precision": 0.6419379597091182,
+      "macro_recall": 0.6560139232620262,
+      "macro_f1": 0.6451685173836189,
+      "class_distribution": {
+        "Happy": 1443,
+        "Sad": 966,
+        "Angry": 799,
+        "Surprise": 634,
+        "Fear": 819,
+        "Disgust": 87,
+        "Neutral": 993
+      },
+      "per_class": {
+        "Happy": {
+          "precision": 0.8846960167714885,
+          "recall": 0.8773388773388774,
+          "f1": 0.8810020876826722,
+          "support": 1443
+        },
+        "Sad": {
+          "precision": 0.5396396396396397,
+          "recall": 0.6200828157349897,
+          "f1": 0.5770712909441233,
+          "support": 966
+        },
+        "Angry": {
+          "precision": 0.632446134347275,
+          "recall": 0.6245306633291614,
+          "f1": 0.628463476070529,
+          "support": 799
+        },
+        "Surprise": {
+          "precision": 0.7620481927710844,
+          "recall": 0.7981072555205048,
+          "f1": 0.7796610169491527,
+          "support": 634
+        },
+        "Fear": {
+          "precision": 0.5421903052064632,
+          "recall": 0.36874236874236876,
+          "f1": 0.438953488372093,
+          "support": 819
+        },
+        "Disgust": {
+          "precision": 0.5283018867924528,
+          "recall": 0.6436781609195402,
+          "f1": 0.5803108808290156,
+          "support": 87
+        },
+        "Neutral": {
+          "precision": 0.6042435424354243,
+          "recall": 0.6596173212487412,
+          "f1": 0.6307173808377468,
+          "support": 993
+        }
+      },
+      "confusion_matrix": [
+        [
+          1266,
+          25,
+          16,
+          44,
+          18,
+          0,
+          74
+        ],
+        [
+          19,
+          599,
+          87,
+          13,
+          78,
+          9,
+          161
+        ],
+        [
+          23,
+          106,
+          499,
+          15,
+          49,
+          22,
+          85
+        ],
+        [
+          35,
+          8,
+          13,
+          506,
+          60,
+          3,
+          9
+        ],
+        [
+          27,
+          200,
+          105,
+          73,
+          302,
+          12,
+          100
+        ],
+        [
+          3,
+          7,
+          12,
+          0,
+          9,
+          56,
+          0
+        ],
+        [
+          58,
+          165,
+          57,
+          13,
+          41,
+          4,
+          655
+        ]
+      ],
+      "labels": [
+        "Happy",
+        "Sad",
+        "Angry",
+        "Surprise",
+        "Fear",
+        "Disgust",
+        "Neutral"
+      ],
+      "seconds": 169.6,
+      "winner": "hgb",
+      "split": "stratified-20pct-holdout",
+      "all_backends": {
+        "logreg": {
+          "accuracy": 0.6383905242989026,
+          "macro_f1": 0.5846070638773794,
+          "n_test": 5741
+        },
+        "hgb": {
+          "accuracy": 0.6763630029611566,
+          "macro_f1": 0.6451685173836189,
+          "n_test": 5741
+        },
+        "et": {
+          "accuracy": 0.6601637345410207,
+          "macro_f1": 0.6216751374586394,
+          "n_test": 5741
+        },
+        "mlp": {
+          "accuracy": 0.6464030656680021,
+          "macro_f1": 0.593708453185707,
+          "n_test": 5741
+        },
+        "vote": {
+          "accuracy": 0.6648667479533182,
+          "macro_f1": 0.6209881085621888,
+          "n_test": 5741
+        },
+        "ferplus_cal": {
+          "accuracy": 0.6376937815711549,
+          "macro_f1": 0.5722993324013171,
+          "n_test": 5741
+        },
+        "hgb_cal_blend": {
+          "accuracy": 0.6756662602334088,
+          "macro_f1": 0.6439541222336335,
+          "n_test": 5741
+        },
+        "vit": {
+          "accuracy": 0.17296638216338617,
+          "macro_f1": 0.04213161356018499,
+          "n_test": 5741
+        },
+        "in_the_wild_faces": {
+          "accuracy": 0.67,
+          "macro_f1": 0.31375483797346365,
+          "n_test": 400
+        }
+      }
+    },
+    "split": "stratified-20pct-holdout",
+    "backends": {
+      "logreg": {
+        "accuracy": 0.6383905242989026,
+        "macro_f1": 0.5846070638773794,
+        "n_test": 5741
+      },
+      "hgb": {
+        "accuracy": 0.6763630029611566,
+        "macro_f1": 0.6451685173836189,
+        "n_test": 5741
+      },
+      "et": {
+        "accuracy": 0.6601637345410207,
+        "macro_f1": 0.6216751374586394,
+        "n_test": 5741
+      },
+      "mlp": {
+        "accuracy": 0.6464030656680021,
+        "macro_f1": 0.593708453185707,
+        "n_test": 5741
+      },
+      "vote": {
+        "accuracy": 0.6648667479533182,
+        "macro_f1": 0.6209881085621888,
+        "n_test": 5741
+      },
+      "ferplus_cal": {
+        "accuracy": 0.6376937815711549,
+        "macro_f1": 0.5722993324013171,
+        "n_test": 5741
+      },
+      "hgb_cal_blend": {
+        "accuracy": 0.6756662602334088,
+        "macro_f1": 0.6439541222336335,
+        "n_test": 5741
+      },
+      "vit": {
+        "accuracy": 0.17296638216338617,
+        "macro_f1": 0.04213161356018499,
+        "n_test": 5741
+      },
+      "in_the_wild_faces": {
+        "accuracy": 0.67,
+        "macro_f1": 0.31375483797346365,
+        "n_test": 400
+      }
+    },
+    "in_the_wild_faces": {
+      "n_test": 400,
+      "accuracy": 0.67,
+      "macro_precision": 0.32542128125400316,
+      "macro_recall": 0.505007307962973,
+      "macro_f1": 0.31375483797346365,
+      "class_distribution": {
+        "Happy": 170,
+        "Sad": 2,
+        "Angry": 7,
+        "Surprise": 13,
+        "Fear": 0,
+        "Disgust": 5,
+        "Neutral": 203
+      },
+      "per_class": {
+        "Happy": {
+          "precision": 0.9645390070921985,
+          "recall": 0.8,
+          "f1": 0.8745980707395499,
+          "support": 170
+        },
+        "Sad": {
+          "precision": 0.06896551724137931,
+          "recall": 1.0,
+          "f1": 0.12903225806451613,
+          "support": 2
+        },
+        "Angry": {
+          "precision": 0.12,
+          "recall": 0.8571428571428571,
+          "f1": 0.21052631578947367,
+          "support": 7
+        },
+        "Surprise": {
+          "precision": 0.1111111111111111,
+          "recall": 0.07692307692307693,
+          "f1": 0.09090909090909093,
+          "support": 13
+        },
+        "Fear": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "Disgust": {
+          "precision": 0.2,
+          "recall": 0.2,
+          "f1": 0.20000000000000004,
+          "support": 5
+        },
+        "Neutral": {
+          "precision": 0.8133333333333334,
+          "recall": 0.6009852216748769,
+          "f1": 0.6912181303116148,
+          "support": 203
+        }
+      },
+      "confusion_matrix": [
+        [
+          136,
+          4,
+          4,
+          1,
+          1,
+          2,
+          22
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          6,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          4,
+          1,
+          3,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          1,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          5,
+          21,
+          35,
+          6,
+          12,
+          2,
+          122
+        ]
+      ],
+      "labels": [
+        "Happy",
+        "Sad",
+        "Angry",
+        "Surprise",
+        "Fear",
+        "Disgust",
+        "Neutral"
+      ],
+      "source": "muxspace/facial_expressions subsample"
+    }
+  },
+  "ocr": {
+    "n": 80,
+    "cer": 0.15474459568209567,
+    "wer": 0.3416666666666667,
+    "by_lang": {
+      "bn": {
+        "n": 40,
+        "cer": 0.277666847041847,
+        "wer": 0.5791666666666666
+      },
+      "en": {
+        "n": 40,
+        "cer": 0.03182234432234432,
+        "wer": 0.10416666666666666
+      }
+    },
+    "engine": "easyocr-bn-en + CLAHE x1.6",
+    "font": "C:\\Windows\\Fonts\\vrinda.ttf",
+    "samples_head": [
+      {
+        "gt": "বাংলাদেশ ব্যাংক",
+        "hyp": "বংলাদশে বযংক",
+        "lang": "bn",
+        "wild": false,
+        "cer": 0.3333333333333333,
+        "wer": 1.0
+      },
+      {
+        "gt": "দশ টাকা",
+        "hyp": "দশ টাকা",
+        "lang": "bn",
+        "wild": true,
+        "cer": 0.0,
+        "wer": 0.0
+      },
+      {
+        "gt": "বিশ টাকা",
+        "hyp": "বশি টাকা",
+        "lang": "bn",
+        "wild": false,
+        "cer": 0.25,
+        "wer": 0.5
+      },
+      {
+        "gt": "এই পথ বন্ধ",
+        "hyp": "এই সথ বলধ",
+        "lang": "bn",
+        "wild": true,
+        "cer": 0.3,
+        "wer": 0.6666666666666666
+      },
+      {
+        "gt": "স্টেশন ১২",
+        "hyp": "সটশেন ১২",
+        "lang": "bn",
+        "wild": false,
+        "cer": 0.3333333333333333,
+        "wer": 0.5
+      },
+      {
+        "gt": "হাসপাতাল",
+        "hyp": "হাসপাতাল",
+        "lang": "bn",
+        "wild": true,
+        "cer": 0.0,
+        "wer": 0.0
+      },
+      {
+        "gt": "ঔষধের দোকান",
+        "hyp": "ঔষধরে দ কণ",
+        "lang": "bn",
+        "wild": false,
+        "cer": 0.45454545454545453,
+        "wer": 1.5
+      },
+      {
+        "gt": "বাস স্টপ",
+        "hyp": "বাস   সটপ",
+        "lang": "bn",
+        "wild": true,
+        "cer": 0.375,
+        "wer": 0.5
+      },
+      {
+        "gt": "ডানদিকে যান",
+        "hyp": "ডনদকি যান",
+        "lang": "bn",
+        "wild": false,
+        "cer": 0.2727272727272727,
+        "wer": 0.5
+      },
+      {
+        "gt": "বাঁদিকে যান",
+        "hyp": "বাঁদকি  যান",
+        "lang": "bn",
+        "wild": true,
+        "cer": 0.2727272727272727,
+        "wer": 0.5
+      },
+      {
+        "gt": "মূল ফটক",
+        "hyp": "মূল   ফটক",
+        "lang": "bn",
+        "wild": false,
+        "cer": 0.2857142857142857,
+        "wer": 0.0
+      },
+      {
+        "gt": "টিকিট কাউন্টার",
+        "hyp": "টকিটি   কাউন্টার",
+        "lang": "bn",
+        "wild": true,
+        "cer": 0.2857142857142857,
+        "wer": 0.5
+      }
+    ]
+  },
+  "object": {
+    "weights": "E:\\Final SP\\savior_glass\\models\\yolov8s.pt",
+    "n_images": 250,
+    "map50": 0.6042659697968573,
+    "n_classes_scored": 77,
+    "split": "COCO val2017 random subset",
+    "per_class_head": {
+      "fire hydrant": {
+        "ap50": 1.0,
+        "n_gt": 7,
+        "n_pred": 8
+      },
+      "zebra": {
+        "ap50": 1.0,
+        "n_gt": 7,
+        "n_pred": 11
+      },
+      "hot dog": {
+        "ap50": 1.0,
+        "n_gt": 2,
+        "n_pred": 2
+      },
+      "microwave": {
+        "ap50": 1.0,
+        "n_gt": 1,
+        "n_pred": 3
+      },
+      "oven": {
+        "ap50": 1.0,
+        "n_gt": 2,
+        "n_pred": 3
+      },
+      "donut": {
+        "ap50": 0.9861111111111112,
+        "n_gt": 8,
+        "n_pred": 9
+      },
+      "suitcase": {
+        "ap50": 0.9532467532467532,
+        "n_gt": 10,
+        "n_pred": 19
+      },
+      "toilet": {
+        "ap50": 0.95,
+        "n_gt": 4,
+        "n_pred": 7
+      },
+      "laptop": {
+        "ap50": 0.9467008077469214,
+        "n_gt": 19,
+        "n_pred": 25
+      },
+      "umbrella": {
+        "ap50": 0.9199346405228758,
+        "n_gt": 17,
+        "n_pred": 32
+      },
+      "elephant": {
+        "ap50": 0.9183333333333334,
+        "n_gt": 25,
+        "n_pred": 27
+      },
+      "bed": {
+        "ap50": 0.9166666666666666,
+        "n_gt": 4,
+        "n_pred": 7
+      },
+      "dog": {
+        "ap50": 0.9151785714285714,
+        "n_gt": 8,
+        "n_pred": 14
+      },
+      "bus": {
+        "ap50": 0.9038461538461539,
+        "n_gt": 12,
+        "n_pred": 14
+      },
+      "cat": {
+        "ap50": 0.859375,
+        "n_gt": 8,
+        "n_pred": 11
+      }
+    }
+  },
+  "currency": {
+    "wild_existing_yolo": {
+      "n": 450,
+      "detection_rate": 0.9844444444444445,
+      "top1_accuracy": 0.9688888888888889,
+      "per_true": {
+        "10_taka": {
+          "10_taka": 48,
+          "none": 2
+        },
+        "100_taka": {
+          "100_taka": 48,
+          "none": 2
+        },
+        "1000_taka": {
+          "1000_taka": 47,
+          "500_taka": 3
+        },
+        "2_taka": {
+          "2_taka": 47,
+          "5_taka": 2,
+          "none": 1
+        },
+        "20_taka": {
+          "20_taka": 50
+        },
+        "200_taka": {
+          "200_taka": 50
+        },
+        "5_taka": {
+          "5_taka": 50
+        },
+        "50_taka": {
+          "50_taka": 46,
+          "5_taka": 1,
+          "500_taka": 1,
+          "none": 2
+        },
+        "500_taka": {
+          "500_taka": 50
+        }
+      },
+      "weights": "E:\\Final SP\\realtime_bangla_taka_detection\\models\\best.pt"
+    },
+    "yolo_val": {
+      "map50": 0.9938711056321871,
+      "map50_95": 0.8439532520494353,
+      "precision": 0.9912419007018419,
+      "recall": 0.991657765996519
+    },
+    "mobilenet": {
+      "n_images": 5073,
+      "classes": [
+        "10",
+        "100",
+        "1000",
+        "2",
+        "20",
+        "200",
+        "5",
+        "50",
+        "500"
+      ],
+      "best_val_acc": 0.9921104536489151,
+      "history": [
+        {
+          "epoch": 1,
+          "train_acc": 0.877309682187731,
+          "val_acc": 0.9674556213017751
+        },
+        {
+          "epoch": 2,
+          "train_acc": 0.9556541019955654,
+          "val_acc": 0.9644970414201184
+        },
+        {
+          "epoch": 3,
+          "train_acc": 0.9714215323971421,
+          "val_acc": 0.9911242603550295
+        },
+        {
+          "epoch": 4,
+          "train_acc": 0.981029810298103,
+          "val_acc": 0.9881656804733728
+        },
+        {
+          "epoch": 5,
+          "train_acc": 0.9802907119980291,
+          "val_acc": 0.9832347140039448
+        },
+        {
+          "epoch": 6,
+          "train_acc": 0.9797979797979798,
+          "val_acc": 0.9812623274161736
+        },
+        {
+          "epoch": 7,
+          "train_acc": 0.9773343187977335,
+          "val_acc": 0.9832347140039448
+        },
+        {
+          "epoch": 8,
+          "train_acc": 0.9857107661985711,
+          "val_acc": 0.9921104536489151
+        }
+      ]
+    },
+    "wild_finetune": {
+      "weights": "E:\\Final SP\\savior_glass\\results\\yolo_runs\\taka_wild_ft\\weights\\best.pt",
+      "wild_top1_after": 0.9844444444444445,
+      "wild_det_after": 0.9933333333333333
+    }
+  },
+  "finished": "2026-09-15 22:39:41"
+}

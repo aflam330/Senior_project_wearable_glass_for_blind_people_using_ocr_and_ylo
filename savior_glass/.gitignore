@@ -12,6 +12,11 @@ build/
 venv/
 env/
 
+# Secrets
+.env
+.env.*
+!.env.example
+
 # Models (large binary files — download via install.sh)
 models/*.pt
 models/*.onnx
@@ -22,6 +27,9 @@ models/yolov8n_ncnn_model/
 # Logs
 logs/*.log
 logs/*.log.*
+
+# Eval downloads
+results/fer2013.csv
 
 # Temp audio files
 *.mp3

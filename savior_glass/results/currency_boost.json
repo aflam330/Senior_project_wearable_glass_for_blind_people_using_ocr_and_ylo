@@ -1,0 +1,113 @@
+{
+  "wild_existing_yolo": {
+    "n": 450,
+    "detection_rate": 0.9844444444444445,
+    "top1_accuracy": 0.9688888888888889,
+    "per_true": {
+      "10_taka": {
+        "10_taka": 48,
+        "none": 2
+      },
+      "100_taka": {
+        "100_taka": 48,
+        "none": 2
+      },
+      "1000_taka": {
+        "1000_taka": 47,
+        "500_taka": 3
+      },
+      "2_taka": {
+        "2_taka": 47,
+        "5_taka": 2,
+        "none": 1
+      },
+      "20_taka": {
+        "20_taka": 50
+      },
+      "200_taka": {
+        "200_taka": 50
+      },
+      "5_taka": {
+        "5_taka": 50
+      },
+      "50_taka": {
+        "50_taka": 46,
+        "5_taka": 1,
+        "500_taka": 1,
+        "none": 2
+      },
+      "500_taka": {
+        "500_taka": 50
+      }
+    },
+    "weights": "E:\\Final SP\\realtime_bangla_taka_detection\\models\\best.pt"
+  },
+  "yolo_val": {
+    "map50": 0.9938711056321871,
+    "map50_95": 0.8439532520494353,
+    "precision": 0.9912419007018419,
+    "recall": 0.991657765996519
+  },
+  "mobilenet": {
+    "n_images": 5073,
+    "classes": [
+      "10",
+      "100",
+      "1000",
+      "2",
+      "20",
+      "200",
+      "5",
+      "50",
+      "500"
+    ],
+    "best_val_acc": 0.9921104536489151,
+    "history": [
+      {
+        "epoch": 1,
+        "train_acc": 0.877309682187731,
+        "val_acc": 0.9674556213017751
+      },
+      {
+        "epoch": 2,
+        "train_acc": 0.9556541019955654,
+        "val_acc": 0.9644970414201184
+      },
+      {
+        "epoch": 3,
+        "train_acc": 0.9714215323971421,
+        "val_acc": 0.9911242603550295
+      },
+      {
+        "epoch": 4,
+        "train_acc": 0.981029810298103,
+        "val_acc": 0.9881656804733728
+      },
+      {
+        "epoch": 5,
+        "train_acc": 0.9802907119980291,
+        "val_acc": 0.9832347140039448
+      },
+      {
+        "epoch": 6,
+        "train_acc": 0.9797979797979798,
+        "val_acc": 0.9812623274161736
+      },
+      {
+        "epoch": 7,
+        "train_acc": 0.9773343187977335,
+        "val_acc": 0.9832347140039448
+      },
+      {
+        "epoch": 8,
+        "train_acc": 0.9857107661985711,
+        "val_acc": 0.9921104536489151
+      }
+    ]
+  },
+  "wild_finetune": {
+    "weights": "E:\\Final SP\\savior_glass\\results\\yolo_runs\\taka_wild_ft\\weights\\best.pt",
+    "wild_top1_after": 0.9844444444444445,
+    "wild_det_after": 0.9933333333333333
+  }
+}

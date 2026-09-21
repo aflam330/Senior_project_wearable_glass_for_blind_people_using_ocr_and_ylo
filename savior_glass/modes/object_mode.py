@@ -122,22 +122,23 @@ class ObjectMode(BaseMode):
     def _load_model(self) -> None:
         if self._model is not None:
             return
-        if not os.path.isfile(config.YOLO_MODEL_PATH):
-            logger.warning(
-                "YOLOv8n model not found at %s. "
-                "Run: python3 -c \"from ultralytics import YOLO; YOLO('yolov8n.pt')\" "
-                "then copy yolov8n.pt into models/",
-                config.YOLO_MODEL_PATH,
-            )
+        candidates = [
+            getattr(config, "YOLO_MODEL_PATH", ""),
+            getattr(config, "YOLO_MODEL_FALLBACK", ""),
+            os.path.join(config.BASE_DIR, "models", "yolov8s.pt"),
+            os.path.join(config.BASE_DIR, "models", "yolov8n.pt"),
+        ]
+        path = next((p for p in candidates if p and os.path.isfile(p)), "")
+        if not path:
+            logger.warning("No YOLOv8 weights in models/ (tried yolov8s.pt then yolov8n.pt)")
             return
         try:
             from ultralytics import YOLO
-            self._model = YOLO(config.YOLO_MODEL_PATH)
-            # Warmup — avoids long first-inference delay
+            self._model = YOLO(path)
             dummy = np.zeros((240, 320, 3), dtype=np.uint8)
             with torch.no_grad():
                 self._model.predict(dummy, verbose=False)
-            logger.info("YOLOv8n model loaded and warmed up")
+            logger.info("YOLO object model loaded from %s", path)
         except Exception as exc:
             logger.error("Failed to load YOLO model: %s", exc)
             self._model = None

@@ -1,0 +1,84 @@
+{
+  "weights": "E:\\Final SP\\savior_glass\\models\\yolov8s.pt",
+  "n_images": 250,
+  "map50": 0.6042659697968573,
+  "n_classes_scored": 77,
+  "split": "COCO val2017 random subset",
+  "per_class_head": {
+    "fire hydrant": {
+      "ap50": 1.0,
+      "n_gt": 7,
+      "n_pred": 8
+    },
+    "zebra": {
+      "ap50": 1.0,
+      "n_gt": 7,
+      "n_pred": 11
+    },
+    "hot dog": {
+      "ap50": 1.0,
+      "n_gt": 2,
+      "n_pred": 2
+    },
+    "microwave": {
+      "ap50": 1.0,
+      "n_gt": 1,
+      "n_pred": 3
+    },
+    "oven": {
+      "ap50": 1.0,
+      "n_gt": 2,
+      "n_pred": 3
+    },
+    "donut": {
+      "ap50": 0.9861111111111112,
+      "n_gt": 8,
+      "n_pred": 9
+    },
+    "suitcase": {
+      "ap50": 0.9532467532467532,
+      "n_gt": 10,
+      "n_pred": 19
+    },
+    "toilet": {
+      "ap50": 0.95,
+      "n_gt": 4,
+      "n_pred": 7
+    },
+    "laptop": {
+      "ap50": 0.9467008077469214,
+      "n_gt": 19,
+      "n_pred": 25
+    },
+    "umbrella": {
+      "ap50": 0.9199346405228758,
+      "n_gt": 17,
+      "n_pred": 32
+    },
+    "elephant": {
+      "ap50": 0.9183333333333334,
+      "n_gt": 25,
+      "n_pred": 27
+    },
+    "bed": {
+      "ap50": 0.9166666666666666,
+      "n_gt": 4,
+      "n_pred": 7
+    },
+    "dog": {
+      "ap50": 0.9151785714285714,
+      "n_gt": 8,
+      "n_pred": 14
+    },
+    "bus": {
+      "ap50": 0.9038461538461539,
+      "n_gt": 12,
+      "n_pred": 14
+    },
+    "cat": {
+      "ap50": 0.859375,
+      "n_gt": 8,
+      "n_pred": 11
+    }
+  }
+}

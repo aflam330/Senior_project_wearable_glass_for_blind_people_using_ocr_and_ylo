@@ -32,18 +32,21 @@ FRAME_BUFFER_SIZE = 2  # deque maxlen — keep only the freshest frames
 MODE_OCR      = 0
 MODE_OBJECT   = 1
 MODE_CURRENCY = 2
+MODE_CLAUDE   = 3   # Online Claude vision (internet + API key required)
 
 # Bangla mode announcements spoken on switch
 MODE_NAMES_BN = [
-    "টেক্সট রিডিং মোড",        # Text Reading Mode
+    "টেক্সট রিডিং মোড",        # Text Reading Mode (offline EasyOCR)
     "অবজেক্ট ডিটেকশন মোড",     # Object Detection Mode
     "কারেন্সি ডিটেকশন মোড",    # Currency Detection Mode
+    "অনলাইন ক্লড মোড",         # Online Claude (Windows: C key)
 ]
 
 # ---------------------------------------------------------------------------
 # Model Paths
 # ---------------------------------------------------------------------------
-YOLO_MODEL_PATH     = os.path.join(BASE_DIR, "models", "yolov8n.pt")
+YOLO_MODEL_PATH     = os.path.join(BASE_DIR, "models", "yolov8s.pt")
+YOLO_MODEL_FALLBACK = os.path.join(BASE_DIR, "models", "yolov8n.pt")
 CURRENCY_MODEL_PATH = os.path.join(BASE_DIR, "models", "currency_mobilenet.pt")
 CURRENCY_YOLO_PATH  = os.path.join(BASE_DIR, "models", "best.onnx")
 HAPTIC_PIN          = 13   # BCM — vibration motor for note confirmation
@@ -66,6 +69,16 @@ DEFAULT_VOLUME   = 80         # percent (0–100)
 VOLUME_STEP      = 10         # percent per button press
 TTS_QUEUE_MAXSIZE = 5         # drop old items if queue fills
 TTS_INTER_UTTERANCE_PAUSE = 0.15  # seconds between queued utterances (sentences/segments)
+
+# ---------------------------------------------------------------------------
+# Online Claude (optional — EasyOCR stays the offline text reader)
+# ---------------------------------------------------------------------------
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+CLAUDE_MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-5")
+CLAUDE_MAX_TOKENS = 600
+
+# Emotion-adaptive feedback (E key in Windows test)
+EMOTION_ADAPTIVE_DEFAULT = True
 
 # ---------------------------------------------------------------------------
 # Inference Thresholds

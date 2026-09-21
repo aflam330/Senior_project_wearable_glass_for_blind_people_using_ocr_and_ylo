@@ -5,7 +5,7 @@ from __future__ import annotations
 import queue
 import threading
 
-from .fer_emotion import tts_style_for_emotion
+from .config import DEVICE, MODELS_DIR
 
 
 class Speaker:
@@ -41,9 +41,10 @@ class Speaker:
             pythoncom.CoUninitialize()
 
     def say(self, phrase: str, emotion: str = "neutral") -> None:
-        style = tts_style_for_emotion(emotion)
-        text = f"{style['prefix']}{phrase}"
-        self._q.put((text, int(self._rate + style["rate"])))
+        from .fer_emotion import adapt_feedback
+
+        adapted = adapt_feedback(phrase, emotion, enabled=True, bangla=False)
+        self._q.put((adapted["text"], int(self._rate + adapted["rate"])))
 
     def stop(self):
         self._stop.set()

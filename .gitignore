@@ -31,3 +31,7 @@ logs/*.log
 
 # Large local datasets (~3.5GB) — keep on disk, do not push to GitHub
 data set/
+
+# Local YOLO dumps / training curves (regenerable, too large)
+savior_glass/results/taka_wild_yolo/
+savior_glass/results/yolo_runs/

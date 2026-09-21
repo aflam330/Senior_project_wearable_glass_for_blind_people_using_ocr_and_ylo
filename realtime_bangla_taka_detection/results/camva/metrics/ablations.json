@@ -1,0 +1,42 @@
+[
+  {
+    "ablation": "A_cnnvit_simple_averaging",
+    "accuracy": 0.9182692307692307,
+    "f1": 0.9328063241106719,
+    "roc_auc": 0.9709280303030303,
+    "ece": 0.07889068069925999
+  },
+  {
+    "ablation": "B_attention_off_mean",
+    "accuracy": 0.7884615384615384,
+    "f1": 0.7777777777777779,
+    "roc_auc": 0.9168560606060606,
+    "ece": 0.18248247840305198,
+    "average_views": 6.0
+  },
+  {
+    "ablation": "C_attention_fusion",
+    "accuracy": 0.9663461538461539,
+    "f1": 0.9707112970711297,
+    "roc_auc": 0.9828598484848485,
+    "ece": 0.040868062878365974,
+    "average_views": 6.0
+  },
+  {
+    "ablation": "D_quality_aware_no_adaptive",
+    "accuracy": 0.9663461538461539,
+    "f1": 0.9707112970711297,
+    "roc_auc": 0.9828598484848485,
+    "ece": 0.04086742558781362,
+    "average_views": 6.0
+  },
+  {
+    "ablation": "E_full_camva_adaptive",
+    "accuracy": 0.6778846153846154,
+    "f1": 0.6417112299465241,
+    "roc_auc": 0.7526515151515152,
+    "ece": 0.3021418923183844,
+    "average_views": 1.8798076923076923,
+    "pct_all_six": 0.07211538461538461
+  }
+]

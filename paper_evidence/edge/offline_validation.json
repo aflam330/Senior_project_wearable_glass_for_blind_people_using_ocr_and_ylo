@@ -1,0 +1,13 @@
+{
+  "created": "2026-09-21",
+  "modules": [
+    {"module": "YOLOv8s Taka", "offline_status": "offline", "external_dependency": "local best.pt", "status": "code_present"},
+    {"module": "CAMVA auth", "offline_status": "offline", "external_dependency": "JaalTaka + local checkpoint", "status": "code_present"},
+    {"module": "FER emotion", "offline_status": "offline", "external_dependency": "emotion_faces.pt / FER+ ONNX", "status": "code_present"},
+    {"module": "EasyOCR", "offline_status": "offline_after_model_download", "external_dependency": "EasyOCR weights cache", "status": "code_present"},
+    {"module": "SAPI TTS", "offline_status": "offline", "external_dependency": "Windows SAPI", "status": "code_present"},
+    {"module": "Claude vision", "offline_status": "online", "external_dependency": "ANTHROPIC_API_KEY", "status": "optional"},
+    {"module": "Qwen2-VL", "offline_status": "unknown", "external_dependency": "local weights if present", "status": "NOT MEASURED"}
+  ],
+  "full_pipeline_network_disabled_run": "NOT MEASURED"
+}

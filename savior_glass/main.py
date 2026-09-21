@@ -26,7 +26,7 @@ warnings.filterwarnings("ignore", message=".*pin_memory.*", category=UserWarning
 import config
 import utils
 from button_handler import ButtonHandler
-from modes import CurrencyMode, ObjectMode, OCRMode
+from modes import ClaudeMode, CurrencyMode, ObjectMode, OCRMode
 
 logger = logging.getLogger("smart_glass.main")
 
@@ -42,7 +42,7 @@ class SmartGlass:
         self._camera = utils.CameraManager()
 
         # Modes — OCR loads lazily; YOLO loads on first activate
-        self._modes = [OCRMode(), ObjectMode(), CurrencyMode()]
+        self._modes = [OCRMode(), ObjectMode(), CurrencyMode(), ClaudeMode()]
         self._current_mode: int = config.MODE_OCR
         self._mode_lock = threading.Lock()
 
@@ -182,11 +182,14 @@ class SmartGlass:
         with self._mode_lock:
             mode_idx = self._current_mode
 
-        if mode_idx != config.MODE_OCR:
+        if mode_idx == config.MODE_OCR:
+            ocr_mode: OCRMode = self._modes[config.MODE_OCR]  # type: ignore[assignment]
+            result = ocr_mode.read_stored()
+        elif mode_idx == config.MODE_CLAUDE:
+            claude_mode: ClaudeMode = self._modes[config.MODE_CLAUDE]  # type: ignore[assignment]
+            result = claude_mode.read_stored()
+        else:
             return
-
-        ocr_mode: OCRMode = self._modes[config.MODE_OCR]  # type: ignore[assignment]
-        result = ocr_mode.read_stored()
         if result:
             self._tts.speak(result)
 

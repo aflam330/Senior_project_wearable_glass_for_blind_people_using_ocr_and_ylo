@@ -1,0 +1,114 @@
+[
+  {
+    "corruption": "clean",
+    "severity": 0,
+    "baseline_acc": 0.9182692307692307,
+    "camva_acc": 0.9663461538461539,
+    "baseline_drop": 0.0,
+    "camva_drop": 0.0
+  },
+  {
+    "corruption": "gaussian_blur",
+    "severity": 1.0,
+    "baseline_acc": 0.9182692307692307,
+    "camva_acc": 0.9663461538461539,
+    "baseline_drop": 0.0,
+    "camva_drop": 0.0
+  },
+  {
+    "corruption": "gaussian_blur",
+    "severity": 3.0,
+    "baseline_acc": 0.9182692307692307,
+    "camva_acc": 0.9711538461538461,
+    "baseline_drop": 0.0,
+    "camva_drop": -0.004807692307692291
+  },
+  {
+    "corruption": "gaussian_blur",
+    "severity": 6.0,
+    "baseline_acc": 0.9038461538461539,
+    "camva_acc": 0.9615384615384616,
+    "baseline_drop": 0.014423076923076872,
+    "camva_drop": 0.004807692307692291
+  },
+  {
+    "corruption": "motion_blur",
+    "severity": 5.0,
+    "baseline_acc": 0.9134615384615384,
+    "camva_acc": 0.9711538461538461,
+    "baseline_drop": 0.004807692307692291,
+    "camva_drop": -0.004807692307692291
+  },
+  {
+    "corruption": "brightness",
+    "severity": 0.6,
+    "baseline_acc": 0.8653846153846154,
+    "camva_acc": 0.9326923076923077,
+    "baseline_drop": 0.05288461538461531,
+    "camva_drop": 0.033653846153846145
+  },
+  {
+    "corruption": "low_light",
+    "severity": 0.35,
+    "baseline_acc": 0.6153846153846154,
+    "camva_acc": 0.7211538461538461,
+    "baseline_drop": 0.3028846153846153,
+    "camva_drop": 0.2451923076923077
+  },
+  {
+    "corruption": "occlusion",
+    "severity": 0.2,
+    "baseline_acc": 0.8269230769230769,
+    "camva_acc": 0.5817307692307693,
+    "baseline_drop": 0.09134615384615385,
+    "camva_drop": 0.3846153846153846
+  },
+  {
+    "corruption": "occlusion",
+    "severity": 0.4,
+    "baseline_acc": 0.8221153846153846,
+    "camva_acc": 0.7307692307692307,
+    "baseline_drop": 0.09615384615384615,
+    "camva_drop": 0.23557692307692313
+  },
+  {
+    "corruption": "occlusion",
+    "severity": 0.6,
+    "baseline_acc": 0.8221153846153846,
+    "camva_acc": 0.6826923076923077,
+    "baseline_drop": 0.09615384615384615,
+    "camva_drop": 0.28365384615384615
+  },
+  {
+    "corruption": "jpeg",
+    "severity": 30.0,
+    "baseline_acc": 0.9134615384615384,
+    "camva_acc": 0.9663461538461539,
+    "baseline_drop": 0.004807692307692291,
+    "camva_drop": 0.0
+  },
+  {
+    "corruption": "rotation",
+    "severity": 15.0,
+    "baseline_acc": 0.875,
+    "camva_acc": 0.8269230769230769,
+    "baseline_drop": 0.043269230769230727,
+    "camva_drop": 0.13942307692307698
+  },
+  {
+    "corruption": "rotation",
+    "severity": 30.0,
+    "baseline_acc": 0.8076923076923077,
+    "camva_acc": 0.7596153846153846,
+    "baseline_drop": 0.11057692307692302,
+    "camva_drop": 0.20673076923076927
+  },
+  {
+    "corruption": "rotation",
+    "severity": 45.0,
+    "baseline_acc": 0.7403846153846154,
+    "camva_acc": 0.7980769230769231,
+    "baseline_drop": 0.1778846153846153,
+    "camva_drop": 0.16826923076923073
+  }
+]

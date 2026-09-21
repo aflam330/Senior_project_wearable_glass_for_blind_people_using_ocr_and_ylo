@@ -1,0 +1,19 @@
+{
+  "project": "RoboEye / Savior Glass CAMVA",
+  "independent_unit_banknotes": "physical_note_id",
+  "split_seed": 42,
+  "camva_scripts": [
+    "scripts/make_camva_splits.py",
+    "scripts/train_camva.py",
+    "scripts/evaluate_camva.py",
+    "scripts/calibrate_camva.py",
+    "scripts/evaluate_ablation.py",
+    "scripts/evaluate_adaptive.py",
+    "scripts/evaluate_camva_robustness.py",
+    "scripts/write_camva_report.py"
+  ],
+  "does_not_overwrite": [
+    "models/authenticity_cnn_vit.pt",
+    "results/authenticity_metrics.json"
+  ]
+}

@@ -1,0 +1,3 @@
+participant_id,condition_order,task,condition,task_time_s,correct,errors,nasa_tlx,sus,satisfaction,assistance_requests
+P01,A_then_B,denomination,baseline,,,,,,,
+P01,A_then_B,denomination,roboeye,,,,,,,

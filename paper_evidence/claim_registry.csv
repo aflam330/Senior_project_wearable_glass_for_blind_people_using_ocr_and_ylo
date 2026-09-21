@@ -1,0 +1,11 @@
+claim_id,paper_section,claim_text,experiment_id,dataset,sample_size,metric,result_file,figure,table,statistical_test,evidence_status
+C001,emotion,EfficientNet-V2-S official RAF-DB accuracy,emotion_rafdb,RAF-DB,3068,accuracy,savior_glass/results/emotion_rafdb.json,savior_glass/results/emotion_confusion_matrix.png,,none,MEASURED
+C002,taka_wild,Wild-note top-1 from currency_boost.json,currency_boost,wild_450,450,top1,savior_glass/results/currency_boost.json,,,none,MEASURED
+C003,auth_old,Legacy CNN+ViT 1/2/6 view (previous split; may leak vs CAMVA split),eval_authenticity,JaalTaka,208,accuracy,realtime_bangla_taka_detection/results/authenticity_metrics.json,,,none,MEASURED_LEGACY_SPLIT
+C004,camva_split,Note-disjoint JaalTaka split metadata,camva_split,JaalTaka,1390,n_notes,realtime_bangla_taka_detection/results/camva/splits/split_metadata.json,,,assertion,MEASURED
+C005,camva_views,CAMVA vs baseline 1-6 views,evaluate_camva,JaalTaka,208,accuracy,realtime_bangla_taka_detection/results/camva/metrics/views_1_to_6.json,realtime_bangla_taka_detection/results/camva/plots/camva_accuracy_vs_views.png,,paired_bootstrap,MEASURED
+C006,camva_adaptive,Adaptive stopping thresholds,evaluate_adaptive,JaalTaka,208,accuracy,realtime_bangla_taka_detection/results/camva/metrics/adaptive.json,,,none,MEASURED
+C007,camva_calib,Temperature scaling ECE,calibrate_camva,JaalTaka,208,ece,realtime_bangla_taka_detection/results/camva/calibration/test_temperature.json,,,none,MEASURED
+C008,user_study,Blind-user paired study,user_study,participants,0,NASA-TLX,paper_evidence/user_study/statistical_report.json,,,paired,NOT MEASURED
+C009,pi5_latency,Raspberry Pi 5 end-to-end latency,edge_pi5,Pi5,0,median_ms,paper_evidence/edge/pi5_latency.json,,,none,NOT MEASURED
+C010,rtx4060,RTX 4060 Laptop specified bench,edge_4060,RTX4060,0,median_ms,paper_evidence/edge/rtx4060_latency.json,,,none,NOT MEASURED

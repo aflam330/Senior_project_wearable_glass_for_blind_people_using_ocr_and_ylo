@@ -66,6 +66,8 @@ class CurrencyMode(BaseMode):
         self._classifier = None
         self._transform  = None
         self._yolo = None
+        self.last_bbox = None
+        self.last_class = None
 
     # ------------------------------------------------------------------
     # Lifecycle
@@ -92,6 +94,8 @@ class CurrencyMode(BaseMode):
             return "ক্যামেরা প্রস্তুত নয়"
 
         note_roi, bbox = self._detect_note_region(frame)
+        self.last_bbox = bbox
+        self.last_class = None
 
         # Stage 0 — YOLOv8s / ONNX currency detector when weights are present
         yolo_text = self._yolo_detect(frame)
@@ -167,6 +171,9 @@ class CurrencyMode(BaseMode):
             return None
         best = int(boxes.conf.argmax())
         name = results[0].names[int(boxes.cls[best].item())]
+        xyxy = boxes.xyxy[best].cpu().numpy().astype(int)
+        self.last_bbox = (int(xyxy[0]), int(xyxy[1]), int(xyxy[2] - xyxy[0]), int(xyxy[3] - xyxy[1]))
+        self.last_class = name
         bn = {
             "2_taka": "দুই টাকার নোট",
             "5_taka": "পাঁচ টাকার নোট",

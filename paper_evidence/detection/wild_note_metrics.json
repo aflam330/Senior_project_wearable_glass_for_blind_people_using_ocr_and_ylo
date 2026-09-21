@@ -1,0 +1,55 @@
+{
+  "source_file": "E:\\Final SP\\savior_glass\\results\\currency_boost.json",
+  "recomputed_from": "per_true confusion counts",
+  "n": 450,
+  "detected": 443,
+  "missed": 7,
+  "correct_denomination": 436,
+  "detection_rate": 0.9844444444444445,
+  "top1_accuracy": 0.9688888888888889,
+  "per_true": {
+    "10_taka": {
+      "10_taka": 48,
+      "none": 2
+    },
+    "100_taka": {
+      "100_taka": 48,
+      "none": 2
+    },
+    "1000_taka": {
+      "1000_taka": 47,
+      "500_taka": 3
+    },
+    "2_taka": {
+      "2_taka": 47,
+      "5_taka": 2,
+      "none": 1
+    },
+    "20_taka": {
+      "20_taka": 50
+    },
+    "200_taka": {
+      "200_taka": 50
+    },
+    "5_taka": {
+      "5_taka": 50
+    },
+    "50_taka": {
+      "50_taka": 46,
+      "5_taka": 1,
+      "500_taka": 1,
+      "none": 2
+    },
+    "500_taka": {
+      "500_taka": 50
+    }
+  },
+  "weights": "E:\\Final SP\\realtime_bangla_taka_detection\\models\\best.pt",
+  "yolo_val": {
+    "map50": 0.9938711056321871,
+    "map50_95": 0.8439532520494353,
+    "precision": 0.9912419007018419,
+    "recall": 0.991657765996519
+  },
+  "note": "Recomputed from saved counts. Not a new YOLO pass."
+}
