@@ -419,6 +419,9 @@ class SmartGlassWin:
         self._emotion_face = None
         self._adaptive_on = True
         self._pose = None
+        self._currency_hits = []
+        self._currency_spoken = None
+        self._straighten_spoken = False
         self._emo_lock = threading.Lock()
         try:
             from assistive import EmotionDetector
@@ -614,6 +617,23 @@ class SmartGlassWin:
                     vis, f"emotion:{label} adapt={'ON' if adaptive else 'OFF'}",
                     (10, 24), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 255, 180), 2,
                 )
+            with self._emo_lock:
+                hits = list(self._currency_hits)
+            for hit in hits:
+                x, y, w, h = hit["bbox"]
+                auth = hit.get("auth")
+                if auth == "counterfeit":
+                    color = (0, 0, 255)
+                elif auth == "genuine":
+                    color = (0, 220, 0)
+                else:
+                    color = (0, 220, 255)
+                cv2.rectangle(vis, (x, y), (x + w, y + h), color, 2)
+                tag = hit.get("auth_en") or ""
+                cv2.putText(
+                    vis, f"{hit['name']} {tag} {hit['conf']*100:.0f}%",
+                    (x, max(18, y - 6)), cv2.FONT_HERSHEY_SIMPLEX, 0.55, color, 2,
+                )
             if pose and pose.get("ok") and pose.get("quad") is not None:
                 pts = pose["quad"].astype(np.int32).reshape((-1, 1, 2))
                 color = (0, 0, 255) if pose.get("needs_straighten") else (0, 255, 255)
@@ -671,8 +691,8 @@ class SmartGlassWin:
     def _update_pose_from_currency(self, frame):
         mode = self._modes[MODE_CURRENCY]
         bbox = getattr(mode, "last_bbox", None)
-        name = getattr(mode, "last_class", None) or "100_taka"
-        if not bbox:
+        name = getattr(mode, "last_class", None)
+        if not bbox or not name:
             with self._emo_lock:
                 self._pose = None
             return
@@ -685,8 +705,12 @@ class SmartGlassWin:
             pose = None
         with self._emo_lock:
             self._pose = pose
-        if pose and pose.get("needs_straighten"):
+        needs = bool(pose and pose.get("needs_straighten"))
+        if needs and not self._straighten_spoken:
+            self._straighten_spoken = True
             self._speak("নোট সোজা করে ধরুন")
+        elif not needs:
+            self._straighten_spoken = False
 
     # ------------------------------------------------------------------
     # Object mode auto-scan
@@ -711,7 +735,33 @@ class SmartGlassWin:
                         except Exception as exc:
                             logger.warning("Object scan error: %s", exc)
                     time.sleep(OBJECT_SCAN_INTERVAL)
+                elif mode == MODE_CURRENCY:
+                    with self._frame_lock:
+                        frame = self._frame.copy() if self._frame is not None else None
+                    if frame is not None and not self._detecting:
+                        try:
+                            hits = self._modes[MODE_CURRENCY].detect_live(frame)
+                            with self._emo_lock:
+                                self._currency_hits = hits
+                            if hits:
+                                top = hits[0]
+                                self._update_pose_from_currency(frame)
+                                spoken_key = (top["name"], top.get("auth"))
+                                if spoken_key != self._currency_spoken and top["conf"] >= 0.45:
+                                    self._currency_spoken = spoken_key
+                                    self._root.after(0, self._show_result, top["text"])
+                                    self._speak(top["text"])
+                            else:
+                                with self._emo_lock:
+                                    self._pose = None
+                                self._currency_spoken = None
+                                self._straighten_spoken = False
+                        except Exception as exc:
+                            logger.warning("Currency scan error: %s", exc)
+                    time.sleep(0.35)
                 else:
+                    with self._emo_lock:
+                        self._currency_hits = []
                     time.sleep(0.2)
 
         threading.Thread(target=_loop, daemon=True, name="scan").start()
@@ -733,6 +783,8 @@ class SmartGlassWin:
             self._result_var.set("Press C or A — online Claude (needs internet + API key)")
         elif new == MODE_OCR:
             self._result_var.set("Press A for offline EasyOCR, or C for online Claude")
+        elif new == MODE_CURRENCY:
+            self._result_var.set("Hold the note — it says the value and whether it is real or jaal")
         else:
             self._result_var.set("Press A to detect")
         self._speak(MODE_NAMES_EN[new])
