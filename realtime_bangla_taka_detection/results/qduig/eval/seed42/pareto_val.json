@@ -1,0 +1,57 @@
+{
+  "points": [
+    {
+      "lambda_cost_policy": 0.02,
+      "accuracy": 0.6442307692307693,
+      "average_views": 1.0,
+      "average_cost": 4.870560264476808,
+      "split": "val"
+    },
+    {
+      "lambda_cost_policy": 0.05,
+      "accuracy": 0.6442307692307693,
+      "average_views": 1.0,
+      "average_cost": 4.8385475242438805,
+      "split": "val"
+    },
+    {
+      "lambda_cost_policy": 0.08,
+      "accuracy": 0.6442307692307693,
+      "average_views": 1.0,
+      "average_cost": 4.89587052882584,
+      "split": "val"
+    },
+    {
+      "lambda_cost_policy": 0.12,
+      "accuracy": 0.6442307692307693,
+      "average_views": 1.0,
+      "average_cost": 4.858209351011073,
+      "split": "val"
+    },
+    {
+      "lambda_cost_policy": 0.2,
+      "accuracy": 0.6442307692307693,
+      "average_views": 1.0,
+      "average_cost": 4.834320841451699,
+      "split": "val"
+    },
+    {
+      "lambda_cost_policy": 0.35,
+      "accuracy": 0.6442307692307693,
+      "average_views": 1.0,
+      "average_cost": 4.8372431729210525,
+      "split": "val"
+    }
+  ],
+  "pareto": [
+    {
+      "lambda_cost_policy": 0.2,
+      "accuracy": 0.6442307692307693,
+      "average_views": 1.0,
+      "average_cost": 4.834320841451699,
+      "split": "val"
+    }
+  ],
+  "chosen": null,
+  "min_val_accuracy": 0.9
+}

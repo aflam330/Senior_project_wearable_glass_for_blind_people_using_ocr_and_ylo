@@ -1,0 +1,62 @@
+# Offline assistive lexicon — printed signs / packets the glass should read.
+# Currency note reading is NOT handled here (YOLO).
+
+বাংলাদেশ ব্যাংক
+দশ টাকা
+বিশ টাকা
+এই পথ বন্ধ
+স্টেশন ১২
+হাসপাতাল
+ঔষধের দোকান
+বাস স্টপ
+ডানদিকে যান
+বাঁদিকে যান
+মূল ফটক
+টিকিট কাউন্টার
+পথ বন্ধ
+স্টেশন
+টিকিট
+কাউন্টার
+ফটক
+দোকান
+ঔষধ
+বাস
+স্টপ
+হাসপাতাল
+ডানদিকে
+বাঁদিকে
+যান
+বন্ধ
+পথ
+মূল
+বাংলাদেশ
+ব্যাংক
+
+EXIT 12
+Bus Stop
+Hospital Gate
+Ticket Counter
+Main Entrance
+Pharmacy
+Turn Right
+Turn Left
+Platform 3
+Danger Keep Out
+Glycemic
+Digestive Biscuit
+EXIT
+Hospital
+Pharmacy
+Entrance
+Platform
+Danger
+Keep Out
+Turn
+Right
+Left
+Ticket
+Counter
+Main
+Gate
+Stop
+Bus

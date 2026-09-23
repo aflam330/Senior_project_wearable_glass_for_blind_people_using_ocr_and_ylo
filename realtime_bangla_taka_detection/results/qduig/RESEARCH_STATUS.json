@@ -1,0 +1,22 @@
+{
+  "DATA": "PASS",
+  "BASELINE": "PASS",
+  "PROPOSED METHOD": "PASS",
+  "MULTI-SEED": "NOT_MEASURED",
+  "ABLATIONS": "NOT_MEASURED",
+  "CALIBRATION": "PASS",
+  "ROBUSTNESS": "PASS",
+  "GENERALIZATION": "NOT_MEASURED",
+  "EDGE": "PASS",
+  "EMOTION": "PASS",
+  "OCR": "PASS",
+  "USER STUDY": "NOT_MEASURED",
+  "CLAIM VALIDATION": "PASS",
+  "FINAL PAPER EVIDENCE": "READY",
+  "hypotheses": {
+    "H1": "FAIL",
+    "H2": "PASS",
+    "H3": "FAIL",
+    "H4": "FAIL"
+  }
+}

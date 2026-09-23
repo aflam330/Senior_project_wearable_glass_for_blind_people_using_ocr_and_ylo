@@ -18,6 +18,9 @@ Pillow>=10.0.0
 # Audio / TTS: Windows test uses built-in PowerShell SAPI (no extra package needed)
 # RPi main app uses espeak-ng + optional Piper (installed by install.sh)
 
+# Optional: second offline OCR engine (needs system tesseract-ocr-ben)
+# pytesseract>=0.3.10
+
 # Optional: offline voice commands (English only — no Bangla Vosk model exists)
 # vosk>=0.3.45
 # pyaudio>=0.2.13

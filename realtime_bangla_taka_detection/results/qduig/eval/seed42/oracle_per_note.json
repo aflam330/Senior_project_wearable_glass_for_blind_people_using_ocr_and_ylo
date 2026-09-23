@@ -1,0 +1,2934 @@
+[
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_021",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_030",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_031",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_037",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_041",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_046",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_052",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_056",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_062",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_072",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_087",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_092",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_097",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_099",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_101",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_116",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_117",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_121",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_125",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_132",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_133",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_136",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_141",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_146",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_148",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_155",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_160",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_172",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_180",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_185",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_194",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_200",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_201",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_204",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_214",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_218",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_227",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_232",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      0
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_233",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_236",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_237",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_238",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_253",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_254",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_265",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_270",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_275",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_285",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_296",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_299",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_300",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_313",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_326",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_328",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_337",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_341",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_345",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_347",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_352",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_354",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_355",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_375",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_379",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_380",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_384",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_406",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_409",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_410",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_412",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_418",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_420",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_425",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_432",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_435",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_437",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_448",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_472",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_478",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_514",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_522",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_546",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_555",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_570",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_572",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_576",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      1
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_578",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      0
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_581",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "counterfeit:note_588",
+    "y_true": 0
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_013",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      0
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_021",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_022",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_024",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      0,
+      1,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_027",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_031",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_042",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_046",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_049",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_051",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_052",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      0,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_059",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_061",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_068",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_070",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_081",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_083",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_084",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_085",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_087",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_106",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_110",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_123",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_126",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_128",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_130",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_131",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 0,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 0,
+    "min_k_for_correct": null,
+    "theoretical_subset_potential": 0.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_132",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_135",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_139",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      0,
+      1,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_141",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_143",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_147",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_151",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_163",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_172",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      0,
+      1,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_175",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_182",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_185",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_188",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_210",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_223",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      0,
+      1,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_224",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_231",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_232",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      0,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_243",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      0,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_247",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_249",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_250",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_262",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_266",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_279",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_293",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_307",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_310",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_314",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_325",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      0,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_346",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_357",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_362",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_376",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_382",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_384",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 0,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 0,
+    "min_k_for_correct": null,
+    "theoretical_subset_potential": 0.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_405",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 0,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 0,
+    "min_k_for_correct": null,
+    "theoretical_subset_potential": 0.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_409",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_411",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_415",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_417",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_430",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_438",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_447",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_450",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_468",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_470",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_484",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      0,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_500",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_502",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_517",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_533",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_539",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_548",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_549",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_551",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_568",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_569",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_578",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_582",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_584",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_587",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_588",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_594",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_597",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_600",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      0,
+      1,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_612",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_617",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_619",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 4,
+    "oracle_subset": [
+      0,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 4,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_629",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 5,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 5,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_642",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_652",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_658",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_659",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_667",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_671",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_682",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_684",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_688",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_696",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_702",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 6,
+    "oracle_subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 6,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_708",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      2
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_712",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_717",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_722",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_727",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_728",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_731",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      4
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_735",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_740",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_746",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_754",
+    "y_true": 1
+  },
+  {
+    "oracle_correct": 1,
+    "oracle_k": 1,
+    "oracle_subset": [
+      3
+    ],
+    "any_subset_correct": 1,
+    "min_k_for_correct": 1,
+    "theoretical_subset_potential": 1.0,
+    "n_subsets_evaluated": 63,
+    "note_id": "genuine:note_761",
+    "y_true": 1
+  }
+]

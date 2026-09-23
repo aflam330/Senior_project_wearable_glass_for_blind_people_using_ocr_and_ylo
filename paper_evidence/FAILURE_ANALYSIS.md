@@ -1,0 +1,15 @@
+# Failure analysis
+
+Score histogram: `paper_evidence/figures/fig11_failures.png`.
+Oracle gap: {
+  "n": 208,
+  "oracle_accuracy": 0.9855769230769231,
+  "oracle_mean_views": 2.0961538461538463,
+  "theoretical_subset_potential": 0.9855769230769231,
+  "learned_accuracy": 0.9663461538461539,
+  "learned_mean_views": 6.0,
+  "accuracy_gap_oracle_minus_learned": 0.019230769230769273,
+  "view_gap_learned_minus_oracle": 3.9038461538461537,
+  "notes_unsolvable_by_any_subset": 3,
+  "use": "analysis_only_never_for_training_or_deployment"
+}

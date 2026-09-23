@@ -1,44 +1,50 @@
-"""Fail if a claim_id has a numeric claim but no existing evidence file."""
+"""Fail if a numeric claim has no existing artifact. Reads CLAIM_REGISTRY.json."""
 from __future__ import annotations
 
-import csv
+import json
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-
-REGISTRY = ROOT.parent / "paper_evidence" / "claim_registry.csv"
+WORKSPACE = ROOT.parent
+REGISTRY = WORKSPACE / "paper_evidence" / "CLAIM_REGISTRY.json"
 
 
 def main() -> None:
     if not REGISTRY.is_file():
         print("FAIL missing", REGISTRY)
         sys.exit(1)
-    rows = list(csv.DictReader(REGISTRY.open(encoding="utf-8")))
+    data = json.loads(REGISTRY.read_text(encoding="utf-8"))
+    claims = data if isinstance(data, list) else data.get("claims", [])
     bad = 0
-    for row in rows:
-        status = (row.get("evidence_status") or "").strip().upper()
-        path = (row.get("result_file") or "").strip()
-        if status in {"NOT MEASURED", "PROTOCOL_ONLY"}:
-            print("WARNING", row["claim_id"], status)
+    for row in claims:
+        status = str(row.get("status", "")).upper()
+        cid = row.get("claim_id")
+        if status in {"NOT_MEASURED", "PENDING", "REJECTED"}:
+            print("INFO", cid, status)
             continue
-        if not path:
-            print("FAIL", row["claim_id"], "no result_file")
+        if status != "VERIFIED":
+            print("FAIL", cid, "unknown status", status)
             bad += 1
             continue
-        full = ROOT.parent / path if not Path(path).is_absolute() else Path(path)
-        if not full.is_file() and not (ROOT / path).is_file():
-            # try relative to roboeye root
-            alt = ROOT / path
-            if not alt.is_file():
-                print("FAIL", row["claim_id"], "missing", path)
+        art = row.get("source_artifact") or ""
+        if not art:
+            print("FAIL", cid, "verified but no source_artifact")
+            bad += 1
+            continue
+        path = Path(art)
+        if not path.is_file():
+            alt = WORKSPACE / art
+            alt2 = ROOT / art
+            if not alt.is_file() and not alt2.is_file():
+                print("FAIL", cid, "missing artifact", art)
                 bad += 1
                 continue
-        print("PASS", row["claim_id"])
+        print("PASS", cid)
     if bad:
+        print("CLAIM VALIDATION FAIL", bad)
         sys.exit(1)
-    print("claim registry ok", len(rows), "rows")
+    print("CLAIM VALIDATION PASS", len(claims), "claims")
 
 
 if __name__ == "__main__":

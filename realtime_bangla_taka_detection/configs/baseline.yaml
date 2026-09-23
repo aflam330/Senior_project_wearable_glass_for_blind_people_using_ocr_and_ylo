@@ -1,0 +1,11 @@
+name: baseline_cnnvit
+kind: baseline
+epochs: 6
+batch: 8
+lr: 0.001
+views: 6
+freeze_cnn: true
+seeds: [42, 43, 44]
+reuse_existing_checkpoint: true
+existing_checkpoint_template: results/camva/checkpoints/baseline_cnnvit_seed{seed}.pt
+output_dir: results/qduig/baseline

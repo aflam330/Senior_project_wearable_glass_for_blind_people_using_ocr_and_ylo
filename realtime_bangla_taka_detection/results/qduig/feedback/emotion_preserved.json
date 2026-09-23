@@ -1,0 +1,8 @@
+{
+  "source": "E:\\Final SP\\savior_glass\\results\\emotion_rafdb.json",
+  "accuracy": 0.8653846153846154,
+  "macro_f1": 0.7951703521347848,
+  "n_test": 3068,
+  "retrain": false,
+  "note": "Preserved measured RAF-DB result. Not replaced."
+}

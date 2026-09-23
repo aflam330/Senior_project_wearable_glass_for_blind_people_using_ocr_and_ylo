@@ -1,0 +1,10 @@
+name: ablation_baseline
+kind: baseline
+epochs: 6
+batch: 8
+lr: 0.001
+views: 6
+reuse_existing_checkpoint: true
+existing_checkpoint_template: results/camva/checkpoints/baseline_cnnvit_seed{seed}.pt
+output_dir: results/qduig/ablations/baseline
+seeds: [42]

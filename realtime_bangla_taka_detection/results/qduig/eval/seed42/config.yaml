@@ -1,0 +1,15 @@
+name: "qduig_camva_final"
+split_dir: "results/camva/splits"
+split_seed: 42
+independent_unit: "physical_note_id"
+baseline: "configs/baseline.yaml"
+proposed: "configs/proposed.yaml"
+ablations: ["configs/ablation_baseline.yaml", "configs/ablation_quality.yaml", "configs/ablation_uncertainty.yaml", "configs/ablation_diversity.yaml", "configs/ablation_qd.yaml", "configs/ablation_ud.yaml", "configs/ablation_full.yaml", "configs/ablation_no_cost.yaml", "configs/ablation_no_calibration.yaml", "configs/ablation_no_redundancy.yaml", "configs/ablation_no_infogain.yaml"]
+edge: "configs/edge.yaml"
+policies: ["random", "fixed_order", "quality_only", "confidence_only", "diversity_only", "quality_diversity", "uncertainty_quality", "uncertainty_diversity", "full_proposed"]
+views: [1, 2, 3, 4, 5, 6]
+seeds: [42, 43, 44]
+primary_comparison: {"a": "baseline_cnnvit", "b": "qduig_full_proposed", "predefined": true}
+corruptions: [{"name": "gaussian_blur", "severity": 1.5}, {"name": "motion_blur", "severity": 5}, {"name": "low_light", "severity": 0.35}, {"name": "brightness", "severity": 1.6}, {"name": "contrast", "severity": 0.5}, {"name": "glare", "severity": 0.35}, {"name": "occlusion", "severity": 0.15}, {"name": "occlusion", "severity": 0.35, "tag": "heavy_occlusion"}, {"name": "jpeg", "severity": 25}, {"name": "rotation", "severity": 15}, {"name": "perspective", "severity": 0.12}, {"name": "scale", "severity": 0.6}, {"name": "sensor_noise", "severity": 12}]
+output_dir: "results/qduig"
+paper_evidence: "../paper_evidence"

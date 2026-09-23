@@ -140,7 +140,11 @@ def main():
     speaker = Speaker()
     haptics = HapticEngine()
     emotion = EmotionDetector(download=True)
-    describer = NoteDescriber()
+    # Qwen2-VL-2B / LLaVA are multi-gigabyte fp32 downloads that OOM on this
+    # machine (16 GB RAM, CPU-only) — prefer BLIP-base, which is small and
+    # actually runs. See docs/Savior_Glass_Progress_Report_2026-09-21.md:
+    # "Qwen-VL / LLaVA ... not what runs today."
+    describer = NoteDescriber(prefer="blip")
     asr = VoiceCommands()
     cam = LiveGradCAM(yolo=dual.detector)
 

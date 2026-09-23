@@ -1,0 +1,7 @@
+name: "edge_benchmark"
+device_labels: {"current": "auto", "raspberry_pi_5": "NOT_MEASURED_unless_this_host_is_pi5"}
+warmup: 10
+repeats: 50
+views: [1, 2, 3, 4, 5, 6]
+energy: "NOT_MEASURED"
+output_dir: "results/qduig/edge"

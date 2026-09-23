@@ -1,0 +1,2594 @@
+[
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": true,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": true,
+      "condition": "confidence_emotion_aware",
+      "reason": "low_auth_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": true,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": true,
+      "condition": "confidence_emotion_aware",
+      "reason": "low_auth_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": false,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "low_auth_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "stable_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "stable_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": false,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "stable_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "stable_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "stable_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": false,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "neutral",
+      "emotion_conf": 0.4,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "stable_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": true,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": true,
+      "condition": "confidence_emotion_aware",
+      "reason": "low_auth_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": true,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": true,
+      "condition": "confidence_emotion_aware",
+      "reason": "low_auth_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": false,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "low_auth_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "stable_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "stable_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": false,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "stable_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "stable_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "stable_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": false,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "happiness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "stable_confidence"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": true,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": true,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": true,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": true,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": false,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": true,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": false,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": true,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": false,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "fear",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": true,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": true,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": true,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": true,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": false,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.85,
+      "verbosity": "verbose",
+      "repetition": 1,
+      "confirmation": true,
+      "haptic_intensity": 0.75,
+      "haptic_pattern": "low_conf",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.55,
+      "auth_uncertainty": 0.44999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 1,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": true,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": false,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.8,
+      "auth_uncertainty": 0.19999999999999996,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 1,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": true,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": true,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 3,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.0,
+      "verbosity": "normal",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.5,
+      "haptic_pattern": "detect",
+      "request_next_view": false,
+      "condition": "fixed",
+      "reason": "fixed_schedule"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 1.05,
+      "verbosity": "brief",
+      "repetition": 1,
+      "confirmation": false,
+      "haptic_intensity": 0.45,
+      "haptic_pattern": "genuine",
+      "request_next_view": false,
+      "condition": "confidence_aware",
+      "reason": "confidence_and_failures"
+    }
+  },
+  {
+    "state": {
+      "emotion": "sadness",
+      "emotion_conf": 0.7,
+      "detection_conf": 0.85,
+      "auth_conf": 0.95,
+      "auth_uncertainty": 0.050000000000000044,
+      "task_state": "authenticating",
+      "recent_failures": 0,
+      "num_views": 6,
+      "pose_quality": 0.6
+    },
+    "action": {
+      "tts_speed": 0.75,
+      "verbosity": "verbose",
+      "repetition": 2,
+      "confirmation": true,
+      "haptic_intensity": 0.35,
+      "haptic_pattern": "unknown",
+      "request_next_view": false,
+      "condition": "confidence_emotion_aware",
+      "reason": "emotion_distress_slows_and_repeats"
+    }
+  }
+]

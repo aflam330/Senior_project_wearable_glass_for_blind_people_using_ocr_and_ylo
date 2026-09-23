@@ -1,10 +1,15 @@
 """
-OCR Mode — Bangla + English text reading via EasyOCR.
+OCR Mode — offline Bangla + English reading (EasyOCR, no internet).
 
 Triggered only on ACTION button press (not continuous) to avoid
 blocking the CPU. EasyOCR is lazy-loaded on first activation so the
 application starts quickly and ~600 MB of model weight doesn't sit
 in RAM while another mode is active.
+
+After recognition, text is NFC-normalized and matched against
+assets/ocr_lexicon.txt so typical Bangla sign errors get repaired
+before TTS. Optional Tesseract (ben+eng) is used only if EasyOCR
+returns nothing.
 """
 import logging
 import re
@@ -14,6 +19,7 @@ import cv2
 import numpy as np
 
 import config
+from ocr_repair import repair_ocr_text, tesseract_available, tesseract_read
 from utils import detect_language
 from .base_mode import BaseMode
 
@@ -57,7 +63,8 @@ def _reading_order_key(item):
 class OCRMode(BaseMode):
 
     def __init__(self) -> None:
-        self._reader = None   # lazy-loaded
+        self._reader = None   # lazy-loaded EasyOCR (printed)
+        self._ekush = None    # lazy-loaded Ekush CNN (handwritten letters)
 
         # Capture and playback are two separate steps: the CAPTURE button
         # snaps a frame, runs OCR, and stores the result here; the READ
@@ -66,6 +73,16 @@ class OCRMode(BaseMode):
         # it away before listening to a (possibly long) read-out.
         self._stored_text: Optional[str] = None
         self._stored_lang: str = "en"
+
+    def _ensure_ekush(self):
+        if self._ekush is None:
+            try:
+                from ekush_letters import EkushRecognizer
+                self._ekush = EkushRecognizer()
+            except Exception as exc:
+                logger.warning("Ekush handwritten CNN not loaded: %s", exc)
+                self._ekush = False
+        return self._ekush if self._ekush not in (None, False) else None
 
     # ------------------------------------------------------------------
     # Lifecycle
@@ -86,12 +103,14 @@ class OCRMode(BaseMode):
             except Exception as exc:
                 logger.error("Failed to load EasyOCR: %s", exc)
                 self._reader = None
+        self._ensure_ekush()
 
     def deactivate(self) -> None:
         logger.info("OCR mode deactivated")
 
     def cleanup(self) -> None:
         self._reader = None
+        self._ekush = None
 
     # ------------------------------------------------------------------
     # Core processing
@@ -104,55 +123,73 @@ class OCRMode(BaseMode):
         and return only a short confirmation to speak — NOT the full text.
         Call read_stored() (triggered by the READ button) to hear it.
         """
-        if self._reader is None:
-            return "ইঞ্জিন লোড হয়নি, অনুগ্রহ করে অপেক্ষা করুন"  # engine not loaded
-
         if frame is None:
             return "ক্যামেরা প্রস্তুত নয়"  # camera not ready
 
-        preprocessed = self._preprocess(frame)
-        try:
-            results = self._reader.readtext(
-                preprocessed,
-                detail=1,
-                paragraph=False,   # paragraph=True changes tuple format; keep False for stability
-                width_ths=0.7,
-                height_ths=0.7,
-            )
-        except Exception as exc:
-            logger.warning("EasyOCR inference error: %s", exc)
-            return "টেক্সট পড়তে সমস্যা হয়েছে"  # error reading text
+        if self._reader is None and self._ensure_ekush() is None:
+            return "ইঞ্জিন লোড হয়নি, অনুগ্রহ করে অপেক্ষা করুন"  # engine not loaded
 
-        # Restore natural top-to-bottom, left-to-right reading order before
-        # filtering — EasyOCR's detection order can interleave separate
-        # lines/blocks, which is the main reason combined output sounded
-        # jumbled and nonsensical.
-        results = sorted(results, key=_reading_order_key)
-
-        # Filter by confidence, minimum length, and "looks like real text"
-        # EasyOCR detail=1 always returns (bbox, text, conf) 3-tuples
         texts = []
-        for item in results:
-            if len(item) == 3:
-                _bbox, text, conf = item
-            elif len(item) == 2:          # fallback: (text, conf)
-                text, conf = item
-            else:
-                continue
-            text = text.strip()
-            if conf < config.OCR_CONFIDENCE or len(text) < config.OCR_MIN_CHARS:
-                continue
-            if not _looks_like_text(text):
-                logger.debug("Discarding non-text OCR fragment (conf=%.2f): %r", conf, text)
-                continue
-            texts.append(text)
+        if self._reader is not None:
+            preprocessed = self._preprocess(frame)
+            try:
+                results = self._reader.readtext(
+                    preprocessed,
+                    detail=1,
+                    paragraph=False,   # paragraph=True changes tuple format; keep False for stability
+                    decoder="beamsearch",
+                    beamWidth=5,
+                    width_ths=0.7,
+                    height_ths=0.7,
+                )
+            except TypeError:
+                results = self._reader.readtext(
+                    preprocessed,
+                    detail=1,
+                    paragraph=False,
+                    width_ths=0.7,
+                    height_ths=0.7,
+                )
+            except Exception as exc:
+                logger.warning("EasyOCR inference error: %s", exc)
+                results = []
+
+            results = sorted(results, key=_reading_order_key)
+            for item in results:
+                if len(item) == 3:
+                    _bbox, text, conf = item
+                elif len(item) == 2:
+                    text, conf = item
+                else:
+                    continue
+                text = text.strip()
+                if conf < config.OCR_CONFIDENCE or len(text) < config.OCR_MIN_CHARS:
+                    continue
+                if not _looks_like_text(text):
+                    logger.debug("Discarding non-text OCR fragment (conf=%.2f): %r", conf, text)
+                    continue
+                texts.append(text)
+
+            if not texts and tesseract_available():
+                tess = tesseract_read(preprocessed)
+                if tess:
+                    texts = [tess]
+                    logger.info("EasyOCR empty; using offline Tesseract")
+
+        if not texts:
+            ekush = self._ensure_ekush()
+            if ekush is not None and ekush.ok:
+                hw = ekush.read_frame(frame)
+                if hw:
+                    texts = [hw]
+                    logger.info("Using Ekush handwritten letters: %s", hw[:80])
 
         if not texts:
             self._stored_text = None
             self._stored_lang = "en"
             return "কোনো লেখা পাওয়া যায়নি"  # no text found
 
-        combined = " ".join(texts)
+        combined = repair_ocr_text(" ".join(texts))
         lang = detect_language(combined)
         logger.info("OCR result (lang=%s, %d chars): %s", lang, len(combined), combined[:80])
 

@@ -1,0 +1,78 @@
+{
+  "dataset": "Ekush",
+  "n_classes": 122,
+  "split": {
+    "n_writers": 3037,
+    "train_writers": 2429,
+    "val_writers": 303,
+    "test_writers": 305,
+    "seed": 42
+  },
+  "n_train": 292974,
+  "n_val": 35436,
+  "n_test": 38608,
+  "best_val_acc": 0.9105147307822553,
+  "test_acc": 0.9001243265644426,
+  "group_acc": {
+    "all": 0.9001243265644426,
+    "conjuncts_60_111": 0.877015491621878,
+    "matra_0_9": 0.9416330332194971,
+    "vowels_10_20": 0.9307735426008968,
+    "digits_112_121": 0.9428306551297899,
+    "consonants_21_59": 0.8988878446115288
+  },
+  "group_n": {
+    "all": 38608,
+    "conjuncts_60_111": 15815,
+    "matra_0_9": 3221,
+    "vowels_10_20": 3568,
+    "digits_112_121": 3236,
+    "consonants_21_59": 12768
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 2.0676776254020925,
+      "val_acc": 0.7911728186025511
+    },
+    {
+      "epoch": 2,
+      "loss": 0.9429259575610598,
+      "val_acc": 0.8505756857433119
+    },
+    {
+      "epoch": 3,
+      "loss": 0.7622555162708832,
+      "val_acc": 0.8661812845693645
+    },
+    {
+      "epoch": 4,
+      "loss": 0.672177407236599,
+      "val_acc": 0.879218873462016
+    },
+    {
+      "epoch": 5,
+      "loss": 0.6132066375824041,
+      "val_acc": 0.8956428490800316
+    },
+    {
+      "epoch": 6,
+      "loss": 0.5773971455846811,
+      "val_acc": 0.9036572976633932
+    },
+    {
+      "epoch": 7,
+      "loss": 0.5518425842560014,
+      "val_acc": 0.9076080821763178
+    },
+    {
+      "epoch": 8,
+      "loss": 0.5410039497254717,
+      "val_acc": 0.9105147307822553
+    }
+  ],
+  "weights": "E:\\Final SP\\savior_glass\\models\\ekush_cnn.pt",
+  "seconds": 3198.9545035362244,
+  "device": "cuda",
+  "note": "Writer-disjoint 80/10/10 by filename last token. Isolated glyphs, not word OCR."
+}

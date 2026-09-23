@@ -31,7 +31,8 @@ sudo apt install -y \
     libjpeg-dev libpng-dev libtiff-dev \
     libgstreamer1.0-dev \
     build-essential cmake pkg-config \
-    git wget curl
+    git wget curl \
+    tesseract-ocr tesseract-ocr-ben tesseract-ocr-eng
 
 # ---------------------------------------------------------------------------
 # 2. Python virtual environment
