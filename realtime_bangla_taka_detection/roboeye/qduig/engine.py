@@ -164,12 +164,18 @@ def train_qduig(
     cw = cost_from_dict(config.get("cost", config))
 
     if resume and Path(resume).is_file():
-        blob = torch.load(resume, map_location=device, weights_only=False)
+        try:
+            blob = torch.load(resume, map_location=device, weights_only=False)
+        except TypeError:
+            blob = torch.load(resume, map_location=device)
         model.load_state_dict(blob["model"])
 
     opt = torch.optim.Adam((p for p in model.parameters() if p.requires_grad), lr=lr)
     use_amp = False  # AMP + slogdet/quality descriptors produced NaN on seed 42 epoch 1
-    scaler = torch.amp.GradScaler("cuda", enabled=use_amp)
+    try:
+        scaler = torch.amp.GradScaler("cuda", enabled=use_amp)
+    except (AttributeError, TypeError):
+        scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
     best = -1.0
     history: list[dict] = []
     ckpt = output_dir / "checkpoint.pt"
@@ -199,7 +205,11 @@ def train_qduig(
                 elif view_dropout not in {"none", "false", "False", ""}:
                     mask = random_view_mask(mask, view_dropout, full_prob=full_prob)
                 opt.zero_grad(set_to_none=True)
-                with torch.amp.autocast("cuda", enabled=use_amp):
+                try:
+                    amp_ctx = torch.amp.autocast("cuda", enabled=use_amp)
+                except (AttributeError, TypeError):
+                    amp_ctx = torch.cuda.amp.autocast(enabled=use_amp)
+                with amp_ctx:
                     out = model(views, mask)
                     if not torch.isfinite(out["logits"]).all():
                         print("non-finite logits, skip batch", flush=True)
@@ -558,7 +568,10 @@ def binary_entropy_t_np_like(p: torch.Tensor) -> torch.Tensor:
 
 
 def load_qduig(ckpt: Path, config: dict | None = None) -> QDUIGNet:
-    blob = torch.load(ckpt, map_location=DEVICE, weights_only=False)
+    try:
+        blob = torch.load(ckpt, map_location=DEVICE, weights_only=False)
+    except TypeError:
+        blob = torch.load(ckpt, map_location=DEVICE)
     cfg = config or blob.get("config") or {}
     net = build_model(cfg).to(DEVICE)
     net.load_state_dict(blob["model"])

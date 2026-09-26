@@ -33,3 +33,26 @@ Multi-view authentication; sequential visual acquisition; active perception; inf
 - First banknote authenticator.
 - First quality-aware or uncertainty-aware fusion.
 - Automatic superiority over the CNN+ViT baseline (the previous CAMVA run lost on 1–5 views).
+
+## Algorithm labels after the additional-method search
+
+The same labels, with citations, are in `paper_evidence/NOVELTY_DECLARATION.md`. Short form:
+
+| algorithm | label |
+|---|---|
+| PRMVT | EXTENDS |
+| NDAL | ADAPTED |
+| PRAVT | ADAPTED |
+| VAT | EXTENDS |
+| UGF | ADAPTED |
+| CRIS | ADAPTED |
+| SAVS | ADAPTED |
+| MAVT | ADAPTED |
+| VCIE | ADAPTED |
+| MTPT | ADAPTED |
+| CVS | EXTENDS |
+| OGPD | EXTENDS |
+
+Banknote authentication with a phone camera under visible light is prior work (Sensors 2019, “Joint Banknote Recognition and Counterfeit Detection Using Explainable Artificial Intelligence”; smartphone visible-light fake-banknote CNNs). Those systems do not study a fixed view-count training collapse. That difference is the PRMVT claim, and it is an extension of missing-view training, not an empty field.
+
+Search coverage: web-index hits from CVF, arXiv, OpenReview, AAAI, IJCAI, MDPI, PMC, and Research Square. Scopus, IEEE Xplore, ACM DL, and Web of Science were not searched as separate databases.

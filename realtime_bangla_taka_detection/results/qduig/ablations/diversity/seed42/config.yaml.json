@@ -1,0 +1,30 @@
+{
+  "name": "ablation_diversity",
+  "kind": "qduig",
+  "epochs": 4,
+  "batch": 8,
+  "lr": 0.001,
+  "views": 6,
+  "output_dir": "results/qduig/ablations/diversity",
+  "seeds": [
+    42
+  ],
+  "model": {
+    "freeze_cnn": true,
+    "use_quality": false,
+    "use_uncertainty": false,
+    "use_diversity": true,
+    "use_info_gain": false,
+    "use_hgef": false,
+    "use_cost": false,
+    "use_redundancy": true
+  },
+  "loss": {
+    "lambda_auth": 1.0,
+    "lambda_q": 0.0,
+    "lambda_u": 0.0,
+    "lambda_d": 0.1,
+    "lambda_g": 0.0,
+    "lambda_c": 0.0
+  }
+}

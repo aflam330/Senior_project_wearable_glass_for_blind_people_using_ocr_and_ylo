@@ -1,25 +1,89 @@
-# Statistics
+# Statistical analysis
 
-Predefined: FULL PROPOSED vs CNN+ViT BASELINE.
+Cohen's h compares each available seed-42 accuracy with the CNN+ViT baseline at the same view count.
+Wilcoxon and McNemar on three seed-level numbers are not reported: n=3 is too small for a rank test to mean anything.
+Per-note McNemar for PRMVT versus the baseline at 6 views remains the seed-42 result already in `FINAL_RESULTS.md` (n01=3, n10=13, p=0.0244).
+Bonferroni uses one family: 6 algorithms × 6 view counts = 36 Cohen's h comparisons. Those comparisons are descriptive; they are not 36 independent hypothesis tests with a pre-registered null.
 
-{
-  "predefined_comparison": "FULL PROPOSED vs CNN+ViT BASELINE",
-  "mcnemar": {
-    "n01_a_correct_b_wrong": 3,
-    "n10_a_wrong_b_correct": 13,
-    "chi2_continuity": 5.0625,
-    "p_value": 0.024448945310089405,
-    "test": "mcnemar"
-  },
-  "wilcoxon_scores": {
-    "n": 208,
-    "statistic": 10350.0,
-    "z": -0.5960223460190984,
-    "p_value": 0.5511602986658495,
-    "test": "wilcoxon_signed"
-  },
-  "holm_adjusted_p": [
-    0.04889789062017881,
-    0.5511602986658495
-  ]
-}
+| algorithm | views | seed42 | baseline | Cohen h |
+|---|---:|---:|---:|---:|
+| prmvt | 1 | 0.9712 | 0.7356 | 0.7389 |
+| prmvt | 2 | 0.9760 | 0.8702 | 0.4258 |
+| prmvt | 3 | 0.9760 | 0.9135 | 0.2858 |
+| prmvt | 4 | 0.9760 | 0.9183 | 0.2685 |
+| prmvt | 5 | 0.9808 | 0.8990 | 0.3685 |
+| prmvt | 6 | 0.9760 | 0.9183 | 0.2685 |
+| ndal | 1 | 0.9808 | 0.7356 | 0.8020 |
+| ndal | 2 | 0.9712 | 0.8702 | 0.3958 |
+| ndal | 3 | 0.9760 | 0.9135 | 0.2858 |
+| ndal | 4 | 0.9663 | 0.9183 | 0.2109 |
+| ndal | 5 | 0.9567 | 0.8990 | 0.2276 |
+| ndal | 6 | 0.9663 | 0.9183 | 0.2109 |
+| pravt | 1 | 0.9760 | 0.7356 | 0.7689 |
+| pravt | 2 | 0.9519 | 0.8702 | 0.2950 |
+| pravt | 3 | 0.9663 | 0.9135 | 0.2282 |
+| pravt | 4 | 0.9567 | 0.9183 | 0.1608 |
+| pravt | 5 | 0.9663 | 0.8990 | 0.2777 |
+| pravt | 6 | 0.9615 | 0.9183 | 0.1851 |
+| vat | 1 | 0.9712 | 0.7356 | 0.7389 |
+| vat | 2 | 0.9712 | 0.8702 | 0.3958 |
+| vat | 3 | 0.9760 | 0.9135 | 0.2858 |
+| vat | 4 | 0.9663 | 0.9183 | 0.2109 |
+| vat | 5 | 0.9712 | 0.8990 | 0.3054 |
+| vat | 6 | 0.9663 | 0.9183 | 0.2109 |
+| ugf | 1 | 0.9471 | 0.7356 | 0.6161 |
+| ugf | 2 | 0.9519 | 0.8702 | 0.2950 |
+| ugf | 3 | 0.9567 | 0.9135 | 0.1781 |
+| ugf | 4 | 0.9519 | 0.9183 | 0.1377 |
+| ugf | 5 | 0.9375 | 0.8990 | 0.1413 |
+| ugf | 6 | 0.9375 | 0.9183 | 0.0745 |
+| cvs | 1 | 0.9327 | 0.7356 | 0.5553 |
+| cvs | 2 | 0.9567 | 0.8702 | 0.3181 |
+| cvs | 3 | 0.9663 | 0.9135 | 0.2282 |
+| cvs | 4 | 0.9712 | 0.9183 | 0.2385 |
+| cvs | 5 | 0.9712 | 0.8990 | 0.3054 |
+| cvs | 6 | 0.9712 | 0.9183 | 0.2385 |
+
+Paired tests use the same test notes. `a` is the CNN+ViT baseline and `b` is the named model. McNemar uses the continuity correction. The paired bootstrap resamples notes 1000 times with seed 42. Wilcoxon is on the paired 0/1 correctness vectors and drops ties.
+
+| algorithm | views | n | McNemar p | Bonferroni p | bootstrap 95% CI of accuracy difference | Wilcoxon p |
+|---|---:|---:|---:|---:|---|---:|
+| prmvt | 1 | 208 | 4.30e-11 | 1.55e-09 | [0.1779, 0.2981] | 1.75e-08 |
+| prmvt | 2 | 208 | 1.81e-05 | 0.0007 | [0.0625, 0.1538] | 2.35e-05 |
+| prmvt | 3 | 208 | 0.0019 | 0.0700 | [0.0288, 0.1010] | 0.0090 |
+| prmvt | 4 | 208 | 0.0060 | 0.2145 | [0.0240, 0.0963] | 0.0340 |
+| prmvt | 5 | 208 | 0.0002 | 0.0087 | [0.0433, 0.1203] | 0.0002 |
+| prmvt | 6 | 208 | 0.0033 | 0.1182 | [0.0240, 0.0962] | 0.0157 |
+| ndal | 1 | 208 | 6.51e-12 | 2.34e-10 | [0.1875, 0.3077] | 4.49e-09 |
+| ndal | 2 | 208 | 6.33e-05 | 0.0023 | [0.0529, 0.1490] | 0.0003 |
+| ndal | 3 | 208 | 0.0059 | 0.2126 | [0.0240, 0.1011] | 0.0038 |
+| ndal | 4 | 208 | 0.0162 | 0.5816 | [0.0144, 0.0865] | 0.0219 |
+| ndal | 5 | 208 | 0.0190 | 0.6846 | [0.0144, 0.1011] | 0.0156 |
+| ndal | 6 | 208 | 0.0162 | 0.5816 | [0.0144, 0.0817] | 0.1094 |
+| pravt | 1 | 208 | 2.59e-11 | 9.33e-10 | [0.1779, 0.3029] | 2.35e-08 |
+| pravt | 2 | 208 | 0.0002 | 0.0087 | [0.0433, 0.1202] | 0.0005 |
+| pravt | 3 | 208 | 0.0055 | 0.1996 | [0.0192, 0.0865] | 0.0192 |
+| pravt | 4 | 208 | 0.0269 | 0.9668 | [0.0096, 0.0721] | 0.0593 |
+| pravt | 5 | 208 | 0.0012 | 0.0415 | [0.0288, 0.1106] | 0.0052 |
+| pravt | 6 | 208 | 0.0159 | 0.5710 | [0.0144, 0.0769] | 0.0505 |
+| vat | 1 | 208 | 1.80e-11 | 6.48e-10 | [0.1779, 0.2981] | 9.66e-09 |
+| vat | 2 | 208 | 0.0001 | 0.0043 | [0.0529, 0.1538] | 5.43e-05 |
+| vat | 3 | 208 | 0.0036 | 0.1299 | [0.0240, 0.1010] | 0.0065 |
+| vat | 4 | 208 | 0.0162 | 0.5816 | [0.0144, 0.0865] | 0.0962 |
+| vat | 5 | 208 | 0.0013 | 0.0475 | [0.0337, 0.1154] | 0.0033 |
+| vat | 6 | 208 | 0.0162 | 0.5816 | [0.0144, 0.0865] | 0.1094 |
+| ugf | 1 | 208 | 5.42e-10 | 1.95e-08 | [0.1538, 0.2692] | 4.27e-07 |
+| ugf | 2 | 208 | 0.0002 | 0.0087 | [0.0433, 0.1250] | 0.0005 |
+| ugf | 3 | 208 | 0.0265 | 0.9540 | [0.0143, 0.0769] | 0.0277 |
+| ugf | 4 | 208 | 0.0455 | 1.0000 | [0.0048, 0.0625] | 0.1097 |
+| ugf | 5 | 208 | 0.0269 | 0.9668 | [0.0096, 0.0721] | 0.0745 |
+| ugf | 6 | 208 | 0.3428 | 1.0000 | [-0.0096, 0.0481] | 0.6465 |
+| cvs | 1 | 208 | 2.13e-08 | 7.67e-07 | [0.1346, 0.2596] | 7.82e-07 |
+| cvs | 2 | 208 | 0.0003 | 0.0104 | [0.0480, 0.1346] | 0.0022 |
+| cvs | 3 | 208 | 0.0098 | 0.3536 | [0.0192, 0.0913] | 0.0022 |
+| cvs | 4 | 208 | 0.0026 | 0.0925 | [0.0240, 0.0865] | 0.0033 |
+| cvs | 5 | 208 | 0.0003 | 0.0108 | [0.0385, 0.1106] | 0.0007 |
+| cvs | 6 | 208 | 0.0026 | 0.0925 | [0.0240, 0.0865] | 0.0033 |
+
+Bonferroni family size is the number of McNemar rows that had paired predictions: 36.
+

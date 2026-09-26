@@ -1,0 +1,1 @@
+FedAvg aggregation fixed (integer buffers were not scaled). Residual set encoder. 4 communication rounds.

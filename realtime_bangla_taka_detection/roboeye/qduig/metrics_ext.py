@@ -178,4 +178,5 @@ def _pr_auc(y: np.ndarray, s: np.ndarray) -> float:
             fp += 1
         precs.append(tp / max(tp + fp, 1))
         recs.append(tp / n_pos)
-    return float(np.trapezoid(np.array(precs), np.array(recs)))
+    integrate = getattr(np, "trapezoid", None) or np.trapz
+    return float(integrate(np.array(precs), np.array(recs)))

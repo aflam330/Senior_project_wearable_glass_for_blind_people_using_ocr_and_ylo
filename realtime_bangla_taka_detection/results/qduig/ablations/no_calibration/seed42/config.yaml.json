@@ -1,0 +1,31 @@
+{
+  "name": "ablation_no_calibration",
+  "kind": "qduig",
+  "epochs": 4,
+  "batch": 8,
+  "lr": 0.001,
+  "views": 6,
+  "output_dir": "results/qduig/ablations/no_calibration",
+  "seeds": [
+    42
+  ],
+  "skip_calibration": true,
+  "model": {
+    "freeze_cnn": true,
+    "use_quality": true,
+    "use_uncertainty": true,
+    "use_diversity": true,
+    "use_info_gain": true,
+    "use_hgef": true,
+    "use_cost": true,
+    "use_redundancy": true
+  },
+  "loss": {
+    "lambda_auth": 1.0,
+    "lambda_q": 0.25,
+    "lambda_u": 0.15,
+    "lambda_d": 0.1,
+    "lambda_g": 0.2,
+    "lambda_c": 0.05
+  }
+}

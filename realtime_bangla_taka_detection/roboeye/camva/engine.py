@@ -154,12 +154,19 @@ def pack_eval(pred: dict, name: str, temperature: float | None = None) -> dict:
     return m, pred
 
 
-def make_loader(ids, records, n_views, train, batch, view_order="fixed", corruption=None, severity=0.0, seed=42):
+def make_loader(ids, records, n_views, train, batch, view_order="fixed", corruption=None, severity=0.0, seed=42, workers: int = 0, pin_memory: bool = False):
     ds = NoteViewDataset(
         ids, records, n_views=n_views, train=train, view_order=view_order,
         corruption=corruption, corruption_severity=severity, seed=seed,
     )
-    return DataLoader(ds, batch_size=batch, shuffle=train, num_workers=0, collate_fn=collate_notes)
+    extra = {}
+    if workers > 0:
+        extra["persistent_workers"] = True
+        extra["prefetch_factor"] = 2
+    return DataLoader(
+        ds, batch_size=batch, shuffle=train, num_workers=workers,
+        pin_memory=pin_memory, collate_fn=collate_notes, **extra,
+    )
 
 
 def train_one(
@@ -229,7 +236,10 @@ def train_one(
 
 def load_camva(ckpt: Path, fusion: str) -> CAMVANet:
     net = CAMVANet(freeze_cnn=True, fusion=fusion).to(DEVICE)
-    blob = torch.load(ckpt, map_location=DEVICE, weights_only=False)
+    try:
+        blob = torch.load(ckpt, map_location=DEVICE, weights_only=False)
+    except TypeError:
+        blob = torch.load(ckpt, map_location=DEVICE)
     net.load_state_dict(blob["model"])
     net.eval()
     return net
@@ -237,7 +247,10 @@ def load_camva(ckpt: Path, fusion: str) -> CAMVANet:
 
 def load_baseline(ckpt: Path) -> MultiViewCNNVIT:
     net = MultiViewCNNVIT(freeze_cnn=True).to(DEVICE)
-    blob = torch.load(ckpt, map_location=DEVICE, weights_only=False)
+    try:
+        blob = torch.load(ckpt, map_location=DEVICE, weights_only=False)
+    except TypeError:
+        blob = torch.load(ckpt, map_location=DEVICE)
     net.load_state_dict(blob["model"])
     net.eval()
     return net

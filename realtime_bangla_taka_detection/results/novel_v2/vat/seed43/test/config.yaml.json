@@ -1,0 +1,12 @@
+{
+  "name": "vat",
+  "algo": "vat",
+  "epochs": 4,
+  "batch": 4,
+  "lr": 0.001,
+  "seed": 42,
+  "views": 6,
+  "patience": 2,
+  "warmup_steps": 0,
+  "note": "v2 run. Train and validation only."
+}

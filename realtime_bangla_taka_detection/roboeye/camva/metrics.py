@@ -73,7 +73,8 @@ def _pr_auc(y: np.ndarray, s: np.ndarray) -> float:
         recs.append(tp / n_pos)
     recs = np.array([0.0] + recs)
     precs = np.array([1.0] + precs)
-    return float(np.trapezoid(precs, recs))
+    integrate = getattr(np, "trapezoid", None) or np.trapz
+    return float(integrate(precs, recs))
 
 
 def expected_calibration_error(y: np.ndarray, p: np.ndarray, n_bins: int = 15) -> float:

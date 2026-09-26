@@ -1,0 +1,30 @@
+{
+  "name": "ablation_quality",
+  "kind": "qduig",
+  "epochs": 4,
+  "batch": 8,
+  "lr": 0.001,
+  "views": 6,
+  "output_dir": "results/qduig/ablations/quality",
+  "seeds": [
+    42
+  ],
+  "model": {
+    "freeze_cnn": true,
+    "use_quality": true,
+    "use_uncertainty": false,
+    "use_diversity": false,
+    "use_info_gain": false,
+    "use_hgef": false,
+    "use_cost": false,
+    "use_redundancy": false
+  },
+  "loss": {
+    "lambda_auth": 1.0,
+    "lambda_q": 0.25,
+    "lambda_u": 0.0,
+    "lambda_d": 0.0,
+    "lambda_g": 0.0,
+    "lambda_c": 0.0
+  }
+}

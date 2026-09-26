@@ -1,0 +1,60 @@
+{
+  "seed": 42,
+  "val_frac": 0.15,
+  "test_frac": 0.15,
+  "created_utc": "2026-09-21T16:11:06.427821+00:00",
+  "dataset": "E:\\Final SP\\data set\\JaalTaka",
+  "independent_unit": "physical_note_id",
+  "note_id_format": "genuine|counterfeit:<folder_name>",
+  "n_unique_genuine_notes": 802,
+  "n_unique_counterfeit_notes": 588,
+  "n_notes_total": 1390,
+  "n_images_total": 8340,
+  "views_per_note_all": {
+    "6": 1390
+  },
+  "train": {
+    "n_notes": 974,
+    "n_genuine_notes": 562,
+    "n_counterfeit_notes": 412,
+    "n_images": 5844,
+    "views_per_note": {
+      "6": 974
+    },
+    "class_distribution": {
+      "genuine": 562,
+      "counterfeit": 412
+    }
+  },
+  "val": {
+    "n_notes": 208,
+    "n_genuine_notes": 120,
+    "n_counterfeit_notes": 88,
+    "n_images": 1248,
+    "views_per_note": {
+      "6": 208
+    },
+    "class_distribution": {
+      "genuine": 120,
+      "counterfeit": 88
+    }
+  },
+  "test": {
+    "n_notes": 208,
+    "n_genuine_notes": 120,
+    "n_counterfeit_notes": 88,
+    "n_images": 1248,
+    "views_per_note": {
+      "6": 208
+    },
+    "class_distribution": {
+      "genuine": 120,
+      "counterfeit": 88
+    }
+  },
+  "leakage_check": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0
+  }
+}

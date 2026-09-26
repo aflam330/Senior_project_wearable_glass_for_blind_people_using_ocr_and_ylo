@@ -1,0 +1,10 @@
+{
+  "name": "sfpl",
+  "algo": "sfpl",
+  "epochs": 4,
+  "batch": 4,
+  "lr": 0.001,
+  "seed": 42,
+  "views": 6,
+  "note": "Train and validation only. Test is evaluated once after the checkpoint is chosen."
+}

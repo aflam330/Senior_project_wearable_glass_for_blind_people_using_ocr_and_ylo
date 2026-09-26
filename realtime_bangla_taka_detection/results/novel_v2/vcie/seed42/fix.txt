@@ -1,0 +1,1 @@
+fix 1 {'NOVEL_SET_MODE': 'residual', 'NOVEL_FOCAL': '0'}

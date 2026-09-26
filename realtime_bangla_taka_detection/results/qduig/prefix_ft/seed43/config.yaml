@@ -1,0 +1,14 @@
+name: "qduig_prefix_finetune"
+kind: "qduig"
+epochs: 3
+batch: 8
+lr: 0.0003
+views: 6
+view_dropout: "mixed"
+full_view_prob: 0.5
+curriculum: false
+multitask_single: 0.5
+contrastive: 0.05
+model: {"freeze_cnn": true, "use_quality": true, "use_uncertainty": true, "use_diversity": true, "use_info_gain": true, "use_hgef": true, "use_cost": true, "use_redundancy": true, "view_self_gate": true, "view_count_bn": true, "max_views": 6}
+loss: {"lambda_auth": 1.0, "lambda_q": 0.25, "lambda_u": 0.15, "lambda_d": 0.1, "lambda_g": 0.2, "lambda_c": 0.05}
+cost: {"alpha": 1.0, "beta": 0.05, "gamma": 0.0, "lambda_cost_policy": 0.02}

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from pathlib import Path
 
 import cv2
@@ -9,8 +10,34 @@ import numpy as np
 import torch
 from PIL import Image
 from torch.utils.data import Dataset
+from torchvision import transforms
 
-from ..authenticity import default_transform
+from ..authenticity import IMAGENET_MEAN, IMAGENET_STD, IMG_SIZE, default_transform
+
+_VIEW_CACHE = Path(__file__).resolve().parents[2] / "cache" / "rgb128"
+_RESIZE = transforms.Resize((IMG_SIZE, IMG_SIZE))
+
+
+def cached_resized_rgb(path: Path) -> Image.Image | None:
+    """Load a view as a 128x128 RGB image, caching the resized array on disk."""
+    _VIEW_CACHE.mkdir(parents=True, exist_ok=True)
+    digest = hashlib.sha1(str(path.resolve()).encode("utf-8")).hexdigest()
+    fp = _VIEW_CACHE / f"{digest}.npy"
+    if fp.is_file():
+        try:
+            return Image.fromarray(np.load(fp))
+        except (OSError, ValueError):
+            pass
+    bgr = cv2.imread(str(path))
+    if bgr is None:
+        return None
+    rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
+    image = _RESIZE(Image.fromarray(rgb))
+    array = np.asarray(image, dtype=np.uint8)
+    tmp = fp.with_suffix(".tmp.npy")
+    np.save(tmp, array)
+    tmp.replace(fp)
+    return Image.fromarray(array)
 
 
 def apply_corruption(bgr: np.ndarray, name: str, severity: float) -> np.ndarray:
@@ -65,6 +92,18 @@ def apply_corruption(bgr: np.ndarray, name: str, severity: float) -> np.ndarray:
         nh, nw = max(8, int(h * f)), max(8, int(w * f))
         small = cv2.resize(img, (nw, nh))
         return cv2.resize(small, (w, h))
+    if name == "contrast":
+        mean = float(img.mean())
+        return np.clip((img.astype(np.float32) - mean) * float(severity) + mean, 0, 255).astype(np.uint8)
+    if name == "glare":
+        h, w = img.shape[:2]
+        yy, xx = np.mgrid[0:h, 0:w]
+        blob = np.exp(-((yy - h * 0.3) ** 2 + (xx - w * 0.7) ** 2) / (2 * (min(h, w) * 0.15) ** 2))
+        return np.clip(img.astype(np.float32) + 255.0 * float(severity) * blob[..., None], 0, 255).astype(np.uint8)
+    if name == "sensor_noise":
+        rng = np.random.default_rng(0)
+        noise = rng.normal(0.0, float(severity), img.shape)
+        return np.clip(img.astype(np.float32) + noise, 0, 255).astype(np.uint8)
     return img
 
 
@@ -86,6 +125,10 @@ class NoteViewDataset(Dataset):
         self.records = records
         self.n_views = n_views
         self.tf = default_transform(train=train)
+        self._jitter = transforms.ColorJitter(0.2, 0.2, 0.2, 0.05)
+        self._to_tensor = transforms.Compose(
+            [transforms.ToTensor(), transforms.Normalize(IMAGENET_MEAN, IMAGENET_STD)]
+        )
         self.train = train
         self.view_order = view_order
         self.corruption = corruption
@@ -110,13 +153,22 @@ class NoteViewDataset(Dataset):
             paths = paths[: self.n_views]
         tensors = []
         for p in paths:
-            bgr = cv2.imread(str(p))
-            if bgr is None:
-                continue
             if self.corruption:
+                bgr = cv2.imread(str(p))
+                if bgr is None:
+                    continue
                 bgr = apply_corruption(bgr, self.corruption, self.corruption_severity)
-            rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
-            tensors.append(self.tf(Image.fromarray(rgb)))
+                rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
+                image = _RESIZE(Image.fromarray(rgb))
+            else:
+                image = cached_resized_rgb(p)
+                if image is None:
+                    continue
+            if self.train:
+                if torch.rand(1).item() < 0.5:
+                    image = transforms.functional.hflip(image)
+                image = self._jitter(image)
+            tensors.append(self._to_tensor(image))
         if not tensors:
             raise RuntimeError(f"no readable views for {nid}")
         views = torch.stack(tensors, dim=0)
