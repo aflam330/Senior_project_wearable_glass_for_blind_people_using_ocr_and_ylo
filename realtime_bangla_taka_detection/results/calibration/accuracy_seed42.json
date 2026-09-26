@@ -1,0 +1,14 @@
+{
+  "split": "test",
+  "n": 208,
+  "views": 6,
+  "threshold": 0.5,
+  "temperature_fit_on": "val",
+  "her_fit_on": "val",
+  "accuracy": {
+    "raw": 0.9759615384615384,
+    "temperature": 0.9759615384615384,
+    "entropy": 0.9759615384615384,
+    "her": 0.9711538461538461
+  }
+}

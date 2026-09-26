@@ -58,3 +58,11 @@ Ten extra algorithms were trained at seed 42. See `NOVEL_ALGORITHMS_COMPARISON.m
 - OGPD v2 is a negative result. SFPL v2 is a weak result.
 - Literature labels are EXTENDS or ADAPTED. The search did not cover Scopus, IEEE Xplore, ACM DL, or Web of Science as separate databases.
 - PAC-Bayes was not evaluated numerically.
+
+## Publication pass 2026-09-26
+
+- Ablation: PASS for the trained prefix variants. no_cost and no_calibration share the full checkpoint's forced-view accuracy because those switches do not change that training. The policy eval is FAIL as an acquisition method (0.4135).
+- Figures: PASS for 12 files except that figure 7 is the collapsed policy, not a successful selector. Pi 5 latency figure was not produced.
+- Calibration: PASS. NDAL entropy ECE 0.1679 is reported as measured.
+- Theory: PASS for the definitions. Numerical PAC-Bayes is NOT_MEASURED.
+- Pi 5, mobile, user study: NOT_MEASURED.

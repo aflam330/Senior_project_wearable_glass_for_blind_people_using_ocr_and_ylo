@@ -325,6 +325,8 @@ def _loss_terms(
     latency_proxy = n_used / float(max_views)
     energy_proxy = torch.zeros_like(n_used)
     l_c = acquisition_cost_loss(n_used, latency_proxy, energy_proxy, cw.alpha, cw.beta, cw.gamma, max_views)
+    if model.cfg.use_cost and model.cfg.cost_from_entropy:
+        l_c = l_c + out["entropy"].mean()
     if not model.cfg.use_cost:
         l_c = l_c.detach() * 0.0
     if not model.cfg.use_info_gain:

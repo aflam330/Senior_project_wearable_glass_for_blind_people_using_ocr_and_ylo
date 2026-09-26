@@ -42,7 +42,7 @@ A PAC-Bayes bound of the McAllester form says that, with probability at least \(
 \]
 where \(\pi\) is a prior, \(\rho\) a posterior, \(n\) the sample size, and \(R,\hat R\) the true and empirical risk.
 
-**Status.** The KL term for a posterior over any of these networks was NOT_MEASURED. The display above is the standard inequality, not a number for JaalTaka. Plugging in \(n=974\) training notes without a KL would not be a bound.
+**Status.** Section 5 evaluates this expression for a Gaussian posterior on the saved prefix-robust weights. On the fixed prior grid the penalty exceeds 1, so the bound is vacuous. That evaluation is not a non-vacuous guarantee for JaalTaka.
 
 ## LaTeX
 
@@ -63,3 +63,43 @@ If \(P(S=S^\star)\ge 1-\varepsilon\) and the conditional error on \(S^\star\) is
 then the gap from perfect accuracy on \(S^\star\) is at most \(\varepsilon+\delta-\varepsilon\delta\).
 \end{proposition}
 ```
+
+## 5. Numerical bounds computed from the split
+
+These numbers are consequences of the stated inequalities and the split size. They are not a fit to the test accuracy.
+
+### Sample complexity for a fixed predictor
+
+Assume notes are i.i.d. and the predictor is chosen before seeing them. Hoeffding's inequality gives
+\[
+n \ge \frac{\ln(2/\delta)}{2\varepsilon^2}
+\]
+for an additive accuracy deviation of \(\varepsilon\) with probability at least \(1-\delta\).
+
+For \(\varepsilon=0.05\) and \(\delta=0.05\), that expression equals **738** notes. The training split has **974** notes (`split_metadata.json`). 974 is at least this fixed-predictor count. This does not bound prefix-robust SGD. The hypothesis class of the network was not measured, so a uniform-convergence sample size for the training algorithm is NOT_MEASURED.
+
+Fixed-view training and prefix-robust training use the same notes. The difference is the support of \(K\), not a smaller \(n\). No claim is made that prefix-robust training needs fewer notes.
+
+### PAC-Bayes
+
+Posterior \(\rho = \mathcal{N}(w, \rho^2 I)\) is centered at the saved seed-42 prefix-robust weights. Prior \(\pi = \mathcal{N}(0, \sigma_0^2 I)\). The grid is \(\sigma_0 \in \{0.1, 1, 10\}\) and \(\rho \in \{0.001, 0.01, 0.1\}\), fixed in `scripts/eval/compute_pacbayes.py` before the KL was evaluated. A union bound adds \(\ln 9\) inside the square root. \(n = 974\) training notes. The test set is not used.
+
+The checkpoint has 4,121,404 floating parameters and squared weight norm 129211.71963995504. The smallest McAllester penalty on that grid is **57.5892990573559**, at \(\sigma_0 = 0.1\), \(\rho = 0.1\), with KL 6460585.981997751. Every grid point has a penalty above 1, so the bound exceeds 1 for any empirical risk in \([0, 1]\). The numerical PAC-Bayes statement for this posterior is that the bound is vacuous. Source: `results/theory/pacbayes_prmvt_seed42.json`. The expected Gibbs risk was not needed once the penalty alone exceeded 1.
+
+### Oracle gap, measured
+
+Fixed-count Q-DUIG, seed 42, test, n=208:
+
+- 1 view: accuracy 0.5865384615384616 from `results/qduig/eval/seed42/policies/full_proposed_1view/test_metrics.json`
+- 6 views: accuracy 0.9663461538461539 from `results/qduig/eval/seed42/policies/full_proposed_6view/test_metrics.json`
+- Difference, 6-view minus 1-view: 0.3798076923076923
+
+That is the measured VCDS gap for this checkpoint. It is not a universal constant.
+
+Oracle subset, same split, from `results/qduig/eval/seed42/oracle.json`:
+
+- Oracle accuracy 0.9855769230769231 at mean 2.0961538461538463 views
+- Learned 6-view accuracy 0.9663461538461539 at 6 views
+- Oracle minus learned accuracy: 0.019230769230769273
+
+The proposition in section 3 still has no numerical \(\varepsilon\) and \(\delta\) fitted to this policy. The file marks the oracle as analysis only.

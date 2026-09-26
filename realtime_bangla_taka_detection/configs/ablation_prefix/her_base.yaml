@@ -1,0 +1,42 @@
+name: ablation_prefix_her_base
+kind: qduig
+epochs: 6
+batch: 8
+lr: 0.001
+views: 6
+seeds:
+- 42
+output_dir: results/qduig/prefix/seed42
+view_dropout: mixed
+curriculum: false
+multitask_single: 0.0
+contrastive: 0.0
+model:
+  freeze_cnn: true
+  use_quality: false
+  use_uncertainty: false
+  use_diversity: false
+  use_info_gain: false
+  use_hgef: true
+  use_cost: false
+  use_redundancy: false
+  view_self_gate: true
+  view_count_bn: true
+  max_views: 6
+loss:
+  lambda_auth: 1.0
+  lambda_q: 0.0
+  lambda_u: 0.0
+  lambda_d: 0.0
+  lambda_g: 0.0
+  lambda_c: 0.0
+cost:
+  alpha: 1.0
+  beta: 0.05
+  gamma: 0.0
+  lambda_cost_policy: 0.02
+  selected_on: validation
+operating_point:
+  min_val_accuracy: 0.9
+  selected_on: validation
+  note: Checkpoint chosen by mean validation accuracy over 1-6 views, never by test.

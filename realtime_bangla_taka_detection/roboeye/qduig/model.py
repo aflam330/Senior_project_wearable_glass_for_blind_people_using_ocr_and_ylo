@@ -25,6 +25,9 @@ class QDUIGConfig:
     use_hgef: bool = True
     use_cost: bool = True
     use_redundancy: bool = True
+    # When true, the cost term includes mean predictive entropy, which depends
+    # on the logits. The mask-count cost alone has no parameter gradient.
+    cost_from_entropy: bool = False
     dropout: float = 0.15
     max_views: int = 6
     view_self_gate: bool = False

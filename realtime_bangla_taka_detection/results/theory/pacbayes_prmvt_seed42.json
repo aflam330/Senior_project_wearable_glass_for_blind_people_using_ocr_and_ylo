@@ -1,0 +1,85 @@
+{
+  "checkpoint": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\prefix_ft\\seed42\\checkpoint.pt",
+  "posterior": "N(w, rho^2 I) centered at the saved weights",
+  "prior": "N(0, sigma0^2 I)",
+  "n_parameters": 4121404,
+  "weight_squared_l2": 129211.71963995504,
+  "n_train_notes": 974,
+  "delta": 0.05,
+  "grid_size": 9,
+  "union_bound": "ln(grid size) added inside the McAllester square root",
+  "empirical_gibbs_risk": "NOT_MEASURED",
+  "note": "The penalty is the second term of the McAllester bound. If it is at least 1, every bound that adds a risk in [0, 1] exceeds 1.",
+  "rows": [
+    {
+      "sigma0": 0.1,
+      "rho": 0.001,
+      "kl": 23379856.877409816,
+      "penalty": 109.55357002135892,
+      "vacuous": true
+    },
+    {
+      "sigma0": 0.1,
+      "rho": 0.01,
+      "kl": 13910374.414603783,
+      "penalty": 84.50357434275166,
+      "vacuous": true
+    },
+    {
+      "sigma0": 0.1,
+      "rho": 0.1,
+      "kl": 6460585.981997751,
+      "penalty": 57.5892990573559,
+      "vacuous": true
+    },
+    {
+      "sigma0": 1.0,
+      "rho": 0.001,
+      "kl": 26473556.158340074,
+      "penalty": 116.57669586615808,
+      "vacuous": true
+    },
+    {
+      "sigma0": 1.0,
+      "rho": 0.01,
+      "kl": 16983876.755232044,
+      "penalty": 93.3735902285945,
+      "vacuous": true
+    },
+    {
+      "sigma0": 1.0,
+      "rho": 0.1,
+      "kl": 7514394.292426009,
+      "penalty": 62.10874917798329,
+      "vacuous": true
+    },
+    {
+      "sigma0": 10.0,
+      "rho": 0.001,
+      "kl": 35899477.72962935,
+      "penalty": 135.75306550068467,
+      "vacuous": true
+    },
+    {
+      "sigma0": 10.0,
+      "rho": 0.01,
+      "kl": 26409596.357118294,
+      "penalty": 116.43578679060937,
+      "vacuous": true
+    },
+    {
+      "sigma0": 10.0,
+      "rho": 0.1,
+      "kl": 16919916.954010263,
+      "penalty": 93.1976060779192,
+      "vacuous": true
+    }
+  ],
+  "smallest_penalty": {
+    "sigma0": 0.1,
+    "rho": 0.1,
+    "kl": 6460585.981997751,
+    "penalty": 57.5892990573559,
+    "vacuous": true
+  }
+}

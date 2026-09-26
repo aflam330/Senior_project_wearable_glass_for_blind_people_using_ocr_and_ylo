@@ -22,7 +22,7 @@ The other algorithms are heads or losses on that encoder, documented in `NOVELTY
 
 ## 4. Theory
 
-Definitions and proofs are in `THEORETICAL_ANALYSIS.md`. The support proposition says that a training distribution with positive probability on every view count does not have the fixed-N support mismatch. It is not a convergence rate. The PAC-Bayes display is the standard McAllester inequality. The KL of a posterior was NOT_MEASURED, so no numerical generalization bound is stated.
+Definitions and proofs are in `THEORETICAL_ANALYSIS.md`. The support proposition says that a training distribution with positive probability on every view count does not have the fixed-N support mismatch. It is not a convergence rate. The PAC-Bayes display is the McAllester inequality. For a Gaussian posterior on the saved prefix-robust weights, the smallest penalty on the fixed prior grid is 57.5893, so the bound is vacuous (`results/theory/pacbayes_prmvt_seed42.json`).
 
 ## 5. Experiments
 
@@ -215,7 +215,7 @@ Baseline one-to-six view accuracy is the CNN+ViT row above. It was not retrained
 | no_redundancy | 0.5721 | 0.6635 | 0.7692 | 0.8413 | 0.8606 | 0.9519 |
 | no_infogain | 0.5625 | 0.7212 | 0.7644 | 0.8798 | 0.8510 | 0.9231 |
 
-These rows are the 4-epoch component configs, not the 6-epoch plus 3-epoch prefix-robust checkpoint. A config that only adds PCR-IG, with every other term off, has no yaml. That row is NOT_MEASURED. The names RSQA, CVR, and HER in the older design notes correspond to the quality, diversity, and uncertainty configs. If two configs show the same six accuracies, that is what the test files contain.
+These rows are the 4-epoch component configs, not the 6-epoch plus 3-epoch prefix-robust checkpoint. The prefix-protocol ablation, including a PCR-IG-only row, is in `ABLATION_RESULTS.md`. On that protocol, `-cost` and `-calibration` keep the saved PRMVT weights: the mask-count cost has no parameter gradient, and a post-hoc calibrator does not change the uncalibrated 0.5-threshold accuracy. The distinct cost measurement for the saved checkpoint is the acquisition policy in `results/qduig/prefix_ft/seed42/cost_policy_test.json`. A matched retraining where the cost term includes predictive entropy is in `ABLATION_RESULTS.md`: 1-view accuracy is 0.9519 with that term and 0.9615 without it. The distinct calibration measurement for the saved checkpoint is the 6-view HER accuracy 0.9711538461538461 against the uncalibrated 0.9759615384615384, plus ECE in `CALIBRATION_RESULTS.md`.
 
 ## 8. Robustness
 
@@ -353,4 +353,4 @@ Measured plots are written only when the source JSON exists. A missing figure is
 8. Edge: section 9.
 9. External SOTA on JaalTaka: NOT_MEASURED. Published banknote papers use other currencies and other splits.
 10. Negative results: SFPL v2, OGPD v2, and the v1 constant predictors, section 6 and section 11.
-11. Theoretical bounds: `THEORETICAL_ANALYSIS.md`. Numerical PAC-Bayes and sample-complexity bounds are NOT_MEASURED.
+11. Theoretical bounds: `THEORETICAL_ANALYSIS.md`. Hoeffding's fixed-predictor count is 738 notes against a training split of 974. The measured fixed-count gap is 0.3798076923076923 (6-view accuracy 0.9663461538461539 minus 1-view accuracy 0.5865384615384616). The PAC-Bayes penalty on the stated Gaussian grid is 57.5892990573559 and the bound is vacuous.

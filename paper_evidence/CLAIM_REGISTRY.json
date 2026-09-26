@@ -1222,6 +1222,48 @@
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\igcr\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
       "status": "VERIFIED"
+    },
+    {
+      "claim_id": "C_ABL_RSQA_1",
+      "claim": "Prefix ablation, quality only, 1-view test accuracy",
+      "value": 0.9326923076923077,
+      "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\rsqa\\seed42\\test_views\\views_1_to_6.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "see claim",
+      "status": "VERIFIED",
+      "script": "scripts/eval"
+    },
+    {
+      "claim_id": "C_CAL_PRMVT_HER",
+      "claim": "PRMVT 6-view HER ECE, temperature and HER fit on val",
+      "value": 0.03284737719849755,
+      "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\calibration\\suite_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "see claim",
+      "status": "VERIFIED",
+      "script": "scripts/eval"
+    },
+    {
+      "claim_id": "C_POLICY_COST",
+      "claim": "PRMVT sequential policy with lambda 0.02, test accuracy",
+      "value": 0.41346153846153844,
+      "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\prefix_ft\\seed42\\cost_policy_test.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "see claim",
+      "status": "VERIFIED",
+      "script": "scripts/eval"
     }
   ]
 }
