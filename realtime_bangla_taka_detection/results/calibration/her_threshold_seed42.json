@@ -1,0 +1,59 @@
+{
+  "fit_split": "val",
+  "eval_split": "test",
+  "n_test": 208,
+  "views": 6,
+  "raw_val_accuracy_at_0.5": 0.9855769230769231,
+  "selection": "validation ECE under 0.04 and validation accuracy at least the raw 0.5-threshold accuracy",
+  "candidates": [
+    {
+      "scale": 0.0,
+      "val_ece_10": 0.06351186960147552,
+      "val_threshold": 0.2,
+      "val_accuracy": 0.9855769230769231,
+      "val_accuracy_at_0.5": 0.9855769230769231
+    },
+    {
+      "scale": 0.25,
+      "val_ece_10": 0.03550566571245255,
+      "val_threshold": 0.2,
+      "val_accuracy": 0.9855769230769231,
+      "val_accuracy_at_0.5": 0.9855769230769231
+    },
+    {
+      "scale": 0.5,
+      "val_ece_10": 0.01146360914348269,
+      "val_threshold": 0.25,
+      "val_accuracy": 0.9855769230769231,
+      "val_accuracy_at_0.5": 0.9855769230769231
+    },
+    {
+      "scale": 0.75,
+      "val_ece_10": 0.012956135274949855,
+      "val_threshold": 0.8867766261100769,
+      "val_accuracy": 0.9903846153846154,
+      "val_accuracy_at_0.5": 0.9855769230769231
+    },
+    {
+      "scale": 1.0,
+      "val_ece_10": 0.00895182619569826,
+      "val_threshold": 0.39999999999999997,
+      "val_accuracy": 0.9855769230769231,
+      "val_accuracy_at_0.5": 0.9855769230769231
+    }
+  ],
+  "chosen": {
+    "scale": 0.75,
+    "val_ece_10": 0.012956135274949855,
+    "val_threshold": 0.8867766261100769,
+    "val_accuracy": 0.9903846153846154,
+    "val_accuracy_at_0.5": 0.9855769230769231
+  },
+  "test": {
+    "accuracy": 0.9711538461538461,
+    "accuracy_at_0.5": 0.9759615384615384,
+    "ece_10": 0.024493631835167225,
+    "threshold": 0.8867766261100769,
+    "scale": 0.75
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "checkpoint": "results/qduig/prefix_ft/seed42/checkpoint.pt",
+  "selection": "validation accuracy minus lambda times mean views; test scored after selection",
+  "primary_lambda": 0.02,
+  "always_prefix_1": {
+    "val": {
+      "rule": "always_prefix_1",
+      "accuracy": 0.9807692307692307,
+      "mean_views": 1.0,
+      "n": 208
+    },
+    "test": {
+      "rule": "always_prefix_1",
+      "accuracy": 0.9711538461538461,
+      "mean_views": 1.0,
+      "n": 208
+    }
+  },
+  "always_prefix_3": {
+    "val": {
+      "rule": "always_prefix_3",
+      "accuracy": 0.9855769230769231,
+      "mean_views": 3.0,
+      "n": 208
+    },
+    "test": {
+      "rule": "always_prefix_3",
+      "accuracy": 0.9759615384615384,
+      "mean_views": 3.0,
+      "n": 208
+    }
+  },
+  "lambda_grid": [
+    {
+      "lambda": 0.0,
+      "val": {
+        "tau": 0.0,
+        "accuracy": 0.9855769230769231,
+        "mean_views": 6.0,
+        "n": 208
+      },
+      "test": {
+        "tau": 0.0,
+        "accuracy": 0.9759615384615384,
+        "mean_views": 6.0,
+        "n": 208
+      },
+      "primary": false
+    },
+    {
+      "lambda": 0.01,
+      "val": {
+        "tau": 0.6931471805599453,
+        "accuracy": 0.9807692307692307,
+        "mean_views": 1.0144230769230769,
+        "n": 208
+      },
+      "test": {
+        "tau": 0.6931471805599453,
+        "accuracy": 0.9711538461538461,
+        "mean_views": 1.0096153846153846,
+        "n": 208
+      },
+      "primary": false
+    },
+    {
+      "lambda": 0.02,
+      "val": {
+        "tau": 0.6931471805599453,
+        "accuracy": 0.9807692307692307,
+        "mean_views": 1.0144230769230769,
+        "n": 208
+      },
+      "test": {
+        "tau": 0.6931471805599453,
+        "accuracy": 0.9711538461538461,
+        "mean_views": 1.0096153846153846,
+        "n": 208
+      },
+      "primary": true
+    },
+    {
+      "lambda": 0.05,
+      "val": {
+        "tau": 0.6931471805599453,
+        "accuracy": 0.9807692307692307,
+        "mean_views": 1.0144230769230769,
+        "n": 208
+      },
+      "test": {
+        "tau": 0.6931471805599453,
+        "accuracy": 0.9711538461538461,
+        "mean_views": 1.0096153846153846,
+        "n": 208
+      },
+      "primary": false
+    },
+    {
+      "lambda": 0.1,
+      "val": {
+        "tau": 0.6931471805599453,
+        "accuracy": 0.9807692307692307,
+        "mean_views": 1.0144230769230769,
+        "n": 208
+      },
+      "test": {
+        "tau": 0.6931471805599453,
+        "accuracy": 0.9711538461538461,
+        "mean_views": 1.0096153846153846,
+        "n": 208
+      },
+      "primary": false
+    }
+  ],
+  "oracle_test": {
+    "source": "results/qduig/eval/seed42/oracle.json",
+    "note": "analysis only; not used to choose this policy"
+  }
+}

@@ -1,0 +1,13 @@
+name: sfpl_localsteps
+algo: sfpl
+epochs: 8
+batch: 4
+lr: 0.0003
+seed: 42
+views: 6
+patience: 8
+full_views: true
+fedprox_mu: 0.01
+client_keep: 1.0
+max_local_steps: 4
+note: Few local steps and a FedProx penalty, to limit client drift. New directory.

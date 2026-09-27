@@ -1,0 +1,56 @@
+{
+  "checkpoint": "results/qduig/prefix_ft/seed42/checkpoint.pt",
+  "corruption": "low_light",
+  "severity": 0.2,
+  "views": 6,
+  "selection": "highest validation accuracy; test scored once",
+  "val": [
+    {
+      "name": "identity",
+      "param": 1.0,
+      "val_accuracy": 0.5769230769230769
+    },
+    {
+      "name": "gamma",
+      "param": 0.4,
+      "val_accuracy": 0.8365384615384616
+    },
+    {
+      "name": "gamma",
+      "param": 0.6,
+      "val_accuracy": 0.5769230769230769
+    },
+    {
+      "name": "gamma",
+      "param": 0.8,
+      "val_accuracy": 0.5769230769230769
+    },
+    {
+      "name": "gain",
+      "param": 2.0,
+      "val_accuracy": 0.6105769230769231
+    },
+    {
+      "name": "gain",
+      "param": 3.0,
+      "val_accuracy": 0.8221153846153846
+    },
+    {
+      "name": "clahe",
+      "param": 2.0,
+      "val_accuracy": 0.5961538461538461
+    },
+    {
+      "name": "clahe",
+      "param": 4.0,
+      "val_accuracy": 0.6153846153846154
+    }
+  ],
+  "chosen": {
+    "name": "gamma",
+    "param": 0.4,
+    "val_accuracy": 0.8365384615384616
+  },
+  "test_accuracy": 0.8317307692307693,
+  "n_test": 208
+}

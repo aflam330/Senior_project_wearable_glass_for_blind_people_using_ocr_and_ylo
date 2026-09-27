@@ -24,6 +24,13 @@ class MultiTaskPrefixTransformer(torch.nn.Module):
 
     def loss(self, out, labels):
         auth = balanced_ce(out["logits"], labels)
-        aux = F.mse_loss(torch.sigmoid(out["sfaq_from_embed"]), out["proxies"].detach().clamp(0, 1))
-        # Quality proxy is an auxiliary. It must not dominate the authenticity gradient.
-        return auth + 0.1 * aux
+        weight = float(getattr(self, "aux_weight", 0.1))
+        if weight == 0.0:
+            return auth
+        pred = out["sfaq_from_embed"]
+        if bool(getattr(self, "aux_stopgrad", False)):
+            pred = pred.detach()
+            # Detached prediction has no gradient. Recompute the head on detached features.
+            pred = self.net.aux_quality(out["fused"].detach())
+        aux = F.mse_loss(torch.sigmoid(pred), out["proxies"].detach().clamp(0, 1))
+        return auth + weight * aux

@@ -44,7 +44,8 @@ class NovelAuthNet(nn.Module):
         self.encoder = ViewEncoder(freeze_cnn=freeze_cnn)
         dim = self.encoder.out_dim
         self.dim = dim
-        self.set_blocks = nn.ModuleList([SetBlock(dim) for _ in range(2)])
+        n_blocks = int(os.environ.get("NOVEL_SET_BLOCKS", "2"))
+        self.set_blocks = nn.ModuleList([SetBlock(dim) for _ in range(n_blocks)])
         self.pool_query = nn.Parameter(torch.zeros(1, 1, dim))
         nn.init.trunc_normal_(self.pool_query, std=0.02)
         self.pool_attn = nn.MultiheadAttention(dim, 4, batch_first=True)

@@ -1,0 +1,13 @@
+\begin{tabular}{llr}
+\hline
+Fix & Result & Test value \\
+\hline
+Prefix stop, $\lambda=0.02$ & pass & 0.9712 at 1.01 views \\
+Normalized cost, 1 view & pass & 0.9615 \\
+Smaller auxiliary weights, 1 view & fail & 0.9663 \\
+Low light 0.2, robust fine-tune & pass & 0.9375 \\
+Occlusion 0.55, occlusion fine-tune & fail & 0.6683 \\
+Linear-head McAllester bound & pass, holdout & 0.4445 \\
+HER scale 0.75 at threshold 0.5 & pass & 0.9760, ECE 0.0245 \\
+\hline
+\end{tabular}

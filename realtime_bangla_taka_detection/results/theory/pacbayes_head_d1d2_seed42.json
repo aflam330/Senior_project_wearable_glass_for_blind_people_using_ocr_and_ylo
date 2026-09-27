@@ -1,0 +1,24 @@
+{
+  "posterior": "N(theta, I) on a linear head",
+  "prior": "N(0, I), fixed before D2",
+  "features": "frozen PRMVT fused_h, 6 views",
+  "d1_notes": 487,
+  "d2_notes": 487,
+  "test_used": false,
+  "weight_decay_grid": [
+    1.0,
+    0.1,
+    0.01,
+    0.001
+  ],
+  "weight_decay_chosen_on": "inner 20% of D1",
+  "weight_decay": 0.001,
+  "kl": 2.381910800933838,
+  "d2_deterministic_risk": 0.020533880218863487,
+  "d2_gibbs_risk_mean": 0.3475359324365854,
+  "gibbs_samples": 8,
+  "mcallester": 0.444538876551335,
+  "pacbayes_kl": 0.44287811904217583,
+  "pacbayes_kl_note": "Largest q with kl(gibbs risk, q) at most (KL + ln(2 sqrt(n) / delta)) / n. Computed from the KL and Gibbs risk in this file.",
+  "non_vacuous": true
+}

@@ -120,6 +120,8 @@ class NoteViewDataset(Dataset):
         corruption: str | None = None,
         corruption_severity: float = 0.0,
         seed: int = 42,
+        robust_aug: bool = False,
+        occlusion_aug: bool = False,
     ):
         self.ids = list(note_ids)
         self.records = records
@@ -134,6 +136,8 @@ class NoteViewDataset(Dataset):
         self.corruption = corruption
         self.corruption_severity = corruption_severity
         self.rng = np.random.default_rng(seed)
+        self.robust_aug = bool(robust_aug) and train
+        self.occlusion_aug = bool(occlusion_aug) and train
 
     def __len__(self) -> int:
         return len(self.ids)
@@ -145,6 +149,34 @@ class NoteViewDataset(Dataset):
             paths = [paths[int(i)] for i in idx]
         return paths
 
+    def _robust_bgr(self, bgr: np.ndarray) -> np.ndarray:
+        """Train-only darkening and patch occlusion. Eval corruption is separate."""
+        out = bgr
+        if self.rng.random() < 0.5:
+            scale = float(self.rng.uniform(0.2, 1.0))
+            out = np.clip(out.astype(np.float32) * scale, 0, 255).astype(np.uint8)
+        if self.rng.random() < 0.5:
+            frac = float(self.rng.uniform(0.05, 0.55))
+            h, w = out.shape[:2]
+            rh = max(1, int(h * frac ** 0.5))
+            rw = max(1, int(w * frac ** 0.5))
+            y0 = int(self.rng.integers(0, max(h - rh, 1)))
+            x0 = int(self.rng.integers(0, max(w - rw, 1)))
+            out = out.copy()
+            out[y0:y0 + rh, x0:x0 + rw] = 0
+        return out
+
+    def _occlude(self, bgr: np.ndarray) -> np.ndarray:
+        frac = float(self.rng.uniform(0.2, 0.55))
+        h, w = bgr.shape[:2]
+        rh = max(1, int(h * frac ** 0.5))
+        rw = max(1, int(w * frac ** 0.5))
+        y0 = int(self.rng.integers(0, max(h - rh, 1)))
+        x0 = int(self.rng.integers(0, max(w - rw, 1)))
+        out = bgr.copy()
+        out[y0:y0 + rh, x0:x0 + rw] = 0
+        return out
+
     def __getitem__(self, i: int):
         nid = self.ids[i]
         rec = self.records[nid]
@@ -153,11 +185,16 @@ class NoteViewDataset(Dataset):
             paths = paths[: self.n_views]
         tensors = []
         for p in paths:
-            if self.corruption:
+            if self.corruption or self.robust_aug or self.occlusion_aug:
                 bgr = cv2.imread(str(p))
                 if bgr is None:
                     continue
-                bgr = apply_corruption(bgr, self.corruption, self.corruption_severity)
+                if self.corruption:
+                    bgr = apply_corruption(bgr, self.corruption, self.corruption_severity)
+                if self.occlusion_aug:
+                    bgr = self._occlude(bgr)
+                elif self.robust_aug:
+                    bgr = self._robust_bgr(bgr)
                 rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
                 image = _RESIZE(Image.fromarray(rgb))
             else:

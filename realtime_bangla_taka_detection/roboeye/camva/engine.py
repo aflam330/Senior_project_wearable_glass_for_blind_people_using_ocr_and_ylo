@@ -154,10 +154,11 @@ def pack_eval(pred: dict, name: str, temperature: float | None = None) -> dict:
     return m, pred
 
 
-def make_loader(ids, records, n_views, train, batch, view_order="fixed", corruption=None, severity=0.0, seed=42, workers: int = 0, pin_memory: bool = False):
+def make_loader(ids, records, n_views, train, batch, view_order="fixed", corruption=None, severity=0.0, seed=42, workers: int = 0, pin_memory: bool = False, robust_aug: bool = False, occlusion_aug: bool = False):
     ds = NoteViewDataset(
         ids, records, n_views=n_views, train=train, view_order=view_order,
         corruption=corruption, corruption_severity=severity, seed=seed,
+        robust_aug=robust_aug, occlusion_aug=occlusion_aug,
     )
     extra = {}
     if workers > 0:

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import math
 import random
 import time
 from pathlib import Path
@@ -137,6 +138,33 @@ def _amp_enabled() -> bool:
     return torch.cuda.is_available()
 
 
+def _pcgrad_backward(params, auth: torch.Tensor, aux: list[torch.Tensor]) -> None:
+    live = [p for p in params if p.requires_grad]
+    if not live:
+        return
+
+    def grab(loss: torch.Tensor):
+        grads = torch.autograd.grad(loss, live, retain_graph=True, allow_unused=True)
+        return [g.detach() if g is not None else torch.zeros_like(p) for g, p in zip(grads, live)]
+
+    total = grab(auth)
+    for loss in aux:
+        if not torch.is_tensor(loss) or not loss.requires_grad:
+            continue
+        piece = grab(loss)
+        dot = torch.zeros((), device=piece[0].device)
+        denom = torch.zeros((), device=piece[0].device)
+        for left, right in zip(piece, total):
+            dot = dot + (left * right).sum()
+            denom = denom + (right * right).sum()
+        if float(dot) < 0.0:
+            coef = dot / denom.clamp_min(1e-12)
+            piece = [left - coef * right for left, right in zip(piece, total)]
+        total = [left + right for left, right in zip(total, piece)]
+    for param, grad in zip(live, total):
+        param.grad = grad
+
+
 def train_qduig(
     model: QDUIGNet,
     train_ids: list[str],
@@ -170,7 +198,23 @@ def train_qduig(
             blob = torch.load(resume, map_location=device)
         model.load_state_dict(blob["model"])
 
-    opt = torch.optim.Adam((p for p in model.parameters() if p.requires_grad), lr=lr)
+    if bool(config.get("separate_aux", False)):
+        for p in model.parameters():
+            p.requires_grad = False
+        dim = int(model.encoder.out_dim)
+        model.aux_tower = torch.nn.ModuleDict({
+            "quality": torch.nn.Linear(dim, 1),
+            "diversity": torch.nn.Linear(dim, 1),
+            "info_gain": torch.nn.Linear(dim, 1),
+        }).to(device)
+        model.cfg.separate_aux = True
+    kendall = None
+    if bool(config.get("kendall", False)):
+        kendall = {k: torch.nn.Parameter(torch.zeros((), device=device)) for k in ("quality", "uncertainty", "diversity", "info_gain", "cost")}
+    opt_params = [p for p in model.parameters() if p.requires_grad]
+    if kendall:
+        opt_params.extend(kendall.values())
+    opt = torch.optim.Adam(opt_params, lr=lr)
     use_amp = False  # AMP + slogdet/quality descriptors produced NaN on seed 42 epoch 1
     try:
         scaler = torch.amp.GradScaler("cuda", enabled=use_amp)
@@ -191,11 +235,20 @@ def train_qduig(
 
         for ep in range(1, epochs + 1):
             model.train()
+            if bool(config.get("separate_aux", False)):
+                model.eval()
+                if hasattr(model, "aux_tower"):
+                    model.aux_tower.train()
             print(f"qduig seed={seed} start epoch {ep}/{epochs}", flush=True)
-            loader = make_loader(train_ids, records, n_views=n_views, train=True, batch=batch, seed=seed + ep)
+            loader = make_loader(
+                train_ids, records, n_views=n_views, train=True, batch=batch,
+                seed=seed + ep, robust_aug=bool(config.get("robust_aug", False)),
+                occlusion_aug=bool(config.get("occlusion_aug", False)),
+            )
             running = 0.0
             n = 0
             term_acc = {k: 0.0 for k in ("auth", "quality", "uncertainty", "diversity", "info_gain", "cost")}
+            batch_i = 0
             for bd in loader:
                 views = bd["views"].to(device)
                 mask = bd["mask"].to(device)
@@ -218,24 +271,65 @@ def train_qduig(
                         model, out, views, mask, y, cw, n_views,
                         multitask_w=multitask_w, contrastive_w=contrastive_w,
                     )
-                    loss, logged = composite_loss(terms, lw)
+                    scale = 1.0
+                    for start_ep, value in config.get("aux_curriculum") or []:
+                        if ep >= int(start_ep):
+                            scale = float(value)
+                    every = int(config.get("aux_every") or 0)
+                    if every and (batch_i % every) != 0:
+                        scale = 0.0
+                    lw_ep = LossWeights(
+                        auth=lw.auth,
+                        quality=lw.quality * scale,
+                        uncertainty=lw.uncertainty * scale,
+                        diversity=lw.diversity * scale,
+                        info_gain=lw.info_gain * scale,
+                        cost=lw.cost * scale,
+                    )
+                    if kendall is not None:
+                        loss = terms["auth"]
+                        logged = {"auth": float(terms["auth"].detach().item())}
+                        for key, s_param in kendall.items():
+                            loss = loss + torch.exp(-s_param) * getattr(lw_ep, key if key != "info_gain" else "info_gain") * terms[key] + s_param
+                            logged[key] = float(terms[key].detach().item())
+                        logged["total"] = float(loss.detach().item())
+                    else:
+                        loss, logged = composite_loss(terms, lw_ep)
                 if not torch.isfinite(loss):
                     print("non-finite loss, skip batch", {k: logged[k] for k in logged}, flush=True)
                     continue
-                scaler.scale(loss).backward()
-                scaler.unscale_(opt)
+                if bool(config.get("aux_pcgrad", False)) and kendall is None:
+                    opt.zero_grad(set_to_none=True)
+                    _pcgrad_backward(
+                        model.parameters(),
+                        lw_ep.auth * terms["auth"],
+                        [
+                            lw_ep.quality * terms["quality"],
+                            lw_ep.uncertainty * terms["uncertainty"],
+                            lw_ep.diversity * terms["diversity"],
+                            lw_ep.info_gain * terms["info_gain"],
+                            lw_ep.cost * terms["cost"],
+                        ],
+                    )
+                else:
+                    scaler.scale(loss).backward()
+                    scaler.unscale_(opt)
                 for p in model.parameters():
                     if p.grad is not None:
                         p.grad = torch.nan_to_num(p.grad)
                 torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
-                scaler.step(opt)
-                scaler.update()
+                if bool(config.get("aux_pcgrad", False)) and kendall is None:
+                    opt.step()
+                else:
+                    scaler.step(opt)
+                    scaler.update()
                 with torch.no_grad():
                     for p in model.parameters():
                         if not torch.isfinite(p).all():
                             p.nan_to_num_(0.0)
                 running += float(loss.item()) * len(y)
                 n += len(y)
+                batch_i += 1
                 for k in term_acc:
                     term_acc[k] += logged[k] * len(y)
 
@@ -268,9 +362,12 @@ def train_qduig(
             )
             if mean_k >= best:
                 best = mean_k
+                state = model.state_dict()
+                if bool(config.get("separate_aux", False)):
+                    state = {k: v for k, v in state.items() if not k.startswith("aux_tower.")}
                 torch.save(
                     {
-                        "model": model.state_dict(),
+                        "model": state,
                         "val_acc": acc,
                         "val_mean_1_to_6": mean_k,
                         "val_by_k": per_k,
@@ -326,16 +423,42 @@ def _loss_terms(
     energy_proxy = torch.zeros_like(n_used)
     l_c = acquisition_cost_loss(n_used, latency_proxy, energy_proxy, cw.alpha, cw.beta, cw.gamma, max_views)
     if model.cfg.use_cost and model.cfg.cost_from_entropy:
-        l_c = l_c + out["entropy"].mean()
+        ent = out["entropy"].mean()
+        if model.cfg.cost_entropy_normalized:
+            ent = ent / math.log(2.0)
+        l_c = l_c + ent
+    if model.cfg.aux_stopgrad:
+        z_det = out["features"].detach()
+        q_det = model.quality_head(z_det, out["quality_factors"].detach())
+        l_q = quality_consistency_loss(q_det["usable"], mask, agree.detach())
+        l_unc = uncertainty_loss(model.uncertainty_head(out["fused_h"].detach()).squeeze(-1), correct.detach())
+        pred_det = model.candidate_ig(
+            out["fused_h"].detach(),
+            out["z_mod"].detach(),
+            out["entropy"].detach(),
+            out["prob"].detach(),
+            out["quality"].detach(),
+            out["residual_energy"].detach(),
+            out["n_views_norm"].detach(),
+        )
+        l_g = F.mse_loss(pred_det, out["pred_ig"].detach())
+        l_d = l_d.detach()
+    if model.cfg.separate_aux and hasattr(model, "aux_tower"):
+        pooled = out["features"].detach().mean(dim=1)
+        l_q = F.mse_loss(model.aux_tower["quality"](pooled).squeeze(-1), agree.detach().mean(dim=1))
+        l_d = F.mse_loss(model.aux_tower["diversity"](pooled).squeeze(-1), l_d.detach().expand_as(pooled[:, 0]))
+        l_g = F.mse_loss(model.aux_tower["info_gain"](pooled).squeeze(-1), l_g.detach().expand_as(pooled[:, 0]))
+        l_unc = l_unc.detach() * 0.0
+    keep_aux = model.cfg.aux_stopgrad or model.cfg.separate_aux
     if not model.cfg.use_cost:
         l_c = l_c.detach() * 0.0
-    if not model.cfg.use_info_gain:
+    if not model.cfg.use_info_gain and not keep_aux:
         l_g = l_g.detach() * 0.0
-    if not model.cfg.use_diversity:
+    if not model.cfg.use_diversity and not keep_aux:
         l_d = l_d.detach() * 0.0
-    if not model.cfg.use_quality:
+    if not model.cfg.use_quality and not keep_aux:
         l_q = l_q.detach() * 0.0
-    if not model.cfg.use_uncertainty:
+    if not model.cfg.use_uncertainty and not keep_aux:
         l_unc = l_unc.detach() * 0.0
     def _finite(t: torch.Tensor) -> torch.Tensor:
         return t if torch.isfinite(t).all() else t.new_zeros(())

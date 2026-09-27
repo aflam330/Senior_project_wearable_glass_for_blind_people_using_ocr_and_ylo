@@ -66,3 +66,19 @@ Ten extra algorithms were trained at seed 42. See `NOVEL_ALGORITHMS_COMPARISON.m
 - Calibration: PASS. NDAL entropy ECE 0.1679 is reported as measured.
 - Theory: PASS for the definitions. Numerical PAC-Bayes is NOT_MEASURED.
 - Pi 5, mobile, user study: NOT_MEASURED.
+
+## Fix pass 2026-09-27
+
+- Prefix policy: PASS. Test accuracy 0.9711538461538461 at 1.0096153846153846 views. The saved out-of-order policy remains a failure at 0.41346153846153844.
+- Normalized cost: PASS at 1-view accuracy 0.9615384615384616.
+- Smaller auxiliary weights: FAIL at 1-view accuracy 0.9663461538461539. Removing the auxiliary losses (`her_base`) remains 0.9903846153846154.
+- Auxiliary stack, seed 42: loss scale, PCGrad, and every-fourth-batch FAIL below 0.9711538461538461. Kendall is PARTIAL at 0.9711538461538461. Curriculum is PARTIAL at 0.9807692307692307. Stop-gradient is 0.9903846153846154 at 1 view and 0.9086538461538461 at 6 views. A separate tower with frozen batch-norm matches `her_base` at 1–6 views. See `AUXILIARY_FIX_RESULTS.md`.
+- RSQA versus mean-pool: mean-pool with auxiliary losses on is 0.9663461538461539 at 1 view. RSQA with auxiliary weights at 0 is 0.9375. Neither reaches 0.9903846153846154.
+- Occlusion 0.55 median fill: 0.875 at 6 views. Below 0.90.
+- Full-network PAC-Bayes: McAllester 0.6484603925932461 at posterior std 10, Gibbs error 0.42299794661190965. Not a certificate for the deterministic checkpoint.
+- SFPL, VCIE, and MTPT new runs do not replace v2. Seeds 45 and 46 were not trained. NSTU-BDTAKA authenticity is NOT_MEASURED.
+- Low light 0.2: PASS at 0.9375 after fine-tuning. Inference gamma repair scored 0.8317307692307693.
+- Occlusion 0.55: FAIL at 0.6682692307692307.
+- PAC-Bayes on the full weight vector: still vacuous. Linear-head McAllester bound on a training holdout: 0.444538876551335.
+- HER scale 0.75 at threshold 0.5: accuracy 0.9759615384615384, ECE 0.024493631835167225. The validation-maximizing threshold does not keep that accuracy.
+

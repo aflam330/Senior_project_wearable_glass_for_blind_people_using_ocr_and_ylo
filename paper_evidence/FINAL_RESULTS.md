@@ -215,3 +215,35 @@ A Gaussian PAC-Bayes posterior on the saved prefix-robust weights has smallest M
 
 Pi 5, mobile, and the user study remain NOT_MEASURED.
 
+## Fix pass, seed 42
+
+Details are in `POLICY_FIX_RESULTS.md`, `COST_FIX_RESULTS.md`, `AUXILIARY_FIX_RESULTS.md`, `LOWLIGHT_FIX_RESULTS.md`, `OCCLUSION_FIX_RESULTS.md`, `PACBAYES_FIX_RESULTS.md`, and `HER_FIX_RESULTS.md`.
+
+Prefix stopping on the saved PRMVT checkpoint, λ = 0.02 chosen on validation, scores 0.9711538461538461 at 1.0096153846153846 views. The old out-of-order policy remains 0.41346153846153844.
+
+Normalized entropy cost, 1 view, scores 0.9615384615384616, equal to the matched run without that term. Reducing auxiliary weights scores 0.9663461538461539 at 1 view, below full PRMVT. `her_base`, with those losses off, remains 0.9903846153846154.
+
+A later auxiliary-stack pass is in `AUXILIARY_FIX_RESULTS.md`. Loss-scale, PCGrad, and every-fourth-batch fine-tunes of full PRMVT stay below 0.9711538461538461 at 1 view. Kendall matches full PRMVT at 0.9711538461538461. A 6-epoch curriculum reaches 0.9807692307692307. Stop-gradient from `her_base` keeps 1-view at 0.9903846153846154 and drops 6-view to 0.9086538461538461. A separate auxiliary tower with the authenticator and its batch-norm frozen matches `her_base` at every view count, with nonzero tower losses.
+
+## Remaining-items pass, seed 42
+
+Mean-pool with the auxiliary losses kept scores 0.9663461538461539 at 1 view. RSQA with those loss weights at 0 scores 0.9375. Neither closes the gap to `her_base`. Source: `RSQA_VS_MEANPOOL_ANALYSIS.md`.
+
+Occlusion 0.55, median fill on the occlusion fine-tune, scores 0.875 at 6 views. That is the highest measured repair and is below 0.90. Source: `OCCLUSION_FIX_RESULTS.md`.
+
+A full-network McAllester bound of 0.6484603925932461 was measured for posterior standard deviation 10. The Gibbs training error is 0.42299794661190965. The tight zero-mean prior remains vacuous at penalty 57.5892990573559. Source: `PACBAYES_FIX_RESULTS.md`.
+
+SFPL v2 stays below the baseline from 2 views. The new full-view and short-step runs do not replace it. Source: `SFPL_FIX_RESULTS.md`.
+
+OGPD v1 remains the OGPD result. v2 is worse at every view. Source: `OGPD_STATUS.md`.
+
+Seeds 45 and 46 were not trained. NSTU-BDTAKA authenticity accuracy is NOT_MEASURED: that dataset has denomination labels, not genuine/counterfeit labels.
+
+VCIE v2 remains the VCIE result. An 8-epoch rerun scored 0.7548076923076923 at 1 view. MTPT v2 remains the MTPT result. An authenticity-only rerun scored 0.9471153846153846 at 1 view.
+
+HER scale 0.75 at threshold 0.5 still scores 0.9759615384615384 with ECE 0.024493631835167225. The frozen separate tower still matches `her_base` at 6 views, so the stop-gradient continuation is not required for that target.
+
+Low light 0.2 after the robust fine-tune scores 0.9375 at 6 views. Clean 6-view accuracy of that checkpoint is 0.9663461538461539. Occlusion 0.55 after a further occlusion fine-tune scores 0.6682692307692307. That is below 0.90, and clean accuracy falls to 0.8990384615384616 at 6 views.
+
+A linear-head PAC-Bayes posterior on half the training notes has McAllester bound 0.444538876551335. The bound on the full weight vector remains vacuous. HER scale 0.75 at threshold 0.5 scores 0.9759615384615384 with ECE 0.024493631835167225. The validation-chosen threshold 0.8867766261100769 scores 0.9711538461538461 on test.
+

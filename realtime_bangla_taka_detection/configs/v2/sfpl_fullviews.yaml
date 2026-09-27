@@ -1,0 +1,12 @@
+name: sfpl_fullviews
+algo: sfpl
+epochs: 6
+batch: 4
+lr: 0.001
+seed: 42
+views: 6
+patience: 6
+full_views: true
+fedprox_mu: 0.0
+client_keep: 1.0
+note: FedAvg where every client sees all six views. New directory. Does not replace v1 or v2.

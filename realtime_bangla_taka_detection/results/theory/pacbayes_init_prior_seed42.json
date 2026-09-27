@@ -1,0 +1,55 @@
+{
+  "checkpoint": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\prefix_ft\\seed42\\checkpoint.pt",
+  "prior": "N(w_init, sigma0^2 I), w_init is the network before JaalTaka training",
+  "posterior": "N(w, rho^2 I) with rho = sigma0, so the variance contribution to KL is 0",
+  "n_parameters_matched": 4121404,
+  "missing_keys": [],
+  "displacement_squared_l2": 18390.416960419072,
+  "n_train_notes": 974,
+  "delta": 0.05,
+  "empirical_gibbs_risk": "NOT_MEASURED",
+  "note": "A penalty below 1 is not a full bound. The Gibbs risk at that posterior variance was not measured. The test set was not used.",
+  "rows": [
+    {
+      "sigma0": 0.01,
+      "rho": 0.01,
+      "kl": 91952084.80209535,
+      "penalty": 217.26327948781176,
+      "penalty_below_1": false
+    },
+    {
+      "sigma0": 0.1,
+      "rho": 0.1,
+      "kl": 919520.8480209536,
+      "penalty": 21.72641133481928,
+      "penalty_below_1": false
+    },
+    {
+      "sigma0": 1.0,
+      "rho": 1.0,
+      "kl": 9195.208480209578,
+      "penalty": 2.173474832306831,
+      "penalty_below_1": false
+    },
+    {
+      "sigma0": 10.0,
+      "rho": 10.0,
+      "kl": 91.95208480209112,
+      "penalty": 0.22552889003464704,
+      "penalty_below_1": true
+    },
+    {
+      "sigma0": 100.0,
+      "rho": 100.0,
+      "kl": 0.9195208479650319,
+      "penalty": 0.06428051474532656,
+      "penalty_below_1": true
+    }
+  ],
+  "smallest_penalty_on_log_grid": {
+    "sigma0": 316.22776601683796,
+    "rho": 316.22776601683796,
+    "kl": 0.09195208479650319,
+    "penalty": 0.0608864074762615
+  }
+}

@@ -28,6 +28,12 @@ class QDUIGConfig:
     # When true, the cost term includes mean predictive entropy, which depends
     # on the logits. The mask-count cost alone has no parameter gradient.
     cost_from_entropy: bool = False
+    # Divide that entropy by ln 2 so the extra term lies in [0, 1].
+    cost_entropy_normalized: bool = False
+    aux_stopgrad: bool = False
+    separate_aux: bool = False
+    # Mean-pool the views even when the quality head and its loss stay on.
+    force_mean_pool: bool = False
     dropout: float = 0.15
     max_views: int = 6
     view_self_gate: bool = False
@@ -108,7 +114,7 @@ class QDUIGNet(nn.Module):
         pred_ig_mean: torch.Tensor | None = None,
         fast_diversity: bool | None = None,
     ) -> dict[str, torch.Tensor]:
-        if self.cfg.use_quality:
+        if self.cfg.use_quality and not self.cfg.force_mean_pool:
             fused, w, z_mod = self.rsqa(z, q["embed"], q["usable"], mask)
         else:
             a = mask.to(z.dtype)

@@ -1,0 +1,12 @@
+name: sfpl_fedprox
+algo: sfpl
+epochs: 6
+batch: 4
+lr: 0.001
+seed: 42
+views: 6
+patience: 6
+full_views: true
+fedprox_mu: 0.001
+client_keep: 1.0
+note: FedProx on top of full-view clients. New directory.

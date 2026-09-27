@@ -145,7 +145,7 @@ def _loss(algo: str, model, views, mask, labels, note_ids: list[str]):
     return F.cross_entropy(out["logits"], labels), out
 
 
-def _sfpl_round(model, opt, scaler, use_amp: bool, splits, records, batch: int, seed: int, ep: int, load_kw: dict) -> float:
+def _sfpl_round(model, opt, scaler, use_amp: bool, splits, records, batch: int, seed: int, ep: int, load_kw: dict, full_views: bool = False, fedprox_mu: float = 0.0, client_keep: float = 1.0, max_local_steps: int = 0) -> float:
     """One FedAvg round. Each client keeps a different prefix length, then weights are averaged."""
     buckets: list[list[str]] = [[] for _ in range(model.n_clients)]
     for nid in splits["train"]:
@@ -160,9 +160,15 @@ def _sfpl_round(model, opt, scaler, use_amp: bool, splits, records, batch: int, 
         _module(model).load_state_dict(base)
         opt.state.clear()
         loader = make_loader(client_ids, records, n_views=6, train=True, batch=batch, seed=seed + ep * 17 + cid, **load_kw)
-        keep = (cid % 6) + 1
-        local_loss, local_n = 0.0, 0
+        if np.random.RandomState(seed + ep * 100 + cid).rand() > client_keep:
+            print(f"sfpl client {cid} skipped", flush=True)
+            continue
+        keep = 6 if full_views else (cid % 6) + 1
+        local_loss, local_n, steps = 0.0, 0, 0
         for bd in loader:
+            if max_local_steps and steps >= max_local_steps:
+                break
+            steps += 1
             views = bd["views"].to(DEVICE)
             mask = bd["mask"].to(DEVICE)
             labels = bd["label"].to(DEVICE)
@@ -172,6 +178,12 @@ def _sfpl_round(model, opt, scaler, use_amp: bool, splits, records, batch: int, 
             with _autocast(use_amp):
                 out = model(views, mask)
                 loss = model.loss(out, labels)
+                if fedprox_mu > 0:
+                    prox = loss.new_zeros(())
+                    for name, param in _module(model).named_parameters():
+                        if param.requires_grad and name in base:
+                            prox = prox + (param - base[name]).pow(2).sum()
+                    loss = loss + (fedprox_mu * 0.5) * prox
             if not torch.isfinite(loss):
                 continue
             scaler.scale(loss).backward()
@@ -209,8 +221,8 @@ def main() -> None:
     p.add_argument("--algo", required=True, choices=sorted(BUILDERS))
     p.add_argument("--batch", type=int, default=None)
     args = p.parse_args()
-    if args.seed not in {42, 43, 44}:
-        raise SystemExit("seeds for this experiment set are 42, 43, and 44")
+    if args.seed not in {42, 43, 44, 45, 46}:
+        raise SystemExit("seeds for this experiment set are 42, 43, 44, 45, and 46")
 
     cfg = load_config(args.config)
     epochs = int(cfg.get("epochs", 4))
@@ -228,6 +240,9 @@ def main() -> None:
         torch.backends.cudnn.benchmark = True
         torch.backends.cuda.matmul.allow_tf32 = True
     model = BUILDERS[args.algo]().to(DEVICE)
+    if args.algo == "mtpt":
+        model.aux_weight = float(cfg.get("aux_weight", 0.1))
+        model.aux_stopgrad = bool(cfg.get("aux_stopgrad", False))
     if os.environ.get("NOVEL_COMPILE", "1") != "0" and hasattr(torch, "compile") and DEVICE.type == "cuda":
         try:
             model.net = torch.compile(model.net)
@@ -259,7 +274,13 @@ def main() -> None:
                     model.maybe_advance(0.0, ep)
                 print(f"{args.algo} epoch {ep}/{epochs}", flush=True)
                 if args.algo == "sfpl":
-                    train_loss = _sfpl_round(model, opt, scaler, use_amp, splits, records, batch, args.seed, ep, load_kw)
+                    train_loss = _sfpl_round(
+                        model, opt, scaler, use_amp, splits, records, batch, args.seed, ep, load_kw,
+                        full_views=bool(cfg.get("full_views", False)),
+                        fedprox_mu=float(cfg.get("fedprox_mu", 0.0)),
+                        client_keep=float(cfg.get("client_keep", 1.0)),
+                        max_local_steps=int(cfg.get("max_local_steps", 0)),
+                    )
                     running, n = train_loss, 1
                     print(f"{args.algo} epoch {ep} fedavg loss={train_loss:.4f}", flush=True)
                 else:

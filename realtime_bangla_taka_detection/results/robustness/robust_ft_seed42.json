@@ -1,0 +1,8 @@
+{
+  "checkpoint": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\robust_ft\\seed42\\checkpoint.pt",
+  "n_test": 208,
+  "clean_1view": 0.9567307692307693,
+  "clean_6view": 0.9663461538461539,
+  "low_light_0.2_6view": 0.9375,
+  "occlusion_0.55_6view": 0.5721153846153846
+}

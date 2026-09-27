@@ -1,0 +1,11 @@
+{
+  "name": "vcie_long",
+  "algo": "vcie",
+  "epochs": 8,
+  "batch": 4,
+  "lr": 0.001,
+  "seed": 42,
+  "views": 6,
+  "patience": 4,
+  "note": "More epochs than the 4-epoch v2 run. Set NOVEL_SET_BLOCKS at launch."
+}

@@ -1,0 +1,11 @@
+name: "mtpt_auth_only"
+algo: "mtpt"
+epochs: 6
+batch: 4
+lr: 0.001
+seed: 42
+views: 6
+patience: 4
+aux_weight: 0.0
+aux_stopgrad: true
+note: "Authenticity loss only. Proxy head is not trained. New directory."
