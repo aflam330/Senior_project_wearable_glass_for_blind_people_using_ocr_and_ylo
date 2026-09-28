@@ -40,7 +40,15 @@ def logdet_gram(z: torch.Tensor, mask: torch.Tensor | None = None, tau: float = 
     gram = torch.matmul(u, u.transpose(1, 2))
     v = z.size(1)
     eye = torch.eye(v, device=z.device, dtype=torch.float32).unsqueeze(0)
-    _sign, logabs = torch.linalg.slogdet(gram + tau * eye)
+    if mask is None:
+        diag = tau * eye
+    else:
+        # Masked-out views get 1 on the diagonal (log 1 = 0), so the result equals
+        # log det over the selected views alone. With tau there, each padded view
+        # added log(tau) = -4.6 and a 1-view prefix inside 6 slots read -20.
+        m = mask.to(torch.float32)
+        diag = torch.diag_embed(tau * m + (1.0 - m))
+    _sign, logabs = torch.linalg.slogdet(gram + diag)
     return logabs.clamp(-20.0, 20.0).to(z.dtype)
 
 

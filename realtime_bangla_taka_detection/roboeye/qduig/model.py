@@ -80,6 +80,33 @@ class QDUIGNet(nn.Module):
         b, v, c, h, w = views.shape
         return self.encoder(views.reshape(b * v, c, h, w)).reshape(b, v, -1)
 
+    def _load_from_state_dict(self, state_dict, prefix, local_metadata, strict,
+                              missing_keys, unexpected_keys, error_msgs):
+        # view_gate and k_bn were added after the first Q-DUIG runs (results/qduig/proposed,
+        # ablations). Those checkpoints lack the keys; the layers are unused when their flag
+        # is off, so keep the fresh init instead of failing a strict load.
+        unused = []
+        if not self.cfg.view_self_gate:
+            unused.append("view_gate.")
+        if not self.cfg.view_count_bn:
+            unused.append("k_bn.")
+        for key, value in self.state_dict().items():
+            if key.startswith(tuple(unused)) and prefix + key not in state_dict:
+                state_dict[prefix + key] = value.detach().clone()
+        super()._load_from_state_dict(state_dict, prefix, local_metadata, strict,
+                                      missing_keys, unexpected_keys, error_msgs)
+
+    def view_features(self, views: torch.Tensor) -> torch.Tensor:
+        """Per-view features exactly as forward() builds them (encoder, nan_to_num, self-gate).
+
+        Code that runs the model piecewise (sequential policies, oracle) must use this,
+        not encode_views: models trained with view_self_gate give wrong answers without it.
+        """
+        z = torch.nan_to_num(self.encode_views(views))
+        if self.cfg.view_self_gate:
+            z = z * (1.0 + torch.tanh(self.view_gate(z)))
+        return z
+
     def _apply_k_bn(self, fused: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
         counts = mask.sum(dim=1).long().clamp(1, 6)
         out = fused
@@ -215,9 +242,7 @@ class QDUIGNet(nn.Module):
     def forward(self, views: torch.Tensor, mask: torch.Tensor | None = None) -> dict[str, torch.Tensor]:
         if mask is None:
             mask = torch.ones(views.shape[:2], device=views.device, dtype=torch.long)
-        z = torch.nan_to_num(self.encode_views(views))
-        if self.cfg.view_self_gate:
-            z = z * (1.0 + torch.tanh(self.view_gate(z)))
+        z = self.view_features(views)
         q = self._quality(z, views)
         packed = self.fuse_prefix(z, q, mask)
         conf = packed["prob"]

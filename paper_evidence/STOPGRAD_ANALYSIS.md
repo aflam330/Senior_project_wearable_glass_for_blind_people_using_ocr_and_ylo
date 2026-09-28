@@ -1,5 +1,7 @@
 # Stop-gradient 6-view drop
 
+> **Correction 2026-09-28.** Q-DUIG accuracies in this file were computed before three evaluation bugs were fixed: NaN entropy for fully confident notes (scored as p = 0.5), a volume feature that changed when views were masked, and a missing view self-gate in the policy path. Every checkpoint was re-evaluated with the fixed code; see `WEAK_RESULTS_FIX.md`. Where those numbers differ from the ones below, they supersede them, and verdicts based on the old numbers should be re-read. The original text is kept unchanged below.
+
 `her_base` test accuracy is 0.9903846153846154 at 1 view and 0.9182692307692307 at 6 views (`results/qduig/ablation_prefix/her_base/seed42/test_views/views_1_to_6.json`).
 
 The stop-gradient fine-tune started from that checkpoint and kept training the authenticator with the authentication loss for 2 epochs. Auxiliary quality and uncertainty losses were nonzero. The epoch was chosen by validation mean accuracy over 1–6 views.

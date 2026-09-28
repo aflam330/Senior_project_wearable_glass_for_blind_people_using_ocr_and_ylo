@@ -1,0 +1,53 @@
+{
+  "split_threshold": "val",
+  "split_report": "test",
+  "n": 208,
+  "occlusion": 0.55,
+  "repair": "median fill",
+  "rule": "highest coverage among validation quantiles with accepted accuracy at least 0.90",
+  "validation_grid": [
+    {
+      "quantile": 0.5,
+      "threshold": 0.20883232355117798,
+      "val_coverage": 0.5,
+      "val_accepted_accuracy": 0.9615384615384616
+    },
+    {
+      "quantile": 0.6,
+      "threshold": 0.3431522250175475,
+      "val_coverage": 0.6009615384615384,
+      "val_accepted_accuracy": 0.952
+    },
+    {
+      "quantile": 0.7,
+      "threshold": 0.4246242105960845,
+      "val_coverage": 0.6971153846153846,
+      "val_accepted_accuracy": 0.9241379310344827
+    },
+    {
+      "quantile": 0.8,
+      "threshold": 0.5492690801620489,
+      "val_coverage": 0.7980769230769231,
+      "val_accepted_accuracy": 0.8975903614457831
+    },
+    {
+      "quantile": 0.9,
+      "threshold": 0.6741839528083802,
+      "val_coverage": 0.8990384615384616,
+      "val_accepted_accuracy": 0.8556149732620321
+    }
+  ],
+  "chosen": {
+    "quantile": 0.7,
+    "threshold": 0.4246242105960845,
+    "val_coverage": 0.6971153846153846,
+    "val_accepted_accuracy": 0.9241379310344827
+  },
+  "test_occluded_accuracy_no_rejection": 0.875,
+  "test_occluded_coverage": 0.6778846153846154,
+  "test_occluded_rejection_rate": 0.3221153846153846,
+  "test_occluded_accepted_accuracy": 0.9361702127659575,
+  "test_clean_coverage": 0.875,
+  "test_clean_rejection_rate": 0.125,
+  "test_clean_accepted_accuracy": 0.9285714285714286
+}

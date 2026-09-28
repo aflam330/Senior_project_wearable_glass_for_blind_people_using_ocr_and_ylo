@@ -1,5 +1,7 @@
 # Fix 6: separate auxiliary encoder
 
+> **Correction 2026-09-28.** Q-DUIG accuracies in this file were computed before three evaluation bugs were fixed: NaN entropy for fully confident notes (scored as p = 0.5), a volume feature that changed when views were masked, and a missing view self-gate in the policy path. Every checkpoint was re-evaluated with the fixed code; see `WEAK_RESULTS_FIX.md`. Where those numbers differ from the ones below, they supersede them, and verdicts based on the old numbers should be re-read. The original text is kept unchanged below.
+
 Seed 42. The start checkpoint is `her_base`. A three-head linear tower (quality, diversity, info-gain) trains on detached pooled features. The authenticator parameters are frozen. Inference uses the authenticator only. The tower weights are not saved in the checkpoint.
 
 ## First run: batch-norm buffers still updated

@@ -1,0 +1,13 @@
+{
+  "device": "raspberry_pi_5",
+  "status": "PROTOCOL_READY",
+  "script": "savior_glass/scripts/benchmark_pi5.py",
+  "median_latency_ms": "NOT_MEASURED",
+  "p95_latency_ms": "NOT_MEASURED",
+  "fps": "NOT_MEASURED",
+  "cpu": "NOT_MEASURED",
+  "ram": "NOT_MEASURED",
+  "temperature_c": "NOT_MEASURED",
+  "sustained_30min": "NOT_MEASURED",
+  "reason": "No Raspberry Pi 5 was attached. The script refuses to label a laptop run as a Pi result."
+}

@@ -26,7 +26,9 @@ from roboeye.camva.engine import (
     save_plots_views,
 )
 from roboeye.camva.metrics import paired_bootstrap
-from roboeye.camva.notes import load_splits
+# Seed 42 is the checkpoint behind the reported CAMVA results. Pin it so that training
+# more seeds (train_camva.py --seed 43) cannot silently change what this script evaluates.
+from roboeye.camva.notes import SEED, load_splits
 from roboeye.config import DEVICE
 import numpy as np
 
@@ -49,8 +51,8 @@ def main() -> None:
 
     splits, records = load_splits()
     test_ids = splits["test"]
-    base_ckpt = Path(args.baseline_ckpt) if args.baseline_ckpt else _latest("baseline_cnnvit_seed*.pt")
-    camva_ckpt = Path(args.camva_ckpt) if args.camva_ckpt else _latest(f"camva_{args.fusion}_seed*.pt")
+    base_ckpt = Path(args.baseline_ckpt) if args.baseline_ckpt else _latest(f"baseline_cnnvit_seed{SEED}.pt")
+    camva_ckpt = Path(args.camva_ckpt) if args.camva_ckpt else _latest(f"camva_{args.fusion}_seed{SEED}.pt")
     baseline = load_baseline(base_ckpt)
     camva = load_camva(camva_ckpt, args.fusion)
 

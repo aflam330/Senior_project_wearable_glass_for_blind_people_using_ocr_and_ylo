@@ -24,7 +24,7 @@ Senior project: an **offline assistive wearable** that reads Bangla/English text
 | Folder | Role |
 |--------|------|
 | [`savior_glass/`](savior_glass/) | Raspberry Pi 5 smart-glass app (OCR, object, currency, GPIO, TTS) |
-| [`smart-glass/`](smart-glass/) | Same glass codebase (duplicate / rename fork) |
+| [`Unused/`](Unused/) | Retired files kept for reference: outdated `smart-glass/` copy, broken INT8 export, replaced originals (see `Unused/README.md`) |
 | [`realtime_bangla_taka_detection/`](realtime_bangla_taka_detection/) | YOLOv8 Taka detector, RoboEye modules, trained weights, report |
 | [`docs/`](docs/) | Paper outlines and bibliography |
 | [`CURR/files/`](CURR/files/) | Currency-detection paper draft + figures |

@@ -1,0 +1,79 @@
+{
+  "engine": "Windows SAPI (System.Speech)",
+  "cases": [
+    {
+      "input": "একশত টাকার নোট। আসল",
+      "language": "bn",
+      "sapi_text": "100 taka. Genuine"
+    },
+    {
+      "input": "সামনে আছে: চেয়ার, মানুষ",
+      "language": "bn",
+      "sapi_text": "In front: chair, person"
+    },
+    {
+      "input": "Bus Stop",
+      "language": "en",
+      "sapi_text": "Bus Stop"
+    },
+    {
+      "input": "পড়া হচ্ছে: হাসপাতাল",
+      "language": "bn",
+      "sapi_text": "Detection complete. Bangla is on the screen."
+    }
+  ],
+  "emotion_adaptive": {
+    "neutral": {
+      "spoken_text": "100 taka note. Genuine. Hold the note a little closer for the security thread.",
+      "sapi_rate": 1,
+      "seconds": 6.3,
+      "rms": 1861.9,
+      "sample_rate": 22050
+    },
+    "happiness": {
+      "spoken_text": "Good. 100 taka note. Genuine. Hold the note a little closer for the security thread.",
+      "sapi_rate": 2,
+      "seconds": 6.613,
+      "rms": 1709.4,
+      "sample_rate": 22050
+    },
+    "sadness": {
+      "spoken_text": "It's okay. Take your time. 100 taka note. Genuine.",
+      "sapi_rate": -2,
+      "seconds": 8.364,
+      "rms": 1655.5,
+      "sample_rate": 22050
+    },
+    "fear": {
+      "spoken_text": "It's okay. Take your time. 100 taka note. Genuine.",
+      "sapi_rate": -2,
+      "seconds": 8.364,
+      "rms": 1655.5,
+      "sample_rate": 22050
+    }
+  },
+  "volume": {
+    "40": {
+      "seconds": 6.3,
+      "rms": 509.7,
+      "sample_rate": 22050
+    },
+    "85": {
+      "seconds": 6.3,
+      "rms": 1861.9,
+      "sample_rate": 22050
+    },
+    "rms_ratio_40_over_85": 0.274
+  },
+  "bangla_gtts": {
+    "status": "ok",
+    "bytes": 24192
+  },
+  "asr_round_trip": {
+    "reference": "100 taka note genuine hold the note a little closer for the security thread",
+    "heard": "genuine little closer for the security thread",
+    "word_overlap": 0.583
+  },
+  "subjective_quality": "NOT_MEASURED (needs human listeners)",
+  "offline_bangla_voice_on_pi": "NOT_MEASURED (espeak-ng/Piper run on the Raspberry Pi, not installed here)"
+}

@@ -1,5 +1,7 @@
 # Ablation results
 
+> **Correction 2026-09-28.** Q-DUIG accuracies in this file were computed before three evaluation bugs were fixed: NaN entropy for fully confident notes (scored as p = 0.5), a volume feature that changed when views were masked, and a missing view self-gate in the policy path. Every checkpoint was re-evaluated with the fixed code; see `WEAK_RESULTS_FIX.md`. Where those numbers differ from the ones below, they supersede them, and verdicts based on the old numbers should be re-read. The original text is kept unchanged below.
+
 Seed 42, test split, n=208. Forced first-k views. Full is the saved prefix-robust checkpoint.
 The earlier 4-epoch runs in `results/qduig/ablations/` are unchanged and are not this table.
 no_cost and no_calibration matched that 4-epoch full run because those switches do not change forced-view training. That cause is recorded here instead of training a duplicate. A later matched pair, `cost_entropy` and `no_cost_matched`, adds mean predictive entropy to the cost so the term has a gradient. Those two rows are new trainings. They do not replace `full_prmvt`.

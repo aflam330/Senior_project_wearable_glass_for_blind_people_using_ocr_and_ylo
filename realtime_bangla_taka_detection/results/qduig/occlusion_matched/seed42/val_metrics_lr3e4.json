@@ -1,0 +1,12 @@
+{
+  "clean_floor": 0.95,
+  "best_val_occ_median_6": -1.0,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6865173756953872,
+      "val_clean_6": 0.5769230769230769,
+      "val_occ_median_6": 0.5769230769230769
+    }
+  ]
+}

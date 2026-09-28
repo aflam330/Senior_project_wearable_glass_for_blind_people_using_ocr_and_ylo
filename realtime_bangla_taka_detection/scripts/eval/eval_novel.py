@@ -22,6 +22,7 @@ from roboeye.config import DEVICE
 from roboeye.qduig.artifacts import init_run, save_json
 from roboeye.qduig.config_io import load_config
 from roboeye.qduig.metrics_ext import full_binary_report
+from models.backbone import novel_env
 from scripts.train.train_novel import BUILDERS, _module
 
 
@@ -60,6 +61,10 @@ def main() -> None:
         blob = torch.load(args.checkpoint, map_location=DEVICE)
     _module(model).load_state_dict(blob["model"])
     model.eval()
+    saved_env = blob.get("env")
+    if saved_env and saved_env != novel_env():
+        print(f"WARNING: checkpoint was trained with {saved_env}, current environment is {novel_env()}; "
+              f"set these variables to reproduce its numbers.", flush=True)
     rows = []
     preds = {}
     for k in range(1, 7):

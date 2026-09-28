@@ -82,3 +82,31 @@ Ten extra algorithms were trained at seed 42. See `NOVEL_ALGORITHMS_COMPARISON.m
 - PAC-Bayes on the full weight vector: still vacuous. Linear-head McAllester bound on a training holdout: 0.444538876551335.
 - HER scale 0.75 at threshold 0.5: accuracy 0.9759615384615384, ECE 0.024493631835167225. The validation-maximizing threshold does not keep that accuracy.
 
+
+---
+
+## Audit update 2026-09-28 (remaining-issues pass)
+
+```
+OCCLUSION 55%:        PARTIAL  51.9% -> 88.5% (seed 42), 87.0 +/- 2.2% (3 seeds), 88.9% ensemble; target 90% NOT_MET
+OCCLUSION REJECTION:  PASS     wrong verdicts on occluded test notes 11.1% -> 0.5% (answers 46.6%)
+MULTI-SEED:           PASS     PRMVT seeds 42-44; occlusion-robust seeds 42-44; CAMVA/baseline seeds 42-44
+GPU SPEED:            PASS     RTX 3050: Taka YOLO 19.1 ms (5.5x CPU)
+LIVE CAMERA LOOP:     PASS     7.5 FPS on laptop webcam; live-note accuracy NOT_MEASURED
+GPIO BUTTONS:         PASS (simulated GPIO); hardware NOT_MEASURED
+HAPTICS:              PASS (simulated GPIO, bug fixed); hardware NOT_MEASURED
+SPEECH:               PASS (2 bugs fixed); subjective quality NOT_MEASURED
+RASPBERRY PI 5:       NOT_MEASURED (no Pi; benchmark ready)
+USER STUDY:           PROTOCOL_READY, DATA_NOT_COLLECTED
+```
+
+The test split was not used for any training, epoch choice, threshold or model choice. Every such choice was made on validation, with rules written before test was scored. Each claim is in `CLAIM_REGISTRY.json` with its source file.
+
+## Audit update 2026-09-29
+
+VCIE 1-view selection: PASS against the 0.9183 baseline at both 1 and 6 views (0.9278846153846154).
+MTPT 6+3 schedule: PASS at 1 view (0.9807692307692307), which is above PRMVT's 0.9711538461538461.
+PAC-Bayes half-data McAllester: PASS as a non-vacuous bound (0.11271182900151713) on that network only.
+Occlusion ensemble and the 0.99 rejection rule: unchanged from `occlusion_decision.json`.
+Multi-note composites: PASS at IoU ≥ 0.5 on 24, 36, and 60 pasted notes. Live photographs of several notes: NOT_MEASURED.
+Pi 5, mobile latency, user study, and foreign-currency authenticity: NOT_MEASURED. Protocols are in the files named in `PAPER_FINAL.md`.

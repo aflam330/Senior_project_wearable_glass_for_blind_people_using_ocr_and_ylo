@@ -1,0 +1,137 @@
+{
+  "hardware": "NOT_MEASURED (simulated RPi.GPIO on Windows)",
+  "checks": {
+    "pins_configured": {
+      "pass": true,
+      "pins": [
+        17,
+        27,
+        24,
+        22,
+        23
+      ],
+      "debounce_ms": 250
+    },
+    "mode_cycle": {
+      "pass": true,
+      "sequence": [
+        [
+          1,
+          "অবজেক্ট ডিটেকশন মোড"
+        ],
+        [
+          2,
+          "কারেন্সি ডিটেকশন মোড"
+        ],
+        [
+          3,
+          "অনলাইন ক্লড মোড"
+        ],
+        [
+          0,
+          "টেক্সট রিডিং মোড"
+        ]
+      ]
+    },
+    "debounce": {
+      "pass": true,
+      "mode_changes_from_two_presses_50ms_apart": 1
+    },
+    "volume": {
+      "pass": true,
+      "sequence": [
+        90,
+        100,
+        100,
+        90,
+        80,
+        70,
+        60,
+        50,
+        40,
+        30,
+        20,
+        10,
+        0,
+        0,
+        0
+      ]
+    },
+    "action_currency": {
+      "pass": true,
+      "spoken": "একশত টাকার নোট। আসল",
+      "verdict": "genuine",
+      "press_to_speech_ms": 989,
+      "vibration_pulses_ms[start,on]": [
+        [
+          989,
+          81
+        ],
+        [
+          1150,
+          80
+        ]
+      ],
+      "vibration_start_relative_to_speech_ms": 0
+    },
+    "haptic_patterns": {
+      "genuine": {
+        "pass": true,
+        "pulses": [
+          [
+            1,
+            80
+          ],
+          [
+            161,
+            80
+          ]
+        ]
+      },
+      "counterfeit": {
+        "pass": true,
+        "pulses": [
+          [
+            1,
+            220
+          ],
+          [
+            301,
+            220
+          ],
+          [
+            602,
+            221
+          ]
+        ]
+      },
+      "detect": {
+        "pass": true,
+        "pulses": [
+          [
+            1,
+            51
+          ]
+        ]
+      }
+    },
+    "intensity_control": {
+      "pass": null,
+      "note": "the glass drives the motor on/off (no PWM intensity); roboeye.haptics uses PWM 80% duty. Not adjustable by the user."
+    },
+    "emergency_stop": {
+      "pass": null,
+      "note": "no emergency-stop button exists in the 5-button design"
+    }
+  },
+  "summary": {
+    "pins_configured": true,
+    "mode_cycle": true,
+    "debounce": true,
+    "volume": true,
+    "action_currency": true,
+    "intensity_control": null,
+    "emergency_stop": null,
+    "haptic_patterns": true
+  }
+}

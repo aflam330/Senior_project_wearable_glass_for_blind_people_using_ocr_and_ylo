@@ -1,5 +1,7 @@
 # Auxiliary fix results
 
+> **Correction 2026-09-28.** Q-DUIG accuracies in this file were computed before three evaluation bugs were fixed: NaN entropy for fully confident notes (scored as p = 0.5), a volume feature that changed when views were masked, and a missing view self-gate in the policy path. Every checkpoint was re-evaluated with the fixed code; see `WEAK_RESULTS_FIX.md`. Where those numbers differ from the ones below, they supersede them, and verdicts based on the old numbers should be re-read. The original text is kept unchanged below.
+
 Full PRMVT 1-view is 0.9711538461538461. `her_base`, with auxiliary losses off, is 0.9903846153846154 at 1 view and 0.9182692307692307 at 6 views.
 
 The loss logs do not show the auxiliary terms overpowering authentication after weighting. See `AUXILIARY_ANALYSIS.md`. Gradient norms and encoder feature drift are NOT_MEASURED.

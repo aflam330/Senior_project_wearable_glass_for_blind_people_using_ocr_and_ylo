@@ -3,15 +3,12 @@ Currency Model Training Script
 ================================
 Trains a MobileNetV3-Small classifier to recognize Bangladeshi Taka notes.
 
-Dataset structure required:
+Dataset structure required (one folder per denomination, folder name = Taka value):
   data-dir/
-    10/       ← ~500+ images of 10 Taka notes
-    20/       ← ~500+ images of 20 Taka notes
-    50/
-    100/
-    200/
-    500/
-    1000/
+    2/  5/  10/  20/  50/  100/  200/  500/  1000/
+
+Any subset of these folders works; the classes actually found are saved in the
+checkpoint, so CurrencyMode maps output indices back to the right denomination.
 
 Capture tips:
   • Shoot under different lighting conditions (indoor, outdoor, fluorescent)
@@ -22,9 +19,12 @@ Capture tips:
 Usage:
   python3 scripts/train_currency.py --data-dir /path/to/taka_dataset
   python3 scripts/train_currency.py --data-dir /path/to/taka_dataset --epochs 30 --batch-size 16
+  python3 scripts/train_currency.py --data-dir /path/to/taka_dataset --output models/my_model.pt
 
 Output:
   models/currency_mobilenet.pt   (loaded automatically by CurrencyMode)
+  Checkpoint format: {"state_dict", "classes", "val_acc", "arch"}
+  An existing checkpoint is never overwritten unless --overwrite is given.
 """
 import argparse
 import os
@@ -35,24 +35,36 @@ import torch
 import torch.nn as nn
 from torch.optim import Adam
 from torch.optim.lr_scheduler import StepLR
-from torch.utils.data import DataLoader, random_split
+from torch.utils.data import DataLoader, Subset
 from torchvision import models, transforms
 from torchvision.datasets import ImageFolder
 
-DENOMINATIONS = [10, 20, 50, 100, 200, 500, 1000]
-NUM_CLASSES   = len(DENOMINATIONS)
+DENOMINATIONS = [2, 5, 10, 20, 50, 100, 200, 500, 1000]
 
 BASE_DIR   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_OUT  = os.path.join(BASE_DIR, "models", "currency_mobilenet.pt")
 
 
-def build_model() -> nn.Module:
+class DenominationFolder(ImageFolder):
+    """ImageFolder whose class indices follow numeric Taka order (2, 5, 10, …),
+    not string order (10, 100, 1000, 2, …). Non-numeric folders are rejected."""
+
+    def find_classes(self, directory):
+        names = [e.name for e in os.scandir(directory) if e.is_dir()]
+        bad = [n for n in names if not n.isdigit()]
+        if bad:
+            raise ValueError(f"Folder names must be Taka values (e.g. 10, 500); got: {bad}")
+        classes = sorted(names, key=int)
+        return classes, {c: i for i, c in enumerate(classes)}
+
+
+def build_model(num_classes: int) -> nn.Module:
     model = models.mobilenet_v3_small(weights=models.MobileNet_V3_Small_Weights.DEFAULT)
     # Freeze backbone — only train the classifier head
     for param in model.features.parameters():
         param.requires_grad = False
     in_features = model.classifier[-1].in_features
-    model.classifier[-1] = nn.Linear(in_features, NUM_CLASSES)
+    model.classifier[-1] = nn.Linear(in_features, num_classes)
     return model
 
 
@@ -60,7 +72,6 @@ def build_transforms():
     train_tf = transforms.Compose([
         transforms.Resize((256, 256)),
         transforms.RandomCrop(224),
-        transforms.RandomHorizontalFlip(),
         transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.2),
         transforms.RandomRotation(15),
         transforms.ToTensor(),
@@ -76,49 +87,53 @@ def build_transforms():
     return train_tf, val_tf
 
 
-def train(data_dir: str, epochs: int, batch_size: int, lr: float) -> None:
-    device = torch.device("cpu")   # RPi 5 has no CUDA GPU
+def train(data_dir: str, epochs: int, batch_size: int, lr: float, output: str, workers: int) -> None:
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Training on: {device}")
     print(f"Dataset: {data_dir}")
     print(f"Epochs: {epochs}  |  Batch size: {batch_size}  |  LR: {lr}")
 
     train_tf, val_tf = build_transforms()
 
-    # Load full dataset with training transforms first to get class mapping
-    full_ds = ImageFolder(data_dir, transform=train_tf)
-    print(f"\nClasses found: {full_ds.classes}")
-    print(f"Total images:  {len(full_ds)}")
+    # Two views of the same folder: identical file order, different transforms
+    train_full = DenominationFolder(data_dir, transform=train_tf)
+    val_full   = DenominationFolder(data_dir, transform=val_tf)
+    classes = train_full.classes
+    print(f"\nClasses found: {classes}")
+    print(f"Total images:  {len(train_full)}")
+    if len(classes) < 2:
+        print("ERROR: need at least two denomination folders")
+        sys.exit(1)
 
-    # Warn about missing classes
-    expected = [str(d) for d in DENOMINATIONS]
-    for cls in expected:
-        if cls not in full_ds.classes:
-            print(f"  WARNING: Class '{cls}' not found in dataset. Add images to {data_dir}/{cls}/")
+    for d in DENOMINATIONS:
+        if str(d) not in classes:
+            print(f"  WARNING: Class '{d}' not found in dataset. Add images to {data_dir}/{d}/")
+    unknown = [c for c in classes if int(c) not in DENOMINATIONS]
+    if unknown:
+        print(f"  WARNING: {unknown} are not Bangladeshi Taka denominations")
 
     # 80/20 train-val split
-    n_val   = max(1, int(len(full_ds) * 0.2))
-    n_train = len(full_ds) - n_val
-    train_ds, val_ds = random_split(full_ds, [n_train, n_val],
-                                    generator=torch.Generator().manual_seed(42))
-
-    # Apply val transforms to validation subset
-    val_ds.dataset = ImageFolder(data_dir, transform=val_tf)
+    n_val   = max(1, int(len(train_full) * 0.2))
+    perm    = torch.randperm(len(train_full), generator=torch.Generator().manual_seed(42)).tolist()
+    train_ds = Subset(train_full, perm[n_val:])
+    val_ds   = Subset(val_full,   perm[:n_val])
 
     train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True,
-                              num_workers=2, pin_memory=False)
+                              num_workers=workers, pin_memory=False)
     val_loader   = DataLoader(val_ds,   batch_size=batch_size, shuffle=False,
-                              num_workers=2, pin_memory=False)
+                              num_workers=workers, pin_memory=False)
 
-    model     = build_model().to(device)
+    model     = build_model(len(classes)).to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=lr)
     scheduler = StepLR(optimizer, step_size=10, gamma=0.5)
 
-    best_val_acc = 0.0
+    best_val_acc = -1.0
 
     for epoch in range(1, epochs + 1):
         # --- Training ---
         model.train()
+        model.features.eval()   # frozen backbone: keep its BatchNorm statistics fixed
         train_loss, train_correct, train_total = 0.0, 0, 0
         t0 = time.time()
         for imgs, labels in train_loader:
@@ -158,29 +173,40 @@ def train(data_dir: str, epochs: int, batch_size: int, lr: float) -> None:
 
         if val_acc > best_val_acc:
             best_val_acc = val_acc
-            os.makedirs(os.path.dirname(MODEL_OUT), exist_ok=True)
-            torch.save(model.state_dict(), MODEL_OUT)
-            print(f"  ✓ Best model saved → {MODEL_OUT}  (val acc: {val_acc:.1f}%)")
+            os.makedirs(os.path.dirname(os.path.abspath(output)), exist_ok=True)
+            state = {k: v.detach().cpu() for k, v in model.state_dict().items()}
+            torch.save({"state_dict": state, "classes": classes,
+                        "val_acc": val_acc / 100, "arch": "mobilenet_v3_small"}, output)
+            print(f"  Best model saved -> {output}  (val acc: {val_acc:.1f}%)")
 
     print(f"\nTraining complete. Best validation accuracy: {best_val_acc:.1f}%")
-    print(f"Model saved: {MODEL_OUT}")
+    print(f"Model saved: {output}")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Train BDT currency classifier")
     parser.add_argument("--data-dir",   required=True,
-                        help="Path to dataset directory (subdirs: 10, 20, 50, …, 1000)")
+                        help="Path to dataset directory (subdirs: 2, 5, 10, …, 1000)")
     parser.add_argument("--epochs",     type=int,   default=25)
     parser.add_argument("--batch-size", type=int,   default=8,
                         help="Smaller batch (8) fits in RPi 5 RAM")
     parser.add_argument("--lr",         type=float, default=1e-3)
+    parser.add_argument("--workers",    type=int,   default=2)
+    parser.add_argument("--output",     default=MODEL_OUT,
+                        help=f"Checkpoint path (default: {MODEL_OUT})")
+    parser.add_argument("--overwrite",  action="store_true",
+                        help="Allow replacing an existing checkpoint at --output")
     args = parser.parse_args()
 
     if not os.path.isdir(args.data_dir):
         print(f"ERROR: data-dir not found: {args.data_dir}")
         sys.exit(1)
+    if os.path.exists(args.output) and not args.overwrite:
+        print(f"ERROR: {args.output} already exists. Pass --overwrite to replace it, "
+              f"or --output to write somewhere else.")
+        sys.exit(1)
 
-    train(args.data_dir, args.epochs, args.batch_size, args.lr)
+    train(args.data_dir, args.epochs, args.batch_size, args.lr, args.output, args.workers)
 
 
 if __name__ == "__main__":

@@ -32,4 +32,17 @@ Two of these sums are below 1. The Gibbs error near 0.423 is the error of a cons
 
 Rademacher complexity, covering numbers, empirical Bernstein, and a Gaussian-mixture posterior were not computed.
 
-Verdict: PARTIAL. A full-network McAllester number below 1 was measured only for a high-variance posterior whose Gibbs predictor is no better than a constant class.
+## Data-dependent prior
+
+A separate network was trained on 487 training notes and scored on the other 487. Prior and posterior are N(w_D1, 1e-8 I). KL is 0. Test was not used. Source: `results/theory/pacbayes_d1_bound_seed42.json`.
+
+| quantity | value |
+| --- | ---: |
+| D2 Gibbs error, 4 samples | 0.029260780287474333 |
+| McAllester bound | 0.11271182900151713 |
+| PAC-Bayes-kl upper bound | 0.06646264504399683 |
+| empirical Bernstein upper bound | 0.06702474420705011 |
+
+The McAllester value is below 1, and the Gibbs error is not a constant predictor. It bounds this D1-trained network. It does not replace the vacuous zero-mean penalty on the published PRMVT weights.
+
+Verdict: PASS for a non-vacuous bound on a network trained without the evaluation notes. The published full-network zero-mean penalty stays 57.5892990573559.

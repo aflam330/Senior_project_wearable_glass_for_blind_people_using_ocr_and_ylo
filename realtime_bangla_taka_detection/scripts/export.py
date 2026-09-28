@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import argparse
+import sys
 from pathlib import Path
 
 from ultralytics import YOLO
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 MODEL = ROOT / "models" / "best.pt"
 DATA = ROOT / "data" / "data.yaml"
 
@@ -28,15 +30,11 @@ def main():
     print(f"ONNX: {onnx}")
 
     if not args.skip_int8:
+        # Ultralytics format="onnx", int8=True quantized the Detect head and the
+        # result detected nothing; quantize_int8.py keeps the head in FP32.
         try:
-            int8 = model.export(
-                format="onnx",
-                imgsz=args.imgsz,
-                int8=True,
-                data=str(DATA),
-                simplify=True,
-            )
-            print(f"INT8 ONNX: {int8}")
+            from quantize_int8 import main as quantize_main
+            quantize_main(["--model", str(onnx), "--output", str(ROOT / "models" / "best_int8.onnx")])
         except Exception as exc:
             print(f"INT8 ONNX export skipped ({exc})")
 

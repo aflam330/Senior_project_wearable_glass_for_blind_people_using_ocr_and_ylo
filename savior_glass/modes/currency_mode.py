@@ -19,6 +19,8 @@ and object modes are already competing for CPU.
 import logging
 import os
 import sys
+import threading
+import time
 from pathlib import Path
 from typing import Optional
 
@@ -33,6 +35,8 @@ logger = logging.getLogger("smart_glass.currency_mode")
 
 # Bangla names for each denomination
 _DENOMINATION_BN: dict[int, str] = {
+    2:    "দুই টাকার নোট",
+    5:    "পাঁচ টাকার নোট",
     10:   "দশ টাকার নোট",
     20:   "বিশ টাকার নোট",
     50:   "পঞ্চাশ টাকার নোট",
@@ -104,7 +108,9 @@ class CurrencyMode(BaseMode):
         # the HSV guess was announcing the wrong denomination (often 100 or 1000).
         hits = self.detect_live(frame)
         if hits:
-            self._buzz("detect")
+            # a distinct vibration for the verdict: genuine (2 short), counterfeit (3 long)
+            auth = hits[0].get("auth")
+            self._buzz(auth if auth in ("genuine", "counterfeit") else "detect")
             return hits[0]["text"]
         if self._yolo is not None:
             return "নোট সনাক্ত করা যায়নি। ক্যামেরার সামনে ধরুন।"
@@ -257,13 +263,15 @@ class CurrencyMode(BaseMode):
         """Return note boxes for the live overlay. Clears pose state when nothing is found."""
         if self._yolo is None or frame is None:
             return []
-        infer = frame
-        if float(frame.mean()) < 80:
-            f = frame.astype(np.float32) / 255.0
-            f = np.clip(f * 3.0, 0, 1)
-            infer = (np.power(f, 0.5) * 255).astype(np.uint8)
         try:
-            results = self._yolo.predict(infer, conf=0.25, verbose=False, imgsz=640)
+            results = self._yolo.predict(frame, conf=0.25, verbose=False, imgsz=640)
+            # Dark frame and nothing found: retry once on a brightened copy. Brightening every
+            # dark frame lost 9 of 197 dark validation notes and loosened the boxes
+            # (IoU 0.86 vs 0.91); as a fallback it never loses a note the plain frame finds.
+            if float(frame.mean()) < 80 and (results[0].boxes is None or len(results[0].boxes) == 0):
+                f = np.clip(frame.astype(np.float32) / 255.0 * 3.0, 0, 1)
+                results = self._yolo.predict((np.power(f, 0.5) * 255).astype(np.uint8),
+                                             conf=0.25, verbose=False, imgsz=640)
         except Exception as exc:
             logger.warning("YOLO currency infer failed: %s", exc)
             return []
@@ -318,21 +326,37 @@ class CurrencyMode(BaseMode):
             self.last_class = None
         return hits
 
-    def _buzz(self, _pattern: str) -> None:
+    # (on_ms, off_ms) pulses, same as roboeye.config.HAPTIC_PATTERNS
+    _HAPTIC_PATTERNS = {
+        "genuine": [(80, 80), (80, 80)],
+        "counterfeit": [(220, 80), (220, 80), (220, 120)],
+        "detect": [(50, 50)],
+    }
+
+    def _buzz(self, pattern: str) -> Optional[threading.Thread]:
+        """Play a vibration pattern on the motor pin without blocking speech."""
         pin = getattr(config, "HAPTIC_PIN", None)
         if pin is None:
-            return
-        try:
-            import RPi.GPIO as GPIO
-            GPIO.setwarnings(False)
-            GPIO.setmode(GPIO.BCM)
-            GPIO.setup(pin, GPIO.OUT)
-            GPIO.output(pin, GPIO.HIGH)
-            import time
-            time.sleep(0.08)
-            GPIO.output(pin, GPIO.LOW)
-        except Exception:
-            pass
+            return None
+        pulses = self._HAPTIC_PATTERNS.get(pattern, self._HAPTIC_PATTERNS["detect"])
+
+        def _run() -> None:
+            try:
+                import RPi.GPIO as GPIO
+                GPIO.setwarnings(False)
+                GPIO.setmode(GPIO.BCM)
+                GPIO.setup(pin, GPIO.OUT)
+                for on_ms, off_ms in pulses:
+                    GPIO.output(pin, GPIO.HIGH)
+                    time.sleep(on_ms / 1000.0)
+                    GPIO.output(pin, GPIO.LOW)
+                    time.sleep(off_ms / 1000.0)
+            except Exception:
+                pass
+
+        worker = threading.Thread(target=_run, daemon=True, name="haptic")
+        worker.start()
+        return worker
 
     # ------------------------------------------------------------------
     # Stage 1 — HSV color analysis

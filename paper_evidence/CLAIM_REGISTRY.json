@@ -1419,6 +1419,207 @@
       "metric": "mcallester_bound",
       "status": "VERIFIED",
       "script": "scripts/eval/compute_pacbayes_gibbs.py"
+    },
+    {
+      "claim_id": "C_OCC_FT_S42",
+      "claim": "Occlusion-robust PRMVT, 55% occlusion, 6 views, test (seed 42)",
+      "metric": "accuracy",
+      "value": 0.8846153846153846,
+      "source_artifact": "realtime_bangla_taka_detection\\results\\robustness\\occlusion_robust_e15_seed42.json",
+      "script": "scripts/eval/eval_robust_checkpoint.py",
+      "status": "VERIFIED",
+      "added": "2026-09-28",
+      "clean_1view": 0.9807692307692307,
+      "clean_6view": 0.9807692307692307,
+      "dataset": "JaalTaka",
+      "split": "test",
+      "training_seed": "42"
+    },
+    {
+      "claim_id": "C_OCC_FT_3SEED",
+      "claim": "Occlusion-robust PRMVT, 55% occlusion, 6 views, test, mean over seeds 42-44",
+      "metric": "accuracy_mean_sd",
+      "value": [
+        0.8701923076923076,
+        0.022031613918056907
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\robustness\\occlusion_decision.json",
+      "script": "scripts/eval/occlusion_decide.py",
+      "status": "VERIFIED",
+      "added": "2026-09-28",
+      "dataset": "JaalTaka",
+      "split": "test"
+    },
+    {
+      "claim_id": "C_OCC_ENSEMBLE",
+      "claim": "3-seed ensemble (chosen on val), 55% occlusion, 6 views, test",
+      "metric": "accuracy",
+      "value": 0.8894230769230769,
+      "source_artifact": "realtime_bangla_taka_detection\\results\\robustness\\occlusion_decision.json",
+      "script": "scripts/eval/occlusion_decide.py",
+      "status": "VERIFIED",
+      "added": "2026-09-28",
+      "clean": 0.9903846153846154
+    },
+    {
+      "claim_id": "C_OCC_TARGET_90",
+      "claim": "55% occlusion accuracy >= 0.90 on test",
+      "metric": "accuracy",
+      "value": 0.8894230769230769,
+      "source_artifact": "realtime_bangla_taka_detection\\results\\robustness\\occlusion_decision.json",
+      "script": "scripts/eval/occlusion_decide.py",
+      "status": "NOT_MET",
+      "added": "2026-09-28"
+    },
+    {
+      "claim_id": "C_OCC_REJECT",
+      "claim": "Rejection (val threshold) on occluded test: answered share, accuracy on answered, wrong-verdict share",
+      "metric": "selective",
+      "value": {
+        "answered": 0.46634615384615385,
+        "accuracy_on_answered": 0.9896907216494846,
+        "wrong_verdicts_share_of_all_notes": 0.004807692307692308
+      },
+      "source_artifact": "realtime_bangla_taka_detection\\results\\robustness\\occlusion_decision.json",
+      "script": "scripts/eval/occlusion_decide.py",
+      "status": "VERIFIED",
+      "added": "2026-09-28",
+      "threshold": 0.99
+    },
+    {
+      "claim_id": "C_GPU_YOLO",
+      "claim": "Taka YOLOv8s PyTorch latency on RTX 3050 Laptop GPU",
+      "metric": "median_ms",
+      "value": 19.14,
+      "source_artifact": "realtime_bangla_taka_detection\\results\\speed\\gpu_speed.json",
+      "script": "scripts/eval/gpu_speed.py",
+      "status": "VERIFIED",
+      "added": "2026-09-28",
+      "speedup_vs_cpu": 5.5
+    },
+    {
+      "claim_id": "C_LIVE_LOOP",
+      "claim": "Live webcam loop through the glass modes (laptop, GPU)",
+      "metric": "loop_fps",
+      "value": 7.47,
+      "source_artifact": "savior_glass\\results\\live_camera_test.json",
+      "script": "savior_glass/scripts/test_live_camera.py",
+      "status": "VERIFIED",
+      "added": "2026-09-28",
+      "note": "no note in view; live-note accuracy NOT_MEASURED"
+    },
+    {
+      "claim_id": "C_BUTTONS_SIM",
+      "claim": "Button logic (mode cycle, debounce, volume, action) with simulated GPIO",
+      "metric": "all_pass",
+      "value": true,
+      "source_artifact": "savior_glass\\results\\buttons_haptics_test.json",
+      "script": "savior_glass/scripts/test_buttons_haptics.py",
+      "status": "VERIFIED_SIMULATED",
+      "added": "2026-09-28",
+      "hardware": "NOT_MEASURED"
+    },
+    {
+      "claim_id": "C_HAPTIC_PATTERNS",
+      "claim": "Verdict-specific vibration patterns on the motor pin (simulated GPIO)",
+      "metric": "all_pass",
+      "value": true,
+      "source_artifact": "savior_glass\\results\\buttons_haptics_test.json",
+      "script": "savior_glass/scripts/test_buttons_haptics.py",
+      "status": "VERIFIED_SIMULATED",
+      "added": "2026-09-28",
+      "hardware": "NOT_MEASURED"
+    },
+    {
+      "claim_id": "C_SPEECH_VERDICT",
+      "claim": "Emotion-adaptive speech keeps the genuine/counterfeit verdict",
+      "metric": "text",
+      "value": "It's okay. Take your time. 100 taka note. Genuine.",
+      "source_artifact": "savior_glass\\results\\speech_test.json",
+      "script": "savior_glass/scripts/test_speech.py",
+      "status": "VERIFIED",
+      "added": "2026-09-28"
+    },
+    {
+      "claim_id": "C_USER_STUDY",
+      "claim": "User study with visually impaired participants",
+      "metric": "task accuracy/time, SUS, NASA-TLX",
+      "value": null,
+      "source_artifact": "paper_evidence\\USER_STUDY_PROTOCOL.md",
+      "script": "paper_evidence/user_study/analysis_script.py",
+      "status": "NOT_MEASURED (PROTOCOL_READY)",
+      "added": "2026-09-28"
+    },
+    {
+      "claim_id": "C_VCIE_K1_1",
+      "claim": "VCIE 1-view checkpoint, test 1-view accuracy",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "value": 0.9278846153846154,
+      "source_artifact": "E:\\\\Final SP\\\\realtime_bangla_taka_detection\\\\results\\\\novel_v2\\\\vcie_k1\\\\seed42\\\\test\\\\test_metrics.json",
+      "script": "scripts/eval/eval_novel.py",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "C_VCIE_K1_6",
+      "claim": "VCIE 1-view checkpoint, test 6-view accuracy",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "value": 0.9278846153846154,
+      "source_artifact": "E:\\\\Final SP\\\\realtime_bangla_taka_detection\\\\results\\\\novel_v2\\\\vcie_k1\\\\seed42\\\\test\\\\test_metrics.json",
+      "script": "scripts/eval/eval_novel.py",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "C_MTPT_63_1",
+      "claim": "MTPT 6+3 schedule, test 1-view accuracy",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "value": 0.9807692307692307,
+      "source_artifact": "E:\\\\Final SP\\\\realtime_bangla_taka_detection\\\\results\\\\novel_v2\\\\mtpt_prefix_ft\\\\seed42\\\\test\\\\test_metrics.json",
+      "script": "scripts/eval/eval_novel.py",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "C_PACBAYES_D1",
+      "claim": "Half-data network McAllester bound on D2",
+      "dataset": "JaalTaka",
+      "split": "train_half_D2",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "mcallester",
+      "value": 0.11271182900151713,
+      "source_artifact": "E:\\\\Final SP\\\\realtime_bangla_taka_detection\\\\results\\\\theory\\\\pacbayes_d1_bound_seed42.json",
+      "script": "scripts/eval/eval_pacbayes_d1.py",
+      "status": "VERIFIED"
+    },
+    {
+      "claim_id": "C_BBOX_MULTI5",
+      "claim": "Five-note composite mean IoU",
+      "dataset": "synthetic composites",
+      "split": "constructed",
+      "sample_definition": "pasted_note",
+      "training_seed": "none",
+      "evaluation_seed": "42",
+      "metric": "iou_mean",
+      "value": 0.9365677215828507,
+      "source_artifact": "E:\\\\Final SP\\\\realtime_bangla_taka_detection\\\\results\\\\bbox\\\\bbox_multinote.json",
+      "script": "scripts/eval/eval_bbox_multinote.py",
+      "status": "VERIFIED"
     }
-  ]
+  ],
+  "updated_utc": "2026-09-28T17:17:55.511961+00:00"
 }

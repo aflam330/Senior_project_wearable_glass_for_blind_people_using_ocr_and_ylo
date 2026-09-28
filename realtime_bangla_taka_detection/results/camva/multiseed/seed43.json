@@ -1,0 +1,55 @@
+{
+  "seed": 43,
+  "baseline_ckpt": "baseline_cnnvit_seed43.pt",
+  "camva_ckpt": "camva_quality_attention_seed43.pt",
+  "views": [
+    {
+      "n_views": 1,
+      "baseline_accuracy": 0.8028846153846154,
+      "camva_accuracy": 0.5096153846153846,
+      "baseline_f1": 0.8487084870848708,
+      "camva_f1": 0.32000000000000006,
+      "difference": -0.29326923076923084
+    },
+    {
+      "n_views": 2,
+      "baseline_accuracy": 0.9134615384615384,
+      "camva_accuracy": 0.49038461538461536,
+      "baseline_f1": 0.9230769230769231,
+      "camva_f1": 0.2318840579710145,
+      "difference": -0.4230769230769231
+    },
+    {
+      "n_views": 3,
+      "baseline_accuracy": 0.9182692307692307,
+      "camva_accuracy": 0.5,
+      "baseline_f1": 0.925764192139738,
+      "camva_f1": 0.23529411764705882,
+      "difference": -0.4182692307692307
+    },
+    {
+      "n_views": 4,
+      "baseline_accuracy": 0.9182692307692307,
+      "camva_accuracy": 0.47115384615384615,
+      "baseline_f1": 0.9270386266094421,
+      "camva_f1": 0.15384615384615385,
+      "difference": -0.4471153846153846
+    },
+    {
+      "n_views": 5,
+      "baseline_accuracy": 0.8894230769230769,
+      "camva_accuracy": 0.5384615384615384,
+      "baseline_f1": 0.8977777777777778,
+      "camva_f1": 0.3424657534246575,
+      "difference": -0.35096153846153844
+    },
+    {
+      "n_views": 6,
+      "baseline_accuracy": 0.9326923076923077,
+      "camva_accuracy": 0.9807692307692307,
+      "baseline_f1": 0.9416666666666667,
+      "camva_f1": 0.9831932773109243,
+      "difference": 0.04807692307692302
+    }
+  ]
+}

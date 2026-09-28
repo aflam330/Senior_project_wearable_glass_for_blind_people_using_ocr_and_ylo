@@ -6,7 +6,7 @@ This folder documents the three project repositories for **two planned papers**.
 |-------------|--------|----------------------|
 | `realtime_bangla_taka_detection/` | [Mukut313/realtime_bangla_taka_detection](https://github.com/Mukut313/realtime_bangla_taka_detection) | **Paper 1** — currency detection research |
 | `savior_glass/` | [Mukut313/savior_glass](https://github.com/Mukut313/savior_glass) | **Paper 2** — full smart-glass system (canonical copy) |
-| `smart-glass/` | [Mukut313/smart-glass](https://github.com/Mukut313/smart-glass) | Same codebase as `savior_glass` (duplicate / rename fork) |
+| `Unused/smart-glass/` | [Mukut313/smart-glass](https://github.com/Mukut313/smart-glass) | Outdated copy, moved to `Unused/smart-glass/` on 2026-09-28: HSV-only currency mode (7% on raw note photos), no YOLO, no 2/5 Taka |
 
 ---
 
@@ -20,7 +20,7 @@ Focus: synthetic compositing, YOLOv8s training, metrics, real-time webcam + TTS 
 
 ### Paper 2 — Smart Glass (assistive systems / edge AI focus)
 **Use:** `docs/PAPER2_Smart_Glass_System.md`  
-**Source of truth:** `savior_glass/` (treat `smart-glass/` as identical)
+**Source of truth:** `savior_glass/`
 
 Focus: offline Bangla assistive wearable on Raspberry Pi 5 — OCR, object detection, currency mode, GPIO UX, Piper/espeak TTS.
 
@@ -28,7 +28,7 @@ Focus: offline Bangla assistive wearable on Raspberry Pi 5 — OCR, object detec
 
 ## Important relationship note
 
-- `savior_glass` and `smart-glass` are **functionally the same project** (identical source except README). Prefer citing **one** name in the paper (e.g. “Savior Glass” or “Smart Glass”) and one GitHub URL.
+- `smart-glass` was an early copy of `savior_glass` and fell behind it (no YOLO currency detector, no jaal check, no emotion/assistive modules). It was moved to `Unused/smart-glass/` on 2026-09-28. Cite only `savior_glass` in the paper.
 - The glass project’s currency mode currently uses **HSV + optional MobileNetV3**, not the YOLOv8s detector from Paper 1. For a stronger Paper 2, plan to **integrate** `models/best.pt` from the currency repo into `CurrencyMode`.
 - Paper 1 test metrics are on **held-out synthetic composites**. State this honestly; strengthen with in-the-wild evaluation if possible before submission.
 

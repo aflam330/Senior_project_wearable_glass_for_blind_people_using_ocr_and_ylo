@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from models.adaptive_prefix_curriculum import AdaptivePrefixCurriculum
+from models.backbone import novel_env
 from models.causal_view_selection import CausalViewSelection
 from models.cross_view_information import CrossViewInformationSharing
 from models.difficulty_aware_loss import NoteDifficultyAwareLoss
@@ -232,6 +233,7 @@ def main() -> None:
     splits, records = load_splits()
     out = Path(args.output_dir)
     init_run(out, cfg, args.seed, f"{args.algo} seed {args.seed}", "Train and val only. Test split is not read.")
+    save_json(out / "novel_env.json", novel_env())
     manifest = SPLIT_DIR / "split_metadata.json"
     if manifest.is_file():
         (out / "dataset_manifest.json").write_text(manifest.read_text(encoding="utf-8"), encoding="utf-8")
@@ -262,11 +264,16 @@ def main() -> None:
     load_kw = _loader_kwargs()
     best = -1.0
     stall = 0
+    if args.resume and str(cfg.get("select_on", "mean")) == "k1":
+        warm = make_loader(splits["val"], records, n_views=1, train=False, batch=batch, **_loader_kwargs())
+        best = float(_accuracy(model, warm)["accuracy"])
+        torch.save({"model": _module(model).state_dict(), "epoch": 0, "val_mean_1_to_6": best, "algo": args.algo, "seed": args.seed, "config": cfg, "env": novel_env()}, out / "checkpoint.pt")
+        print(f"{args.algo} resume val_acc_1={best:.4f}", flush=True)
     history = []
     log_path = out / "train_log.csv"
     try:
         with log_path.open("w", newline="", encoding="utf-8") as handle:
-            writer = csv.DictWriter(handle, fieldnames=["epoch", "train_loss", "val_mean_1_to_6"] + [f"val_acc_{k}" for k in range(1, 7)])
+            writer = csv.DictWriter(handle, fieldnames=["epoch", "train_loss", "val_mean_1_to_6", "select_score"] + [f"val_acc_{k}" for k in range(1, 7)])
             writer.writeheader()
             for ep in range(1, epochs + 1):
                 model.train()
@@ -360,15 +367,16 @@ def main() -> None:
                     vloader = make_loader(splits["val"], records, n_views=k, train=False, batch=batch, **load_kw)
                     per_k[k] = _accuracy(model, vloader)["accuracy"]
                 mean_k = float(sum(per_k.values()) / 6.0)
-                row = {"epoch": ep, "train_loss": running / max(n, 1), "val_mean_1_to_6": mean_k, **{f"val_acc_{k}": per_k[k] for k in per_k}}
+                score = float(per_k[1]) if str(cfg.get("select_on", "mean")) == "k1" else (float(per_k[6]) if str(cfg.get("select_on", "mean")) == "k6" else mean_k)
+                row = {"epoch": ep, "train_loss": running / max(n, 1), "val_mean_1_to_6": mean_k, "select_score": score, **{f"val_acc_{k}": per_k[k] for k in per_k}}
                 writer.writerow(row)
                 handle.flush()
                 history.append(row)
-                print(f"{args.algo} epoch {ep} loss={row['train_loss']:.4f} mean={mean_k:.4f} {per_k}", flush=True)
-                if mean_k > best + 1e-6:
-                    best = mean_k
+                print(f"{args.algo} epoch {ep} loss={row['train_loss']:.4f} mean={mean_k:.4f} select={score:.4f} {per_k}", flush=True)
+                if score > best + 1e-6:
+                    best = score
                     stall = 0
-                    torch.save({"model": _module(model).state_dict(), "epoch": ep, "val_mean_1_to_6": mean_k, "algo": args.algo, "seed": args.seed, "config": cfg}, out / "checkpoint.pt")
+                    torch.save({"model": _module(model).state_dict(), "epoch": ep, "val_mean_1_to_6": mean_k, "algo": args.algo, "seed": args.seed, "config": cfg, "env": novel_env()}, out / "checkpoint.pt")
                 else:
                     stall += 1
                     if stall >= patience:

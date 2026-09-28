@@ -1,0 +1,24 @@
+{
+  "weights": "E:\\Final SP\\realtime_bangla_taka_detection\\models\\best.pt",
+  "conf": 0.25,
+  "counts": {
+    "2": {
+      "images": 12,
+      "notes": 24,
+      "detected_iou_at_least_0.5": 1.0,
+      "iou_mean": 0.9457147895426855
+    },
+    "3": {
+      "images": 12,
+      "notes": 36,
+      "detected_iou_at_least_0.5": 1.0,
+      "iou_mean": 0.9355042416533456
+    },
+    "5": {
+      "images": 12,
+      "notes": 60,
+      "detected_iou_at_least_0.5": 1.0,
+      "iou_mean": 0.9365677215828507
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "n": 208,
+  "accuracy": 0.9471153846153846,
+  "balanced_accuracy": 0.9375,
+  "precision": 0.916030534351145,
+  "recall": 1.0,
+  "sensitivity": 1.0,
+  "specificity": 0.875,
+  "f1": 0.9561752988047809,
+  "macro_f1": 0.9447543160690571,
+  "false_acceptance_rate": 0.125,
+  "false_rejection_rate": 0.0,
+  "confusion_matrix": [
+    [
+      77,
+      11
+    ],
+    [
+      0,
+      120
+    ]
+  ],
+  "roc_auc": 0.9924242424242424,
+  "pr_auc": 0.9924880663188301,
+  "brier": 0.047562967138672155,
+  "ece": 0.07337901464125726,
+  "adaptive_ece": 0.07396440332002803,
+  "nll": 0.19006483406543098,
+  "name": "confidence_only_3view",
+  "average_views": 3.0,
+  "latency": {
+    "median_ms": 81.73264999641106,
+    "p95_ms": 115.4690249924897,
+    "mean_ms": 85.75314759764296,
+    "n": 208
+  },
+  "average_cost": 7.287657379882148
+}

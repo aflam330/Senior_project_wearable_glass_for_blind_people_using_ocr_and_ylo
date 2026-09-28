@@ -1,0 +1,8 @@
+{
+  "checkpoint": "results/qduig/occlusion_ft/seed42/checkpoint.pt",
+  "n_test": 208,
+  "clean_1view": 0.8894230769230769,
+  "clean_6view": 0.9086538461538461,
+  "low_light_0.2_6view": 0.75,
+  "occlusion_0.55_6view": 0.6826923076923077
+}

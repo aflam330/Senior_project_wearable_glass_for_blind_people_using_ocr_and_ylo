@@ -16,7 +16,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-def binary_entropy_t(p: torch.Tensor, eps: float = 1e-8) -> torch.Tensor:
+def binary_entropy_t(p: torch.Tensor, eps: float = 1e-6) -> torch.Tensor:
+    # eps must survive float32: 1 - 1e-8 rounds to 1.0, so p == 1 gave 0 * log(0) = NaN.
     p = p.clamp(eps, 1.0 - eps)
     return -(p * torch.log(p) + (1.0 - p) * torch.log(1.0 - p))
 

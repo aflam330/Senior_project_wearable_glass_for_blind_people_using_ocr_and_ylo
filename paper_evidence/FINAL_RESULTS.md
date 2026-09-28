@@ -1,5 +1,7 @@
 # FINAL_RESULTS
 
+> **Correction 2026-09-28.** Q-DUIG accuracies in this file were computed before three evaluation bugs were fixed: NaN entropy for fully confident notes (scored as p = 0.5), a volume feature that changed when views were masked, and a missing view self-gate in the policy path. Every checkpoint was re-evaluated with the fixed code; see `WEAK_RESULTS_FIX.md`. Where those numbers differ from the ones below, they supersede them, and verdicts based on the old numbers should be re-read. The original text is kept unchanged below.
+
 Only numbers that exist as artifacts. Nothing else.
 
 ## Prefix-robust Q-DUIG, seed 42, test (MEASURED)
@@ -247,3 +249,29 @@ Low light 0.2 after the robust fine-tune scores 0.9375 at 6 views. Clean 6-view 
 
 A linear-head PAC-Bayes posterior on half the training notes has McAllester bound 0.444538876551335. The bound on the full weight vector remains vacuous. HER scale 0.75 at threshold 0.5 scores 0.9759615384615384 with ECE 0.024493631835167225. The validation-chosen threshold 0.8867766261100769 scores 0.9711538461538461 on test.
 
+
+---
+
+## Update 2026-09-28: remaining issues
+
+| Area | Result | Evidence |
+|---|---|---|
+| Occlusion 55% (6 views, test) | 51.9% → **88.5%** (seed 42); **87.0 ± 2.2%** over 3 seeds; **88.9%** 3-seed ensemble; clean stays 98–99%. Target 90% not met. | `OCCLUSION_FINETUNE.md`, `OCCLUSION_ENSEMBLE.md` |
+| Occlusion with rejection | answers 46.6% of occluded test notes at 99.0% accuracy; wrong verdicts 0.5% of notes | `OCCLUSION_REJECTION.md` |
+| Occlusion root cause | covered genuine notes were called counterfeit; earlier fine-tunes never trained properly | `DIAGNOSIS_OCCLUSION.md` |
+| GPU speed (RTX 3050) | Taka YOLO 19.1 ms (52 FPS, 5.5× CPU); emotion 29.4 ms; PRMVT 16 ms | `GPU_SPEED.md` |
+| Live camera | loop runs at 7.5 FPS; models 31 ms + 24 ms per frame; camera capture dominates | `LIVE_CAMERA_TEST.md` |
+| Buttons / haptics | all logic checks pass with simulated GPIO; haptic verdict patterns fixed | `GPIO_TEST.md`, `HAPTICS_TEST.md` |
+| Speech | stressed-user verdict dropping and Bangla fallback bugs fixed | `SPEECH_TEST.md` |
+| Raspberry Pi 5 | NOT_MEASURED | `PI5_RESULTS.md` |
+| User study | PROTOCOL_READY, DATA_NOT_COLLECTED | `USER_STUDY_PROTOCOL.md` |
+
+## Update 2026-09-29
+
+VCIE selected by validation 1-view accuracy: test 0.9278846153846154 at 1 view and at 6 views (`results/novel_v2/vcie_k1/seed42/test/test_metrics.json`). MTPT trained 6 epochs then 3, selected the same way: test 0.9807692307692307 at 1 view and 0.9663461538461539 at 6 views (`results/novel_v2/mtpt_prefix_ft/seed42/test/test_metrics.json`).
+
+A network trained on 487 training notes has McAllester bound 0.11271182900151713 on the other 487 (`results/theory/pacbayes_d1_bound_seed42.json`). The test split was not used. This does not replace the vacuous 57.59 penalty on the published weights under a zero-mean prior.
+
+Detector composites with 2, 3, and 5 pasted notes, 12 images each, detected every note at IoU ≥ 0.5. Mean IoU 0.9457147895426855, 0.9355042416533456, and 0.9365677215828507 (`results/bbox/bbox_multinote.json`). Live camera boxes were not measured.
+
+Pi 5, a phone, and a user study remain unmeasured. Protocols: `PI5_RESULTS.md`, `MOBILE_RESULTS.md`, `USER_STUDY_PROTOCOL.md`.

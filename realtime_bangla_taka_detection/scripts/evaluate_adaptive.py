@@ -21,7 +21,9 @@ from roboeye.camva.engine import (
     save_adaptive_plot,
     save_json,
 )
-from roboeye.camva.notes import load_splits
+# Seed 42 is the checkpoint behind the reported CAMVA results. Pin it so that training
+# more seeds (train_camva.py --seed 43) cannot silently change what this script evaluates.
+from roboeye.camva.notes import SEED, load_splits
 
 
 def main() -> None:
@@ -29,7 +31,7 @@ def main() -> None:
     p.add_argument("--fusion", default="quality_attention")
     args = p.parse_args()
     splits, records = load_splits()
-    hits = sorted(CKPT_DIR.glob(f"camva_{args.fusion}_seed*.pt"))
+    hits = sorted(CKPT_DIR.glob(f"camva_{args.fusion}_seed{SEED}.pt"))
     if not hits:
         raise SystemExit("train CAMVA first")
     model = load_camva(hits[-1], args.fusion)

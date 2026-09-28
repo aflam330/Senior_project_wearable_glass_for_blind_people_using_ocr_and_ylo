@@ -1,0 +1,95 @@
+{
+  "models": [
+    "occrobust_s42",
+    "occrobust_s43",
+    "occrobust_s44"
+  ],
+  "rules": "1. flip averaging is used for a model only if it raises its occluded val accuracy;\n  2. the seed ensemble (mean probability) is used only if its occluded val accuracy beats\n     seed 42 alone;\n  3. rejection: confidence = max(p, 1-p); the threshold is the largest value on a 0.50-0.99\n     grid that still answers >= 95% of clean val notes. Rejected notes get \"please\n     reposition the note\" instead of a verdict.",
+  "per_model": {
+    "occrobust_s42": {
+      "flip_averaging_used": true,
+      "val": {
+        "clean": 0.9903846153846154,
+        "occ55": 0.9182692307692307
+      },
+      "test": {
+        "clean": 0.9903846153846154,
+        "occ55": 0.875
+      },
+      "test_without_flip": {
+        "clean": 0.9807692307692307,
+        "occ55": 0.8846153846153846
+      }
+    },
+    "occrobust_s43": {
+      "flip_averaging_used": false,
+      "val": {
+        "clean": 0.9903846153846154,
+        "occ55": 0.9086538461538461
+      },
+      "test": {
+        "clean": 0.9903846153846154,
+        "occ55": 0.8894230769230769
+      },
+      "test_without_flip": {
+        "clean": 0.9903846153846154,
+        "occ55": 0.8894230769230769
+      }
+    },
+    "occrobust_s44": {
+      "flip_averaging_used": false,
+      "val": {
+        "clean": 0.9903846153846154,
+        "occ55": 0.8894230769230769
+      },
+      "test": {
+        "clean": 0.9903846153846154,
+        "occ55": 0.8461538461538461
+      },
+      "test_without_flip": {
+        "clean": 0.9903846153846154,
+        "occ55": 0.8461538461538461
+      }
+    }
+  },
+  "test_occ55_mean_over_models": 0.8701923076923076,
+  "test_occ55_sd_over_models": 0.022031613918056907,
+  "final_method": "mean of 3 seeds",
+  "ensemble": {
+    "val": {
+      "clean": 0.9903846153846154,
+      "occ55": 0.9278846153846154
+    },
+    "test": {
+      "clean": 0.9903846153846154,
+      "occ55": 0.8894230769230769
+    }
+  },
+  "rejection": {
+    "threshold_from_val": 0.99,
+    "val_clean": {
+      "answered": 0.9903846153846154,
+      "accuracy_on_answered": 0.9902912621359223,
+      "wrong_verdicts_share_of_all_notes": 0.009615384615384616
+    },
+    "val_occ": {
+      "answered": 0.46153846153846156,
+      "accuracy_on_answered": 0.9791666666666666,
+      "wrong_verdicts_share_of_all_notes": 0.009615384615384616
+    },
+    "test_clean": {
+      "answered": 0.9615384615384616,
+      "accuracy_on_answered": 0.99,
+      "wrong_verdicts_share_of_all_notes": 0.009615384615384616
+    },
+    "test_occ": {
+      "answered": 0.46634615384615385,
+      "accuracy_on_answered": 0.9896907216494846,
+      "wrong_verdicts_share_of_all_notes": 0.004807692307692308
+    }
+  },
+  "final_test": {
+    "clean": 0.9903846153846154,
+    "occ55": 0.8894230769230769
+  }
+}

@@ -22,7 +22,7 @@ from ..config import DEVICE
 from .artifacts import init_run, save_json
 from .calibration import HERCalibrator, binary_entropy, fit_temperature
 from .diversity import chordal_volume_scores
-from .info_gain import realized_information_gain
+from .info_gain import binary_entropy_t, realized_information_gain
 from .losses import (
     LossWeights,
     acquisition_cost_loss,
@@ -579,7 +579,7 @@ def sequential_predict(
         y = int(item["label"])
         vcount = int(views.size(0))
         t0 = time.perf_counter()
-        z = model.encode_views(views.unsqueeze(0)).squeeze(0)
+        z = model.view_features(views.unsqueeze(0)).squeeze(0)
         q = model._quality(z.unsqueeze(0), views.unsqueeze(0))
         usable = q["usable"].squeeze(0)
         available = torch.ones(vcount, device=device, dtype=torch.long)
@@ -629,6 +629,10 @@ def sequential_predict(
                     utilities,
                     available,
                 )
+                if policy == "random":
+                    # seeded, like the first pick; score_candidates' torch.rand_like is unseeded
+                    scores = torch.tensor(rng.random(vcount), device=device, dtype=usable.dtype)
+                    scores = scores.masked_fill(available == 0, -1e9)
                 if force_k is not None:
                     if len(selected) >= force_k:
                         break
@@ -688,8 +692,7 @@ def sequential_predict(
 
 
 def binary_entropy_t_np_like(p: torch.Tensor) -> torch.Tensor:
-    p = p.clamp(1e-8, 1.0 - 1e-8)
-    return -(p * torch.log(p) + (1.0 - p) * torch.log(1.0 - p))
+    return binary_entropy_t(p)
 
 
 def load_qduig(ckpt: Path, config: dict | None = None) -> QDUIGNet:
@@ -731,7 +734,7 @@ def run_oracle(model: QDUIGNet, note_ids: list[str], records: dict, max_notes: i
         views = item["views"].to(device)
         y = int(item["label"])
         vcount = int(views.size(0))
-        z = model.encode_views(views.unsqueeze(0))
+        z = model.view_features(views.unsqueeze(0))
         q = model._quality(z, views.unsqueeze(0))
 
         def predict_subset(subset: tuple[int, ...], z=z, q=q, y=y, vcount=vcount):

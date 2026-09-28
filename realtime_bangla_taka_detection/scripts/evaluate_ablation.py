@@ -21,7 +21,9 @@ from roboeye.camva.engine import (
     predict_camva,
     save_json,
 )
-from roboeye.camva.notes import load_splits
+# Seed 42 is the checkpoint behind the reported CAMVA results. Pin it so that training
+# more seeds (train_camva.py --seed 43) cannot silently change what this script evaluates.
+from roboeye.camva.notes import SEED, load_splits
 from roboeye.config import DEVICE
 
 
@@ -39,8 +41,8 @@ def main() -> None:
     args = p.parse_args()
     splits, records = load_splits()
     test = splits["test"]
-    base = load_baseline(_ckpt("baseline_cnnvit_seed*.pt"))
-    camva = load_camva(_ckpt("camva_quality_attention_seed*.pt"), "quality_attention")
+    base = load_baseline(_ckpt(f"baseline_cnnvit_seed{SEED}.pt"))
+    camva = load_camva(_ckpt(f"camva_quality_attention_seed{SEED}.pt"), "quality_attention")
     loader6 = make_loader(test, records, n_views=6, train=False, batch=args.batch)
 
     rows = []

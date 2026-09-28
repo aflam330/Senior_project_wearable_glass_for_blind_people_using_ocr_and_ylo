@@ -113,6 +113,13 @@ _BN_EN_FALLBACK = (
     ("দুইশত টাকার নোট", "200 taka"),
     ("পাঁচশত টাকার নোট", "500 taka"),
     ("এক হাজার টাকার নোট", "1000 taka"),
+    # authenticity verdict appended by CurrencyMode.detect_live
+    ("জাল টাকা", "Counterfeit"),
+    ("আসল", "Genuine"),
+    # emotion-adaptive prefixes (roboeye.fer_emotion.tts_style_for_emotion)
+    ("ঠিক আছে। ধীরে শুনুন। ", "It's okay. Take your time. "),
+    ("রাগ করবেন না। ", "It's alright. "),
+    ("ভালো। ", "Good. "),
     ("লেখা সংরক্ষণ করা হয়েছে। শুনতে রিড বাটন চাপুন", "Text saved. Press R to listen."),
     ("পড়া হচ্ছে: ", "Reading: "),
     ("কোনো লেখা পাওয়া যায়নি", "No text found."),
@@ -125,10 +132,28 @@ _BN_EN_FALLBACK = (
 )
 
 
+def _object_names_bn_to_en() -> list[tuple[str, str]]:
+    """Bangla COCO names (assets/labels_bn.json) back to English, longest first."""
+    try:
+        import json
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "labels_bn.json"),
+                  encoding="utf-8") as fh:
+            en_to_bn = json.load(fh)
+    except Exception:
+        return []
+    return sorted(((bn, en) for en, bn in en_to_bn.items()), key=lambda p: -len(p[0]))
+
+
+_OBJECT_BN_EN = _object_names_bn_to_en()
+
+
 def _english_fallback(text: str) -> str:
     out = text
     for bn, en in _BN_EN_FALLBACK:
         out = out.replace(bn, en)
+    for bn, en in _OBJECT_BN_EN:
+        out = out.replace(bn, en)
+    out = out.replace("।", ".")
     if _BANGLA_RE.search(out):
         return "Detection complete. Bangla is on the screen."
     return out

@@ -1,5 +1,7 @@
 # Fix 1: loss scale
 
+> **Correction 2026-09-28.** Q-DUIG accuracies in this file were computed before three evaluation bugs were fixed: NaN entropy for fully confident notes (scored as p = 0.5), a volume feature that changed when views were masked, and a missing view self-gate in the policy path. Every checkpoint was re-evaluated with the fixed code; see `WEAK_RESULTS_FIX.md`. Where those numbers differ from the ones below, they supersede them, and verdicts based on the old numbers should be re-read. The original text is kept unchanged below.
+
 Seed 42. Each run fine-tunes the saved full PRMVT checkpoint for 2 epochs. The checkpoint is chosen by validation mean accuracy over 1–6 views. Test labels are not used for that choice. Multitask weight stays 0.5 and contrastive weight stays 0.05. Only the auxiliary loss weights change.
 
 Full PRMVT 1-view is 0.9711538461538461. `her_base` 1-view is 0.9903846153846154.

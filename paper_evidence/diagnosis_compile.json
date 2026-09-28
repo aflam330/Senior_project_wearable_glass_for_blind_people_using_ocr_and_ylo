@@ -1,0 +1,111 @@
+{
+  "python_files": 13017,
+  "syntax_errors": [
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\typing\\mypy_plugin.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\typing\\mypy_plugin.py\", line 118\n    type _HookFunc = Callable[[AnalyzeTypeContext], mypy.types.Type]\n         ^^^^^^^^^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\typing\\tests\\data\\pass\\ma.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\typing\\tests\\data\\pass\\ma.py\", line 8\n    type MaskedArray[ScalarT: np.generic] = np.ma.MaskedArray[_Shape, np.dtype[ScalarT]]\n         ^^^^^^^^^^^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\_typing\\_array_like.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\_typing\\_array_like.py\", line 15\n    type NDArray[ScalarT: np.generic] = np.ndarray[_AnyShape, np.dtype[ScalarT]]\n         ^^^^^^^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\_typing\\_char_codes.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\_typing\\_char_codes.py\", line 3\n    type _BoolCodes = Literal[\"bool\", \"bool_\", \"?\", \"b1\", \"|b1\", \"=b1\", \"<b1\", \">b1\"]\n         ^^^^^^^^^^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\_typing\\_dtype_like.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\_typing\\_dtype_like.py\", line 21\n    type _DTypeLikeNested = Any  # TODO: wait for support for recursive types\n         ^^^^^^^^^^^^^^^^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\_typing\\_nbit.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\_typing\\_nbit.py\", line 6\n    type _NBitByte = _8Bit\n         ^^^^^^^^^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\_typing\\_scalars.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\_typing\\_scalars.py\", line 7\n    type _CharLike_co = str | bytes\n         ^^^^^^^^^^^^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\_typing\\_shape.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\numpy\\_typing\\_shape.py\", line 4\n    type _Shape = tuple[int, ...]\n         ^^^^^^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\scipy\\integrate\\_cubature.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\scipy\\integrate\\_cubature.py\", line 27\n    type Array = Any  # To be changed to an array-api-typing Protocol later\n         ^^^^^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\scipy\\_lib\\_array_api.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\scipy\\_lib\\_array_api.py\", line 66\n    type Array = Any  # To be changed to a Protocol later (see array-api#589)\n         ^^^^^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\scipy\\_lib\\_array_api_override.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\scipy\\_lib\\_array_api_override.py\", line 23\n    type Array = Any  # To be changed to a Protocol later (see array-api#589)\n         ^^^^^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\scipy\\_lib\\_util.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\scipy\\_lib\\_util.py\", line 24\n    type IntNumber = int | np.integer\n         ^^^^^^^^^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\sklearn\\linear_model\\_logistic.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\sklearn\\linear_model\\_logistic.py\", line 2337\n    coef_init = np.mean(coefs_paths[0, :, *best_index, :], axis=0)\n                                          ^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\tifffile\\tifffile.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\tifffile\\tifffile.py\", line 956\n    type ByteOrder = Literal['>', '<']\n         ^^^^^^^^^\nSyntaxError: invalid syntax\n"
+    },
+    {
+      "file": "E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\torch\\testing\\_internal\\py312_intrinsics.py",
+      "error": "  File \"E:\\Final SP\\realtime_bangla_taka_detection\\venv\\Lib\\site-packages\\torch\\testing\\_internal\\py312_intrinsics.py\", line 11\n    def f[T](a: \"This is a new annotation\"):  # noqa: F722\n         ^\nSyntaxError: invalid syntax\n"
+    }
+  ],
+  "missing_claim_artifacts": [
+    {
+      "id": "C_OCC_FT_S42",
+      "artifact": "realtime_bangla_taka_detection\\results\\robustness\\occlusion_robust_e15_seed42.json"
+    },
+    {
+      "id": "C_OCC_FT_3SEED",
+      "artifact": "realtime_bangla_taka_detection\\results\\robustness\\occlusion_decision.json"
+    },
+    {
+      "id": "C_OCC_ENSEMBLE",
+      "artifact": "realtime_bangla_taka_detection\\results\\robustness\\occlusion_decision.json"
+    },
+    {
+      "id": "C_OCC_TARGET_90",
+      "artifact": "realtime_bangla_taka_detection\\results\\robustness\\occlusion_decision.json"
+    },
+    {
+      "id": "C_OCC_REJECT",
+      "artifact": "realtime_bangla_taka_detection\\results\\robustness\\occlusion_decision.json"
+    },
+    {
+      "id": "C_GPU_YOLO",
+      "artifact": "realtime_bangla_taka_detection\\results\\speed\\gpu_speed.json"
+    },
+    {
+      "id": "C_LIVE_LOOP",
+      "artifact": "savior_glass\\results\\live_camera_test.json"
+    },
+    {
+      "id": "C_BUTTONS_SIM",
+      "artifact": "savior_glass\\results\\buttons_haptics_test.json"
+    },
+    {
+      "id": "C_HAPTIC_PATTERNS",
+      "artifact": "savior_glass\\results\\buttons_haptics_test.json"
+    },
+    {
+      "id": "C_SPEECH_VERDICT",
+      "artifact": "savior_glass\\results\\speech_test.json"
+    },
+    {
+      "id": "C_USER_STUDY",
+      "artifact": "paper_evidence\\USER_STUDY_PROTOCOL.md"
+    }
+  ]
+}

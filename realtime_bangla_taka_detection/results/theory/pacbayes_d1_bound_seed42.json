@@ -1,0 +1,31 @@
+{
+  "checkpoint": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\theory\\pacbayes_d1_model\\seed42\\checkpoint.pt",
+  "split": "held-out training half D2",
+  "n_d2": 487,
+  "n_d1": 487,
+  "test_used": false,
+  "posterior": "N(w_D1, rho^2 I)",
+  "prior": "N(w_D1, rho^2 I), the same mean, fit without D2",
+  "rho": 0.0001,
+  "sigma0": 0.0001,
+  "kl": 0.0,
+  "delta": 0.05,
+  "d2_deterministic_error": 0.028747433264887063,
+  "d2_gibbs_errors": [
+    0.028747433264887063,
+    0.028747433264887063,
+    0.028747433264887063,
+    0.030800821355236138
+  ],
+  "d2_gibbs_mean": 0.029260780287474333,
+  "mcallester": 0.11271182900151713,
+  "mcallester_penalty": 0.0834510487140428,
+  "hoeffding_upper": 0.08420643150859015,
+  "empirical_bernstein_upper": 0.06702474420705011,
+  "layerwise_kl_sum": 0.0,
+  "layerwise_note": "Posterior mean equals the prior mean, so every layer KL is 0. The sum is the same McAllester bound.",
+  "n_layers_with_float_weights": 334,
+  "rademacher_full_network": "NOT_MEASURED",
+  "note": "This bound is for the D1-trained network. It is not a bound on the published PRMVT test accuracy.",
+  "pacbayes_kl_upper": 0.06646264504399683
+}

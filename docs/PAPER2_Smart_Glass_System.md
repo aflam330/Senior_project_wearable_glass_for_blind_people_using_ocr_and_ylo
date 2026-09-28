@@ -1,8 +1,8 @@
 # Paper 2 Documentation — Offline Smart Glass for Blind People (Full System)
 
 **Primary source:** `e:\Final SP\savior_glass`  
-**Duplicate clone:** `e:\Final SP\smart-glass` (identical code; use one name in the paper)  
-**GitHub:** https://github.com/Mukut313/savior_glass (or smart-glass)  
+**Former duplicate:** `e:\Final SP\Unused\smart-glass` (outdated copy, retired 2026-09-28; do not cite)  
+**GitHub:** https://github.com/Mukut313/savior_glass  
 **Initial commit theme:** “Offline Smart Glass for Blind People (RPi 5)”
 
 In-repo READMEs are stubs — this file is the documentation base for the system paper.
@@ -316,6 +316,8 @@ The codebase has **no published accuracy tables or user study**. Recommended exp
 | Unique features | **None** |
 
 **Recommendation for publication:** cite a single repository URL and product name; mention the other as a mirror if needed.
+
+**Update 2026-09-28:** the table above describes the repos when they were first compared. `savior_glass` has since gained the YOLOv8s currency detector, the Q-DUIG jaal check, and the emotion/assistive modules; `smart-glass` did not. `smart-glass` is now retired to `Unused/smart-glass/`; cite `savior_glass` only.
 
 ---
 

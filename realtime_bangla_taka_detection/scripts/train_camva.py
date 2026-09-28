@@ -38,6 +38,11 @@ def main() -> None:
     if not (ROOT / "results" / "camva" / "splits" / "train_note_ids.json").is_file():
         build_and_save_splits(seed=args.seed)
     splits, records = load_splits()
+    split_meta = json.loads((ROOT / "results" / "camva" / "splits" / "split_metadata.json").read_text(encoding="utf-8"))
+    seeds = list(range(args.seed, args.seed + args.seeds))
+    # The default run (seed 42 only) keeps the original file names; other seed ranges get their
+    # own files so a later run cannot overwrite the record of an earlier one.
+    tag = "" if seeds == [SEED] else f"_seeds{seeds[0]}-{seeds[-1]}"
 
     cfg = {
         "created_utc": datetime.now(timezone.utc).isoformat(),
@@ -48,16 +53,18 @@ def main() -> None:
         "batch": args.batch,
         "lr": args.lr,
         "views": args.views,
-        "split_seed": args.seed,
+        "split_seed": split_meta["seed"],
+        "training_seeds": seeds,
+        "trained": [k for k, skip in (("baseline", args.skip_baseline), ("camva", args.skip_camva)) if not skip],
         "n_train_notes": len(splits["train"]),
         "n_val_notes": len(splits["val"]),
         "n_test_notes": len(splits["test"]),
         "independent_unit": "physical_note_id",
     }
-    save_json(CFG_DIR / "train_config.json", cfg)
+    save_json(CFG_DIR / f"train_config{tag}.json", cfg)
 
     summaries = []
-    for s in range(args.seed, args.seed + args.seeds):
+    for s in seeds:
         torch.manual_seed(s)
         if not args.skip_baseline:
             print("=== train baseline CNN+ViT seed", s, "===")
@@ -81,7 +88,7 @@ def main() -> None:
                     kind="camva", seed=s, fusion=args.fusion,
                 )
             )
-    save_json(CFG_DIR / "train_summary.json", summaries)
+    save_json(CFG_DIR / f"train_summary{tag}.json", summaries)
     print(json.dumps(summaries, indent=2))
 
 

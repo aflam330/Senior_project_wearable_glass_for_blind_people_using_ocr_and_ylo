@@ -27,7 +27,7 @@ The system is a **working senior-project prototype**, not an A* conference paper
 | Area | Implementation | Status |
 |------|----------------|--------|
 | Emotion | EfficientNet-V2-S on RAF-DB; live path in `roboeye/fer_emotion.py` (Haar face, FER+ ONNX fallback, emotion-adaptive TTS) | Working, **86.5%** RAF-DB |
-| Currency | YOLOv8s, 9 Bangladeshi Taka classes; ONNX/INT8 export | Working |
+| Currency | YOLOv8s, 9 Bangladeshi Taka classes; ONNX/INT8 export | Working (correction 2026-09-28: the INT8 file listed here detected nothing; it was re-quantized with `scripts/quantize_int8.py` and now scores test mAP50 0.995 / mAP50-95 0.823, same as FP32) |
 | Authenticity | JaalTaka CNN+ViT, dual-head, FedAvg, EWC scripts | Code works; **do not publish split acc 1.00** |
 | OCR | EasyOCR Bangla + English | Working |
 | Objects | YOLOv8 COCO | Working |

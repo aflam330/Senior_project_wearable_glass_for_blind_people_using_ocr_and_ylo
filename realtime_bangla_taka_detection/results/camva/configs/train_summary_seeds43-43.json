@@ -1,0 +1,38 @@
+[
+  {
+    "best_val_acc": 0.9567307692307693,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.4968408239083613,
+        "val_acc": 0.8894230769230769
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.3236075935759094,
+        "val_acc": 0.9471153846153846
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.32931685582323483,
+        "val_acc": 0.9567307692307693
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.27255665344134494,
+        "val_acc": 0.9567307692307693
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.29601869983044005,
+        "val_acc": 0.9038461538461539
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.23694290265104365,
+        "val_acc": 0.9567307692307693
+      }
+    ],
+    "ckpt": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\camva\\checkpoints\\baseline_cnnvit_seed43.pt"
+  }
+]

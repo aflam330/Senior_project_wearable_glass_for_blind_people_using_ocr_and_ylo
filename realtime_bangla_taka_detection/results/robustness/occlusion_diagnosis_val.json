@@ -1,0 +1,138 @@
+{
+  "split": "val",
+  "n": 208,
+  "occlusion": 0.55,
+  "prmvt_clean_6v": {
+    "accuracy": 0.9855769230769231,
+    "confusion[true][pred]": [
+      [
+        86,
+        2
+      ],
+      [
+        1,
+        119
+      ]
+    ],
+    "genuine_recall": 0.9916666666666667,
+    "counterfeit_recall": 0.9772727272727273,
+    "mean_prob_genuine": 0.5782582502479496
+  },
+  "prmvt_occ_black_6v": {
+    "accuracy": 0.5240384615384616,
+    "confusion[true][pred]": [
+      [
+        82,
+        6
+      ],
+      [
+        93,
+        27
+      ]
+    ],
+    "genuine_recall": 0.225,
+    "counterfeit_recall": 0.9318181818181818,
+    "mean_prob_genuine": 0.24608396189824605
+  },
+  "visible_fraction_per_view_mean": 0.4497619280975024,
+  "visible_fraction_wrong_vs_right": [
+    0.45005243949013274,
+    0.44949806912621415
+  ],
+  "prmvt_occ_black_1v": {
+    "accuracy": 0.5,
+    "confusion[true][pred]": [
+      [
+        85,
+        3
+      ],
+      [
+        101,
+        19
+      ]
+    ],
+    "genuine_recall": 0.15833333333333333,
+    "counterfeit_recall": 0.9659090909090909,
+    "mean_prob_genuine": 0.19763049142616532
+  },
+  "prmvt_occ_median_6v": {
+    "accuracy": 0.5432692307692307,
+    "confusion[true][pred]": [
+      [
+        88,
+        0
+      ],
+      [
+        95,
+        25
+      ]
+    ],
+    "genuine_recall": 0.20833333333333334,
+    "counterfeit_recall": 1.0,
+    "mean_prob_genuine": 0.19939079297630366
+  },
+  "baseline_clean_6v": {
+    "accuracy": 0.9615384615384616,
+    "confusion[true][pred]": [
+      [
+        81,
+        7
+      ],
+      [
+        1,
+        119
+      ]
+    ],
+    "genuine_recall": 0.9916666666666667,
+    "counterfeit_recall": 0.9204545454545454,
+    "mean_prob_genuine": 0.6003275876237939
+  },
+  "baseline_occ_black_6v": {
+    "accuracy": 0.8509615384615384,
+    "confusion[true][pred]": [
+      [
+        72,
+        16
+      ],
+      [
+        15,
+        105
+      ]
+    ],
+    "genuine_recall": 0.875,
+    "counterfeit_recall": 0.8181818181818182,
+    "mean_prob_genuine": 0.5309073362105454
+  },
+  "baseline_occ_black_1v": {
+    "accuracy": 0.7259615384615384,
+    "confusion[true][pred]": [
+      [
+        67,
+        21
+      ],
+      [
+        36,
+        84
+      ]
+    ],
+    "genuine_recall": 0.7,
+    "counterfeit_recall": 0.7613636363636364,
+    "mean_prob_genuine": 0.4848058394004161
+  },
+  "baseline_occ_median_6v": {
+    "accuracy": 0.5961538461538461,
+    "confusion[true][pred]": [
+      [
+        87,
+        1
+      ],
+      [
+        83,
+        37
+      ]
+    ],
+    "genuine_recall": 0.30833333333333335,
+    "counterfeit_recall": 0.9886363636363636,
+    "mean_prob_genuine": 0.2771225170715927
+  }
+}

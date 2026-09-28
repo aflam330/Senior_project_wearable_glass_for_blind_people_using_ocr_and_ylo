@@ -1,0 +1,8 @@
+{
+  "checkpoint": "results/qduig/robust_ft/seed42/checkpoint.pt",
+  "n_test": 208,
+  "clean_1view": 0.9663461538461539,
+  "clean_6view": 0.9855769230769231,
+  "low_light_0.2_6view": 0.9375,
+  "occlusion_0.55_6view": 0.5673076923076923
+}

@@ -1,0 +1,28 @@
+{
+  "synthetic": {
+    "dark": {
+      "n": 183,
+      "app_iou_mean": 0.909,
+      "app_iou>=0.5": 1.0,
+      "raw_iou_mean": 0.9087,
+      "raw_iou>=0.5": 1.0
+    },
+    "normal": {
+      "n": 1869,
+      "app_iou_mean": 0.9083,
+      "app_iou>=0.5": 1.0,
+      "raw_iou_mean": 0.9083,
+      "raw_iou>=0.5": 1.0
+    }
+  },
+  "crop_matches_box": {
+    "checked": 2052,
+    "matching": 2052
+  },
+  "real_fullframe_closeups": {
+    "n": 473,
+    "detected": 0.9873,
+    "box_iou_with_whole_photo_median": 0.9923,
+    "box_iou_with_whole_photo>=0.8": 1.0
+  }
+}

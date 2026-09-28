@@ -1,0 +1,13 @@
+{
+  "name": "mtpt_prefix_ft",
+  "algo": "mtpt",
+  "epochs": 3,
+  "batch": 4,
+  "lr": 0.0003,
+  "seed": 42,
+  "views": 6,
+  "patience": 3,
+  "select_on": "k1",
+  "aux_weight": 0.1,
+  "note": "Three-epoch fine-tune. Resume the 6-epoch run. Checkpoint by validation 1-view accuracy."
+}

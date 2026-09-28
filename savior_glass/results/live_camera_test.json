@@ -1,0 +1,49 @@
+{
+  "status": "ok",
+  "camera": {
+    "index": 0,
+    "resolution": [
+      640,
+      480
+    ],
+    "mean_brightness_0_255": 18.0
+  },
+  "device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "seconds": 20.1,
+  "frames_processed": 150,
+  "loop_fps": 7.47,
+  "latency": {
+    "capture": {
+      "n": 150,
+      "median_ms": 73.6,
+      "p95_ms": 95.6
+    },
+    "currency_detect_and_jaal": {
+      "n": 150,
+      "median_ms": 31.1,
+      "p95_ms": 33.0
+    },
+    "object_mode": {
+      "n": 150,
+      "median_ms": 23.8,
+      "p95_ms": 25.6
+    },
+    "emotion": {
+      "n": 30,
+      "median_ms": 18.2,
+      "p95_ms": 19.6
+    },
+    "frame_total": {
+      "n": 150,
+      "median_ms": 128.9,
+      "p95_ms": 161.7
+    }
+  },
+  "notes_detected": {},
+  "object_announcements": {},
+  "emotion_backend_counts": {
+    "no_face": 30
+  },
+  "saved_media": "none (privacy)",
+  "note_accuracy_on_live_notes": "NOT_MEASURED (no note was held in front of the camera during an unattended run)"
+}

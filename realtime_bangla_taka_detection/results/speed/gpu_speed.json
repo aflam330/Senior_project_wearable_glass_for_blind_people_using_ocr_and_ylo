@@ -1,0 +1,81 @@
+{
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "torch": "2.14.0+cu126",
+  "rows": {
+    "yolo_pt_cuda": {
+      "median_ms": 19.14,
+      "p95_ms": 19.68,
+      "fps": 52.2
+    },
+    "yolo_pt_cpu": {
+      "median_ms": 105.24,
+      "p95_ms": 117.56,
+      "fps": 9.5
+    },
+    "yolo_fp32_onnx_cuda": {
+      "median_ms": 23.96,
+      "p95_ms": 24.5,
+      "fps": 41.7,
+      "provider_used": "CUDAExecutionProvider"
+    },
+    "yolo_fp32_onnx_cpu": {
+      "median_ms": 92.53,
+      "p95_ms": 104.34,
+      "fps": 10.8,
+      "provider_used": "CPUExecutionProvider"
+    },
+    "yolo_int8_onnx_cuda": {
+      "median_ms": 37.09,
+      "p95_ms": 37.68,
+      "fps": 27.0,
+      "provider_used": "CUDAExecutionProvider"
+    },
+    "yolo_int8_onnx_cpu": {
+      "median_ms": 60.77,
+      "p95_ms": 72.21,
+      "fps": 16.5,
+      "provider_used": "CPUExecutionProvider"
+    },
+    "prmvt_1view_cuda": {
+      "median_ms": 15.49,
+      "p95_ms": 17.68,
+      "fps": 64.6
+    },
+    "prmvt_6view_cuda": {
+      "median_ms": 16.3,
+      "p95_ms": 23.35,
+      "fps": 61.3
+    },
+    "prmvt_1view_cpu": {
+      "median_ms": 10.43,
+      "p95_ms": 11.85,
+      "fps": 95.9
+    },
+    "prmvt_6view_cpu": {
+      "median_ms": 21.25,
+      "p95_ms": 24.43,
+      "fps": 47.1
+    },
+    "emotion_effnetv2s_cuda": {
+      "median_ms": 29.39,
+      "p95_ms": 41.25,
+      "fps": 34.0
+    },
+    "emotion_effnetv2s_cpu": {
+      "median_ms": 82.97,
+      "p95_ms": 93.23,
+      "fps": 12.1
+    },
+    "yolo_pt_speedup_gpu_over_cpu": 5.5,
+    "prmvt_1view_speedup_gpu_over_cpu": 0.7,
+    "prmvt_6view_speedup_gpu_over_cpu": 1.3,
+    "emotion_effnetv2s_speedup_gpu_over_cpu": 2.8,
+    "yolo_fp32_onnx_speedup_gpu_over_cpu": 3.9,
+    "yolo_int8_onnx_speedup_gpu_over_cpu": 1.6
+  },
+  "onnxruntime_providers": [
+    "TensorrtExecutionProvider",
+    "CUDAExecutionProvider",
+    "CPUExecutionProvider"
+  ]
+}

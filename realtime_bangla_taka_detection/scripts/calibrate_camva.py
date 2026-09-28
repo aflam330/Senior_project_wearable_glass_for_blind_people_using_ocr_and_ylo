@@ -20,12 +20,14 @@ from roboeye.camva.engine import (
     save_json,
     temperature_scale,
 )
-from roboeye.camva.notes import load_splits
+# Seed 42 is the checkpoint behind the reported CAMVA results. Pin it so that training
+# more seeds (train_camva.py --seed 43) cannot silently change what this script evaluates.
+from roboeye.camva.notes import SEED, load_splits
 from roboeye.config import DEVICE
 
 
 def _ckpt(fusion: str) -> Path:
-    hits = sorted(CKPT_DIR.glob(f"camva_{fusion}_seed*.pt"))
+    hits = sorted(CKPT_DIR.glob(f"camva_{fusion}_seed{SEED}.pt"))
     if not hits:
         raise SystemExit("no CAMVA checkpoint")
     return hits[-1]

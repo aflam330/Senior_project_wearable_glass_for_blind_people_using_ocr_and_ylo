@@ -1,5 +1,7 @@
 # Prefix stopping policy
 
+> **Correction 2026-09-28.** Q-DUIG accuracies in this file were computed before three evaluation bugs were fixed: NaN entropy for fully confident notes (scored as p = 0.5), a volume feature that changed when views were masked, and a missing view self-gate in the policy path. Every checkpoint was re-evaluated with the fixed code; see `WEAK_RESULTS_FIX.md`. Where those numbers differ from the ones below, they supersede them, and verdicts based on the old numbers should be re-read. The original text is kept unchanged below.
+
 The saved acquisition policy is unchanged. It scores 0.41346153846153844 at 1.00 view when λ = 0.02, because it can request a view other than the ordered prefix the classifier was trained on.
 
 This file is a different rule on the same saved PRMVT checkpoint. It only uses the ordered prefix. The entropy threshold is chosen on the validation split. Source: `results/qduig/prefix_ft/seed42/prefix_stop_policy.json`. n = 208.

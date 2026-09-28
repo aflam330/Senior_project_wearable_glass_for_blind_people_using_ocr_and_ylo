@@ -1,0 +1,56 @@
+{
+  "host": {
+    "hostname": "DESKTOP-EA33S9L",
+    "device_model": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "raspberry_pi_5": false,
+    "machine": "AMD64",
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.7",
+    "cpu_count": 16,
+    "utc": "2026-09-28T11:57:27.156927+00:00",
+    "torch": "2.14.0+cpu",
+    "torch_threads": 8,
+    "ultralytics": "8.4.164",
+    "onnxruntime": "1.30.0",
+    "easyocr": "1.7.2",
+    "cv2": "5.0.0",
+    "cpu_temp_c_start": null,
+    "throttled_start": null,
+    "cpu_temp_c_end": null,
+    "throttled_end": null
+  },
+  "latency": {
+    "taka_yolo_pt": {
+      "median_ms": 108.83,
+      "p95_ms": 122.52,
+      "mean_ms": 110.42,
+      "fps_median": 9.19,
+      "iters": 40,
+      "rss_mb_after": 694.894592,
+      "cpu_temp_c_after": null,
+      "load_ms": 51.4
+    },
+    "taka_yolo_onnx_fp32": {
+      "median_ms": 139.44,
+      "p95_ms": 143.35,
+      "mean_ms": 138.89,
+      "fps_median": 7.17,
+      "iters": 40,
+      "rss_mb_after": 836.366336,
+      "cpu_temp_c_after": null,
+      "load_ms": 1.4
+    },
+    "taka_yolo_onnx_int8": {
+      "median_ms": 100.72,
+      "p95_ms": 105.84,
+      "mean_ms": 100.27,
+      "fps_median": 9.93,
+      "iters": 40,
+      "rss_mb_after": 907.452416,
+      "cpu_temp_c_after": null,
+      "load_ms": 0.7
+    }
+  },
+  "skipped": {},
+  "peak_rss_mb": 907.452416
+}

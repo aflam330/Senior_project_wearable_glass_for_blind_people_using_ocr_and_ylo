@@ -1,0 +1,12 @@
+{
+  "split": "test",
+  "checkpoint": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\occlusion_ft\\seed42\\checkpoint.pt",
+  "occlusion": 0.55,
+  "repair": "median fill, then full frame and four 70% corner crops",
+  "n": 208,
+  "accuracy_6view": {
+    "median_full": 0.875,
+    "crop_mean": 0.8653846153846154,
+    "crop_confident": 0.8557692307692307
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "split": "test",
+  "n": 208,
+  "occlusion": 0.55,
+  "repair": "learned reconstructor, trained on train notes, selected by validation hole-L1",
+  "classifier": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\occlusion_ft\\seed42\\checkpoint.pt",
+  "accuracy_6view": 0.7259615384615384
+}

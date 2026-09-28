@@ -10,6 +10,15 @@ import torch.nn.functional as F
 from roboeye.camva.model import ViewEncoder
 
 SET_ALGOS = {"vcie", "mtpt", "sfpl"}
+# New models of these algos train without pool_norm (the setting their existing runs used).
+NO_POOL_NORM_ALGOS = {"ugf", "sfaq", "igcr", "ogpd"}
+# Environment switches that change the network; train_novel.py saves them with each run.
+NOVEL_ENV_DEFAULTS = {"NOVEL_SET_MODE": "residual", "NOVEL_SET_BLOCKS": "2", "NOVEL_FOCAL": "0"}
+
+
+def novel_env() -> dict[str, str]:
+    """Current values of the NOVEL_* switches that affect the model."""
+    return {k: os.environ.get(k, v) for k, v in NOVEL_ENV_DEFAULTS.items()}
 
 
 class SetBlock(nn.Module):
@@ -60,12 +69,35 @@ class NovelAuthNet(nn.Module):
         self.classifier = nn.Sequential(nn.Linear(dim, 256), nn.GELU(), nn.Dropout(0.3), nn.Linear(256, 2))
         self.aux_quality = nn.Linear(dim, 6)
         self.pool_norm = nn.LayerNorm(dim)
+        # Saved with the weights so a checkpoint always says whether pool_norm was used.
+        # Older checkpoints lack it; _load_from_state_dict infers it from their weights.
+        self.register_buffer("pool_norm_on", torch.tensor(algo not in NO_POOL_NORM_ALGOS))
+        self._use_pool_norm = algo not in NO_POOL_NORM_ALGOS
         if algo == "cris":
             self.ib_mu = nn.Linear(dim, 128)
             self.ib_lv = nn.Linear(dim, 128)
             self.ib_dec = nn.Linear(128, dim)
         if algo == "vat":
             self.k_head = nn.Linear(dim, 6)
+
+    def _load_from_state_dict(self, state_dict, prefix, local_metadata, strict,
+                              missing_keys, unexpected_keys, error_msgs):
+        flag = prefix + "pool_norm_on"
+        w_key, b_key = prefix + "pool_norm.weight", prefix + "pool_norm.bias"
+        if flag not in state_dict:
+            w, b = state_dict.get(w_key), state_dict.get(b_key)
+            if w is None or b is None:
+                # Checkpoint predates pool_norm (results/novel v1): it was never applied.
+                state_dict[w_key] = self.pool_norm.weight.detach().clone()
+                state_dict[b_key] = self.pool_norm.bias.detach().clone()
+                used = False
+            else:
+                # A LayerNorm that is never applied gets no gradient and stays at its init (1, 0).
+                used = not (bool(torch.all(w == 1)) and bool(torch.all(b == 0)))
+            state_dict[flag] = torch.tensor(used)
+        super()._load_from_state_dict(state_dict, prefix, local_metadata, strict,
+                                      missing_keys, unexpected_keys, error_msgs)
+        self._use_pool_norm = bool(self.pool_norm_on)
 
     def encode(self, views: torch.Tensor) -> torch.Tensor:
         b, v, c, h, w = views.shape
@@ -88,15 +120,13 @@ class NovelAuthNet(nn.Module):
             q = self.pool_query.expand(z.size(0), -1, -1)
             pad = mask == 0
             attn, _ = self.pool_attn(q, z, z, key_padding_mask=pad, need_weights=False)
-            return self.pool_norm(0.5 * (attn.squeeze(1) + mean))
+            pooled = 0.5 * (attn.squeeze(1) + mean)
+            return self.pool_norm(pooled) if self._use_pool_norm else pooled
         w = gates if gates is not None else mask.to(z.dtype)
         w = w.masked_fill(mask == 0, 0)
         w = w / w.sum(dim=1, keepdim=True).clamp_min(1e-8)
         pooled = (w.unsqueeze(-1) * z).sum(dim=1)
-        # UGF, SFAQ, IGCR, and OGPD seed-42 checkpoints were trained without this norm.
-        if self.algo in {"ugf", "sfaq", "igcr", "ogpd"}:
-            return pooled
-        return self.pool_norm(pooled)
+        return self.pool_norm(pooled) if self._use_pool_norm else pooled
 
     def forward(self, views: torch.Tensor, mask: torch.Tensor) -> dict[str, torch.Tensor]:
         z = torch.nan_to_num(self.encode(views))

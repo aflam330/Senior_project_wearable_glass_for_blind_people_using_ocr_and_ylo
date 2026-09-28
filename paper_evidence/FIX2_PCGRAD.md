@@ -1,5 +1,7 @@
 # Fix 2: PCGrad
 
+> **Correction 2026-09-28.** Q-DUIG accuracies in this file were computed before three evaluation bugs were fixed: NaN entropy for fully confident notes (scored as p = 0.5), a volume feature that changed when views were masked, and a missing view self-gate in the policy path. Every checkpoint was re-evaluated with the fixed code; see `WEAK_RESULTS_FIX.md`. Where those numbers differ from the ones below, they supersede them, and verdicts based on the old numbers should be re-read. The original text is kept unchanged below.
+
 Seed 42. Two epochs from the saved full PRMVT checkpoint. For each auxiliary term, if its gradient has a negative dot product with the authentication gradient, that auxiliary gradient is projected onto the orthogonal complement of the authentication gradient. The mask-count cost has no parameter gradient, so it is skipped.
 
 Test accuracy from `results/qduig/auxfix_pcgrad/seed42/test_views/views_1_to_6.json`:

@@ -1,0 +1,26 @@
+{
+  "calibration_images": 200,
+  "selection_images": 300,
+  "tolerance": 0.005,
+  "selected_on": "validation (disjoint from calibration)",
+  "candidates": [
+    {
+      "fp32_layers": [
+        "model.22 (head)"
+      ],
+      "top1": 0.9094202898550725
+    },
+    {
+      "fp32_layers": [
+        "model.22 (head)",
+        "model.0"
+      ],
+      "top1": 0.9891304347826086
+    }
+  ],
+  "fp32_top1": 0.9891304347826086,
+  "chosen_fp32_layers": [
+    "model.22 (head)",
+    "model.0"
+  ]
+}

@@ -1,7 +1,7 @@
 """7-class facial emotion recognition with emotion-adaptive feedback.
 
 Uses the public FER+ ONNX model when available (auto-downloaded), with an
-OpenCV Haar cascade face detector. Falls back to a geometric smile/frown
+OpenCV Haar cascade face detector (YuNet on OpenCV 5, which dropped Haar). Falls back to a geometric smile/frown
 heuristic if ONNX Runtime or the weights are missing.
 """
 
@@ -20,13 +20,52 @@ FERPLUS_URL = (
     "emotion_ferplus/model/emotion-ferplus-8.onnx"
 )
 
-# OpenCV ships this cascade with the package.
+# OpenCV 4.x ships this cascade with the package. OpenCV 5 removed
+# CascadeClassifier and the cascade files, so YuNet is used there instead.
 _CASCADE_NAME = "haarcascade_frontalface_default.xml"
+
+YUNET_URL = (
+    "https://github.com/opencv/opencv_zoo/raw/main/models/face_detection_yunet/"
+    "face_detection_yunet_2023mar.onnx"
+)
+YUNET_ONNX = MODELS_DIR / "face_detection_yunet_2023mar.onnx"
 
 
 def _cascade_path() -> Path:
-    data = Path(cv2.data.haarcascades) / _CASCADE_NAME
-    return data
+    data = getattr(cv2, "data", None)
+    return Path(getattr(data, "haarcascades", "")) / _CASCADE_NAME
+
+
+def ensure_yunet_onnx(download: bool = True) -> Path | None:
+    if YUNET_ONNX.is_file() and YUNET_ONNX.stat().st_size > 10_000:
+        return YUNET_ONNX
+    if not download:
+        return None
+    MODELS_DIR.mkdir(parents=True, exist_ok=True)
+    try:
+        urllib.request.urlretrieve(YUNET_URL, YUNET_ONNX)
+        if YUNET_ONNX.stat().st_size > 10_000:
+            return YUNET_ONNX
+    except Exception:
+        return None
+    return None
+
+
+def _make_face_detector(download: bool):
+    """Return (detector, kind): Haar cascade when available, else YuNet, else (None, None)."""
+    cascade = _cascade_path()
+    if hasattr(cv2, "CascadeClassifier") and cascade.is_file():
+        clf = cv2.CascadeClassifier(str(cascade))
+        if not clf.empty():
+            return clf, "haar"
+    if hasattr(cv2, "FaceDetectorYN"):
+        path = ensure_yunet_onnx(download)
+        if path is not None:
+            try:
+                return cv2.FaceDetectorYN.create(str(path), "", (320, 320), 0.6, 0.3, 50), "yunet"
+            except Exception:
+                pass
+    return None, None
 
 
 def ensure_fer_onnx() -> Path | None:
@@ -99,8 +138,7 @@ class EmotionDetector:
     }
 
     def __init__(self, download: bool = True):
-        cascade = _cascade_path()
-        self.face = cv2.CascadeClassifier(str(cascade)) if cascade.is_file() else None
+        self.face, self.face_kind = _make_face_detector(download)
         self.session = None
         self.input_name = None
         self.fer7 = None
@@ -177,11 +215,23 @@ class EmotionDetector:
         except Exception:
             self.fer7 = None
 
-    def _faces(self, gray: np.ndarray) -> list[tuple[int, int, int, int]]:
+    def _faces(self, gray: np.ndarray, frame_bgr: np.ndarray | None = None) -> list[tuple[int, int, int, int]]:
         if self.face is None:
             return []
-        faces = self.face.detectMultiScale(gray, scaleFactor=1.15, minNeighbors=5, minSize=(48, 48))
-        return [tuple(map(int, f)) for f in faces]
+        if self.face_kind == "haar":
+            faces = self.face.detectMultiScale(gray, scaleFactor=1.15, minNeighbors=5, minSize=(48, 48))
+            return [tuple(map(int, f)) for f in faces]
+        img = frame_bgr if frame_bgr is not None else cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
+        h, w = img.shape[:2]
+        self.face.setInputSize((w, h))
+        _, dets = self.face.detect(img)
+        out = []
+        for d in dets if dets is not None else []:
+            x, y = max(0, int(d[0])), max(0, int(d[1]))
+            fw, fh = min(w - x, int(d[2])), min(h - y, int(d[3]))
+            if fw >= 24 and fh >= 24:
+                out.append((x, y, fw, fh))
+        return out
 
     def _ferplus(self, face_gray: np.ndarray) -> dict:
         face = cv2.resize(face_gray, (64, 64))
@@ -246,7 +296,7 @@ class EmotionDetector:
 
     def predict(self, frame_bgr: np.ndarray) -> dict:
         gray = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2GRAY)
-        faces = self._faces(gray)
+        faces = self._faces(gray, frame_bgr)
         if not faces:
             return {
                 "label": "neutral",
@@ -362,15 +412,25 @@ def tts_style_for_emotion(emotion: str) -> dict:
     }
 
 
+# Sentences carrying an authenticity verdict are never dropped when a message is shortened:
+# a stressed user must still hear "counterfeit".
+_SAFETY_WORDS = ("আসল", "জাল", "genuine", "counterfeit", "jaal", "fake")
+
+
 def _first_clause(text: str) -> str:
     stripped = (text or "").strip()
     if not stripped:
         return stripped
     for sep in ("।", "!", "?", ".", ";", "\n"):
         if sep in stripped:
-            head = stripped.split(sep, 1)[0].strip()
+            parts = [p.strip() for p in stripped.split(sep)]
+            head = parts[0]
             if len(head) >= 8:
-                return head + ("।" if sep == "।" else "")
+                end = "।" if sep == "।" else "."
+                keep = [p for p in parts[1:] if p and any(w in p.lower() for w in _SAFETY_WORDS)]
+                if not keep:
+                    return head + ("।" if sep == "।" else "")
+                return f"{end} ".join([head, *keep]) + end
     return stripped
 
 

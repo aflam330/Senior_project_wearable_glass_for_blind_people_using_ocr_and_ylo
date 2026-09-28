@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: "Prefix-robust authentication of Bangladeshi banknotes"
+message: "If you use this software or the JaalTaka split, cite this record."
+type: software
+authors:
+  - name: "JaalTaka contributors"
+repository-code: "https://github.com/aflam330/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo"
+license: MIT
+date-released: 2026-09-29

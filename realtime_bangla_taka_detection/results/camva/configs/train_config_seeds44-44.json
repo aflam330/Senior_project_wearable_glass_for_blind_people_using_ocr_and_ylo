@@ -1,0 +1,21 @@
+{
+  "created_utc": "2026-09-28T08:53:59.665494+00:00",
+  "device": "cpu",
+  "torch": "2.14.0+cu126",
+  "cuda": "12.6",
+  "epochs": 6,
+  "batch": 8,
+  "lr": 0.001,
+  "views": 6,
+  "split_seed": 42,
+  "training_seeds": [
+    44
+  ],
+  "trained": [
+    "baseline"
+  ],
+  "n_train_notes": 974,
+  "n_val_notes": 208,
+  "n_test_notes": 208,
+  "independent_unit": "physical_note_id"
+}

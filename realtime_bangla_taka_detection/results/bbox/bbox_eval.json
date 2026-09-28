@@ -1,0 +1,79 @@
+{
+  "synthetic_best.pt": {
+    "with_note": {
+      "n": 2052,
+      "detected": 1.0,
+      "iou_mean": 0.9083,
+      "iou_median": 0.9254,
+      "iou>=0.5": 1.0,
+      "iou>=0.75": 0.9839,
+      "iou>=0.9": 0.6486,
+      "class_correct_when_detected": 0.9966,
+      "area_ratio_median(pred/true)": 1.038,
+      "edge_error_median(share of box size)": 0.0195
+    },
+    "no_note_false_positive_rate": {
+      "fp@0.25": 0.0,
+      "fp@0.35": 0.0,
+      "fp@0.5": 0.0,
+      "n": 230
+    }
+  },
+  "real_best.pt": {
+    "with_note": {
+      "n": 40,
+      "detected": 0.975,
+      "iou_mean": 0.8636,
+      "iou_median": 0.9378,
+      "iou>=0.5": 0.95,
+      "iou>=0.75": 0.925,
+      "iou>=0.9": 0.75,
+      "class_correct_when_detected": 0.9744,
+      "area_ratio_median(pred/true)": 1.057,
+      "edge_error_median(share of box size)": 0.016
+    },
+    "note": "labels are heuristic; full-frame fallback labels skipped"
+  },
+  "synthetic_best_int8.onnx": {
+    "with_note": {
+      "n": 553,
+      "detected": 1.0,
+      "iou_mean": 0.9103,
+      "iou_median": 0.9253,
+      "iou>=0.5": 1.0,
+      "iou>=0.75": 0.9892,
+      "iou>=0.9": 0.6691,
+      "class_correct_when_detected": 0.991,
+      "area_ratio_median(pred/true)": 1.026,
+      "edge_error_median(share of box size)": 0.0193
+    },
+    "no_note_false_positive_rate": {
+      "fp@0.25": 0.0,
+      "fp@0.35": 0.0,
+      "fp@0.5": 0.0,
+      "n": 47
+    }
+  },
+  "real_best_int8.onnx": {
+    "with_note": {
+      "n": 40,
+      "detected": 0.925,
+      "iou_mean": 0.8151,
+      "iou_median": 0.9314,
+      "iou>=0.5": 0.9,
+      "iou>=0.75": 0.875,
+      "iou>=0.9": 0.65,
+      "class_correct_when_detected": 1.0,
+      "area_ratio_median(pred/true)": 1.036,
+      "edge_error_median(share of box size)": 0.0174
+    },
+    "note": "labels are heuristic; full-frame fallback labels skipped"
+  },
+  "app_detect_live_vs_raw": {
+    "images": 150,
+    "min_iou": 0.7485,
+    "mean_iou": 0.9873,
+    "yolo_path_loaded": "E:\\Final SP\\realtime_bangla_taka_detection\\models\\best.pt"
+  },
+  "worst_real_grid": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\bbox\\worst_real_boxes.jpg"
+}
