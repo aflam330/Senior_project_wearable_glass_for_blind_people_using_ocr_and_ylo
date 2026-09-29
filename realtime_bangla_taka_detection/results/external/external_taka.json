@@ -1,0 +1,141 @@
+{
+  "model": "models/best.pt",
+  "conf": 0.25,
+  "note": "no training, tuning or selection on these sets",
+  "nstu_detection_test": {
+    "images": 186,
+    "gt_boxes": 186,
+    "AP50_class_agnostic": 0.7958,
+    "at_conf_0.25": {
+      "precision": 0.8323,
+      "recall": 0.6935,
+      "mean_iou_of_matches": 0.8203
+    }
+  },
+  "nstu_recognition_test": {
+    "images": 1144,
+    "top1_accuracy": 0.1853,
+    "no_detection_rate": 0.6687,
+    "accuracy_when_detected": 0.5594,
+    "unique_originals": 1127,
+    "top1_accuracy_one_image_per_original": 0.1846,
+    "per_class_accuracy": {
+      "2": 0.3162,
+      "5": 0.5758,
+      "10": 0.0448,
+      "20": 0.1615,
+      "50": 0.068,
+      "100": 0.2126,
+      "200": 0.2266,
+      "500": 0.0317,
+      "1000": 0.1282
+    },
+    "confusions_top": [
+      [
+        "10->None",
+        117
+      ],
+      [
+        "500->None",
+        112
+      ],
+      [
+        "50->None",
+        96
+      ],
+      [
+        "2->None",
+        92
+      ],
+      [
+        "20->None",
+        89
+      ],
+      [
+        "200->None",
+        84
+      ],
+      [
+        "100->None",
+        78
+      ],
+      [
+        "1000->None",
+        57
+      ]
+    ]
+  },
+  "bangla_money_training_folders": {
+    "images": 1536,
+    "top1_accuracy": 0.9147,
+    "no_detection_rate": 0.0391,
+    "accuracy_when_detected": 0.9519,
+    "unique_originals": 1536,
+    "top1_accuracy_one_image_per_original": 0.9147,
+    "per_class_accuracy": {
+      "2": 0.9812,
+      "5": 0.9671,
+      "10": 0.8263,
+      "20": 0.9306,
+      "50": 0.9437,
+      "100": 0.9952,
+      "500": 0.8382,
+      "1000": 0.7844
+    },
+    "confusions_top": [
+      [
+        "1000->500",
+        36
+      ],
+      [
+        "10->None",
+        19
+      ],
+      [
+        "10->5",
+        16
+      ],
+      [
+        "500->None",
+        15
+      ],
+      [
+        "20->None",
+        10
+      ],
+      [
+        "5->None",
+        7
+      ],
+      [
+        "2->None",
+        4
+      ],
+      [
+        "50->None",
+        4
+      ]
+    ],
+    "outside_classes": {
+      "images": 101,
+      "predictions": [
+        [
+          "None",
+          57
+        ],
+        [
+          "5",
+          37
+        ],
+        [
+          "50",
+          4
+        ],
+        [
+          "2",
+          3
+        ]
+      ]
+    }
+  }
+}

@@ -1,6 +1,7 @@
 """Evaluate the trained YOLOv8 model on the test split and save sample predictions."""
 
 from pathlib import Path
+import json
 import random
 
 from ultralytics import YOLO
@@ -31,6 +32,17 @@ def main():
         print(f"  {name}: {metrics.box.maps[idx]:.4f}")
 
     print(f"\nValidation artifacts (incl. confusion matrix) saved to: {metrics.save_dir}")
+
+    n_images = len(list(TEST_IMAGES.glob("*.jpg")))
+    out = ROOT / "results" / "training_v2" / "test_eval" / "test_metrics.json"
+    out.write_text(json.dumps({
+        "split": "test", "n_images": n_images, "weights": "models/best.pt",
+        "precision": float(metrics.box.mp), "recall": float(metrics.box.mr),
+        "map50": float(metrics.box.map50), "map50_95": float(metrics.box.map),
+        "per_class_map50_95": {name: float(metrics.box.maps[idx]) for idx, name in model.names.items()},
+        "speed_ms": {k: float(v) for k, v in metrics.speed.items()},
+    }, indent=2), encoding="utf-8")
+    print(f"Metrics written to {out}")
 
     print("\n=== Saving sample predictions on test images ===")
     all_images = sorted(TEST_IMAGES.glob("*.jpg"))

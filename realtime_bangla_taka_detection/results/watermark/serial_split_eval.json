@@ -1,0 +1,118 @@
+{
+ "split": "results/serial_split",
+ "counts": {
+  "train": {
+   "notes": 946,
+   "counterfeit": 385,
+   "view6_registered": 867
+  },
+  "val": {
+   "notes": 222,
+   "counterfeit": 102,
+   "view6_registered": 197
+  },
+  "test": {
+   "notes": 222,
+   "counterfeit": 101,
+   "view6_registered": 197
+  }
+ },
+ "W_deep": {
+  "C_on_val": 100.0,
+  "test_registered": {
+   "n": 197,
+   "accuracy": 0.883248730964467,
+   "auc": 0.9390847247990105,
+   "false_counterfeit_on_genuine": 1,
+   "genuine_n": 98,
+   "fcr_wilson95": [
+    0.0018035477567974675,
+    0.055554809913420274
+   ],
+   "counterfeit_missed": 22,
+   "counterfeit_n": 99,
+   "miss_wilson95": [
+    0.15158101831950355,
+    0.31361521060706726
+   ]
+  }
+ },
+ "PROBE": {
+  "C_on_val": 10.0,
+  "k1": {
+   "n": 222,
+   "accuracy": 0.8513513513513513,
+   "auc": 0.9150642336960969,
+   "false_counterfeit_on_genuine": 1,
+   "genuine_n": 121,
+   "fcr_wilson95": [
+    0.0014603733854198359,
+    0.04533064360424888
+   ],
+   "counterfeit_missed": 32,
+   "counterfeit_n": 101,
+   "miss_wilson95": [
+    0.2342352631167658,
+    0.41285091427724097
+   ]
+  },
+  "k2": {
+   "n": 222,
+   "accuracy": 0.8423423423423423,
+   "auc": 0.9158006709761886,
+   "false_counterfeit_on_genuine": 1,
+   "genuine_n": 121,
+   "fcr_wilson95": [
+    0.0014603733854198359,
+    0.04533064360424888
+   ],
+   "counterfeit_missed": 34,
+   "counterfeit_n": 101,
+   "miss_wilson95": [
+    0.251965742228649,
+    0.4332732808524923
+   ]
+  },
+  "k6": {
+   "n": 222,
+   "accuracy": 0.8378378378378378,
+   "auc": 0.9477947794779479,
+   "false_counterfeit_on_genuine": 1,
+   "genuine_n": 121,
+   "fcr_wilson95": [
+    0.0014603733854198359,
+    0.04533064360424888
+   ],
+   "counterfeit_missed": 35,
+   "counterfeit_n": 101,
+   "miss_wilson95": [
+    0.2608952761313301,
+    0.44342016979337817
+   ]
+  }
+ },
+ "HYBRID_view1_plus_watermark": {
+  "coef": [
+   0.507,
+   0.503,
+   2.022
+  ],
+  "test": {
+   "n": 222,
+   "accuracy": 0.9144144144144144,
+   "auc": 0.9307748956713854,
+   "false_counterfeit_on_genuine": 5,
+   "genuine_n": 121,
+   "fcr_wilson95": [
+    0.017777486075125137,
+    0.09309480708330535
+   ],
+   "counterfeit_missed": 14,
+   "counterfeit_n": 101,
+   "miss_wilson95": [
+    0.08439988610512009,
+    0.21931068010467694
+   ]
+  }
+ }
+}

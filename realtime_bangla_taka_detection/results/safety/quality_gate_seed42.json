@@ -1,0 +1,274 @@
+{
+ "model": "results\\qduig\\prefix_ft\\seed42",
+ "rule": "Image-quality gate in front of confidence rejection (PRMVT, seed 42).\n\nWhy: results/safety/rejection_seed42.json shows that confidence rejection alone still gives many\nconfident wrong verdicts under low light and over-exposure. A corrupted image can look confident.\n\nRule, fixed on CLEAN VALIDATION views before any test number was read:\n  per view: mean luma Y, saturated share (Y >= 250), near-black share (Y <= 5)\n  thresholds: dark if mean Y < 1st percentile of clean VAL views\n              blown if saturated share > 99th percentile of clean VAL views\n              blocked if near-black share > 99th percentile of clean VAL views\n  a note is answered only if every view it uses passes the gate AND\n  max(p, 1-p) >= t, with t chosen as in eval_safety_rejection.py (largest t on 0.50..0.99 that\n  answers >= 95 % of clean VAL notes, gate applied).\n  Otherwise the glass asks for better light / to move the finger instead of answering.",
+ "views": {
+  "1": {
+   "gate_thresholds_from_clean_val": {
+    "dark_mean_y": 109.30437670789225,
+    "blown_sat": 0.0941621289710686,
+    "blocked_black": 0.039083285914460954
+   },
+   "confidence_threshold": 0.65,
+   "clean_val_answered": 0.9519230769230769,
+   "clean": {
+    "confidence_only": {
+     "answered": 202,
+     "coverage": 0.9711538461538461,
+     "wrong_verdicts": 5,
+     "wrong_verdict_rate": 0.02403846153846154,
+     "wrong_verdict_wilson95": [
+      0.010310353369145105,
+      0.05502903228504181
+     ],
+     "selective_accuracy": 0.9752475247524752
+    },
+    "gate_and_confidence": {
+     "answered": 193,
+     "coverage": 0.9278846153846154,
+     "wrong_verdicts": 5,
+     "wrong_verdict_rate": 0.02403846153846154,
+     "wrong_verdict_wilson95": [
+      0.010310353369145105,
+      0.05502903228504181
+     ],
+     "selective_accuracy": 0.9740932642487047
+    },
+    "gate_rejected_notes": 9
+   },
+   "low_light_0.35": {
+    "confidence_only": {
+     "answered": 197,
+     "coverage": 0.9471153846153846,
+     "wrong_verdicts": 65,
+     "wrong_verdict_rate": 0.3125,
+     "wrong_verdict_wilson95": [
+      0.2533893578488427,
+      0.3784110061967461
+     ],
+     "selective_accuracy": 0.6700507614213198
+    },
+    "gate_and_confidence": {
+     "answered": 0,
+     "coverage": 0.0,
+     "wrong_verdicts": 0,
+     "wrong_verdict_rate": 0.0,
+     "wrong_verdict_wilson95": [
+      0.0,
+      0.01813430412157008
+     ],
+     "selective_accuracy": null
+    },
+    "gate_rejected_notes": 208
+   },
+   "low_light_0.2": {
+    "confidence_only": {
+     "answered": 199,
+     "coverage": 0.9567307692307693,
+     "wrong_verdicts": 86,
+     "wrong_verdict_rate": 0.41346153846153844,
+     "wrong_verdict_wilson95": [
+      0.3486966034711957,
+      0.4813651030113838
+     ],
+     "selective_accuracy": 0.5678391959798995
+    },
+    "gate_and_confidence": {
+     "answered": 0,
+     "coverage": 0.0,
+     "wrong_verdicts": 0,
+     "wrong_verdict_rate": 0.0,
+     "wrong_verdict_wilson95": [
+      0.0,
+      0.01813430412157008
+     ],
+     "selective_accuracy": null
+    },
+    "gate_rejected_notes": 208
+   },
+   "occlusion_0.55": {
+    "confidence_only": {
+     "answered": 178,
+     "coverage": 0.8557692307692307,
+     "wrong_verdicts": 86,
+     "wrong_verdict_rate": 0.41346153846153844,
+     "wrong_verdict_wilson95": [
+      0.3486966034711957,
+      0.4813651030113838
+     ],
+     "selective_accuracy": 0.5168539325842697
+    },
+    "gate_and_confidence": {
+     "answered": 0,
+     "coverage": 0.0,
+     "wrong_verdicts": 0,
+     "wrong_verdict_rate": 0.0,
+     "wrong_verdict_wilson95": [
+      0.0,
+      0.01813430412157008
+     ],
+     "selective_accuracy": null
+    },
+    "gate_rejected_notes": 208
+   },
+   "brightness_2.2": {
+    "confidence_only": {
+     "answered": 178,
+     "coverage": 0.8557692307692307,
+     "wrong_verdicts": 78,
+     "wrong_verdict_rate": 0.375,
+     "wrong_verdict_wilson95": [
+      0.3120336227049124,
+      0.4424999533254802
+     ],
+     "selective_accuracy": 0.5617977528089888
+    },
+    "gate_and_confidence": {
+     "answered": 0,
+     "coverage": 0.0,
+     "wrong_verdicts": 0,
+     "wrong_verdict_rate": 0.0,
+     "wrong_verdict_wilson95": [
+      0.0,
+      0.01813430412157008
+     ],
+     "selective_accuracy": null
+    },
+    "gate_rejected_notes": 208
+   }
+  },
+  "6": {
+   "gate_thresholds_from_clean_val": {
+    "dark_mean_y": 80.517150585992,
+    "blown_sat": 0.1372788581419855,
+    "blocked_black": 0.04121668389118817
+   },
+   "confidence_threshold": 0.5,
+   "clean_val_answered": 0.8942307692307693,
+   "clean": {
+    "confidence_only": {
+     "answered": 208,
+     "coverage": 1.0,
+     "wrong_verdicts": 4,
+     "wrong_verdict_rate": 0.019230769230769232,
+     "wrong_verdict_wilson95": [
+      0.007503135858899522,
+      0.04839523348876402
+     ],
+     "selective_accuracy": 0.9807692307692307
+    },
+    "gate_and_confidence": {
+     "answered": 184,
+     "coverage": 0.8846153846153846,
+     "wrong_verdicts": 3,
+     "wrong_verdict_rate": 0.014423076923076924,
+     "wrong_verdict_wilson95": [
+      0.004916968346132377,
+      0.0415403846950078
+     ],
+     "selective_accuracy": 0.9836956521739131
+    },
+    "gate_rejected_notes": 24
+   },
+   "low_light_0.35": {
+    "confidence_only": {
+     "answered": 208,
+     "coverage": 1.0,
+     "wrong_verdicts": 73,
+     "wrong_verdict_rate": 0.35096153846153844,
+     "wrong_verdict_wilson95": [
+      0.289336390876017,
+      0.4179921036217587
+     ],
+     "selective_accuracy": 0.6490384615384616
+    },
+    "gate_and_confidence": {
+     "answered": 0,
+     "coverage": 0.0,
+     "wrong_verdicts": 0,
+     "wrong_verdict_rate": 0.0,
+     "wrong_verdict_wilson95": [
+      0.0,
+      0.01813430412157008
+     ],
+     "selective_accuracy": null
+    },
+    "gate_rejected_notes": 208
+   },
+   "low_light_0.2": {
+    "confidence_only": {
+     "answered": 208,
+     "coverage": 1.0,
+     "wrong_verdicts": 86,
+     "wrong_verdict_rate": 0.41346153846153844,
+     "wrong_verdict_wilson95": [
+      0.3486966034711957,
+      0.4813651030113838
+     ],
+     "selective_accuracy": 0.5865384615384616
+    },
+    "gate_and_confidence": {
+     "answered": 0,
+     "coverage": 0.0,
+     "wrong_verdicts": 0,
+     "wrong_verdict_rate": 0.0,
+     "wrong_verdict_wilson95": [
+      0.0,
+      0.01813430412157008
+     ],
+     "selective_accuracy": null
+    },
+    "gate_rejected_notes": 208
+   },
+   "occlusion_0.55": {
+    "confidence_only": {
+     "answered": 208,
+     "coverage": 1.0,
+     "wrong_verdicts": 100,
+     "wrong_verdict_rate": 0.4807692307692308,
+     "wrong_verdict_wilson95": [
+      0.41383504849810515,
+      0.5484008862758015
+     ],
+     "selective_accuracy": 0.5192307692307693
+    },
+    "gate_and_confidence": {
+     "answered": 0,
+     "coverage": 0.0,
+     "wrong_verdicts": 0,
+     "wrong_verdict_rate": 0.0,
+     "wrong_verdict_wilson95": [
+      0.0,
+      0.01813430412157008
+     ],
+     "selective_accuracy": null
+    },
+    "gate_rejected_notes": 208
+   },
+   "brightness_2.2": {
+    "confidence_only": {
+     "answered": 208,
+     "coverage": 1.0,
+     "wrong_verdicts": 107,
+     "wrong_verdict_rate": 0.5144230769230769,
+     "wrong_verdict_wilson95": [
+      0.44685720031351567,
+      0.5814658486060544
+     ],
+     "selective_accuracy": 0.4855769230769231
+    },
+    "gate_and_confidence": {
+     "answered": 0,
+     "coverage": 0.0,
+     "wrong_verdicts": 0,
+     "wrong_verdict_rate": 0.0,
+     "wrong_verdict_wilson95": [
+      0.0,
+      0.01813430412157008
+     ],
+     "selective_accuracy": null
+    },
+    "gate_rejected_notes": 208
+   }
+  }
+ }
+}

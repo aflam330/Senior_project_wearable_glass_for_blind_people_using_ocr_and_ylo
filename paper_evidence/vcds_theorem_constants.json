@@ -1,0 +1,14 @@
+{
+  "n": 208,
+  "delta": 0.05,
+  "hoeffding_deviation": 0.09416739715938784,
+  "baseline_drop_notes": 38,
+  "baseline_drop": 0.18269230769230768,
+  "prefix_drop_notes": 1,
+  "prefix_drop": 0.004807692307692308,
+  "prefix_k5_minus_k6_notes": 1,
+  "sources": {
+    "baseline": "results/qduig/eval/seed42/baseline/baseline_{k}view/test_metrics.json",
+    "prefix": "results/qduig/prefix_ft/seed42/test_views/views_1_to_6.json"
+  }
+}

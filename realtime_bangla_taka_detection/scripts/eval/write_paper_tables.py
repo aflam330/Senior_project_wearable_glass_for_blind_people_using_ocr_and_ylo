@@ -53,7 +53,15 @@ def _novel(algo: str, seed: int, v2: bool) -> dict[int, float] | None:
 
 
 def _prmvt(seed: int) -> dict[int, float] | None:
-    return _acc_views(ROOT / "results" / "qduig" / "prefix_ft" / f"seed{seed}" / "test_views" / "views_1_to_6.json")
+    # post-NaN-fix evaluation (2026-09-28); test_views/ holds the pre-fix numbers
+    d = ROOT / "results" / "qduig" / "prefix_ft" / f"seed{seed}" / "test_views_20260928"
+    out = {}
+    for k in range(1, 7):
+        payload = _load(d / f"{k}view" / "test_metrics.json")
+        if not payload:
+            return None
+        out[k] = float(payload["accuracy"])
+    return out
 
 
 SERIES = [

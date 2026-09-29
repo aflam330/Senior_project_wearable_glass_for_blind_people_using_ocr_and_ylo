@@ -110,3 +110,71 @@ PAC-Bayes half-data McAllester: PASS as a non-vacuous bound (0.11271182900151713
 Occlusion ensemble and the 0.99 rejection rule: unchanged from `occlusion_decision.json`.
 Multi-note composites: PASS at IoU ≥ 0.5 on 24, 36, and 60 pasted notes. Live photographs of several notes: NOT_MEASURED.
 Pi 5, mobile latency, user study, and foreign-currency authenticity: NOT_MEASURED. Protocols are in the files named in `PAPER_FINAL.md`.
+
+## Audit update 2026-09-29, second pass
+
+Project Python compile: 168 files, 0 errors (`final_pass_20260929.json`).
+Claim validation: exit 0, 120 claims.
+Oracle identity: 205 correct, 201 learned, gap 4, unsolvable 3.
+External image folders: 0 images (`external_bdt_manifest.json`).
+Test split was not read to choose a model in this pass. No JaalTaka checkpoint was replaced.
+
+## Audit update 2026-09-29, comparison sets
+
+Four Bangladeshi image collections and ModelNet40 point clouds are in `data set for comparison`. Manifest: `comparison_dataset_manifest.json`. Authenticity was not scored on the denomination and coin folders.
+
+ModelNet standing render test (`subset10_seed42_e40.json`): fixed and prefix both 0.64 at 1 view and 0.77 at 6 views, n = 100. Prefix validation peaked before the last epoch. MVP-N is absent. Foreign-currency folders were not added.
+
+---
+
+## Final audit, 2026-09-29 (evening)
+
+```
+SYNTAX:                 PASS  243 Python files, 0 errors
+CHECKPOINTS:            PASS  158 model files load
+METRICS REPRODUCE:      PASS  970 / 970 stored accuracies recomputed from saved predictions
+CLAIMS:                 PASS  195 claims, 0 missing artifacts, 166 value-checked (all equal)
+TEST LEAKAGE:           PASS  note-disjoint split, 0 overlap; every threshold and model choice on validation;
+                              jaal operating points written before whole-note scores were read
+CONTAMINATION:          PASS  "wild 96.9 %" labelled a source-domain check everywhere it appears as a result;
+                              Diverse dataset excluded (MD5 = training source)
+SAME-ARCHITECTURE:      PASS  3 arms x 3 seeds complete; prefix wins at 1 view on every seed with shared BN
+SOTA (same split):      PASS as reported; NO state-of-the-art claim (frozen probes tie; 60 paired tests, none significant)
+JAAL VERDICT:           ON as safe policy E for 500 / 1,000 Taka. Never says "counterfeit".
+                              JaalTaka test counterfeit passed 0 / 88 (CI 0-4.2 %); whole-note 0 / 25 (4 groups; margin 2.4 log-odds)
+SAFETY UNDER BAD LIGHT: PASS with quality gate (0 / 208 wrong per severe condition); confidence rejection alone: FAIL (59-86 wrong at 1 view)
+THEOREMS:               PASS after 2 corrections (Theorem 6 wording; VCDS_THEOREM noise claim withdrawn)
+PI 5:                   READY_FOR_DEVICE
+USER STUDY:             READY_FOR_DEVICE (protocol ready, no participant data)
+```
+
+Details: `FINAL_SCAN.md`, `CORRECTIONS.md` (rows 10–19), `QUALITY_LOOP_FINAL.md`, `PAPER_FINAL.md`.
+
+## Audit addendum, 2026-09-29 (night)
+
+```
+EXTRA SEEDS:        DONE  MTPT, VCIE, APC, CRIS, MAVT, SAVS seeds 43-44; 18 three-seed methods (BENCHMARK_FINAL.md)
+FIGURES 1-12:       REDRAWN from post-fix files; superseded Q-DUIG-era set moved to Unused/superseded_figures
+APPROACH A:         DONE, NEGATIVE  synthetic whole notes: real AUC 0.689, 14/20 real counterfeits passed -> not deployed
+MVP-N:              DONE  attention head: prefix fixes VCDS (40.7 -> 48.0 % at 1 view); concat head: counterexample
+SERIAL AUDIT:       NEW FINDING  JaalTaka counterfeits share serials; serial lookup = 90.2 % on test (JAALTAKA_SERIAL_AUDIT.md)
+THEOREMS 8-11:      ADDED with proofs and measured checks
+POLICY FIGURE 7:    RE-RUN with fixed code; 0.4135 -> 0.8606 (CORRECTIONS.md row 20)
+CLAIMS:             PASS  211 claims, 182 value-checked, all equal
+METRICS REPRODUCE:  PASS  970 / 970
+```
+
+## Audit addendum, 2026-09-30
+
+```
+SERIAL-DISJOINT SPLIT:  DONE   prefix network 90.1 / 87.8 % (1 / 6 views) on unseen counterfeit prints (was 98 %)
+WATERMARK DETECTOR:     DONE   back-lit window, 1,261 / 1,390 registered; alone 88.3 % on unseen prints
+HYBRID (net + wm):      DONE   95.5 % on unseen prints at 6 views, FCR 3/121, McNemar p = 0.0002
+SERIAL BLACKLIST:       DONE   0 / 19 unseen-serial counterfeits (JaalTaka); real photos 12 / 25 flagged (1 of 4 prints), 0 / 450 genuine
+CV OVER ALL NOTES:      DONE   98.3 / 95.8 % (note / serial folds, 1 view)
+FUSION-GENERAL:         DONE   prefix helps pooling heads; concat trade not removable (4 repairs)
+THEORY:                 ADDED  Propositions 12-14 (serial recall, print-sharing optimism, detector combination)
+PI 5 / USER STUDY:      READY_FOR_DEVICE (PI5_READY.md, USER_STUDY_READY.md, SUS/NASA-TLX scorer self-checks pass)
+TEST LEAKAGE:           none: every threshold, C and combiner fitted on TRAIN / VAL; serial-disjoint rule written before training
+CLAIMS:                 PASS 234, value-checked 205
+```

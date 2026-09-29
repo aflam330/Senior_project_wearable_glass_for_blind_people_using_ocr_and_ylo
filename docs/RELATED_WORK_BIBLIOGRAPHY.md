@@ -1,6 +1,6 @@
 # Related Work Bibliography (from Review and paper links.xlsx)
 
-Source file: Review and paper links.xlsx (sheet **Review**).
+Source file: `literature/Review and paper links.xlsx` (sheet **Review**).
 Total papers with content: **52** (empty serial rows skipped).
 
 Tag legend: currency · smart-glass · ocr · object-detection · 	ts-speech · angladesh

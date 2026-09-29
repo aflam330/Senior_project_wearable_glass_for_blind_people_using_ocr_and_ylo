@@ -17,7 +17,7 @@ This is a positioning document, not a claim of priority. No method below is desc
 
 1. **Quality (RSQA)** — not a scalar gate or hand-crafted blur threshold. A 12-factor descriptor is an *input* to a learned bilinear residual attention. Thresholds, if any, are fit on **validation** usability vs leave-one-out agreement.
 2. **Diversity (CVR)** — not cosine. Residual energy after projection onto the span of selected embeddings × incremental log-det volume.
-3. **Uncertainty / calibration (HER)** — temperature plus quality- and entropy-conditioned residuals, fit on val NLL. Temperature, entropy mapping, confidence, and MC dropout are retained as controls.
+3. **Uncertainty / calibration (HER)** — temperature plus quality- and entropy-conditioned logit residuals, fit on val NLL. Temperature, entropy mapping, confidence, and MC dropout are retained as controls.
 4. **Information gain (PCR-IG)** — supervised surrogate of binary-entropy reduction from prefix→prefix+1 rollouts on **train/val only**.
 5. **Policy (CRIQP)** — STOP iff predicted utility ≤ 0: `U = IG · usable · (1 − redundancy) − λ ΔC`. Cost weights chosen on the **validation Pareto** frontier.
 6. **Fusion (HGEF)** — hypernetwork gate + residual shift from auxiliary evidence, not mean or concat-MLP alone.
@@ -33,3 +33,26 @@ Multi-view authentication; sequential visual acquisition; active perception; inf
 - First banknote authenticator.
 - First quality-aware or uncertainty-aware fusion.
 - Automatic superiority over the CNN+ViT baseline (the previous CAMVA run lost on 1–5 views).
+
+## Algorithm labels after the additional-method search
+
+The same labels, with citations, are in `paper_evidence/NOVELTY_DECLARATION.md`. Short form:
+
+| algorithm | label |
+|---|---|
+| PRMVT | EXTENDS |
+| NDAL | ADAPTED |
+| PRAVT | ADAPTED |
+| VAT | EXTENDS |
+| UGF | ADAPTED |
+| CRIS | ADAPTED |
+| SAVS | ADAPTED |
+| MAVT | ADAPTED |
+| VCIE | ADAPTED |
+| MTPT | ADAPTED |
+| CVS | EXTENDS |
+| OGPD | EXTENDS |
+
+Banknote authentication with a phone camera under visible light is prior work (Sensors 2019, “Joint Banknote Recognition and Counterfeit Detection Using Explainable Artificial Intelligence”; smartphone visible-light fake-banknote CNNs). Those systems do not study a fixed view-count training collapse. That difference is the PRMVT claim, and it is an extension of missing-view training, not an empty field.
+
+Search coverage: web-index hits from CVF, arXiv, OpenReview, AAAI, IJCAI, MDPI, PMC, and Research Square. Scopus, IEEE Xplore, ACM DL, and Web of Science were not searched as separate databases.

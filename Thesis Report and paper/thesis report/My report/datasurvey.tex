@@ -1,0 +1,171 @@
+\clearpage
+\chapter{Dataset and Data Engineering}
+\label{chap:dataset}
+
+\section{Dataset}
+Savior Glass combines several vision tasks, and each task needs its own data. Table~\ref{tab:datasets} lists every dataset used in this project, what it was used for, and how it was split. All training, validation and test splits are disjoint; where the same physical note or person could appear in more than one image, the split was made by the physical unit (note or writer), not by image.
+
+\begin{table}[!htbp]
+\centering
+\caption{Datasets used in this project}
+\label{tab:datasets}
+\begin{tabular}{|p{3.2cm}|p{3.4cm}|p{3.1cm}|p{4.2cm}|}
+\hline
+\textbf{Dataset} & \textbf{Content} & \textbf{Task} & \textbf{Split / use} \\ \hline
+BanglaTaka \cite{banglataka} & 5,073 background-free Taka photos, 9 denominations & Currency foregrounds & 80/10/10 by source note \\ \hline
+COCO val2017 \cite{coco} & 1,500 natural photos (of 5,000 on disk) & Backgrounds & Random crops for compositing \\ \hline
+Synthetic Taka detection set & 22,315 composites (this work) & Taka detection & 17,844 / 2,233 / 2,238 \\ \hline
+Raw Taka photos & 450 phone photos, 50 per denomination & Taka detection & Test only \\ \hline
+JaalTaka \cite{jaaltaka} & 1,390 notes $\times$ 6 views = 8,340 images & Genuine vs counterfeit & 974 / 208 / 208 notes \\ \hline
+RAF-DB \cite{rafdb} & 15,339 face images, 7 expressions & Emotion & Official 12,271 / 3,068 \\ \hline
+OCR test set & 40 Bangla + 40 English phrases & OCR evaluation & Test only \\ \hline
+Ekush \cite{ekush} & 367,018 handwritten Bangla characters, 122 classes & Bangla character recognition & Writer-disjoint 2,429 / 303 / 305 writers \\ \hline
+COCO val2017 subset & 250 images, 77 classes present & Object evaluation & Test only \\ \hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection{Implications of These Datasets on Our Research}
+The datasets define what each result means. The Taka detector is trained only on synthetic composites, so its test score on composites measures performance on data that is statistically similar to training; the raw photograph set is closer to real use. JaalTaka is split by physical note, so the authenticator is never tested on a note it has seen in training, but all notes come from one capture collection, so camera and session changes are not tested. RAF-DB is a standard benchmark with an official split, which allows comparison with published work. The OCR set is small and mainly printed text, which is enough to show the difference between Bangla and English but not to give a precise estimate for all kinds of signs.
+
+\section{Currency Detection Data Engineering}
+
+\subsection{Source Currency Dataset (Foreground)}
+The banknote images come from the BanglaTaka dataset, ``A Diverse Image Dataset for Bangladeshi Currency Recognition'', on Mendeley Data \cite{banglataka}. It contains 5,073 background-free images of Taka notes of all nine circulating denominations, captured with different mobile phones and cropped to the note (Table~\ref{tab:banglataka}). Because each image is a tight crop of one note, it is ideal foreground material for compositing.
+
+\begin{table}[!htbp]
+\centering
+\caption{Per-denomination image counts in the BanglaTaka source dataset}
+\label{tab:banglataka}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Denomination} & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 500 & 1000 & \textbf{Total} \\ \hline
+\textbf{Images} & 445 & 660 & 419 & 480 & 416 & 565 & 423 & 1,243 & 422 & \textbf{5,073} \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Background Dataset}
+Real backgrounds were taken from the COCO val2017 split \cite{coco}, which contains natural photographs of rooms, desks, streets, hands and outdoor scenes. We downloaded 1,500 images programmatically. Using real photographs instead of plain colours or noise, as in an earlier internal version of the pipeline, was the single most important change for generalising to real camera frames, because it forces the detector to separate the note from realistic clutter, texture and lighting.
+
+\subsection{The Domain-Gap Problem}
+A model trained only on background-free notes learns that the note fills the whole frame on a plain background. An early version of this project labelled every training image with a box covering the entire frame. It scored well on its own synthetic test set but failed to detect notes on a live webcam, where the note is small, rotated and surrounded by objects. This failure motivated the compositing redesign.
+
+\subsection{Copy-Paste Compositing Process}
+Each source note is pasted onto a randomly chosen and randomly cropped COCO background after a chain of random transformations (Figure~\ref{fig:compositing}). Because the position and size of each pasted note are known exactly, the YOLO label is computed directly from the paste geometry. For a note of pixel size $(w,h)$ pasted with its top-left corner at $(x,y)$ on a square canvas of size $S=640$:
+\begin{align}
+x_c &= \frac{x + w/2}{S}, \qquad y_c = \frac{y + h/2}{S}, \\
+b_w &= \frac{w}{S}, \qquad\qquad\;\; b_h = \frac{h}{S},
+\end{align}
+where $(x_c, y_c)$ is the normalised box centre and $(b_w, b_h)$ the normalised box size. This closed-form labelling produced a fully labelled dataset with zero manual annotation.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig_compositing.jpg}
+    \caption{Copy-paste compositing applied to a 100 Taka note: (a) background-free source note, (b) real COCO background, (c) note after perspective warp, rotation, scaling and colour jitter, (d) final composite with the automatically generated bounding box and label}
+    \label{fig:compositing}
+\end{figure}
+
+\subsection{Augmentation Operations}
+Table~\ref{tab:aug} lists the domain-randomisation operations. The ranges were chosen to cover, and in most cases slightly exceed, the variation expected from a camera held by a person.
+
+\begin{table}[!htbp]
+\centering
+\caption{Domain-randomisation operations used in compositing}
+\label{tab:aug}
+\begin{tabular}{|p{2.6cm}|p{4.6cm}|p{6cm}|}
+\hline
+\textbf{Stage} & \textbf{Operation} & \textbf{Setting} \\ \hline
+\multirow{4}{*}{Geometry} & Perspective warp & 70\% probability, corner jitter 8\% \\ \cline{2-3}
+ & Rotation & $\pm30^\circ$, expanded canvas, transparent fill \\ \cline{2-3}
+ & Scale & Note occupies 0.25--0.90 of the canvas \\ \cline{2-3}
+ & Placement & Random position \\ \hline
+\multirow{2}{*}{Photometric} & HSV jitter & H $\pm18^\circ$, S $\times$0.5--1.5, V $\times$0.4--1.6 \\ \cline{2-3}
+ & Brightness / contrast & 0.4--1.6 / 0.7--1.3 \\ \hline
+\multirow{3}{*}{Sensor} & Motion blur & 20\% probability, kernel 3/5/7, horizontal or vertical \\ \cline{2-3}
+ & Gaussian noise & 50\% probability, $\sigma \approx 12$ \\ \cline{2-3}
+ & JPEG re-compression & Quality 55--92 \\ \hline
+Balance & Negative images & 10\% background-only images with empty labels \\ \hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection{Final Detection Dataset}
+Four composites were generated per source note, plus background-only negatives. The data was split 80/10/10 \textit{by source note}, so no physical note image appears in more than one split (Table~\ref{tab:split}).
+
+\begin{table}[!htbp]
+\centering
+\caption{Composition of the synthetic Taka detection dataset}
+\label{tab:split}
+\begin{tabular}{|l|r|r|r|r|}
+\hline
+\textbf{Split} & \textbf{Positive} & \textbf{Negative} & \textbf{Total} & \textbf{Note instances} \\ \hline
+Train & 16,224 & 1,620 & 17,844 & 16,224 \\ \hline
+Validation & 2,016 & 217 & 2,233 & 2,016 \\ \hline
+Test & 2,052 & 186 & 2,238 & 2,052 \\ \hline
+\textbf{Total} & \textbf{20,292} & \textbf{2,023} & \textbf{22,315} & \textbf{20,292} \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Raw Photograph Test Set}
+To test the detector on images that are not composites, 450 raw phone photographs of notes, 50 for each of the nine denominations, were taken from the raw BanglaTaka collection and labelled with their denomination. These images show real paper, real lighting and real camera noise, but they are not independent of the training data in the strict sense: the raw collection is the same source from which the training foregrounds were cropped, so some physical notes may overlap. This set is therefore a useful but optimistic check of real-image behaviour.
+
+\section{Currency Authentication Data}
+The authenticator is trained on the JaalTaka collection of genuine and counterfeit Bangladeshi notes \cite{jaaltaka}. Every physical note is photographed in six ordered close-up views that show different regions and security features (Figure~\ref{fig:jaaltaka}). Table~\ref{tab:jaaltaka} gives the statistics of the split used in all experiments.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{jaal_real_v1.jpg}
+    \includegraphics[width=0.3\textwidth]{jaal_real_v2.jpg}
+    \includegraphics[width=0.3\textwidth]{jaal_real_v3.jpg}\\[3pt]
+    \includegraphics[width=0.3\textwidth]{jaal_real_v4.jpg}
+    \includegraphics[width=0.3\textwidth]{jaal_real_v5.jpg}
+    \includegraphics[width=0.3\textwidth]{jaal_real_v6.jpg}
+    \caption{The six ordered views of one genuine note in the JaalTaka collection. Each view shows a different region, such as the portrait with the hologram strip and the serial number.}
+    \label{fig:jaaltaka}
+\end{figure}
+
+\begin{table}[!htbp]
+\centering
+\caption{JaalTaka split used for authentication (split seed 42)}
+\label{tab:jaaltaka}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Item} & \textbf{Value} \\ \hline
+Physical notes & 1,390 \\ \hline
+Genuine / counterfeit notes & 802 / 588 \\ \hline
+Views per note & 6 \\ \hline
+Images & 8,340 \\ \hline
+Train / validation / test notes & 974 / 208 / 208 \\ \hline
+Train genuine / counterfeit & 562 / 412 \\ \hline
+Note overlap between splits (train--val, train--test, val--test) & 0 / 0 / 0 \\ \hline
+\end{tabular}
+\end{table}
+
+An earlier split of the same data at the image level produced an accuracy of 1.00, because views of the same note appeared in both training and test data. That number was a data-leakage artefact and is not reported as a result; all authentication results in this thesis use the note-disjoint split above.
+
+\section{Emotion Recognition Data}
+Emotion recognition uses the Real-world Affective Faces Database (RAF-DB) \cite{rafdb} with its official training (12,271 images) and test (3,068 images) split. The class distribution of the test set is imbalanced (Table~\ref{tab:rafdb}): happy faces are sixteen times as frequent as fearful ones, which later explains the weaker recall for fear and disgust.
+
+\begin{table}[!htbp]
+\centering
+\caption{Class distribution of the RAF-DB official test set}
+\label{tab:rafdb}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Class} & Happy & Sad & Angry & Surprise & Fear & Disgust & Neutral & \textbf{Total} \\ \hline
+\textbf{Images} & 1,185 & 478 & 162 & 329 & 74 & 160 & 680 & \textbf{3,068} \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Text Recognition Data}
+\subsection{OCR Evaluation Set}
+To measure OCR accuracy we built a test set of 80 short phrases, 40 in Bangla and 40 in English, typical of what a visually impaired person needs to read: bank and currency words, shop and hospital signs, directions (``turn right'', ``turn left''), station and counter names. The phrases were rendered with the Vrinda Bangla font, and part of the set was degraded to imitate photographs (``wild'' samples). The ground truth is the exact phrase.
+
+\subsection{Ekush Handwritten Characters}
+As an additional study of Bangla recognition, a CNN classifier for 122 classes of isolated handwritten Bangla characters (vowels, consonants, conjuncts, modifiers and digits) was trained on the Ekush dataset \cite{ekush}. The data was split by writer (2,429 / 303 / 305 writers; 292,974 / 35,436 / 38,608 images) so that no writer's handwriting appears in both training and test data.
+
+\section{Object Detection Data}
+The object mode uses a YOLOv8 model pre-trained on COCO without retraining. To check its accuracy in our pipeline, it was evaluated on a random subset of 250 images from COCO val2017, in which 77 of the 80 classes appear.
+
+\section{Note on User Survey}
+Unlike many assistive-technology projects, this work does not yet include a survey or interview study with visually impaired participants. A study protocol has been prepared (8--12 participants, tasks for denomination identification, genuine/counterfeit decision and adaptive feedback, measures including task time, accuracy, NASA-TLX and the System Usability Scale), but no participant data has been collected, and no user-study result is reported in this thesis. Conducting this study, with ethical approval, is the most important next step (Chapter~\ref{chap:conclusion}).

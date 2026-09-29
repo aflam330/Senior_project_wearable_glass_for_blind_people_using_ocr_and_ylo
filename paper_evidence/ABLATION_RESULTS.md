@@ -22,3 +22,7 @@ no_cost and no_calibration matched that 4-epoch full run because those switches 
 | no_infogain | 0.9327 | 0.9615 | 0.9615 | 0.9375 | 0.9279 | 0.9375 | PRMVT recipe with information-gain loss off 1-view minus full: -0.0385 |
 | cost_entropy | 0.9519 | 0.9712 | 0.9808 | 0.9808 | 0.9808 | 0.9808 | New seed-42 prefix 6+3 run. Cost loss adds mean predictive entropy, so the term has a gradient. Not a replacement for full_prmvt. 1-view minus no_cost_matched: -0.0096 |
 | no_cost_matched | 0.9615 | 0.9712 | 0.9856 | 0.9856 | 0.9856 | 0.9808 | Same recipe as cost_entropy with the cost term removed. 1-view minus cost_entropy: +0.0096 |
+
+
+> **Correction 2026-09-29.** The saved sequential policy (λ = 0.02) re-run with the fixed evaluation code scores 0.8606 at 1.00 view, not 0.4135 (`results/qduig/prefix_ft/seed42/cost_policy_test.json`; `CORRECTIONS.md` row 20). It remains below fixed view 1 (0.9712).
+

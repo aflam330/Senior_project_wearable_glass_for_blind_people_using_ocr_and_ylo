@@ -1,0 +1,151 @@
+{
+  "source": "E:\\Final SP\\data set for comparison\\ModelNet40 normal_resampled\\modelnet40_normal_resampled",
+  "note": "Orthographic turntable renders of ModelNet40 normal_resampled point clouds. Not photographs. 10-class subset.",
+  "classes": [
+    "airplane",
+    "bathtub",
+    "bed",
+    "bench",
+    "bookshelf",
+    "bottle",
+    "bowl",
+    "car",
+    "chair",
+    "cone"
+  ],
+  "seed": 42,
+  "n_train": 400,
+  "n_val": 100,
+  "n_test": 100,
+  "angles_deg": [
+    0,
+    60,
+    120,
+    180,
+    240,
+    300
+  ],
+  "resolution": 32,
+  "epochs": 5,
+  "device": "cuda",
+  "selection": {
+    "fixed": "max validation accuracy at 6 views",
+    "prefix": "max mean validation accuracy over k=1..6"
+  },
+  "val_best": {
+    "fixed_k6": 0.46,
+    "prefix_mean": 0.4416666666666667
+  },
+  "history_fixed": [
+    {
+      "epoch": 1,
+      "train_loss": 2.3042483806610106,
+      "val_k6": 0.14
+    },
+    {
+      "epoch": 2,
+      "train_loss": 2.2612170791625976,
+      "val_k6": 0.14
+    },
+    {
+      "epoch": 3,
+      "train_loss": 2.1609632396697998,
+      "val_k6": 0.27
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.9992315673828125,
+      "val_k6": 0.46
+    },
+    {
+      "epoch": 5,
+      "train_loss": 1.806866669654846,
+      "val_k6": 0.39
+    }
+  ],
+  "history_prefix": [
+    {
+      "epoch": 1,
+      "train_loss": 2.2997881603240966,
+      "val_mean_k": 0.22833333333333336,
+      "val_by_k": [
+        0.16,
+        0.21,
+        0.24,
+        0.24,
+        0.25,
+        0.27
+      ]
+    },
+    {
+      "epoch": 2,
+      "train_loss": 2.2399594974517822,
+      "val_mean_k": 0.1683333333333333,
+      "val_by_k": [
+        0.16,
+        0.16,
+        0.16,
+        0.18,
+        0.18,
+        0.17
+      ]
+    },
+    {
+      "epoch": 3,
+      "train_loss": 2.0956305980682375,
+      "val_mean_k": 0.17,
+      "val_by_k": [
+        0.16,
+        0.17,
+        0.16,
+        0.19,
+        0.17,
+        0.17
+      ]
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.8716170024871825,
+      "val_mean_k": 0.27666666666666667,
+      "val_by_k": [
+        0.3,
+        0.28,
+        0.25,
+        0.28,
+        0.28,
+        0.27
+      ]
+    },
+    {
+      "epoch": 5,
+      "train_loss": 1.7416170692443849,
+      "val_mean_k": 0.4416666666666667,
+      "val_by_k": [
+        0.34,
+        0.4,
+        0.44,
+        0.49,
+        0.49,
+        0.49
+      ]
+    }
+  ],
+  "test_fixed": {
+    "k1": 0.32,
+    "k2": 0.39,
+    "k3": 0.45,
+    "k4": 0.46,
+    "k5": 0.38,
+    "k6": 0.38
+  },
+  "test_prefix": {
+    "k1": 0.33,
+    "k2": 0.38,
+    "k3": 0.44,
+    "k4": 0.48,
+    "k5": 0.41,
+    "k6": 0.42
+  },
+  "prefix_oracle_any_k": 0.55,
+  "prefix_oracle_note": "analysis only; uses labels to pick k; not a deployable policy"
+}

@@ -1,0 +1,3172 @@
+{
+ "workspace": "E:\\Final SP",
+ "python": {
+  "compiled_ok": 262,
+  "failed": []
+ },
+ "models": [
+  {
+   "file": "realtime_bangla_taka_detection\\models\\authenticity_cnn_vit.pt",
+   "mb": 6.6,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "val_acc",
+    "epoch"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\models\\authenticity_ewc.pt",
+   "mb": 6.6,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "metrics"
+   ],
+   "loads": true,
+   "seconds": 0.01
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\models\\authenticity_fedavg.pt",
+   "mb": 6.6,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "history"
+   ],
+   "loads": true,
+   "seconds": 0.01
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\models\\authenticity_prototypes.pt",
+   "mb": 0.01,
+   "kind": "dict",
+   "keys": [
+    "backend",
+    "real",
+    "fake",
+    "n_real",
+    "n_fake",
+    "split"
+   ],
+   "loads": true,
+   "seconds": 0.0
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\models\\best.onnx",
+   "mb": 44.76,
+   "kind": "onnx",
+   "inputs": [
+    [
+     "images",
+     [
+      1,
+      3,
+      640,
+      640
+     ]
+    ]
+   ],
+   "loads": true,
+   "seconds": 0.39
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\models\\best.pt",
+   "mb": 22.53,
+   "kind": "ultralytics",
+   "keys": [
+    "date",
+    "version",
+    "license",
+    "docs",
+    "epoch",
+    "best_fitness",
+    "model",
+    "ema"
+   ],
+   "nc": 9,
+   "loads": true,
+   "seconds": 0.18
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\models\\best.pts",
+   "mb": 44.92,
+   "kind": "torchscript",
+   "loads": true,
+   "seconds": 0.2
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\models\\best.torchscript",
+   "mb": 44.92,
+   "kind": "torchscript",
+   "loads": true,
+   "seconds": 0.13
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\models\\best_int8.onnx",
+   "mb": 17.99,
+   "kind": "onnx",
+   "inputs": [
+    [
+     "images",
+     [
+      1,
+      3,
+      640,
+      640
+     ]
+    ]
+   ],
+   "loads": true,
+   "seconds": 0.12
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\models\\closeup_mobilenet.pt",
+   "mb": 6.23,
+   "kind": "dict",
+   "keys": [
+    "state_dict",
+    "classes",
+    "val_acc",
+    "epoch",
+    "arch",
+    "trained_on",
+    "args"
+   ],
+   "arch": "mobilenet_v3_small",
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\models\\dual_head_auth.pt",
+   "mb": 0.27,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "val_acc"
+   ],
+   "loads": true,
+   "seconds": 0.0
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\models\\emotion-ferplus-8.onnx",
+   "mb": 35.04,
+   "kind": "onnx",
+   "inputs": [
+    [
+     "Input3",
+     [
+      1,
+      1,
+      64,
+      64
+     ]
+    ]
+   ],
+   "loads": true,
+   "seconds": 0.08
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\models\\face_detection_yunet_2023mar.onnx",
+   "mb": 0.23,
+   "kind": "onnx",
+   "inputs": [
+    [
+     "input",
+     [
+      1,
+      3,
+      640,
+      640
+     ]
+    ]
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\camva\\checkpoints\\baseline_cnnvit_seed42.pt",
+   "mb": 6.6,
+   "kind": "baseline",
+   "keys": [
+    "model",
+    "val_acc",
+    "epoch",
+    "kind",
+    "fusion",
+    "seed",
+    "n_views_train"
+   ],
+   "loads": true,
+   "seconds": 0.01
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\camva\\checkpoints\\baseline_cnnvit_seed43.pt",
+   "mb": 6.6,
+   "kind": "baseline",
+   "keys": [
+    "model",
+    "val_acc",
+    "epoch",
+    "kind",
+    "fusion",
+    "seed",
+    "n_views_train"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\camva\\checkpoints\\baseline_cnnvit_seed44.pt",
+   "mb": 6.6,
+   "kind": "baseline",
+   "keys": [
+    "model",
+    "val_acc",
+    "epoch",
+    "kind",
+    "fusion",
+    "seed",
+    "n_views_train"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\camva\\checkpoints\\camva_quality_attention_seed42.pt",
+   "mb": 7.33,
+   "kind": "camva",
+   "keys": [
+    "model",
+    "val_acc",
+    "epoch",
+    "kind",
+    "fusion",
+    "seed",
+    "n_views_train"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\camva\\checkpoints\\camva_quality_attention_seed43.pt",
+   "mb": 7.33,
+   "kind": "camva",
+   "keys": [
+    "model",
+    "val_acc",
+    "epoch",
+    "kind",
+    "fusion",
+    "seed",
+    "n_views_train"
+   ],
+   "loads": true,
+   "seconds": 0.01
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\camva\\checkpoints\\camva_quality_attention_seed44.pt",
+   "mb": 7.33,
+   "kind": "camva",
+   "keys": [
+    "model",
+    "val_acc",
+    "epoch",
+    "kind",
+    "fusion",
+    "seed",
+    "n_views_train"
+   ],
+   "loads": true,
+   "seconds": 0.01
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\jaal_whole\\approach_a\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "config",
+    "epoch"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel\\apc\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel\\cvs\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel\\igcr\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel\\mtpt\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel\\ndal\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel\\ogpd\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel\\sfaq\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel\\sfpl\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel\\ugf\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel\\vcie\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\apc\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\apc\\seed43\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\apc\\seed44\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\cris\\seed42\\checkpoint.pt",
+   "mb": 47.83,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\cris\\seed43\\checkpoint.pt",
+   "mb": 47.83,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\cris\\seed44\\checkpoint.pt",
+   "mb": 47.83,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\cvs\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\cvs\\seed43\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\cvs\\seed44\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\mavt\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\mavt\\seed43\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\mavt\\seed44\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\mtpt\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\mtpt_auth\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\mtpt_prefix\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\mtpt_prefix\\seed43\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\mtpt_prefix\\seed44\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\mtpt_prefix_ft\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\mtpt_prefix_ft\\seed43\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\mtpt_prefix_ft\\seed44\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\ndal\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\ndal\\seed43\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\ndal\\seed44\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\ogpd\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\pravt\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\pravt\\seed43\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\pravt\\seed44\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\savs\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\savs\\seed43\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\savs\\seed44\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\sfpl\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\sfpl_fullviews\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\sfpl_localsteps\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\ugf\\seed43\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\ugf\\seed44\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\vat\\seed42\\checkpoint.pt",
+   "mb": 46.76,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\vat\\seed43\\checkpoint.pt",
+   "mb": 46.76,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\vat\\seed44\\checkpoint.pt",
+   "mb": 46.76,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\vcie\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\vcie\\seed43\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\vcie\\seed44\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\vcie_k1\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\vcie_k1\\seed43\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\vcie_k1\\seed44\\checkpoint.pt",
+   "mb": 46.75,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config",
+    "env"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\novel_v2\\vcie_long\\seed42\\checkpoint.pt",
+   "mb": 46.74,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_mean_1_to_6",
+    "algo",
+    "seed",
+    "config"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablations\\diversity\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablations\\full\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablations\\no_calibration\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablations\\no_cost\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablations\\no_infogain\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablations\\no_redundancy\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablations\\qd\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablations\\quality\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablations\\ud\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablations\\uncertainty\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\cost_entropy\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\cost_entropy\\stage1\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\cvr\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.04
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\cvr\\stage1\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\her_base\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\her_base\\stage1\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\no_cost_matched\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\no_cost_matched\\stage1\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\no_infogain\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\no_infogain\\stage1\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\no_redundancy\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\no_redundancy\\stage1\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\pcr_ig\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\pcr_ig\\stage1\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\qd\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\qd\\stage1\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\rsqa\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\rsqa\\stage1\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\ud\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\ablation_prefix\\ud\\stage1\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\auxfix_curriculum\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\auxfix_kendall\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\auxfix_pcgrad\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\auxfix_regularize\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\auxfix_scale_0p0001\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\auxfix_scale_0p001\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\auxfix_scale_0p01\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\auxfix_scale_0p1\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\auxfix_scale_divcost\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\auxfix_separate\\seed42\\checkpoint.pt",
+   "mb": 16.6,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\auxfix_separate_frozen\\seed42\\checkpoint.pt",
+   "mb": 16.6,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\auxfix_stopgrad\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\aux_small_ft\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\cost_norm_ft\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\fusion_meanpool_aux\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\fusion_meanpool_aux_ft\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\fusion_rsqa_noaux\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\fusion_rsqa_noaux_ft\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\occlusion_ft\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\occlusion_matched\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "clean_floor",
+    "history"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\occlusion_robust\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "config",
+    "env",
+    "selection",
+    "args"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\occlusion_robust_e15\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "config",
+    "env",
+    "selection",
+    "args"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\occlusion_robust_e15\\seed43\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "config",
+    "env",
+    "selection",
+    "args"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\occlusion_robust_e15\\seed44\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "config",
+    "env",
+    "selection",
+    "args"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\prefix\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\prefix\\seed43\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\prefix\\seed43_stopped_epoch5\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\prefix\\seed44\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\prefix_ft\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\prefix_ft\\seed43\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\prefix_ft\\seed44\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\proposed\\seed42\\checkpoint.pt",
+   "mb": 14.54,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\proposed\\seed43\\checkpoint.pt",
+   "mb": 14.54,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\qduig\\robust_ft\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\robustness\\occlusion_inpaint\\seed42\\checkpoint.pt",
+   "mb": 0.24,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "epoch",
+    "val_hole_l1"
+   ],
+   "loads": true,
+   "seconds": 0.0
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\fixed\\s1\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\fixed\\s1\\seed43\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\fixed\\s1\\seed44\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\fixed\\s2\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\fixed\\s2\\seed43\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\fixed\\s2\\seed44\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\fixed_shbn\\s1\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\fixed_shbn\\s1\\seed43\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\fixed_shbn\\s1\\seed44\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\fixed_shbn\\s2\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\fixed_shbn\\s2\\seed43\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\fixed_shbn\\s2\\seed44\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\prefix_shbn\\s1\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\prefix_shbn\\s1\\seed43\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\prefix_shbn\\s1\\seed44\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\prefix_shbn\\s2\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\prefix_shbn\\s2\\seed43\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\same_arch\\prefix_shbn\\s2\\seed44\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "realtime_bangla_taka_detection\\results\\theory\\pacbayes_d1_model\\seed42\\checkpoint.pt",
+   "mb": 16.62,
+   "kind": "qduig",
+   "keys": [
+    "model",
+    "val_acc",
+    "val_mean_1_to_6",
+    "val_by_k",
+    "epoch",
+    "seed",
+    "config",
+    "kind"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "savior_glass\\models\\best.onnx",
+   "mb": 44.76,
+   "kind": "onnx",
+   "inputs": [
+    [
+     "images",
+     [
+      1,
+      3,
+      640,
+      640
+     ]
+    ]
+   ],
+   "loads": true,
+   "seconds": 0.11
+  },
+  {
+   "file": "savior_glass\\models\\best_int8.onnx",
+   "mb": 17.99,
+   "kind": "onnx",
+   "inputs": [
+    [
+     "images",
+     [
+      1,
+      3,
+      640,
+      640
+     ]
+    ]
+   ],
+   "loads": true,
+   "seconds": 0.14
+  },
+  {
+   "file": "savior_glass\\models\\best_wild_ft.pt",
+   "mb": 22.48,
+   "kind": "ultralytics",
+   "keys": [
+    "date",
+    "version",
+    "license",
+    "docs",
+    "epoch",
+    "best_fitness",
+    "model",
+    "ema"
+   ],
+   "nc": 9,
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "savior_glass\\models\\currency_mobilenet.pt",
+   "mb": 6.23,
+   "kind": "dict",
+   "keys": [
+    "state_dict",
+    "classes",
+    "val_acc"
+   ],
+   "loads": true,
+   "seconds": 0.02
+  },
+  {
+   "file": "savior_glass\\models\\ekush_cnn.pt",
+   "mb": 0.45,
+   "kind": "dict",
+   "keys": [
+    "model",
+    "val_acc",
+    "epoch"
+   ],
+   "loads": true,
+   "seconds": 0.01
+  },
+  {
+   "file": "savior_glass\\models\\emotion_faces.pt",
+   "mb": 81.61,
+   "kind": "dict",
+   "keys": [
+    "state_dict",
+    "labels",
+    "img_size",
+    "arch",
+    "metrics"
+   ],
+   "arch": "efficientnet_v2_s",
+   "loads": true,
+   "seconds": 0.08
+  },
+  {
+   "file": "savior_glass\\models\\emotion_faces_efficientnet_v2s_865.pt",
+   "mb": 81.61,
+   "kind": "dict",
+   "keys": [
+    "state_dict",
+    "labels",
+    "img_size",
+    "arch",
+    "metrics"
+   ],
+   "arch": "efficientnet_v2_s",
+   "loads": true,
+   "seconds": 0.08
+  },
+  {
+   "file": "savior_glass\\models\\emotion_vit.pt",
+   "mb": 343.28,
+   "kind": "dict",
+   "keys": [
+    "state_dict",
+    "labels",
+    "img_size",
+    "arch",
+    "model_id",
+    "id2table",
+    "metrics"
+   ],
+   "arch": "hf_vit",
+   "loads": true,
+   "seconds": 0.21
+  },
+  {
+   "file": "savior_glass\\models\\yolov8n.pt",
+   "mb": 6.55,
+   "kind": "ultralytics",
+   "keys": [
+    "date",
+    "version",
+    "license",
+    "docs",
+    "epoch",
+    "best_fitness",
+    "model",
+    "ema"
+   ],
+   "nc": 80,
+   "loads": true,
+   "seconds": 0.05
+  },
+  {
+   "file": "savior_glass\\models\\yolov8s.pt",
+   "mb": 22.59,
+   "kind": "ultralytics",
+   "keys": [
+    "date",
+    "version",
+    "license",
+    "docs",
+    "epoch",
+    "best_fitness",
+    "model",
+    "ema"
+   ],
+   "nc": 80,
+   "loads": true,
+   "seconds": 0.05
+  },
+  {
+   "file": "savior_glass\\results\\yolo_runs\\taka_wild_ft\\weights\\best.pt",
+   "mb": 22.48,
+   "kind": "ultralytics",
+   "keys": [
+    "date",
+    "version",
+    "license",
+    "docs",
+    "epoch",
+    "best_fitness",
+    "model",
+    "ema"
+   ],
+   "nc": 9,
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "savior_glass\\results\\yolo_runs\\taka_wild_ft\\weights\\last.pt",
+   "mb": 22.48,
+   "kind": "ultralytics",
+   "keys": [
+    "date",
+    "version",
+    "license",
+    "docs",
+    "epoch",
+    "best_fitness",
+    "model",
+    "ema"
+   ],
+   "nc": 9,
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "Unused\\broken_int8\\realtime_bangla_taka_detection\\models\\best_int8.onnx",
+   "mb": 11.53,
+   "kind": "onnx",
+   "inputs": [
+    [
+     "images",
+     [
+      1,
+      3,
+      640,
+      640
+     ]
+    ]
+   ],
+   "loads": true,
+   "seconds": 0.15
+  },
+  {
+   "file": "Unused\\broken_int8\\savior_glass\\models\\best_int8.onnx",
+   "mb": 11.53,
+   "kind": "onnx",
+   "inputs": [
+    [
+     "images",
+     [
+      1,
+      3,
+      640,
+      640
+     ]
+    ]
+   ],
+   "loads": true,
+   "seconds": 0.15
+  },
+  {
+   "file": "Unused\\replaced_originals\\realtime_bangla_taka_detection\\results\\camva\\checkpoints\\baseline_cnnvit_seed43.pt",
+   "mb": 6.6,
+   "kind": "baseline",
+   "keys": [
+    "model",
+    "val_acc",
+    "epoch",
+    "kind",
+    "fusion",
+    "seed",
+    "n_views_train"
+   ],
+   "loads": true,
+   "seconds": 0.03
+  },
+  {
+   "file": "Unused\\smart-glass\\models\\best.onnx",
+   "mb": 44.76,
+   "kind": "onnx",
+   "inputs": [
+    [
+     "images",
+     [
+      1,
+      3,
+      640,
+      640
+     ]
+    ]
+   ],
+   "loads": true,
+   "seconds": 0.12
+  }
+ ],
+ "datasets": [
+  {
+   "dataset": "data set\\Bangladeshi Counterfeit Currency Image Dataset",
+   "images": 1286,
+   "annotation_like_files": 0,
+   "extensions": {
+    ".jpg": 1224,
+    ".png": 62
+   },
+   "n_image_folders": 4,
+   "image_folders": {
+    "Denomination-wise Distribution\\1000 BDT Counterfeit": 55,
+    "Denomination-wise Distribution\\1000 BDT Genuine": 370,
+    "Denomination-wise Distribution\\500 BDT Counterfeit": 32,
+    "Denomination-wise Distribution\\500 BDT Genuine": 829
+   }
+  },
+  {
+   "dataset": "data set\\Bangladeshi_Paper_Currency_Raw",
+   "images": 5073,
+   "annotation_like_files": 5073,
+   "extensions": {
+    ".txt": 5073,
+    ".jpg": 5070,
+    ".jpeg": 3
+   },
+   "n_image_folders": 9,
+   "image_folders": {
+    "Bangladeshi_Paper_Currency_Raw\\10": 419,
+    "Bangladeshi_Paper_Currency_Raw\\100": 565,
+    "Bangladeshi_Paper_Currency_Raw\\1000": 422,
+    "Bangladeshi_Paper_Currency_Raw\\2": 445,
+    "Bangladeshi_Paper_Currency_Raw\\20": 480,
+    "Bangladeshi_Paper_Currency_Raw\\200": 423,
+    "Bangladeshi_Paper_Currency_Raw\\5": 660,
+    "Bangladeshi_Paper_Currency_Raw\\50": 416,
+    "Bangladeshi_Paper_Currency_Raw\\500": 1243
+   }
+  },
+  {
+   "dataset": "data set\\CK+48",
+   "images": 981,
+   "annotation_like_files": 0,
+   "extensions": {
+    ".png": 981
+   },
+   "n_image_folders": 7,
+   "image_folders": {
+    "anger": 135,
+    "contempt": 54,
+    "disgust": 177,
+    "fear": 75,
+    "happy": 207,
+    "sadness": 84,
+    "surprise": 249
+   }
+  },
+  {
+   "dataset": "data set\\coco2017",
+   "images": 163957,
+   "annotation_like_files": 6,
+   "extensions": {
+    ".jpg": 163957,
+    ".json": 6
+   },
+   "n_image_folders": 3,
+   "image_folders": {
+    "test2017": 40670,
+    "train2017": 118287,
+    "val2017": 5000
+   }
+  },
+  {
+   "dataset": "data set\\currency_yolo_data",
+   "images": 22333,
+   "annotation_like_files": 22333,
+   "extensions": {
+    ".jpg": 22333,
+    ".txt": 22333,
+    ".cache": 2
+   },
+   "n_image_folders": 3,
+   "image_folders": {
+    "test\\images": 2282,
+    "train\\images": 17839,
+    "valid\\images": 2212
+   }
+  },
+  {
+   "dataset": "data set\\currency_yolo_data_figures_backup",
+   "images": 16,
+   "annotation_like_files": 16,
+   "extensions": {
+    ".jpg": 16,
+    ".txt": 16,
+    ".cache": 1
+   },
+   "n_image_folders": 2,
+   "image_folders": {
+    "test\\images": 12,
+    "train\\images": 4
+   }
+  },
+  {
+   "dataset": "data set\\currency_yolo_newtest",
+   "images": 566,
+   "annotation_like_files": 566,
+   "extensions": {
+    ".jpg": 566,
+    ".txt": 566,
+    ".cache": 1
+   },
+   "n_image_folders": 1,
+   "image_folders": {
+    "images": 566
+   }
+  },
+  {
+   "dataset": "data set\\facial_expressions-master",
+   "images": 13981,
+   "annotation_like_files": 3,
+   "extensions": {
+    ".jpg": 13981,
+    ".py": 8,
+    "": 4,
+    ".csv": 3,
+    ".md": 1
+   },
+   "n_image_folders": 2,
+   "image_folders": {
+    "images": 13718,
+    "test": 263
+   }
+  },
+  {
+   "dataset": "data set\\JaalTaka",
+   "images": 8340,
+   "annotation_like_files": 0,
+   "extensions": {
+    ".jpg": 8340
+   },
+   "n_image_folders": 1390,
+   "image_folders": {
+    "(many)": 1390
+   }
+  },
+  {
+   "dataset": "data set\\OCR bangla data set",
+   "images": 979943,
+   "annotation_like_files": 1,
+   "extensions": {
+    ".jpg": 979943,
+    ".csv": 1,
+    ".xlsx": 1
+   },
+   "n_image_folders": 602,
+   "image_folders": {
+    "(many)": 602
+   }
+  },
+  {
+   "dataset": "data set\\RAF-DB",
+   "images": 15339,
+   "annotation_like_files": 2,
+   "extensions": {
+    ".jpg": 15339,
+    ".csv": 2
+   },
+   "n_image_folders": 14,
+   "image_folders": {
+    "DATASET\\test\\1": 329,
+    "DATASET\\test\\2": 74,
+    "DATASET\\test\\3": 160,
+    "DATASET\\test\\4": 1185,
+    "DATASET\\test\\5": 478,
+    "DATASET\\test\\6": 162,
+    "DATASET\\test\\7": 680,
+    "DATASET\\train\\1": 1290,
+    "DATASET\\train\\2": 281,
+    "DATASET\\train\\3": 717,
+    "DATASET\\train\\4": 4772,
+    "DATASET\\train\\5": 1982,
+    "DATASET\\train\\6": 705,
+    "DATASET\\train\\7": 2524
+   }
+  },
+  {
+   "dataset": "data set\\yolo_bbox_annotated",
+   "images": 5082,
+   "annotation_like_files": 5074,
+   "extensions": {
+    ".jpg": 5079,
+    ".txt": 5073,
+    ".jpeg": 3,
+    ".yaml": 1
+   },
+   "n_image_folders": 4,
+   "image_folders": {
+    "previews": 9,
+    "test\\images": 513,
+    "train\\images": 4056,
+    "valid\\images": 504
+   }
+  },
+  {
+   "dataset": "data set for comparison\\A Diverse Image Dataset for Bangladeshi Currency Recognition",
+   "images": 5073,
+   "annotation_like_files": 0,
+   "extensions": {
+    ".jpg": 5070,
+    ".jpeg": 3
+   },
+   "n_image_folders": 9,
+   "image_folders": {
+    "Bangladeshi_Paper_Currency_Raw\\10": 419,
+    "Bangladeshi_Paper_Currency_Raw\\100": 565,
+    "Bangladeshi_Paper_Currency_Raw\\1000": 422,
+    "Bangladeshi_Paper_Currency_Raw\\2": 445,
+    "Bangladeshi_Paper_Currency_Raw\\20": 480,
+    "Bangladeshi_Paper_Currency_Raw\\200": 423,
+    "Bangladeshi_Paper_Currency_Raw\\5": 660,
+    "Bangladeshi_Paper_Currency_Raw\\50": 416,
+    "Bangladeshi_Paper_Currency_Raw\\500": 1243
+   }
+  },
+  {
+   "dataset": "data set for comparison\\Bangla Money dataset Kaggle",
+   "images": 1971,
+   "annotation_like_files": 0,
+   "extensions": {
+    ".jpg": 1970,
+    ".db": 9,
+    ".png": 1
+   },
+   "n_image_folders": 11,
+   "image_folders": {
+    "bangla_banknote_v2\\Testing": 333,
+    "bangla_banknote_v2\\Training": 1,
+    "bangla_banknote_v2\\Training\\1": 101,
+    "bangla_banknote_v2\\Training\\10": 213,
+    "bangla_banknote_v2\\Training\\100": 208,
+    "bangla_banknote_v2\\Training\\1000": 167,
+    "bangla_banknote_v2\\Training\\2": 213,
+    "bangla_banknote_v2\\Training\\20": 173,
+    "bangla_banknote_v2\\Training\\5": 213,
+    "bangla_banknote_v2\\Training\\50": 213,
+    "bangla_banknote_v2\\Training\\500": 136
+   }
+  },
+  {
+   "dataset": "data set for comparison\\Large Scale BDT DB 2026 Kaggle",
+   "images": 100000,
+   "annotation_like_files": 0,
+   "extensions": {
+    ".jpg": 100000
+   },
+   "n_image_folders": 10,
+   "image_folders": {
+    "bd_coin\\10_Poisha": 10000,
+    "bd_coin\\1_Poisha": 10000,
+    "bd_coin\\1_Taka": 10000,
+    "bd_coin\\25_Poisha": 10000,
+    "bd_coin\\2_Taka": 10000,
+    "bd_coin\\50_Poisha": 10000,
+    "bd_coin\\5_Poisha": 10000,
+    "bd_coin\\5_Taka": 10000,
+    "bd_coin\\commemorative_coin": 10000,
+    "bd_coin\\demonetized_note": 10000
+   }
+  },
+  {
+   "dataset": "data set for comparison\\ModelNet40 normal_resampled",
+   "images": 0,
+   "annotation_like_files": 12320,
+   "extensions": {
+    ".txt": 12318,
+    ".json": 2,
+    ".sqlite": 1,
+    "": 1
+   },
+   "n_image_folders": 0,
+   "image_folders": {}
+  },
+  {
+   "dataset": "data set for comparison\\MVP-N-main",
+   "images": 15840,
+   "annotation_like_files": 1,
+   "extensions": {
+    ".png": 15840,
+    ".pkl": 88,
+    ".py": 17,
+    ".zip": 1,
+    ".log": 1,
+    ".sh": 1,
+    "": 1,
+    ".md": 1
+   },
+   "n_image_folders": 616,
+   "image_folders": {
+    "(many)": 616
+   }
+  },
+  {
+   "dataset": "data set for comparison\\NSTU-BDTAKA dataset Mendeley",
+   "images": 31986,
+   "annotation_like_files": 3112,
+   "extensions": {
+    ".jpg": 31986,
+    ".txt": 3111,
+    ".yaml": 1
+   },
+   "n_image_folders": 30,
+   "image_folders": {
+    "data\\Detection\\test\\images": 186,
+    "data\\Detection\\train\\images": 2560,
+    "data\\Detection\\validation\\images": 365,
+    "data\\Recognition\\test\\1000_taka": 117,
+    "data\\Recognition\\test\\100_taka": 127,
+    "data\\Recognition\\test\\10_taka": 134,
+    "data\\Recognition\\test\\200_taka": 128,
+    "data\\Recognition\\test\\20_taka": 130,
+    "data\\Recognition\\test\\2_taka": 136,
+    "data\\Recognition\\test\\500_taka": 126,
+    "data\\Recognition\\test\\50_taka": 147,
+    "data\\Recognition\\test\\5_taka": 99,
+    "data\\Recognition\\train\\1000_taka": 2901,
+    "data\\Recognition\\train\\100_taka": 3123,
+    "data\\Recognition\\train\\10_taka": 2875,
+    "data\\Recognition\\train\\200_taka": 2994,
+    "data\\Recognition\\train\\20_taka": 2982,
+    "data\\Recognition\\train\\2_taka": 2877,
+    "data\\Recognition\\train\\500_taka": 3008,
+    "data\\Recognition\\train\\50_taka": 2895,
+    "data\\Recognition\\train\\5_taka": 2442,
+    "data\\Recognition\\validation\\1000_taka": 164,
+    "data\\Recognition\\validation\\100_taka": 189,
+    "data\\Recognition\\validation\\10_taka": 164,
+    "data\\Recognition\\validation\\200_taka": 192,
+    "data\\Recognition\\validation\\20_taka": 187,
+    "data\\Recognition\\validation\\2_taka": 200,
+    "data\\Recognition\\validation\\500_taka": 179,
+    "data\\Recognition\\validation\\50_taka": 183,
+    "data\\Recognition\\validation\\5_taka": 176
+   }
+  }
+ ],
+ "results": {
+  "n_test_metrics_json": 1025,
+  "claims": 234,
+  "claim_status": {
+   "VERIFIED": 224,
+   "NOT_MEASURED": 6,
+   "NOT_MET": 1,
+   "VERIFIED_SIMULATED": 2,
+   "NOT_MEASURED (PROTOCOL_READY)": 1
+  },
+  "claims_missing_artifact": []
+ },
+ "seconds": 18.4
+}

@@ -1,0 +1,86 @@
+{
+ "n_notes": 208,
+ "views_masked_of_4": 180,
+ "by_k": {
+  "1": {
+   "unmasked": {
+    "accuracy": 0.9711538461538461,
+    "genuine_correct": 117,
+    "genuine_n": 120,
+    "cf_caught_serial_seen": 68,
+    "cf_serial_seen_n": 69,
+    "cf_caught_serial_unseen": 17,
+    "cf_serial_unseen_n": 19
+   },
+   "serial_masked": {
+    "accuracy": 0.9230769230769231,
+    "genuine_correct": 112,
+    "genuine_n": 120,
+    "cf_caught_serial_seen": 65,
+    "cf_serial_seen_n": 69,
+    "cf_caught_serial_unseen": 15,
+    "cf_serial_unseen_n": 19
+   }
+  },
+  "2": {
+   "unmasked": {
+    "accuracy": 0.9807692307692307,
+    "genuine_correct": 118,
+    "genuine_n": 120,
+    "cf_caught_serial_seen": 69,
+    "cf_serial_seen_n": 69,
+    "cf_caught_serial_unseen": 17,
+    "cf_serial_unseen_n": 19
+   },
+   "serial_masked": {
+    "accuracy": 0.9326923076923077,
+    "genuine_correct": 113,
+    "genuine_n": 120,
+    "cf_caught_serial_seen": 67,
+    "cf_serial_seen_n": 69,
+    "cf_caught_serial_unseen": 14,
+    "cf_serial_unseen_n": 19
+   }
+  },
+  "3": {
+   "unmasked": {
+    "accuracy": 0.9807692307692307,
+    "genuine_correct": 118,
+    "genuine_n": 120,
+    "cf_caught_serial_seen": 69,
+    "cf_serial_seen_n": 69,
+    "cf_caught_serial_unseen": 17,
+    "cf_serial_unseen_n": 19
+   },
+   "serial_masked": {
+    "accuracy": 0.9471153846153846,
+    "genuine_correct": 118,
+    "genuine_n": 120,
+    "cf_caught_serial_seen": 66,
+    "cf_serial_seen_n": 69,
+    "cf_caught_serial_unseen": 13,
+    "cf_serial_unseen_n": 19
+   }
+  },
+  "4": {
+   "unmasked": {
+    "accuracy": 0.9807692307692307,
+    "genuine_correct": 117,
+    "genuine_n": 120,
+    "cf_caught_serial_seen": 69,
+    "cf_serial_seen_n": 69,
+    "cf_caught_serial_unseen": 18,
+    "cf_serial_unseen_n": 19
+   },
+   "serial_masked": {
+    "accuracy": 0.9423076923076923,
+    "genuine_correct": 112,
+    "genuine_n": 120,
+    "cf_caught_serial_seen": 68,
+    "cf_serial_seen_n": 69,
+    "cf_caught_serial_unseen": 16,
+    "cf_serial_unseen_n": 19
+   }
+  }
+ }
+}

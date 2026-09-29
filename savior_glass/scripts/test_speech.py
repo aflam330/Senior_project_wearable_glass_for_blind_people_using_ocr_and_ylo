@@ -106,6 +106,7 @@ def main() -> None:
     report["subjective_quality"] = "NOT_MEASURED (needs human listeners)"
     report["offline_bangla_voice_on_pi"] = "NOT_MEASURED (espeak-ng/Piper run on the Raspberry Pi, not installed here)"
     (ROOT / "results" / "speech_test.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
+    sys.stdout.reconfigure(encoding="utf-8")  # Bangla text; the Windows console defaults to cp1252
     print(json.dumps(report, indent=2, ensure_ascii=False))
 
 

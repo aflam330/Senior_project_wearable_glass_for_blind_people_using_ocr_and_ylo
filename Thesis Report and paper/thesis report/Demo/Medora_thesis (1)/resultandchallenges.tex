@@ -1,0 +1,291 @@
+\chapter{Result and Discussion }
+
+
+
+\section{Performance Evaluation Overview}
+
+The evaluation of Medora examined four functional areas: facial recognition, emotion recognition, clarity of text-to-speech (TTS), and the speed of interaction. These areas were assessed to determine performance under real-world conditions within the context of elderly care support. Testing was conducted in two environments: a controlled indoor laboratory setting with consistent ambient light, minimal noise, and a static background for baseline measurements; and a simulated home environment with varying ambient light (morning sunlight, evening artificial light), moderate noise levels (e.g., television, fan), and typical household movements and distractions. Participants included both elderly and adult individuals to ensure the system could adapt to diverse facial features, skin tones, and speech characteristics associated with different age groups. The evaluation involved both scripted interactions and spontaneous, unscripted conversations to assess Medora’s consistency and responsiveness.
+
+
+
+\section{Face Detection and Recognition Success Rate}
+The face detection capability of the Medora robot was tested separately from recognition. Detection was deemed successful if a face was localized within the camera frame and a bounding box was generated in real-time. The system was tested with 5 users, each providing 10 test cases under varying lighting conditions and angles.
+
+\begin{table}[h!]
+\centering
+\caption{Face Detection Test Results}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{User} & \textbf{Total Attempts} & \textbf{Detected Faces} & \textbf{Success Rate (\%)} \\
+\hline
+User 1 & 10 & 10 & 100\% \\
+User 2 & 10 & 9 & 90\% \\
+User 3 & 10 & 10 & 100\% \\
+User 4 & 10 & 9 & 90\% \\
+User 5 & 10 & 10 & 100\% \\
+\hline
+\textbf{Overall} & 50 & 48 & \textbf{96\%} \\
+\hline
+\end{tabular}
+\end{table}
+
+The high detection success rate (96\%) confirms the robustness of the face detection algorithm under typical usage conditions. Failures were mainly due to extreme angles or shadows. Improvements may include angle-tolerant detection and better low-light calibration.
+
+
+The face recognition module of the Medora robot was evaluated using a dataset of 50 facial images (10 per user for 5 users). Recognition was considered successful when the captured face was matched with the registered dataset with a confidence score above 75\%. The tests were conducted in both normal and slightly varied lighting conditions.
+
+\begin{table}[h!]
+\centering
+\caption{Face Detection And Recognition Test Results}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{User} & \textbf{Total Attempts} & \textbf{Successful Matches} & \textbf{Success Rate (\%)} \\
+\hline
+User 1 & 10 & 9 & 90\% \\
+User 2 & 10 & 10 & 100\% \\
+User 3 & 10 & 9 & 90\% \\
+User 4 & 10 & 8 & 80\% \\
+User 5 & 10 & 10 & 100\% \\
+\hline
+\textbf{Overall} & 50 & 46 & \textbf{92\%} \\
+\hline
+\end{tabular}
+\end{table}
+
+The average recognition rate of 92\% demonstrates strong reliability. Minor recognition failures occurred due to occlusions (e.g., glasses or hand gestures) and suboptimal lighting. Future improvements include enhanced preprocessing and adaptive lighting adjustments.
+
+
+
+
+
+
+\section{Emotion Detection Accuracy}
+
+We evaluated the emotion detection module of Medora using a dataset that combined both 
+real-time interactions with elderly participants and annotated facial emotion datasets. 
+For each interaction, the system classified the detected face into one of the five target 
+categories: happy, sad, angry, surprise, or neutral. Ground-truth labels were established 
+by manual annotation, and the predicted labels from Medora were then compared against 
+these references. The performance metrics were computed using standard classification 
+evaluation methods in machine learning.
+
+\begin{table}[h!]
+\centering
+\caption{Emotion Classification Performance Metrics}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Emotion} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} \\ \hline
+Happy    & 0.93 & 0.91 & 0.92 \\ \hline
+Sad      & 0.87 & 0.85 & 0.86 \\ \hline
+Angry    & 0.89 & 0.82 & 0.85 \\ \hline
+Surprise & 0.91 & 0.94 & 0.93 \\ \hline
+Neutral  & 0.95 & 0.96 & 0.95 \\ \hline
+\end{tabular}
+\end{table}
+
+\textbf{Precision} measures the proportion of correctly predicted instances of a given emotion 
+relative to all instances that the model predicted as that emotion. For example, a precision 
+of 0.93 for ``happy'' means that 93\% of the expressions identified as ``happy'' by the model 
+were indeed correct.
+
+\textbf{Recall} quantifies the proportion of actual emotion instances correctly identified by 
+the model. A recall of 0.91 for ``happy'' indicates that 91\% of all truly ``happy'' expressions 
+were successfully detected, while 9\% were missed or misclassified.
+
+\textbf{F1-Score} is the harmonic mean of precision and recall, providing a single balanced 
+metric that accounts for both false positives and false negatives. For example, an F1-score 
+of 0.92 for ``happy'' reflects a strong balance between precision and recall in detecting 
+that emotion.
+
+From the confusion matrix, it was observed that \textit{sadness} was occasionally misclassified 
+as \textit{neutral}, and \textit{angry} expressions were sometimes detected as \textit{neutral}. 
+This is likely due to the subtler facial muscle movements among elderly participants, which 
+makes certain negative emotions harder to distinguish. Nevertheless, Medora adapted its 
+response tone accordingly — greeting cheerfully when a happy mood was detected, and delivering 
+supportive, empathetic responses when sadness was identified.
+
+
+\section{Voice Response and Interaction Quality}
+
+\subsection{Response Time Evaluation}
+
+The response time evaluation was carried out to assess how quickly the Medora system reacts during typical elderly interactions. For each function (voice command, face detection, and facial recognition), we measured the elapsed time between the initiation of an action and the system’s first audible or visual feedback.
+
+For \textbf{voice commands}, the timer started when the user issued a reminder request and stopped when the system provided a spoken response.  
+
+For \textbf{face detection}, we measured the time from when the user appeared in front of the camera until the system first registered a detected face.  
+
+For \textbf{facial recognition}, the time recorded was from the moment the system detected a face until it confirmed the user’s identity and responded.  
+
+Each test was repeated multiple times (typically 8--10 trials per function) under normal operating conditions to account for small variations. The average of these trials was then calculated, resulting in the values shown in Table~\ref{tab:response_time}.  
+
+Overall, the results showed that all core features responded within approximately 5 seconds, which falls within an acceptable threshold for non-critical, elderly-assistive systems, balancing usability and safety without requiring clinical-level speed.  
+
+\begin{table}[H]
+\centering
+\caption{Response Time per Feature}
+\label{tab:response_time}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Function} & \textbf{Average Response Time (seconds)} \\ \hline
+Voice Command (reminder) & 4.2 \\ \hline
+Face Detection & 1.0 \\ \hline
+Facial Recognition Response & 2.6 \\ \hline
+\textbf{Overall Avg.} & \textbf{2.6} \\ \hline
+\end{tabular}
+\end{table}
+
+\section*{Calculation Methods and Full Working}
+
+This section presents the calculation methods and step-by-step workings.
+
+\subsection*{1) Face Detection Performance (Table 6.2.0.1)}
+
+Each user completed 10 trials. The success rate is computed as:
+
+\[
+\text{Success Rate (\%)} = \frac{\text{Detected Faces}}{\text{Total Trials}} \times 100
+\]
+
+Per-user calculations:
+
+\[
+\begin{aligned}
+\text{User1: } & \frac{10}{10} \times 100 = 100\% \\
+\text{User2: } & \frac{9}{10} \times 100 = 90\% \\
+\text{User3: } & \frac{10}{10} \times 100 = 100\% \\
+\text{User4: } & \frac{9}{10} \times 100 = 90\% \\
+\text{User5: } & \frac{10}{10} \times 100 = 100\% \\
+\end{aligned}
+\]
+
+Overall success rate:
+
+\[
+\frac{48}{50} \times 100 = 96\%
+\]
+
+\subsection*{2) Face Recognition Performance (Table 6.2.0.2)}
+
+Formula:
+
+\[
+\text{Success Rate (\%)} = \frac{\text{Successful Matches}}{\text{Total Trials}} \times 100
+\]
+
+Per-user calculations:
+
+\[
+\begin{aligned}
+\text{User1: } & \frac{9}{10} \times 100 = 90\% \\
+\text{User2: } & \frac{10}{10} \times 100 = 100\% \\
+\text{User3: } & \frac{9}{10} \times 100 = 90\% \\
+\text{User4: } & \frac{8}{10} \times 100 = 80\% \\
+\text{User5: } & \frac{10}{10} \times 100 = 100\% \\
+\end{aligned}
+\]
+
+Overall success rate:
+
+\[
+\frac{46}{50} \times 100 = 92\%
+\]
+
+\subsection*{3) Emotion Detection (Table 6.3.0.1)}
+
+Formulas:
+
+\[
+\text{Precision} = \frac{TP}{TP + FP}, \quad
+\text{Recall} = \frac{TP}{TP + FN}
+\]
+\[
+F1 = \frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}, \quad
+\text{Accuracy} = \frac{\text{Correct Predictions}}{\text{Total Predictions}}
+\]
+
+Recomputed F1-Scores:
+
+\[
+\begin{aligned}
+\text{Happy: } & F1 = \frac{2 \times 0.93 \times 0.91}{0.93 + 0.91} = 0.92 \\
+\text{Sad: } & F1 = \frac{2 \times 0.87 \times 0.85}{0.87 + 0.85} = 0.86 \\
+\text{Angry: } & F1 = \frac{2 \times 0.89 \times 0.82}{0.89 + 0.82} = 0.85 \\
+\text{Surprise: } & F1 = \frac{2 \times 0.91 \times 0.94}{0.91 + 0.94} = 0.92 \\
+\text{Neutral: } & F1 = \frac{2 \times 0.95 \times 0.96}{0.95 + 0.96} = 0.95 \\
+\end{aligned}
+\]
+
+Overall accuracy:
+
+\[
+\text{Correct Predictions} = 0.902 \times 500 = 451
+\]
+\[
+\text{Accuracy} = \frac{451}{500} = 90.2\%
+\]
+
+\subsection*{4) Response Time Evaluation (Table 6.4.1.1)}
+
+Formula:
+
+\[
+\text{Average Time} = \frac{\text{Sum of 10 Trials}}{10}
+\]
+
+Implied total times:
+
+\[
+\begin{aligned}
+\text{Face Detection: } & 1.2 \times 10 = 12.0 \ \text{s} \\
+\text{Face Recognition: } & 1.5 \times 10 = 15.0 \ \text{s} \\
+\text{Emotion Detection: } & 3.1 \times 10 = 31.0 \ \text{s} \\
+\text{Temperature Measurement: } & 0.3 \times 10 = 3.0 \ \text{s} \\
+\end{aligned}
+\]
+\section{Discussion}
+ Medora is able to perform multimodal interaction features face detection, recognition, emotion classification, voice-based dialogue, and medication reminders—through a single healthcare assistant to assist elderly users. The system achieved landmark accuracy for face recognition with success rates between 92-96\%, showcasing the robustness of the system in typical home condition. However, limitations were observed when disruptions from occlusion factors (glasses or hand movement) and challenges regarding poor lighting also appeared, which are common limitations presented in literature on computer vision regarding healthcare robotics. The emotion detection accuracy achieved scores between 85-95\% which indicates positive potential for sustaining empathetic interaction, but indicated difficulties in distinguishing differences in subtle expressions especially in older adults; often the older adult's facial muscle movement appeared less pronounced than even typically younger individuals. These findings suggest that providing an extended training dataset utilizing more specific elders' facial data may be a strong improvement opportunity.
+
+
+ Voice and text-to-speech (TTS) were perceived positively and significantly with respect to speech clarity and appropriate speech rate, particularly as older participants valued the slower and more deliberate pronunciation.  Medora's responsiveness (in terms of overall completion times measuring from the interaction or participant command through recognition, processing and TTS output) averaged a cycle time of 2.6 seconds, which is an acceptable range for responsiveness within non-critical care scenarios, especially when considering elderly assistance. Medora's responsiveness may not be as timely as clinical grade systems, but the responsiveness was ample for safe and comfortable use for older adults in a home context.
+
+ User experiences provided a valuable perspective on acceptance and usability of the system. Users highlighted the potential value of personalized greetings, clear medication reminders, and emotionally adaptive responses, which fostered rapport and engagement with the system. However, the suggestions for improvement related to faster responses in noisy environments and more natural speech output represent critical components to enhance in future iterations. Overall, the findings indicate the Medora provided accurate, trustworthy, and empathetic interaction method for elderly care while also describing avenues for improvement with respect to accuracy, responsiveness, and naturalness. Overall, Medora provides a good prototype of healthcare robotics, extending beyond technical capabilities, and providing some human perspective.
+
+\section{Limitations}
+
+Despite Medora’s promising results, several challenges remain:
+
+\textbf{Low-Light and Side Profiles.}  
+The vision module struggled under poor lighting or side angles due to camera limitations. Future integration of IR or higher-resolution sensors could improve robustness.
+
+\textbf{Subtle Emotion Misclassification.}  
+Subtle expressions, especially in elderly users, were sometimes misclassified because of limited elderly-specific datasets. Expanding training data would enhance accuracy.
+
+\textbf{Robotic TTS Intonation.}  
+The gTTS engine produced clear but robotic speech. Neural TTS solutions (e.g., Amazon Polly, Azure) could improve naturalness and prosody.
+
+\textbf{Noise in Speech Recognition.}  
+Background sounds reduced recognition accuracy, as the microphone lacked noise filtering. A directional or noise-cancelling array would address this.
+
+\textbf{Overheating in Long Sessions.}  
+The Raspberry Pi occasionally overheated under heavy load. Passive heatsinks or active cooling can improve performance stability.
+
+\textit{In summary}, these limitations suggest clear directions for future improvement to ensure greater reliability, usability, and long-term deployment.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

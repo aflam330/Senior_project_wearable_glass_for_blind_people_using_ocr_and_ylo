@@ -52,6 +52,40 @@ CURRENCY_YOLO_PATH  = os.path.abspath(os.path.join(
     BASE_DIR, "..", "realtime_bangla_taka_detection", "models", "best.pt"
 ))
 HAPTIC_PIN          = 13   # BCM — vibration motor for note confirmation
+
+# Genuine/jaal verdict on the detected note. Off: on whole-note photos of genuine notes the
+# JaalTaka-trained checker said "jaal" for 20-59 % of them and missed 40 % of counterfeits
+# (paper_evidence/JAAL_VERDICT_FIXED.md). The app says the check was not done instead.
+# Turn on only with a checker validated on whole-note photos.
+JAAL_VERDICT_ENABLED = False
+
+# Safe counterfeit check (policy E, paper_evidence/JAAL_VERDICT_FIXED.md, 2026-09-29).
+# 500 / 1000 Taka only. Four JaalTaka-style views are cut from the note crop and scored by PRMVT.
+# The glass says "সম্ভবত আসল" (likely genuine) only if p(genuine) > JAAL_SAFE_TAU, otherwise
+# "হাতে যাচাই করুন" (check by hand). It never says "জাল" (counterfeit).
+# JAAL_SAFE_TAU is the highest score of any JaalTaka VALIDATION counterfeit note. Measured once:
+# 0 / 88 JaalTaka test counterfeits and 0 / 25 whole-note counterfeit photos were passed.
+JAAL_SAFE_POLICY_ENABLED = True
+JAAL_SAFE_TAU = 0.9995918869972229
+JAAL_SAFE_DENOMINATIONS = ("500_taka", "1000_taka")
+# View windows (x0, y0, x1, y1) on the landscape note crop, medians over 200 JaalTaka TRAIN notes
+# (realtime_bangla_taka_detection/results/jaal_whole/view_geometry.json).
+WATERMARK_CHECK_ENABLED = False  # research feature: needs a back-lit ("hold to the light") photo; not validated on the glass camera
+WATERMARK_MODEL_PATH = os.path.abspath(os.path.join(
+    BASE_DIR, "..", "realtime_bangla_taka_detection", "models", "watermark_mobilenet.onnx"))
+WATERMARK_CLEAR_THRESHOLD = 0.5
+JAAL_VIEW_WINDOWS = (
+    (0.0, 0.0, 0.4758, 1.0),
+    (0.2843, 0.0, 0.8256, 1.0),
+    (0.5725, 0.0, 1.0, 1.0),
+    (0.5094, 0.0, 1.0, 1.0),
+)
+
+# Announce a Taka denomination only when the top detector box reaches this confidence.
+# Chosen on validation only (NSTU validation notes + demonetized notes and coins as unknowns);
+# on the Bangla Money test it cut 1-taka notes announced as another value from 43.6 % to 22.8 %
+# and kept 89.6 % of known notes correct (was 91.5 %). paper_evidence/OPEN_SET_REJECTION.md
+CURRENCY_ANNOUNCE_CONF = 0.60
 LABELS_BN_PATH      = os.path.join(BASE_DIR, "assets", "labels_bn.json")
 
 # Piper TTS models

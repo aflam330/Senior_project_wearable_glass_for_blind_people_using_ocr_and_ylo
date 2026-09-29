@@ -1,0 +1,22 @@
+{
+ "rule": "Serial-disjoint JaalTaka split: no TEST counterfeit shares a serial print with a TRAIN counterfeit.\n\nRule (written before any model was trained on it):\n  counterfeit notes are grouped by the first six digits of their OCR serial\n  (results/jaal_whole/serial_audit.json); a note with no readable serial is its own group.\n  The two largest counterfeit groups (the 3274658 and 184383x prints) go to TRAIN. The remaining\n  counterfeit groups are shuffled (seed 42) and assigned whole to VAL or TEST, alternating by size,\n  so each gets about half of the remaining counterfeit notes.\n  Genuine notes (unique serials) are split at random, seed 42, 70 / 15 / 15.\nCaveat: OCR can misread digits, so a few \"unseen\" groups may be misread copies of a train print.",
+ "counts": {
+  "train": {
+   "notes": 946,
+   "counterfeit": 385
+  },
+  "val": {
+   "notes": 222,
+   "counterfeit": 102
+  },
+  "test": {
+   "notes": 222,
+   "counterfeit": 101
+  }
+ },
+ "train_counterfeit_groups": [
+  "327465",
+  "184383"
+ ],
+ "counterfeit_groups_total": 126
+}

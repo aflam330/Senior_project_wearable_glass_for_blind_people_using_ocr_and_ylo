@@ -1,0 +1,295 @@
+{
+  "rule": "Unknown-note rejection for the Taka detector: confidence threshold chosen on validation only.\n\nRule (fixed before scoring test):\n  score  = confidence of the top YOLO box (predict at conf 0.05)\n  answer = announce the top box's class if score >= tau, else say nothing / \"not sure\"\n  tau    = grid 0.25..0.95 step 0.05, maximising (correct - wrong) on the validation pool,\n           where any announcement for an unknown image counts as wrong.",
+  "val_sweep": [
+    {
+      "tau": 0.25,
+      "known_n": 1634,
+      "known_correct": 318,
+      "known_wrong": 212,
+      "known_abstain": 1104,
+      "known_correct_rate": 0.19461444308445533,
+      "known_wrong_rate_of_answered": 0.4,
+      "unknown_n": 900,
+      "unknown_announced": 65,
+      "unknown_announced_rate": 0.07222222222222222,
+      "unknown_announced_wilson95": [
+        0.05706683101648277,
+        0.09101398314387449
+      ],
+      "utility_correct_minus_wrong": 41
+    },
+    {
+      "tau": 0.3,
+      "known_n": 1634,
+      "known_correct": 303,
+      "known_wrong": 191,
+      "known_abstain": 1140,
+      "known_correct_rate": 0.1854345165238678,
+      "known_wrong_rate_of_answered": 0.3866396761133603,
+      "unknown_n": 900,
+      "unknown_announced": 65,
+      "unknown_announced_rate": 0.07222222222222222,
+      "unknown_announced_wilson95": [
+        0.05706683101648277,
+        0.09101398314387449
+      ],
+      "utility_correct_minus_wrong": 47
+    },
+    {
+      "tau": 0.35,
+      "known_n": 1634,
+      "known_correct": 290,
+      "known_wrong": 182,
+      "known_abstain": 1162,
+      "known_correct_rate": 0.17747858017135862,
+      "known_wrong_rate_of_answered": 0.3855932203389831,
+      "unknown_n": 900,
+      "unknown_announced": 65,
+      "unknown_announced_rate": 0.07222222222222222,
+      "unknown_announced_wilson95": [
+        0.05706683101648277,
+        0.09101398314387449
+      ],
+      "utility_correct_minus_wrong": 43
+    },
+    {
+      "tau": 0.4,
+      "known_n": 1634,
+      "known_correct": 279,
+      "known_wrong": 165,
+      "known_abstain": 1190,
+      "known_correct_rate": 0.17074663402692777,
+      "known_wrong_rate_of_answered": 0.3716216216216216,
+      "unknown_n": 900,
+      "unknown_announced": 65,
+      "unknown_announced_rate": 0.07222222222222222,
+      "unknown_announced_wilson95": [
+        0.05706683101648277,
+        0.09101398314387449
+      ],
+      "utility_correct_minus_wrong": 49
+    },
+    {
+      "tau": 0.45,
+      "known_n": 1634,
+      "known_correct": 262,
+      "known_wrong": 148,
+      "known_abstain": 1224,
+      "known_correct_rate": 0.16034271725826194,
+      "known_wrong_rate_of_answered": 0.36097560975609755,
+      "unknown_n": 900,
+      "unknown_announced": 0,
+      "unknown_announced_rate": 0.0,
+      "unknown_announced_wilson95": [
+        4.336808689942018e-19,
+        0.004250302265352689
+      ],
+      "utility_correct_minus_wrong": 114
+    },
+    {
+      "tau": 0.5,
+      "known_n": 1634,
+      "known_correct": 247,
+      "known_wrong": 124,
+      "known_abstain": 1263,
+      "known_correct_rate": 0.1511627906976744,
+      "known_wrong_rate_of_answered": 0.33423180592991913,
+      "unknown_n": 900,
+      "unknown_announced": 0,
+      "unknown_announced_rate": 0.0,
+      "unknown_announced_wilson95": [
+        4.336808689942018e-19,
+        0.004250302265352689
+      ],
+      "utility_correct_minus_wrong": 123
+    },
+    {
+      "tau": 0.55,
+      "known_n": 1634,
+      "known_correct": 233,
+      "known_wrong": 103,
+      "known_abstain": 1298,
+      "known_correct_rate": 0.14259485924112608,
+      "known_wrong_rate_of_answered": 0.30654761904761907,
+      "unknown_n": 900,
+      "unknown_announced": 0,
+      "unknown_announced_rate": 0.0,
+      "unknown_announced_wilson95": [
+        4.336808689942018e-19,
+        0.004250302265352689
+      ],
+      "utility_correct_minus_wrong": 130
+    },
+    {
+      "tau": 0.6,
+      "known_n": 1634,
+      "known_correct": 221,
+      "known_wrong": 86,
+      "known_abstain": 1327,
+      "known_correct_rate": 0.13525091799265607,
+      "known_wrong_rate_of_answered": 0.28013029315960913,
+      "unknown_n": 900,
+      "unknown_announced": 0,
+      "unknown_announced_rate": 0.0,
+      "unknown_announced_wilson95": [
+        4.336808689942018e-19,
+        0.004250302265352689
+      ],
+      "utility_correct_minus_wrong": 135
+    },
+    {
+      "tau": 0.65,
+      "known_n": 1634,
+      "known_correct": 202,
+      "known_wrong": 76,
+      "known_abstain": 1356,
+      "known_correct_rate": 0.12362301101591187,
+      "known_wrong_rate_of_answered": 0.2733812949640288,
+      "unknown_n": 900,
+      "unknown_announced": 0,
+      "unknown_announced_rate": 0.0,
+      "unknown_announced_wilson95": [
+        4.336808689942018e-19,
+        0.004250302265352689
+      ],
+      "utility_correct_minus_wrong": 126
+    },
+    {
+      "tau": 0.7,
+      "known_n": 1634,
+      "known_correct": 185,
+      "known_wrong": 67,
+      "known_abstain": 1382,
+      "known_correct_rate": 0.11321909424724602,
+      "known_wrong_rate_of_answered": 0.26587301587301587,
+      "unknown_n": 900,
+      "unknown_announced": 0,
+      "unknown_announced_rate": 0.0,
+      "unknown_announced_wilson95": [
+        4.336808689942018e-19,
+        0.004250302265352689
+      ],
+      "utility_correct_minus_wrong": 118
+    },
+    {
+      "tau": 0.75,
+      "known_n": 1634,
+      "known_correct": 160,
+      "known_wrong": 45,
+      "known_abstain": 1429,
+      "known_correct_rate": 0.09791921664626684,
+      "known_wrong_rate_of_answered": 0.21951219512195122,
+      "unknown_n": 900,
+      "unknown_announced": 0,
+      "unknown_announced_rate": 0.0,
+      "unknown_announced_wilson95": [
+        4.336808689942018e-19,
+        0.004250302265352689
+      ],
+      "utility_correct_minus_wrong": 115
+    },
+    {
+      "tau": 0.8,
+      "known_n": 1634,
+      "known_correct": 136,
+      "known_wrong": 30,
+      "known_abstain": 1468,
+      "known_correct_rate": 0.0832313341493268,
+      "known_wrong_rate_of_answered": 0.18072289156626506,
+      "unknown_n": 900,
+      "unknown_announced": 0,
+      "unknown_announced_rate": 0.0,
+      "unknown_announced_wilson95": [
+        4.336808689942018e-19,
+        0.004250302265352689
+      ],
+      "utility_correct_minus_wrong": 106
+    },
+    {
+      "tau": 0.85,
+      "known_n": 1634,
+      "known_correct": 96,
+      "known_wrong": 15,
+      "known_abstain": 1523,
+      "known_correct_rate": 0.0587515299877601,
+      "known_wrong_rate_of_answered": 0.13513513513513514,
+      "unknown_n": 900,
+      "unknown_announced": 0,
+      "unknown_announced_rate": 0.0,
+      "unknown_announced_wilson95": [
+        4.336808689942018e-19,
+        0.004250302265352689
+      ],
+      "utility_correct_minus_wrong": 81
+    },
+    {
+      "tau": 0.9,
+      "known_n": 1634,
+      "known_correct": 34,
+      "known_wrong": 4,
+      "known_abstain": 1596,
+      "known_correct_rate": 0.0208078335373317,
+      "known_wrong_rate_of_answered": 0.10526315789473684,
+      "unknown_n": 900,
+      "unknown_announced": 0,
+      "unknown_announced_rate": 0.0,
+      "unknown_announced_wilson95": [
+        4.336808689942018e-19,
+        0.004250302265352689
+      ],
+      "utility_correct_minus_wrong": 30
+    },
+    {
+      "tau": 0.95,
+      "known_n": 1634,
+      "known_correct": 0,
+      "known_wrong": 0,
+      "known_abstain": 1634,
+      "known_correct_rate": 0.0,
+      "known_wrong_rate_of_answered": null,
+      "unknown_n": 900,
+      "unknown_announced": 0,
+      "unknown_announced_rate": 0.0,
+      "unknown_announced_wilson95": [
+        4.336808689942018e-19,
+        0.004250302265352689
+      ],
+      "utility_correct_minus_wrong": 0
+    }
+  ],
+  "chosen_tau": 0.6,
+  "test_at_app_default_0.25": {
+    "tau": 0.25,
+    "known_n": 1536,
+    "known_correct": 1405,
+    "known_wrong": 71,
+    "known_abstain": 60,
+    "known_correct_rate": 0.9147135416666666,
+    "known_wrong_rate_of_answered": 0.048102981029810296,
+    "unknown_n": 101,
+    "unknown_announced": 44,
+    "unknown_announced_rate": 0.43564356435643564,
+    "unknown_announced_wilson95": [
+      0.34305812093331606,
+      0.5329452975570541
+    ],
+    "utility_correct_minus_wrong": 1290
+  },
+  "test_at_chosen_tau": {
+    "tau": 0.6,
+    "known_n": 1536,
+    "known_correct": 1376,
+    "known_wrong": 50,
+    "known_abstain": 110,
+    "known_correct_rate": 0.8958333333333334,
+    "known_wrong_rate_of_answered": 0.03506311360448808,
+    "unknown_n": 101,
+    "unknown_announced": 23,
+    "unknown_announced_rate": 0.22772277227722773,
+    "unknown_announced_wilson95": [
+      0.1568071700397204,
+      0.3185919081887691
+    ],
+    "utility_correct_minus_wrong": 1303
+  }
+}

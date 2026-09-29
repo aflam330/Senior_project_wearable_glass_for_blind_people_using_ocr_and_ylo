@@ -2,7 +2,7 @@
 
 Controls
 --------
-  SPACE : speak denomination, authenticity, and pose prompt (emotion-adaptive)
+  SPACE : speak denomination and pose prompt (authenticity verdict off, see AUTH_VERDICT_ENABLED)
   v     : listen for a voice command (“what is this note?”, “is it real?”)
   d     : VLM / structured description
   g     : toggle Grad-CAM overlay
@@ -35,6 +35,11 @@ CAMERA_INDEX = 0
 CONF_THRESHOLD = 0.35
 SKIP_FRAMES = 3
 SPEAK_CONF = 0.55
+# Genuine/counterfeit verdict from the dual head. Off: the JaalTaka-trained checkers are not
+# validated on whole-note webcam crops (paper_evidence/JAAL_VERDICT_FIXED.md). Labels become
+# "unverified" and speech says the check was not done.
+AUTH_VERDICT_ENABLED = False
+CAM_EVERY = 15  # recompute the Grad-CAM heat map every N displayed frames (about 1 s per call)
 
 
 def brighten(frame, gain=3.0, gamma=0.5):
@@ -62,7 +67,8 @@ def draw_hud(frame, detections, emotion, haptic_name, listening, caption, show_c
     if detections:
         d0 = detections[0]
         put(64, spoken_name(d0["name"]).upper(), 0.8, (0, 255, 0), 2)
-        put(94, f"det {d0['conf']*100:.0f}%  auth {d0['genuine_prob']*100:.0f}%")
+        auth_txt = f"  auth {d0['genuine_prob']*100:.0f}%" if d0["auth_label"] != "unverified" else ""
+        put(94, f"det {d0['conf']*100:.0f}%{auth_txt}")
         color = (0, 255, 0) if d0["auth_label"] == "genuine" else ((0, 0, 255) if d0["auth_label"] == "counterfeit" else (0, 200, 255))
         put(122, d0["auth_label"].upper(), 0.7, color, 2)
         pose = d0.get("pose") or {}
@@ -130,27 +136,36 @@ def announce(speaker: Speaker, detections, emotion_label: str, describer: NoteDe
         bits.append("warning, possible counterfeit")
     elif d0["auth_label"] == "genuine":
         bits.append("appears genuine")
+    elif d0["auth_label"] == "unverified":
+        bits.append("authenticity not checked")
     if pose.get("needs_straighten"):
         bits.append("please straighten the note")
     speaker.say(". ".join(bits), emotion_label)
 
 
 def main():
+    import argparse
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--camera", type=int, default=CAMERA_INDEX)
+    ap.add_argument("--max-frames", type=int, default=0, help="stop after N frames (0 = run until q)")
+    args = ap.parse_args()
+
     dual = DualHeadYOLO(conf=CONF_THRESHOLD)
     speaker = Speaker()
     haptics = HapticEngine()
     emotion = EmotionDetector(download=True)
     # Qwen2-VL-2B / LLaVA are multi-gigabyte fp32 downloads that OOM on this
     # machine (16 GB RAM, CPU-only) — prefer BLIP-base, which is small and
-    # actually runs. See docs/Savior_Glass_Progress_Report_2026-09-21.md:
+    # actually runs. See docs/reports/Savior_Glass_Progress_Report_2026-09-21.md:
     # "Qwen-VL / LLaVA ... not what runs today."
     describer = NoteDescriber(prefer="blip")
     asr = VoiceCommands()
     cam = LiveGradCAM(yolo=dual.detector)
 
-    cap = cv2.VideoCapture(CAMERA_INDEX, cv2.CAP_DSHOW)
+    cap = cv2.VideoCapture(args.camera, cv2.CAP_DSHOW)
     if not cap.isOpened():
-        raise RuntimeError(f"Could not open camera index {CAMERA_INDEX}")
+        raise RuntimeError(f"Could not open camera index {args.camera}")
     for _ in range(20):
         cap.read()
     cv2.namedWindow("RoboEye", cv2.WINDOW_NORMAL)
@@ -163,6 +178,8 @@ def main():
     last_haptic_key = None
     last_haptic_t = 0.0
     frame_count = 0
+    cam_heat_frame = None  # last Grad-CAM overlay, refreshed every CAM_EVERY frames
+    t_start = time.time()
 
     def on_asr(text, intent):
         nonlocal listening, caption
@@ -195,6 +212,9 @@ def main():
         if frame_count % SKIP_FRAMES == 0:
             infer = brighten(frame) if frame.mean() < 80 else frame
             detections = dual.predict(infer)
+            if not AUTH_VERDICT_ENABLED:
+                for d in detections:
+                    d["auth_label"] = "unverified"
             for d in detections:
                 d["pose"] = estimate_pose(frame, d["xyxy"], d["name"])
             if frame_count % (SKIP_FRAMES * 4) == 0:
@@ -213,11 +233,18 @@ def main():
 
         display = frame.copy()
         if show_cam and detections:
-            display = cam.overlay(display, class_id=detections[0]["cls_id"])
+            if cam_heat_frame is None or frame_count % CAM_EVERY == 0:
+                heat = cam.heatmap(frame, class_id=detections[0]["cls_id"])
+                cam_heat_frame = None if heat is None else cv2.applyColorMap(
+                    (heat * 255).astype(np.uint8), cv2.COLORMAP_JET)
+            if cam_heat_frame is not None:
+                display = cv2.addWeighted(display, 0.55, cam_heat_frame, 0.45, 0)
+        elif not show_cam:
+            cam_heat_frame = None
         display = draw_hud(display, detections, emo, haptics.last_pattern, listening, caption, show_cam)
         cv2.imshow("RoboEye", display)
         key = cv2.waitKey(1) & 0xFF
-        if key in (ord("q"), 27):
+        if key in (ord("q"), 27) or (args.max_frames and frame_count >= args.max_frames):
             break
         elif key == ord(" "):
             announce(speaker, detections, emo.get("label", "neutral"), describer, False)
@@ -236,6 +263,9 @@ def main():
                 caption = "ASR unavailable — use SPACE / d / typed keys"
                 speaker.say("voice recognition is not available, use the keyboard", emo.get("label", "neutral"))
 
+    elapsed = time.time() - t_start
+    print(f"frames={frame_count} seconds={elapsed:.1f} fps={frame_count / max(elapsed, 1e-6):.2f} "
+          f"gradcam={'ok' if cam.ok else cam.error}")
     speaker.stop()
     haptics.close()
     dual.close()

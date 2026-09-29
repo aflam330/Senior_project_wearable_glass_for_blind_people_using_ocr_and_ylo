@@ -345,6 +345,7 @@ def main() -> None:
     report.update(learning)
     path = RESULTS / "assistive_eval.json"
     path.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
+    sys.stdout.reconfigure(encoding="utf-8")  # Bangla text; the Windows console defaults to cp1252
     print(json.dumps(report, indent=2, ensure_ascii=False))
     print(f"Wrote {path}")
 

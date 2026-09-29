@@ -1,0 +1,15 @@
+path: E:/Final SP/data set/currency_yolo_newtest
+train: images
+val: images
+test: images
+nc: 9
+names:
+  - 2_taka
+  - 5_taka
+  - 10_taka
+  - 20_taka
+  - 50_taka
+  - 100_taka
+  - 200_taka
+  - 500_taka
+  - 1000_taka

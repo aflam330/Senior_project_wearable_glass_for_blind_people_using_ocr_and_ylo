@@ -1,0 +1,207 @@
+{
+  "py_compiled_ok": 181,
+  "py_errors": [],
+  "foreign_currency_code_hits": [
+    "fer_emotion.py:EUR",
+    "build_report.py:USD",
+    "build_report.py:EUR",
+    "eval_bbox.py:EUR",
+    "eval_bbox_app.py:EUR"
+  ],
+  "foreign_currency_code_hit_count": 5,
+  "split": {
+    "path": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\camva\\splits\\split_metadata.json",
+    "leakage": {
+      "train_val": 0,
+      "train_test": 0,
+      "val_test": 0
+    },
+    "n_notes": 1390,
+    "train_val_test": [
+      974,
+      208,
+      208
+    ]
+  },
+  "oracle": {
+    "path": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\eval\\seed42\\oracle.json",
+    "oracle_correct": 205,
+    "learned_correct": 201,
+    "gap_notes": 4,
+    "unsolvable": 3,
+    "wilson_oracle": {
+      "k": 205,
+      "n": 208,
+      "phat": 0.9855769230769231,
+      "low": 0.9584603398187191,
+      "high": 0.9950829426176805
+    },
+    "wilson_learned": {
+      "k": 201,
+      "n": 208,
+      "phat": 0.9663461538461539,
+      "low": 0.9321749582440073,
+      "high": 0.9836042337988713
+    }
+  },
+  "occlusion_keys": [
+    "ensemble",
+    "final_method",
+    "final_test",
+    "models",
+    "per_model",
+    "rejection",
+    "rules",
+    "test_occ55_mean_over_models",
+    "test_occ55_sd_over_models"
+  ],
+  "bbox_keys": [
+    "app_detect_live_vs_raw",
+    "real_best.pt",
+    "real_best_int8.onnx",
+    "synthetic_best.pt",
+    "synthetic_best_int8.onnx",
+    "worst_real_grid"
+  ],
+  "multinote_keys": [
+    "conf",
+    "counts",
+    "weights"
+  ],
+  "vcie_keys": [
+    "algo",
+    "seed",
+    "split",
+    "views"
+  ],
+  "mtpt_keys": [
+    "algo",
+    "seed",
+    "split",
+    "views"
+  ],
+  "pac_keys": [
+    "checkpoint",
+    "d2_deterministic_error",
+    "d2_gibbs_errors",
+    "d2_gibbs_mean",
+    "delta",
+    "empirical_bernstein_upper",
+    "hoeffding_upper",
+    "kl",
+    "layerwise_kl_sum",
+    "layerwise_note",
+    "mcallester",
+    "mcallester_penalty",
+    "n_d1",
+    "n_d2",
+    "n_layers_with_float_weights",
+    "note",
+    "pacbayes_kl_upper",
+    "posterior",
+    "prior",
+    "rademacher_full_network",
+    "rho",
+    "sigma0",
+    "split",
+    "test_used"
+  ],
+  "prefix_type": "dict",
+  "paths": {
+    "occ": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\robustness\\occlusion_decision.json",
+    "bbox": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\bbox\\bbox_eval.json",
+    "multi": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\bbox\\bbox_multinote.json",
+    "vcie": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel_v2\\vcie_k1\\seed42\\test\\test_metrics.json",
+    "mtpt": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel_v2\\mtpt_prefix_ft\\seed42\\test\\test_metrics.json",
+    "pac": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\theory\\pacbayes_d1_bound_seed42.json",
+    "prefix": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\prefix_ft\\seed42\\test_views_20260928\\views_1_to_6.json"
+  },
+  "wilson": {
+    "prefix_1": {
+      "k": 202,
+      "n": 208,
+      "phat": 0.9711538461538461,
+      "low": 0.9385063212370869,
+      "high": 0.986713893404172
+    },
+    "prefix_6": {
+      "k": 204,
+      "n": 208,
+      "phat": 0.9807692307692307,
+      "low": 0.9516055170639194,
+      "high": 0.9924967427740997
+    },
+    "vcie_1": {
+      "k": 193,
+      "n": 208,
+      "phat": 0.9278846153846154,
+      "low": 0.8844377972066675,
+      "high": 0.9558132140491697
+    },
+    "vcie_6": {
+      "k": 193,
+      "n": 208,
+      "phat": 0.9278846153846154,
+      "low": 0.8844377972066675,
+      "high": 0.9558132140491697
+    },
+    "mtpt_1": {
+      "k": 204,
+      "n": 208,
+      "phat": 0.9807692307692307,
+      "low": 0.9516055170639194,
+      "high": 0.9924967427740997
+    },
+    "mtpt_6": {
+      "k": 201,
+      "n": 208,
+      "phat": 0.9663461538461539,
+      "low": 0.9321749582440073,
+      "high": 0.9836042337988713
+    },
+    "ensemble_occ": {
+      "k": 185,
+      "n": 208,
+      "phat": 0.8894230769230769,
+      "low": 0.8395442985060947,
+      "high": 0.9251785319627007
+    },
+    "ensemble_clean": {
+      "k": 206,
+      "n": 208,
+      "phat": 0.9903846153846154,
+      "low": 0.9656251630425841,
+      "high": 0.9973591419921957
+    }
+  },
+  "bbox_synthetic": {
+    "n": 2052,
+    "detected": 1.0,
+    "iou_mean": 0.9083,
+    "iou_median": 0.9254,
+    "iou>=0.5": 1.0,
+    "iou>=0.75": 0.9839,
+    "iou>=0.9": 0.6486,
+    "class_correct_when_detected": 0.9966,
+    "area_ratio_median(pred/true)": 1.038,
+    "edge_error_median(share of box size)": 0.0195
+  },
+  "bbox_false_alarms": {
+    "fp@0.25": 0.0,
+    "fp@0.35": 0.0,
+    "fp@0.5": 0.0,
+    "n": 230
+  },
+  "ensemble_test": {
+    "clean": 0.9903846153846154,
+    "occ55": 0.8894230769230769
+  },
+  "rejection_test_occ": {
+    "answered": 0.46634615384615385,
+    "accuracy_on_answered": 0.9896907216494846,
+    "wrong_verdicts_share_of_all_notes": 0.004807692307692308
+  },
+  "pacbayes_d1_mcallester": 0.11271182900151713,
+  "pacbayes_d1_kl_upper": 0.06646264504399683,
+  "test_used_for_pacbayes": false
+}

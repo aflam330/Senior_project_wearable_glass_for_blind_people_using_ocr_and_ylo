@@ -120,11 +120,12 @@ def main() -> None:
         write("table09_emotion.md", "Table 9. Emotion", "NOT_MEASURED\n", "missing")
 
     ocr = load(WORKSPACE / "savior_glass" / "results" / "ocr_cer.json")
-    wild = load(EVID / "detection" / "wild_note_metrics.json")
+    # independent photos only; detection/wild_note_metrics.json is not held out (paper_evidence/CORRECTIONS.md)
+    ext = (load(ROOT / "results" / "external" / "external_taka.json") or {}).get("bangla_money_training_folders") or {}
     e2e_rows = [
         ["OCR CER", fmt((ocr or {}).get("cer"))],
-        ["wild detection", fmt((wild or {}).get("detection_recall") or (wild or {}).get("detection"))],
-        ["wild top-1 denom", fmt((wild or {}).get("top1") or (wild or {}).get("top_1"))],
+        ["Bangla Money no-detection rate", fmt(ext.get("no_detection_rate"))],
+        ["Bangla Money top-1 denom", fmt(ext.get("top1_accuracy"))],
         ["auth 6-view proposed", fmt((p6 or {}).get("accuracy"))],
         ["human study", "NOT_MEASURED"],
     ]

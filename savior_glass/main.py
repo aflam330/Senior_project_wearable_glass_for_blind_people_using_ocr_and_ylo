@@ -1,6 +1,6 @@
 """
 Smart Glass for Blind People — Main Entry Point
-Raspberry Pi 5 | Fully Offline
+Raspberry Pi 5 | offline except the optional Claude mode (internet + API key)
 
 Thread layout:
   main          — startup, shutdown, signal handling

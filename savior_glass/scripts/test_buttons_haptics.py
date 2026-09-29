@@ -136,8 +136,16 @@ def main() -> None:
     time.sleep(1.0)  # let the vibration pattern finish
     spoken_t, text = tts.spoken[-1]
     buzz = pulses(gpio.writes[n_writes:], config.HAPTIC_PIN, t0)
-    verdict = "counterfeit" if "জাল" in text else ("genuine" if "আসল" in text else "none")
-    expected = {"genuine": 2, "counterfeit": 3, "none": 1}[verdict]
+    if "জাল যাচাই করা হয়নি" in text:  # verdict switched off (config.JAAL_VERDICT_ENABLED)
+        verdict = "not_checked"
+    elif "হাতে যাচাই করুন" in text:  # safe policy, 500/1000 Taka (config.JAAL_SAFE_POLICY_ENABLED)
+        verdict = "check_by_hand"
+    elif "সম্ভবত আসল" in text:
+        verdict = "likely_genuine"
+    else:
+        verdict = "counterfeit" if "জাল" in text else ("genuine" if "আসল" in text else "none")
+    # the safe policy plays the plain detect pulse for both of its answers
+    expected = {"genuine": 2, "counterfeit": 3, "none": 1, "not_checked": 1, "check_by_hand": 1, "likely_genuine": 1}[verdict]
     chk["action_currency"] = {
         "pass": text.startswith("একশত টাকার নোট") and len(buzz) == expected,
         "spoken": text, "verdict": verdict, "press_to_speech_ms": round((spoken_t - t0) * 1000),

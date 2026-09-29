@@ -35,3 +35,16 @@ data set/
 # Local YOLO dumps / training curves (regenerable, too large)
 savior_glass/results/taka_wild_yolo/
 savior_glass/results/yolo_runs/
+
+# Comparison datasets (140k+ images, downloaded separately; see paper_evidence/CROSS_DATASET_DOWNLOAD_LOG.md)
+data set for comparison/
+
+# Regenerable 128-px view cache written by roboeye.camva.data.cached_resized_rgb
+realtime_bangla_taka_detection/cache/
+
+# Regenerable derived data (2026-09-30): rebuilt by the scripts named in paper_evidence
+realtime_bangla_taka_detection/results/jaal_whole/synth_notes/
+realtime_bangla_taka_detection/results/jaal_whole/crops/
+realtime_bangla_taka_detection/results/watermark/crops/
+realtime_bangla_taka_detection/results/**/feats_*.npz
+realtime_bangla_taka_detection/results/watermark/crop_feats_resnet50.npz

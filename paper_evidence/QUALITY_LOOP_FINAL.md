@@ -1,0 +1,57 @@
+# Quality loop, final (2026-09-29)
+
+Each row scores a component with a measured number, names the improvement tried, and says whether it helped. An improvement was kept only if it was chosen on training or validation data, or fixed before the test was read. The loop stopped where the next step needed data or hardware that is not on disk, or where it would have meant choosing on test data already seen.
+
+## Iterations in this pass
+
+| # | Component | Before | Change | After | Kept |
+|---|---|---|---|---|---|
+| 1 | Main JaalTaka model | PRMVT, per-count BN: 96.5 ± 1.5 % at 1 view | Shared-BN prefix network (same-architecture run) | 98.2 ± 0.7 % at 1 view; preferred on validation (0.9869 vs 0.9843) | yes, as the recommended model |
+| 2 | Whole-note ranking (counterfeit-set originals) | AUC 0.640 (whole crop as 1 view) | Cut views 1–4 at positions measured on TRAIN notes | AUC 0.829 (PRMVT), 0.966 (ResNet-50 probe) | yes |
+| 3 | Deployed jaal output | Off | Policy E: "likely genuine" above the max VAL counterfeit score, else "check by hand"; never "counterfeit" | 0 / 88 test and 0 / 25 whole-note counterfeits passed; 0 "counterfeit" spoken in 1,889 app runs | yes, on in the app |
+| 4 | Looser jaal threshold | — | 99th percentile of VAL counterfeit scores | 16 / 25 whole-note counterfeits passed | **no** (unsafe) |
+| 5 | Wrong verdicts under bad light, 1 view | 59–86 of 208 | Image-quality gate fixed on clean VAL | 0 of 208 in each tested condition; clean answered 193 / 208 | evaluated; the glass needs its own calibration first |
+| 6 | Claim checking | File existence only | Value check via `json_key` | 166 / 195 value-checked, all equal | yes |
+| 7 | Reproducibility of stored test metrics | Not checked | Recompute from saved predictions | 970 / 970 reproduce | yes |
+| 8 | Stale pre-fix numbers | 5 LaTeX tables, 1 claim, `SOTA_BEAT.md`, 2 sentences | Generators pointed at post-fix files; regenerated | 0 known stale numbers in the current tables | yes |
+| 9 | Resumable same-architecture runner | Treated a half-trained checkpoint as done | Waits for `train_summary.json` | 9 / 9 runs complete | yes |
+| 10 | Prototype authenticator | Could include test notes | TRAIN notes only | Leak removed; still uninformative (0.915 vs 0.907 similarity), stays off | yes |
+
+## Where the loop stopped, and why
+
+| Component | Current | Why no further step here |
+|---|---|---|
+| Jaal on whole notes | Safe, but confirms 0.4–2 % of independent genuine notes | Any new checker or threshold chosen now would be chosen on whole-note photos already scored. Needed: grouped whole-note counterfeit photos from the glass camera |
+| Occlusion, real fingers | Gate tested only on black synthetic boxes | Needs real hand-held photos with labels |
+| JaalTaka accuracy | Prefix network and frozen probes tie (60 paired tests, none significant) | The 208-note test split has been read by about 110 runs; a further accuracy gain could not be shown honestly without a fresh test set, and there are no unused JaalTaka notes |
+| Raspberry Pi 5 latency | READY_FOR_DEVICE | `savior_glass/scripts/benchmark_pi5.py` must run on the Pi |
+| User study | READY_FOR_DEVICE | `USER_STUDY_PROTOCOL.md`; needs participants |
+| MVP-N cross-domain check | Not on disk | Would need a download (about 2–3 GB) |
+
+## Component scores now
+
+| Component | Score | Source |
+|---|---|---|
+| Taka detector, synthetic test | mAP@0.5 0.995 | `results/training_v2/test_eval/test_metrics.json` |
+| Taka detector, independent photos | 91.5 % (Bangla Money), 18.5 % (NSTU close-ups) | `CROSS_DATASET_TAKA.md` |
+| Authentication, JaalTaka, 1 view (3 seeds) | 98.2 ± 0.7 % (prefix, shared BN) | `SAME_ARCH_RESULTS.md` |
+| Authentication, 6 views (3 seeds) | 98.7 ± 0.3 % | same |
+| Jaal policy safety, in-domain | 0 / 88 counterfeit passed (CI 0–4.2 %) | `results/jaal_whole/policy.json` |
+| Wrong verdicts under severe bad light with the gate | 0 / 208 per condition (CI 0–1.8 %) | `results/safety/quality_gate_seed42.json` |
+| Calibration, PRMVT raw | ECE 0.0146 | `results/calibration/suite_seed42.json` |
+| Emotion (RAF-DB) | 86.5 % | `paper_evidence/emotion/emotion_rafdb.json` |
+| OCR CER | 3.2 % English, 27.8 % Bangla | `paper_evidence/ocr/ocr_cer.json` |
+| Claims value-checked | 166 / 195, all equal | `validate_claims.py` |
+
+## Iterations, 2026-09-30
+
+| # | Component | Before | Change | After | Kept |
+|---|---|---|---|---|---|
+| 11 | Counterfeit detection on unseen prints | 87.8 % (6 views) | Add watermark-window detector (validation-fitted combination) | 95.5 % (p = 0.0002) | yes (research; needs back-lit capture on device) |
+| 12 | Serial as a detector | — | Blacklist and duplicate-serial rules | 0 / 19 unseen caught; redundant with watermark | no (known-print list only) |
+| 13 | Evaluation size | 208 test notes | 5-fold CV over 1,390 notes | 98.3 / 95.8 % | yes |
+| 14 | Honest generalisation estimate | note-disjoint only | serial-disjoint split | 90.1 / 87.8 % | yes (lead number) |
+| 15 | Concat fusion under prefix training | −8.6 points at 6 views | 4 repairs | best −4.4 (rescaled slots) | no; use pooling heads |
+| 16 | Watermark crop | contained the serial | box moved, visually checked | no digits | yes |
+
+**Stopped because.** Further gains on unseen prints need more counterfeit prints: the test has about 20. Deploying the watermark needs back-lit photos from the glass camera. Both require data collection.

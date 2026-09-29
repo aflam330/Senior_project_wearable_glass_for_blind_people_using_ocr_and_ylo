@@ -114,6 +114,7 @@ _BN_EN_FALLBACK = (
     ("পাঁচশত টাকার নোট", "500 taka"),
     ("এক হাজার টাকার নোট", "1000 taka"),
     # authenticity verdict appended by CurrencyMode.detect_live
+    ("জাল যাচাই করা হয়নি", "Authenticity not checked"),
     ("জাল টাকা", "Counterfeit"),
     ("আসল", "Genuine"),
     # emotion-adaptive prefixes (roboeye.fer_emotion.tts_style_for_emotion)

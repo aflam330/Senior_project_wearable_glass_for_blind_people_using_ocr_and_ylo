@@ -155,7 +155,9 @@ def assert_disjoint_splits(train: list[str], val: list[str], test: list[str]) ->
 
 
 def load_splits(split_dir: Path | None = None) -> tuple[dict[str, list[str]], dict[str, dict]]:
-    split_dir = split_dir or SPLIT_DIR
+    # JAALTAKA_SPLIT_DIR selects another split (e.g. results/serial_split); default is the seed-42 split
+    import os
+    split_dir = split_dir or (Path(os.environ["JAALTAKA_SPLIT_DIR"]) if os.environ.get("JAALTAKA_SPLIT_DIR") else SPLIT_DIR)
     train = json.loads((split_dir / "train_note_ids.json").read_text(encoding="utf-8"))
     val = json.loads((split_dir / "val_note_ids.json").read_text(encoding="utf-8"))
     test = json.loads((split_dir / "test_note_ids.json").read_text(encoding="utf-8"))

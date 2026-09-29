@@ -27,3 +27,9 @@ Every historical checkpoint was not reloaded in this pass. Environment variables
 ## Mismatch to watch
 
 `FINAL_RESULTS.md` rounds the ensemble occlusion accuracy to 88.5% and the rejection errors to 0.5%. The source file `occlusion_decision.json` has ensemble test occlusion accuracy 0.8894230769230769 and wrong-verdict share 0.004807692307692308. The rounded sentences and the JSON are the same experiment. The earlier median-fill result 0.875 is a different checkpoint.
+
+## Recheck 2026-09-29
+
+`scripts/eval/final_scientific_pass.py` compiled 168 project Python files and reported 0 errors. Virtualenv files were excluded. Split leakage in `split_metadata.json` is still 0 / 0 / 0. The oracle file is exactly 205 correct, 201 learned, gap 4, unsolvable 3. `scripts/validate_claims.py` exited 0 on 122 claims. Statuses `NOT_MET`, `VERIFIED_SIMULATED`, and `NOT_MEASURED (PROTOCOL_READY)` are recorded, and their artifact files are still required when a number or a simulated check is attached.
+
+Five case-insensitive hits on `eur` or `usd` were the substring inside `heuristic` and two literature sentences in `scripts/build_report.py`. No foreign-currency image folder was added.

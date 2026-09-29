@@ -1,0 +1,141 @@
+\documentclass[12pt]{report}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{placeins}
+\usepackage{amsmath}
+\numberwithin{table}{subsection}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{microtype}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{cellspace}
+\setlength\cellspacetoplimit{5pt}
+\setlength\cellspacebottomlimit{5pt}
+\usepackage{titlesec}
+\usepackage{framed}
+\usepackage{fancybox}
+\usepackage[english]{babel}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[a4paper, top=1.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+
+\hypersetup{hidelinks}
+
+% All figures of this report are kept in this folder
+\graphicspath{{DIagram fig tab/}}
+
+% Code listing style
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  columns=fullflexible,
+  keywordstyle=\bfseries,
+  showstringspaces=false
+}
+
+% TikZ styles for block diagrams
+\tikzset{
+  block/.style={rectangle, rounded corners, draw=black, fill=blue!8, minimum width=2.6cm, minimum height=1cm, align=center, font=\small},
+  io/.style={trapezium, trapezium left angle=70, trapezium right angle=110, draw=black, fill=orange!15, minimum height=1cm, align=center, font=\small},
+  decision/.style={diamond, aspect=2, draw=black, fill=green!10, align=center, font=\small, inner sep=1pt},
+  startstop/.style={rectangle, rounded corners=8pt, draw=black, fill=red!10, minimum width=2.6cm, minimum height=0.9cm, align=center, font=\small},
+  arrow/.style={-{Stealth[length=2.5mm]}, thick}
+}
+
+\usepackage{csquotes}
+
+% Bibliography with biblatex
+\usepackage[
+  backend=biber,
+  style=numeric,
+  sorting=none
+]{biblatex}
+\addbibresource{ref.bib}
+
+% Continuous figure numbering
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+
+% Section formatting
+\titleformat{\chapter}[block]
+  {\normalfont\huge\bfseries}{\thechapter}{1em}{\Huge}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \includegraphics[width=0.5\textwidth]{iub_logo.png}\par\vspace{0.2cm}
+    {\scshape\Large \textbf{Savior Glass: An Offline, Bangla-First Assistive Smart Glass for Visually Impaired People with Text Reading, Object Detection, and Bangladeshi Currency Recognition and Authentication}\par}
+    \vspace{0.5cm}
+    {\Large September 2026 \par}
+    \vspace{1cm}
+    {\large Prepared by:\par}
+    \vspace{0.5cm}
+    {\large [Student Name 1]\par}
+    {\large ID: [XXXXXXX]\par}
+    \vspace{0.2cm}
+    {\large [Student Name 2]\par}
+    {\large ID: [XXXXXXX]\par}
+    \vspace{0.2cm}
+    {\large [Student Name 3]\par}
+    {\large ID: [XXXXXXX]\par}
+    \vspace{1cm}
+    {\large Department of Computer Science and Engineering\par}
+    {\large Independent University, Bangladesh\par}
+    \vspace{1cm}
+    {\large Supervised by\par}
+    \vspace{0.5cm}
+    {\large [Supervisor Name]\par}
+    {\large [Designation]\par}
+    {\large Department of Computer Science and Engineering\par}
+    {\large Independent University, Bangladesh\par}
+\end{titlepage}
+
+\input{attestation}
+\input{evalcommittee}
+\input{acknow}
+
+\input{abstract}
+
+
+\tableofcontents
+\renewcommand\listfigurename{List of Figures}
+\listoffigures
+\listoftables
+
+\input{Introduction}
+
+\input{LiteratureReview}
+\input{methodology}
+\input{implementation}
+\input{datasurvey}
+\input{resultandchallenges}
+\input{conclusion}
+
+\appendix
+\chapter{Appendix}
+\input{Appendix}
+
+\phantomsection
+\nocite{*}
+\printbibliography[heading=bibintoc]
+
+\end{document}

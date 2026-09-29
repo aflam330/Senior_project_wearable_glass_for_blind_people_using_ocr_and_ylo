@@ -1,0 +1,35 @@
+[Unit]
+Description=Offline Smart Glass for Blind People
+Documentation=https://github.com/your-repo/smart-glass
+# Start after audio subsystem and network (network not strictly needed — fully offline)
+After=sound.target
+Wants=sound.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/smart-glass
+
+# Activate virtualenv inline
+ExecStart=/home/pi/smart-glass-env/bin/python3 /home/pi/smart-glass/main.py
+
+# Restart on crash (not on clean exit / SIGTERM)
+Restart=on-failure
+RestartSec=5
+StartLimitInterval=60
+StartLimitBurst=3
+
+# Environment
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONPATH=/home/pi/smart-glass
+
+# Allow GPIO and audio access
+SupplementaryGroups=gpio audio video
+
+# Logging — viewable with: journalctl -u smart_glass -f
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -30,13 +30,12 @@ COMPOSITES_PER_IMAGE = 4
 MAX_SOURCE_DIM = 900
 NEGATIVE_RATIO = 0.10   # fraction of output images with no note
 
-BG_DIR = Path(r"E:\Final SP\data set\coco2017\val2017")
+# Datasets live in "<workspace>/data set", next to this repository folder.
+DATA_ROOT = Path(__file__).resolve().parents[2] / "data set"
+BG_DIR = DATA_ROOT / "coco2017" / "val2017"
 
-SOURCE_DIR = Path(
-    r"E:\Final SP\data set\Bangladeshi_Paper_Currency_Raw"
-    r"\Bangladeshi_Paper_Currency_Raw"
-)
-DEST_DIR = Path(r"E:\Final SP\data set\currency_yolo_data")
+SOURCE_DIR = DATA_ROOT / "Bangladeshi_Paper_Currency_Raw" / "Bangladeshi_Paper_Currency_Raw"
+DEST_DIR = DATA_ROOT / "currency_yolo_data"
 
 CLASSES = {
     "2":    (0, "2_taka"),

@@ -894,7 +894,7 @@ def main() -> None:
     make_figure_7()
     make_figure_8()
     make_figure_9()
-    download = ROOT.parent / "ieee_figures_download"
+    download = ROOT.parent / "docs" / "figures" / "ieee"
     download.mkdir(parents=True, exist_ok=True)
     for stem in (
         "fig2_compositing",

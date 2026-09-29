@@ -10,15 +10,26 @@ the synthetic-to-real domain gap.
 
 ---
 
-## Results (held-out test set, 2,238 images)
+## Results
+
+Held-out synthetic composites (test split, 2,282 images; `scripts/evaluate.py` →
+`results/training_v2/test_eval/test_metrics.json`, re-run 2026-09-29):
 
 | Metric | Value |
 |--------|-------|
-| Precision | 0.998 |
-| Recall | 0.997 |
+| Precision | 0.995 |
+| Recall | 0.996 |
 | mAP@0.5 | 0.995 |
-| mAP@0.5:0.95 | 0.847 |
-| Inference speed | 7.3 ms / image (≈135 FPS, RTX 4060) |
+| mAP@0.5:0.95 | 0.849 |
+| Inference | 13.9 ms / image (Ultralytics val, RTX 3050 Laptop GPU) |
+
+Composites are statistically close to the training data. On independent photographs
+(`results/external/external_taka.json`, never used for training or selection) the
+detector names the correct denomination for **91.5 %** of 1,536 Bangla Money photos and
+**18.5 %** of 1,144 NSTU-BDTAKA hand-held close-ups. See `paper_evidence/CROSS_DATASET_TAKA.md`.
+
+Earlier versions of this README gave 0.998 / 0.997 on 2,238 images and 7.3 ms on an
+RTX 4060; no result file for those numbers exists (`paper_evidence/CORRECTIONS.md`).
 
 Full write-up: **[Bangla_Currency_Detection_Report.pdf](Bangla_Currency_Detection_Report.pdf)** (16 pages).
 

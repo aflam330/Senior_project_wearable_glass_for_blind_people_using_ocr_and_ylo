@@ -19,17 +19,43 @@ Senior project: an **offline assistive wearable** that reads Bangla/English text
 
 ---
 
-## Repository layout
+## Project structure
 
-| Folder | Role |
-|--------|------|
-| [`savior_glass/`](savior_glass/) | Raspberry Pi 5 smart-glass app (OCR, object, currency, GPIO, TTS) |
-| [`Unused/`](Unused/) | Retired files kept for reference: outdated `smart-glass/` copy, broken INT8 export, replaced originals (see `Unused/README.md`) |
-| [`realtime_bangla_taka_detection/`](realtime_bangla_taka_detection/) | YOLOv8 Taka detector, RoboEye modules, trained weights, report |
-| [`docs/`](docs/) | Paper outlines and bibliography |
-| [`CURR/files/`](CURR/files/) | Currency-detection paper draft + figures |
-| [`ieee_figures_download/`](ieee_figures_download/) | IEEE paper figures (PNG) |
-| [`samples/`](samples/) | Two example photos only (not the full dataset) |
+```
+Final SP/
+├── realtime_bangla_taka_detection/  Taka detector + authentication research (Python package root)
+│   ├── roboeye/            library code: authenticity models, Q-DUIG, CAMVA, emotion, pose, haptics, speech
+│   ├── models/             trained weights (best.pt / ONNX / INT8, authenticity heads) + novel-algorithm modules
+│   ├── configs/            experiment YAML configs
+│   ├── data/               YOLO data.yaml (points at data set/currency_yolo_data)
+│   ├── scripts/            entry points; scripts/train/ and scripts/eval/ hold the research runs
+│   ├── results/            saved metrics, predictions and checkpoints behind every reported number
+│   └── requirements.txt    (venv/, cache/ and runs/ are local and git-ignored)
+├── savior_glass/          Raspberry Pi 5 smart-glass app
+│   ├── main.py             Pi entry point (GPIO buttons, camera, speech)
+│   ├── test_windows.py     desktop harness (keyboard instead of buttons)
+│   ├── modes/              OCR, object, currency (+ jaal check), online Claude mode
+│   ├── assistive/          emotion and pose, imported from realtime_bangla_taka_detection/roboeye
+│   ├── scripts/            training, evaluation, Pi benchmark and hardware-logic tests
+│   └── models/, assets/, results/
+├── paper_evidence/        research write-ups, tables, figures and CLAIM_REGISTRY.json (every claim → source file)
+├── docs/                  project documentation
+│   ├── 00_OVERVIEW.md, PAPER1_*, PAPER2_*, RELATED_WORK_BIBLIOGRAPHY.md
+│   ├── reports/            feature audit, dated progress report and its generator
+│   ├── papers/currency_detection/  currency-detection paper draft (LaTeX + figures)
+│   ├── figures/ieee/       IEEE figures (written by scripts/generate_ieee_figures.py)
+│   └── literature/         source spreadsheet of reviewed papers
+├── Thesis Report and paper/  thesis LaTeX sources and figures
+├── samples/               two example images shown in this README
+├── data set/              training/eval datasets, local only (git-ignored)
+├── data set for comparison/  external Taka + ModelNet40 datasets, local only (git-ignored)
+├── Unused/                retired or superseded files kept for reference (see Unused/README.md); nothing is loaded from here
+├── run_research_pipeline.py  wrapper for realtime_bangla_taka_detection/run_research_pipeline.py
+└── setup.py, LICENSE, CITATION.cff, CONTRIBUTING.md
+```
+
+The two application folders, `paper_evidence/` and the dataset folders keep their names because code,
+saved results and the claim registry refer to them by path.
 
 ---
 
@@ -84,5 +110,5 @@ python test_windows.py
 - [Project overview](docs/00_OVERVIEW.md)
 - [Currency detection paper notes](docs/PAPER1_Currency_Detection.md)
 - [Smart-glass system paper notes](docs/PAPER2_Smart_Glass_System.md)
-- [Feature audit](FEATURE_AUDIT_REPORT.md)
+- [Feature audit](docs/reports/FEATURE_AUDIT_REPORT.md)
 - [Currency report PDF](realtime_bangla_taka_detection/Bangla_Currency_Detection_Report.pdf)

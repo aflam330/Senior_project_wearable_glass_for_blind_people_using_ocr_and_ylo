@@ -1,0 +1,67 @@
+{
+  "500_genuine": {
+    "n": 829,
+    "correct": 766,
+    "no_detection": 5,
+    "acc": 0.9240048250904704,
+    "wilson95": [
+      0.9039,
+      0.9402
+    ]
+  },
+  "1000_genuine": {
+    "n": 370,
+    "correct": 370,
+    "no_detection": 0,
+    "acc": 1.0,
+    "wilson95": [
+      0.9897,
+      1.0
+    ]
+  },
+  "500_counterfeit": {
+    "n": 32,
+    "correct": 0,
+    "no_detection": 12,
+    "acc": 0.0,
+    "wilson95": [
+      0.0,
+      0.1072
+    ]
+  },
+  "1000_counterfeit": {
+    "n": 55,
+    "correct": 55,
+    "no_detection": 0,
+    "acc": 1.0,
+    "wilson95": [
+      0.9347,
+      1.0
+    ]
+  },
+  "all": {
+    "n": 1286,
+    "correct": 1191,
+    "acc": 0.9261275272161742,
+    "wilson95": [
+      0.9105,
+      0.9392
+    ]
+  },
+  "bangla_money_ref": {
+    "n": 1536,
+    "acc": 0.9147,
+    "wilson95": [
+      0.8997,
+      0.9277
+    ]
+  },
+  "nstu_closeup_ref": {
+    "n": 1144,
+    "acc": 0.1853,
+    "wilson95": [
+      0.1639,
+      0.2089
+    ]
+  }
+}

@@ -36,3 +36,7 @@ The oracle in `results/qduig/eval/seed42/oracle.json` is 0.9855769230769231 at 2
 A new policy network, oracle imitation, and beam search over arbitrary view subsets were not trained. Arbitrary subsets are the failure mode of the saved policy. The prefix rule meets the accuracy and view-count target on the saved classifier, so those retrainings were not run.
 
 Target accuracy at most 3 views: met by the primary rule and by the fixed first-view rule.
+
+
+> **Correction 2026-09-29.** The saved sequential policy (λ = 0.02) re-run with the fixed evaluation code scores 0.8606 at 1.00 view, not 0.4135 (`results/qduig/prefix_ft/seed42/cost_policy_test.json`; `CORRECTIONS.md` row 20). It remains below fixed view 1 (0.9712).
+

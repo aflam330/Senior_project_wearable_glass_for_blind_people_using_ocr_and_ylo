@@ -22,6 +22,10 @@ The zero-mean Gaussian prior on all 4,121,404 saved PRMVT weights has McAllester
 
 Full-network Rademacher complexity: NOT_MEASURED.
 
+## Oracle count identity, 2026-09-29
+
+On `results/qduig/eval/seed42/oracle.json`, the label-using subset selector is right on 205 of 208 test notes and the learned row in that file is right on 201. The gap is 4 notes. Three notes are wrong under every searched subset, so 205/208 is the ceiling of that search. Derivation and the Wilson intervals are in `ORIGINAL_RESEARCH.md`. This identity was not used to train.
+
 ## Prefix training, finite sample
 
 Let the training mask be a random prefix. The only finite-sample certificate computed for a prefix-trained network in this repository is the half-data bound above, and that network was her_base, whose fusion is mean-pool rather than the published RSQA prefix model. A separate sample-complexity theorem with a new rate constant was not derived.

@@ -156,7 +156,7 @@ def main() -> None:
         "",
         f"- emotion RAF-DB acc: {emo.get('accuracy') if emo else 'NOT_MEASURED'}",
         f"- OCR CER: {ocr.get('cer') if ocr else 'NOT_MEASURED'}",
-        f"- wild-note: {'present' if wild else 'NOT_MEASURED'}",
+        f"- wild-note (source-domain check, not held out; see CORRECTIONS.md): {'present' if wild else 'NOT_MEASURED'}",
         "",
         "## Hypotheses (not revised after test)",
         "",

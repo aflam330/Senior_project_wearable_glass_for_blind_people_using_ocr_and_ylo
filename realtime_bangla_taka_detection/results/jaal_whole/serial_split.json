@@ -1,0 +1,27 @@
+{
+ "serial_lookup_test_accuracy": 0.9024390243902439,
+ "test_counterfeit": 87,
+ "seen_serial": 68,
+ "unseen_or_unread": 19,
+ "unseen_note_ids": [
+  "counterfeit:note_072",
+  "counterfeit:note_097",
+  "counterfeit:note_099",
+  "counterfeit:note_101",
+  "counterfeit:note_132",
+  "counterfeit:note_148",
+  "counterfeit:note_218",
+  "counterfeit:note_227",
+  "counterfeit:note_233",
+  "counterfeit:note_270",
+  "counterfeit:note_275",
+  "counterfeit:note_285",
+  "counterfeit:note_380",
+  "counterfeit:note_406",
+  "counterfeit:note_412",
+  "counterfeit:note_514",
+  "counterfeit:note_522",
+  "counterfeit:note_570",
+  "counterfeit:note_581"
+ ]
+}

@@ -1,0 +1,305 @@
+\clearpage
+\chapter{System Design and Methodology}
+\label{chap:design}
+
+\section{Framework of Savior Glass}
+\label{sec:framework}
+
+The framework of Savior Glass follows an input--process--output structure (Figure~\ref{fig:framework}). The user gives commands only through physical buttons, the camera provides the visual input, the on-board models interpret the scene according to the active mode, and the result is returned through speech and vibration.
+
+\subsection*{Input}
+\begin{itemize}[noitemsep]
+    \item \textbf{Camera frames:} 640$\times$480 colour frames at 30~FPS from a Raspberry Pi Camera Module~3 (IMX708) or a USB webcam.
+    \item \textbf{Button events:} five push-buttons for MODE, ACTION, READ, VOLUME~UP and VOLUME~DOWN, read through GPIO interrupts.
+\end{itemize}
+
+\subsection*{Process}
+\begin{itemize}[noitemsep]
+    \item \textbf{Mode manager:} keeps the active mode (text, object, currency) and routes frames and button events to it.
+    \item \textbf{Vision models:} EasyOCR for Bangla/English text, YOLOv8 for COCO objects, a YOLOv8s Taka detector with HSV and MobileNetV3 fall-backs, a multi-view authenticator for genuine/counterfeit notes, and an EfficientNet-V2-S expression recogniser.
+    \item \textbf{Language processing:} Bangla script detection, mixed-script segmentation and translation of labels to Bangla.
+\end{itemize}
+
+\subsection*{Output}
+\begin{itemize}[noitemsep]
+    \item \textbf{Speech:} Piper neural TTS or espeak-ng through the ALSA audio system, in Bangla or English.
+    \item \textbf{Vibration:} short patterns from a vibration motor for ``note detected'', ``genuine'', ``counterfeit'' and ``low confidence''.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\begin{tikzpicture}[node distance=0.6cm and 1.0cm]
+  \node[io] (cam) {Camera\\640$\times$480};
+  \node[io, below=of cam] (btn) {5 GPIO\\buttons};
+  \node[block, right=1.4cm of cam, yshift=-0.8cm, minimum height=2.4cm, fill=gray!10] (mgr) {Mode\\manager\\(main.py)};
+  \node[block, right=1.2cm of mgr, yshift=1.6cm] (ocr) {Text reading\\EasyOCR bn+en};
+  \node[block, below=0.35cm of ocr] (obj) {Object detection\\YOLOv8};
+  \node[block, below=0.35cm of obj] (cur) {Currency\\YOLOv8s + auth.};
+  \node[block, right=1.2cm of obj, fill=green!10] (tts) {Speech queue\\Piper / espeak-ng};
+  \node[io, right=0.9cm of tts] (out) {Earphone /\\speaker};
+  \node[io, below=0.5cm of out] (hap) {Vibration\\motor};
+  \draw[arrow] (cam.east) -- (mgr.west |- cam.east);
+  \draw[arrow] (btn.east) -- (mgr.west |- btn.east);
+  \draw[arrow] (mgr.east) -- (ocr.west);
+  \draw[arrow] (mgr.east) -- (obj.west);
+  \draw[arrow] (mgr.east) -- (cur.west);
+  \draw[arrow] (ocr.east) -- (tts.west);
+  \draw[arrow] (obj.east) -- (tts.west);
+  \draw[arrow] (cur.east) -- (tts.west);
+  \draw[arrow] (tts.east) -- (out.west);
+  \draw[arrow] (cur.east) -- ++(0.5,0) |- (hap.west);
+\end{tikzpicture}
+\end{adjustbox}
+\caption{Input--process--output framework of Savior Glass}
+\label{fig:framework}
+\end{figure}
+
+
+\section{Overview of Savior Glass System Design}
+\label{sec:overview}
+
+Savior Glass is designed as a pair of spectacles with a small camera at the bridge and a processing unit worn at the waist or in a pocket. The design follows four principles derived from the problems described in Chapter~\ref{chap:introduction}:
+
+\begin{enumerate}[noitemsep]
+    \item \textbf{Offline first:} every core function runs locally. The only online feature is an optional scene-description mode that the user must choose on purpose.
+    \item \textbf{Bangla first:} mode names, object names and currency names are spoken in Bangla; text is read in the language in which it is written.
+    \item \textbf{Buttons, not screens:} the device has no display. Every function is reachable with five buttons that can be found by touch.
+    \item \textbf{On-demand heavy work:} slow tasks (OCR, currency) run only when the user presses ACTION; only the object mode scans continuously.
+\end{enumerate}
+
+\subsection{General Overview of Savior Glass}
+When the device boots it announces that the smart glass is starting and then speaks the name of the active mode. The user cycles through the modes with the MODE button. In \textit{text reading mode}, ACTION captures and recognises text and stores it, and READ speaks the stored text. In \textit{object mode}, the glass scans the scene every 1.5~seconds and announces up to three objects, for example ``in front: chair, person''. In \textit{currency mode}, ACTION detects the note, speaks its value in Bangla and gives a vibration pattern. VOLUME~UP and VOLUME~DOWN change the volume in 10\% steps.
+
+\subsection{Structural Characteristics of Savior Glass}
+The prototype consists of a spectacle frame carrying the camera module, a cable to the Raspberry Pi~5 in a small enclosure, a push-button pad, a vibration motor and an earphone. Separating the processing unit from the frame keeps the glasses light and moves the heat of the processor away from the face.
+
+\subsection{Interactive Features and Interface Design}
+Several interaction decisions were made specifically for users without sight:
+\begin{itemize}[noitemsep]
+    \item \textbf{Capture is separated from reading.} The user holds the camera still while pressing ACTION, and can then relax and listen by pressing READ. The text can be replayed as often as needed.
+    \item \textbf{Repetition control.} In object mode, each object class has a 4-second cooldown so the glass does not repeat ``chair, chair, chair''.
+    \item \textbf{Speech interruption.} Switching mode clears the speech queue immediately so the user does not wait for old messages.
+    \item \textbf{Mixed-script speech.} A sentence such as ``Bus 96 Metrocentre'' inside Bangla text is split, and each part is sent to the correct voice.
+    \item \textbf{Vibration confirmation.} Different vibration patterns confirm a detected note, a genuine note or a suspected counterfeit even in a noisy market.
+\end{itemize}
+
+
+\section{Hardware Components}
+\label{sec:hardware}
+
+Table~\ref{tab:hardware} summarises the hardware of the prototype. Each component is described below.
+
+\begin{table}[!htbp]
+\centering
+\caption{Hardware components of Savior Glass}
+\label{tab:hardware}
+\begin{tabular}{|p{3.3cm}|p{5.4cm}|p{5.3cm}|}
+\hline
+\textbf{Component} & \textbf{Specification} & \textbf{Role} \\ \hline
+Raspberry Pi~5 & Quad-core Cortex-A76, 2.4 GHz, 4/8 GB RAM & Runs all models and the application \\ \hline
+Camera Module 3 & Sony IMX708 sensor, used at 640$\times$480, 30 FPS & Captures the scene \\ \hline
+Push-buttons (5) & Momentary, wired to GND, BCM 17/27/24/22/23 & MODE, ACTION, READ, VOL+, VOL$-$ \\ \hline
+Vibration motor & Driven by PWM on BCM 13 & Haptic feedback \\ \hline
+Earphone / speaker & 3.5 mm or USB audio through ALSA & Speech output \\ \hline
+Power bank & USB-C power bank (the official Pi~5 supply is rated 5 V, 5 A) & Portable power \\ \hline
+Spectacle frame & Frame with camera mount at the bridge & Wearable form factor \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection*{Processing Unit}
+The Raspberry Pi~5 is the brain of the system. It runs Raspberry Pi OS (64-bit), Python~3, OpenCV, PyTorch and ONNX Runtime. All inference runs on the CPU. The board also provides the GPIO pins for the buttons and the vibration motor, and the audio output.
+
+\subsection*{Camera}
+The Camera Module~3 is connected through the CSI ribbon cable and enabled with the \texttt{imx708} device-tree overlay. A USB webcam can be used instead by changing one configuration value. The resolution of 640$\times$480 is a balance between enough detail for OCR and a manageable processing load.
+
+\subsection*{Buttons}
+Five push-buttons connect GPIO pins to ground with internal pull-up resistors. A 250~ms software debounce removes false double presses. The button map is given in Table~\ref{tab:buttons}.
+
+\begin{table}[!htbp]
+\centering
+\caption{Button map of Savior Glass}
+\label{tab:buttons}
+\begin{tabular}{|c|c|p{9cm}|}
+\hline
+\textbf{BCM pin} & \textbf{Button} & \textbf{Behaviour} \\ \hline
+17 & MODE & Cycle text reading $\rightarrow$ object $\rightarrow$ currency \\ \hline
+27 & ACTION & Capture text / force object announcement / detect currency \\ \hline
+24 & READ & Speak the stored text \\ \hline
+22 & VOL\_UP & Increase volume by 10\% \\ \hline
+23 & VOL\_DOWN & Decrease volume by 10\% \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection*{Audio Output}
+Audio is played with the ALSA tools \texttt{aplay} and \texttt{amixer}. The default volume is 80\%. An earphone keeps the information private; a small speaker can be used at home.
+
+\subsection*{Vibration Motor}
+A small vibration motor, driven from a PWM pin (BCM 13), provides haptic patterns: two short pulses for a genuine note, three long pulses for a suspected counterfeit, and a short pulse when a note is detected.
+
+\subsection*{Power}
+The system is powered by a USB-C power bank. Power consumption and battery life on the Raspberry Pi~5 have not yet been measured and are part of future work.
+
+
+\section{Software Design}
+\label{sec:software}
+
+The software is written in Python and organised as a small core with plug-in modes (Table~\ref{tab:modules}). Every mode implements the same interface (\texttt{activate}, \texttt{deactivate}, \texttt{process\_frame}, \texttt{cleanup}), which allows modes to be added without changing the core.
+
+\begin{table}[!htbp]
+\centering
+\caption{Software modules of Savior Glass}
+\label{tab:modules}
+\begin{tabular}{|p{4.2cm}|p{9.8cm}|}
+\hline
+\textbf{Module} & \textbf{Responsibility} \\ \hline
+\texttt{main.py} (SmartGlass) & Life cycle, mode cycling, button routing, object-detection loop, signal handling \\ \hline
+\texttt{config.py} & GPIO pins, camera settings, model paths, thresholds, TTS and logging settings \\ \hline
+\texttt{button\_handler.py} & GPIO interrupts with debounce \\ \hline
+\texttt{utils.py} & Logging, language detection and splitting, TTSEngine, CameraManager \\ \hline
+\texttt{modes/ocr\_mode.py} & Bangla/English OCR with store-and-read \\ \hline
+\texttt{modes/object\_mode.py} & YOLOv8 object detection, cooldown, Bangla labels \\ \hline
+\texttt{modes/currency\_mode.py} & YOLOv8s Taka detection, HSV and MobileNetV3 fall-backs, authenticity, haptics \\ \hline
+\texttt{modes/claude\_mode.py} & Optional online scene description (internet and API key required) \\ \hline
+\texttt{roboeye/} package & Authenticator, emotion recogniser, haptics, speaker, Grad-CAM overlay \\ \hline
+\texttt{install.sh}, \texttt{smart\_glass.service} & Installation and start at boot \\ \hline
+\texttt{test\_windows.py} & Desktop harness with keyboard keys instead of buttons \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Text Reading Module}
+The text module uses EasyOCR \cite{easyocr} with the Bangla and English recognisers loaded together. Before recognition the frame is upscaled to about 1,200 pixels in width, converted to grey scale, smoothed with a bilateral filter (diameter 9) that preserves edges, and contrast-enhanced with CLAHE (clip limit 2.5, 8$\times$8 tiles) \cite{clahe}. Binarisation was deliberately not used: in our measurements, thresholding reduced the average recognition confidence from about 0.84 to about 0.69. Recognised boxes are sorted in reading order, and results with confidence below 0.4, shorter than three characters, or not text-like are discarded.
+
+\subsection{Object Detection Module}
+The object module runs a COCO-pretrained YOLOv8 model (small variant, with the nano variant as fall-back) on a 320$\times$240 copy of the frame every 1.5 seconds with a confidence threshold of 0.50. The three most confident unique classes are translated to Bangla with a lookup table of the 80 COCO classes and announced, subject to a per-class cooldown of 4 seconds.
+
+\subsection{Currency Detection Module}
+The currency module is a cascade that degrades gracefully when models are missing:
+\begin{enumerate}[noitemsep]
+    \item \textbf{Stage 0 -- YOLOv8s Taka detector:} the detector trained in this work (Chapter~\ref{chap:dataset}) localises and classifies the nine denominations. PyTorch weights are preferred; ONNX and INT8 ONNX exports are also supported.
+    \item \textbf{Stage 1 -- HSV colour profile:} if no detector is available, the largest note-like contour (aspect ratio 1.5--2.8, area $\geq$ 8,000 pixels) is found and its colour histogram is compared with the dominant colour of each denomination.
+    \item \textbf{Stage 2 -- MobileNetV3-Small classifier:} if trained weights exist, the note crop is classified and the result overrides Stage~1 when its softmax score is at least 0.65.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig_architecture.png}
+    \caption{YOLOv8s detection architecture used for Taka detection: CSPDarknet backbone, PAN-FPN neck and decoupled anchor-free head predicting 9 classes and box coordinates}
+    \label{fig:yolo_arch}
+\end{figure}
+
+\subsection{Currency Authentication Module}
+The authenticator decides whether a note is genuine or counterfeit from up to six close-up views (for example the portrait, the security thread, the hologram strip and the serial number). Each view is resized to 128$\times$128 pixels, normalised, and encoded by a frozen MobileNetV3-Small \cite{mobilenetv3} feature extractor followed by a TinyViT \cite{tinyvit} block. The per-view features are fused by a quality-, diversity-, uncertainty- and information-gain-aware fusion head (called Q-DUIG in this project), which weights sharp, informative and non-redundant views more strongly. The fused feature produces one authenticity logit, whose sigmoid probability is thresholded at 0.5 to decide between genuine and counterfeit (Figure~\ref{fig:auth_arch}).
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=0.45cm and 0.55cm]
+  \node[io] (v) {Views 1..k\\($k\le 6$)};
+  \node[block, right=of v] (pre) {Resize 128,\\normalise};
+  \node[block, right=of pre] (enc) {MobileNetV3-S\\+ TinyViT};
+  \node[block, right=of enc] (fuse) {Q-DUIG\\fusion};
+  \node[block, right=of fuse] (head) {Logit\\$p>0.5$?};
+  \node[io, below=0.8cm of head] (out) {Genuine /\\Counterfeit};
+  \node[block, below=0.8cm of enc, fill=yellow!15] (mask) {Prefix mask\\(training only)};
+  \draw[arrow] (v) -- (pre);
+  \draw[arrow] (pre) -- (enc);
+  \draw[arrow] (enc) -- (fuse);
+  \draw[arrow] (fuse) -- (head);
+  \draw[arrow] (head) -- (out);
+  \draw[arrow, dashed] (mask) -| (fuse);
+\end{tikzpicture}
+\caption{Multi-view currency authenticator. During prefix-robust training, a random prefix of 1 to 6 views is kept so the model learns to decide with any number of views.}
+\label{fig:auth_arch}
+\end{figure}
+
+\subsection{Emotion Recognition and Adaptive Speech}
+Faces are found with an OpenCV Haar cascade (the YuNet detector is used with OpenCV~5, which dropped the cascades) and classified into seven expressions (happy, sad, angry, surprise, fear, disgust, neutral) by an EfficientNet-V2-S network \cite{efficientnetv2} at 224$\times$224 pixels with horizontal-flip test-time augmentation. A FER+ ONNX model is kept as a fall-back. The detected emotion changes the style of the next spoken message: for sad, fearful or angry expressions the speech becomes slower, a short reassuring phrase is added and only the first clause of a long message is spoken; for a happy expression the speech is slightly faster. The adaptation can be switched off.
+
+\subsection{Voice Interaction and Feedback}
+All speech passes through one queue served by a worker thread, so that modes never block each other. The \texttt{TTSEngine} decides the language of each segment: if more than 25\% of the characters are in the Bangla Unicode block (U+0980--U+09FF) the segment is Bangla, otherwise English. Mixed text is split into Bangla and English runs and into sentences with a 0.15-second pause between them. Piper \cite{piper} is used when the binary and a voice model exist; otherwise espeak-ng \cite{espeakng} is used with a speed of 135 words per minute, a lower pitch and a small gap between words for clarity. The queue holds at most five messages; older ones are dropped so that the user always hears current information.
+
+\subsection{Overall System Flow and Logic}
+Figure~\ref{fig:flow} shows the control flow of the application. The program runs several threads: the main thread, a camera thread that always keeps the latest frame, the speech worker, the object-scanning loop, an inference thread for ACTION requests, and GPIO interrupt threads. An \texttt{\_inferring} flag prevents two heavy OCR or currency jobs from running at the same time.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=0.55cm]
+  \node[startstop] (start) {Power on};
+  \node[block, below=of start] (init) {Load config, camera, TTS;\\speak ``Smart glass starting''};
+  \node[block, below=of init] (announce) {Speak active mode name};
+  \node[decision, below=of announce] (btn) {Button\\pressed?};
+  \node[block, right=1.3cm of btn] (mode) {MODE: next mode,\\clear speech queue};
+  \node[block, below=0.9cm of btn] (act) {ACTION / READ:\\run active mode};
+  \node[decision, below=of act] (which) {Mode?};
+  \node[block, below=0.9cm of which] (o2) {Object: force\\announce};
+  \node[block, left=0.5cm of o2] (o1) {Text: OCR,\\store / read};
+  \node[block, right=0.5cm of o2] (o3) {Currency: detect,\\authenticate};
+  \node[block, below=0.8cm of o2, fill=green!10] (speak) {Speak result (+ vibration)};
+  \node[block, left=1.3cm of btn, fill=gray!10] (loop) {Object mode:\\scan every 1.5 s};
+  \draw[arrow] (start) -- (init);
+  \draw[arrow] (init) -- (announce);
+  \draw[arrow] (announce) -- (btn);
+  \draw[arrow] (btn) -- node[above, font=\scriptsize]{MODE} (mode);
+  \draw[arrow] (mode) |- (announce);
+  \draw[arrow] (btn) -- node[right, font=\scriptsize]{ACTION/READ} (act);
+  \draw[arrow] (act) -- (which);
+  \draw[arrow] (which) -- (o1);
+  \draw[arrow] (which) -- (o2);
+  \draw[arrow] (which) -- (o3);
+  \draw[arrow] (o1) |- (speak);
+  \draw[arrow] (o2) -- (speak);
+  \draw[arrow] (o3) |- (speak);
+  \draw[arrow] (loop) |- (speak);
+  \draw[arrow] (btn.west) -- node[above, font=\scriptsize]{no} (loop.east);
+\end{tikzpicture}
+\caption{Overall control flow of Savior Glass}
+\label{fig:flow}
+\end{figure}
+
+
+\section{Methodology: Building Savior Glass}
+\label{sec:method}
+
+The development of Savior Glass followed an iterative methodology in four phases: requirement analysis, data engineering and model development, system integration, and evaluation.
+
+\subsection{Requirement Analysis}
+The requirements were derived from the review of existing systems (Chapter~\ref{chap:literature}) and from the situation of visually impaired people in Bangladesh: the device must work offline, speak Bangla, read Bangla and English, recognise Taka notes, help with counterfeit notes, and be usable without a screen. These requirements defined the three modes, the button interface and the choice of offline models.
+
+\subsection{Data Engineering and Model Development}
+Each vision task was developed as a separate machine learning problem with its own dataset, training procedure and held-out evaluation:
+\begin{itemize}[noitemsep]
+    \item \textbf{Currency detection:} a copy-paste compositing pipeline generated a large, automatically labelled detection dataset from clean note images and real backgrounds, and a COCO-pretrained YOLOv8s was fine-tuned on it (Figure~\ref{fig:method_pipeline}).
+    \item \textbf{Currency authentication:} a CNN+ViT baseline was trained on six views; after observing its collapse with fewer views, the prefix-robust protocol was designed and compared against it on the same note-disjoint split.
+    \item \textbf{Emotion recognition:} several backbones were fine-tuned on the official RAF-DB training set and compared on the official test set.
+    \item \textbf{Text reading and objects:} existing engines (EasyOCR, YOLOv8) were used without retraining and were evaluated on test sets built for this project.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig_methodology.png}
+    \caption{Currency detection methodology: source notes, COCO backgrounds and COCO-pretrained YOLOv8s weights feed the compositing engine, which produces the labelled dataset used for training, evaluation and deployment}
+    \label{fig:method_pipeline}
+\end{figure}
+
+\subsubsection*{Prefix-Robust Multi-View Training}
+A model trained with all six views on every sample sees only one ``number of views'' during training. At test time a blind user may capture only one or two views. This is a distribution shift in the number of views. The prefix-robust multi-view training (PRMVT) protocol removes it by sampling, for every training batch, a random prefix of the ordered views, so that every view count from 1 to 6 has positive probability during training. The protocol has two stages:
+\begin{enumerate}[noitemsep]
+    \item Six epochs of mixed view dropout with a per-view gate, batch normalisation per view count, an auxiliary single-view loss and a light contrastive loss.
+    \item Three epochs of fine-tuning at learning rate $3\times10^{-4}$, where half of the batches use all six views so that six-view accuracy is not lost.
+\end{enumerate}
+The checkpoint is selected by the mean validation accuracy over one to six views; the test split is never used for selection.
+
+\subsection{System Integration}
+The trained models were integrated as modes of the glass application. Integration was first done on a Windows laptop with a webcam through the desktop harness, where the keyboard keys M, A, R, +, $-$ and Q replace the buttons, and then packaged for the Raspberry Pi~5 with an installation script and a systemd service.
+
+\subsection{Evaluation Protocol}
+Each module was evaluated on data not used for training, with standard metrics:
+\begin{itemize}[noitemsep]
+    \item \textbf{Currency detection:} precision, recall, mAP@0.5 and mAP@0.5:0.95 on held-out composites; detection rate and top-1 denomination accuracy on raw phone photographs.
+    \item \textbf{Authentication:} accuracy, macro-F1, balanced accuracy, ROC-AUC and expected calibration error (ECE) \cite{guo2017calibration} for 1 to 6 views; McNemar's test \cite{mcnemar1947} and paired bootstrap for the comparison with the baseline; robustness under 13 image corruptions.
+    \item \textbf{Emotion:} accuracy, macro precision, recall and F1 on the official RAF-DB test set.
+    \item \textbf{OCR:} character error rate (CER) and word error rate (WER) on 40 Bangla and 40 English samples.
+    \item \textbf{Objects:} mAP@0.5 on a 250-image COCO val2017 subset.
+    \item \textbf{Speed:} inference time per image on the development laptop.
+\end{itemize}
+All numbers in Chapter~\ref{chap:results} are copied from the saved evaluation files. Measurements that do not yet exist are marked as not measured.

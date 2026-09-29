@@ -1,0 +1,102 @@
+\clearpage
+\section{Additional Plots}
+\label{app:plots}
+
+\subsection{Taka Detector Precision--Recall Curve}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{fig_pr_curve.png}
+  \caption{Precision--recall curves of the YOLOv8s Taka detector for all nine classes on the held-out synthetic test set}
+  \label{fig:app_pr}
+\end{figure}
+
+\subsection{Sample Detections}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{fig7_sample_detections.png}
+  \caption{Sample detections of the Taka detector on composited scenes}
+  \label{fig:app_samples}
+\end{figure}
+
+\subsection{Authentication Calibration}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{fig_auth_calibration.png}
+  \caption{Reliability diagrams of the authenticator at six views for five confidence estimates (raw predictive confidence, temperature scaling, entropy mapping, HER and MC dropout); calibration maps fitted on the validation split and evaluated on the test split}
+  \label{fig:app_calib}
+\end{figure}
+
+\subsection{Authentication over Seeds}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{fig_auth_multiseed.png}
+  \caption{Spread of test accuracy over seeds 42, 43 and 44 at one view (1v) and six views (6v) for the main training variants}
+  \label{fig:app_multiseed}
+\end{figure}
+
+\clearpage
+\section{Configuration Parameters}
+\label{app:config}
+
+\begin{table}[H]
+\centering
+\caption{Main configuration parameters of Savior Glass (\texttt{config.py})}
+\label{tab:app_config}
+\small
+\begin{tabular}{|l|c|p{4.8cm}|}
+\hline
+\textbf{Parameter} & \textbf{Value} & \textbf{Meaning} \\ \hline
+OCR\_CONFIDENCE & 0.4 & Minimum EasyOCR confidence \\ \hline
+OCR\_MIN\_CHARS & 3 & Shorter results are discarded \\ \hline
+OBJECT\_CONFIDENCE & 0.50 & Minimum YOLO confidence for objects \\ \hline
+CURRENCY\_CONFIDENCE & 0.65 & Minimum MobileNetV3 softmax score \\ \hline
+OBJECT\_SCAN\_INTERVAL & 1.5 s & Time between automatic object scans \\ \hline
+OBJECT\_ANNOUNCE\_COOLDOWN & 4.0 s & Per-class repetition cooldown \\ \hline
+DEFAULT\_VOLUME & 80\% & Volume at start \\ \hline
+VOLUME\_STEP & 10\% & Change per button press \\ \hline
+TTS\_QUEUE\_MAXSIZE & 5 & Maximum queued messages \\ \hline
+TTS\_INTER\_UTTERANCE\_PAUSE & 0.15 s & Pause between segments \\ \hline
+ESPEAK\_SPEED / PITCH & 135 wpm / 45 & espeak-ng voice settings \\ \hline
+Button debounce & 250 ms & Ignore repeated edges \\ \hline
+Camera & 640$\times$480, 30 FPS & Capture resolution \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Training hyper-parameters of the YOLOv8s Taka detector}
+\label{tab:app_yolo}
+\begin{tabular}{|l|p{8cm}|}
+\hline
+\textbf{Item} & \textbf{Value} \\ \hline
+Model & YOLOv8s (11.1 M parameters, 28.5 GFLOPs), COCO-pretrained \\ \hline
+Epochs / patience & 80 / 15 \\ \hline
+Image size / batch & 640 / 16 \\ \hline
+Optimiser & SGD, lr0 = 0.01, lrf = 0.01, momentum 0.937, weight decay 0.0005 \\ \hline
+Warm-up & 3 epochs \\ \hline
+Loss weights & box (CIoU) 7.5, class (BCE) 0.5, DFL 1.5 \\ \hline
+Online augmentation & mosaic 1.0, mixup 0.15, HSV (0.02, 0.7, 0.4), degrees 20, shear 5, scale 0.5, translate 0.1 \\ \hline
+Flips & Disabled (left--right and up--down) \\ \hline
+Framework & Ultralytics 8.4.64, PyTorch 2.6.0 + CUDA 12.4 \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Reproducing the Results}
+\label{app:repro}
+\begin{lstlisting}
+# Taka detector (Windows, from realtime_bangla_taka_detection/)
+python -m venv venv
+.\venv\Scripts\pip.exe install -r requirements.txt
+.\venv\Scripts\python.exe scripts\download_backgrounds.py
+.\venv\Scripts\python.exe scripts\generate_synthetic_dataset.py
+.\venv\Scripts\python.exe scripts\train.py
+.\venv\Scripts\python.exe scripts\evaluate.py
+.\venv\Scripts\python.exe scripts\realtime_detect.py   # live demo
+
+# Smart glass on Raspberry Pi 5 (from savior_glass/)
+chmod +x install.sh && ./install.sh
+sudo systemctl enable --now smart_glass.service
+
+# Smart glass on Windows without GPIO
+python test_windows.py
+\end{lstlisting}

@@ -1,0 +1,213 @@
+{
+ "registered_view6": {
+  "train": 880,
+  "val": 190,
+  "test": 191
+ },
+ "W_hand": {
+  "val": {
+   "n_registered": 190,
+   "auc": 0.8732124760725143,
+   "coef": {
+    "lap_var": 0.131,
+    "std": 0.922,
+    "edges": 1.443,
+    "rel_mean": 0.802
+   }
+  },
+  "test": {
+   "n_registered": 191,
+   "auc": 0.8531561461794019,
+   "coef": {
+    "lap_var": 0.131,
+    "std": 0.922,
+    "edges": 1.443,
+    "rel_mean": 0.802
+   }
+  }
+ },
+ "W_deep": {
+  "C_on_val": 100.0,
+  "val": {
+   "n": 190,
+   "accuracy": 0.9894736842105263,
+   "auc": 0.9993244004053597,
+   "false_counterfeit_on_genuine": 1,
+   "genuine_n": 107,
+   "fcr_wilson95": [
+    0.0016516716675200986,
+    0.051049356294803366
+   ],
+   "counterfeit_missed": 1,
+   "counterfeit_n": 83,
+   "unseen_serial_counterfeit_caught": 0,
+   "unseen_serial_counterfeit_n": 0
+  },
+  "test": {
+   "n": 191,
+   "accuracy": 0.9895287958115183,
+   "auc": 0.9916943521594684,
+   "false_counterfeit_on_genuine": 1,
+   "genuine_n": 105,
+   "fcr_wilson95": [
+    0.0016831692328561944,
+    0.0519862586118897
+   ],
+   "counterfeit_missed": 1,
+   "counterfeit_n": 86,
+   "unseen_serial_counterfeit_caught": 17,
+   "unseen_serial_counterfeit_n": 18
+  }
+ },
+ "S_list": {
+  "test": {
+   "n": 208,
+   "accuracy": 0.8990384615384616,
+   "auc": 0.8821969696969697,
+   "false_counterfeit_on_genuine": 1,
+   "genuine_n": 120,
+   "fcr_wilson95": [
+    0.0014725557333420923,
+    0.045696291245049675
+   ],
+   "counterfeit_missed": 20,
+   "counterfeit_n": 88,
+   "unseen_serial_counterfeit_caught": 0,
+   "unseen_serial_counterfeit_n": 19
+  }
+ },
+ "S_dup": {
+  "test": {
+   "n": 208,
+   "accuracy": 0.8605769230769231,
+   "auc": 0.8397727272727273,
+   "false_counterfeit_on_genuine": 3,
+   "genuine_n": 120,
+   "fcr_wilson95": [
+    0.008538174769902228,
+    0.0709300333278661
+   ],
+   "counterfeit_missed": 26,
+   "counterfeit_n": 88,
+   "unseen_serial_counterfeit_caught": 0,
+   "unseen_serial_counterfeit_n": 19
+  },
+  "train_duplicate_serials": 83
+ },
+ "PRMVT_k1": {
+  "test": {
+   "n": 208,
+   "accuracy": 0.9711538461538461,
+   "auc": 0.9879734848484849,
+   "false_counterfeit_on_genuine": 3,
+   "genuine_n": 120,
+   "fcr_wilson95": [
+    0.008538174769902228,
+    0.0709300333278661
+   ],
+   "counterfeit_missed": 3,
+   "counterfeit_n": 88,
+   "unseen_serial_counterfeit_caught": 17,
+   "unseen_serial_counterfeit_n": 19
+  }
+ },
+ "HYBRID_k1": {
+  "fitted_on": "val",
+  "coef [prmvt, watermark, wm_missing, serial_list]": [
+   0.345,
+   0.802,
+   -0.446,
+   0.015
+  ],
+  "test": {
+   "n": 208,
+   "accuracy": 0.9903846153846154,
+   "auc": 0.9916666666666667,
+   "false_counterfeit_on_genuine": 1,
+   "genuine_n": 120,
+   "fcr_wilson95": [
+    0.0014725557333420923,
+    0.045696291245049675
+   ],
+   "counterfeit_missed": 1,
+   "counterfeit_n": 88,
+   "unseen_serial_counterfeit_caught": 18,
+   "unseen_serial_counterfeit_n": 19
+  }
+ },
+ "HYBRID_NO_SERIAL_k1": {
+  "test": {
+   "n": 208,
+   "accuracy": 0.9903846153846154,
+   "auc": 0.9916666666666667,
+   "false_counterfeit_on_genuine": 1,
+   "genuine_n": 120,
+   "fcr_wilson95": [
+    0.0014725557333420923,
+    0.045696291245049675
+   ],
+   "counterfeit_missed": 1,
+   "counterfeit_n": 88,
+   "unseen_serial_counterfeit_caught": 18,
+   "unseen_serial_counterfeit_n": 19
+  }
+ },
+ "PRMVT_k6": {
+  "test": {
+   "n": 208,
+   "accuracy": 0.9807692307692307,
+   "auc": 0.99375,
+   "false_counterfeit_on_genuine": 2,
+   "genuine_n": 120,
+   "fcr_wilson95": [
+    0.004582564565921141,
+    0.0587359629721589
+   ],
+   "counterfeit_missed": 2,
+   "counterfeit_n": 88,
+   "unseen_serial_counterfeit_caught": 17,
+   "unseen_serial_counterfeit_n": 19
+  }
+ },
+ "HYBRID_k6": {
+  "fitted_on": "val",
+  "coef [prmvt, watermark, wm_missing, serial_list]": [
+   0.348,
+   0.718,
+   -0.561,
+   0.145
+  ],
+  "test": {
+   "n": 208,
+   "accuracy": 0.9903846153846154,
+   "auc": 0.9923295454545454,
+   "false_counterfeit_on_genuine": 1,
+   "genuine_n": 120,
+   "fcr_wilson95": [
+    0.0014725557333420923,
+    0.045696291245049675
+   ],
+   "counterfeit_missed": 1,
+   "counterfeit_n": 88,
+   "unseen_serial_counterfeit_caught": 18,
+   "unseen_serial_counterfeit_n": 19
+  }
+ },
+ "HYBRID_NO_SERIAL_k6": {
+  "test": {
+   "n": 208,
+   "accuracy": 0.9903846153846154,
+   "auc": 0.9923295454545454,
+   "false_counterfeit_on_genuine": 1,
+   "genuine_n": 120,
+   "fcr_wilson95": [
+    0.0014725557333420923,
+    0.045696291245049675
+   ],
+   "counterfeit_missed": 1,
+   "counterfeit_n": 88,
+   "unseen_serial_counterfeit_caught": 18,
+   "unseen_serial_counterfeit_n": 19
+  }
+ }
+}

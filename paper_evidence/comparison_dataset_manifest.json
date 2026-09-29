@@ -1,0 +1,369 @@
+{
+  "sets": [
+    {
+      "images": 5073,
+      "txt": 0,
+      "other": 0,
+      "name": "A Diverse Image Dataset for Bangladeshi Currency Recognition",
+      "path": "E:\\Final SP\\data set for comparison\\A Diverse Image Dataset for Bangladeshi Currency Recognition",
+      "focus": "E:\\Final SP\\data set for comparison\\A Diverse Image Dataset for Bangladeshi Currency Recognition\\Bangladeshi_Paper_Currency_Raw",
+      "top": [
+        {
+          "name": "10",
+          "images": 419,
+          "txt": 0
+        },
+        {
+          "name": "100",
+          "images": 565,
+          "txt": 0
+        },
+        {
+          "name": "1000",
+          "images": 422,
+          "txt": 0
+        },
+        {
+          "name": "2",
+          "images": 445,
+          "txt": 0
+        },
+        {
+          "name": "20",
+          "images": 480,
+          "txt": 0
+        },
+        {
+          "name": "200",
+          "images": 423,
+          "txt": 0
+        },
+        {
+          "name": "5",
+          "images": 660,
+          "txt": 0
+        },
+        {
+          "name": "50",
+          "images": 416,
+          "txt": 0
+        },
+        {
+          "name": "500",
+          "images": 1243,
+          "txt": 0
+        }
+      ]
+    },
+    {
+      "images": 1971,
+      "txt": 0,
+      "other": 9,
+      "name": "Bangla Money dataset Kaggle",
+      "path": "E:\\Final SP\\data set for comparison\\Bangla Money dataset Kaggle",
+      "focus": "E:\\Final SP\\data set for comparison\\Bangla Money dataset Kaggle\\bangla_banknote_v2",
+      "top": [
+        {
+          "name": "Testing",
+          "images": 333,
+          "txt": 0
+        },
+        {
+          "name": "Training",
+          "images": 1638,
+          "txt": 0
+        }
+      ]
+    },
+    {
+      "images": 100000,
+      "txt": 0,
+      "other": 0,
+      "name": "Large Scale BDT DB 2026 Kaggle",
+      "path": "E:\\Final SP\\data set for comparison\\Large Scale BDT DB 2026 Kaggle",
+      "focus": "E:\\Final SP\\data set for comparison\\Large Scale BDT DB 2026 Kaggle\\bd_coin",
+      "top": [
+        {
+          "name": "10_Poisha",
+          "images": 10000,
+          "txt": 0
+        },
+        {
+          "name": "1_Poisha",
+          "images": 10000,
+          "txt": 0
+        },
+        {
+          "name": "1_Taka",
+          "images": 10000,
+          "txt": 0
+        },
+        {
+          "name": "25_Poisha",
+          "images": 10000,
+          "txt": 0
+        },
+        {
+          "name": "2_Taka",
+          "images": 10000,
+          "txt": 0
+        },
+        {
+          "name": "50_Poisha",
+          "images": 10000,
+          "txt": 0
+        },
+        {
+          "name": "5_Poisha",
+          "images": 10000,
+          "txt": 0
+        },
+        {
+          "name": "5_Taka",
+          "images": 10000,
+          "txt": 0
+        },
+        {
+          "name": "commemorative_coin",
+          "images": 10000,
+          "txt": 0
+        },
+        {
+          "name": "demonetized_note",
+          "images": 10000,
+          "txt": 0
+        }
+      ]
+    },
+    {
+      "images": 0,
+      "txt": 12318,
+      "other": 0,
+      "name": "ModelNet40 normal_resampled",
+      "path": "E:\\Final SP\\data set for comparison\\ModelNet40 normal_resampled",
+      "focus": "E:\\Final SP\\data set for comparison\\ModelNet40 normal_resampled\\modelnet40_normal_resampled",
+      "top": [
+        {
+          "name": "airplane",
+          "images": 0,
+          "txt": 726
+        },
+        {
+          "name": "bathtub",
+          "images": 0,
+          "txt": 156
+        },
+        {
+          "name": "bed",
+          "images": 0,
+          "txt": 615
+        },
+        {
+          "name": "bench",
+          "images": 0,
+          "txt": 193
+        },
+        {
+          "name": "bookshelf",
+          "images": 0,
+          "txt": 672
+        },
+        {
+          "name": "bottle",
+          "images": 0,
+          "txt": 435
+        },
+        {
+          "name": "bowl",
+          "images": 0,
+          "txt": 84
+        },
+        {
+          "name": "car",
+          "images": 0,
+          "txt": 297
+        },
+        {
+          "name": "chair",
+          "images": 0,
+          "txt": 989
+        },
+        {
+          "name": "cone",
+          "images": 0,
+          "txt": 187
+        },
+        {
+          "name": "cup",
+          "images": 0,
+          "txt": 99
+        },
+        {
+          "name": "curtain",
+          "images": 0,
+          "txt": 158
+        },
+        {
+          "name": "desk",
+          "images": 0,
+          "txt": 286
+        },
+        {
+          "name": "door",
+          "images": 0,
+          "txt": 129
+        },
+        {
+          "name": "dresser",
+          "images": 0,
+          "txt": 286
+        },
+        {
+          "name": "flower_pot",
+          "images": 0,
+          "txt": 169
+        },
+        {
+          "name": "glass_box",
+          "images": 0,
+          "txt": 271
+        },
+        {
+          "name": "guitar",
+          "images": 0,
+          "txt": 255
+        },
+        {
+          "name": "keyboard",
+          "images": 0,
+          "txt": 165
+        },
+        {
+          "name": "lamp",
+          "images": 0,
+          "txt": 144
+        },
+        {
+          "name": "laptop",
+          "images": 0,
+          "txt": 169
+        },
+        {
+          "name": "mantel",
+          "images": 0,
+          "txt": 384
+        },
+        {
+          "name": "monitor",
+          "images": 0,
+          "txt": 565
+        },
+        {
+          "name": "night_stand",
+          "images": 0,
+          "txt": 286
+        },
+        {
+          "name": "person",
+          "images": 0,
+          "txt": 108
+        },
+        {
+          "name": "piano",
+          "images": 0,
+          "txt": 331
+        },
+        {
+          "name": "plant",
+          "images": 0,
+          "txt": 340
+        },
+        {
+          "name": "radio",
+          "images": 0,
+          "txt": 124
+        },
+        {
+          "name": "range_hood",
+          "images": 0,
+          "txt": 215
+        },
+        {
+          "name": "sink",
+          "images": 0,
+          "txt": 148
+        },
+        {
+          "name": "sofa",
+          "images": 0,
+          "txt": 780
+        },
+        {
+          "name": "stairs",
+          "images": 0,
+          "txt": 144
+        },
+        {
+          "name": "stool",
+          "images": 0,
+          "txt": 110
+        },
+        {
+          "name": "table",
+          "images": 0,
+          "txt": 492
+        },
+        {
+          "name": "tent",
+          "images": 0,
+          "txt": 183
+        },
+        {
+          "name": "toilet",
+          "images": 0,
+          "txt": 444
+        },
+        {
+          "name": "tv_stand",
+          "images": 0,
+          "txt": 367
+        },
+        {
+          "name": "vase",
+          "images": 0,
+          "txt": 575
+        },
+        {
+          "name": "wardrobe",
+          "images": 0,
+          "txt": 107
+        },
+        {
+          "name": "xbox",
+          "images": 0,
+          "txt": 123
+        }
+      ]
+    },
+    {
+      "images": 31986,
+      "txt": 3111,
+      "other": 1,
+      "name": "NSTU-BDTAKA dataset Mendeley",
+      "path": "E:\\Final SP\\data set for comparison\\NSTU-BDTAKA dataset Mendeley",
+      "focus": "E:\\Final SP\\data set for comparison\\NSTU-BDTAKA dataset Mendeley\\data",
+      "top": [
+        {
+          "name": "Detection",
+          "images": 3111,
+          "txt": 3111
+        },
+        {
+          "name": "Recognition",
+          "images": 28875,
+          "txt": 0
+        }
+      ]
+    }
+  ]
+}

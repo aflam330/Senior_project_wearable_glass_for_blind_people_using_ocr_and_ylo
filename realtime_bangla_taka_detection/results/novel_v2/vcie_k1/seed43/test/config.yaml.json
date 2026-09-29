@@ -1,0 +1,12 @@
+{
+  "name": "vcie_k1",
+  "algo": "vcie",
+  "epochs": 4,
+  "batch": 4,
+  "lr": 0.0003,
+  "seed": 42,
+  "views": 6,
+  "patience": 4,
+  "select_on": "k1",
+  "note": "Resume v2. Keep an epoch only when validation 1-view accuracy rises. The starting checkpoint is saved first."
+}

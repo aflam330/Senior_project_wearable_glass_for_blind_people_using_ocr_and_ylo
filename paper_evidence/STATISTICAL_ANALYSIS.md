@@ -87,3 +87,9 @@ Paired tests use the same test notes. `a` is the CNN+ViT baseline and `b` is the
 
 Bonferroni family size is the number of McNemar rows that had paired predictions: 36.
 
+---
+
+## Correction 2026-09-29
+
+The sentence attributing McNemar p=0.0244 to PRMVT at 6 views is wrong. 0.0244 is the earlier Q-DUIG `proposed` model. PRMVT versus the baseline at 6 views is p=0.0033 in the table above (stored seed-42 values).
+See `paper_evidence/CORRECTIONS.md`.

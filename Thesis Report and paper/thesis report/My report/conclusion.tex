@@ -1,0 +1,64 @@
+\clearpage
+\chapter{Conclusion and Future Work}
+\label{chap:conclusion}
+
+\section{Conclusion}
+This thesis presented Savior Glass, an offline, Bangla-first assistive smart glass for visually impaired people in Bangladesh. The glass reads Bangla and English text, announces everyday objects in Bangla, and detects and names all nine denominations of Bangladeshi Taka, with an additional multi-view check for counterfeit notes. It is controlled with five physical buttons, speaks through offline Piper or espeak-ng voices, confirms results with vibration, starts automatically at boot on a Raspberry Pi~5, and works without the internet.
+
+Two technical problems were solved along the way. First, clean currency datasets do not teach a detector to find a note in a real scene. A copy-paste compositing pipeline that places notes on real photographs and computes exact bounding boxes automatically produced a 22,315-image dataset without any manual annotation. The YOLOv8s detector trained on it reached 0.995 mAP@0.5 and 0.847 mAP@0.5:0.95 on held-out composites and named the correct denomination for 91.5\% of 1,536 independently collected photographs, although only 18.5\% of hand-held close-ups. Second, a counterfeit authenticator trained with all six views of a note fails when a user captures fewer views. Training on random prefixes of the views removed this mismatch and raised single-view accuracy from 73.6\% for the CNN+ViT baseline to 97.1\%, with 97.1--98.6\% for every number of views on a note-disjoint test set and similar results over three seeds. That result holds for JaalTaka close-up views only; on whole-note photographs the verdict was wrong too often to be spoken, so the deployed glass does not announce it.
+
+The supporting modules complete the system: an EfficientNet-V2-S expression recogniser with 86.5\% accuracy on RAF-DB makes the speech emotion-aware, and a Bangla character recogniser with 90.0\% accuracy on unseen writers shows where Bangla recognition is difficult. The evaluation also showed clearly what does not yet work well: Bangla OCR has a character error rate of 27.8\%, authentication still loses accuracy when the note is partly covered (88.5\% at 55\% synthetic occlusion after occlusion fine-tuning), and Raspberry Pi~5 speed and a study with visually impaired users have not yet been measured.
+
+Overall, Savior Glass shows that a useful, private and affordable assistive device for Bangla-speaking users can be built from open models and low-cost hardware, and that careful data engineering, rather than new network architectures, was the key to making the currency functions work on real images.
+
+\section{Future Work}
+
+\subsection{User Study with Visually Impaired Participants}
+The most important next step is a user study with 8--12 visually impaired participants, with ethical approval. Participants will identify denominations, decide between genuine and counterfeit notes, and read signs with and without the glass. Task time, accuracy, errors, requests for help, NASA-TLX workload and System Usability Scale scores will be recorded, with the participant as the unit of analysis.
+
+\subsection{Raspberry Pi~5 Performance and Power}
+Latency, frame rate, CPU and memory use, temperature and battery life of each mode must be measured on the Raspberry Pi~5 during a sustained 30-minute run. Faster runtimes such as NCNN (reported to be about 40\% faster on ARM for YOLO), TFLite and INT8 quantisation will be compared.
+
+\subsection{Better Bangla Text Reading}
+Bangla OCR must be improved by fine-tuning a recogniser on Bangla scene text and signs, by adding a language model or a general Bangla lexicon (not built from the test phrases) to correct vowel signs and conjuncts, and by building a larger, independent test set of real photographs.
+
+\subsection{Stronger Currency Authentication}
+The authenticator should be trained with occlusion by fingers, tested on notes captured with different phones and in different sessions, and connected to guidance that asks the user to move the fingers or turn the note. Labelled security features (thread, hologram, watermark) would allow the device to explain its decision.
+
+\subsection{Independent Real-World Currency Test Set}
+A new set of notes photographed by users in markets, shops and homes, independent of the training data, will give an unbiased estimate of real-world accuracy, including worn, folded and torn notes.
+
+\subsection{Navigation and Voice Control}
+Future versions can add obstacle distance (ultrasonic or depth sensors), navigation-relevant object classes such as stairs, rickshaws and open drains, and Bangla voice commands once an offline Bangla speech recogniser is available. An inward-facing camera or other sensor could make emotion-adaptive speech respond to the user's own state.
+
+\subsection{Mechanical Design}
+A lighter, integrated spectacle frame with the camera, an earpiece or bone-conduction speaker and a compact battery would make the glass more comfortable and less noticeable.
+
+\section{Impact and Sustainability}
+Savior Glass is built from widely available hardware and open-source software, which keeps the cost low and allows local repair and extension. Because all core functions are offline, the device does not require a data plan and continues to work in rural areas with poor connectivity. The modular mode design makes it possible to add new languages, currencies or functions without redesigning the system, and the Windows harness lets students and developers improve the software without the hardware.
+
+\section{Social and Ethical Considerations}
+An assistive device that uses a camera in public raises privacy concerns. Savior Glass processes images on the device and does not store or transmit them in the offline modes; the only online mode is optional and must be chosen by the user. The currency authenticator can make mistakes, and a wrong ``genuine'' decision could cause financial loss, so the device must present its answer as advice and communicate uncertainty. Emotion recognition of other people must be used with care and only to adapt the device's own speech, never to label or record people.
+
+\section{Contributions and Final Thoughts}
+This thesis contributes a complete offline Bangla-first assistive glass, a zero-annotation data pipeline and detector for Bangladeshi Taka, a prefix-robust multi-view authenticator that remains accurate with one view, and an evaluation in which every number can be traced to a saved result and every missing measurement is named. We hope that this honest account will make it easier for others to continue the work, and that future versions of Savior Glass, tested with and improved by visually impaired users, will help them read, recognise and pay with more independence.
+
+\section{Analysis of Social Effects}
+
+\subsection*{Improving Independence}
+Reading a label, knowing which note is in the hand and knowing what is in front of oneself without asking another person are small tasks that together decide how independent a person can be. Savior Glass targets exactly these daily tasks.
+
+\subsection{Reducing Fraud and Financial Risk}
+Visually impaired people are vulnerable to receiving wrong change or counterfeit notes. Denomination detection and a counterfeit warning can reduce this risk and increase confidence in cash transactions.
+
+\subsection{Supporting Education and Employment}
+Access to printed text in Bangla and English supports study and work, especially where accessible digital documents are not available.
+
+\subsection{Changing Perceptions of Assistive Technology}
+A low-cost device built locally, speaking the user's language, can change the perception that assistive technology is only available as an expensive import.
+
+\subsection{Possible Social Risks}
+Over-reliance on an imperfect device, privacy concerns of people around the user, and the stigma of wearing a visible device are possible risks, which must be studied together with users.
+
+\subsection{Summary of Social Impact}
+If validated with users, Savior Glass can increase independence, reduce financial risk and improve access to information for visually impaired people in Bangladesh, while keeping their data private.

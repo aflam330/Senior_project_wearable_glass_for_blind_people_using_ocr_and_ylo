@@ -43,3 +43,9 @@ Seeds 42, 43, and 44. A missing seed is NOT_MEASURED. The interval is a normal a
 
 The interval above uses the seed-level accuracies. Per-note paired bootstrap intervals are in `STATISTICAL_ANALYSIS.md`.
 
+---
+
+## Correction 2026-09-29
+
+The PRMVT rows above predate the NaN-entropy fix. Post-fix fixed-order means over seeds 42-44 are 96.5, 98.4, 98.1, 97.6, 98.6 and 98.1 % for 1-6 views (`WEAK_RESULTS_FIX.md`).
+See `paper_evidence/CORRECTIONS.md`.

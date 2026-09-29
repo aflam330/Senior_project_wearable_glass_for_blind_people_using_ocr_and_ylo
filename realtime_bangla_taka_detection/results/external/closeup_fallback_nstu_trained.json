@@ -1,0 +1,93 @@
+{
+  "classifier": "models/closeup_mobilenet.pt",
+  "dev": "closeup_val",
+  "rule": "max(correct - wrong) on the dev set, one image per original; threshold 0.65 = app default",
+  "dev_nstu_train": {
+    "P1": {
+      "correct": 177,
+      "wrong": 114,
+      "abstain": 615,
+      "n": 906,
+      "accuracy": 0.1954,
+      "score": 63,
+      "precision_when_answering": 0.6082
+    },
+    "P2": {
+      "correct": 786,
+      "wrong": 114,
+      "abstain": 6,
+      "n": 906,
+      "accuracy": 0.8675,
+      "score": 672,
+      "precision_when_answering": 0.8733
+    },
+    "P3": {
+      "correct": 899,
+      "wrong": 0,
+      "abstain": 7,
+      "n": 906,
+      "accuracy": 0.9923,
+      "score": 899,
+      "precision_when_answering": 1.0
+    }
+  },
+  "chosen": "P3",
+  "test_nstu_excluding_88_leaked_originals": {
+    "P1": {
+      "correct": 195,
+      "wrong": 150,
+      "abstain": 694,
+      "n": 1039,
+      "accuracy": 0.1877,
+      "score": 45,
+      "precision_when_answering": 0.5652
+    },
+    "P2": {
+      "correct": 883,
+      "wrong": 150,
+      "abstain": 6,
+      "n": 1039,
+      "accuracy": 0.8499,
+      "score": 733,
+      "precision_when_answering": 0.8548
+    },
+    "P3": {
+      "correct": 1030,
+      "wrong": 1,
+      "abstain": 8,
+      "n": 1039,
+      "accuracy": 0.9913,
+      "score": 1029,
+      "precision_when_answering": 0.999
+    }
+  },
+  "bangla_money_training_folders": {
+    "P1": {
+      "correct": 1405,
+      "wrong": 71,
+      "abstain": 60,
+      "n": 1536,
+      "accuracy": 0.9147,
+      "score": 1334,
+      "precision_when_answering": 0.9519
+    },
+    "P2": {
+      "correct": 1430,
+      "wrong": 85,
+      "abstain": 21,
+      "n": 1536,
+      "accuracy": 0.931,
+      "score": 1345,
+      "precision_when_answering": 0.9439
+    },
+    "P3": {
+      "correct": 741,
+      "wrong": 281,
+      "abstain": 514,
+      "n": 1536,
+      "accuracy": 0.4824,
+      "score": 460,
+      "precision_when_answering": 0.725
+    }
+  }
+}

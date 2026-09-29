@@ -1,7 +1,15 @@
 """
 Currency Detection Mode — Bangladeshi Taka (BDT) notes.
 
-Two-stage detection (graceful degradation):
+Stage 0 — trained Taka YOLOv8s (../realtime_bangla_taka_detection/models/best.pt).
+  Used whenever the weights load; the stages below run only without it.
+  The genuine/jaal verdict is off unless config.JAAL_VERDICT_ENABLED is set; when off,
+  the note is announced with "জাল যাচাই করা হয়নি" (jaal check not done).
+  Exception (config.JAAL_SAFE_POLICY_ENABLED): for 500 / 1000 Taka the note is announced with
+  "সম্ভবত আসল" (likely genuine) or "আসল কিনা হাতে যাচাই করুন" (check by hand). It never says
+  "জাল". See paper_evidence/JAAL_VERDICT_FIXED.md.
+
+Fallback when no YOLO weights are present (graceful degradation):
 
 Stage 1 — HSV Color Analysis (always available, zero extra deps):
   Each Taka denomination has a dominant color family.
@@ -77,6 +85,9 @@ class CurrencyMode(BaseMode):
         self._auth_tf = None
         self.last_bbox = None
         self.last_class = None
+        self.verdict_enabled = bool(getattr(config, "JAAL_VERDICT_ENABLED", False))
+        # policy E: "likely genuine" or "check by hand", never "counterfeit" (see config)
+        self.safe_policy = (not self.verdict_enabled) and bool(getattr(config, "JAAL_SAFE_POLICY_ENABLED", False))
 
     # ------------------------------------------------------------------
     # Lifecycle
@@ -86,7 +97,8 @@ class CurrencyMode(BaseMode):
         logger.info("Currency detection mode activated")
         self._load_yolo()
         self._load_classifier()
-        self._load_auth()
+        if self.verdict_enabled or self.safe_policy:
+            self._load_auth()
 
     def deactivate(self) -> None:
         logger.info("Currency detection mode deactivated")
@@ -107,10 +119,19 @@ class CurrencyMode(BaseMode):
         # Stage 0 — trained Taka YOLO. Do not fall through to color when it is loaded:
         # the HSV guess was announcing the wrong denomination (often 100 or 1000).
         hits = self.detect_live(frame)
+        if hits and hits[0]["conf"] < getattr(config, "CURRENCY_ANNOUNCE_CONF", 0.0):
+            # below the validation-chosen threshold: possibly an unknown note (e.g. 1 taka)
+            self._buzz("detect")
+            return "নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।"
         if hits:
             # a distinct vibration for the verdict: genuine (2 short), counterfeit (3 long)
             auth = hits[0].get("auth")
             self._buzz(auth if auth in ("genuine", "counterfeit") else "detect")
+            if self.safe_policy and auth in ("likely_genuine", "check_by_hand"):
+                return hits[0]["text"]
+            if not self.verdict_enabled:
+                # say so, so that silence is not taken as "genuine"
+                return hits[0]["text"] + "। জাল যাচাই করা হয়নি"
             return hits[0]["text"]
         if self._yolo is not None:
             return "নোট সনাক্ত করা যায়নি। ক্যামেরার সামনে ধরুন।"
@@ -222,6 +243,30 @@ class CurrencyMode(BaseMode):
             logger.warning("Authenticity model failed: %s", exc)
         logger.warning("No jaal/counterfeit model loaded")
 
+    def _safe_check(self, crop: np.ndarray) -> Optional[float]:
+        """p(genuine) from PRMVT on four JaalTaka-style views cut from a whole-note crop."""
+        if self._auth is None or self._auth_kind != "qduig":
+            return None
+        try:
+            from PIL import Image
+            crop = cv2.resize(crop, None, fx=640 / crop.shape[1], fy=640 / crop.shape[1], interpolation=cv2.INTER_AREA)
+            if crop.shape[0] > crop.shape[1]:  # portrait note: make the long side horizontal
+                crop = cv2.rotate(crop, cv2.ROTATE_90_CLOCKWISE)
+            h, w = crop.shape[:2]
+            views = []
+            for x0, y0, x1, y1 in config.JAAL_VIEW_WINDOWS:
+                v = crop[int(y0 * h):max(int(y1 * h), int(y0 * h) + 2), int(x0 * w):max(int(x1 * w), int(x0 * w) + 2)]
+                views.append(self._auth_tf(Image.fromarray(cv2.cvtColor(v, cv2.COLOR_BGR2RGB))))
+            device = next(self._auth.parameters()).device
+            x = torch.stack(views).unsqueeze(0).to(device)
+            mask = torch.ones(1, len(views), dtype=torch.long, device=device)
+            with torch.inference_mode():
+                p = float(self._auth(x, mask)["prob"].reshape(-1)[0].item())
+            return p if np.isfinite(p) else None
+        except Exception as exc:
+            logger.warning("Safe jaal check failed: %s", exc)
+            return None
+
     def _authenticity(self, crop: np.ndarray) -> tuple[str, float]:
         if self._auth is None:
             return "unknown", 0.5
@@ -294,7 +339,7 @@ class CurrencyMode(BaseMode):
                     "auth_en": "",
                     "genuine_prob": 0.5,
                 })
-        for hit in hits[:2]:
+        for hit in hits[:2] if self.verdict_enabled else ():
             if hit["conf"] < 0.35:
                 continue
             x, y, w, h = hit["bbox"]
@@ -313,6 +358,37 @@ class CurrencyMode(BaseMode):
             elif label == "genuine":
                 hit["text"] = hit["text"] + "। আসল"
                 hit["auth_en"] = "REAL"
+        for hit in hits[:1] if self.safe_policy else ():
+            if hit["name"] not in getattr(config, "JAAL_SAFE_DENOMINATIONS", ()) or hit["conf"] < 0.35:
+                continue
+            x, y, w, h = hit["bbox"]
+            crop = frame[max(0, y):min(frame.shape[0], y + h), max(0, x):min(frame.shape[1], x + w)]
+            if crop.shape[0] < 24 or crop.shape[1] < 24:
+                continue
+            genuine = self._safe_check(crop)
+            if genuine is None:
+                continue
+            hit["genuine_prob"] = genuine
+            if genuine > config.JAAL_SAFE_TAU:
+                hit["auth"], hit["auth_en"] = "likely_genuine", "LIKELY REAL"
+                hit["text"] = hit["text"] + "। সম্ভবত আসল"
+            else:
+                hit["auth"], hit["auth_en"] = "check_by_hand", "CHECK BY HAND"
+                hit["text"] = hit["text"] + "। আসল কিনা হাতে যাচাই করুন"
+        # research feature (config.WATERMARK_CHECK_ENABLED, off): back-lit watermark window, never says "counterfeit"
+        for hit in hits[:1] if getattr(config, "WATERMARK_CHECK_ENABLED", False) else ():
+            if hit["name"] not in ("500_taka", "1000_taka"):
+                continue
+            try:
+                if getattr(self, "_wm", None) is None:
+                    from .watermark_check import WatermarkChecker
+                    self._wm = WatermarkChecker()
+                x, y, w, h = hit["bbox"]
+                p = self._wm.genuine_prob(frame[max(0, y):y + h, max(0, x):x + w], hit["name"])
+                hit["watermark_prob"] = p
+                hit["text"] = hit["text"] + "। " + self._wm.sentence(p)
+            except Exception as exc:
+                logger.warning("Watermark check failed: %s", exc)
         if hits:
             self.last_bbox = hits[0]["bbox"]
             self.last_class = hits[0]["name"]

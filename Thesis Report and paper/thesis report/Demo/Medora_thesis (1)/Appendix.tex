@@ -1,0 +1,126 @@
+\clearpage
+\section{Accuracy \& Loss Plots}
+\label{app:loss_acc_curve}
+
+\subsection{Accuracy Plots}
+\begin{figure*}[h]
+  \centering
+  \begin{minipage}{.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Pics and figs/lstm bin acc.png}
+    \caption*{Binary Classification }
+    \label{fig:binary_accuracy}
+  \end{minipage}\hfill \hfill % Add horizontal space
+  \begin{minipage}{.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Pics and figs/lstm multi acc.png}
+    \caption*{Multiclass Classification }
+    \label{fig:multiclass_accuracy}
+  \end{minipage}
+\caption{Accuracy Plots of Deep Learning Models}  
+\end{figure*}
+
+
+In binary classification LSTM models exhibit consistent accuracy gains of approximately 1.5\% to 2.5\%, while multiclass LSTM models show varying improvements from 3\% to 6\%. Models with attention mechanisms showcase a 1\% to 2.5\% increase in accuracy. CNN with LSTM models, in both binary and multiclass scenarios, demonstrate accuracy improvements ranging from 6\% to 10\% over the 10 epochs, highlighting their ability to capture nuanced patterns and adapt effectively.
+\vspace{0.5cm}
+
+\begin{figure*}[h]
+  \centering
+  \begin{minipage}{.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Pics and figs/trans bin acc.png}
+    \caption*{Binary Classification }
+    \label{fig:binary_accuracy}
+  \end{minipage}\hfill \hfill % Add horizontal space
+  \begin{minipage}{.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Pics and figs/trans multi acc.png}
+    \caption*{Multiclass Classification }
+    \label{fig:multiclass_accuracy}
+  \end{minipage}
+\caption{Accuracy Plots of Transformer Models}  
+\end{figure*}
+
+
+The XLM-RoBERTa model for binary classification consistently performs, with accuracy gains of approximately 1.5\% to 2\% over the 5 epochs. BanglaBERT, in binary classification, demonstrates accuracy improvements ranging from 6\% to 8\%, showcasing its robust performance. In multiclass scenarios, XLM-RoBERTa achieves accuracy gains of around 1\% to 2\%, while BanglaBERT shows more substantial improvements, ranging from 9\% to 11\%, emphasizing its effectiveness in capturing intricate patterns across various classes.
+
+\vspace{0.5cm}
+\clearpage
+\begin{figure*}[h]
+  \centering
+  \begin{minipage}{.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Pics and figs/gcn bin acc.png}
+    \caption*{Binary Classification }
+    \label{fig:binary_accuracy}
+  \end{minipage}\hfill \hfill % Add horizontal space
+  \begin{minipage}{.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Pics and figs/gcn multi accuracy.png}
+    \caption*{Multiclass Classification }
+    \label{fig:multiclass_accuracy}
+  \end{minipage}
+\caption{Accuracy Plots of BanglaBERTGCN}  
+\end{figure*}
+
+
+In binary classification, the BanglaBERTGCN model exhibits consistent improvements in accuracy, showing significant gains from the first to the second epoch and maintaining a strong upward trend into the third epoch. The multiclass classification results follow a similar pattern, with noticeable percentage improvements from the first to the second epoch and continued advancement into the third epoch, highlighting the model's effectiveness and robust learning capabilities.
+
+\subsection{Loss Plots}
+\begin{figure*}[h]
+  \centering
+  \begin{minipage}{.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Pics and figs/lstm bin loss.png}
+    \caption*{Binary Classification }
+    \label{fig:binary_accuracy}
+  \end{minipage}\hfill \hfill % Add horizontal space
+  \begin{minipage}{.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Pics and figs/lstm multi loss.png}
+    \caption*{Multiclass Classification }
+    \label{fig:multiclass_accuracy}
+  \end{minipage}
+\caption{Loss Plots of Deep Learning Models}  
+\end{figure*}
+
+In binary classification, the LSTM models display steady reductions in loss, with percentage improvements ranging from approximately 4\% to 9\% across the 10 epochs. Models with attention mechanisms demonstrate more substantial decreases, showing percentage improvements from around 32\% to 55\%. The CNN with LSTM models, in both binary and multiclass settings, exhibit consistent declines in loss, with improvements ranging from approximately 14\% to 27\%.
+
+\clearpage
+\begin{figure*}[h]
+  \centering
+  \begin{minipage}{.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Pics and figs/trans bin loss.png}
+    \caption*{Binary Classification }
+    \label{fig:binary_accuracy}
+  \end{minipage}\hfill \hfill % Add horizontal space
+  \begin{minipage}{.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Pics and figs/trans multi loss.png}
+    \caption*{Multiclass Classification }
+    \label{fig:multiclass_accuracy}
+  \end{minipage}
+\caption{Loss Plots of Transformer Models}  
+\end{figure*}
+In binary classification, XLM-RoBERTa and BANG-BERT models consistently reduce losses, with improvements of approximately 8\% to 45\% and 16\% to 33\%, respectively. For multiclass classification, both models demonstrate reductions in loss, with XLM-RoBERTa showing improvements from around 38\% to 66\%, and BANG-BERT ranging from approximately 56\% to 69\%. This indicates effective loss minimization across epochs for both transformer models in binary and multiclass scenarios.
+
+\vspace{0.5cm}
+\begin{figure*}[h]
+  \centering
+  \begin{minipage}{.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Pics and figs/gcn bin loss.png}
+    \caption*{Binary Classification }
+    \label{fig:binary_accuracy}
+  \end{minipage}\hfill \hfill % Add horizontal space
+  \begin{minipage}{.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Pics and figs/gcn multi loss.png}
+    \caption*{Multiclass Classification }
+    \label{fig:multiclass_accuracy}
+  \end{minipage}
+\caption{Loss Plots of BanglaBERTGCN}  
+\end{figure*}
+
+In binary classification, the loss exhibited an increase of approximately 24.84\% over the 10 epochs. Similarly, in multiclass classification, the loss grew by about 15.97\%. These trends highlight potential challenges in convergence and may prompt further investigation into optimizing the model's training dynamics.

@@ -1,0 +1,54 @@
+{
+  "pipeline": "savior_glass CurrencyMode.detect_live; PRMVT prefix_ft seed42 on top YOLO crop, 1 view, threshold 0.5",
+  "note": "No image here was used to train or select PRMVT. Photos are not grouped by physical note.",
+  "sets": {
+    "bangla_money/genuine": {
+      "n_images": 1536,
+      "no_note_detected": 60,
+      "no_verdict": 12,
+      "judged": 1464,
+      "wrong_verdict": 699,
+      "wrong_verdict_rate_of_judged": 0.4774590163934426,
+      "wrong_verdict_wilson95": [
+        0.4519647767312225,
+        0.5030712435042036
+      ]
+    },
+    "banglataka/genuine": {
+      "n_images": 450,
+      "no_note_detected": 7,
+      "no_verdict": 2,
+      "judged": 441,
+      "wrong_verdict": 261,
+      "wrong_verdict_rate_of_judged": 0.5918367346938775,
+      "wrong_verdict_wilson95": [
+        0.5453625223235676,
+        0.6367247644769474
+      ]
+    },
+    "counterfeit_ds/genuine": {
+      "n_images": 1199,
+      "no_note_detected": 5,
+      "no_verdict": 7,
+      "judged": 1187,
+      "wrong_verdict": 242,
+      "wrong_verdict_rate_of_judged": 0.2038753159224937,
+      "wrong_verdict_wilson95": [
+        0.18192824939323402,
+        0.22773295155910087
+      ]
+    },
+    "counterfeit_ds/counterfeit": {
+      "n_images": 87,
+      "no_note_detected": 12,
+      "no_verdict": 0,
+      "judged": 75,
+      "wrong_verdict": 30,
+      "wrong_verdict_rate_of_judged": 0.4,
+      "wrong_verdict_wilson95": [
+        0.29662343078170594,
+        0.5131216783992341
+      ]
+    }
+  }
+}

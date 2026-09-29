@@ -1,0 +1,9 @@
+{
+ "notes": 222,
+ "window_found": 196,
+ "accuracy": 0.9336734693877551,
+ "genuine_called_not_clear": 1,
+ "genuine_n": 98,
+ "counterfeit_called_clear": 12,
+ "counterfeit_n": 98
+}

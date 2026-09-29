@@ -59,17 +59,13 @@
     },
     "action_currency": {
       "pass": true,
-      "spoken": "একশত টাকার নোট। আসল",
-      "verdict": "genuine",
-      "press_to_speech_ms": 989,
+      "spoken": "একশত টাকার নোট। জাল যাচাই করা হয়নি",
+      "verdict": "not_checked",
+      "press_to_speech_ms": 217,
       "vibration_pulses_ms[start,on]": [
         [
-          989,
-          81
-        ],
-        [
-          1150,
-          80
+          217,
+          50
         ]
       ],
       "vibration_start_relative_to_speech_ms": 0
@@ -101,7 +97,7 @@
           ],
           [
             602,
-            221
+            220
           ]
         ]
       },
@@ -109,8 +105,8 @@
         "pass": true,
         "pulses": [
           [
-            1,
-            51
+            0,
+            50
           ]
         ]
       }

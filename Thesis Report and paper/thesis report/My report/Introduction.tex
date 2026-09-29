@@ -1,0 +1,145 @@
+\clearpage
+% Introduction.tex
+\chapter{Introduction}
+\label{chap:introduction}
+
+\section{Background}
+\label{sec:background}
+Vision is the sense through which people obtain most of the information about their surroundings. According to the World Health Organization, at least 2.2 billion people worldwide live with some form of near or distance vision impairment, and a large share of them live in low- and middle-income countries \cite{who2023vision}. For a person who is blind or has low vision, everyday actions that sighted people perform without thinking become difficult or impossible: reading a medicine label, a shop sign or a bus number, knowing what object is on the table, or checking which banknote is in the hand and whether it is genuine. Each of these tasks usually requires help from another person, which reduces independence, privacy and dignity.
+
+Bangladesh faces this problem in a particular form. Most printed information in public places is written in Bangla, often mixed with English. Cash is still the main payment method in daily life, and the country has nine circulating denominations of Taka notes (2, 5, 10, 20, 50, 100, 200, 500 and 1000). Counterfeit notes are a recurring problem in markets. At the same time, internet connectivity and the purchasing power of many visually impaired users are limited. A visually impaired person in Bangladesh therefore needs an assistive device that (i) speaks Bangla, (ii) recognises Bangladeshi currency, (iii) works without the internet, and (iv) is affordable and simple to operate.
+
+Commercial assistive products such as OrCam MyEye \cite{orcam}, Envision Glasses \cite{envision} and Microsoft Seeing AI \cite{seeingai} show that camera-based assistance is technically possible. However, these products are expensive, are designed mostly for English and other major languages, rely in many functions on a smartphone or a cloud service, and do not support Bangladeshi Taka. Research prototypes built on Raspberry Pi boards \cite{readingaid_rpi2023, visionvoice2024, cameraocr2023} are cheaper, but most of them read only English text with Tesseract and send speech through online services such as Google Text-to-Speech.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{sample_note_10_taka.jpg}
+    \hspace{0.3cm}
+    \includegraphics[width=0.45\textwidth]{sample_detection_100_taka.jpg}
+    \caption{Left: a 10 Taka note from the local currency dataset. Right: a 100 Taka note placed on a real street background, the kind of cluttered scene the currency detector of Savior Glass is trained to handle.}
+    \label{fig:intro_samples}
+\end{figure}
+
+This thesis presents \textbf{Savior Glass}, a wearable, offline, Bangla-first smart glass for visually impaired users. Savior Glass is designed around a Raspberry Pi~5 \cite{raspberrypi5}, a camera module mounted near the eyes, five physical push-buttons and an earphone or speaker. It offers three main modes that a user cycles with a single button: \textit{text reading} (Bangla and English OCR), \textit{object detection} (spoken names of everyday objects in Bangla), and \textit{currency detection} (denomination of Bangladeshi Taka notes). On top of these modes, the project developed a multi-view counterfeit-note authenticator, a facial-expression recogniser that makes the spoken feedback emotion-aware, haptic confirmation, and an optional online scene-description mode. All core functions run on the device itself without internet access once the models are installed.
+
+The work is also a data-engineering study. Public Bangladeshi currency datasets consist mainly of clean, close-up scans of notes. A model trained only on them learns that ``the whole frame is the note'' and fails on a live camera. We therefore built a copy-paste compositing pipeline that places notes on real photographs and generates exact bounding boxes automatically. For counterfeit detection we worked with a six-view genuine/counterfeit note dataset and found that a model trained only on six views collapses when it sees one view, which led to a prefix-robust training protocol. Throughout the thesis, every accuracy number is taken from a saved evaluation file, and results that are not yet measured, such as Raspberry Pi~5 latency or a study with visually impaired participants, are stated as not measured.
+
+
+\section{Problem Statement}
+\label{sec:Problem Statement}
+Visually impaired people in Bangladesh depend on family members, shopkeepers or passers-by to read text, identify objects and handle money. This dependence creates three concrete risks: loss of independence in daily activities, exposure to fraud when receiving change or counterfeit notes, and loss of privacy when others must read personal documents. Existing assistive technologies do not solve these problems for Bangladeshi users.
+
+Common limitations in current solutions include:
+
+\begin{itemize}[noitemsep]
+    \item High cost of commercial smart glasses and dependence on a smartphone or subscription;
+    \item Dependence on cloud services for OCR, recognition or speech, which fails without internet;
+    \item English-centric design, with little or no support for Bangla text and Bangla speech;
+    \item No support for recognising Bangladeshi Taka, and almost no support for detecting counterfeit notes;
+    \item Touch-screen or app-based interfaces that are hard to use without sight.
+\end{itemize}
+
+On the technical side, two specific problems had to be solved. First, Bangladeshi currency recognition models trained on clean note images do not transfer to real camera frames in which the note is small, rotated, partly lit and surrounded by clutter. Second, counterfeit authentication needs several close views of a note, but a blind user cannot guarantee that all views will be captured; a model that is accurate only when all six views are present is not usable in practice.
+
+This project addresses these gaps and develops Savior Glass, an offline assistive smart glass that uniquely integrates:
+
+\begin{itemize}[noitemsep]
+    \item Bangla and English text reading with a capture-then-read interaction;
+    \item Everyday object announcement with Bangla labels and repetition control;
+    \item Detection of all nine Bangladeshi Taka denominations in cluttered scenes;
+    \item Multi-view genuine/counterfeit authentication that stays accurate with fewer views;
+    \item Offline Bangla/English speech, haptic feedback and physical buttons for control.
+\end{itemize}
+
+
+\section{Objectives}
+\label{sec:Objective}
+
+The primary objective of this project is to design, implement and evaluate Savior Glass, an affordable, offline, Bangla-first assistive smart glass for visually impaired people. The specific goals are:
+
+\begin{enumerate}[noitemsep]
+    \item To build a wearable prototype on Raspberry Pi~5 that is operated entirely through physical buttons and audio feedback.
+    \item To provide Bangla and English text reading using on-device OCR and offline text-to-speech.
+    \item To announce everyday objects in front of the user in Bangla using a real-time object detector.
+    \item To detect and name all nine denominations of Bangladeshi Taka in real-world scenes, by creating a large synthetic detection dataset without manual annotation.
+    \item To develop a counterfeit-note authenticator that remains reliable when only one or a few views of the note are available.
+    \item To add supporting features such as emotion-aware speech, haptic confirmation and a Windows development harness.
+    \item To evaluate every module with standard metrics on held-out data and to report the results and gaps honestly.
+\end{enumerate}
+
+Ultimately, the objective is to create a human-centred, low-cost and privacy-preserving assistive device that increases the independence of visually impaired people in Bangladesh.
+
+\section{Scope of the Study}
+\label{sec:Scope of the Study}
+
+This research is concerned with the design, development and technical evaluation of a camera-based wearable assistant. The main functions of the system are the following:
+
+\begin{itemize}
+    \item \textbf{Text Reading (OCR):} Recognition of printed Bangla and English text from the camera image and reading it aloud on request.
+
+    \item \textbf{Object Detection:} Periodic detection of the 80 COCO object classes (person, chair, bottle, bus and so on) and announcement of the most relevant ones in Bangla.
+
+    \item \textbf{Currency Detection:} Localisation and classification of the nine Bangladeshi Taka denominations, spoken in Bangla, with vibration confirmation.
+
+    \item \textbf{Currency Authentication:} Classification of a note as genuine or counterfeit from one to six close-up views.
+
+    \item \textbf{Emotion-Aware Feedback:} Recognition of the facial expression of a person in front of the user, used to adapt the spoken feedback.
+\end{itemize}
+
+The study does not cover navigation, obstacle distance measurement, GPS, or voice-command control in Bangla, although parts of these exist as experimental code. Model accuracy is evaluated on public and local datasets on a laptop; latency on the Raspberry Pi~5 itself and a formal study with visually impaired participants are outside what has been measured so far and are presented as future work. The glass is an aid; it does not replace a white cane, a guide or a bank's counterfeit-detection equipment.
+
+
+\section{Research Questions}
+\label{sec:Research Question}
+
+This research addresses the following questions:
+
+\begin{enumerate}
+    \item How can a fully offline, multi-function assistive smart glass with Bangla support be designed and implemented on a low-cost embedded platform such as the Raspberry Pi~5?
+
+    \item Can a detector trained on synthetically composited images, generated without any manual annotation, recognise Bangladeshi Taka notes in cluttered real-world scenes?
+
+    \item Why does a multi-view counterfeit authenticator trained on a fixed number of views fail when fewer views are available, and can a training protocol fix this?
+
+    \item How accurately can existing open OCR engines read Bangla and English text for assistive use, and where are their weaknesses?
+
+    \item How can the interaction design (buttons, capture/read separation, cooldowns, Bangla speech) be made suitable for users without sight?
+\end{enumerate}
+
+\section{Contributions}
+\label{sec:contributions}
+The main contributions of this thesis are:
+\begin{enumerate}[noitemsep]
+    \item A complete, offline, three-mode assistive smart-glass system (Savior Glass) with Bangla-first speech, physical button control, systemd deployment on Raspberry Pi~5 and a Windows test harness.
+    \item A copy-paste compositing pipeline that turns 5,073 clean note images and 1,500 COCO backgrounds into a 22,315-image detection dataset with automatic, pixel-exact bounding boxes, and a YOLOv8s Taka detector trained on it.
+    \item A prefix-robust multi-view training protocol for counterfeit authentication that removes the train/test mismatch in the number of views and holds accuracy between 97.1\% and 98.1\% from one to six views on a note-disjoint test set.
+    \item An honest, file-backed evaluation of every module, including negative results and a list of measurements that are still missing.
+\end{enumerate}
+
+
+\section{Thesis Structure}
+
+This thesis is organized into seven chapters, each addressing a specific aspect of the project. The chapters are outlined as follows:
+
+\begin{itemize}
+    \item \textbf{Chapter 1: Introduction} \\
+    This chapter provides the background, problem statement, objectives, scope, research questions, contributions and thesis structure.
+
+    \item \textbf{Chapter 2: Literature Review} \\
+    This chapter reviews assistive technologies for visually impaired people, smart glasses, OCR and text-to-speech systems, object detection, and Bangladeshi currency recognition.
+
+    \item \textbf{Chapter 3: System Design and Methodology} \\
+    This chapter describes the framework, hardware components, software design and the methodology of Savior Glass.
+
+    \item \textbf{Chapter 4: Implementation Process} \\
+    This chapter explains how each module was implemented, integrated and deployed.
+
+    \item \textbf{Chapter 5: Dataset and Data Engineering} \\
+    This chapter presents the datasets used, the synthetic compositing pipeline and the data splits.
+
+    \item \textbf{Chapter 6: Results and Discussion} \\
+    This chapter reports the measured performance of each module, discusses the findings and states the limitations.
+
+    \item \textbf{Chapter 7: Conclusion and Future Work} \\
+    This chapter summarises the work, its social impact and the directions for future research.
+\end{itemize}

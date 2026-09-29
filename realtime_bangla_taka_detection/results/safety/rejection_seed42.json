@@ -1,0 +1,1014 @@
+{
+ "model": "results\\qduig\\prefix_ft\\seed42",
+ "rule": "Confidence-threshold rejection for PRMVT under clean, low-light, occlusion and over-exposure.\n\nRule (same as results/robustness/occlusion_decision.json, fixed before test scoring):\n  confidence = max(p, 1 - p); answer iff confidence >= t;\n  t = largest value on the grid 0.50..0.99 (step 0.01) that still answers >= 95 % of CLEAN\n  validation notes. The threshold is chosen once, on clean validation, and applied unchanged\n  to every corrupted test condition (the device cannot know the corruption).",
+ "views": {
+  "1": {
+   "threshold_from_clean_val": 0.87,
+   "clean_val_coverage": 0.9567307692307693,
+   "clean": {
+    "accuracy_no_rejection": 0.9711538461538461,
+    "threshold": 0.87,
+    "coverage": 0.9375,
+    "answered": 195,
+    "wrong_verdicts": 3,
+    "wrong_verdict_rate": 0.014423076923076924,
+    "wrong_verdict_wilson95": [
+     0.004916968346132377,
+     0.0415403846950078
+    ],
+    "selective_accuracy": 0.9846153846153847,
+    "aurc": 0.00801183036253529,
+    "risk_coverage_curve": [
+     {
+      "coverage": 0.0048,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.0529,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.101,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.149,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.1971,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.2452,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.2933,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.3413,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.3894,
+      "selective_risk": 0.0123
+     },
+     {
+      "coverage": 0.4375,
+      "selective_risk": 0.011
+     },
+     {
+      "coverage": 0.4856,
+      "selective_risk": 0.0099
+     },
+     {
+      "coverage": 0.5337,
+      "selective_risk": 0.009
+     },
+     {
+      "coverage": 0.5817,
+      "selective_risk": 0.0083
+     },
+     {
+      "coverage": 0.6298,
+      "selective_risk": 0.0076
+     },
+     {
+      "coverage": 0.6779,
+      "selective_risk": 0.0142
+     },
+     {
+      "coverage": 0.726,
+      "selective_risk": 0.0132
+     },
+     {
+      "coverage": 0.774,
+      "selective_risk": 0.0124
+     },
+     {
+      "coverage": 0.8221,
+      "selective_risk": 0.0117
+     },
+     {
+      "coverage": 0.8702,
+      "selective_risk": 0.0166
+     },
+     {
+      "coverage": 0.9183,
+      "selective_risk": 0.0157
+     },
+     {
+      "coverage": 0.9663,
+      "selective_risk": 0.0199
+     }
+    ]
+   },
+   "low_light_0.35": {
+    "accuracy_no_rejection": 0.6538461538461539,
+    "threshold": 0.87,
+    "coverage": 0.875,
+    "answered": 182,
+    "wrong_verdicts": 59,
+    "wrong_verdict_rate": 0.28365384615384615,
+    "wrong_verdict_wilson95": [
+     0.2267480268386497,
+     0.3484062393677989
+    ],
+    "selective_accuracy": 0.6758241758241759,
+    "aurc": 0.1591509412307235,
+    "risk_coverage_curve": [
+     {
+      "coverage": 0.0048,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.0529,
+      "selective_risk": 0.0909
+     },
+     {
+      "coverage": 0.101,
+      "selective_risk": 0.0476
+     },
+     {
+      "coverage": 0.149,
+      "selective_risk": 0.0645
+     },
+     {
+      "coverage": 0.1971,
+      "selective_risk": 0.0488
+     },
+     {
+      "coverage": 0.2452,
+      "selective_risk": 0.0588
+     },
+     {
+      "coverage": 0.2933,
+      "selective_risk": 0.0656
+     },
+     {
+      "coverage": 0.3413,
+      "selective_risk": 0.0845
+     },
+     {
+      "coverage": 0.3894,
+      "selective_risk": 0.0988
+     },
+     {
+      "coverage": 0.4375,
+      "selective_risk": 0.0989
+     },
+     {
+      "coverage": 0.4856,
+      "selective_risk": 0.1089
+     },
+     {
+      "coverage": 0.5337,
+      "selective_risk": 0.1261
+     },
+     {
+      "coverage": 0.5817,
+      "selective_risk": 0.157
+     },
+     {
+      "coverage": 0.6298,
+      "selective_risk": 0.1756
+     },
+     {
+      "coverage": 0.6779,
+      "selective_risk": 0.2057
+     },
+     {
+      "coverage": 0.726,
+      "selective_risk": 0.2384
+     },
+     {
+      "coverage": 0.774,
+      "selective_risk": 0.2671
+     },
+     {
+      "coverage": 0.8221,
+      "selective_risk": 0.2924
+     },
+     {
+      "coverage": 0.8702,
+      "selective_risk": 0.3204
+     },
+     {
+      "coverage": 0.9183,
+      "selective_risk": 0.3351
+     },
+     {
+      "coverage": 0.9663,
+      "selective_risk": 0.3333
+     }
+    ]
+   },
+   "low_light_0.2": {
+    "accuracy_no_rejection": 0.5721153846153846,
+    "threshold": 0.87,
+    "coverage": 0.6682692307692307,
+    "answered": 139,
+    "wrong_verdicts": 71,
+    "wrong_verdict_rate": 0.34134615384615385,
+    "wrong_verdict_wilson95": [
+     0.2803061420223026,
+     0.40814031986242644
+    ],
+    "selective_accuracy": 0.4892086330935252,
+    "aurc": 0.512857962969101,
+    "risk_coverage_curve": [
+     {
+      "coverage": 0.0048,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.0529,
+      "selective_risk": 0.5455
+     },
+     {
+      "coverage": 0.101,
+      "selective_risk": 0.5238
+     },
+     {
+      "coverage": 0.149,
+      "selective_risk": 0.5484
+     },
+     {
+      "coverage": 0.1971,
+      "selective_risk": 0.5366
+     },
+     {
+      "coverage": 0.2452,
+      "selective_risk": 0.5294
+     },
+     {
+      "coverage": 0.2933,
+      "selective_risk": 0.5246
+     },
+     {
+      "coverage": 0.3413,
+      "selective_risk": 0.5775
+     },
+     {
+      "coverage": 0.3894,
+      "selective_risk": 0.5926
+     },
+     {
+      "coverage": 0.4375,
+      "selective_risk": 0.5714
+     },
+     {
+      "coverage": 0.4856,
+      "selective_risk": 0.5644
+     },
+     {
+      "coverage": 0.5337,
+      "selective_risk": 0.5495
+     },
+     {
+      "coverage": 0.5817,
+      "selective_risk": 0.5455
+     },
+     {
+      "coverage": 0.6298,
+      "selective_risk": 0.5267
+     },
+     {
+      "coverage": 0.6779,
+      "selective_risk": 0.5035
+     },
+     {
+      "coverage": 0.726,
+      "selective_risk": 0.4967
+     },
+     {
+      "coverage": 0.774,
+      "selective_risk": 0.4783
+     },
+     {
+      "coverage": 0.8221,
+      "selective_risk": 0.4561
+     },
+     {
+      "coverage": 0.8702,
+      "selective_risk": 0.442
+     },
+     {
+      "coverage": 0.9183,
+      "selective_risk": 0.4398
+     },
+     {
+      "coverage": 0.9663,
+      "selective_risk": 0.4279
+     }
+    ]
+   },
+   "occlusion_0.55": {
+    "accuracy_no_rejection": 0.5096153846153846,
+    "threshold": 0.87,
+    "coverage": 0.5480769230769231,
+    "answered": 114,
+    "wrong_verdicts": 51,
+    "wrong_verdict_rate": 0.24519230769230768,
+    "wrong_verdict_wilson95": [
+     0.19169661396194332,
+     0.30792952179231836
+    ],
+    "selective_accuracy": 0.5526315789473685,
+    "aurc": 0.4084575774329894,
+    "risk_coverage_curve": [
+     {
+      "coverage": 0.0048,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.0529,
+      "selective_risk": 0.3636
+     },
+     {
+      "coverage": 0.101,
+      "selective_risk": 0.3333
+     },
+     {
+      "coverage": 0.149,
+      "selective_risk": 0.2903
+     },
+     {
+      "coverage": 0.1971,
+      "selective_risk": 0.3171
+     },
+     {
+      "coverage": 0.2452,
+      "selective_risk": 0.3529
+     },
+     {
+      "coverage": 0.2933,
+      "selective_risk": 0.3443
+     },
+     {
+      "coverage": 0.3413,
+      "selective_risk": 0.3521
+     },
+     {
+      "coverage": 0.3894,
+      "selective_risk": 0.3827
+     },
+     {
+      "coverage": 0.4375,
+      "selective_risk": 0.3846
+     },
+     {
+      "coverage": 0.4856,
+      "selective_risk": 0.4257
+     },
+     {
+      "coverage": 0.5337,
+      "selective_risk": 0.4414
+     },
+     {
+      "coverage": 0.5817,
+      "selective_risk": 0.4545
+     },
+     {
+      "coverage": 0.6298,
+      "selective_risk": 0.4504
+     },
+     {
+      "coverage": 0.6779,
+      "selective_risk": 0.4752
+     },
+     {
+      "coverage": 0.726,
+      "selective_risk": 0.4768
+     },
+     {
+      "coverage": 0.774,
+      "selective_risk": 0.4658
+     },
+     {
+      "coverage": 0.8221,
+      "selective_risk": 0.4678
+     },
+     {
+      "coverage": 0.8702,
+      "selective_risk": 0.4862
+     },
+     {
+      "coverage": 0.9183,
+      "selective_risk": 0.4974
+     },
+     {
+      "coverage": 0.9663,
+      "selective_risk": 0.4925
+     }
+    ]
+   },
+   "brightness_2.2": {
+    "accuracy_no_rejection": 0.5865384615384616,
+    "threshold": 0.87,
+    "coverage": 0.47596153846153844,
+    "answered": 99,
+    "wrong_verdicts": 38,
+    "wrong_verdict_rate": 0.18269230769230768,
+    "wrong_verdict_wilson95": [
+     0.13609334418498878,
+     0.2407995795844692
+    ],
+    "selective_accuracy": 0.6161616161616161,
+    "aurc": 0.3312650831973664,
+    "risk_coverage_curve": [
+     {
+      "coverage": 0.0048,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.0529,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.101,
+      "selective_risk": 0.1429
+     },
+     {
+      "coverage": 0.149,
+      "selective_risk": 0.1613
+     },
+     {
+      "coverage": 0.1971,
+      "selective_risk": 0.1951
+     },
+     {
+      "coverage": 0.2452,
+      "selective_risk": 0.2745
+     },
+     {
+      "coverage": 0.2933,
+      "selective_risk": 0.3279
+     },
+     {
+      "coverage": 0.3413,
+      "selective_risk": 0.3662
+     },
+     {
+      "coverage": 0.3894,
+      "selective_risk": 0.4074
+     },
+     {
+      "coverage": 0.4375,
+      "selective_risk": 0.3846
+     },
+     {
+      "coverage": 0.4856,
+      "selective_risk": 0.3861
+     },
+     {
+      "coverage": 0.5337,
+      "selective_risk": 0.3874
+     },
+     {
+      "coverage": 0.5817,
+      "selective_risk": 0.3967
+     },
+     {
+      "coverage": 0.6298,
+      "selective_risk": 0.4046
+     },
+     {
+      "coverage": 0.6779,
+      "selective_risk": 0.4113
+     },
+     {
+      "coverage": 0.726,
+      "selective_risk": 0.4172
+     },
+     {
+      "coverage": 0.774,
+      "selective_risk": 0.4099
+     },
+     {
+      "coverage": 0.8221,
+      "selective_risk": 0.4269
+     },
+     {
+      "coverage": 0.8702,
+      "selective_risk": 0.4309
+     },
+     {
+      "coverage": 0.9183,
+      "selective_risk": 0.4241
+     },
+     {
+      "coverage": 0.9663,
+      "selective_risk": 0.4179
+     }
+    ]
+   }
+  },
+  "6": {
+   "threshold_from_clean_val": 0.97,
+   "clean_val_coverage": 0.9519230769230769,
+   "clean": {
+    "accuracy_no_rejection": 0.9807692307692307,
+    "threshold": 0.97,
+    "coverage": 0.8894230769230769,
+    "answered": 185,
+    "wrong_verdicts": 2,
+    "wrong_verdict_rate": 0.009615384615384616,
+    "wrong_verdict_wilson95": [
+     0.0026408026954240042,
+     0.0343755340391928
+    ],
+    "selective_accuracy": 0.9891891891891892,
+    "aurc": 0.0037588148196151592,
+    "risk_coverage_curve": [
+     {
+      "coverage": 0.0048,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.0529,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.101,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.149,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.1971,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.2452,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.2933,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.3413,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.3894,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.4375,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.4856,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.5337,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.5817,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.6298,
+      "selective_risk": 0.0076
+     },
+     {
+      "coverage": 0.6779,
+      "selective_risk": 0.0071
+     },
+     {
+      "coverage": 0.726,
+      "selective_risk": 0.0066
+     },
+     {
+      "coverage": 0.774,
+      "selective_risk": 0.0124
+     },
+     {
+      "coverage": 0.8221,
+      "selective_risk": 0.0117
+     },
+     {
+      "coverage": 0.8702,
+      "selective_risk": 0.011
+     },
+     {
+      "coverage": 0.9183,
+      "selective_risk": 0.0105
+     },
+     {
+      "coverage": 0.9663,
+      "selective_risk": 0.0149
+     }
+    ]
+   },
+   "low_light_0.35": {
+    "accuracy_no_rejection": 0.6490384615384616,
+    "threshold": 0.97,
+    "coverage": 0.7307692307692307,
+    "answered": 152,
+    "wrong_verdicts": 36,
+    "wrong_verdict_rate": 0.17307692307692307,
+    "wrong_verdict_wilson95": [
+     0.12771653262702531,
+     0.23029435852938596
+    ],
+    "selective_accuracy": 0.7631578947368421,
+    "aurc": 0.16031441711484062,
+    "risk_coverage_curve": [
+     {
+      "coverage": 0.0048,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.0529,
+      "selective_risk": 0.0909
+     },
+     {
+      "coverage": 0.101,
+      "selective_risk": 0.0476
+     },
+     {
+      "coverage": 0.149,
+      "selective_risk": 0.0645
+     },
+     {
+      "coverage": 0.1971,
+      "selective_risk": 0.0488
+     },
+     {
+      "coverage": 0.2452,
+      "selective_risk": 0.0588
+     },
+     {
+      "coverage": 0.2933,
+      "selective_risk": 0.082
+     },
+     {
+      "coverage": 0.3413,
+      "selective_risk": 0.0986
+     },
+     {
+      "coverage": 0.3894,
+      "selective_risk": 0.0864
+     },
+     {
+      "coverage": 0.4375,
+      "selective_risk": 0.1099
+     },
+     {
+      "coverage": 0.4856,
+      "selective_risk": 0.1089
+     },
+     {
+      "coverage": 0.5337,
+      "selective_risk": 0.1081
+     },
+     {
+      "coverage": 0.5817,
+      "selective_risk": 0.1405
+     },
+     {
+      "coverage": 0.6298,
+      "selective_risk": 0.1756
+     },
+     {
+      "coverage": 0.6779,
+      "selective_risk": 0.1915
+     },
+     {
+      "coverage": 0.726,
+      "selective_risk": 0.2318
+     },
+     {
+      "coverage": 0.774,
+      "selective_risk": 0.2609
+     },
+     {
+      "coverage": 0.8221,
+      "selective_risk": 0.2924
+     },
+     {
+      "coverage": 0.8702,
+      "selective_risk": 0.3149
+     },
+     {
+      "coverage": 0.9183,
+      "selective_risk": 0.3403
+     },
+     {
+      "coverage": 0.9663,
+      "selective_risk": 0.3532
+     }
+    ]
+   },
+   "low_light_0.2": {
+    "accuracy_no_rejection": 0.5865384615384616,
+    "threshold": 0.97,
+    "coverage": 0.375,
+    "answered": 78,
+    "wrong_verdicts": 43,
+    "wrong_verdict_rate": 0.20673076923076922,
+    "wrong_verdict_wilson95": [
+     0.1572568005334758,
+     0.266841204768599
+    ],
+    "selective_accuracy": 0.44871794871794873,
+    "aurc": 0.5279293319878717,
+    "risk_coverage_curve": [
+     {
+      "coverage": 0.0048,
+      "selective_risk": 1.0
+     },
+     {
+      "coverage": 0.0529,
+      "selective_risk": 0.6364
+     },
+     {
+      "coverage": 0.101,
+      "selective_risk": 0.6667
+     },
+     {
+      "coverage": 0.149,
+      "selective_risk": 0.6129
+     },
+     {
+      "coverage": 0.1971,
+      "selective_risk": 0.5366
+     },
+     {
+      "coverage": 0.2452,
+      "selective_risk": 0.549
+     },
+     {
+      "coverage": 0.2933,
+      "selective_risk": 0.541
+     },
+     {
+      "coverage": 0.3413,
+      "selective_risk": 0.5493
+     },
+     {
+      "coverage": 0.3894,
+      "selective_risk": 0.5432
+     },
+     {
+      "coverage": 0.4375,
+      "selective_risk": 0.5165
+     },
+     {
+      "coverage": 0.4856,
+      "selective_risk": 0.5347
+     },
+     {
+      "coverage": 0.5337,
+      "selective_risk": 0.5405
+     },
+     {
+      "coverage": 0.5817,
+      "selective_risk": 0.5372
+     },
+     {
+      "coverage": 0.6298,
+      "selective_risk": 0.5115
+     },
+     {
+      "coverage": 0.6779,
+      "selective_risk": 0.4965
+     },
+     {
+      "coverage": 0.726,
+      "selective_risk": 0.4768
+     },
+     {
+      "coverage": 0.774,
+      "selective_risk": 0.4472
+     },
+     {
+      "coverage": 0.8221,
+      "selective_risk": 0.4327
+     },
+     {
+      "coverage": 0.8702,
+      "selective_risk": 0.4144
+     },
+     {
+      "coverage": 0.9183,
+      "selective_risk": 0.4084
+     },
+     {
+      "coverage": 0.9663,
+      "selective_risk": 0.4129
+     }
+    ]
+   },
+   "occlusion_0.55": {
+    "accuracy_no_rejection": 0.5192307692307693,
+    "threshold": 0.97,
+    "coverage": 0.08173076923076923,
+    "answered": 17,
+    "wrong_verdicts": 3,
+    "wrong_verdict_rate": 0.014423076923076924,
+    "wrong_verdict_wilson95": [
+     0.004916968346132377,
+     0.0415403846950078
+    ],
+    "selective_accuracy": 0.8235294117647058,
+    "aurc": 0.34127200694255255,
+    "risk_coverage_curve": [
+     {
+      "coverage": 0.0048,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.0529,
+      "selective_risk": 0.2727
+     },
+     {
+      "coverage": 0.101,
+      "selective_risk": 0.1429
+     },
+     {
+      "coverage": 0.149,
+      "selective_risk": 0.2258
+     },
+     {
+      "coverage": 0.1971,
+      "selective_risk": 0.2683
+     },
+     {
+      "coverage": 0.2452,
+      "selective_risk": 0.2745
+     },
+     {
+      "coverage": 0.2933,
+      "selective_risk": 0.2459
+     },
+     {
+      "coverage": 0.3413,
+      "selective_risk": 0.2676
+     },
+     {
+      "coverage": 0.3894,
+      "selective_risk": 0.284
+     },
+     {
+      "coverage": 0.4375,
+      "selective_risk": 0.2857
+     },
+     {
+      "coverage": 0.4856,
+      "selective_risk": 0.3069
+     },
+     {
+      "coverage": 0.5337,
+      "selective_risk": 0.3514
+     },
+     {
+      "coverage": 0.5817,
+      "selective_risk": 0.3636
+     },
+     {
+      "coverage": 0.6298,
+      "selective_risk": 0.3969
+     },
+     {
+      "coverage": 0.6779,
+      "selective_risk": 0.4113
+     },
+     {
+      "coverage": 0.726,
+      "selective_risk": 0.4238
+     },
+     {
+      "coverage": 0.774,
+      "selective_risk": 0.4286
+     },
+     {
+      "coverage": 0.8221,
+      "selective_risk": 0.4503
+     },
+     {
+      "coverage": 0.8702,
+      "selective_risk": 0.4586
+     },
+     {
+      "coverage": 0.9183,
+      "selective_risk": 0.466
+     },
+     {
+      "coverage": 0.9663,
+      "selective_risk": 0.4776
+     }
+    ]
+   },
+   "brightness_2.2": {
+    "accuracy_no_rejection": 0.4855769230769231,
+    "threshold": 0.97,
+    "coverage": 0.4951923076923077,
+    "answered": 103,
+    "wrong_verdicts": 44,
+    "wrong_verdict_rate": 0.21153846153846154,
+    "wrong_verdict_wilson95": [
+     0.16152475188707197,
+     0.2720142697215262
+    ],
+    "selective_accuracy": 0.5728155339805825,
+    "aurc": 0.41632766507956087,
+    "risk_coverage_curve": [
+     {
+      "coverage": 0.0048,
+      "selective_risk": 0.0
+     },
+     {
+      "coverage": 0.0529,
+      "selective_risk": 0.2727
+     },
+     {
+      "coverage": 0.101,
+      "selective_risk": 0.381
+     },
+     {
+      "coverage": 0.149,
+      "selective_risk": 0.3548
+     },
+     {
+      "coverage": 0.1971,
+      "selective_risk": 0.3171
+     },
+     {
+      "coverage": 0.2452,
+      "selective_risk": 0.3333
+     },
+     {
+      "coverage": 0.2933,
+      "selective_risk": 0.3279
+     },
+     {
+      "coverage": 0.3413,
+      "selective_risk": 0.3521
+     },
+     {
+      "coverage": 0.3894,
+      "selective_risk": 0.4074
+     },
+     {
+      "coverage": 0.4375,
+      "selective_risk": 0.4286
+     },
+     {
+      "coverage": 0.4856,
+      "selective_risk": 0.4257
+     },
+     {
+      "coverage": 0.5337,
+      "selective_risk": 0.4685
+     },
+     {
+      "coverage": 0.5817,
+      "selective_risk": 0.4959
+     },
+     {
+      "coverage": 0.6298,
+      "selective_risk": 0.4962
+     },
+     {
+      "coverage": 0.6779,
+      "selective_risk": 0.4752
+     },
+     {
+      "coverage": 0.726,
+      "selective_risk": 0.4768
+     },
+     {
+      "coverage": 0.774,
+      "selective_risk": 0.4783
+     },
+     {
+      "coverage": 0.8221,
+      "selective_risk": 0.5088
+     },
+     {
+      "coverage": 0.8702,
+      "selective_risk": 0.5193
+     },
+     {
+      "coverage": 0.9183,
+      "selective_risk": 0.5236
+     },
+     {
+      "coverage": 0.9663,
+      "selective_risk": 0.5274
+     }
+    ]
+   }
+  }
+ }
+}

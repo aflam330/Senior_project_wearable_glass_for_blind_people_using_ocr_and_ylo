@@ -1,0 +1,91 @@
+{
+  "rule": "max(correct - wrong) on NSTU train (dev), one image per original; threshold 0.65 = app default",
+  "dev_nstu_train": {
+    "P1": {
+      "correct": 262,
+      "wrong": 171,
+      "abstain": 1067,
+      "n": 1500,
+      "accuracy": 0.1747,
+      "score": 91,
+      "precision_when_answering": 0.6051
+    },
+    "P2": {
+      "correct": 494,
+      "wrong": 844,
+      "abstain": 162,
+      "n": 1500,
+      "accuracy": 0.3293,
+      "score": -350,
+      "precision_when_answering": 0.3692
+    },
+    "P3": {
+      "correct": 378,
+      "wrong": 881,
+      "abstain": 241,
+      "n": 1500,
+      "accuracy": 0.252,
+      "score": -503,
+      "precision_when_answering": 0.3002
+    }
+  },
+  "chosen": "P1",
+  "test_nstu_excluding_88_leaked_originals": {
+    "P1": {
+      "correct": 195,
+      "wrong": 150,
+      "abstain": 694,
+      "n": 1039,
+      "accuracy": 0.1877,
+      "score": 45,
+      "precision_when_answering": 0.5652
+    },
+    "P2": {
+      "correct": 330,
+      "wrong": 608,
+      "abstain": 101,
+      "n": 1039,
+      "accuracy": 0.3176,
+      "score": -278,
+      "precision_when_answering": 0.3518
+    },
+    "P3": {
+      "correct": 237,
+      "wrong": 644,
+      "abstain": 158,
+      "n": 1039,
+      "accuracy": 0.2281,
+      "score": -407,
+      "precision_when_answering": 0.269
+    }
+  },
+  "bangla_money_training_folders": {
+    "P1": {
+      "correct": 1405,
+      "wrong": 71,
+      "abstain": 60,
+      "n": 1536,
+      "accuracy": 0.9147,
+      "score": 1334,
+      "precision_when_answering": 0.9519
+    },
+    "P2": {
+      "correct": 1415,
+      "wrong": 108,
+      "abstain": 13,
+      "n": 1536,
+      "accuracy": 0.9212,
+      "score": 1307,
+      "precision_when_answering": 0.9291
+    },
+    "P3": {
+      "correct": 1326,
+      "wrong": 129,
+      "abstain": 81,
+      "n": 1536,
+      "accuracy": 0.8633,
+      "score": 1197,
+      "precision_when_answering": 0.9113
+    }
+  }
+}

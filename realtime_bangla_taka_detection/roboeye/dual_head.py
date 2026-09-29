@@ -75,13 +75,30 @@ class DualHeadYOLO:
         except Exception:
             self.prototypes = None
         self._feat = None
-        self._hook = self.detector.model.model[9].register_forward_hook(self._save_feat)
+        # Hooked lazily on the predictor's own network after the first predict(). Hooking
+        # self.detector.model here broke Ultralytics >= 8.4: its setup_model() deep-copies the
+        # model, the copy reached this object through the bound hook, and failed on a thread
+        # lock ("cannot pickle '_thread.lock'"); a hook on the original would also never fire
+        # on the copy that actually runs.
+        self._hook = None
 
     def _save_feat(self, _module, _inp, out):
         self._feat = out
 
+    def _ensure_hook(self) -> None:
+        if self._hook is not None:
+            return
+        backend = getattr(getattr(self.detector, "predictor", None), "model", None)
+        net = getattr(backend, "model", None) if backend is not None else None
+        layers = getattr(net, "model", None)
+        if layers is None:
+            return
+        self._hook = layers[9].register_forward_hook(self._save_feat)
+
     def close(self):
-        self._hook.remove()
+        if self._hook is not None:
+            self._hook.remove()
+            self._hook = None
 
     def _head_prob(self, box_xyxy: np.ndarray, frame_hw: tuple[int, int]) -> float | None:
         if self._feat is None or not self.auth_head_loaded:
@@ -107,7 +124,12 @@ class DualHeadYOLO:
 
     def predict(self, frame_bgr: np.ndarray) -> list[dict]:
         h, w = frame_bgr.shape[:2]
+        self._feat = None
         results = self.detector.predict(frame_bgr, conf=self.conf, verbose=False)
+        if self._hook is None:  # first call set up the predictor; hook it and run once more
+            self._ensure_hook()
+            if self._hook is not None:
+                results = self.detector.predict(frame_bgr, conf=self.conf, verbose=False)
         r0 = results[0]
         detections: list[dict] = []
         if r0.boxes is None or len(r0.boxes) == 0:

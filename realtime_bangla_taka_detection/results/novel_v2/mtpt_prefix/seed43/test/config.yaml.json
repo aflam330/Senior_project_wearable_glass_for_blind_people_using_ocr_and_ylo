@@ -1,0 +1,13 @@
+{
+  "name": "mtpt_prefix",
+  "algo": "mtpt",
+  "epochs": 6,
+  "batch": 4,
+  "lr": 0.001,
+  "seed": 42,
+  "views": 6,
+  "patience": 6,
+  "select_on": "k1",
+  "aux_weight": 0.1,
+  "note": "Six epochs from scratch with the existing mixed prefix dropout. Checkpoint by validation 1-view accuracy. Fine-tune is a second config."
+}

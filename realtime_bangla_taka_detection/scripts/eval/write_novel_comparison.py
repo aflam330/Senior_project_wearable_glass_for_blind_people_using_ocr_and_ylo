@@ -8,8 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 ALGOS = ["ogpd", "vcie", "apc", "sfaq", "igcr", "ugf", "ndal", "sfpl", "cvs", "mtpt"]
 OUTS = [
     ROOT.parent / "paper_evidence" / "NOVEL_ALGORITHMS_COMPARISON.md",
-    ROOT / "paper_evidence" / "NOVEL_ALGORITHMS_COMPARISON.md",
-]
+]  # the old inner copy (ROOT / "paper_evidence") now lives in Unused/
 
 
 def main() -> None:

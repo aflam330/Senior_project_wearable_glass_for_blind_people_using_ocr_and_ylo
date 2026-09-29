@@ -1,0 +1,10 @@
+name: "apc"
+algo: "apc"
+epochs: 8
+batch: 4
+lr: 0.001
+seed: 42
+views: 6
+patience: 3
+warmup_steps: 0
+note: "v2 run. Train and validation only."

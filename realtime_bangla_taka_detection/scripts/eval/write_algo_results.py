@@ -46,7 +46,7 @@ def main() -> None:
         lines.append("")
         lines.append("Status: MEASURED. Seed 42. Threshold 0.5 was not tuned on test.")
     text = "\n".join(lines) + "\n"
-    for folder in (PAPER, ROOT / "paper_evidence"):
+    for folder in (PAPER,):  # the old inner copy (ROOT / "paper_evidence") now lives in Unused/
         folder.mkdir(parents=True, exist_ok=True)
         dest = folder / f"{algo.upper()}_RESULTS.md"
         dest.write_text(text, encoding="utf-8")

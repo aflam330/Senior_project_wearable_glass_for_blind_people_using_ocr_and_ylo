@@ -2,7 +2,7 @@
 
 **Primary source:** `e:\Final SP\realtime_bangla_taka_detection`  
 **Existing report:** `Bangla_Currency_Detection_Report.pdf` (July 2026, 16 pages)  
-**GitHub:** https://github.com/Mukut313/realtime_bangla_taka_detection
+**GitHub:** https://github.com/aflam330/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo (folder `realtime_bangla_taka_detection/`)
 
 This document consolidates everything needed to write a publication-ready currency paper.
 
@@ -56,7 +56,7 @@ This project develops a real-time detection system that localises and classifies
 ## 5. Related work
 
 **Full annotated list (your spreadsheet):** see [`RELATED_WORK_BIBLIOGRAPHY.md`](RELATED_WORK_BIBLIOGRAPHY.md)  
-**Source:** `Review and paper links.xlsx` → sheet *Review* (52 usable papers) + *Downloaded Paper*.
+**Source:** `literature/Review and paper links.xlsx` → sheet *Review* (52 usable papers) + *Downloaded Paper*.
 
 ### 5.1 From your review sheet — currency-focused
 

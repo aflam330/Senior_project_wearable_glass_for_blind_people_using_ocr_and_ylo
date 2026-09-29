@@ -1,0 +1,117 @@
+\documentclass[12pt]{report}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{placeins}
+\usepackage{amsmath}
+\numberwithin{table}{subsection}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{microtype}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{cellspace}
+\setlength\cellspacetoplimit{5pt}
+\setlength\cellspacebottomlimit{5pt}
+\usepackage{titlesec}
+\usepackage{framed}
+\usepackage{fancybox}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setotherlanguage{bengali}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{adjustbox}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{hyperref}
+% \usepackage{natbib}
+\usepackage{float}
+\usepackage[a4paper, top=1.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+
+\hypersetup{hidelinks}
+
+
+
+
+% Bibliography with biblatex
+\usepackage[
+  backend=biber,
+  style=numeric,
+  sorting=none
+]{biblatex}
+\addbibresource{ref.bib}
+
+% Continuous figure numbering
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+
+% Section formatting
+\titleformat{\chapter}[block]
+  {\normalfont\huge\bfseries}{\thechapter}{1em}{\Huge}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \includegraphics[width=0.5\textwidth]{pics/iub_logo.png}\par\vspace{0.2cm}
+    {\scshape\Large \textbf{Medora: A Smart Healthcare Robot for Elderly Care with User Identification, Interaction, and Customized Reminders}\par}
+    \vspace{0.5cm}
+    {\Large August 2025 \par}
+    \vspace{1cm}
+    {\large Prepared by:\par}
+    \vspace{0.5cm}
+    {\large Mehjabin Mazumder\par}
+    {\large ID: 2130425\par}
+    \vspace{0.2cm}
+    {\large Hasibul Hasan\par}
+    {\large ID:2022347 \par}
+    \vspace{0.2cm}
+    {\large Sristy Roy\par}
+    {\large ID:2022581 \par}
+    \vspace{1cm}
+    {\large Department of Computer Science and Engineering\par}
+    {\large Independent University, Bangladesh\par}
+    \vspace{1cm}
+    {\large Supervised by\par}
+    \vspace{0.5cm}
+    {\large Mohammad Shidujaman, PhD\par}
+    {\large Assistant Professor\par}
+    {\large Department of Computer Science and Engineering\par}
+    {\large Independent University, Bangladesh\par}
+\end{titlepage}
+
+\input{attestation}
+\input{evalcommittee}
+\input{acknow}
+
+\input{abstract}
+
+
+\tableofcontents
+\renewcommand\listfigurename{List of Figures}
+\listoffigures
+
+\input{Introduction}
+
+\input{LiteratureReview}
+\input{Medora_thesis (1)/methodology}
+\input{Implementation}
+\input{datasurvey}
+\input{resultandchallenges}
+\input{conclusion}
+
+\phantomsection
+% \addcontentsline{toc}{chapter}{Bibliography}
+\nocite{*}
+\printbibliography[heading=bibintoc]
+
+\end{document}

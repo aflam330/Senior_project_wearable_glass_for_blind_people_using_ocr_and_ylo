@@ -31,7 +31,10 @@
       "value": 0.9182692307692307,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\eval\\seed42\\baseline\\baseline_6view\\test_metrics.json",
       "script": "scripts/evaluate_all.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_PROP6",
@@ -45,7 +48,10 @@
       "value": 0.9663461538461539,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\eval\\seed42\\proposed_6view\\test_metrics.json",
       "script": "scripts/evaluate_all.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_EMO",
@@ -59,7 +65,10 @@
       "value": 0.8653846153846154,
       "source_artifact": "E:\\Final SP\\savior_glass\\results\\emotion_rafdb.json",
       "script": "savior_glass/scripts/train_emotion_rafdb.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_OCR",
@@ -73,7 +82,10 @@
       "value": 0.15474459568209567,
       "source_artifact": "E:\\Final SP\\savior_glass\\results\\ocr_cer.json",
       "script": "savior_glass/scripts/eval_ocr_offline.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "cer"
+      ]
     },
     {
       "claim_id": "C_HUMAN",
@@ -171,7 +183,12 @@
       "value": 0.9230769230769231,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ogpd\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_OGPD_2VIEW",
@@ -185,7 +202,12 @@
       "value": 0.9230769230769231,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ogpd\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_OGPD_3VIEW",
@@ -199,7 +221,12 @@
       "value": 0.9278846153846154,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ogpd\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "2",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_OGPD_4VIEW",
@@ -213,7 +240,12 @@
       "value": 0.9134615384615384,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ogpd\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "3",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_OGPD_5VIEW",
@@ -227,7 +259,12 @@
       "value": 0.9086538461538461,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ogpd\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "4",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_OGPD_6VIEW",
@@ -241,7 +278,12 @@
       "value": 0.9182692307692307,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ogpd\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "5",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_VCIE_1VIEW",
@@ -255,7 +297,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\vcie\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_VCIE_2VIEW",
@@ -269,7 +316,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\vcie\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_VCIE_3VIEW",
@@ -283,7 +335,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\vcie\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_VCIE_4VIEW",
@@ -297,7 +354,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\vcie\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_VCIE_5VIEW",
@@ -311,7 +373,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\vcie\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_VCIE_6VIEW",
@@ -325,7 +392,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\vcie\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_APC_1VIEW",
@@ -339,7 +411,12 @@
       "value": 0.9423076923076923,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\apc\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_APC_2VIEW",
@@ -353,7 +430,12 @@
       "value": 0.9423076923076923,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\apc\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_APC_3VIEW",
@@ -367,7 +449,12 @@
       "value": 0.9375,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\apc\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "2",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_APC_4VIEW",
@@ -381,7 +468,12 @@
       "value": 0.9182692307692307,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\apc\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "3",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_APC_5VIEW",
@@ -395,7 +487,12 @@
       "value": 0.8990384615384616,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\apc\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "4",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_APC_6VIEW",
@@ -409,7 +506,12 @@
       "value": 0.8317307692307693,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\apc\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "5",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_SFAQ_1VIEW",
@@ -423,7 +525,12 @@
       "value": 0.9471153846153846,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\sfaq\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_SFAQ_2VIEW",
@@ -437,7 +544,12 @@
       "value": 0.9423076923076923,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\sfaq\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "1",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_SFAQ_3VIEW",
@@ -451,7 +563,12 @@
       "value": 0.9663461538461539,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\sfaq\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "2",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_SFAQ_4VIEW",
@@ -465,7 +582,12 @@
       "value": 0.9375,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\sfaq\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "3",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_SFAQ_5VIEW",
@@ -479,7 +601,12 @@
       "value": 0.9375,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\sfaq\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "3",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_SFAQ_6VIEW",
@@ -493,7 +620,12 @@
       "value": 0.9423076923076923,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\sfaq\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "1",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_IGCR_1VIEW",
@@ -507,7 +639,12 @@
       "value": 0.9471153846153846,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\igcr\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_IGCR_2VIEW",
@@ -521,7 +658,12 @@
       "value": 0.9423076923076923,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\igcr\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "1",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_IGCR_3VIEW",
@@ -535,7 +677,12 @@
       "value": 0.9519230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\igcr\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "2",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_IGCR_4VIEW",
@@ -549,7 +696,12 @@
       "value": 0.9375,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\igcr\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "3",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_IGCR_5VIEW",
@@ -563,7 +715,12 @@
       "value": 0.9278846153846154,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\igcr\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "4",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_IGCR_6VIEW",
@@ -577,7 +734,12 @@
       "value": 0.9326923076923077,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\igcr\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "5",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_UGF_1VIEW",
@@ -591,7 +753,12 @@
       "value": 0.9471153846153846,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ugf\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_UGF_2VIEW",
@@ -605,7 +772,12 @@
       "value": 0.9519230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ugf\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "1",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_UGF_3VIEW",
@@ -619,7 +791,12 @@
       "value": 0.9567307692307693,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ugf\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "2",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_UGF_4VIEW",
@@ -633,7 +810,12 @@
       "value": 0.9519230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ugf\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "1",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_UGF_5VIEW",
@@ -647,7 +829,12 @@
       "value": 0.9375,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ugf\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "4",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_UGF_6VIEW",
@@ -661,7 +848,12 @@
       "value": 0.9375,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ugf\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "4",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_NDAL_1VIEW",
@@ -675,7 +867,12 @@
       "value": 0.9134615384615384,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ndal\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_NDAL_2VIEW",
@@ -689,7 +886,12 @@
       "value": 0.9038461538461539,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ndal\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "1",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_NDAL_3VIEW",
@@ -703,7 +905,12 @@
       "value": 0.9230769230769231,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ndal\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "2",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_NDAL_4VIEW",
@@ -717,7 +924,12 @@
       "value": 0.9230769230769231,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ndal\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "2",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_NDAL_5VIEW",
@@ -731,7 +943,12 @@
       "value": 0.8990384615384616,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ndal\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "4",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_NDAL_6VIEW",
@@ -745,7 +962,12 @@
       "value": 0.9086538461538461,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ndal\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "5",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_SFPL_1VIEW",
@@ -759,7 +981,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\sfpl\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_SFPL_2VIEW",
@@ -773,7 +1000,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\sfpl\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_SFPL_3VIEW",
@@ -787,7 +1019,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\sfpl\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_SFPL_4VIEW",
@@ -801,7 +1038,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\sfpl\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_SFPL_5VIEW",
@@ -815,7 +1057,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\sfpl\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_SFPL_6VIEW",
@@ -829,7 +1076,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\sfpl\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_CVS_1VIEW",
@@ -843,7 +1095,12 @@
       "value": 0.8942307692307693,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\cvs\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_CVS_2VIEW",
@@ -857,7 +1114,12 @@
       "value": 0.9134615384615384,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\cvs\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "1",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_CVS_3VIEW",
@@ -871,7 +1133,12 @@
       "value": 0.8942307692307693,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\cvs\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_CVS_4VIEW",
@@ -885,7 +1152,12 @@
       "value": 0.8846153846153846,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\cvs\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "3",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_CVS_5VIEW",
@@ -899,7 +1171,12 @@
       "value": 0.8701923076923077,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\cvs\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "4",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_CVS_6VIEW",
@@ -913,7 +1190,12 @@
       "value": 0.875,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\cvs\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "5",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_MTPT_1VIEW",
@@ -927,7 +1209,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\mtpt\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_MTPT_2VIEW",
@@ -941,7 +1228,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\mtpt\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_MTPT_3VIEW",
@@ -955,7 +1247,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\mtpt\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_MTPT_4VIEW",
@@ -969,7 +1266,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\mtpt\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_MTPT_5VIEW",
@@ -983,7 +1285,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\mtpt\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NOVEL_MTPT_6VIEW",
@@ -997,7 +1304,12 @@
       "value": 0.5769230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\mtpt\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_PRMVT_1",
@@ -1011,7 +1323,12 @@
       "value": 0.9711538461538461,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\prefix_ft\\seed42\\test_views\\views_1_to_6.json",
       "script": "scripts/eval_prefix_views.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "proposed",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_NDAL_V2_1",
@@ -1025,7 +1342,12 @@
       "value": 0.9807692307692307,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel_v2\\ndal\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_PRAVT_V2_1",
@@ -1039,7 +1361,12 @@
       "value": 0.9759615384615384,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel_v2\\pravt\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_VAT_V2_1",
@@ -1053,7 +1380,12 @@
       "value": 0.9711538461538461,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel_v2\\vat\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_UGF_V2_1",
@@ -1067,7 +1399,12 @@
       "value": 0.9471153846153846,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ugf\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_CVS_V2_1",
@@ -1081,7 +1418,12 @@
       "value": 0.9326923076923077,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel_v2\\cvs\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_APC_V2_1",
@@ -1095,7 +1437,12 @@
       "value": 0.9615384615384616,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel_v2\\apc\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_CRIS_V2_1",
@@ -1109,7 +1456,12 @@
       "value": 0.9519230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel_v2\\cris\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_SAVS_V2_1",
@@ -1123,7 +1475,12 @@
       "value": 0.9375,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel_v2\\savs\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_MAVT_V2_1",
@@ -1137,7 +1494,12 @@
       "value": 0.9182692307692307,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel_v2\\mavt\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_VCIE_V2_1",
@@ -1151,7 +1513,12 @@
       "value": 0.8798076923076923,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel_v2\\vcie\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_MTPT_V2_1",
@@ -1165,7 +1532,12 @@
       "value": 0.9519230769230769,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel_v2\\mtpt\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_SFPL_V2_1",
@@ -1179,7 +1551,12 @@
       "value": 0.7403846153846154,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel_v2\\sfpl\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_OGPD_V2_1",
@@ -1193,7 +1570,12 @@
       "value": 0.9230769230769231,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\ogpd\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_SFAQ_V2_1",
@@ -1207,7 +1589,12 @@
       "value": 0.9471153846153846,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\sfaq\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_IGCR_V2_1",
@@ -1221,7 +1608,12 @@
       "value": 0.9471153846153846,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\novel\\igcr\\seed42\\test\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_ABL_RSQA_1",
@@ -1235,12 +1627,24 @@
       "evaluation_seed": "42",
       "metric": "see claim",
       "status": "VERIFIED",
-      "script": "scripts/eval"
+      "script": "scripts/eval",
+      "json_key": [
+        "proposed",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_CAL_PRMVT_HER",
       "claim": "PRMVT 6-view HER ECE, temperature and HER fit on val",
-      "value": 0.03284737719849755,
+      "value": 0.017772431736095568,
+      "json_key": [
+        "prmvt",
+        "methods",
+        "her",
+        "ece_10"
+      ],
+      "note": "Corrected 2026-09-29: 0.03284737719849755 was the pre-NaN-fix value (Unused/replaced_originals).",
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\calibration\\suite_seed42.json",
       "dataset": "JaalTaka",
       "split": "test",
@@ -1254,7 +1658,7 @@
     {
       "claim_id": "C_POLICY_COST",
       "claim": "PRMVT sequential policy with lambda 0.02, test accuracy",
-      "value": 0.41346153846153844,
+      "value": 0.8605769230769231,
       "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\prefix_ft\\seed42\\cost_policy_test.json",
       "dataset": "JaalTaka",
       "split": "test",
@@ -1263,7 +1667,12 @@
       "evaluation_seed": "42",
       "metric": "see claim",
       "status": "VERIFIED",
-      "script": "scripts/eval"
+      "script": "scripts/eval",
+      "json_key": [
+        "with_cost",
+        "accuracy"
+      ],
+      "note": "Re-run 2026-09-29 with the fixed evaluation code; 0.41346153846153844 was the pre-fix value (kept in Unused/replaced_originals)."
     },
     {
       "claim_id": "C_PREFIX_STOP",
@@ -1278,7 +1687,12 @@
       "evaluation_seed": "42",
       "metric": "accuracy",
       "status": "VERIFIED",
-      "script": "scripts/eval/eval_prefix_stop.py"
+      "script": "scripts/eval/eval_prefix_stop.py",
+      "json_key": [
+        "always_prefix_1",
+        "test",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_LOWLIGHT_ROBUST_FT",
@@ -1292,7 +1706,10 @@
       "evaluation_seed": "42",
       "metric": "accuracy",
       "status": "VERIFIED",
-      "script": "scripts/eval/eval_robust_checkpoint.py"
+      "script": "scripts/eval/eval_robust_checkpoint.py",
+      "json_key": [
+        "low_light_0.2_6view"
+      ]
     },
     {
       "claim_id": "C_OCCLUSION_FT",
@@ -1306,7 +1723,10 @@
       "evaluation_seed": "42",
       "metric": "accuracy",
       "status": "VERIFIED",
-      "script": "scripts/eval/eval_robust_checkpoint.py"
+      "script": "scripts/eval/eval_robust_checkpoint.py",
+      "json_key": [
+        "occlusion_0.55_6view"
+      ]
     },
     {
       "claim_id": "C_PACBAYES_HEAD",
@@ -1320,7 +1740,10 @@
       "evaluation_seed": "42",
       "metric": "mcallester_bound",
       "status": "VERIFIED",
-      "script": "scripts/eval/compute_pacbayes_head.py"
+      "script": "scripts/eval/compute_pacbayes_head.py",
+      "json_key": [
+        "mcallester"
+      ]
     },
     {
       "claim_id": "C_AUX_STOPGRAD",
@@ -1334,7 +1757,12 @@
       "evaluation_seed": "42",
       "metric": "accuracy",
       "status": "VERIFIED",
-      "script": "scripts/eval_prefix_views.py"
+      "script": "scripts/eval_prefix_views.py",
+      "json_key": [
+        "proposed",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_AUX_SEPARATE_FROZEN",
@@ -1348,7 +1776,12 @@
       "evaluation_seed": "42",
       "metric": "accuracy",
       "status": "VERIFIED",
-      "script": "scripts/eval_prefix_views.py"
+      "script": "scripts/eval_prefix_views.py",
+      "json_key": [
+        "proposed",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_AUX_CURRICULUM",
@@ -1362,7 +1795,12 @@
       "evaluation_seed": "42",
       "metric": "accuracy",
       "status": "VERIFIED",
-      "script": "scripts/eval_prefix_views.py"
+      "script": "scripts/eval_prefix_views.py",
+      "json_key": [
+        "proposed",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_AUX_KENDALL",
@@ -1376,7 +1814,12 @@
       "evaluation_seed": "42",
       "metric": "accuracy",
       "status": "VERIFIED",
-      "script": "scripts/eval_prefix_views.py"
+      "script": "scripts/eval_prefix_views.py",
+      "json_key": [
+        "proposed",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_FUSION_MEANPOOL_AUX",
@@ -1390,7 +1833,12 @@
       "evaluation_seed": "42",
       "metric": "accuracy",
       "status": "VERIFIED",
-      "script": "scripts/eval_prefix_views.py"
+      "script": "scripts/eval_prefix_views.py",
+      "json_key": [
+        "proposed",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_OCCLUSION_MEDIAN_FILL",
@@ -1404,7 +1852,13 @@
       "evaluation_seed": "42",
       "metric": "accuracy",
       "status": "VERIFIED",
-      "script": "scripts/eval/eval_occlusion_repairs.py"
+      "script": "scripts/eval/eval_occlusion_repairs.py",
+      "json_key": [
+        "models",
+        "occlusion_ft",
+        "median_fill",
+        "5"
+      ]
     },
     {
       "claim_id": "C_PACBAYES_GIBBS_SIGMA10",
@@ -1418,7 +1872,12 @@
       "evaluation_seed": "42",
       "metric": "mcallester_bound",
       "status": "VERIFIED",
-      "script": "scripts/eval/compute_pacbayes_gibbs.py"
+      "script": "scripts/eval/compute_pacbayes_gibbs.py",
+      "json_key": [
+        "rows",
+        "2",
+        "mcallester"
+      ]
     },
     {
       "claim_id": "C_OCC_FT_S42",
@@ -1433,7 +1892,10 @@
       "clean_6view": 0.9807692307692307,
       "dataset": "JaalTaka",
       "split": "test",
-      "training_seed": "42"
+      "training_seed": "42",
+      "json_key": [
+        "occlusion_0.55_6view"
+      ]
     },
     {
       "claim_id": "C_OCC_FT_3SEED",
@@ -1459,7 +1921,13 @@
       "script": "scripts/eval/occlusion_decide.py",
       "status": "VERIFIED",
       "added": "2026-09-28",
-      "clean": 0.9903846153846154
+      "clean": 0.9903846153846154,
+      "json_key": [
+        "per_model",
+        "occrobust_s43",
+        "test",
+        "occ55"
+      ]
     },
     {
       "claim_id": "C_OCC_TARGET_90",
@@ -1469,7 +1937,13 @@
       "source_artifact": "realtime_bangla_taka_detection\\results\\robustness\\occlusion_decision.json",
       "script": "scripts/eval/occlusion_decide.py",
       "status": "NOT_MET",
-      "added": "2026-09-28"
+      "added": "2026-09-28",
+      "json_key": [
+        "per_model",
+        "occrobust_s43",
+        "test",
+        "occ55"
+      ]
     },
     {
       "claim_id": "C_OCC_REJECT",
@@ -1495,7 +1969,12 @@
       "script": "scripts/eval/gpu_speed.py",
       "status": "VERIFIED",
       "added": "2026-09-28",
-      "speedup_vs_cpu": 5.5
+      "speedup_vs_cpu": 5.5,
+      "json_key": [
+        "rows",
+        "yolo_pt_cuda",
+        "median_ms"
+      ]
     },
     {
       "claim_id": "C_LIVE_LOOP",
@@ -1506,7 +1985,10 @@
       "script": "savior_glass/scripts/test_live_camera.py",
       "status": "VERIFIED",
       "added": "2026-09-28",
-      "note": "no note in view; live-note accuracy NOT_MEASURED"
+      "note": "no note in view; live-note accuracy NOT_MEASURED",
+      "json_key": [
+        "loop_fps"
+      ]
     },
     {
       "claim_id": "C_BUTTONS_SIM",
@@ -1562,7 +2044,12 @@
       "value": 0.9278846153846154,
       "source_artifact": "E:\\\\Final SP\\\\realtime_bangla_taka_detection\\\\results\\\\novel_v2\\\\vcie_k1\\\\seed42\\\\test\\\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_VCIE_K1_6",
@@ -1576,7 +2063,12 @@
       "value": 0.9278846153846154,
       "source_artifact": "E:\\\\Final SP\\\\realtime_bangla_taka_detection\\\\results\\\\novel_v2\\\\vcie_k1\\\\seed42\\\\test\\\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_MTPT_63_1",
@@ -1590,7 +2082,12 @@
       "value": 0.9807692307692307,
       "source_artifact": "E:\\\\Final SP\\\\realtime_bangla_taka_detection\\\\results\\\\novel_v2\\\\mtpt_prefix_ft\\\\seed42\\\\test\\\\test_metrics.json",
       "script": "scripts/eval/eval_novel.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "views",
+        "0",
+        "accuracy"
+      ]
     },
     {
       "claim_id": "C_PACBAYES_D1",
@@ -1604,7 +2101,10 @@
       "value": 0.11271182900151713,
       "source_artifact": "E:\\\\Final SP\\\\realtime_bangla_taka_detection\\\\results\\\\theory\\\\pacbayes_d1_bound_seed42.json",
       "script": "scripts/eval/eval_pacbayes_d1.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "mcallester"
+      ]
     },
     {
       "claim_id": "C_BBOX_MULTI5",
@@ -1618,8 +2118,2318 @@
       "value": 0.9365677215828507,
       "source_artifact": "E:\\\\Final SP\\\\realtime_bangla_taka_detection\\\\results\\\\bbox\\\\bbox_multinote.json",
       "script": "scripts/eval/eval_bbox_multinote.py",
-      "status": "VERIFIED"
+      "status": "VERIFIED",
+      "json_key": [
+        "counts",
+        "5",
+        "iou_mean"
+      ]
+    },
+    {
+      "claim_id": "C_ORACLE_COUNTS",
+      "claim": "Subset oracle is 205/208, learned row 201/208, gap 4, unsolvable 3",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "counts",
+      "value": {
+        "oracle": 205,
+        "learned": 201,
+        "gap": 4,
+        "unsolvable": 3,
+        "n": 208
+      },
+      "source_artifact": "paper_evidence/final_pass_20260929.json",
+      "script": "scripts/eval/final_scientific_pass.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29"
+    },
+    {
+      "claim_id": "C_WILSON_PREFIX1",
+      "claim": "Wilson 95% interval for PRMVT 1-view test accuracy",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "wilson95",
+      "value": {
+        "k": 202,
+        "n": 208,
+        "low": 0.9385063212370869,
+        "high": 0.986713893404172
+      },
+      "source_artifact": "paper_evidence/final_pass_20260929.json",
+      "script": "scripts/eval/final_scientific_pass.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29"
+    },
+    {
+      "claim_id": "C_EXT_BDT_LOCAL",
+      "claim": "External BDT image folders present on disk",
+      "dataset": "external",
+      "split": "none",
+      "metric": "image_count",
+      "value": 0,
+      "source_artifact": "paper_evidence/external_bdt_manifest.json",
+      "script": "scripts/eval/acquire_bdt_external.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "json_key": [
+        "local",
+        "0",
+        "images"
+      ]
+    },
+    {
+      "claim_id": "C_MODELNET_E40_K1",
+      "claim": "ModelNet 10-class render, 40 epochs, test accuracy at 1 view, fixed and prefix",
+      "dataset": "ModelNet40_render_subset10",
+      "split": "test",
+      "sample_definition": "object",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "value": {
+        "fixed": 0.64,
+        "prefix": 0.64,
+        "n": 100
+      },
+      "source_artifact": "realtime_bangla_taka_detection/results/vcds_modelnet/subset10_seed42_e40.json",
+      "script": "scripts/eval/train_modelnet_vcds.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29"
+    },
+    {
+      "claim_id": "C_MODELNET_E40_K6",
+      "claim": "ModelNet 10-class render, 40 epochs, test accuracy at 6 views, fixed and prefix",
+      "dataset": "ModelNet40_render_subset10",
+      "split": "test",
+      "sample_definition": "object",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "value": {
+        "fixed": 0.77,
+        "prefix": 0.77,
+        "n": 100
+      },
+      "source_artifact": "realtime_bangla_taka_detection/results/vcds_modelnet/subset10_seed42_e40.json",
+      "script": "scripts/eval/train_modelnet_vcds.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29"
+    },
+    {
+      "claim_id": "C_EXT_BANGLAMONEY",
+      "claim": "Taka YOLO denomination top-1 on Bangla Money (independent, no training on it)",
+      "metric": "accuracy",
+      "value": 0.9147,
+      "source_artifact": "realtime_bangla_taka_detection\\results\\external\\external_taka.json",
+      "script": "scripts/eval/eval_external_taka.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "n": 1536
+    },
+    {
+      "claim_id": "C_EXT_NSTU_DET",
+      "claim": "Taka YOLO class-agnostic AP50 on NSTU-BDTAKA detection test",
+      "metric": "AP50",
+      "value": 0.7958,
+      "source_artifact": "realtime_bangla_taka_detection\\results\\external\\external_taka.json",
+      "script": "scripts/eval/eval_external_taka.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "json_key": [
+        "nstu_detection_test",
+        "AP50_class_agnostic"
+      ]
+    },
+    {
+      "claim_id": "C_EXT_NSTU_CLOSEUP",
+      "claim": "Taka YOLO denomination top-1 on NSTU hand-held close-ups (known weakness)",
+      "metric": "accuracy",
+      "value": 0.1853,
+      "source_artifact": "realtime_bangla_taka_detection\\results\\external\\external_taka.json",
+      "script": "scripts/eval/eval_external_taka.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "finding": "negative",
+      "json_key": [
+        "nstu_recognition_test",
+        "top1_accuracy"
+      ]
+    },
+    {
+      "claim_id": "C_EXT_UNKNOWN_1TAKA",
+      "claim": "1-taka photos (class unknown to the detector) announced as a known denomination",
+      "metric": "predictions",
+      "value": {
+        "images": 101,
+        "predictions": [
+          [
+            "None",
+            57
+          ],
+          [
+            "5",
+            37
+          ],
+          [
+            "50",
+            4
+          ],
+          [
+            "2",
+            3
+          ]
+        ]
+      },
+      "source_artifact": "realtime_bangla_taka_detection\\results\\external\\external_taka.json",
+      "script": "scripts/eval/eval_external_taka.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "finding": "negative"
+    },
+    {
+      "claim_id": "C_NSTU_SHORTCUT",
+      "claim": "NSTU-trained close-up classifier: in-domain NSTU test vs independent Bangla Money",
+      "metric": "accuracy",
+      "value": {
+        "nstu_test": 0.9913,
+        "bangla_money": 0.4824
+      },
+      "source_artifact": "realtime_bangla_taka_detection\\results\\external\\closeup_fallback_nstu_trained.json",
+      "script": "scripts/eval/eval_closeup_fallback.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "finding": "negative"
+    },
+    {
+      "claim_id": "C_VCDS_EXCESS_K1",
+      "claim": "Excess loss at 1 view (prefix minus fixed), mean of 3 seeds",
+      "metric": "accuracy_points",
+      "value": {
+        "jaaltaka": 0.2051,
+        "modelnet": 0.1051
+      },
+      "source_artifact": "realtime_bangla_taka_detection\\results\\vcds_mechanism.json",
+      "script": "scripts/eval/vcds_mechanism.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "note": "JaalTaka reference is PRMVT (different architecture)"
+    },
+    {
+      "claim_id": "C_ORACLE_PRMVT",
+      "claim": "Label-using subset oracle vs 6-view accuracy for deployed PRMVT (fixed code)",
+      "metric": "accuracy",
+      "value": {
+        "oracle": 0.9951923076923077,
+        "six_view": 0.9807692307692307,
+        "unsolvable": 1
+      },
+      "source_artifact": "realtime_bangla_taka_detection\\results\\qduig\\oracle_20260929\\prmvt_prefix_ft_seed42.json",
+      "script": "roboeye.qduig.engine.run_oracle",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "note": "analysis ceiling, not a policy"
+    },
+    {
+      "claim_id": "C_JAAL_DEPLOYED_BANGLAMONEY_GENUINE",
+      "claim": "Deployed glass jaal verdict (PRMVT, one YOLO crop, threshold 0.5): wrong-verdict rate on bangla_money/genuine",
+      "metric": "wrong_verdict_rate_of_judged",
+      "value": {
+        "rate": 0.4774590163934426,
+        "wrong": 699,
+        "judged": 1464,
+        "wilson95": [
+          0.4519647767312225,
+          0.5030712435042036
+        ]
+      },
+      "source_artifact": "realtime_bangla_taka_detection/results/jaal_deployed/summary.json",
+      "script": "scripts/eval/eval_jaal_deployed.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "note": "Verdict switched off in the app (savior_glass/config.py JAAL_VERDICT_ENABLED=False). Photos not grouped by physical note."
+    },
+    {
+      "claim_id": "C_JAAL_DEPLOYED_BANGLATAKA_GENUINE",
+      "claim": "Deployed glass jaal verdict (PRMVT, one YOLO crop, threshold 0.5): wrong-verdict rate on banglataka/genuine",
+      "metric": "wrong_verdict_rate_of_judged",
+      "value": {
+        "rate": 0.5918367346938775,
+        "wrong": 261,
+        "judged": 441,
+        "wilson95": [
+          0.5453625223235676,
+          0.6367247644769474
+        ]
+      },
+      "source_artifact": "realtime_bangla_taka_detection/results/jaal_deployed/summary.json",
+      "script": "scripts/eval/eval_jaal_deployed.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "note": "Verdict switched off in the app (savior_glass/config.py JAAL_VERDICT_ENABLED=False). Photos not grouped by physical note."
+    },
+    {
+      "claim_id": "C_JAAL_DEPLOYED_CFDS_GENUINE",
+      "claim": "Deployed glass jaal verdict (PRMVT, one YOLO crop, threshold 0.5): wrong-verdict rate on counterfeit_ds/genuine",
+      "metric": "wrong_verdict_rate_of_judged",
+      "value": {
+        "rate": 0.2038753159224937,
+        "wrong": 242,
+        "judged": 1187,
+        "wilson95": [
+          0.18192824939323402,
+          0.22773295155910087
+        ]
+      },
+      "source_artifact": "realtime_bangla_taka_detection/results/jaal_deployed/summary.json",
+      "script": "scripts/eval/eval_jaal_deployed.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "note": "Verdict switched off in the app (savior_glass/config.py JAAL_VERDICT_ENABLED=False). Photos not grouped by physical note."
+    },
+    {
+      "claim_id": "C_JAAL_DEPLOYED_CFDS_COUNTERFEIT",
+      "claim": "Deployed glass jaal verdict (PRMVT, one YOLO crop, threshold 0.5): wrong-verdict rate on counterfeit_ds/counterfeit",
+      "metric": "wrong_verdict_rate_of_judged",
+      "value": {
+        "rate": 0.4,
+        "wrong": 30,
+        "judged": 75,
+        "wilson95": [
+          0.29662343078170594,
+          0.5131216783992341
+        ]
+      },
+      "source_artifact": "realtime_bangla_taka_detection/results/jaal_deployed/summary.json",
+      "script": "scripts/eval/eval_jaal_deployed.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "note": "Verdict switched off in the app (savior_glass/config.py JAAL_VERDICT_ENABLED=False). Photos not grouped by physical note."
+    },
+    {
+      "claim_id": "C_DETECTOR_SYNTH_TEST",
+      "claim": "Taka YOLOv8s on held-out synthetic composite test split",
+      "metric": "precision/recall/mAP",
+      "value": {
+        "n_images": 2282,
+        "precision": 0.9949052081331781,
+        "recall": 0.9963485492831522,
+        "map50": 0.9949300492610836,
+        "map50_95": 0.8488711569132964
+      },
+      "source_artifact": "realtime_bangla_taka_detection/results/training_v2/test_eval/test_metrics.json",
+      "script": "scripts/evaluate.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "note": "Synthetic composites; see C_* external claims for independent photos"
+    },
+    {
+      "claim_id": "C_OPENSET_TAU",
+      "claim": "Unknown-note confidence threshold chosen on validation",
+      "metric": "tau",
+      "value": 0.6,
+      "source_artifact": "realtime_bangla_taka_detection/results/open_set/summary.json",
+      "script": "scripts/eval/eval_open_set.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "note": "validation: NSTU val known + demonetized notes and coins"
+    },
+    {
+      "claim_id": "C_OPENSET_TEST",
+      "claim": "Bangla Money test at chosen tau vs 0.25: 1-taka announced rate and known correct rate",
+      "metric": "rates",
+      "value": {
+        "tau_0.25": {
+          "unknown_announced_rate": 0.43564356435643564,
+          "known_correct_rate": 0.9147135416666666,
+          "known_wrong_rate_of_answered": 0.048102981029810296
+        },
+        "tau_chosen": {
+          "unknown_announced_rate": 0.22772277227722773,
+          "known_correct_rate": 0.8958333333333334,
+          "known_wrong_rate_of_answered": 0.03506311360448808
+        }
+      },
+      "source_artifact": "realtime_bangla_taka_detection/results/open_set/summary.json",
+      "script": "scripts/eval/eval_open_set.py",
+      "status": "VERIFIED",
+      "added": "2026-09-29",
+      "note": "test scored once after tau fixed"
+    },
+    {
+      "claim_id": "C_SAMEARCH_FIXED_S42_K1",
+      "claim": "Same network, fixed 6-view, per-count BN, seed 42, 1-view test accuracy",
+      "value": 0.7596153846153846,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\fixed\\s2\\seed42\\test_views\\1view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_FIXED_S42_K6",
+      "claim": "Same network, fixed 6-view, per-count BN, seed 42, 6-view test accuracy",
+      "value": 0.9903846153846154,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\fixed\\s2\\seed42\\test_views\\6view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_FIXED_S43_K1",
+      "claim": "Same network, fixed 6-view, per-count BN, seed 43, 1-view test accuracy",
+      "value": 0.9326923076923077,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\fixed\\s2\\seed43\\test_views\\1view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "43",
+      "evaluation_seed": "43",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_FIXED_S43_K6",
+      "claim": "Same network, fixed 6-view, per-count BN, seed 43, 6-view test accuracy",
+      "value": 0.9903846153846154,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\fixed\\s2\\seed43\\test_views\\6view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "43",
+      "evaluation_seed": "43",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_FIXED_S44_K1",
+      "claim": "Same network, fixed 6-view, per-count BN, seed 44, 1-view test accuracy",
+      "value": 0.9230769230769231,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\fixed\\s2\\seed44\\test_views\\1view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "44",
+      "evaluation_seed": "44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_FIXED_S44_K6",
+      "claim": "Same network, fixed 6-view, per-count BN, seed 44, 6-view test accuracy",
+      "value": 0.9903846153846154,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\fixed\\s2\\seed44\\test_views\\6view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "44",
+      "evaluation_seed": "44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_FIXED_SHBN_S42_K1",
+      "claim": "Same network, fixed 6-view, shared BN, seed 42, 1-view test accuracy",
+      "value": 0.6634615384615384,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\fixed_shbn\\s2\\seed42\\test_views\\1view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_FIXED_SHBN_S42_K6",
+      "claim": "Same network, fixed 6-view, shared BN, seed 42, 6-view test accuracy",
+      "value": 0.9759615384615384,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\fixed_shbn\\s2\\seed42\\test_views\\6view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_FIXED_SHBN_S43_K1",
+      "claim": "Same network, fixed 6-view, shared BN, seed 43, 1-view test accuracy",
+      "value": 0.6298076923076923,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\fixed_shbn\\s2\\seed43\\test_views\\1view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "43",
+      "evaluation_seed": "43",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_FIXED_SHBN_S43_K6",
+      "claim": "Same network, fixed 6-view, shared BN, seed 43, 6-view test accuracy",
+      "value": 0.9807692307692307,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\fixed_shbn\\s2\\seed43\\test_views\\6view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "43",
+      "evaluation_seed": "43",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_FIXED_SHBN_S44_K1",
+      "claim": "Same network, fixed 6-view, shared BN, seed 44, 1-view test accuracy",
+      "value": 0.8413461538461539,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\fixed_shbn\\s2\\seed44\\test_views\\1view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "44",
+      "evaluation_seed": "44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_FIXED_SHBN_S44_K6",
+      "claim": "Same network, fixed 6-view, shared BN, seed 44, 6-view test accuracy",
+      "value": 0.9855769230769231,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\fixed_shbn\\s2\\seed44\\test_views\\6view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "44",
+      "evaluation_seed": "44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_PREFIX_SHBN_S42_K1",
+      "claim": "Same network, prefix, shared BN, seed 42, 1-view test accuracy",
+      "value": 0.9759615384615384,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\prefix_shbn\\s2\\seed42\\test_views\\1view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_PREFIX_SHBN_S42_K6",
+      "claim": "Same network, prefix, shared BN, seed 42, 6-view test accuracy",
+      "value": 0.9855769230769231,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\prefix_shbn\\s2\\seed42\\test_views\\6view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_PREFIX_SHBN_S43_K1",
+      "claim": "Same network, prefix, shared BN, seed 43, 1-view test accuracy",
+      "value": 0.9807692307692307,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\prefix_shbn\\s2\\seed43\\test_views\\1view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "43",
+      "evaluation_seed": "43",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_PREFIX_SHBN_S43_K6",
+      "claim": "Same network, prefix, shared BN, seed 43, 6-view test accuracy",
+      "value": 0.9903846153846154,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\prefix_shbn\\s2\\seed43\\test_views\\6view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "43",
+      "evaluation_seed": "43",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_PREFIX_SHBN_S44_K1",
+      "claim": "Same network, prefix, shared BN, seed 44, 1-view test accuracy",
+      "value": 0.9903846153846154,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\prefix_shbn\\s2\\seed44\\test_views\\1view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "44",
+      "evaluation_seed": "44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_SAMEARCH_PREFIX_SHBN_S44_K6",
+      "claim": "Same network, prefix, shared BN, seed 44, 6-view test accuracy",
+      "value": 0.9855769230769231,
+      "json_key": [
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\same_arch\\prefix_shbn\\s2\\seed44\\test_views\\6view\\test_metrics.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "44",
+      "evaluation_seed": "44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/run_same_arch.py"
+    },
+    {
+      "claim_id": "C_JAAL_SAFE_TAU",
+      "claim": "Safe jaal policy threshold (max VAL counterfeit score, S4)",
+      "value": 0.9995918869972229,
+      "json_key": [
+        "jaaltaka_test_real_views",
+        "tau"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\policy.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/jaal_policy.py"
+    },
+    {
+      "claim_id": "C_JAAL_SAFE_COUNTERFEIT_PASSED",
+      "claim": "Safe jaal policy: JaalTaka TEST counterfeit notes passed as likely genuine (of 88)",
+      "value": 0,
+      "json_key": [
+        "jaaltaka_test_real_views",
+        "counterfeit_passed"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\policy.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/jaal_policy.py"
+    },
+    {
+      "claim_id": "C_JAAL_SAFE_GENUINE_PASSED",
+      "claim": "Safe jaal policy: JaalTaka TEST genuine notes confirmed (of 120)",
+      "value": 69,
+      "json_key": [
+        "jaaltaka_test_real_views",
+        "genuine_passed"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\policy.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/jaal_policy.py"
+    },
+    {
+      "claim_id": "C_JAAL_APP_SPOKEN_COUNTERFEIT",
+      "claim": "App code path: times 'counterfeit' was spoken on 1,889 whole-note photos",
+      "value": 0,
+      "json_key": [
+        "summary",
+        "spoken_jaal"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\app_check.json",
+      "dataset": "whole-note photos",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_jaal_safe_app.py"
+    },
+    {
+      "claim_id": "C_JAAL_APP_CF_PASSED",
+      "claim": "App code path: counterfeit originals said likely genuine (of 20 checked)",
+      "value": 0,
+      "json_key": [
+        "summary",
+        "sets",
+        "cf/counterfeit",
+        "likely_genuine"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\app_check.json",
+      "dataset": "Counterfeit Currency Image Dataset",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_jaal_safe_app.py"
+    },
+    {
+      "claim_id": "C_JAAL_APP_BM_CONFIRMED",
+      "claim": "App code path: Bangla Money genuine confirmed (of 277 checked)",
+      "value": 1,
+      "json_key": [
+        "summary",
+        "sets",
+        "bm/genuine",
+        "likely_genuine"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\app_check.json",
+      "dataset": "Bangla Money",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_jaal_safe_app.py"
+    },
+    {
+      "claim_id": "C_JAAL_APP_BT_CONFIRMED",
+      "claim": "App code path: BanglaTaka genuine confirmed (of 296 checked)",
+      "value": 6,
+      "json_key": [
+        "summary",
+        "sets",
+        "bt/genuine",
+        "likely_genuine"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\app_check.json",
+      "dataset": "BanglaTaka",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_jaal_safe_app.py"
+    },
+    {
+      "claim_id": "C_JAAL_WHOLE_AUC_S0",
+      "claim": "Whole-note ROC-AUC of checker S0 on counterfeit-set originals",
+      "value": 0.6403350083752093,
+      "json_key": [
+        "auc_cf_originals",
+        "S0"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\summary.json",
+      "dataset": "Counterfeit Currency Image Dataset",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "roc_auc",
+      "status": "VERIFIED",
+      "script": "scripts/eval/jaal_whole_note.py"
+    },
+    {
+      "claim_id": "C_JAAL_WHOLE_AUC_S4",
+      "claim": "Whole-note ROC-AUC of checker S4 on counterfeit-set originals",
+      "value": 0.8289782244556112,
+      "json_key": [
+        "auc_cf_originals",
+        "S4"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\summary.json",
+      "dataset": "Counterfeit Currency Image Dataset",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "roc_auc",
+      "status": "VERIFIED",
+      "script": "scripts/eval/jaal_whole_note.py"
+    },
+    {
+      "claim_id": "C_JAAL_WHOLE_AUC_R2",
+      "claim": "Whole-note ROC-AUC of checker R2 on counterfeit-set originals",
+      "value": 0.9656616415410385,
+      "json_key": [
+        "auc_cf_originals",
+        "R2"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\summary.json",
+      "dataset": "Counterfeit Currency Image Dataset",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "roc_auc",
+      "status": "VERIFIED",
+      "script": "scripts/eval/jaal_whole_note.py"
+    },
+    {
+      "claim_id": "C_JAAL_WHOLE_AUC_B",
+      "claim": "Whole-note ROC-AUC of checker B on counterfeit-set originals",
+      "value": 0.8864656616415411,
+      "json_key": [
+        "auc_cf_originals",
+        "B"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\summary.json",
+      "dataset": "Counterfeit Currency Image Dataset",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "roc_auc",
+      "status": "VERIFIED",
+      "script": "scripts/eval/jaal_whole_note.py"
+    },
+    {
+      "claim_id": "C_JAAL_META_SHORTCUT",
+      "claim": "Metadata-only classifier: share of counterfeit images it misses (leave one group out)",
+      "value": 0.24,
+      "json_key": [
+        "sets",
+        "cf/counterfeit",
+        "META",
+        "wrong_rate"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\summary.json",
+      "dataset": "Counterfeit Currency Image Dataset",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "miss_rate",
+      "status": "VERIFIED",
+      "script": "scripts/eval/jaal_whole_note.py"
+    },
+    {
+      "claim_id": "C_JAAL_B_BT_FALSE_COUNTERFEIT",
+      "claim": "Approach B (trained on the counterfeit set): BanglaTaka genuine called counterfeit",
+      "value": 0.8666264333132166,
+      "json_key": [
+        "sets",
+        "bt/genuine",
+        "B",
+        "wrong_rate"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\summary.json",
+      "dataset": "BanglaTaka",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "error_rate",
+      "status": "VERIFIED",
+      "script": "scripts/eval/jaal_whole_note.py"
+    },
+    {
+      "claim_id": "C_SAFETY_REJ_K1_CLEAN",
+      "claim": "Confidence rejection, 1 view, clean: wrong verdicts of 208",
+      "value": 3,
+      "json_key": [
+        "views",
+        "1",
+        "clean",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\rejection_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_safety_rejection.py"
+    },
+    {
+      "claim_id": "C_SAFETY_GATE_K1_CLEAN",
+      "claim": "Quality gate + confidence, 1 view, clean: wrong verdicts of 208",
+      "value": 5,
+      "json_key": [
+        "views",
+        "1",
+        "clean",
+        "gate_and_confidence",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\quality_gate_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_quality_gate.py"
+    },
+    {
+      "claim_id": "C_SAFETY_REJ_K1_LOW_LIGHT_0P35",
+      "claim": "Confidence rejection, 1 view, low_light_0.35: wrong verdicts of 208",
+      "value": 59,
+      "json_key": [
+        "views",
+        "1",
+        "low_light_0.35",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\rejection_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_safety_rejection.py"
+    },
+    {
+      "claim_id": "C_SAFETY_GATE_K1_LOW_LIGHT_0P35",
+      "claim": "Quality gate + confidence, 1 view, low_light_0.35: wrong verdicts of 208",
+      "value": 0,
+      "json_key": [
+        "views",
+        "1",
+        "low_light_0.35",
+        "gate_and_confidence",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\quality_gate_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_quality_gate.py"
+    },
+    {
+      "claim_id": "C_SAFETY_REJ_K1_LOW_LIGHT_0P2",
+      "claim": "Confidence rejection, 1 view, low_light_0.2: wrong verdicts of 208",
+      "value": 71,
+      "json_key": [
+        "views",
+        "1",
+        "low_light_0.2",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\rejection_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_safety_rejection.py"
+    },
+    {
+      "claim_id": "C_SAFETY_GATE_K1_LOW_LIGHT_0P2",
+      "claim": "Quality gate + confidence, 1 view, low_light_0.2: wrong verdicts of 208",
+      "value": 0,
+      "json_key": [
+        "views",
+        "1",
+        "low_light_0.2",
+        "gate_and_confidence",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\quality_gate_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_quality_gate.py"
+    },
+    {
+      "claim_id": "C_SAFETY_REJ_K1_BRIGHTNESS_2P2",
+      "claim": "Confidence rejection, 1 view, brightness_2.2: wrong verdicts of 208",
+      "value": 38,
+      "json_key": [
+        "views",
+        "1",
+        "brightness_2.2",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\rejection_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_safety_rejection.py"
+    },
+    {
+      "claim_id": "C_SAFETY_GATE_K1_BRIGHTNESS_2P2",
+      "claim": "Quality gate + confidence, 1 view, brightness_2.2: wrong verdicts of 208",
+      "value": 0,
+      "json_key": [
+        "views",
+        "1",
+        "brightness_2.2",
+        "gate_and_confidence",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\quality_gate_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_quality_gate.py"
+    },
+    {
+      "claim_id": "C_SAFETY_GATE_K1_CLEAN_ANSWERED",
+      "claim": "Quality gate + confidence, 1 view, clean: notes answered of 208",
+      "value": 193,
+      "json_key": [
+        "views",
+        "1",
+        "clean",
+        "gate_and_confidence",
+        "answered"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\quality_gate_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_quality_gate.py"
+    },
+    {
+      "claim_id": "C_SAFETY_REJ_K6_CLEAN",
+      "claim": "Confidence rejection, 6 view, clean: wrong verdicts of 208",
+      "value": 2,
+      "json_key": [
+        "views",
+        "6",
+        "clean",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\rejection_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_safety_rejection.py"
+    },
+    {
+      "claim_id": "C_SAFETY_GATE_K6_CLEAN",
+      "claim": "Quality gate + confidence, 6 view, clean: wrong verdicts of 208",
+      "value": 3,
+      "json_key": [
+        "views",
+        "6",
+        "clean",
+        "gate_and_confidence",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\quality_gate_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_quality_gate.py"
+    },
+    {
+      "claim_id": "C_SAFETY_REJ_K6_LOW_LIGHT_0P35",
+      "claim": "Confidence rejection, 6 view, low_light_0.35: wrong verdicts of 208",
+      "value": 36,
+      "json_key": [
+        "views",
+        "6",
+        "low_light_0.35",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\rejection_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_safety_rejection.py"
+    },
+    {
+      "claim_id": "C_SAFETY_GATE_K6_LOW_LIGHT_0P35",
+      "claim": "Quality gate + confidence, 6 view, low_light_0.35: wrong verdicts of 208",
+      "value": 0,
+      "json_key": [
+        "views",
+        "6",
+        "low_light_0.35",
+        "gate_and_confidence",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\quality_gate_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_quality_gate.py"
+    },
+    {
+      "claim_id": "C_SAFETY_REJ_K6_LOW_LIGHT_0P2",
+      "claim": "Confidence rejection, 6 view, low_light_0.2: wrong verdicts of 208",
+      "value": 43,
+      "json_key": [
+        "views",
+        "6",
+        "low_light_0.2",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\rejection_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_safety_rejection.py"
+    },
+    {
+      "claim_id": "C_SAFETY_GATE_K6_LOW_LIGHT_0P2",
+      "claim": "Quality gate + confidence, 6 view, low_light_0.2: wrong verdicts of 208",
+      "value": 0,
+      "json_key": [
+        "views",
+        "6",
+        "low_light_0.2",
+        "gate_and_confidence",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\quality_gate_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_quality_gate.py"
+    },
+    {
+      "claim_id": "C_SAFETY_REJ_K6_BRIGHTNESS_2P2",
+      "claim": "Confidence rejection, 6 view, brightness_2.2: wrong verdicts of 208",
+      "value": 44,
+      "json_key": [
+        "views",
+        "6",
+        "brightness_2.2",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\rejection_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_safety_rejection.py"
+    },
+    {
+      "claim_id": "C_SAFETY_GATE_K6_BRIGHTNESS_2P2",
+      "claim": "Quality gate + confidence, 6 view, brightness_2.2: wrong verdicts of 208",
+      "value": 0,
+      "json_key": [
+        "views",
+        "6",
+        "brightness_2.2",
+        "gate_and_confidence",
+        "wrong_verdicts"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\quality_gate_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_quality_gate.py"
+    },
+    {
+      "claim_id": "C_SAFETY_GATE_K6_CLEAN_ANSWERED",
+      "claim": "Quality gate + confidence, 6 view, clean: notes answered of 208",
+      "value": 184,
+      "json_key": [
+        "views",
+        "6",
+        "clean",
+        "gate_and_confidence",
+        "answered"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\safety\\quality_gate_seed42.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_quality_gate.py"
+    },
+    {
+      "claim_id": "C_MVPN_CONCAT_FIXED_K1",
+      "claim": "MVP-N concat/fixed head, 1-view test accuracy, mean of 3 seeds",
+      "value": 0.4865151544411977,
+      "json_key": [
+        "summary",
+        "concat/fixed",
+        "1",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\vcds.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_vcds.py"
+    },
+    {
+      "claim_id": "C_MVPN_CONCAT_FIXED_K6",
+      "claim": "MVP-N concat/fixed head, 6-view test accuracy, mean of 3 seeds",
+      "value": 0.804924209912618,
+      "json_key": [
+        "summary",
+        "concat/fixed",
+        "6",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\vcds.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_vcds.py"
+    },
+    {
+      "claim_id": "C_MVPN_CONCAT_PREFIX_K1",
+      "claim": "MVP-N concat/prefix head, 1-view test accuracy, mean of 3 seeds",
+      "value": 0.4971969723701477,
+      "json_key": [
+        "summary",
+        "concat/prefix",
+        "1",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\vcds.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_vcds.py"
+    },
+    {
+      "claim_id": "C_MVPN_CONCAT_PREFIX_K6",
+      "claim": "MVP-N concat/prefix head, 6-view test accuracy, mean of 3 seeds",
+      "value": 0.7185605764389038,
+      "json_key": [
+        "summary",
+        "concat/prefix",
+        "6",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\vcds.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_vcds.py"
+    },
+    {
+      "claim_id": "C_MVPN_ATTN_FIXED_K1",
+      "claim": "MVP-N attn/fixed head, 1-view test accuracy, mean of 3 seeds",
+      "value": 0.4065151512622833,
+      "json_key": [
+        "summary",
+        "attn/fixed",
+        "1",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\vcds.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_vcds.py"
+    },
+    {
+      "claim_id": "C_MVPN_ATTN_FIXED_K6",
+      "claim": "MVP-N attn/fixed head, 6-view test accuracy, mean of 3 seeds",
+      "value": 0.7579545378684998,
+      "json_key": [
+        "summary",
+        "attn/fixed",
+        "6",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\vcds.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_vcds.py"
+    },
+    {
+      "claim_id": "C_MVPN_ATTN_PREFIX_K1",
+      "claim": "MVP-N attn/prefix head, 1-view test accuracy, mean of 3 seeds",
+      "value": 0.47977272669474286,
+      "json_key": [
+        "summary",
+        "attn/prefix",
+        "1",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\vcds.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_vcds.py"
+    },
+    {
+      "claim_id": "C_MVPN_ATTN_PREFIX_K6",
+      "claim": "MVP-N attn/prefix head, 6-view test accuracy, mean of 3 seeds",
+      "value": 0.8215909004211426,
+      "json_key": [
+        "summary",
+        "attn/prefix",
+        "6",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\vcds.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_vcds.py"
+    },
+    {
+      "claim_id": "C_MVPN_REFERENCE_K1",
+      "claim": "MVP-N per-view reference, 1-view test accuracy",
+      "value": 0.5531818181818182,
+      "json_key": [
+        "test",
+        "1"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\reference.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_reference.py"
+    },
+    {
+      "claim_id": "C_MVPN_REFERENCE_K6",
+      "claim": "MVP-N per-view reference, 6-view test accuracy",
+      "value": 0.8465909090909091,
+      "json_key": [
+        "test",
+        "6"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\reference.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_reference.py"
+    },
+    {
+      "claim_id": "C_JAAL_SERIAL_LOOKUP_ACC",
+      "claim": "Serial-lookup rule, JaalTaka test accuracy (205 reconstructed notes)",
+      "value": 0.9024390243902439,
+      "json_key": [
+        "serial_lookup_test_accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\serial_split.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/jaaltaka_serial_audit.py"
+    },
+    {
+      "claim_id": "C_JAAL_SERIAL_UNSEEN",
+      "claim": "JaalTaka test counterfeits with a serial unseen (or unread) in TRAIN counterfeits",
+      "value": 19,
+      "json_key": [
+        "unseen_or_unread"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\serial_split.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/jaaltaka_serial_audit.py"
+    },
+    {
+      "claim_id": "C_JAAL_SERIAL_500CF_TOP",
+      "claim": "Counterfeit 500 BDT JaalTaka notes carrying the most common serial",
+      "value": 279,
+      "json_key": [
+        "summary",
+        "500/counterfeit",
+        "top3",
+        0,
+        1
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\serial_audit.json",
+      "dataset": "JaalTaka",
+      "split": "all",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/jaaltaka_serial_audit.py"
+    },
+    {
+      "claim_id": "C_JAAL_SERIALMASK_K1_UNMASKED",
+      "claim": "PRMVT 1-view test accuracy, serial region unmasked",
+      "value": 0.9711538461538461,
+      "json_key": [
+        "by_k",
+        "1",
+        "unmasked",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\serial_mask_test.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/serial_mask_test.py"
+    },
+    {
+      "claim_id": "C_JAAL_SERIALMASK_K1_SERIAL_MASKED",
+      "claim": "PRMVT 1-view test accuracy, serial region serial_masked",
+      "value": 0.9230769230769231,
+      "json_key": [
+        "by_k",
+        "1",
+        "serial_masked",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\serial_mask_test.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/serial_mask_test.py"
+    },
+    {
+      "claim_id": "C_SERIALSPLIT_NETWORK_K1",
+      "claim": "Serial-disjoint split, prefix network, k1 test accuracy",
+      "value": 0.9009009009009009,
+      "json_key": [
+        "k1",
+        "network",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid_serial_split.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/hybrid_serial_split.py"
+    },
+    {
+      "claim_id": "C_SERIALSPLIT_HYBRID_K1",
+      "claim": "Serial-disjoint split, prefix network + watermark, k1 test accuracy",
+      "value": 0.9324324324324325,
+      "json_key": [
+        "k1",
+        "hybrid",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid_serial_split.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/hybrid_serial_split.py"
+    },
+    {
+      "claim_id": "C_SERIALSPLIT_HYBRID_K1_FCR",
+      "claim": "Serial-disjoint split, hybrid k1: genuine called counterfeit (of 121)",
+      "value": 7,
+      "json_key": [
+        "k1",
+        "hybrid",
+        "false_counterfeit_on_genuine"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid_serial_split.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/hybrid_serial_split.py"
+    },
+    {
+      "claim_id": "C_SERIALSPLIT_NETWORK_K6",
+      "claim": "Serial-disjoint split, prefix network, k6 test accuracy",
+      "value": 0.8783783783783784,
+      "json_key": [
+        "k6",
+        "network",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid_serial_split.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/hybrid_serial_split.py"
+    },
+    {
+      "claim_id": "C_SERIALSPLIT_HYBRID_K6",
+      "claim": "Serial-disjoint split, prefix network + watermark, k6 test accuracy",
+      "value": 0.954954954954955,
+      "json_key": [
+        "k6",
+        "hybrid",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid_serial_split.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/hybrid_serial_split.py"
+    },
+    {
+      "claim_id": "C_SERIALSPLIT_HYBRID_K6_FCR",
+      "claim": "Serial-disjoint split, hybrid k6: genuine called counterfeit (of 121)",
+      "value": 3,
+      "json_key": [
+        "k6",
+        "hybrid",
+        "false_counterfeit_on_genuine"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid_serial_split.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/hybrid_serial_split.py"
+    },
+    {
+      "claim_id": "C_SERIALSPLIT3_K1_NETWORK",
+      "claim": "Serial-disjoint split, k1/network accuracy, mean over seeds 42-44",
+      "value": 0.8993993993993993,
+      "json_key": [
+        "summary",
+        "k1/network",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid_serial_split_seeds.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/hybrid_serial_split.py"
+    },
+    {
+      "claim_id": "C_SERIALSPLIT3_K1_HYBRID",
+      "claim": "Serial-disjoint split, k1/hybrid accuracy, mean over seeds 42-44",
+      "value": 0.9384384384384384,
+      "json_key": [
+        "summary",
+        "k1/hybrid",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid_serial_split_seeds.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/hybrid_serial_split.py"
+    },
+    {
+      "claim_id": "C_SERIALSPLIT3_K6_NETWORK",
+      "claim": "Serial-disjoint split, k6/network accuracy, mean over seeds 42-44",
+      "value": 0.8933933933933934,
+      "json_key": [
+        "summary",
+        "k6/network",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid_serial_split_seeds.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/hybrid_serial_split.py"
+    },
+    {
+      "claim_id": "C_SERIALSPLIT3_K6_HYBRID",
+      "claim": "Serial-disjoint split, k6/hybrid accuracy, mean over seeds 42-44",
+      "value": 0.9474474474474475,
+      "json_key": [
+        "summary",
+        "k6/hybrid",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid_serial_split_seeds.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/hybrid_serial_split.py"
+    },
+    {
+      "claim_id": "C_WM_MOBILENET_ACC",
+      "claim": "Watermark MobileNetV3-Small, unseen-print test accuracy",
+      "value": 0.9187817258883249,
+      "json_key": [
+        "test",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\mobilenet.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/train_watermark_mobilenet.py"
+    },
+    {
+      "claim_id": "C_WM_MOBILENET_AUC",
+      "claim": "Watermark MobileNetV3-Small, unseen-print test AUC",
+      "value": 0.9623273551844981,
+      "json_key": [
+        "test",
+        "auc"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\mobilenet.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "roc_auc",
+      "status": "VERIFIED",
+      "script": "scripts/train/train_watermark_mobilenet.py"
+    },
+    {
+      "claim_id": "C_WM_W_DEEP_ACC",
+      "claim": "Seed-42 split, W_deep test accuracy",
+      "value": 0.9895287958115183,
+      "json_key": [
+        "W_deep",
+        "test",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/watermark_hybrid.py"
+    },
+    {
+      "claim_id": "C_WM_S_LIST_ACC",
+      "claim": "Seed-42 split, S_list test accuracy",
+      "value": 0.8990384615384616,
+      "json_key": [
+        "S_list",
+        "test",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/watermark_hybrid.py"
+    },
+    {
+      "claim_id": "C_WM_HYBRID_K1_ACC",
+      "claim": "Seed-42 split, HYBRID_k1 test accuracy",
+      "value": 0.9903846153846154,
+      "json_key": [
+        "HYBRID_k1",
+        "test",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/watermark_hybrid.py"
+    },
+    {
+      "claim_id": "C_WM_HYBRID_K6_ACC",
+      "claim": "Seed-42 split, HYBRID_k6 test accuracy",
+      "value": 0.9903846153846154,
+      "json_key": [
+        "HYBRID_k6",
+        "test",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/watermark_hybrid.py"
+    },
+    {
+      "claim_id": "C_WM_HAND_AUC",
+      "claim": "Seed-42 split, hand-crafted watermark test AUC",
+      "value": 0.8531561461794019,
+      "json_key": [
+        "W_hand",
+        "test",
+        "auc"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "roc_auc",
+      "status": "VERIFIED",
+      "script": "scripts/eval/watermark_hybrid.py"
+    },
+    {
+      "claim_id": "C_SERIALSPLIT_PROBE_K1",
+      "claim": "Serial-disjoint split, ResNet-50 probe k1 accuracy",
+      "value": 0.8513513513513513,
+      "json_key": [
+        "PROBE",
+        "k1",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\serial_split_eval.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/watermark_serial_split.py"
+    },
+    {
+      "claim_id": "C_SERIALSPLIT_PROBE_K6",
+      "claim": "Serial-disjoint split, ResNet-50 probe k6 accuracy",
+      "value": 0.8378378378378378,
+      "json_key": [
+        "PROBE",
+        "k6",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\serial_split_eval.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/watermark_serial_split.py"
+    },
+    {
+      "claim_id": "C_CV_NOTE_K1",
+      "claim": "5-fold CV over 1,390 notes (note folds), ResNet-50 probe 1-view pooled accuracy",
+      "value": 0.9827338129496402,
+      "json_key": [
+        "note",
+        "pooled_accuracy_all_1390_notes",
+        "1"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\cv_probe.json",
+      "dataset": "JaalTaka",
+      "split": "cross-validation",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/cv_probe.py"
+    },
+    {
+      "claim_id": "C_CV_NOTE_K6",
+      "claim": "5-fold CV over 1,390 notes (note folds), ResNet-50 probe 6-view pooled accuracy",
+      "value": 0.9892086330935251,
+      "json_key": [
+        "note",
+        "pooled_accuracy_all_1390_notes",
+        "6"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\cv_probe.json",
+      "dataset": "JaalTaka",
+      "split": "cross-validation",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/cv_probe.py"
+    },
+    {
+      "claim_id": "C_CV_SERIAL_K1",
+      "claim": "5-fold CV over 1,390 notes (serial folds), ResNet-50 probe 1-view pooled accuracy",
+      "value": 0.9575539568345324,
+      "json_key": [
+        "serial",
+        "pooled_accuracy_all_1390_notes",
+        "1"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\cv_probe.json",
+      "dataset": "JaalTaka",
+      "split": "cross-validation",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/cv_probe.py"
+    },
+    {
+      "claim_id": "C_CV_SERIAL_K6",
+      "claim": "5-fold CV over 1,390 notes (serial folds), ResNet-50 probe 6-view pooled accuracy",
+      "value": 0.9892086330935251,
+      "json_key": [
+        "serial",
+        "pooled_accuracy_all_1390_notes",
+        "6"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\cv_probe.json",
+      "dataset": "JaalTaka",
+      "split": "cross-validation",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/cv_probe.py"
+    },
+    {
+      "claim_id": "C_MVPN_MEANPOOL_FIXED_K1",
+      "claim": "MVP-N meanpool/fixed head, 1-view accuracy, 3 seeds",
+      "value": 0.4711363712946574,
+      "json_key": [
+        "meanpool/fixed",
+        "1",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\fusion_fix.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_fusion_fix.py"
+    },
+    {
+      "claim_id": "C_MVPN_MEANPOOL_FIXED_K6",
+      "claim": "MVP-N meanpool/fixed head, 6-view accuracy, 3 seeds",
+      "value": 0.751893937587738,
+      "json_key": [
+        "meanpool/fixed",
+        "6",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\fusion_fix.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_fusion_fix.py"
+    },
+    {
+      "claim_id": "C_MVPN_MEANPOOL_PREFIX_K1",
+      "claim": "MVP-N meanpool/prefix head, 1-view accuracy, 3 seeds",
+      "value": 0.4946969747543335,
+      "json_key": [
+        "meanpool/prefix",
+        "1",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\fusion_fix.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_fusion_fix.py"
+    },
+    {
+      "claim_id": "C_MVPN_MEANPOOL_PREFIX_K6",
+      "claim": "MVP-N meanpool/prefix head, 6-view accuracy, 3 seeds",
+      "value": 0.7719696760177612,
+      "json_key": [
+        "meanpool/prefix",
+        "6",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\mvpn\\fusion_fix.json",
+      "dataset": "MVP-N",
+      "split": "test",
+      "sample_definition": "object_set",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/mvpn_fusion_fix.py"
+    },
+    {
+      "claim_id": "C_JAAL_A_REAL_CF_PASSED",
+      "claim": "Approach A: real counterfeit originals said likely genuine (of 20)",
+      "value": 14,
+      "json_key": [
+        "real_whole_note",
+        "A",
+        "cf/counterfeit",
+        "said_likely_genuine"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\approach_a\\eval.json",
+      "dataset": "Counterfeit Currency Image Dataset",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "count",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_approach_a.py"
+    },
+    {
+      "claim_id": "C_JAAL_A_REAL_AUC",
+      "claim": "Approach A: real whole-note AUC on counterfeit-set originals",
+      "value": 0.689307624890447,
+      "json_key": [
+        "real_whole_note",
+        "A",
+        "auc_cf_originals"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\approach_a\\eval.json",
+      "dataset": "Counterfeit Currency Image Dataset",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "roc_auc",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_approach_a.py"
+    },
+    {
+      "claim_id": "C_JAAL_A_SYNTH_TEST_ACC",
+      "claim": "Approach A: synthetic whole-note test accuracy",
+      "value": 0.8731707317073171,
+      "json_key": [
+        "synthetic_test_A",
+        "accuracy_0.5"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\approach_a\\eval.json",
+      "dataset": "JaalTaka (reconstructed)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_approach_a.py"
+    },
+    {
+      "claim_id": "C_PROBE_RESNET50_K1",
+      "claim": "Frozen resnet50 linear probe, 1-view test accuracy",
+      "value": 0.9807692307692307,
+      "json_key": [
+        "resnet50",
+        "test_acc",
+        "1"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\backbone_probes.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_backbone_probes.py"
+    },
+    {
+      "claim_id": "C_PROBE_RESNET50_K6",
+      "claim": "Frozen resnet50 linear probe, 6-view test accuracy",
+      "value": 0.9903846153846154,
+      "json_key": [
+        "resnet50",
+        "test_acc",
+        "6"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\backbone_probes.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_backbone_probes.py"
+    },
+    {
+      "claim_id": "C_PROBE_DENSENET121_K1",
+      "claim": "Frozen densenet121 linear probe, 1-view test accuracy",
+      "value": 0.9759615384615384,
+      "json_key": [
+        "densenet121",
+        "test_acc",
+        "1"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\backbone_probes.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_backbone_probes.py"
+    },
+    {
+      "claim_id": "C_PROBE_DENSENET121_K6",
+      "claim": "Frozen densenet121 linear probe, 6-view test accuracy",
+      "value": 0.9903846153846154,
+      "json_key": [
+        "densenet121",
+        "test_acc",
+        "6"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\backbone_probes.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_backbone_probes.py"
+    },
+    {
+      "claim_id": "C_PROBE_VGG16_K1",
+      "claim": "Frozen vgg16 linear probe, 1-view test accuracy",
+      "value": 0.9663461538461539,
+      "json_key": [
+        "vgg16",
+        "test_acc",
+        "1"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\backbone_probes.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_backbone_probes.py"
+    },
+    {
+      "claim_id": "C_PROBE_VGG16_K6",
+      "claim": "Frozen vgg16 linear probe, 6-view test accuracy",
+      "value": 0.9903846153846154,
+      "json_key": [
+        "vgg16",
+        "test_acc",
+        "6"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\backbone_probes.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_backbone_probes.py"
+    },
+    {
+      "claim_id": "C_PROBE_MOBILENET_V2_K1",
+      "claim": "Frozen mobilenet_v2 linear probe, 1-view test accuracy",
+      "value": 0.9663461538461539,
+      "json_key": [
+        "mobilenet_v2",
+        "test_acc",
+        "1"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\backbone_probes.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_backbone_probes.py"
+    },
+    {
+      "claim_id": "C_PROBE_MOBILENET_V2_K6",
+      "claim": "Frozen mobilenet_v2 linear probe, 6-view test accuracy",
+      "value": 0.9855769230769231,
+      "json_key": [
+        "mobilenet_v2",
+        "test_acc",
+        "6"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\backbone_probes.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_backbone_probes.py"
+    },
+    {
+      "claim_id": "C_PROBE_INCEPTION_V3_K1",
+      "claim": "Frozen inception_v3 linear probe, 1-view test accuracy",
+      "value": 0.9663461538461539,
+      "json_key": [
+        "inception_v3",
+        "test_acc",
+        "1"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\backbone_probes.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_backbone_probes.py"
+    },
+    {
+      "claim_id": "C_PROBE_INCEPTION_V3_K6",
+      "claim": "Frozen inception_v3 linear probe, 6-view test accuracy",
+      "value": 0.9855769230769231,
+      "json_key": [
+        "inception_v3",
+        "test_acc",
+        "6"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\sota\\backbone_probes.json",
+      "dataset": "JaalTaka",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "deterministic",
+      "evaluation_seed": "deterministic",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/eval_backbone_probes.py"
     }
   ],
-  "updated_utc": "2026-09-28T17:17:55.511961+00:00"
+  "updated_utc": "2026-09-29T11:39:43.054235+00:00"
 }

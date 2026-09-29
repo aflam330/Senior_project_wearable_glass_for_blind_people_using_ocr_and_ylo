@@ -1,0 +1,331 @@
+{
+  "source": "E:\\Final SP\\data set for comparison\\ModelNet40 normal_resampled\\modelnet40_normal_resampled",
+  "note": "Orthographic turntable renders of ModelNet40 normal_resampled point clouds. Not photographs. 10-class subset.",
+  "classes": [
+    "airplane",
+    "bathtub",
+    "bed",
+    "bench",
+    "bookshelf",
+    "bottle",
+    "bowl",
+    "car",
+    "chair",
+    "cone"
+  ],
+  "seed": 42,
+  "n_train": 400,
+  "n_val": 100,
+  "n_test": 100,
+  "angles_deg": [
+    0,
+    60,
+    120,
+    180,
+    240,
+    300
+  ],
+  "resolution": 32,
+  "epochs": 15,
+  "device": "cuda",
+  "selection": {
+    "fixed": "max validation accuracy at 6 views",
+    "prefix": "max mean validation accuracy over k=1..6"
+  },
+  "val_best": {
+    "fixed_k6": 0.71,
+    "prefix_mean": 0.6983333333333334
+  },
+  "history_fixed": [
+    {
+      "epoch": 1,
+      "train_loss": 2.2910639095306395,
+      "val_k6": 0.1
+    },
+    {
+      "epoch": 2,
+      "train_loss": 2.220079803466797,
+      "val_k6": 0.21
+    },
+    {
+      "epoch": 3,
+      "train_loss": 2.0668856143951415,
+      "val_k6": 0.42
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.830251054763794,
+      "val_k6": 0.51
+    },
+    {
+      "epoch": 5,
+      "train_loss": 1.6316896486282348,
+      "val_k6": 0.48
+    },
+    {
+      "epoch": 6,
+      "train_loss": 1.5063312864303589,
+      "val_k6": 0.54
+    },
+    {
+      "epoch": 7,
+      "train_loss": 1.3955803680419923,
+      "val_k6": 0.54
+    },
+    {
+      "epoch": 8,
+      "train_loss": 1.2738582158088685,
+      "val_k6": 0.53
+    },
+    {
+      "epoch": 9,
+      "train_loss": 1.2196735334396362,
+      "val_k6": 0.52
+    },
+    {
+      "epoch": 10,
+      "train_loss": 1.1572436571121216,
+      "val_k6": 0.61
+    },
+    {
+      "epoch": 11,
+      "train_loss": 1.0610898637771606,
+      "val_k6": 0.64
+    },
+    {
+      "epoch": 12,
+      "train_loss": 1.041028094291687,
+      "val_k6": 0.67
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.9749462366104126,
+      "val_k6": 0.66
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.9512742567062378,
+      "val_k6": 0.71
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.8787833881378174,
+      "val_k6": 0.69
+    }
+  ],
+  "history_prefix": [
+    {
+      "epoch": 1,
+      "train_loss": 2.29352370262146,
+      "val_mean_k": 0.115,
+      "val_by_k": [
+        0.05,
+        0.09,
+        0.13,
+        0.14,
+        0.14,
+        0.14
+      ]
+    },
+    {
+      "epoch": 2,
+      "train_loss": 2.230605134963989,
+      "val_mean_k": 0.18999999999999997,
+      "val_by_k": [
+        0.14,
+        0.18,
+        0.22,
+        0.19,
+        0.2,
+        0.21
+      ]
+    },
+    {
+      "epoch": 3,
+      "train_loss": 2.0815771532058718,
+      "val_mean_k": 0.28,
+      "val_by_k": [
+        0.26,
+        0.26,
+        0.3,
+        0.28,
+        0.29,
+        0.29
+      ]
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.8529018783569335,
+      "val_mean_k": 0.26666666666666666,
+      "val_by_k": [
+        0.24,
+        0.28,
+        0.28,
+        0.26,
+        0.27,
+        0.27
+      ]
+    },
+    {
+      "epoch": 5,
+      "train_loss": 1.6974810647964478,
+      "val_mean_k": 0.395,
+      "val_by_k": [
+        0.26,
+        0.36,
+        0.4,
+        0.46,
+        0.44,
+        0.45
+      ]
+    },
+    {
+      "epoch": 6,
+      "train_loss": 1.5578492736816407,
+      "val_mean_k": 0.4166666666666667,
+      "val_by_k": [
+        0.33,
+        0.34,
+        0.42,
+        0.47,
+        0.47,
+        0.47
+      ]
+    },
+    {
+      "epoch": 7,
+      "train_loss": 1.4942998790740967,
+      "val_mean_k": 0.5833333333333333,
+      "val_by_k": [
+        0.51,
+        0.56,
+        0.58,
+        0.63,
+        0.61,
+        0.61
+      ]
+    },
+    {
+      "epoch": 8,
+      "train_loss": 1.425226364135742,
+      "val_mean_k": 0.49666666666666665,
+      "val_by_k": [
+        0.37,
+        0.45,
+        0.52,
+        0.57,
+        0.55,
+        0.52
+      ]
+    },
+    {
+      "epoch": 9,
+      "train_loss": 1.4376048803329469,
+      "val_mean_k": 0.61,
+      "val_by_k": [
+        0.47,
+        0.58,
+        0.64,
+        0.63,
+        0.67,
+        0.67
+      ]
+    },
+    {
+      "epoch": 10,
+      "train_loss": 1.2827096056938172,
+      "val_mean_k": 0.51,
+      "val_by_k": [
+        0.43,
+        0.5,
+        0.5,
+        0.56,
+        0.53,
+        0.54
+      ]
+    },
+    {
+      "epoch": 11,
+      "train_loss": 1.2414563131332397,
+      "val_mean_k": 0.5833333333333334,
+      "val_by_k": [
+        0.47,
+        0.57,
+        0.59,
+        0.64,
+        0.62,
+        0.61
+      ]
+    },
+    {
+      "epoch": 12,
+      "train_loss": 1.1886309576034546,
+      "val_mean_k": 0.6716666666666667,
+      "val_by_k": [
+        0.56,
+        0.66,
+        0.7,
+        0.68,
+        0.72,
+        0.71
+      ]
+    },
+    {
+      "epoch": 13,
+      "train_loss": 1.1279627799987793,
+      "val_mean_k": 0.6683333333333333,
+      "val_by_k": [
+        0.51,
+        0.63,
+        0.67,
+        0.75,
+        0.72,
+        0.73
+      ]
+    },
+    {
+      "epoch": 14,
+      "train_loss": 1.104133358001709,
+      "val_mean_k": 0.6766666666666667,
+      "val_by_k": [
+        0.54,
+        0.66,
+        0.67,
+        0.74,
+        0.75,
+        0.7
+      ]
+    },
+    {
+      "epoch": 15,
+      "train_loss": 1.1022723245620727,
+      "val_mean_k": 0.6983333333333334,
+      "val_by_k": [
+        0.57,
+        0.67,
+        0.7,
+        0.76,
+        0.75,
+        0.74
+      ]
+    }
+  ],
+  "test_fixed": {
+    "k1": 0.54,
+    "k2": 0.64,
+    "k3": 0.69,
+    "k4": 0.75,
+    "k5": 0.76,
+    "k6": 0.77
+  },
+  "test_prefix": {
+    "k1": 0.56,
+    "k2": 0.68,
+    "k3": 0.69,
+    "k4": 0.71,
+    "k5": 0.67,
+    "k6": 0.64
+  },
+  "prefix_oracle_any_k": 0.81,
+  "prefix_oracle_note": "analysis only; uses labels to pick k; not a deployable policy"
+}

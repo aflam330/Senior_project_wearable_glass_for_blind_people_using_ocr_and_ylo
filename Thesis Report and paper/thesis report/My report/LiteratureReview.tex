@@ -1,0 +1,147 @@
+\clearpage
+\chapter{Literature Review}
+\label{chap:literature}
+
+\section{Assistive Technology for the Visually Impaired}
+\label{sec:assistive}
+
+Assistive technology (AT) for blind and visually impaired (BVI) people aims to replace or supplement visual information with another channel, usually sound or touch. Traditional aids such as the white cane, guide dogs and Braille are reliable but provide limited information: a cane detects an obstacle but cannot say what it is, and Braille is available only for a small fraction of printed material. Over the last two decades, the combination of low-cost cameras, embedded processors and deep learning has made it possible to build devices that ``see'' on behalf of the user and describe the scene through speech \cite{at_review2025, wearable_review2024}.
+
+A recent bibliometric review of 533 articles on wearable mobility aids published between 2014 and 2024 shows a clear shift from single-sensor prototypes towards user-centred, multi-function systems that combine computer vision, audio and haptic feedback \cite{wearable_review2024}. Reviews of image-to-voice systems describe a common two-stage pipeline: a vision model converts the image into text or labels, and a text-to-speech (TTS) engine converts that text into audio \cite{imgspeech_review2024}. Savior Glass follows the same general pipeline, but specialises each stage for Bangla and for offline use.
+
+\section{Historical Background and Evolution}
+\label{sec:history}
+
+Early reading machines combined a scanner, a hand-crafted OCR engine and concatenative speech synthesis. Assistive reading systems of that period localised text with connected-component labelling and histogram analysis on binarised images and produced speech through recorded phoneme units \cite{assistreading2014, speechiface2013}. These systems worked on clean printed pages but not on natural scenes.
+
+The next generation moved to portable hardware. FingerReader used a finger-worn camera to read printed text on the go \cite{fingerreader2014}, and product-label readers used motion to isolate a held object in front of a Pi camera \cite{labelreading2017}. With the arrival of the Raspberry Pi, many low-cost readers were built from a Pi board, a USB or Pi camera, Tesseract OCR and a speaker \cite{readingaid_rpi2023, visionvoice2024, cameraocr2023, itra2022, imgproc_text2019}. Most of these systems read English only and use Google Text-to-Speech, which requires an internet connection.
+
+In parallel, smart glasses appeared. Student-GLASS built a camera glass with voice requests and auditory feedback on a microcontroller \cite{studentglass2017}. A Google Glass system used Microsoft Azure Custom Vision in the cloud for scene recognition and bone-conduction audio \cite{googleglass2021}. A deep learning smart glass published in \textit{Electronics} combined low-light enhancement, object recognition and salient object detection for night-time assistance \cite{smartglass_mdpi2021}. More recently, AIris placed a camera on eyewear and sent images to a remote server for face recognition, scene description and text reading \cite{airis2024}. The trend is towards richer functions, but also towards heavier dependence on remote computation.
+
+\section{Key Technologies in Smart Assistive Glasses}
+\label{sec:keytech}
+
+\subsection{Embedded Computing Platforms}
+Raspberry Pi boards dominate low-cost assistive prototypes because they run a full Linux system, support Python, OpenCV and PyTorch, and provide GPIO pins for buttons and motors. Earlier projects used the Raspberry Pi 3 or 4 \cite{readingaid_rpi2023, visionvoice2024, aiblind2025, voicereading2025}. The Raspberry Pi~5 used in this work has a quad-core Cortex-A76 CPU at 2.4~GHz, which is a large step in CPU performance over the Pi 4 \cite{raspberrypi5}. Arduino-based glasses \cite{lightweight_glass2025} are lighter and cheaper but cannot run deep neural networks.
+
+\subsection{Optical Character Recognition}
+OCR converts an image of text into machine-readable characters. Tesseract is the most common engine in assistive readers \cite{readingaid_rpi2023, cameraocr2023, itra2022, textreview2022}. It works well on clean, horizontal, printed text but struggles with scene text and non-Latin scripts. Deep learning OCR engines such as EasyOCR combine a CRAFT-style text detector with a recognition network and support more than 80 languages including Bangla \cite{easyocr, easyocr_reader2022}. Cloud OCR, for example Google Cloud Vision \cite{cloudocr2019}, gives higher accuracy but requires internet access and sends the user's images to a third party. Bangla OCR is a harder problem because of the large number of conjunct characters (\textit{juktakkhor}), the connecting head line (\textit{matra}) and vowel diacritics above and below the base letter. Deep learning classifiers such as Inception V3, VGG-16 and Vision Transformers have been applied to isolated handwritten Bangla characters \cite{banglaocr2021}, and datasets such as Ekush provide large, writer-labelled collections of Bangla characters \cite{ekush}.
+
+\subsection{Object Detection}
+Object detection locates and labels objects in an image. The YOLO family of single-stage detectors \cite{redmon2016yolo} is the most common choice in assistive devices because it runs in real time \cite{echolight2025, aiblind2025, voicereading2025, ai_nlp2025, ivsmart2024}. YOLOv8 from Ultralytics \cite{ultralytics} is anchor-free, uses a CSPDarknet backbone with C2f blocks, a PAN-FPN neck and a decoupled head, and is provided in nano, small, medium and larger sizes. Pre-trained YOLOv8 models detect the 80 classes of the COCO dataset \cite{coco}.
+
+\subsection{Speech Output and Feedback}
+Speech synthesis has progressed from concatenative synthesis to neural TTS \cite{stt_tts2023}. Online engines such as gTTS give natural voices but need the internet. Offline engines include espeak-ng, a compact formant synthesiser that supports Bangla \cite{espeakng}, and Piper, a fast local neural TTS system that runs on a Raspberry Pi \cite{piper}. Bone-conduction headsets and vibration motors are used as additional channels so that the user can still hear the environment \cite{googleglass2021, lightweight_glass2025}.
+
+\section{Currency Recognition and Authentication}
+\label{sec:currency_lit}
+
+Currency recognition is an important task for visually impaired people because banknotes of different values often have similar size and texture. Classical systems identify the country and denomination with template matching, colour analysis in the LAB space and size measurements \cite{currency2017, currency2023}. For Bangladeshi Taka, an early neural network with axis-symmetrical masks reported 98.57\% average accuracy over eight denominations \cite{axissym}, lightweight CNNs have been used for real-time recognition for visually impaired users \cite{cnnrealtime}, and a dual-stream MobileNet/EfficientNet model has been proposed for robust recognition \cite{dualstream}. These methods are whole-image classifiers: they assume that one note fills the image.
+
+Detection-based approaches localise the note in a full scene. The NSTU-BDTAKA dataset provides 3,111 manually annotated images for Taka detection with YOLOv5, reaching a precision of 0.95 and a recall of 0.93 \cite{nstubdtaka2024}. A YOLOv8-nano model with a squeeze-and-excitation head for US Dollar, Euro and Taka detection reported 0.972 mAP@0.5 and 0.804 mAP@0.5:0.95 \cite{yolov8nse}. Domain randomisation with synthetic images has been shown to transfer to real object detection \cite{domainrand}, which motivates the compositing approach used in this thesis. Among assistive applications, BLIND ASSIST \cite{blindassist2021}, Divya-Drishti \cite{divyadrishti2021} and VisioGuide \cite{visioguide2025} include a currency feature, usually for Indian Rupees and usually on a smartphone.
+
+Counterfeit detection is much less studied in assistive systems. Bank equipment uses ultraviolet light, magnetic ink and infrared sensors, which are not available on a glass. With a visible-light camera, the security thread, hologram strip, watermark and micro-printing must be inspected from close views, and one view is often not enough. This motivates the multi-view authenticator in this work.
+
+\section{Real-World Applications}
+\label{sec:applications}
+
+\subsection{Reading Assistants}
+Reading assistants are the most common category. Raspberry Pi readers with Tesseract and gTTS \cite{readingaid_rpi2023, visionvoice2024, cameraocr2023}, translators from English to regional languages \cite{readingaid_rpi2023}, and deep learning readers that also describe images in printed documents \cite{dlreader2022} have been reported. Sinhala and Kannada readers \cite{visioguide2025} show that local-language support is a real need in South Asia.
+
+\subsection{Multi-Function Wearables}
+Multi-function devices combine several modules. The Third Eye clips a camera to spectacles and uses a smartphone for text, face and object recognition \cite{thirdeye2019}. A Raspberry Pi~4 system with LiDAR and Camera Module~3 combines YOLOv8n detection, Tesseract OCR, face detection and distance measurement \cite{aiblind2025}. Other systems add ultrasonic obstacle sensing, GPS and GSM alerts \cite{navassist2024, smartglass_vip2025, obstacle_rpi2020}. EchoLight uses YOLOv5, OCR and TTS through a bone-conduction headset \cite{echolight2025}.
+
+\subsection{Mobile Applications}
+Smartphone apps such as BLIND ASSIST \cite{blindassist2021}, IV Smart \cite{ivsmart2024} and assistants based on NLP \cite{ai_nlp2025} are convenient but require the user to aim a phone and use a touch screen, which many blind users find difficult.
+
+\section{Comparative Evaluation of Assistive Vision Systems}
+\label{sec:comparison}
+
+Table~\ref{tab:assistive_compare} compares representative systems from the literature with the system developed in this work. The comparison shows that most systems have strong individual capabilities; however, few combine offline operation, local-language support and local currency handling in one wearable design.
+
+\begin{table}[!htbp]
+\centering
+\caption{Overview of assistive vision systems for visually impaired users, with key technologies, strengths and limitations}
+\label{tab:assistive_compare}
+\begin{tabular}{|p{1.4cm}|p{2.4cm}|p{3.6cm}|p{3.3cm}|p{3.3cm}|}
+\hline
+\textbf{Citation} & \textbf{System} & \textbf{Key Technologies} & \textbf{Strengths} & \textbf{Limitations} \\ \hline
+\cite{smartglass_mdpi2021} & Deep learning smart glass & Low-light enhancement CNN, transformer object recognition & Works at night, rich scene information & Heavy models, English labels, no currency \\ \hline
+\cite{googleglass2021} & Google Glass scene analysis & Azure Custom Vision (cloud), bone conduction & Commercial glass hardware, real-time & Needs internet, expensive glass \\ \hline
+\cite{airis2024} & AIris & Eyewear camera, Raspberry Pi, remote server & Face, text, scene description & Remote processing, English \\ \hline
+\cite{aiblind2025} & RPi 4 blind assistance & YOLOv8n, Tesseract, LiDAR, Haar faces & Distance measurement, several modules & English OCR only, no currency \\ \hline
+\cite{visionvoice2024} & Vision Voice & Raspberry Pi 3, PyTesseract, gTTS & Low cost, simple & Text only, online TTS \\ \hline
+\cite{blindassist2021} & BLIND ASSIST & Android, TensorFlow Lite currency, OCR & One app, currency feature & Phone and touch screen needed \\ \hline
+\cite{nstubdtaka2024} & NSTU-BDTAKA & YOLOv5, 3,111 labelled images & Bangladeshi Taka detection & Manual labels, no assistive device \\ \hline
+\textbf{This work} & \textbf{Savior Glass} & \textbf{EasyOCR bn/en, YOLOv8, synthetic Taka data, multi-view authenticator, Piper/espeak-ng} & \textbf{Offline, Bangla speech, 9 Taka classes, counterfeit check, buttons} & \textbf{Pi~5 latency and user study not yet measured} \\ \hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+Table~\ref{tab:currency_compare} focuses on currency recognition. Direct numerical comparison should be read with care because each study uses a different dataset, class set and test protocol.
+
+\begin{table}[!htbp]
+\centering
+\caption{Comparison of currency recognition methods related to Bangladeshi Taka}
+\label{tab:currency_compare}
+\begin{tabular}{|p{3.6cm}|p{1.8cm}|p{2.2cm}|p{1.6cm}|p{1.6cm}|p{2.4cm}|}
+\hline
+\textbf{Work} & \textbf{Task} & \textbf{Labels} & \textbf{mAP@0.5} & \textbf{mAP@ 0.5:0.95} & \textbf{P / R or Acc.} \\ \hline
+Axis-symmetrical masks \cite{axissym} & Classify & Image-level & -- & -- & 98.6\% acc. \\ \hline
+YOLOv5 Taka \cite{nstubdtaka2024} & Detect & 3,111 manual & -- & -- & 0.95 / 0.93 \\ \hline
+YOLOv8n-SE \cite{yolov8nse} & Detect (multi-currency) & Manual & 0.972 & 0.804 & 0.965 / 0.952 \\ \hline
+\textbf{This work (YOLOv8s)} & \textbf{Detect (9 BDT)} & \textbf{22,315 automatic} & \textbf{0.995*} & \textbf{0.847*} & \textbf{0.998 / 0.997*} \\ \hline
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize *Measured on held-out synthetic composites; see Chapter~\ref{chap:results} for the evaluation on raw phone photographs.}
+\end{table}
+\FloatBarrier
+
+\section{Key Research Areas Relevant to Savior Glass}
+
+Recent work relevant to this thesis falls into four areas, summarised in Table~\ref{tab:key_areas}.
+
+\textbf{Text Reading Systems} use OCR and TTS to read printed material. They are mature for English but weak for Bangla and depend on online speech.
+
+\textbf{Smart Glasses and Wearables} integrate cameras, processors and audio on the body. They increasingly rely on cloud processing for advanced functions.
+
+\textbf{Object and Scene Recognition} relies on YOLO-family detectors and captioning models, usually with English labels.
+
+\textbf{Currency Recognition and Authentication} covers denomination classification and detection; authentication with a visible-light camera is still largely unexplored in assistive devices.
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{|p{4cm}|p{10.5cm}|}
+\hline
+\textbf{Citation(s)} & \textbf{Category and Function/Details} \\
+\hline
+\cite{fingerreader2014,assistreading2014,readingaid_rpi2023,visionvoice2024,cameraocr2023,itra2022,dlreader2022} &
+\textbf{Text Reading Systems:} Finger-worn and Raspberry Pi readers, Tesseract and EasyOCR engines, image description in printed documents, translation to regional languages. \\
+\hline
+\cite{studentglass2017,smartglass_mdpi2021,googleglass2021,airis2024,thirdeye2019,lightweight_glass2025,smartglass_vip2025} &
+\textbf{Smart Glasses and Wearables:} Camera glasses with voice feedback, cloud scene analysis, lightweight Arduino glasses with vibration, IoT emergency glasses. \\
+\hline
+\cite{echolight2025,aiblind2025,voicereading2025,ivsmart2024,navassist2024,ai_nlp2025} &
+\textbf{Object and Scene Recognition:} YOLOv4/v5/v8 object detection, LiDAR and ultrasonic distance, face detection, navigation with GPS. \\
+\hline
+\cite{currency2017,currency2023,axissym,nstubdtaka2024,yolov8nse,blindassist2021,divyadrishti2021} &
+\textbf{Currency Recognition:} Template and colour matching, neural classifiers, YOLO detection of Taka and other currencies, currency features in mobile apps. \\
+\hline
+\end{tabular}
+\caption{Key research categories in assistive vision technology}
+\label{tab:key_areas}
+\end{table}
+\FloatBarrier
+
+\section{Research Gap}
+\label{sec:gap}
+From the review, the following gaps are identified:
+\begin{enumerate}[noitemsep]
+    \item Very few assistive glasses work completely offline; most depend on cloud OCR, cloud recognition or online TTS.
+    \item Bangla is rarely supported, either for reading text or for speaking results.
+    \item Bangladeshi Taka detection has been studied as a stand-alone computer vision task, but it has not been integrated in a wearable, and detectors rely on small, manually labelled datasets.
+    \item Counterfeit-note checking with a normal camera has not been addressed in assistive devices, and the problem of an unreliable number of captured views has not been studied.
+    \item Many prototypes are reported without quantitative evaluation of each module.
+\end{enumerate}
+Savior Glass is designed to address these gaps.

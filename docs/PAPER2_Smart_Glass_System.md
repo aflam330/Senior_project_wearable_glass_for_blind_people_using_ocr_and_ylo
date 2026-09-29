@@ -2,7 +2,7 @@
 
 **Primary source:** `e:\Final SP\savior_glass`  
 **Former duplicate:** `e:\Final SP\Unused\smart-glass` (outdated copy, retired 2026-09-28; do not cite)  
-**GitHub:** https://github.com/Mukut313/savior_glass  
+**GitHub:** https://github.com/aflam330/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo (folder `savior_glass/`)  
 **Initial commit theme:** “Offline Smart Glass for Blind People (RPi 5)”
 
 In-repo READMEs are stubs — this file is the documentation base for the system paper.
@@ -228,7 +228,7 @@ python3 scripts/train_currency.py --data-dir /path/to/taka_images
 ## 12. Related work
 
 **Full annotated list (your spreadsheet):** see [`RELATED_WORK_BIBLIOGRAPHY.md`](RELATED_WORK_BIBLIOGRAPHY.md)  
-**Source:** `Review and paper links.xlsx` (52 usable papers tagged for smart-glass / OCR / object / TTS).
+**Source:** `literature/Review and paper links.xlsx` (52 usable papers tagged for smart-glass / OCR / object / TTS).
 
 ### 12.1 High-priority from your review sheet
 

@@ -1,0 +1,1042 @@
+{
+ "rules": "results/jaal_whole/PREREGISTERED_OPERATING_POINTS.md",
+ "chosen_checker_on_val": "S4",
+ "jaaltaka_test_real_views": {
+  "checker": "S4",
+  "tau": 0.9995918869972229,
+  "counterfeit_passed": 0,
+  "counterfeit_n": 88,
+  "genuine_passed": 69,
+  "genuine_n": 120,
+  "counterfeit_passed_wilson95": [
+   0.0,
+   0.0418270666648922
+  ]
+ },
+ "operating_points": {
+  "S1/primary": {
+   "tau": 0.999922513961792,
+   "val_counterfeit_passed": 0,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 34,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 0,
+     "wilson95": [
+      1.3877787807814457e-17,
+      0.13319225093904846
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       0
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       0
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       0
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       0
+      ]
+     },
+     "groups_with_any_pass": 0,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 26,
+     "wilson95": [
+      0.014902939091249661,
+      0.03171546638260285
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 1,
+     "wilson95": [
+      0.0006131956629725245,
+      0.019402667896300206
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 4,
+     "wilson95": [
+      0.0009391460404149913,
+      0.006190648774017409
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "S1/secondary": {
+   "tau": 0.7567030066251742,
+   "val_counterfeit_passed": 1,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 116,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 15,
+     "wilson95": [
+      0.40739457358967,
+      0.7659669762225203
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       11
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       4
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       0
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       0
+      ]
+     },
+     "groups_with_any_pass": 2,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 1051,
+     "wilson95": [
+      0.8605875996493609,
+      0.8974425998512888
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 166,
+     "wilson95": [
+      0.518683224253292,
+      0.6320835659683582
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 661,
+     "wilson95": [
+      0.3755962941317626,
+      0.4226987217947596
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "S2/primary": {
+   "tau": 0.9999122619628906,
+   "val_counterfeit_passed": 0,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 35,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 0,
+     "wilson95": [
+      1.3877787807814457e-17,
+      0.13319225093904846
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       0
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       0
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       0
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       0
+      ]
+     },
+     "groups_with_any_pass": 0,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 15,
+     "wilson95": [
+      0.007627847518586255,
+      0.02062418748278356
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 1,
+     "wilson95": [
+      0.0006131956629725245,
+      0.019402667896300206
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 13,
+     "wilson95": [
+      0.004590687206365525,
+      0.013376987349328375
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "S2/secondary": {
+   "tau": 0.7276433634757982,
+   "val_counterfeit_passed": 1,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 117,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 15,
+     "wilson95": [
+      0.40739457358967,
+      0.7659669762225203
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       11
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       3
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       0
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       1
+      ]
+     },
+     "groups_with_any_pass": 3,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 1085,
+     "wilson95": [
+      0.8910362247518245,
+      0.9237627562092262
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 147,
+     "wilson95": [
+      0.4529271567907819,
+      0.5676319509667157
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 719,
+     "wilson95": [
+      0.41023340515602597,
+      0.45790572465862583
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "S3/primary": {
+   "tau": 0.9999897480010986,
+   "val_counterfeit_passed": 0,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 38,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 0,
+     "wilson95": [
+      1.3877787807814457e-17,
+      0.13319225093904846
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       0
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       0
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       0
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       0
+      ]
+     },
+     "groups_with_any_pass": 0,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 18,
+     "wilson95": [
+      0.00955690013686233,
+      0.023704144993366396
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 1,
+     "wilson95": [
+      0.0006131956629725245,
+      0.019402667896300206
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 4,
+     "wilson95": [
+      0.0009391460404149913,
+      0.006190648774017409
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "S3/secondary": {
+   "tau": 0.8682117247581475,
+   "val_counterfeit_passed": 1,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 118,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 13,
+     "wilson95": [
+      0.3349851695035678,
+      0.6996871404588704
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       11
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       2
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       0
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       0
+      ]
+     },
+     "groups_with_any_pass": 2,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 1136,
+     "wilson95": [
+      0.9377159107955612,
+      0.9622362423560912
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 162,
+     "wilson95": [
+      0.5047566204346372,
+      0.6185980261103494
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 698,
+     "wilson95": [
+      0.39767823329756,
+      0.4451725104541483
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "S4/primary": {
+   "tau": 0.9995918869972229,
+   "val_counterfeit_passed": 0,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 66,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 0,
+     "wilson95": [
+      1.3877787807814457e-17,
+      0.13319225093904846
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       0
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       0
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       0
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       0
+      ]
+     },
+     "groups_with_any_pass": 0,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 194,
+     "wilson95": [
+      0.14264314884862134,
+      0.18447982384133055
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 1,
+     "wilson95": [
+      0.0006131956629725245,
+      0.019402667896300206
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 18,
+     "wilson95": [
+      0.006882343035667887,
+      0.01710637582072685
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "S4/secondary": {
+   "tau": 0.48221866965293614,
+   "val_counterfeit_passed": 1,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 119,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 16,
+     "wilson95": [
+      0.44518497748164865,
+      0.7975211922554178
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       11
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       4
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       0
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       1
+      ]
+     },
+     "groups_with_any_pass": 3,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 1128,
+     "wilson95": [
+      0.9302779598195875,
+      0.956316832988441
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 165,
+     "wilson95": [
+      0.5151973541284554,
+      0.6287164001740289
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 679,
+     "wilson95": [
+      0.3863325794002714,
+      0.4336381960087738
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "R1/primary": {
+   "tau": 0.999089241027832,
+   "val_counterfeit_passed": 0,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 33,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 0,
+     "wilson95": [
+      1.3877787807814457e-17,
+      0.13319225093904846
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       0
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       0
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       0
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       0
+      ]
+     },
+     "groups_with_any_pass": 0,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 211,
+     "wilson95": [
+      0.1561284007655328,
+      0.19937896265461968
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 60,
+     "wilson95": [
+      0.16542111055994202,
+      0.25892387223012026
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 157,
+     "wilson95": [
+      0.08157071785948514,
+      0.10980303255639282
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "R1/secondary": {
+   "tau": 0.46933796077966417,
+   "val_counterfeit_passed": 1,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 119,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 7,
+     "wilson95": [
+      0.14283853850956563,
+      0.47576605190361576
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       3
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       0
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       2
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       2
+      ]
+     },
+     "groups_with_any_pass": 3,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 1089,
+     "wilson95": [
+      0.8946463894746873,
+      0.9268312716581754
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 248,
+     "wilson95": [
+      0.8163972464631334,
+      0.8963184891301229
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 1431,
+     "wilson95": [
+      0.8462407469160753,
+      0.8792950913183752
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "R2/primary": {
+   "tau": 0.9982696771621704,
+   "val_counterfeit_passed": 0,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 21,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 0,
+     "wilson95": [
+      1.3877787807814457e-17,
+      0.13319225093904846
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       0
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       0
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       0
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       0
+      ]
+     },
+     "groups_with_any_pass": 0,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 241,
+     "wilson95": [
+      0.18004864858393882,
+      0.22554881612480282
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 8,
+     "wilson95": [
+      0.014141265039176312,
+      0.05384584995425788
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 48,
+     "wilson95": [
+      0.0219182115063824,
+      0.038196773154217344
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "R2/secondary": {
+   "tau": 0.4751816907525035,
+   "val_counterfeit_passed": 1,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 119,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 9,
+     "wilson95": [
+      0.20247880774458224,
+      0.5548150225183514
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       5
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       0
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       2
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       2
+      ]
+     },
+     "groups_with_any_pass": 3,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 1178,
+     "wilson95": [
+      0.9783433275312063,
+      0.9917349674244709
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 254,
+     "wilson95": [
+      0.839556989724426,
+      0.9142769613838256
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 1426,
+     "wilson95": [
+      0.8430783626992462,
+      0.8764364312345037
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "R3/primary": {
+   "tau": 0.9988112449645996,
+   "val_counterfeit_passed": 0,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 10,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 0,
+     "wilson95": [
+      1.3877787807814457e-17,
+      0.13319225093904846
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       0
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       0
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       0
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       0
+      ]
+     },
+     "groups_with_any_pass": 0,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 99,
+     "wilson95": [
+      0.0685790161951057,
+      0.0999253024143138
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 0,
+     "wilson95": [
+      0.0,
+      0.013162827640106806
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 32,
+     "wilson95": [
+      0.013712533016250795,
+      0.027135109882106278
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "R3/secondary": {
+   "tau": 0.5035502991080258,
+   "val_counterfeit_passed": 1,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 119,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 8,
+     "wilson95": [
+      0.17205190306907978,
+      0.5158973072689775
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       4
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       1
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       2
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       1
+      ]
+     },
+     "groups_with_any_pass": 4,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 1164,
+     "wilson95": [
+      0.9643585596837739,
+      0.9823443546705616
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 273,
+     "wilson95": [
+      0.915855600750118,
+      0.968186032822286
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 1396,
+     "wilson95": [
+      0.824156753427346,
+      0.8592317747021987
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "R4/primary": {
+   "tau": 0.9991004467010498,
+   "val_counterfeit_passed": 0,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 6,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 0,
+     "wilson95": [
+      1.3877787807814457e-17,
+      0.13319225093904846
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       0
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       0
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       0
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       0
+      ]
+     },
+     "groups_with_any_pass": 0,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 65,
+     "wilson95": [
+      0.042940194670088694,
+      0.06879534247892975
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 0,
+     "wilson95": [
+      0.0,
+      0.013162827640106806
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 14,
+     "wilson95": [
+      0.005039545530499879,
+      0.014132337885334193
+     ],
+     "groups": 1657
+    }
+   }
+  },
+  "R4/secondary": {
+   "tau": 0.42995618045329753,
+   "val_counterfeit_passed": 1,
+   "val_counterfeit_n": 88,
+   "val_genuine_passed": 119,
+   "val_genuine_n": 120,
+   "whole_note": {
+    "cf/counterfeit": {
+     "n": 25,
+     "said_likely_genuine": 13,
+     "wilson95": [
+      0.3349851695035678,
+      0.6996871404588704
+     ],
+     "groups_n_images_n_passed": {
+      "cf1000_counterfeit_burst000": [
+       12,
+       6
+      ],
+      "cf1000_counterfeit_burst001": [
+       6,
+       3
+      ],
+      "cf1000_counterfeit_stamped": [
+       2,
+       2
+      ],
+      "cf500_counterfeit_notes": [
+       5,
+       2
+      ]
+     },
+     "groups_with_any_pass": 4,
+     "groups": 4
+    },
+    "cf/genuine": {
+     "n": 1194,
+     "said_likely_genuine": 1175,
+     "wilson95": [
+      0.975279956195815,
+      0.9897893286310033
+     ],
+     "groups": 104
+    },
+    "bm/genuine": {
+     "n": 288,
+     "said_likely_genuine": 276,
+     "wilson95": [
+      0.9285939230417919,
+      0.9760068182881099
+     ],
+     "groups": 288
+    },
+    "bt/genuine": {
+     "n": 1657,
+     "said_likely_genuine": 1473,
+     "wilson95": [
+      0.8729192928736585,
+      0.903193317486679
+     ],
+     "groups": 1657
+    }
+   }
+  }
+ }
+}

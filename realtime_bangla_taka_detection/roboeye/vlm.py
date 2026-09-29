@@ -146,9 +146,13 @@ class NoteDescriber:
                     f" Orientation is about {pose['roll']:.0f} degrees roll "
                     f"and {pose['pitch']:.0f} degrees pitch."
                 )
+        if auth_label == "unverified":  # verdict switched off: say so, give no percentage
+            auth_txt = "Authenticity was not checked."
+        else:
+            auth_txt = f"{auth} ({genuine_prob * 100:.0f} percent genuine)."
         template = (
             f"This looks like a {denom} banknote, confidence {conf * 100:.0f} percent. "
-            f"{auth} ({genuine_prob * 100:.0f} percent genuine).{pose_txt}"
+            f"{auth_txt}{pose_txt}"
         )
         if self._fn is not None and crop_bgr is not None and crop_bgr.size:
             try:

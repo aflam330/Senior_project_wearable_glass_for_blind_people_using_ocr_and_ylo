@@ -130,7 +130,12 @@ class PrototypeAuthenticator:
         return self._encode_fn(Image.fromarray(rgb)).detach().cpu().float()
 
     def build(self, max_notes_per_class: int = 80, views_per_note: int = 2) -> dict:
-        notes = list_jaaltaka_notes()
+        # Only TRAIN notes of the note-disjoint split, so val/test notes never enter a prototype.
+        from .camva.notes import load_splits
+
+        splits, records = load_splits()
+        train_dirs = {str(Path(records[n]["note_dir"]).resolve()) for n in splits["train"]}
+        notes = [(d, lab) for d, lab in list_jaaltaka_notes() if str(d.resolve()) in train_dirs]
         buckets = {0: [], 1: []}
         for note_dir, label in notes:
             if len(buckets[label]) >= max_notes_per_class:
@@ -154,6 +159,7 @@ class PrototypeAuthenticator:
             "fake": self.fake_proto,
             "n_real": len(buckets[1]),
             "n_fake": len(buckets[0]),
+            "split": "train",
         }
         PROTO_WEIGHTS.parent.mkdir(parents=True, exist_ok=True)
         torch.save(blob, PROTO_WEIGHTS)
@@ -161,11 +167,24 @@ class PrototypeAuthenticator:
         return blob
 
     def load(self) -> bool:
+        """Load saved prototypes only if they come from the encoder in use.
+
+        Prototypes built with CLIP (512-d) cannot be compared with MobileNet features (576-d);
+        that mismatch used to crash predict(). Rebuild with build() for the current backend.
+        """
+        self.load_error = None
         if not PROTO_WEIGHTS.is_file():
+            self.load_error = "no prototype file"
             return False
         blob = torch.load(PROTO_WEIGHTS, map_location="cpu", weights_only=False)
-        self.real_proto = blob["real"].float()
-        self.fake_proto = blob["fake"].float()
+        saved_backend = str(blob.get("backend", "unknown"))
+        real, fake = blob["real"].float(), blob["fake"].float()
+        probe = self.encode_bgr(np.zeros((32, 32, 3), dtype=np.uint8))
+        if saved_backend != self.backend or real.numel() != probe.numel():
+            self.load_error = (f"prototypes are {saved_backend} ({real.numel()}-d) but the encoder is "
+                               f"{self.backend} ({probe.numel()}-d); rebuild with build()")
+            return False
+        self.real_proto, self.fake_proto = real, fake
         return True
 
     def predict(self, crop_bgr: np.ndarray) -> dict:

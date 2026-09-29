@@ -5,8 +5,9 @@ Offline assistive smart glass for visually impaired users, targeting **Raspberry
 Three modes, physical GPIO buttons, and Bangla-first speech:
 
 1. **OCR** - capture Bangla/English text, then speak it
-2. **Object** - YOLOv8n everyday-object announcements
-3. **Currency** - Bangladeshi Taka recognition (HSV + optional CNN; YOLO weights live in ../realtime_bangla_taka_detection/models/)
+2. **Object** - YOLOv8s everyday-object announcements (YOLOv8n if yolov8s.pt is absent)
+3. **Currency** - Bangladeshi Taka denomination with the trained YOLOv8s (../realtime_bangla_taka_detection/models/best.pt); HSV + optional CNN only if those weights are missing. The genuine/jaal verdict is off (`JAAL_VERDICT_ENABLED` in config.py; see ../paper_evidence/JAAL_VERDICT_FIXED.md).
+4. **Claude (online, optional)** - scene description through the Anthropic API; needs internet and `ANTHROPIC_API_KEY`
 
 ## Raspberry Pi
 

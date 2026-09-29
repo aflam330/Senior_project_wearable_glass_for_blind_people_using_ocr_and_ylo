@@ -60,6 +60,8 @@ def _acc_file(path: Path) -> dict[int, float] | None:
         return {int(row["k"]): float(row["accuracy"]) for row in payload["views"]}
     if "proposed" in payload:
         return {int(row["k"]): float(row["accuracy"]) for row in payload["proposed"]}
+    if "new" in payload:  # post-NaN-fix re-evaluation files (test_views_20260928/views_1_to_6.json)
+        return {int(k): float(v) for k, v in payload["new"].items()}
     return None
 
 
@@ -89,7 +91,7 @@ def _series() -> dict[str, dict[int, float]]:
             base[k] = float(json.loads(path.read_text(encoding="utf-8"))["accuracy"])
     if base:
         out["Baseline"] = base
-    prmvt = _acc_file(ROOT / "results" / "qduig" / "prefix_ft" / "seed42" / "test_views" / "views_1_to_6.json")
+    prmvt = _acc_file(ROOT / "results" / "qduig" / "prefix_ft" / "seed42" / "test_views_20260928" / "views_1_to_6.json")
     if prmvt:
         out["PRMVT"] = prmvt
     for name, path in novel.items():
@@ -273,7 +275,7 @@ def _cm_from_json(path: Path) -> np.ndarray | None:
 
 def fig_confusion() -> None:
     base = _cm_from_json(ROOT / "results" / "qduig" / "eval" / "seed42" / "baseline" / "baseline_6view" / "confusion_matrix.json")
-    prop = _cm_from_json(ROOT / "results" / "qduig" / "prefix_ft" / "seed42" / "test_views" / "6view" / "confusion_matrix.json")
+    prop = _cm_from_json(ROOT / "results" / "qduig" / "prefix_ft" / "seed42" / "test_views_20260928" / "6view" / "confusion_matrix.json")
     if base is None or prop is None:
         return
     fig, axes = plt.subplots(1, 2, figsize=(6.2, 2.8))
@@ -310,7 +312,7 @@ def fig_multiseed() -> None:
             vals = []
             for seed in (42, 43, 44):
                 if name == "PRMVT":
-                    path = ROOT / "results" / "qduig" / "prefix_ft" / f"seed{seed}" / "test_views" / "views_1_to_6.json"
+                    path = ROOT / "results" / "qduig" / "prefix_ft" / f"seed{seed}" / "test_views_20260928" / "views_1_to_6.json"
                     acc = _acc_file(path)
                 else:
                     path = algos[name] / f"seed{seed}" / "test" / "test_metrics.json"
@@ -349,7 +351,7 @@ def fig_pipeline() -> None:
 
 
 def fig_failures() -> None:
-    pred_path = ROOT / "results" / "qduig" / "prefix_ft" / "seed42" / "test_views" / "1view" / "test_predictions.json"
+    pred_path = ROOT / "results" / "qduig" / "prefix_ft" / "seed42" / "test_views_20260928" / "1view" / "test_predictions.json"
     if not pred_path.is_file():
         return
     import sys
