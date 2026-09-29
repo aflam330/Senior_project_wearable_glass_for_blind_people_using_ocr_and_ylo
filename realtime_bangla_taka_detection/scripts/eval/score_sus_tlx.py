@@ -57,13 +57,18 @@ def main() -> None:
         t = [v[1] for v in d.values()]
         print(f"{c}: n={len(s)} SUS {mean(s):.1f} ± {stdev(s) if len(s) > 1 else 0:.1f}  RTLX {mean(t):.1f} ± {stdev(t) if len(t) > 1 else 0:.1f}")
     if len(by) == 2:
-        from scipy.stats import wilcoxon
+        from scipy.stats import ttest_rel, wilcoxon
         a, b = list(by)
         common = sorted(set(by[a]) & set(by[b]))
         if len(common) >= 6:
             for i, name in ((0, "SUS"), (1, "RTLX")):
-                st = wilcoxon([by[a][p][i] for p in common], [by[b][p][i] for p in common])
-                print(f"Wilcoxon {name} {a} vs {b}: n={len(common)} p={st.pvalue:.4g}")
+                xa = [by[a][p][i] for p in common]
+                xb = [by[b][p][i] for p in common]
+                st = wilcoxon(xa, xb)
+                tt = ttest_rel(xa, xb)
+                d = [u - v for u, v in zip(xa, xb)]
+                dz = mean(d) / stdev(d) if stdev(d) > 0 else float("nan")
+                print(f"{name} {a} vs {b}: n={len(common)} Wilcoxon p={st.pvalue:.4g}  paired t p={tt.pvalue:.4g}  dz={dz:.2f}")
 
 
 if __name__ == "__main__":

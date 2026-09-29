@@ -92,3 +92,25 @@ A main-track reviewer weighs scale and generality. No additional analysis on the
 - Literature check done: view dropout is known, and the unseen-print protocol is new for Bangladeshi Taka.
 
 The venue ranges above do not change materially: the evidence base is still one counterfeit dataset. **50–60 % at an A* main track is not a realistic estimate for this work.** The realistic top targets are an A* workshop now, a Q1 journal next, and ASSETS or NeurIPS D&B once the user study and glass-camera counterfeit photos exist.
+
+## Verdict after the master-prompt pass, 2026-09-30
+
+**New evidence.**
+- A fine-tuned ResNet-50 baseline (92.0 / 89.9 % on unseen prints). The watermark hybrid leads it by +2.4 / +5.1 points, significant in 3 of 6 per-seed tests.
+- Three paper drafts: workshop, D&B, journal.
+- A 141,372-unit unified manifest.
+- 27 figures.
+- Exact power analysis.
+
+| Venue | Estimate | What moves it |
+|---|---:|---|
+| Regional IEEE (TENCON / ICCIT / ICAEE) | 75–90 % | — |
+| IEEE Access | 55–70 % | user study +5 |
+| Q1 journal (PRL, ESWA) | 40–55 % | user study and glass photos +10 |
+| **A* workshop** | **45–60 %** | the print-leakage finding with a fair fine-tuned baseline is a clean workshop story |
+| **NeurIPS D&B** | **15–25 %** | limited by counterfeit scale (about 24 effective unseen prints); glass-camera counterfeit photos from new prints would help most |
+| ASSETS / CHI | ~0 % now; 25–40 % with a well-run 105-person study | the study is the paper |
+| CVPR / ICCV main | 5–10 % | — |
+| NeurIPS / ICML main | 3–8 % | — |
+
+**50–60 % is realistic only for an A* workshop and, after the user study, is within reach of ASSETS.** For D&B the limit is the number of counterfeit prints, which only new data can raise.

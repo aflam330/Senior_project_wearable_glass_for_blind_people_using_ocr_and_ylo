@@ -1,0 +1,16 @@
+{
+ "units_total": 141372,
+ "by_task_dataset": {
+  "counterfeit_multiview/JaalTaka": 1390,
+  "counterfeit_wholenote/CounterfeitCurrencyImageDataset": 1286,
+  "denomination/BanglaTaka": 5073,
+  "denomination/NSTU-BDTAKA-Recognition": 28875,
+  "detection/NSTU-BDTAKA-Detection": 3111,
+  "open_set_unknown/BanglaMoney": 101,
+  "denomination/BanglaMoney": 1536,
+  "open_set_unknown/LargeScaleBDT2026": 100000
+ },
+ "images_total": 148322,
+ "counterfeit_labelled_units": 2676,
+ "jaaltaka_print_disjoint_test": 222
+}

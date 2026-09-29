@@ -4012,6 +4012,176 @@
       "script": "scripts/eval/domain_adapt_whole.py"
     },
     {
+      "claim_id": "C_BEAT_K1_FT_RESNET",
+      "claim": "Unseen prints, k1/FT_RESNET accuracy, mean of 3 seeds",
+      "value": 0.9204204204204204,
+      "json_key": [
+        "summary",
+        "k1/FT_RESNET",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\serial_split\\beat_resnet.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/beat_resnet.py"
+    },
+    {
+      "claim_id": "C_BEAT_K6_FT_RESNET",
+      "claim": "Unseen prints, k6/FT_RESNET accuracy, mean of 3 seeds",
+      "value": 0.8993993993993993,
+      "json_key": [
+        "summary",
+        "k6/FT_RESNET",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\serial_split\\beat_resnet.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/beat_resnet.py"
+    },
+    {
+      "claim_id": "C_BEAT_K1_FUSION",
+      "claim": "Unseen prints, k1/FUSION accuracy, mean of 3 seeds",
+      "value": 0.9084084084084084,
+      "json_key": [
+        "summary",
+        "k1/FUSION",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\serial_split\\beat_resnet.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/beat_resnet.py"
+    },
+    {
+      "claim_id": "C_BEAT_K6_FUSION",
+      "claim": "Unseen prints, k6/FUSION accuracy, mean of 3 seeds",
+      "value": 0.9054054054054054,
+      "json_key": [
+        "summary",
+        "k6/FUSION",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\serial_split\\beat_resnet.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/beat_resnet.py"
+    },
+    {
+      "claim_id": "C_BEAT_K1_ENSEMBLE",
+      "claim": "Unseen prints, k1/ENSEMBLE accuracy, mean of 3 seeds",
+      "value": 0.933933933933934,
+      "json_key": [
+        "summary",
+        "k1/ENSEMBLE",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\serial_split\\beat_resnet.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/beat_resnet.py"
+    },
+    {
+      "claim_id": "C_BEAT_K6_ENSEMBLE",
+      "claim": "Unseen prints, k6/ENSEMBLE accuracy, mean of 3 seeds",
+      "value": 0.9309309309309309,
+      "json_key": [
+        "summary",
+        "k6/ENSEMBLE",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\serial_split\\beat_resnet.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/beat_resnet.py"
+    },
+    {
+      "claim_id": "C_BEAT_K1_HYBRID_FINAL",
+      "claim": "Unseen prints, k1/HYBRID_FINAL accuracy, mean of 3 seeds",
+      "value": 0.9444444444444445,
+      "json_key": [
+        "summary",
+        "k1/HYBRID_FINAL",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\serial_split\\beat_resnet.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/beat_resnet.py"
+    },
+    {
+      "claim_id": "C_BEAT_K6_HYBRID_FINAL",
+      "claim": "Unseen prints, k6/HYBRID_FINAL accuracy, mean of 3 seeds",
+      "value": 0.9504504504504504,
+      "json_key": [
+        "summary",
+        "k6/HYBRID_FINAL",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\serial_split\\beat_resnet.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/beat_resnet.py"
+    },
+    {
+      "claim_id": "C_USERSTUDY_MIN_DZ_105",
+      "claim": "Smallest paired effect dz detectable with 80 % power, n = 105",
+      "value": 0.27596356875215206,
+      "json_key": [
+        "105",
+        "min_dz_80"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\user_study\\power.json",
+      "dataset": "user study design",
+      "split": "design",
+      "sample_definition": "participant",
+      "training_seed": "n/a",
+      "evaluation_seed": "n/a",
+      "metric": "effect_size",
+      "status": "VERIFIED",
+      "script": "scripts/eval/user_study_power.py"
+    },
+    {
       "claim_id": "C_WM_W_DEEP_ACC",
       "claim": "Seed-42 split, W_deep test accuracy",
       "value": 0.9895287958115183,

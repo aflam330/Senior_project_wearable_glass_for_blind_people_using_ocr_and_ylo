@@ -66,3 +66,15 @@ Each row scores a component with a measured number, names the improvement tried,
 | 20 | Whole-note transfer | policy E | AdaBN, CORAL | both worse | no |
 
 Twenty iterations are recorded across the passes. The remaining gains need data: more counterfeit prints and glass-camera photos.
+
+## Master-prompt pass, 2026-09-30
+
+| # | Component | Before | Change | After | Kept |
+|---|---|---|---|---|---|
+| 21 | Baseline fairness | frozen ResNet-50 only | Fine-tuned ResNet-50, 3 seeds, 256-px view cache | 92.0 / 89.9 % on unseen prints | yes (reported baseline) |
+| 22 | End-to-end watermark model | none | Attention fusion over view and watermark tokens | 90.8 / 90.5 % (watermark token +3 points) | reported, not the best |
+| 23 | Uncertainty-weighted ensemble | none | Weights 1 / VAL log-loss | 93.4 / 93.1 % | reported, not the best |
+| 24 | User-study power | approximation | Exact noncentral t | n = 105 detects dz ≥ 0.28 at 80 % | yes |
+| 25 | Print-level uncertainty | not stated | Theorem 16 (m_eff = 23.6) | ±0.28 print-level | yes |
+
+**Why it stops here.** The best method, the watermark hybrid, beats the fine-tuned ResNet-50 by +5.1 points at six views but reaches p < 0.05 in only 3 of 6 per-seed comparisons. Making that robust needs more counterfeit prints, not more modelling on the same 24 effective prints.

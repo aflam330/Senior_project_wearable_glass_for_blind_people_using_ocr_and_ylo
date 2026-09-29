@@ -137,6 +137,16 @@ def main() -> None:
             new.append(claim(f"C_DA_{mth.upper()}_AUC", f"Whole-note domain adaptation {mth}: AUC on counterfeit-set originals", da,
                              ["methods", mth, "auc_cf_originals"], "Counterfeit Currency Image Dataset", "external", "roc_auc",
                              sample="image", script="scripts/eval/domain_adapt_whole.py"))
+    br = R / "serial_split" / "beat_resnet.json"
+    if br.is_file():
+        for key in ("k1/FT_RESNET", "k6/FT_RESNET", "k1/FUSION", "k6/FUSION", "k1/ENSEMBLE", "k6/ENSEMBLE", "k1/HYBRID_FINAL", "k6/HYBRID_FINAL"):
+            new.append(claim(f"C_BEAT_{key.replace('/', '_').upper()}", f"Unseen prints, {key} accuracy, mean of 3 seeds", br,
+                             ["summary", key, "mean"], "JaalTaka (serial-disjoint)", "test", "accuracy", seed="42,43,44",
+                             script="scripts/eval/beat_resnet.py"))
+    pw = R / "user_study" / "power.json"
+    if pw.is_file():
+        new.append(claim("C_USERSTUDY_MIN_DZ_105", "Smallest paired effect dz detectable with 80 % power, n = 105", pw, ["105", "min_dz_80"],
+                         "user study design", "design", "effect_size", seed="n/a", sample="participant", script="scripts/eval/user_study_power.py"))
     hj = R / "watermark" / "hybrid.json"
     if hj.is_file():
         for key in ("W_deep", "S_list", "HYBRID_k1", "HYBRID_k6"):
