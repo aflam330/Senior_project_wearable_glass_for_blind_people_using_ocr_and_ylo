@@ -3,9 +3,10 @@
 The user holds the note up to a light; the camera sees the note back-lit, so the watermark window
 (portrait + denomination electrotype) shows. The note photo is registered to a whole-note front template
 of its denomination (SIFT + RANSAC, as in realtime_bangla_taka_detection/scripts/eval/watermark_features.py),
-the window is cropped and scored by a MobileNetV3-Small (models/watermark_mobilenet.onnx, FP32).
-Measured on JaalTaka back-lit photos of counterfeit prints unseen in training: accuracy 0.919, AUC 0.962,
-1 / 98 genuine called counterfeit (results/watermark/mobilenet.json). NOT validated on the glass camera.
+the window is cropped and scored by a MobileNetV2 (models/watermark_mobilenetv2_int8.onnx, INT8, 2.6 MB;
+same decisions as FP32 on the test crops).
+Measured on JaalTaka back-lit photos of counterfeit prints unseen in training: accuracy 0.929, AUC 0.976,
+2 / 98 genuine called counterfeit (results/watermark/mobilenetv2.json). NOT validated on the glass camera.
 It never says "counterfeit": low scores become "watermark not clear, check by hand".
 """
 from __future__ import annotations
@@ -35,7 +36,9 @@ class WatermarkChecker:
     def __init__(self, model_path: Optional[str] = None, min_inliers: int = 12):
         import onnxruntime as ort
         path = model_path or getattr(config, "WATERMARK_MODEL_PATH", "")
-        self.session = ort.InferenceSession(path, providers=["CPUExecutionProvider"])
+        opts = ort.SessionOptions()
+        opts.log_severity_level = 3  # INT8 graph prints harmless "unused initializer" warnings otherwise
+        self.session = ort.InferenceSession(path, sess_options=opts, providers=["CPUExecutionProvider"])
         self.min_inliers = min_inliers
         self.sift = cv2.SIFT_create(nfeatures=4000)
         self.matcher = cv2.BFMatcher(cv2.NORM_L2)

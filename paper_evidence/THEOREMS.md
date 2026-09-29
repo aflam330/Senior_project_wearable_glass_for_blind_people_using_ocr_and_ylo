@@ -316,3 +316,19 @@ Let detectors D_1..D_m each flag "counterfeit".
 **Use.** For an assistive device, where a false "counterfeit" harms the user, the AND rule (or a learned combination fitted to keep FCR low) is the safe design. The OR rule catches more counterfeits but adds false alarms.
 
 **Measured.** The validation-fitted logistic combination of view 1 and the watermark window has test FCR 1/120 on the seed-42 split and 5/121 on the serial-disjoint split (`hybrid.json`, `serial_split_eval.json`).
+
+## Theorem 15 (prefix-mixture training converges; a standard result applied here)
+
+This is the standard non-convex SGD result (Ghadimi & Lan, 2013), stated for the prefix-mixture objective. It is included for completeness and is **not claimed as new**.
+
+**Setting.** Parameters θ. Mixture risk R_π(θ) = Σ_k π_k E[ℓ(h_θ(X_{P_k}), Y)], bounded below by R_inf. R_π is L-smooth. Each step samples a note and a prefix length k ~ π, giving a stochastic gradient g_t with E[g_t | θ_t] = ∇R_π(θ_t) and E‖g_t − ∇R_π(θ_t)‖² ≤ σ². SGD: θ_{t+1} = θ_t − η g_t, with η = min(1/L, 1/√T).
+
+**Claim.** min_{t<T} E‖∇R_π(θ_t)‖² ≤ (2L (R_π(θ_0) − R_inf) + σ²) / √T for T ≥ L².
+
+**Proof.**
+1. Smoothness gives R_π(θ_{t+1}) ≤ R_π(θ_t) − η⟨∇R_π, g_t⟩ + (L η²/2)‖g_t‖².
+2. Take conditional expectations: E R_π(θ_{t+1}) ≤ E R_π(θ_t) − η(1 − Lη/2) E‖∇R_π(θ_t)‖² + (L η²/2) σ².
+3. With η ≤ 1/L, the factor (1 − Lη/2) ≥ 1/2. Sum over t < T and rearrange: (1/T) Σ E‖∇R_π‖² ≤ 2 (R_π(θ_0) − R_inf)/(ηT) + L η σ².
+4. Setting η = 1/√T gives the display. ∎
+
+**Why it matters here.** Sampling k ~ π per batch is exactly what makes g_t unbiased for R_π, so prefix training converges to a stationary point of the mixture objective at the usual O(1/√T) rate. Fixed-view training converges for R_N only, and Proposition 11 shows this leaves the k < N behaviour unconstrained.

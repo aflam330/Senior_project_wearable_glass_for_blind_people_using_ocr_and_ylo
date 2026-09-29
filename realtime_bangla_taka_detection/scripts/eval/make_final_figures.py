@@ -114,11 +114,13 @@ def fig_jaal():
 
 def fig_unseen_prints():
     """fig16: standard vs serial-disjoint accuracy, network vs network + watermark (all available seeds)."""
-    p = ROOT / "results/watermark/hybrid_serial_split_seeds.json"
+    p = ROOT / "results/watermark/hybrid_final_seeds.json"  # final: watermark model chosen on VAL AUC (MobileNetV2)
     probe = ROOT / "results/watermark/serial_split_eval.json"
     if not p.is_file():
         return
     s = json.loads(p.read_text(encoding="utf-8"))["summary"]
+    for key in s:
+        s[key].setdefault("seeds", [42, 43, 44])
     pr = json.loads(probe.read_text(encoding="utf-8"))["PROBE"]
     labels = ["1 view", "6 views"]
     groups = [("ResNet-50 probe", [pr["k1"]["accuracy"] * 100, pr["k6"]["accuracy"] * 100], [0, 0]),
@@ -132,10 +134,11 @@ def fig_unseen_prints():
         ax.bar(x + (i - 1) * 0.26, v, 0.24, yerr=e, capsize=3, color=COLORS[i], label=name)
     ax.set_xticks(x, labels)
     ax.set_ylim(70, 100)
-    ax.set_ylabel(f"test accuracy, % (unseen counterfeit prints; seeds {s['k1/network']['seeds']})")
-    ax.set_title("Counterfeit prints never seen in training (serial-disjoint split)", fontsize=10, color=INK)
+    ax.set_ylabel("test accuracy, % (222 notes)")
+    ax.set_title("Unseen counterfeit prints (serial-disjoint split; mean ± sd, 3 seeds)", fontsize=10, color=INK)
     style(ax)
-    ax.legend(frameon=False, fontsize=8, loc="lower right")
+    ax.legend(frameon=False, fontsize=8, loc="upper left", ncol=3, bbox_to_anchor=(0, 1.0))
+    ax.set_ylim(70, 102)
     fig.tight_layout()
     fig.savefig(FIG / "fig16_unseen_prints.png", dpi=200)
     plt.close(fig)

@@ -55,3 +55,14 @@ Each row scores a component with a measured number, names the improvement tried,
 | 16 | Watermark crop | contained the serial | box moved, visually checked | no digits | yes |
 
 **Stopped because.** Further gains on unseen prints need more counterfeit prints: the test has about 20. Deploying the watermark needs back-lit photos from the glass camera. Both require data collection.
+
+## Completion pass, 2026-09-30
+
+| # | Component | Before | Change | After | Kept |
+|---|---|---|---|---|---|
+| 17 | Watermark model | ResNet-50 + logistic regression, 88.3 % | Fine-tuned MobileNetV3 / V2; V2 chosen on VAL AUC | 92.9 % (AUC 0.976) | yes |
+| 18 | Hybrid on unseen prints | 93.8 / 94.7 % | Stronger watermark score | 94.4 / 95.0 % (3 seeds) | yes |
+| 19 | Pi watermark model | INT8 broken (3 tries on V3) | MobileNetV2 + static INT8 | 2.6 MB, 100 % the same decisions as FP32 | yes |
+| 20 | Whole-note transfer | policy E | AdaBN, CORAL | both worse | no |
+
+Twenty iterations are recorded across the passes. The remaining gains need data: more counterfeit prints and glass-camera photos.

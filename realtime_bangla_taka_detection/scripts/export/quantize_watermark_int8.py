@@ -43,26 +43,28 @@ class Reader(CalibrationDataReader):
 
 
 def main() -> None:
-    fp32 = M / "watermark_mobilenet.onnx"
+    tag = sys.argv[1] if len(sys.argv) > 1 else "watermark_mobilenet"  # "watermark_mobilenetv2" for the V2 model
+    fp32 = M / f"{tag}.onnx"
     graph = onnx.load(str(fp32)).graph
     convs = [n.name for n in graph.node if n.op_type == "Conv"]
     gemms = [n.name for n in graph.node if n.op_type in ("Gemm", "MatMul")]
     exclude = convs[:1] + gemms[-1:]
-    out = M / "watermark_mobilenet_int8.onnx"
+    out = M / f"{tag}_int8.onnx"
     quantize_static(str(fp32), str(out), Reader(crops("train", 200)), quant_format=QuantFormat.QDQ,
                     per_channel=True, reduce_range=True, activation_type=QuantType.QUInt8, weight_type=QuantType.QInt8,
-                    nodes_to_exclude=exclude, op_types_to_quantize=["Conv"])  # hard-swish / SE stay FP32
+                    nodes_to_exclude=exclude, **({} if tag.endswith("v2") else {"op_types_to_quantize": ["Conv"]}))  # V3: hard-swish / SE stay FP32
     xs = crops("test")
     run = lambda path: np.concatenate([ort.InferenceSession(str(path), providers=["CPUExecutionProvider"]).run(None, {"image": x})[0] for x in xs])
     a, b = run(fp32), run(out)
     pa = np.exp(a - a.max(1, keepdims=True)); pa = pa[:, 1] / pa.sum(1)
     pb = np.exp(b - b.max(1, keepdims=True)); pb = pb[:, 1] / pb.sum(1)
-    res = json.loads((WM / "mobilenet.json").read_text(encoding="utf-8"))
-    res["export"]["watermark_mobilenet_int8.onnx (static, calibrated)"] = {
+    rfile = WM / ("mobilenetv2.json" if tag.endswith("v2") else "mobilenet.json")
+    res = json.loads(rfile.read_text(encoding="utf-8"))
+    res["export"][f"{tag}_int8.onnx (static, calibrated)"] = {
         "same_decision_as_fp32": float(((pa >= 0.5) == (pb >= 0.5)).mean()), "max_abs_prob_diff": float(np.abs(pa - pb).max()),
         "size_mb": round(out.stat().st_size / 1e6, 2), "excluded_nodes": exclude}
     res["export"].pop("watermark_mobilenet_int8.onnx", None)
-    (WM / "mobilenet.json").write_text(json.dumps(res, indent=1), encoding="utf-8")
+    rfile.write_text(json.dumps(res, indent=1), encoding="utf-8")
     print(res["export"])
 
 

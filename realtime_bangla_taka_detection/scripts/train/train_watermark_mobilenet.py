@@ -63,8 +63,14 @@ def main() -> None:
     items = {s: [(n, int(records[n]["label"])) for n in splits[s] if n in ok] for s in ("train", "val", "test")}
     dl = {s: DataLoader(Crops(items[s], TR if s == "train" else EV), batch_size=32, shuffle=(s == "train"), num_workers=0)
           for s in items}
-    m = models.mobilenet_v3_small(weights=models.MobileNet_V3_Small_Weights.IMAGENET1K_V1)
-    m.classifier[3] = nn.Linear(m.classifier[3].in_features, 2)
+    arch = sys.argv[1] if len(sys.argv) > 1 else "v3"  # "v2": MobileNetV2 (ReLU6, quantises better)
+    if arch == "v2":
+        m = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V2)
+        m.classifier[1] = nn.Linear(m.classifier[1].in_features, 2)
+    else:
+        m = models.mobilenet_v3_small(weights=models.MobileNet_V3_Small_Weights.IMAGENET1K_V1)
+        m.classifier[3] = nn.Linear(m.classifier[3].in_features, 2)
+    tag = "watermark_mobilenet" if arch != "v2" else "watermark_mobilenetv2"
     m = m.to(DEV)
     opt = torch.optim.AdamW(m.parameters(), lr=3e-4, weight_decay=1e-4)
     best, hist = (-1, None), []
@@ -90,15 +96,13 @@ def main() -> None:
                     "counterfeit_missed": int((pred & (yt == 0)).sum()), "counterfeit_n": int((yt == 0).sum())}}
     out = ROOT / "models"
     m.eval().cpu()
-    torch.save({"state_dict": m.state_dict(), "arch": "mobilenet_v3_small", "classes": ["counterfeit", "genuine"],
-                "input": "224x224 RGB watermark-window crop, ImageNet normalisation", "val_auc": float(best[0])}, out / "watermark_mobilenet.pt")
-    torch.onnx.export(m, torch.zeros(1, 3, 224, 224), str(out / "watermark_mobilenet.onnx"), input_names=["image"],
+    torch.save({"state_dict": m.state_dict(), "arch": "mobilenet_v2" if arch == "v2" else "mobilenet_v3_small", "classes": ["counterfeit", "genuine"],
+                "input": "224x224 RGB watermark-window crop, ImageNet normalisation", "val_auc": float(best[0])}, out / f"{tag}.pt")
+    torch.onnx.export(m, torch.zeros(1, 3, 224, 224), str(out / f"{tag}.onnx"), input_names=["image"],
                       output_names=["logits"], opset_version=17, dynamic_axes={"image": {0: "b"}, "logits": {0: "b"}}, dynamo=False)
-    from onnxruntime.quantization import QuantType, quantize_dynamic
-    quantize_dynamic(str(out / "watermark_mobilenet.onnx"), str(out / "watermark_mobilenet_int8.onnx"), weight_type=QuantType.QInt8)
     import onnxruntime as ort
     agree = {}
-    for name in ("watermark_mobilenet.onnx", "watermark_mobilenet_int8.onnx"):
+    for name in (f"{tag}.onnx",):
         sess = ort.InferenceSession(str(out / name), providers=["CPUExecutionProvider"])
         ps = []
         for x, _ in dl["test"]:
@@ -109,7 +113,7 @@ def main() -> None:
         agree[name] = {"same_decision_as_pytorch": float(((po >= 0.5) == pred).mean()), "max_abs_prob_diff": float(np.abs(po - pt).max()),
                        "size_mb": round((out / name).stat().st_size / 1e6, 2)}
     res["export"] = agree
-    (WM / "mobilenet.json").write_text(json.dumps(res, indent=1), encoding="utf-8")
+    (WM / ("mobilenet.json" if arch != "v2" else "mobilenetv2.json")).write_text(json.dumps(res, indent=1), encoding="utf-8")
     print(json.dumps({k: res[k] for k in ("test", "export")}, indent=1))
 
 

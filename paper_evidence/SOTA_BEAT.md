@@ -67,3 +67,19 @@ Against PRMVT and the shared-BN prefix network (3 seeds each), 60 paired exact M
 1. **VCDS in joint fusion networks, and its fix.** Fixed-view training collapses at 1 view (71.2 ± 11.4 %); prefix training does not (98.2 ± 0.7 %). Measured in `SAME_ARCH_RESULTS.md`.
 2. **A measured deployment of a JaalTaka-trained checker on whole-note photographs,** with a policy that passed no counterfeit (`JAAL_VERDICT_FIXED.md`).
 3. **Same-split baselines,** which earlier Bangladeshi work does not report.
+
+---
+
+## Literature check, 2026-09-30 (web search; only claims visible in the search results are used)
+
+| Area | What the literature has | Where this project stands | Source |
+|---|---|---|---|
+| Bangladeshi counterfeit detection | CNN classifiers on single splits, e.g. modified AlexNet + SVM; one model reported 85.4 % → 90.03 % after retraining. Security features (watermark, thread) motivate these models but are not evaluated separately | Counterfeit prints unseen in training (serial-disjoint split): prefix network 89.9 %; + watermark window 94.4–95.5 %. No prior work found that reports an unseen-print evaluation | [academia.edu](https://www.academia.edu/116590712/Enhanced_Counterfeit_Detection_of_Bangladesh_Currency_through_Convolutional_Neural_Networks_A_Deep_Learning_Approach), [ResearchGate](https://www.researchgate.net/publication/364609677_A_Deep_Learning_Approach_for_Detecting_Bangladeshi_Counterfeit_Currency), [Springer](https://link.springer.com/chapter/10.1007/978-3-031-19958-5_51) |
+| JaalTaka benchmark | 1,390 notes (802 genuine, 588 counterfeit), six region images per note; counterfeits from the Rapid Action Battalion; Data in Brief, 2025 | The serial audit shows its counterfeits share a few printed serials, so random splits are not print-disjoint (`JAALTAKA_SERIAL_AUDIT.md`) | [PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC12774690/), [Mendeley Data](https://data.mendeley.com/datasets/2m7wk5cy4c/2), [ScienceDirect](https://www.sciencedirect.com/science/article/pii/S235234092501090X) |
+| Taka security features | Portrait watermark with a bright electrotype denomination; a 4 mm security thread | Used: the watermark window is the most transferable cue measured here | [BookMyForex guide](https://www.bookmyforex.com/currency-exchange/counterfeit-detection-guide/bangladesh-taka/) |
+| Missing or variable views in multi-view learning | View dropout is known to make models robust to missing views, and to be able to hurt full-view accuracy; incomplete multi-view learning is an active field | Prefix training is a form of view dropout, so it is **not new as a technique**. New here: the non-identifiability explanation, the finding that the benefit depends on pooling vs concatenation fusion, and the application to authentication | [arXiv 2501.01132](https://arxiv.org/pdf/2501.01132), [arXiv 2303.17117](https://arxiv.org/html/2303.17117v4) |
+
+**Verdict.**
+- **Standard JaalTaka split:** the project ties the best simple baselines.
+- **Unseen counterfeit prints:** it is the strongest measured result found (watermark-aware hybrid). No published number exists on that protocol to beat.
+- **The training fix itself is not a new technique.** Its analysis and the fusion-dependence finding are.

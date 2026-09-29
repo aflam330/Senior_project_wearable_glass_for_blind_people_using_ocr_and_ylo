@@ -72,7 +72,7 @@ JAAL_SAFE_DENOMINATIONS = ("500_taka", "1000_taka")
 # (realtime_bangla_taka_detection/results/jaal_whole/view_geometry.json).
 WATERMARK_CHECK_ENABLED = False  # research feature: needs a back-lit ("hold to the light") photo; not validated on the glass camera
 WATERMARK_MODEL_PATH = os.path.abspath(os.path.join(
-    BASE_DIR, "..", "realtime_bangla_taka_detection", "models", "watermark_mobilenet.onnx"))
+    BASE_DIR, "..", "realtime_bangla_taka_detection", "models", "watermark_mobilenetv2_int8.onnx"))  # MobileNetV2 INT8, chosen on VAL AUC; same decisions as FP32
 WATERMARK_CLEAR_THRESHOLD = 0.5
 JAAL_VIEW_WINDOWS = (
     (0.0, 0.0, 0.4758, 1.0),

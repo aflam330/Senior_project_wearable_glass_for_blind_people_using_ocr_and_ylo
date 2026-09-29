@@ -178,3 +178,15 @@ PI 5 / USER STUDY:      READY_FOR_DEVICE (PI5_READY.md, USER_STUDY_READY.md, SUS
 TEST LEAKAGE:           none: every threshold, C and combiner fitted on TRAIN / VAL; serial-disjoint rule written before training
 CLAIMS:                 PASS 234, value-checked 205
 ```
+
+## Audit addendum, 2026-09-30 (completion pass)
+
+```
+FINAL HYBRID (unseen prints): 94.4 +/- 0.5 % (1 view), 95.0 +/- 0.0 % (6 views), 3 seeds; watermark model chosen on VAL AUC
+WATERMARK MODEL:              MobileNetV2 92.9 % / AUC 0.976; INT8 2.6 MB, 100 % the same decisions as FP32
+REJECTION:                    answers 83-96 %, about 3 % wrong among answered (VAL level 1 % did not hold): reported as a small help
+DOMAIN ADAPTATION (AdaBN, CORAL): both worse than no adaptation, not used; nine whole-note approaches measured in total
+LITERATURE:                   view dropout is known; unseen-print protocol not found in prior Bangladeshi work (SOTA_BEAT.md)
+THEOREM 15:                   standard SGD convergence for the mixture objective, labelled as standard
+CLAIMS:                       PASS 246, value-checked 217
+```

@@ -118,6 +118,25 @@ def main() -> None:
                          "JaalTaka (serial-disjoint)", "test", "accuracy", script="scripts/train/train_watermark_mobilenet.py"))
         new.append(claim("C_WM_MOBILENET_AUC", "Watermark MobileNetV3-Small, unseen-print test AUC", mb, ["test", "auc"],
                          "JaalTaka (serial-disjoint)", "test", "roc_auc", script="scripts/train/train_watermark_mobilenet.py"))
+    hf = R / "watermark" / "hybrid_final_seeds.json"
+    if hf.is_file():
+        for key in ("k1/hybrid", "k6/hybrid"):
+            new.append(claim(f"C_FINAL_HYBRID_{key.replace('/', '_').upper()}", f"Final hybrid (MobileNetV2 watermark, chosen on VAL), unseen prints, {key}, mean of 3 seeds",
+                             hf, ["summary", key, "mean"], "JaalTaka (serial-disjoint)", "test", "accuracy", seed="42,43,44",
+                             script="scripts/eval/hybrid_v2_serial_split.py"))
+    m2 = R / "watermark" / "mobilenetv2.json"
+    if m2.is_file():
+        new.append(claim("C_WM_MOBILENETV2_ACC", "Watermark MobileNetV2 (chosen on VAL AUC), unseen-print test accuracy", m2, ["test", "accuracy"],
+                         "JaalTaka (serial-disjoint)", "test", "accuracy", script="scripts/train/train_watermark_mobilenet.py"))
+        new.append(claim("C_WM_MOBILENETV2_INT8_AGREE", "Watermark MobileNetV2 INT8: share of test decisions equal to FP32", m2,
+                         ["export", "watermark_mobilenetv2_int8.onnx (static, calibrated)", "same_decision_as_fp32"], "JaalTaka (serial-disjoint)",
+                         "test", "agreement", script="scripts/export/quantize_watermark_int8.py"))
+    da = R / "jaal_whole" / "domain_adapt.json"
+    if da.is_file():
+        for mth in ("S4_adabn", "R2_coral"):
+            new.append(claim(f"C_DA_{mth.upper()}_AUC", f"Whole-note domain adaptation {mth}: AUC on counterfeit-set originals", da,
+                             ["methods", mth, "auc_cf_originals"], "Counterfeit Currency Image Dataset", "external", "roc_auc",
+                             sample="image", script="scripts/eval/domain_adapt_whole.py"))
     hj = R / "watermark" / "hybrid.json"
     if hj.is_file():
         for key in ("W_deep", "S_list", "HYBRID_k1", "HYBRID_k6"):

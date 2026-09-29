@@ -83,3 +83,12 @@ A main-track reviewer weighs scale and generality. No additional analysis on the
 3. Q1 journal with the full study once the user study is done.
 4. ASSETS with the user study.
 5. NeurIPS D&B if you add glass-camera counterfeit photos and release the serial-disjoint split.
+
+## Final verdict, 2026-09-30 (completion pass)
+
+**Changes since the last verdict.**
+- Unseen-print accuracy with the watermark: 94.4 / 95.0 % over three seeds, with a 2.6 MB INT8 model for the device.
+- Nine whole-note approaches measured.
+- Literature check done: view dropout is known, and the unseen-print protocol is new for Bangladeshi Taka.
+
+The venue ranges above do not change materially: the evidence base is still one counterfeit dataset. **50–60 % at an A* main track is not a realistic estimate for this work.** The realistic top targets are an A* workshop now, a Q1 journal next, and ASSETS or NeurIPS D&B once the user study and glass-camera counterfeit photos exist.

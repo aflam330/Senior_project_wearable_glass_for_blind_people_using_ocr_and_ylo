@@ -1,0 +1,85 @@
+{
+ "split": "serial_split",
+ "n": {
+  "train": 867,
+  "val": 197,
+  "test": 197
+ },
+ "history": [
+  {
+   "epoch": 1,
+   "val_auc": 0.9956656346749226,
+   "val_acc": 0.9289340101522843
+  },
+  {
+   "epoch": 2,
+   "val_auc": 0.9930856553147575,
+   "val_acc": 0.9289340101522843
+  },
+  {
+   "epoch": 3,
+   "val_auc": 0.9828689370485035,
+   "val_acc": 0.9289340101522843
+  },
+  {
+   "epoch": 4,
+   "val_auc": 0.9844169246646026,
+   "val_acc": 0.9289340101522843
+  },
+  {
+   "epoch": 5,
+   "val_auc": 0.9954592363261094,
+   "val_acc": 0.9289340101522843
+  },
+  {
+   "epoch": 6,
+   "val_auc": 0.9727554179566564,
+   "val_acc": 0.9289340101522843
+  },
+  {
+   "epoch": 7,
+   "val_auc": 0.9745098039215686,
+   "val_acc": 0.9238578680203046
+  },
+  {
+   "epoch": 8,
+   "val_auc": 0.9698658410732715,
+   "val_acc": 0.9289340101522843
+  },
+  {
+   "epoch": 9,
+   "val_auc": 0.9749226006191951,
+   "val_acc": 0.9289340101522843
+  },
+  {
+   "epoch": 10,
+   "val_auc": 0.9894736842105263,
+   "val_acc": 0.9441624365482234
+  }
+ ],
+ "best_val_auc": 0.9956656346749226,
+ "test": {
+  "accuracy": 0.9289340101522843,
+  "auc": 0.9759843331271902,
+  "false_counterfeit_on_genuine": 2,
+  "genuine_n": 98,
+  "counterfeit_missed": 12,
+  "counterfeit_n": 99
+ },
+ "export": {
+  "watermark_mobilenetv2.onnx": {
+   "same_decision_as_pytorch": 1.0,
+   "max_abs_prob_diff": 0.0018932819366455078,
+   "size_mb": 8.88
+  },
+  "watermark_mobilenetv2_int8.onnx (static, calibrated)": {
+   "same_decision_as_fp32": 1.0,
+   "max_abs_prob_diff": 0.11663584411144257,
+   "size_mb": 2.62,
+   "excluded_nodes": [
+    "/features/features.0/features.0.0/Conv",
+    "/classifier/classifier.1/Gemm"
+   ]
+  }
+ }
+}

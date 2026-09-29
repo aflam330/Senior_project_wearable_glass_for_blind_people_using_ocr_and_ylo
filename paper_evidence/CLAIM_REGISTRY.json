@@ -3899,6 +3899,119 @@
       "script": "scripts/train/train_watermark_mobilenet.py"
     },
     {
+      "claim_id": "C_FINAL_HYBRID_K1_HYBRID",
+      "claim": "Final hybrid (MobileNetV2 watermark, chosen on VAL), unseen prints, k1/hybrid, mean of 3 seeds",
+      "value": 0.9444444444444445,
+      "json_key": [
+        "summary",
+        "k1/hybrid",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid_final_seeds.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/hybrid_v2_serial_split.py"
+    },
+    {
+      "claim_id": "C_FINAL_HYBRID_K6_HYBRID",
+      "claim": "Final hybrid (MobileNetV2 watermark, chosen on VAL), unseen prints, k6/hybrid, mean of 3 seeds",
+      "value": 0.9504504504504504,
+      "json_key": [
+        "summary",
+        "k6/hybrid",
+        "mean"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\hybrid_final_seeds.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42,43,44",
+      "evaluation_seed": "42,43,44",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/eval/hybrid_v2_serial_split.py"
+    },
+    {
+      "claim_id": "C_WM_MOBILENETV2_ACC",
+      "claim": "Watermark MobileNetV2 (chosen on VAL AUC), unseen-print test accuracy",
+      "value": 0.9289340101522843,
+      "json_key": [
+        "test",
+        "accuracy"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\mobilenetv2.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "accuracy",
+      "status": "VERIFIED",
+      "script": "scripts/train/train_watermark_mobilenet.py"
+    },
+    {
+      "claim_id": "C_WM_MOBILENETV2_INT8_AGREE",
+      "claim": "Watermark MobileNetV2 INT8: share of test decisions equal to FP32",
+      "value": 1.0,
+      "json_key": [
+        "export",
+        "watermark_mobilenetv2_int8.onnx (static, calibrated)",
+        "same_decision_as_fp32"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\watermark\\mobilenetv2.json",
+      "dataset": "JaalTaka (serial-disjoint)",
+      "split": "test",
+      "sample_definition": "physical_note",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "agreement",
+      "status": "VERIFIED",
+      "script": "scripts/export/quantize_watermark_int8.py"
+    },
+    {
+      "claim_id": "C_DA_S4_ADABN_AUC",
+      "claim": "Whole-note domain adaptation S4_adabn: AUC on counterfeit-set originals",
+      "value": 0.6410604732690622,
+      "json_key": [
+        "methods",
+        "S4_adabn",
+        "auc_cf_originals"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\domain_adapt.json",
+      "dataset": "Counterfeit Currency Image Dataset",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "roc_auc",
+      "status": "VERIFIED",
+      "script": "scripts/eval/domain_adapt_whole.py"
+    },
+    {
+      "claim_id": "C_DA_R2_CORAL_AUC",
+      "claim": "Whole-note domain adaptation R2_coral: AUC on counterfeit-set originals",
+      "value": 0.915644171779141,
+      "json_key": [
+        "methods",
+        "R2_coral",
+        "auc_cf_originals"
+      ],
+      "source_artifact": "realtime_bangla_taka_detection\\results\\jaal_whole\\domain_adapt.json",
+      "dataset": "Counterfeit Currency Image Dataset",
+      "split": "external",
+      "sample_definition": "image",
+      "training_seed": "42",
+      "evaluation_seed": "42",
+      "metric": "roc_auc",
+      "status": "VERIFIED",
+      "script": "scripts/eval/domain_adapt_whole.py"
+    },
+    {
       "claim_id": "C_WM_W_DEEP_ACC",
       "claim": "Seed-42 split, W_deep test accuracy",
       "value": 0.9895287958115183,

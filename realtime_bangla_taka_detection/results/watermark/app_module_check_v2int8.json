@@ -1,0 +1,10 @@
+{
+ "model": "watermark_mobilenetv2_int8.onnx",
+ "notes": 222,
+ "window_found": 196,
+ "accuracy": 0.9285714285714286,
+ "genuine_called_not_clear": 3,
+ "genuine_n": 98,
+ "counterfeit_called_clear": 11,
+ "counterfeit_n": 98
+}

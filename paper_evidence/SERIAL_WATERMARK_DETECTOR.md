@@ -107,3 +107,40 @@ MobileNetV3-Small fine-tuned on the window crops of the serial-disjoint TRAIN no
 **Export.** FP32 ONNX, 6.1 MB, gives the same decisions as PyTorch on 100 % of test crops. Three INT8 attempts all changed too many decisions and are not used: dynamic 44.7 %, static QDQ 53.3 %, Conv-only 62.9 % agreement (`Unused/README.md`).
 
 **In the app.** `savior_glass/modes/watermark_check.py`, behind `WATERMARK_CHECK_ENABLED = False`. It says "জলছাপ স্পষ্ট" (watermark clear) or "জলছাপ স্পষ্ট নয়, আসল কিনা হাতে যাচাই করুন" (not clear, check by hand), never "counterfeit". Running the app module on the unseen-print test photos: window found on 196 / 222; accuracy 93.4 %; 1 / 98 genuine "not clear"; 12 / 98 counterfeit "clear" (`results/watermark/app_module_check.json`). Not validated on the glass camera.
+
+## Final hybrid, watermark model chosen on validation (added 2026-09-30, later)
+
+**Watermark models on the serial-disjoint split** (`results/watermark/mobilenet.json`, `mobilenetv2.json`):
+
+| Model | VAL AUC (selection) | TEST accuracy | TEST AUC | Genuine called counterfeit | Counterfeits missed |
+|---|---:|---:|---:|---:|---:|
+| MobileNetV3-Small | 0.9943 | 91.9 % | 0.962 | 1 / 98 | 15 / 99 |
+| **MobileNetV2 (chosen: higher VAL AUC)** | **0.9957** | **92.9 %** | **0.976** | 2 / 98 | 12 / 99 |
+
+**Final hybrid**: prefix network plus the chosen MobileNetV2 watermark score plus a missing flag, fitted on VAL, three seeds (`results/watermark/hybrid_final_seeds.json`).
+
+| Unseen prints, 222 notes | 1 view | 6 views |
+|---|---:|---:|
+| Network alone | 89.9 ± 0.7 % | 89.3 ± 1.3 % |
+| **Final hybrid (V2 watermark)** | **94.4 ± 0.5 %** | **95.0 ± 0.0 %** |
+| Genuine called counterfeit (per seed, of 121) | 6, 6, 4 | 4, 4, 4 (3.3 %) |
+| Counterfeits missed (per seed, of 101) | 7, 7, 7 | 7, 7, 7 |
+| Exact McNemar vs network (per seed) | p = 0.064, 0.019, 0.021 | p = 0.0009, 0.013, 0.0074 |
+
+- **The non-selected V3 hybrid scored higher on test:** 95.5 ± 0.5 / 96.1 ± 0.3 % (`hybrid_v2_seeds.json`). It is reported for completeness and not used, because the choice was made on validation AUC before the V2 hybrid's test scores were read.
+- **Six-view hybrid:** genuine false alarms 3.3 % on every seed, under the 5 % target.
+
+**Rejection when uncertain.** Answer only if the hybrid's confidence is at or above the smallest threshold whose VAL error among answered notes is ≤ 1 %.
+- TEST answered 83–96 % of notes.
+- 5–8 answered notes per seed were still wrong (about 3 %), so the 1 % validation level did not hold on unseen prints.
+- Rejection is therefore reported as a small help, not a guarantee.
+
+**Device model.** MobileNetV2, static INT8 (calibrated on 200 TRAIN crops; first convolution and classifier kept in FP32): 2.6 MB, with **100 % the same test decisions as FP32** (`mobilenetv2.json`).
+
+**App module check with the INT8 model** (`app_module_check_v2int8.json`):
+- window found on 196 / 222 notes;
+- accuracy 92.9 %;
+- 3 / 98 genuine notes "not clear";
+- 11 / 98 counterfeits "clear".
+
+The app (`savior_glass/config.py`) now points at this model; `WATERMARK_CHECK_ENABLED` stays False until it is tested with the glass camera.

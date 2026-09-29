@@ -18,7 +18,7 @@ Record the output in `PI5_RESULTS.md`. Its table lists median / P95 latency for 
 |---|---|---:|---|
 | Taka detector, INT8 ONNX | `realtime_bangla_taka_detection/models/best_int8.onnx` | 18 MB | 200 / 200 correct on the check set (`Unused/README.md`) |
 | PRMVT (safe jaal policy, 4 cut views) | `results/qduig/prefix_ft/seed42/checkpoint.pt` | 16.6 MB | `benchmark_pi5.py` times PRMVT at 1–6 views, which covers the 4-view check |
-| Watermark window check (research) | ResNet-50 + logistic head (`scripts/eval/watermark_hybrid.py`) | ≈ 100 MB | Needs a back-lit photo ("hold the note up to the light"). Not yet part of the app. On the Pi, a MobileNet-sized backbone would be the practical choice; it has not been trained |
+| Watermark window check | `realtime_bangla_taka_detection/models/watermark_mobilenetv2_int8.onnx` | 2.6 MB | MobileNetV2 static INT8; 100 % the same test decisions as FP32. In the app behind `WATERMARK_CHECK_ENABLED` (off). Needs a back-lit photo ("hold the note up to the light"). Time it on the Pi together with the SIFT registration step |
 | Serial OCR | EasyOCR bn + en | large | Research only. Its false-match rate on real photos is in `SERIAL_WATERMARK_DETECTOR.md` |
 
 ## Pi-specific checks to add when running

@@ -1,0 +1,37 @@
+{
+ "adaptation_crops": 88,
+ "methods": {
+  "S4": {
+   "auc_cf_originals": 0.80977212971078,
+   "cf_counterfeit_passed_at_0.5": "15/20",
+   "cf_genuine_called_counterfeit": 0.04557405784399649,
+   "bm_genuine_called_counterfeit": 0.43416370106761565,
+   "bt_genuine_called_counterfeit": 0.601089588377724,
+   "success_rule_met": false
+  },
+  "S4_adabn": {
+   "auc_cf_originals": 0.6410604732690622,
+   "cf_counterfeit_passed_at_0.5": "11/20",
+   "cf_genuine_called_counterfeit": 0.2979842243645925,
+   "bm_genuine_called_counterfeit": 0.33807829181494664,
+   "bt_genuine_called_counterfeit": 0.7221549636803875,
+   "success_rule_met": false
+  },
+  "R2": {
+   "auc_cf_originals": 0.9608676599474145,
+   "cf_counterfeit_passed_at_0.5": "7/20",
+   "cf_genuine_called_counterfeit": 0.017528483786152498,
+   "bm_genuine_called_counterfeit": 0.12811387900355872,
+   "bt_genuine_called_counterfeit": 0.1652542372881356,
+   "success_rule_met": false
+  },
+  "R2_coral": {
+   "auc_cf_originals": 0.915644171779141,
+   "cf_counterfeit_passed_at_0.5": "2/20",
+   "cf_genuine_called_counterfeit": 0.2287467134092901,
+   "bm_genuine_called_counterfeit": 0.4555160142348754,
+   "bt_genuine_called_counterfeit": 0.7415254237288136,
+   "success_rule_met": false
+  }
+ }
+}

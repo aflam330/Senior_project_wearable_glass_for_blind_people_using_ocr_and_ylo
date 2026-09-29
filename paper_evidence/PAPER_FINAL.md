@@ -167,7 +167,11 @@ These probes score every view alone, so they cannot suffer VCDS. On this test se
 
 Adding the watermark fixes 19 notes and breaks 2 (exact McNemar p = 0.0002). On the standard split, the same combination reaches 99.0 %.
 
-**Over three seeds** of the serial-disjoint network, the watermark raises unseen-print accuracy from 89.9 ± 0.7 % to 93.8 ± 1.0 % at one view, and from 89.3 ± 1.3 % to 94.7 ± 0.9 % at six views. It helps in all six seed-and-view comparisons, significantly in four. Genuine false alarms stay at or below 5 / 121 at six views on every seed. A device-sized MobileNetV3-Small watermark classifier (6.1 MB ONNX) reaches 91.9 % (AUC 0.962) on its own (Figure 16, `SERIAL_WATERMARK_DETECTOR.md`).
+**Over three seeds**, with the watermark model chosen by validation AUC (a MobileNetV2 fine-tuned on window crops: 92.9 %, AUC 0.976 on its own), the hybrid raises unseen-print accuracy:
+- from 89.9 ± 0.7 % to **94.4 ± 0.5 %** at one view;
+- from 89.3 ± 1.3 % to **95.0 ± 0.0 %** at six views.
+
+At six views it is significant on every seed (exact McNemar p ≤ 0.013), and genuine false alarms are 4 / 121 (3.3 %) on each. A MobileNetV3 variant not selected on validation scored 95.5 / 96.1 % and is reported separately. The watermark model runs as a 2.6 MB INT8 ONNX with the same decisions as FP32 (Figure 16, `SERIAL_WATERMARK_DETECTOR.md`).
 
 **Evaluation over every note.** Five-fold cross-validation over all 1,390 notes gives 98.3 % at one view with note folds and 95.8 % with serial-grouped folds (`EXPANDED_TEST.md`).
 
