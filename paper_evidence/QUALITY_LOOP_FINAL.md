@@ -77,4 +77,13 @@ Twenty iterations are recorded across the passes. The remaining gains need data:
 | 24 | User-study power | approximation | Exact noncentral t | n = 105 detects dz ≥ 0.28 at 80 % | yes |
 | 25 | Print-level uncertainty | not stated | Theorem 16 (m_eff = 23.6) | ±0.28 print-level | yes |
 
-**Why it stops here.** The best method, the watermark hybrid, beats the fine-tuned ResNet-50 by +5.1 points at six views but reaches p < 0.05 in only 3 of 6 per-seed comparisons. Making that robust needs more counterfeit prints, not more modelling on the same 24 effective prints.
+**Why it stops here.** The best method, the watermark hybrid, beats the quarter-resolution fine-tuned ResNet-50 by +5.1 points at six views but reaches p < 0.05 in only 3 of 6 per-seed comparisons. Making that robust needs more counterfeit prints, not more modelling on the same 24 effective prints.
+
+## Cache fix, 2026-09-30
+
+| # | Component | Before | Change | After | Kept |
+|---|---|---|---|---|---|
+| 26 | Fine-tuned ResNet-50 image input | Quarter-decoded JPEG cache, 92.0 / 89.9 % | Full JPEG resized to 256, then 224; epoch still chosen on validation | 94.9 ± 1.8 / 94.4 ± 2.6 % | yes, as the image baseline |
+| 27 | Hybrid plus that fine-tune | Hybrid 94.4 / 95.0 % | Validation-fitted four-feature combiner | 94.9 / 94.6 %; six-view McNemar not significant | no; hybrid alone stays the six-view result |
+
+The six-view watermark hybrid (95.0 ± 0.0 %) is still ahead of the repaired fine-tune (94.4 ± 2.6 %), and the difference is not significant. Further gains need more unseen prints.
