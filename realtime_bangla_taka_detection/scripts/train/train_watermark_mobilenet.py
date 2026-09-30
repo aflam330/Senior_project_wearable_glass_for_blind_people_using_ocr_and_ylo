@@ -57,13 +57,19 @@ def scores(model, loader):
 
 
 def main() -> None:
-    torch.manual_seed(0)
+    global WM
+    arch = sys.argv[1] if len(sys.argv) > 1 else "v3"  # "v2": MobileNetV2 (ReLU6, quantises better)
+    full = len(sys.argv) > 2 and sys.argv[2] == "fullres"
+    seed = int(sys.argv[3]) if len(sys.argv) > 3 else 0
+    if full:
+        WM = ROOT / "results" / "watermark_fullres"
+    torch.manual_seed(seed)
+    np.random.seed(seed)
     splits, records = load_splits(ROOT / "results" / "serial_split")
     ok = {r["note_id"] for r in json.loads((WM / "features.json").read_text(encoding="utf-8")) if r["ok"]}
     items = {s: [(n, int(records[n]["label"])) for n in splits[s] if n in ok] for s in ("train", "val", "test")}
     dl = {s: DataLoader(Crops(items[s], TR if s == "train" else EV), batch_size=32, shuffle=(s == "train"), num_workers=0)
           for s in items}
-    arch = sys.argv[1] if len(sys.argv) > 1 else "v3"  # "v2": MobileNetV2 (ReLU6, quantises better)
     if arch == "v2":
         m = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V2)
         m.classifier[1] = nn.Linear(m.classifier[1].in_features, 2)
@@ -71,6 +77,10 @@ def main() -> None:
         m = models.mobilenet_v3_small(weights=models.MobileNet_V3_Small_Weights.IMAGENET1K_V1)
         m.classifier[3] = nn.Linear(m.classifier[3].in_features, 2)
     tag = "watermark_mobilenet" if arch != "v2" else "watermark_mobilenetv2"
+    json_name = "mobilenet.json" if arch != "v2" else "mobilenetv2.json"
+    if full:
+        tag = f"{tag}_fullres_seed{seed}"
+        json_name = f"mobilenetv2_seed{seed}.json"
     m = m.to(DEV)
     opt = torch.optim.AdamW(m.parameters(), lr=3e-4, weight_decay=1e-4)
     best, hist = (-1, None), []
@@ -90,7 +100,8 @@ def main() -> None:
     m.load_state_dict(best[1])
     pt, yt = scores(m, dl["test"])
     pred = pt >= 0.5
-    res = {"split": "serial_split", "n": {s: len(v) for s, v in items.items()}, "history": hist, "best_val_auc": float(best[0]),
+    res = {"split": "serial_split", "seed": seed, "crops": str(WM), "n": {s: len(v) for s, v in items.items()}, "history": hist, "best_val_auc": float(best[0]),
+           "test_note_ids": [n for n, _ in items["test"]], "test_probs": np.round(pt, 6).tolist(),
            "test": {"accuracy": float((pred == (yt == 1)).mean()), "auc": float(roc_auc_score(yt, pt)),
                     "false_counterfeit_on_genuine": int((~pred & (yt == 1)).sum()), "genuine_n": int((yt == 1).sum()),
                     "counterfeit_missed": int((pred & (yt == 0)).sum()), "counterfeit_n": int((yt == 0).sum())}}
@@ -98,22 +109,26 @@ def main() -> None:
     m.eval().cpu()
     torch.save({"state_dict": m.state_dict(), "arch": "mobilenet_v2" if arch == "v2" else "mobilenet_v3_small", "classes": ["counterfeit", "genuine"],
                 "input": "224x224 RGB watermark-window crop, ImageNet normalisation", "val_auc": float(best[0])}, out / f"{tag}.pt")
-    torch.onnx.export(m, torch.zeros(1, 3, 224, 224), str(out / f"{tag}.onnx"), input_names=["image"],
-                      output_names=["logits"], opset_version=17, dynamic_axes={"image": {0: "b"}, "logits": {0: "b"}}, dynamo=False)
-    import onnxruntime as ort
-    agree = {}
-    for name in (f"{tag}.onnx",):
-        sess = ort.InferenceSession(str(out / name), providers=["CPUExecutionProvider"])
-        ps = []
-        for x, _ in dl["test"]:
-            lo = sess.run(None, {"image": x.numpy()})[0]
-            e = np.exp(lo - lo.max(1, keepdims=True))
-            ps.append(e[:, 1] / e.sum(1))
-        po = np.concatenate(ps)
-        agree[name] = {"same_decision_as_pytorch": float(((po >= 0.5) == pred).mean()), "max_abs_prob_diff": float(np.abs(po - pt).max()),
-                       "size_mb": round((out / name).stat().st_size / 1e6, 2)}
-    res["export"] = agree
-    (WM / ("mobilenet.json" if arch != "v2" else "mobilenetv2.json")).write_text(json.dumps(res, indent=1), encoding="utf-8")
+    (WM / json_name).write_text(json.dumps(res, indent=1), encoding="utf-8")
+    try:
+        torch.onnx.export(m, torch.zeros(1, 3, 224, 224), str(out / f"{tag}.onnx"), input_names=["image"],
+                          output_names=["logits"], opset_version=17, dynamic_axes={"image": {0: "b"}, "logits": {0: "b"}}, dynamo=False)
+        import onnxruntime as ort
+        agree = {}
+        for name in (f"{tag}.onnx",):
+            sess = ort.InferenceSession(str(out / name), providers=["CPUExecutionProvider"])
+            ps = []
+            for x, _ in dl["test"]:
+                lo = sess.run(None, {"image": x.numpy()})[0]
+                e = np.exp(lo - lo.max(1, keepdims=True))
+                ps.append(e[:, 1] / e.sum(1))
+            po = np.concatenate(ps)
+            agree[name] = {"same_decision_as_pytorch": float(((po >= 0.5) == pred).mean()), "max_abs_prob_diff": float(np.abs(po - pt).max()),
+                           "size_mb": round((out / name).stat().st_size / 1e6, 2)}
+        res["export"] = agree
+    except Exception as exc:
+        res["export"] = {"error": str(exc)}
+    (WM / json_name).write_text(json.dumps(res, indent=1), encoding="utf-8")
     print(json.dumps({k: res[k] for k in ("test", "export")}, indent=1))
 
 

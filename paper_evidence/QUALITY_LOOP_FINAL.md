@@ -87,3 +87,21 @@ Twenty iterations are recorded across the passes. The remaining gains need data:
 | 27 | Hybrid plus that fine-tune | Hybrid 94.4 / 95.0 % | Validation-fitted four-feature combiner | 94.9 / 94.6 %; six-view McNemar not significant | no; hybrid alone stays the six-view result |
 
 The six-view watermark hybrid (95.0 ± 0.0 %) is still ahead of the repaired fine-tune (94.4 ± 2.6 %), and the difference is not significant. Further gains need more unseen prints.
+
+## Pass on 2026-09-30, without new counterfeit photos
+
+| # | Component | Change | Result | Kept |
+|---|---|---|---|---|
+| 28 | Which models the quarter-decode touched | Read the loaders | Only the ResNet fine-tune. Prefix network and watermark crops use other paths | yes, `DATA_PIPELINE_BUG.md` |
+| 29 | Synthetic counterfeits from genuine notes | Not built | Stripping security features is not a dataset, and the external sets have no counterfeit labels | no images written |
+| 30 | +5 points over the full-resolution fine-tune | Re-read the hybrid and the four-feature combiner | Not met. Six-view gap about 0.5 points, not significant | hybrid unchanged |
+
+Stopped. Another architecture scored on this same test would be a test-set choice. New prints are not available.
+
+## Watermark full decode, 2026-09-30
+
+| # | Component | Change | Result | Kept |
+|---|---|---|---|---|
+| 31 | Watermark crops | Full JPEG decode, same 700 px registration width, MobileNetV2 seeds 42–44 | 90.5 ± 1.2 % on a slightly different registered set, versus 92.9 % for the published half-decode model | no; published model stays |
+
+The prefix network already reads a full decode. It was not retrained. Synthetic counterfeit images were not generated.

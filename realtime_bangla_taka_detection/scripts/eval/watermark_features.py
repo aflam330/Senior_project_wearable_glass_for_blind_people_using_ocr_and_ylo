@@ -31,9 +31,18 @@ WM_BOX = (0.70, 0.33, 0.93, 0.85)  # blank oval window; starts below the upper-r
 MIN_INLIERS_BACKLIT = 12  # back-lit views give fewer SIFT matches; window coverage still checked
 
 
+def _boot(out_dir):
+    sw._init()
+    global OUT
+    OUT = Path(out_dir)
+
+
 def feats(item):
-    nid, path, label, split, denom = item
-    img = cv2.imread(path, cv2.IMREAD_REDUCED_COLOR_2)
+    nid, path, label, split, denom = item[:5]
+    full = bool(item[5]) if len(item) > 5 else False
+    # Default keeps the published half-size decode. full=True decodes the JPEG
+    # at full size, then scales to the same 700 px width used for registration.
+    img = cv2.imread(path, cv2.IMREAD_COLOR if full else cv2.IMREAD_REDUCED_COLOR_2)
     s = 700 / img.shape[1]
     col = cv2.resize(img, None, fx=s, fy=s, interpolation=cv2.INTER_AREA)
     gray = cv2.cvtColor(col, cv2.COLOR_BGR2GRAY)
@@ -64,17 +73,27 @@ def feats(item):
 
 
 def main() -> None:
+    global OUT
     from roboeye.camva.notes import SPLIT_DIR, load_splits
+    full = len(sys.argv) > 1 and sys.argv[1] == "full"
+    if full:
+        OUT = ROOT / "results" / "watermark_fullres"
     (OUT / "crops").mkdir(parents=True, exist_ok=True)
     splits, records = load_splits(SPLIT_DIR)
     synth = {r["note_id"]: r for r in json.loads((ROOT / "results/jaal_whole/synth_index.json").read_text(encoding="utf-8"))["notes"]}
-    limit = int(sys.argv[1]) if len(sys.argv) > 1 else None
-    items = [(n, records[n]["view_paths"][5], int(records[n]["label"]), s, synth.get(n, {}).get("denom"))
+    limit = None
+    if len(sys.argv) > 1 and sys.argv[1] != "full":
+        limit = int(sys.argv[1])
+    elif len(sys.argv) > 2:
+        limit = int(sys.argv[2])
+    items = [(n, records[n]["view_paths"][5], int(records[n]["label"]), s, synth.get(n, {}).get("denom"), full)
              for s in ("train", "val", "test") for n in splits[s]][:limit]
-    with ProcessPoolExecutor(max_workers=4, initializer=sw._init) as ex:
+    boot = _boot if full else sw._init
+    args = (str(OUT),) if full else ()
+    with ProcessPoolExecutor(max_workers=4, initializer=boot, initargs=args) as ex:
         rows = list(ex.map(feats, items, chunksize=4))
     (OUT / "features.json").write_text(json.dumps(rows, indent=0), encoding="utf-8")
-    print("ok", sum(r["ok"] for r in rows), "of", len(rows))
+    print("decode", "full" if full else "half", "ok", sum(r["ok"] for r in rows), "of", len(rows), "out", OUT)
 
 
 if __name__ == "__main__":

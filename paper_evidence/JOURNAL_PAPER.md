@@ -2,6 +2,10 @@
 
 *Journal draft (target: IEEE Access, Pattern Recognition Letters), 2026-09-30. Numbers from saved result files; each section names them. Authors to be added. The shorter conference version is `PAPER_FINAL.md`; the focused workshop version is `WORKSHOP_PAPER.md`.*
 
+## Correction after the full-resolution fine-tune (2026-09-30)
+
+The 89.9 % unseen-print figure in the abstract is the prefix network, not a fine-tuned ResNet-50. A fine-tune that was trained on quarter-decoded JPEGs scored 92.0 / 89.9 %. After that cache bug was fixed, the same recipe scores **94.9 ± 1.8 % / 94.4 ± 2.6 %**. The watermark hybrid remains **94.4 ± 0.5 % / 95.0 ± 0.0 %**. The hybrid does not beat the repaired fine-tune by a significant margin. Detail: `DATA_PIPELINE_BUG.md`.
+
 ## Abstract
 
 We study counterfeit recognition for an offline assistive glass that reads Bangladeshi Taka to blind users.
