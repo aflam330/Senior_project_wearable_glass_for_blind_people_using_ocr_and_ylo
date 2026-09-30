@@ -113,3 +113,13 @@ The prefix network already reads a full decode. It was not retrained. Synthetic 
 | 32 | Watermark algorithm | Genuine-only denomination portrait, residual stream, three seeds, epoch on validation AUC | 91.5 ± 0.3 % versus 92.9 % for published MobileNetV2; McNemar p = 0.375, 0.688, 0.375 | no, as the cited watermark model; yes, as the interpretable comparator (`WATERMARK_DMWR.md`) |
 | 33 | Watermark ensemble | Mean of the published MobileNetV2 and three new seeds; threshold maximises validation accuracy | 93.4 % at threshold 0.924, versus 92.9 % published. One note. McNemar p = 1.0. At threshold 0.5 the ensemble is 92.4 % | yes, as a thresholded ensemble (`WATERMARK_ENSEMBLE.md`); the paired test is not significant |
 | 34 | Ten-model watermark search, winner by validation AUC, then one hybrid refit | EfficientNet-B0 wins validation. Test 91.2 ± 1.6 % (seed mean 92.4 %). Hybrid six-view 94.6 / 95.5 / 94.6 %. McNemar vs full-resolution ResNet-50 p = 0.219, 1.0, 0.143 | no (`ACCURACY_IMPROVED.md`) |
+
+## Localizer, capture guidance, dataset tools, 2026-10-01
+
+| # | Component | Change | Result | Kept |
+|---|---|---|---|---|
+| 35 | Watermark window | Learned corner regressor instead of template + SIFT + fixed box (3 seeds, epoch on validation) | Ties SIFT on registered test notes (92.6 vs 92.9 %, p = 1.0 each seed); covers 222 / 222 instead of 197; 92.6 ± 0.5 % on all; 15.9 vs 97.9 ms laptop CPU | yes, device default with SIFT fallback (`WATERMARK_LOCALIZER.md`) |
+| 36 | Capture on the glass | Guided back-lit capture: dark / blur rejection with spoken reasons, thresholds from validation | 213 / 222 clean test photos accepted, 0 / 222 darkened or defocused, 11 / 222 motion-blurred | yes, measured by the pre-registered study |
+| 37 | Dataset collection | Print-locked capture tool | Refuses cross-split prints, moved notes, contradicting labels, duplicates, unsafe ids | yes |
+
+Stopped: beating the full-resolution ResNet-50 at print level needs the new print-disjoint dataset (`A_STAR_ROADMAP.md`).

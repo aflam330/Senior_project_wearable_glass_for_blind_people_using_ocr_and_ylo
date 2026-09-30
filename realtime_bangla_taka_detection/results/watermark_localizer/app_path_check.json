@@ -1,0 +1,7 @@
+{
+ "path": "savior_glass WatermarkChecker, localizer seed 42 ONNX + MobileNetV2 INT8",
+ "test_notes": 222,
+ "window_found": 222,
+ "accuracy_on_found": 0.9324324324324325,
+ "same_decision_as_research_fp32": 0.990990990990991
+}

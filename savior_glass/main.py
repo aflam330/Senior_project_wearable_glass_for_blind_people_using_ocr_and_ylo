@@ -166,9 +166,13 @@ class SmartGlass:
 
         def _infer():
             try:
-                result = self._modes[mode_idx].process_frame(frame)
+                mode = self._modes[mode_idx]
+                result = mode.process_frame(frame)
                 if result:
                     self._tts.speak(result)
+                # 500 / 1,000 Taka: guided back-lit watermark check (config.CAPTURE_GUIDE_ENABLED)
+                if mode_idx == config.MODE_CURRENCY and mode.wants_guided_watermark():
+                    mode.guided_watermark(self._camera.get_frame, self._tts.speak)
             finally:
                 self._inferring.clear()
 

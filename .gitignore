@@ -48,3 +48,6 @@ realtime_bangla_taka_detection/results/jaal_whole/crops/
 realtime_bangla_taka_detection/results/watermark/crops/
 realtime_bangla_taka_detection/results/**/feats_*.npz
 realtime_bangla_taka_detection/results/watermark/crop_feats_resnet50.npz
+
+# Study event log: participant ids, never committed
+savior_glass/logs/study_events.jsonl

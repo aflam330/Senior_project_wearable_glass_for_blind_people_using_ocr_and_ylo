@@ -91,6 +91,25 @@ WATERMARK_CHECK_ENABLED = ON_RASPBERRY_PI_5 if _wm_env is None else _wm_env == "
 WATERMARK_MODEL_PATH = os.path.abspath(os.path.join(
     BASE_DIR, "..", "realtime_bangla_taka_detection", "models", "watermark_mobilenetv2_int8.onnx"))  # MobileNetV2 INT8, chosen on VAL AUC; same decisions as FP32
 WATERMARK_CLEAR_THRESHOLD = 0.5
+# Learned watermark localizer (no template, no SIFT). Seed chosen on VALIDATION corner error (seed 42).
+# On unseen-print test notes it ties the SIFT path (92.4 vs 92.9 %, McNemar p = 1.0) and also covers the 25 / 222
+# photos SIFT cannot register (realtime_bangla_taka_detection/results/watermark_localizer/). SIFT stays the fallback.
+WATERMARK_LOCALIZER_PATH = os.path.abspath(os.path.join(
+    BASE_DIR, "..", "realtime_bangla_taka_detection", "models", "watermark_localizer_seed42.onnx"))
+# Guided capture for the watermark check (modes/capture_guide.py): after a 500 / 1,000 Taka note is
+# announced, ask the user to hold it to the light, reject dark / blurry frames, then check.
+# Thresholds: 2nd percentile of JaalTaka VALIDATION back-lit photos
+# (realtime_bangla_taka_detection/results/capture_guide/thresholds.json); on test photos they accept
+# 213 / 222 clean and 0 / 222 darkened or defocused. Recalibrate on the glass camera before the study.
+_cg_env = os.environ.get("CAPTURE_GUIDE_ENABLED")
+CAPTURE_GUIDE_ENABLED = WATERMARK_CHECK_ENABLED if _cg_env is None else _cg_env == "1"
+CAPTURE_GUIDE_MIN_MEAN = 73.87
+CAPTURE_GUIDE_MIN_LAPVAR = 106.75
+CAPTURE_GUIDE_TIMEOUT_S = 10.0
+# User-study condition (STUDY_CONDITION): "guided" uses the thresholds above; "unguided" asks once for the
+# light and checks the first frame with a note in it (no dark / blur rejection). Logged with every check.
+STUDY_CONDITION = os.environ.get("STUDY_CONDITION", "guided")
+CAPTURE_GUIDE_PROMPT_GAP_S = 2.5
 JAAL_VIEW_WINDOWS = (
     (0.0, 0.0, 0.4758, 1.0),
     (0.2843, 0.0, 0.8256, 1.0),

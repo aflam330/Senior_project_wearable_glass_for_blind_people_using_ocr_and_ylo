@@ -1,0 +1,40 @@
+{
+ "split": "serial_split",
+ "source": "JaalTaka back-lit view 6",
+ "rule": "2nd percentile of VAL",
+ "n_val": 222,
+ "thresholds": {
+  "min_mean": 73.86744135615797,
+  "min_lapvar": 106.74570809954484
+ },
+ "test": {
+  "clean": {
+   "n": 222,
+   "accepted": 213,
+   "rejected_dark": 4,
+   "rejected_blurry": 5,
+   "accepted_rate": 0.9594594594594594
+  },
+  "dark_x0.25": {
+   "n": 222,
+   "accepted": 0,
+   "rejected_dark": 222,
+   "rejected_blurry": 0,
+   "accepted_rate": 0.0
+  },
+  "defocus_sigma4": {
+   "n": 222,
+   "accepted": 0,
+   "rejected_dark": 4,
+   "rejected_blurry": 218,
+   "accepted_rate": 0.0
+  },
+  "motion_21px": {
+   "n": 222,
+   "accepted": 11,
+   "rejected_dark": 4,
+   "rejected_blurry": 207,
+   "accepted_rate": 0.04954954954954955
+  }
+ }
+}

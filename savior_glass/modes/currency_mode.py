@@ -376,7 +376,9 @@ class CurrencyMode(BaseMode):
                 hit["auth"], hit["auth_en"] = "check_by_hand", "CHECK BY HAND"
                 hit["text"] = hit["text"] + "। আসল কিনা হাতে যাচাই করুন"
         # research feature (config.WATERMARK_CHECK_ENABLED, off): back-lit watermark window, never says "counterfeit"
-        for hit in hits[:1] if getattr(config, "WATERMARK_CHECK_ENABLED", False) else ():
+        # with capture guidance on, the check runs later on a back-lit frame (guided_watermark)
+        inline_wm = getattr(config, "WATERMARK_CHECK_ENABLED", False) and not getattr(config, "CAPTURE_GUIDE_ENABLED", False)
+        for hit in hits[:1] if inline_wm else ():
             if hit["name"] not in ("500_taka", "1000_taka"):
                 continue
             try:
@@ -401,6 +403,36 @@ class CurrencyMode(BaseMode):
             self.last_bbox = None
             self.last_class = None
         return hits
+
+    def wants_guided_watermark(self) -> bool:
+        return (bool(getattr(config, "CAPTURE_GUIDE_ENABLED", False)) and self._yolo is not None
+                and self.last_class in ("500_taka", "1000_taka"))
+
+    def locate_note(self, frame: np.ndarray) -> Optional[np.ndarray]:
+        """Crop of the most confident note box (any denomination: a back-lit note can read as another class)."""
+        try:
+            res = self._yolo.predict(frame, conf=0.25, verbose=False, imgsz=640)[0]
+        except Exception as exc:
+            logger.warning("YOLO locate failed: %s", exc)
+            return None
+        if res.boxes is None or len(res.boxes) == 0:
+            return None
+        i = int(res.boxes.conf.argmax())
+        x1, y1, x2, y2 = res.boxes.xyxy[i].detach().cpu().numpy().astype(int)
+        return frame[max(0, y1):y2, max(0, x1):x2]
+
+    def guided_watermark(self, get_frame, speak) -> Optional[dict]:
+        """Ask for the note against the light, reject dark / blurry frames, then run the watermark check."""
+        denom = self.last_class
+        try:
+            if getattr(self, "_wm", None) is None:
+                from .watermark_check import WatermarkChecker
+                self._wm = WatermarkChecker()
+            from .capture_guide import CaptureGuide
+            return CaptureGuide(self._wm).run(denom, get_frame, self.locate_note, speak)
+        except Exception as exc:
+            logger.warning("Guided watermark check failed: %s", exc)
+            return None
 
     # (on_ms, off_ms) pulses, same as roboeye.config.HAPTIC_PATTERNS
     _HAPTIC_PATTERNS = {

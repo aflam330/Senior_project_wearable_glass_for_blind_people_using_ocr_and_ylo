@@ -1,0 +1,3 @@
+participant,condition,trial,note_id,print_id,true_denomination,true_label,spoken_denomination
+P01,guided,1,,,500_taka,genuine,
+P01,unguided,1,,,1000_taka,counterfeit,

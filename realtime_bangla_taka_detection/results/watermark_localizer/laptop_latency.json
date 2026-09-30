@@ -1,0 +1,15 @@
+{
+ "host": "laptop CPU (not Pi)",
+ "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+ "n": 60,
+ "localizer": {
+  "median_ms": 15.87824999296572,
+  "p95_ms": 19.242295002186435,
+  "window_found": 60
+ },
+ "sift": {
+  "median_ms": 97.85790000023553,
+  "p95_ms": 121.51233500480885,
+  "window_found": 59
+ }
+}

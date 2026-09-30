@@ -95,6 +95,14 @@ Speech uses `espeak-ng` for Bangla. The fuller `install.sh` also installs system
 
 For a watermark reading, hold a 500 or 1000 Taka note up to a light so the portrait window shows, then press capture.
 
+With capture guidance on (the default on the Pi, `CAPTURE_GUIDE_ENABLED=1` elsewhere), press capture once. The glass says the denomination. For 500 or 1000 Taka it then asks you to hold the note up to the light. It asks again while the frame is dark, blurry, or has no note, and answers within 10 seconds. Each check is written to `savior_glass/logs/study_events.jsonl`.
+
+For a study session, set these before starting `main.py`:
+- `STUDY_PARTICIPANT=P01`
+- `STUDY_CONDITION=guided` or `unguided`
+
+The analysis is in `paper_evidence/STUDY_PREREGISTRATION.md`.
+
 ## Measure speed on the Pi
 
 Still inside `savior_glass/` with the venv active:
@@ -108,6 +116,10 @@ This times currency, the INT8 detector, the watermark check, object detection, O
 `savior_glass/results/pi5_benchmark_<hostname>_<time>.json`
 
 Copy the median, 95th percentile, CPU, RAM, and temperature into `paper_evidence/PI5_RESULTS.md` after the run. Do not type a laptop time into that file. Battery minutes are a separate measurement; do not guess them from the benchmark.
+
+## Collect the print-disjoint dataset
+
+Use `realtime_bangla_taka_detection/scripts/dataset/print_capture.py`: `plan` first, then `add` for each photo, then `check`. The full plan is in `paper_evidence/PRINT_DISJOINT_DATASET_PLAN.md`. The tool refuses a photo whose print is already in another split.
 
 ## Order to follow
 

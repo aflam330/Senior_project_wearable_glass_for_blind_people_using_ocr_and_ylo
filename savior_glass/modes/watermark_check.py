@@ -42,6 +42,11 @@ class WatermarkChecker:
         self.min_inliers = min_inliers
         self.sift = cv2.SIFT_create(nfeatures=4000)
         self.matcher = cv2.BFMatcher(cv2.NORM_L2)
+        # learned localizer (scripts/train/train_watermark_localizer.py): no template, no SIFT; used when present
+        self.localizer = None
+        loc_path = getattr(config, "WATERMARK_LOCALIZER_PATH", "")
+        if loc_path and os.path.exists(loc_path):
+            self.localizer = ort.InferenceSession(loc_path, sess_options=opts, providers=["CPUExecutionProvider"])
         self.templates = {}
         for name, p in _TEMPLATES.items():
             img = cv2.imread(p)
@@ -74,8 +79,21 @@ class WatermarkChecker:
             return None
         return cv2.resize(warped[ys, xs], (224, 224))
 
+    def _window_learned(self, note_bgr: np.ndarray) -> Optional[np.ndarray]:
+        col = cv2.resize(note_bgr, None, fx=700 / note_bgr.shape[1], fy=700 / note_bgr.shape[1], interpolation=cv2.INTER_AREA)
+        x = cv2.cvtColor(cv2.resize(col, (320, 320), interpolation=cv2.INTER_AREA), cv2.COLOR_BGR2RGB).astype(np.float32) / 255
+        x = ((x - _MEAN) / _STD).transpose(2, 0, 1)[None].astype(np.float32)
+        c = self.localizer.run(None, {"image": x})[0].reshape(4, 2) * np.float32([col.shape[1], col.shape[0]])
+        area = cv2.contourArea(c.astype(np.float32)) / (col.shape[0] * col.shape[1])
+        if not cv2.isContourConvex(c.astype(np.float32)) or not 0.005 < area < 0.5:
+            return None  # implausible window: ask the user to hold the note straight
+        M = cv2.getPerspectiveTransform(c.astype(np.float32), np.float32([[0, 0], [224, 0], [224, 224], [0, 224]]))
+        return cv2.warpPerspective(col, M, (224, 224))
+
     def genuine_prob(self, note_bgr: np.ndarray, denom: str) -> Optional[float]:
-        win = self._window(note_bgr, denom)
+        win = self._window_learned(note_bgr) if self.localizer is not None else None
+        if win is None:
+            win = self._window(note_bgr, denom)
         if win is None:
             return None
         x = ((cv2.cvtColor(win, cv2.COLOR_BGR2RGB).astype(np.float32) / 255 - _MEAN) / _STD).transpose(2, 0, 1)[None]
