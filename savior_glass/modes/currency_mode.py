@@ -395,7 +395,7 @@ class CurrencyMode(BaseMode):
             top = hits[0]
             logger.info(
                 "YOLO %s (%.0f%%) %s genuine=%.0f%%",
-                top["name"], top["conf"] * 100, top["auth"], top["genuine_prob"] * 100,
+                top["name"], top["conf"] * 100, top["auth"], float(top.get("genuine_prob") or 0) * 100,
             )
         else:
             self.last_bbox = None

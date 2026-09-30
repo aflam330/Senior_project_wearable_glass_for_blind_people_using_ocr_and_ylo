@@ -34,3 +34,7 @@ The deployed policy does not say "counterfeit". It says "likely genuine" only ab
 ## 5. Limits
 
 One counterfeit collection. About 24 effective unseen prints. No user study. No Pi 5 timing. No glass-camera back-lit photos. The watermark does not, on these numbers, beat a corrected ResNet-50 by five points.
+
+## 6. A denomination-matched residual
+
+A second watermark algorithm builds a portrait from training genuine windows only and classifies the residual against that portrait (`WATERMARK_DMWR.md`). On the same 197 registered test notes it reaches 91.5 ± 0.3 % (AUC 0.950 ± 0.006), against 92.9 % (AUC 0.976) for MobileNetV2. Exact McNemar p-values are 0.375, 0.688 and 0.375. MobileNetV2 stays the single-model watermark number (92.9 %, AUC 0.976). An equal-weight ensemble of that checkpoint with three new seeds, using a validation-chosen threshold of 0.924, reaches 93.4 % on the same 197 notes (`WATERMARK_ENSEMBLE.md`). That is one note higher. Exact McNemar p = 1.0. At threshold 0.5 the ensemble is 92.4 %.

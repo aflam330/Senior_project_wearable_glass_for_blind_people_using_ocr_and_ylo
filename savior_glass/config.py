@@ -6,6 +6,18 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+
+def _raspberry_pi_5() -> bool:
+    """True only when this process is running on a Raspberry Pi 5."""
+    try:
+        text = open("/proc/device-tree/model", encoding="utf-8", errors="ignore").read()
+    except OSError:
+        return False
+    return "Raspberry Pi 5" in text
+
+
+ON_RASPBERRY_PI_5 = _raspberry_pi_5()
+
 # ---------------------------------------------------------------------------
 # GPIO Pin Numbers (BCM mode — works with rpi-lgpio on RPi 5)
 # ---------------------------------------------------------------------------
@@ -48,9 +60,10 @@ MODE_NAMES_BN = [
 YOLO_MODEL_PATH     = os.path.join(BASE_DIR, "models", "yolov8s.pt")
 YOLO_MODEL_FALLBACK = os.path.join(BASE_DIR, "models", "yolov8n.pt")
 CURRENCY_MODEL_PATH = os.path.join(BASE_DIR, "models", "currency_mobilenet.pt")
-CURRENCY_YOLO_PATH  = os.path.abspath(os.path.join(
-    BASE_DIR, "..", "realtime_bangla_taka_detection", "models", "best.pt"
-))
+# On a Pi 5 the measured device model is the 18 MB INT8 detector. Elsewhere keep the
+# PyTorch weights; ONNX is slower to start when onnxruntime is missing.
+_DETECTOR_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "realtime_bangla_taka_detection", "models"))
+CURRENCY_YOLO_PATH = os.path.join(_DETECTOR_DIR, "best_int8.onnx" if ON_RASPBERRY_PI_5 else "best.pt")
 HAPTIC_PIN          = 13   # BCM — vibration motor for note confirmation
 
 # Genuine/jaal verdict on the detected note. Off: on whole-note photos of genuine notes the
@@ -70,7 +83,11 @@ JAAL_SAFE_TAU = 0.9995918869972229
 JAAL_SAFE_DENOMINATIONS = ("500_taka", "1000_taka")
 # View windows (x0, y0, x1, y1) on the landscape note crop, medians over 200 JaalTaka TRAIN notes
 # (realtime_bangla_taka_detection/results/jaal_whole/view_geometry.json).
-WATERMARK_CHECK_ENABLED = False  # research feature: needs a back-lit ("hold to the light") photo; not validated on the glass camera
+# Back-lit watermark check. On for the Pi 5, where the INT8 model is the device path.
+# Off elsewhere: it has not been measured on the glass camera. Set WATERMARK_CHECK_ENABLED=1 or 0 to override.
+# It never says "counterfeit".
+_wm_env = os.environ.get("WATERMARK_CHECK_ENABLED")
+WATERMARK_CHECK_ENABLED = ON_RASPBERRY_PI_5 if _wm_env is None else _wm_env == "1"
 WATERMARK_MODEL_PATH = os.path.abspath(os.path.join(
     BASE_DIR, "..", "realtime_bangla_taka_detection", "models", "watermark_mobilenetv2_int8.onnx"))  # MobileNetV2 INT8, chosen on VAL AUC; same decisions as FP32
 WATERMARK_CLEAR_THRESHOLD = 0.5

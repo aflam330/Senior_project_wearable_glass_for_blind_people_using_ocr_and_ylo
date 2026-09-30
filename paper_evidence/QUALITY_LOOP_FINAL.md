@@ -105,3 +105,11 @@ Stopped. Another architecture scored on this same test would be a test-set choic
 | 31 | Watermark crops | Full JPEG decode, same 700 px registration width, MobileNetV2 seeds 42–44 | 90.5 ± 1.2 % on a slightly different registered set, versus 92.9 % for the published half-decode model | no; published model stays |
 
 The prefix network already reads a full decode. It was not retrained. Synthetic counterfeit images were not generated.
+
+## Denomination-matched watermark residual, 2026-09-30
+
+| # | Component | Change | Result | Kept |
+|---|---|---|---|---|
+| 32 | Watermark algorithm | Genuine-only denomination portrait, residual stream, three seeds, epoch on validation AUC | 91.5 ± 0.3 % versus 92.9 % for published MobileNetV2; McNemar p = 0.375, 0.688, 0.375 | no, as the cited watermark model; yes, as the interpretable comparator (`WATERMARK_DMWR.md`) |
+| 33 | Watermark ensemble | Mean of the published MobileNetV2 and three new seeds; threshold maximises validation accuracy | 93.4 % at threshold 0.924, versus 92.9 % published. One note. McNemar p = 1.0. At threshold 0.5 the ensemble is 92.4 % | yes, as a thresholded ensemble (`WATERMARK_ENSEMBLE.md`); the paired test is not significant |
+| 34 | Ten-model watermark search, winner by validation AUC, then one hybrid refit | EfficientNet-B0 wins validation. Test 91.2 ± 1.6 % (seed mean 92.4 %). Hybrid six-view 94.6 / 95.5 / 94.6 %. McNemar vs full-resolution ResNet-50 p = 0.219, 1.0, 0.143 | no (`ACCURACY_IMPROVED.md`) |

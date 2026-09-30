@@ -6,32 +6,20 @@ Three modes, physical GPIO buttons, and Bangla-first speech:
 
 1. **OCR** - capture Bangla/English text, then speak it
 2. **Object** - YOLOv8s everyday-object announcements (YOLOv8n if yolov8s.pt is absent)
-3. **Currency** - Bangladeshi Taka denomination with the trained YOLOv8s (../realtime_bangla_taka_detection/models/best.pt); HSV + optional CNN only if those weights are missing. The genuine/jaal verdict is off (`JAAL_VERDICT_ENABLED` in config.py; see ../paper_evidence/JAAL_VERDICT_FIXED.md).
+3. **Currency** - Bangladeshi Taka denomination. On a laptop this uses `../realtime_bangla_taka_detection/models/best.pt`. On a Raspberry Pi 5 it uses `best_int8.onnx`, and the back-lit watermark check is on. The old "jaal" verdict stays off (`JAAL_VERDICT_ENABLED`); the safe check asks for a human look instead of saying counterfeit.
 4. **Claude (online, optional)** - scene description through the Anthropic API; needs internet and `ANTHROPIC_API_KEY`
 
 ## Raspberry Pi
 
-`ash
-chmod +x install.sh
-./install.sh
-sudo systemctl enable --now smart_glass.service
-`
-
-Run without systemd: python3 main.py
-
-### Measuring speed on the Pi 5
-
-Raspberry Pi 5 latency has not been measured yet. With the glass venv active, on the Pi:
+From `savior_glass/` on the Pi 5:
 
 ```bash
-python3 scripts/benchmark_pi5.py                 # every mode, ~5 min
-python3 scripts/benchmark_pi5.py --sustained 30  # also a 30-minute mixed run: temperature, throttling
+bash scripts/deploy_pi5.sh
+python scripts/benchmark_pi5.py --iters 100 --sustained 30
+python main.py
 ```
 
-It times each mode's real `process_frame()` (currency, jaal check, object, OCR, emotion)
-and the Taka detector as PT, ONNX and INT8 ONNX, and records CPU temperature,
-`vcgencmd get_throttled` and memory. Results go to `results/pi5_benchmark_<host>_<time>.json`;
-a run on any other machine is labelled `raspberry_pi_5: false`.
+On that board, currency mode loads `best_int8.onnx` and the back-lit watermark check is on. Both stay off the laptop path. `scripts/pi5_preflight.py` confirms the model files before the first timing run. Raspberry Pi 5 latency is still unmeasured until that benchmark writes `results/pi5_benchmark_<host>_<time>.json`.
 
 ## Windows (no GPIO)
 

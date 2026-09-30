@@ -1,7 +1,10 @@
-"""Figures 28-29 from saved serial-disjoint results. PNG and PDF at 300 dpi.
+"""Figures 28-32 from saved serial-disjoint results. PNG and PDF at 300 dpi.
 
 28  quarter-resolution fine-tune vs full-resolution fine-tune vs frozen probe vs watermark hybrid
 29  per-seed six-view accuracy of those four
+30  published half-decode watermark model vs full-decode retraining
+31  denomination-matched watermark residual vs the published MobileNetV2
+32  four-checkpoint watermark ensemble at 0.5 and at the validation threshold
 """
 from __future__ import annotations
 
@@ -89,7 +92,37 @@ def main() -> None:
     ax.set_ylabel("Accuracy on registered test crops (%)")
     ax.set_title("Watermark MobileNetV2, unseen prints")
     save(fig, "fig30_watermark_full_decode")
-    print("wrote fig28, fig29 and fig30")
+
+    dmwr = load(R / "watermark_dmwr" / "summary.json")
+    order = [
+        ("Matched\nfilter", dmwr["logistic_matched_filter"]["test"]["accuracy"] * 100, 0.0),
+        ("Portrait\nstream", dmwr["test_summary"]["portrait"]["accuracy"]["mean"] * 100, dmwr["test_summary"]["portrait"]["accuracy"]["std"] * 100),
+        ("Residual\nstream", dmwr["test_summary"]["residual"]["accuracy"]["mean"] * 100, dmwr["test_summary"]["residual"]["accuracy"]["std"] * 100),
+        ("DMWR\nboth streams", dmwr["test_summary"]["both"]["accuracy"]["mean"] * 100, dmwr["test_summary"]["both"]["accuracy"]["std"] * 100),
+        ("Published\nMobileNetV2", dmwr["published_mobilenet_on_same_test_notes"]["accuracy"] * 100, 0.0),
+    ]
+    fig, ax = plt.subplots(figsize=(6.6, 3.8))
+    yerr = [e if e > 0 else np.nan for _, _, e in order]
+    ax.bar([n for n, _, _ in order], [v for _, v, _ in order], yerr=yerr,
+           color=["#8aa0b4", "#8aa0b4", "#8aa0b4", "#1f4e79", "#c4a35a"], capsize=3)
+    ax.set_ylim(70, 100)
+    ax.set_ylabel("Accuracy on registered test crops (%)")
+    ax.set_title("Watermark window, unseen prints")
+    save(fig, "fig31_watermark_dmwr")
+    ens = load(R / "watermark_ensemble" / "summary.json")
+    labels = ["Published\nthreshold 0.5", "Ensemble\nthreshold 0.5", "Ensemble\nvalidation threshold"]
+    vals = [
+        ens["published_rescored"]["accuracy"] * 100,
+        ens["ensemble_at_0.5"]["accuracy"] * 100,
+        ens["ensemble_val_threshold"]["accuracy"] * 100,
+    ]
+    fig, ax = plt.subplots(figsize=(6.2, 3.8))
+    ax.bar(labels, vals, color=["#c4a35a", "#8aa0b4", "#1f4e79"])
+    ax.set_ylim(88, 96)
+    ax.set_ylabel("Accuracy on registered test crops (%)")
+    ax.set_title("Watermark MobileNet ensemble, unseen prints")
+    save(fig, "fig32_watermark_ensemble")
+    print("wrote fig28, fig29, fig30, fig31 and fig32")
 
 
 if __name__ == "__main__":

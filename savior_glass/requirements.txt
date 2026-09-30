@@ -7,6 +7,7 @@ ultralytics>=8.3.0
 opencv-python-headless>=4.8.0
 torch>=2.1.0
 torchvision>=0.16.0
+onnxruntime>=1.17.0
 
 # GPIO — REQUIRED for RPi 5 (replaces incompatible RPi.GPIO)
 rpi-lgpio>=0.5

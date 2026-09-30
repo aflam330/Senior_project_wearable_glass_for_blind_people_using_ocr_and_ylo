@@ -55,6 +55,7 @@ pip install \
     "rpi-lgpio>=0.5" \
     "torch>=2.1.0" \
     "torchvision>=0.16.0" \
+    "onnxruntime>=1.17.0" \
     "numpy>=1.24.0" \
     "Pillow>=10.0.0"
 

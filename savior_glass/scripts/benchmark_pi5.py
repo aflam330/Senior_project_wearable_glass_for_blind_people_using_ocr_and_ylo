@@ -256,11 +256,24 @@ def build_benchmarks() -> dict:
             raise RuntimeError("no face detector (Haar cascade or YuNet model)")
         return d.predict
 
+    def watermark():
+        from modes.watermark_check import WatermarkChecker
+        checker = WatermarkChecker()
+
+        def run(frame):
+            prob = checker.genuine_prob(frame, "500_taka")
+            if prob is None:
+                prob = checker.genuine_prob(frame, "1000_taka")
+            return checker.sentence(prob)
+
+        return run
+
     models = WS / "realtime_bangla_taka_detection" / "models"
     add("currency_mode_full", currency_mode, "notes")
     add("taka_yolo_pt", yolo_variant(models / "best.pt"), "notes")
     add("taka_yolo_onnx_fp32", yolo_variant(models / "best.onnx"), "notes")
     add("taka_yolo_onnx_int8", yolo_variant(models / "best_int8.onnx"), "notes")
+    add("watermark_int8", watermark, "notes")
     add("jaal_check_qduig", jaal_only, "notes")
     for k in range(1, 7):
         add(f"prmvt_{k}view", prmvt_kview(k), "notes")
