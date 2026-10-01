@@ -58,6 +58,11 @@ class SmartGlass:
         # button-press threads (which also produced overlapping/garbled TTS).
         self._inferring = threading.Event()
 
+        # Model loading runs off the button thread. A mode's event is set once its models are loaded
+        # and warmed up; ACTION waits for it instead of racing a half-loaded model.
+        self._ready = [threading.Event() for _ in self._modes]
+        self._prep_locks = [threading.Lock() for _ in self._modes]
+
         # Detection thread
         self._detection_thread = threading.Thread(
             target=self._detection_loop, daemon=True, name="detection"
@@ -90,7 +95,11 @@ class SmartGlass:
         self._buttons.setup()
 
         # Activate initial mode (OCR)
-        self._modes[self._current_mode].activate()
+        self._prepare(self._current_mode)
+        # Preload currency mode in the background so the first switch to it is quick
+        if self._current_mode != config.MODE_CURRENCY:
+            threading.Thread(target=self._prepare, args=(config.MODE_CURRENCY, False), daemon=True,
+                             name="preload-currency").start()
 
         # Start detection worker
         self._detection_thread.start()
@@ -128,6 +137,20 @@ class SmartGlass:
     # Button callbacks (called from GPIO interrupt threads)
     # ------------------------------------------------------------------
 
+    def _prepare(self, idx: int, activate: bool = True) -> None:
+        """Load (activate) and warm up one mode, then mark it ready. Safe to call twice."""
+        mode = self._modes[idx]
+        with self._prep_locks[idx]:
+            try:
+                if activate or not self._ready[idx].is_set():
+                    mode.activate()
+                if not self._ready[idx].is_set() and hasattr(mode, "warm_up"):
+                    mode.warm_up()
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("Preparing mode %d failed: %s", idx, exc)
+            finally:
+                self._ready[idx].set()
+
     def _on_mode_press(self) -> None:
         with self._mode_lock:
             old_mode = self._current_mode
@@ -136,8 +159,9 @@ class SmartGlass:
 
         self._tts.stop_current()
         self._modes[old_mode].deactivate()
-        self._modes[new_mode].activate()
+        # say the new mode at once; loading happens in the background
         self._tts.speak(config.MODE_NAMES_BN[new_mode])
+        threading.Thread(target=self._prepare, args=(new_mode,), daemon=True, name=f"prepare-{new_mode}").start()
         logger.info("Mode → %s", config.MODE_NAMES_BN[new_mode])
 
     def _on_action_press(self) -> None:
@@ -166,6 +190,9 @@ class SmartGlass:
 
         def _infer():
             try:
+                if not self._ready[mode_idx].is_set():
+                    self._tts.speak("একটু অপেক্ষা করুন")  # please wait a moment (models still loading)
+                    self._ready[mode_idx].wait(timeout=120)
                 mode = self._modes[mode_idx]
                 result = mode.process_frame(frame)
                 if result:

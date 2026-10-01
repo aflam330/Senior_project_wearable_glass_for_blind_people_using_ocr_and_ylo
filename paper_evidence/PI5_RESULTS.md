@@ -36,12 +36,14 @@ CPU / RAM / temperature:
 
 **Correction (2026-10-01, same pass):** the first write-up of this section reported "Currency end-to-end 6.5 s" and "TTS Bangla 6.2 s dominates currency," using the OCR capture confirmation sentence's TTS duration as a stand-in for the currency announcement's. They are different, much shorter phrases (`modes/currency_mode.py`'s `_DENOMINATION_BN`, e.g. "দুই টাকার নোট" for 2 taka, "পাঁচশত টাকার নোট" for 500). Measured directly: 1.98 s (2 taka, shortest) to 2.59 s (500/1000 taka, longest). Corrected currency end-to-end is **326.62 ms + ~2.0–2.6 s ≈ 2.3–2.9 s**, not 6.5 s — it was never a real problem. Full detail: `savior_glass/results/pi5_fixes_verification.json`.
 
-**OCR speed, tried further (2026-10-01):** EasyOCR's detector upscales toward `canvas_size` (default 2560) before running CRAFT; the camera frame is only 640 px wide, so the default buys no resolution, just compute. `canvas_size=640` measured 3× faster (20.2 s → 6.9 s, single-frame) with identical output; a reduced 16-sample accuracy spot-check (not the full 80-sample eval) showed 0.00 CER/WER at both settings. **Validated and adopted 2026-10-01:**
-- The full 80-sample `scripts/eval_ocr_offline.py` was run on the laptop CPU, on the same seeded images at both sizes. Source: `savior_glass/results/ocr_canvas_comparison.json`.
-- Repaired CER was 2.67 % at 2560 and 2.24 % at 640; WER 2.5 % and 2.1 %.
-- 77 of 80 outputs were identical (Wilcoxon p = 1.0).
-- `config.OCR_CANVAS_SIZE` now defaults to 640; `OCR_CANVAS_SIZE=2560` restores the old path.
-- The Pi OCR median in the table above (18.7 s) is still the 2560 measurement. Re-run `benchmark_pi5.py --only ocr_mode` on the Pi for the 640 number.
+**OCR speed, tried further (2026-10-01):** EasyOCR's detector upscales toward `canvas_size` (default 2560) before running CRAFT; the camera frame is only 640 px wide, so the default buys no resolution, just compute. `canvas_size=640` measured 3× faster (20.2 s → 6.9 s, single-frame) with identical output; a reduced 16-sample accuracy spot-check (not the full 80-sample eval) showed 0.00 CER/WER at both settings. **Checked 2026-10-01, default kept at 2560.**
+- **Lexicon set:** on the 80-image evaluation set, 640 matched 2560 (repaired CER 2.24 vs 2.67 %).
+- **Why that set can't decide:** its phrases are the OCR lexicon itself, so the repair step favours them.
+- **Selection set:** 24 phrases not in the lexicon, new image seeds, rule fixed before the run (raw CER within 0.5 points of 2560).
+  - 640: 13.84 % raw CER; 2560: 13.29 %. Bangla 25.6 vs 24.5 %.
+  - Paired Wilcoxon p = 0.48. 640 misses the margin by 0.05 points, so the default stays 2560.
+- **Fast option:** `OCR_CANVAS_SIZE=640` is ~3× faster on the Pi for about one point more Bangla error.
+- **Sources:** `savior_glass/results/ocr_select_canvas*.json`, `ocr_canvas_comparison.json`.
 
 Status: MEASURED.
 

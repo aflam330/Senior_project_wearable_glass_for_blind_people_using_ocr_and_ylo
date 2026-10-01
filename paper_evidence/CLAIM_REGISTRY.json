@@ -5118,7 +5118,7 @@
   },
   {
    "claim_id": "C_OCR_CANVAS640_CER",
-   "claim": "OCR repaired CER at canvas_size 640 (adopted default)",
+   "claim": "OCR repaired CER at canvas_size 640 on the lexicon evaluation set (candidate; not adopted, see selection set)",
    "value": 0.02238095238095238,
    "json_key": [
     "repaired_cer",
@@ -5136,7 +5136,7 @@
   },
   {
    "claim_id": "C_OCR_CANVAS2560_CER",
-   "claim": "OCR repaired CER at canvas_size 2560 (old default), same images",
+   "claim": "OCR repaired CER at canvas_size 2560 (default) on the lexicon evaluation set, same images",
    "value": 0.026666666666666665,
    "json_key": [
     "repaired_cer",
@@ -5168,7 +5168,83 @@
    "metric": "p_value",
    "status": "VERIFIED",
    "script": "savior_glass/scripts/eval_ocr_offline.py 2560 640"
+  },
+  {
+   "claim_id": "C_OCR_SELECT_2560",
+   "claim": "OCR raw CER, canvas 2560, phrases outside the lexicon",
+   "value": 0.13287202380952381,
+   "json_key": [
+    "raw",
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_select_canvas2560.json",
+   "dataset": "selection set: 24 phrases not in the OCR lexicon, 80 seeded images",
+   "split": "selection",
+   "sample_definition": "rendered phrase",
+   "training_seed": "pretrained EasyOCR",
+   "evaluation_seed": "fixed per sample (+5000)",
+   "metric": "raw_cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/eval_ocr_offline.py --select 2560 640 480 320"
+  },
+  {
+   "claim_id": "C_OCR_SELECT_640",
+   "claim": "OCR raw CER, canvas 640, phrases outside the lexicon",
+   "value": 0.1384352106227106,
+   "json_key": [
+    "raw",
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_select_canvas640.json",
+   "dataset": "selection set: 24 phrases not in the OCR lexicon, 80 seeded images",
+   "split": "selection",
+   "sample_definition": "rendered phrase",
+   "training_seed": "pretrained EasyOCR",
+   "evaluation_seed": "fixed per sample (+5000)",
+   "metric": "raw_cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/eval_ocr_offline.py --select 2560 640 480 320"
+  },
+  {
+   "claim_id": "C_OCR_SELECT_480",
+   "claim": "OCR raw CER, canvas 480, phrases outside the lexicon",
+   "value": 0.15365384615384614,
+   "json_key": [
+    "raw",
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_select_canvas480.json",
+   "dataset": "selection set: 24 phrases not in the OCR lexicon, 80 seeded images",
+   "split": "selection",
+   "sample_definition": "rendered phrase",
+   "training_seed": "pretrained EasyOCR",
+   "evaluation_seed": "fixed per sample (+5000)",
+   "metric": "raw_cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/eval_ocr_offline.py --select 2560 640 480 320"
+  },
+  {
+   "claim_id": "C_OCR_SELECT_320",
+   "claim": "OCR raw CER, canvas 320, phrases outside the lexicon",
+   "value": 0.19148580586080585,
+   "json_key": [
+    "raw",
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_select_canvas320.json",
+   "dataset": "selection set: 24 phrases not in the OCR lexicon, 80 seeded images",
+   "split": "selection",
+   "sample_definition": "rendered phrase",
+   "training_seed": "pretrained EasyOCR",
+   "evaluation_seed": "fixed per sample (+5000)",
+   "metric": "raw_cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/eval_ocr_offline.py --select 2560 640 480 320"
   }
  ],
- "updated_utc": "2026-10-01T13:31:34+00:00"
+ "updated_utc": "2026-10-01T13:46:28+00:00"
 }

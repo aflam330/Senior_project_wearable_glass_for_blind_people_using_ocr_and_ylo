@@ -1,0 +1,11 @@
+{
+ "host": "DESKTOP-EA33S9L",
+ "raspberry_pi_5": false,
+ "python": "3.14.7",
+ "watermark_check": false,
+ "activate_first_ms": 1996.0,
+ "warm_up_ms": 682.9,
+ "first_check_ms": 43.1,
+ "steady_check_ms": 40.7,
+ "activate_again_ms": 0.0
+}

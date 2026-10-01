@@ -129,6 +129,16 @@ def main() -> None:
         "Main Entrance", "Pharmacy", "Turn Right", "Turn Left",
         "Platform 3", "Danger Keep Out", "Glycemic", "Digestive Biscuit",
     ]
+    # --select: a SELECTION set for choosing settings (canvas size). New phrases that are NOT in
+    # assets/ocr_lexicon.txt (so lexicon repair cannot help) and different image seeds. Choose on its
+    # RAW CER; the default 80-image set is then read once to report the chosen setting.
+    select = "--select" in sys.argv
+    if select:
+        sys.argv.remove("--select")
+        bn = ["সাবধান", "প্রবেশ নিষেধ", "শৌচাগার", "খোলা আছে", "পানি", "দুধ",
+              "চাল পাঁচ কেজি", "লিফট", "সিঁড়ি", "জরুরি নির্গমন", "নামাজের ঘর", "অপেক্ষা কক্ষ"]
+        en = ["Lift", "Stairs", "Toilet", "No Entry", "Open", "Closed",
+              "Milk", "Rice 5 kg", "Fire Exit", "Waiting Room", "Push", "Pull"]
     font = _ocr_font()
     reader = easyocr.Reader(["bn", "en"], gpu=False, verbose=False)
     ocr = OCRMode()
@@ -138,7 +148,7 @@ def main() -> None:
         for i in range(40):
             text = pool[i % len(pool)]
             wild = i % 2 == 1
-            img = _render_text(text, font, wild=wild, seed=1000 * (lang == "en") + i)
+            img = _render_text(text, font, wild=wild, seed=1000 * (lang == "en") + i + (5000 if select else 0))
             samples.append((text, img, lang, wild))
 
     import time
@@ -174,6 +184,9 @@ def main() -> None:
                             "en": agg([r for r in rows if r["lang"] == "en"])},
                "samples_head": rows[:12], "per_sample_cer": [r["cer"] for r in rows]}
         name = "ocr_offline_repaired.json" if size is None else f"ocr_offline_repaired_canvas{cs}.json"
+        if select:
+            name = f"ocr_select_canvas{cs}.json"
+            out["set"] = "selection (phrases not in the lexicon, seeds +5000)"
         (RESULTS / name).write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
         per_size[cs] = out
         print("wrote", RESULTS / name, "canvas", cs)
@@ -190,7 +203,7 @@ def main() -> None:
                "en_cer": {str(a): ra["repaired"]["en"]["cer"], str(b): rb["repaired"]["en"]["cer"]},
                "samples_a_better": int((d < 0).sum()), "samples_b_better": int((d > 0).sum()), "samples_equal": int((d == 0).sum()),
                "wilcoxon_p": float(wilcoxon(d).pvalue) if np.any(d != 0) else 1.0}
-        (RESULTS / "ocr_canvas_comparison.json").write_text(json.dumps(cmp, indent=1), encoding="utf-8")
+        (RESULTS / ("ocr_select_comparison.json" if select else "ocr_canvas_comparison.json")).write_text(json.dumps(cmp, indent=1), encoding="utf-8")
         print(json.dumps(cmp, indent=1))
 
 

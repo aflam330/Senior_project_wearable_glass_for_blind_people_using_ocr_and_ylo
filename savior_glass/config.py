@@ -168,12 +168,14 @@ EMOTION_ADAPTIVE_DEFAULT = True
 # OCR_DECODER=greedy only if you want to re-check that result yourself.
 OCR_DECODER = os.environ.get("OCR_DECODER", "beamsearch")
 OCR_BEAM_WIDTH = 5
-# EasyOCR's detector scales the input toward canvas_size before running CRAFT. The glass frame is 640 px wide,
-# so the old default (2560) upscaled ~4x for no gain. Pi 5 timing (2026-10-01, one frame): 2560 -> 20.2 s, 640 -> 6.9 s.
-# Accuracy, full 80-sample scripts/eval_ocr_offline.py on the same seeded images (laptop CPU, 2026-10-01):
-# repaired CER 2.67 % (2560) vs 2.24 % (640), WER 2.5 % vs 2.1 %, 77 / 80 identical, Wilcoxon p = 1.0
-# (results/ocr_canvas_comparison.json). Adopted 640. Override with OCR_CANVAS_SIZE=2560 to go back.
-OCR_CANVAS_SIZE = int(os.environ.get("OCR_CANVAS_SIZE", "640"))
+# EasyOCR's detector scales the input toward canvas_size before running CRAFT. The glass frame is 640 px wide.
+# Pi 5 timing (2026-10-01, one frame): 2560 -> 20.2 s, 640 -> 6.9 s.
+# Choice made on a SELECTION set (24 phrases not in the lexicon, new image seeds, 80 images), rule fixed before
+# the run: smallest canvas whose raw CER is within 0.5 points of 2560 (results/ocr_select_canvas*.json).
+#   raw CER 2560: 13.29 %, 640: 13.84 % (+0.55, Bangla 24.5 -> 25.6 %), 480: 15.37 %, 320: 19.15 %.
+# 640 misses the margin by 0.05 points (paired Wilcoxon p = 0.48, not significant), so the default stays 2560.
+# OCR_CANVAS_SIZE=640 is the fast option: ~2.5-3x faster for about one point more Bangla character error.
+OCR_CANVAS_SIZE = int(os.environ.get("OCR_CANVAS_SIZE", "2560"))
 
 OCR_CONFIDENCE      = 0.4    # EasyOCR minimum confidence
 OBJECT_CONFIDENCE   = 0.50   # YOLO minimum confidence

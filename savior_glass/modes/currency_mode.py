@@ -95,10 +95,29 @@ class CurrencyMode(BaseMode):
 
     def activate(self) -> None:
         logger.info("Currency detection mode activated")
-        self._load_yolo()
-        self._load_classifier()
-        if self.verdict_enabled or self.safe_policy:
+        # load once: switching back into currency mode used to reload every model from disk
+        if self._yolo is None:
+            self._load_yolo()
+        if self._classifier is None:
+            self._load_classifier()
+        if (self.verdict_enabled or self.safe_policy) and self._auth is None:
             self._load_auth()
+
+    def warm_up(self) -> None:
+        """One dummy pass through every model the first real check will use, so that check is not the slow one."""
+        dummy = np.full((480, 640, 3), 128, np.uint8)
+        try:
+            if self._yolo is not None:
+                self._yolo.predict(dummy, conf=0.25, verbose=False, imgsz=640)
+            if self.safe_policy and self._auth is not None:
+                self._safe_check(dummy[100:380, 40:600])
+            if getattr(config, "WATERMARK_CHECK_ENABLED", False):
+                if getattr(self, "_wm", None) is None:
+                    from .watermark_check import WatermarkChecker
+                    self._wm = WatermarkChecker()
+                self._wm.genuine_prob(dummy, "500_taka")
+        except Exception as exc:  # warm-up must never stop the app
+            logger.warning("Currency warm-up failed: %s", exc)
 
     def deactivate(self) -> None:
         logger.info("Currency detection mode deactivated")

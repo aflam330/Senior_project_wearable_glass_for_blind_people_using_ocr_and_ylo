@@ -123,3 +123,14 @@ The prefix network already reads a full decode. It was not retrained. Synthetic 
 | 37 | Dataset collection | Print-locked capture tool | Refuses cross-split prints, moved notes, contradicting labels, duplicates, unsafe ids | yes |
 
 Stopped: beating the full-resolution ResNet-50 at print level needs the new print-disjoint dataset (`A_STAR_ROADMAP.md`).
+
+## Device pass without overfitting, 2026-10-01
+
+Every choice here was made on data not used for the reported number, or does not change any model output.
+
+| # | Component | Change | Result | Kept |
+|---|---|---|---|---|
+| 38 | OCR canvas size | Chosen on a selection set (24 phrases outside the lexicon, new seeds), rule fixed first: within 0.5 points raw CER of 2560 | 640: 13.84 % vs 13.29 % (+0.55, p = 0.48); 480 and 320 worse | no: default stays 2560; 640 is an opt-in fast mode |
+| 39 | OCR evaluation honesty | Noted that the 80-image set's phrases are the repair lexicon | Its "repaired" CER (2–3 %) flatters OCR; raw CER on unseen phrases is ~13 % (Bangla ~25 %) | yes, both reported |
+| 40 | Switching into currency mode | Load once, warm up with one dummy pass, load off the button thread, preload currency at start | Laptop CPU: first check 661 → 43 ms (715 → 78 ms with watermark on); switching back 318 → 0 ms | yes (`results/mode_switch_*.json`) |
+| 41 | "Currency slow under OCR load" | Read the Pi sustained CSV | Calls are sequential; the slow currency calls all follow the emotion model (cold switch), not OCR | no change needed beyond #40 |
