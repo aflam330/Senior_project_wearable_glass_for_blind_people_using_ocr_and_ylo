@@ -166,6 +166,14 @@ EMOTION_ADAPTIVE_DEFAULT = True
 # OCR_DECODER=greedy only if you want to re-check that result yourself.
 OCR_DECODER = os.environ.get("OCR_DECODER", "beamsearch")
 OCR_BEAM_WIDTH = 5
+# EasyOCR's detector internally scales the input toward canvas_size (default 2560) before
+# running CRAFT. The glass camera frame is only 640px wide, so the default upscales ~4x for
+# no resolution gained. Measured on this Pi 5 (2026-10-01, synthetic text_frame, n=1 each):
+# canvas_size=2560 (default): 20.2s, canvas_size=640: 6.9s, canvas_size=320: 4.3s, same output
+# on that frame. Left at 2560 until scripts/eval_ocr_offline.py (CER/WER) confirms accuracy
+# holds at a smaller size on the real eval set — do not treat the single-frame timing above as
+# an accuracy result. Override with OCR_CANVAS_SIZE=640 to try the faster path.
+OCR_CANVAS_SIZE = int(os.environ.get("OCR_CANVAS_SIZE", "2560"))
 
 OCR_CONFIDENCE      = 0.4    # EasyOCR minimum confidence
 OBJECT_CONFIDENCE   = 0.50   # YOLO minimum confidence

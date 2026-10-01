@@ -133,7 +133,7 @@ class OCRMode(BaseMode):
         if self._reader is not None:
             preprocessed = self._preprocess(frame)
             decoder = getattr(config, "OCR_DECODER", "greedy")
-            decode_kwargs = {"decoder": decoder}
+            decode_kwargs = {"decoder": decoder, "canvas_size": getattr(config, "OCR_CANVAS_SIZE", 2560)}
             if decoder == "beamsearch":
                 decode_kwargs["beamWidth"] = getattr(config, "OCR_BEAM_WIDTH", 5)
             try:

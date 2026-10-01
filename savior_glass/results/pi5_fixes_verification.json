@@ -30,6 +30,7 @@
       "status": "blocked",
       "before_espeak_median_ms": 6194.0,
       "after_median_ms": 6194.0,
+      "measured_on_phrase": "the OCR capture confirmation sentence (লেখা সংরক্ষণ করা হয়েছে। শুনতে রিড বাটন চাপুন), NOT the currency denomination phrase - see currency_denomination_tts_correction below for the phrase currency mode actually speaks.",
       "reason": "piper 2023.11.14-2 (only prebuilt ARM64 release) throws 'Phonemes must be one codepoint' on bn_BD-google-medium.onnx (e.g. the diphthong \"aɪ\" is not a single codepoint in this binary's phoneme id map) and aborts. utils.TTSEngine._piper() now checks piper's return code and falls back to espeak-ng, so Bangla still speaks - just at the unchanged espeak-ng speed."
     },
     "playback_fix": {
@@ -59,6 +60,36 @@
     "evidence": "config.CURRENCY_YOLO_PATH already selects best_int8.onnx when config.ON_RASPBERRY_PI_5 is true, and _candidate_yolo_paths() inserts it first. Confirmed by live log on this device: 'Currency YOLO loaded from .../best_int8.onnx'. The benchmark's separate taka_yolo_pt/taka_yolo_onnx_fp32 entries are explicit comparison loads, not what currency_mode_full actually runs.",
     "action_taken": "none - no code change needed"
   },
+  "ocr_canvas_size": {
+    "hypothesis": "EasyOCR's detector upscales toward canvas_size (default 2560) before running CRAFT; the glass's 640px camera frame doesn't need that, so a smaller canvas_size should be faster with no accuracy loss.",
+    "single_frame_timing": {
+      "note": "n=1 per setting, synthetic text_frame() from benchmark_pi5.py, beamsearch decoder",
+      "canvas_2560_default_s": 20.23,
+      "canvas_640_s": 6.93,
+      "canvas_320_s": 4.25,
+      "output_canvas_2560": ["EXIT 12", "Bus Stop", "Main Entrance"],
+      "output_canvas_640": ["EXIT 12", "Bus Stop", "Main Entrance"],
+      "output_canvas_320": ["EXIT 12", "Bus Stop", "Main Entrance"]
+    },
+    "accuracy_spotcheck": {
+      "note": "reduced sample (n=16: 8 bn + 8 en, half with rotation/blur/downscale wild augmentation), same phrases and same random draws at both canvas sizes for a fair controlled comparison - NOT the full 80-sample scripts/eval_ocr_offline.py methodology, and used NotoSansBengali.ttf (Linux) rather than the original Windows Vrinda font, so these numbers are not directly comparable to results/ocr_cer.json's published baseline. Run the full eval yourself (now canvas_size-aware via config.OCR_CANVAS_SIZE) for a thesis-grade number.",
+      "canvas_2560": {"n": 16, "avg_time_s": 6.54, "cer": 0.0, "wer": 0.0},
+      "canvas_640": {"n": 16, "avg_time_s": 2.17, "cer": 0.0, "wer": 0.0}
+    },
+    "status": "promising, not adopted as default - config.OCR_CANVAS_SIZE added (default stays 2560) pending the full eval_ocr_offline.py run. Override with OCR_CANVAS_SIZE=640 to try it.",
+    "how_to_validate_fully": "cd savior_glass && OCR_CANVAS_SIZE=2560 python3 scripts/eval_ocr_offline.py  (baseline, ~27 min at n=80) and OCR_CANVAS_SIZE=640 python3 scripts/eval_ocr_offline.py (candidate, ~9 min) - compare results/ocr_offline_repaired.json between runs."
+  },
+  "currency_denomination_tts_correction": {
+    "error_found": "the first pass's 'Currency end-to-end' and 'TTS Bangla dominates currency' figures used the OCR confirmation sentence's TTS duration (6.19s) as a stand-in for the currency announcement's TTS duration. They are different, much shorter phrases - this was a measurement mistake, not an app bug. Corrected 2026-10-01.",
+    "actual_phrases_spoken_by_currency_mode": "config._DENOMINATION_BN in modes/currency_mode.py, e.g. 'duI TakAr note' (2 taka) through 'eka hAjAr TakAr note' (1000 taka) - all 3-4 words",
+    "measured_espeak_ng_bn_s135": {
+      "2_taka_shortest": 1978,
+      "500_taka": 2586,
+      "1000_taka_longest": 2562,
+      "n_per_phrase": 1,
+      "note": "single-sample timings, not a full median/p95 sweep like the other TTS numbers in this file - but real() time is almost entirely audio playback duration (user+sys CPU time is ~0.01-0.04s each run), so variance across repeats is expected to be small, unlike compute-bound measurements."
+    }
+  },
   "end_to_end_recomputed": {
     "ocr_capture": {
       "before_ms": 23612.94,
@@ -66,9 +97,11 @@
       "change": "process_frame unchanged; TTS confirmation now via Piper (en-us)"
     },
     "currency": {
-      "before_ms": 6520.62,
-      "after_ms": 6520.62,
-      "change": "unchanged - both inference (already int8) and TTS (Bangla, still espeak-ng) are the same path as before"
+      "before_ms_as_first_reported_WRONG": 6520.62,
+      "corrected_before_ms": 2912.62,
+      "corrected_after_ms": 2912.62,
+      "change": "unchanged either way - both inference (already int8) and TTS (Bangla, espeak-ng) are the same path as before. The 'before' number itself was wrong (see currency_denomination_tts_correction); it was never 6.5s.",
+      "basis": "326.62ms (currency_mode_full median) + 2586ms (500 taka denomination TTS, representative of the 1978-2586ms range across denominations)"
     }
   }
 }

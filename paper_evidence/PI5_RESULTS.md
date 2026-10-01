@@ -34,6 +34,10 @@ CPU / RAM / temperature:
 4. Watermark localizer over SIFT — already the live app's default; the SIFT number above is a forced comparison path, not real app behavior. No code change needed.
 5. INT8 over FP32/.pt for currency detection — already the live app's default on Pi 5; confirmed via log. No code change needed.
 
+**Correction (2026-10-01, same pass):** the first write-up of this section reported "Currency end-to-end 6.5 s" and "TTS Bangla 6.2 s dominates currency," using the OCR capture confirmation sentence's TTS duration as a stand-in for the currency announcement's. They are different, much shorter phrases (`modes/currency_mode.py`'s `_DENOMINATION_BN`, e.g. "দুই টাকার নোট" for 2 taka, "পাঁচশত টাকার নোট" for 500). Measured directly: 1.98 s (2 taka, shortest) to 2.59 s (500/1000 taka, longest). Corrected currency end-to-end is **326.62 ms + ~2.0–2.6 s ≈ 2.3–2.9 s**, not 6.5 s — it was never a real problem. Full detail: `savior_glass/results/pi5_fixes_verification.json`.
+
+**OCR speed, tried further (2026-10-01):** EasyOCR's detector upscales toward `canvas_size` (default 2560) before running CRAFT; the camera frame is only 640 px wide, so the default buys no resolution, just compute. `canvas_size=640` measured 3× faster (20.2 s → 6.9 s, single-frame) with identical output; a reduced 16-sample accuracy spot-check (not the full 80-sample eval) showed 0.00 CER/WER at both settings. Added `config.OCR_CANVAS_SIZE` (default stays 2560, pending a full `scripts/eval_ocr_offline.py` run — now canvas-size-aware — to confirm on the real 80-sample set before adopting it). Override with `OCR_CANVAS_SIZE=640` to try it; see `pi5_fixes_verification.json` for exact numbers and how to run the full validation.
+
 Status: MEASURED.
 
 ---

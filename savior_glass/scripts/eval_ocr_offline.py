@@ -86,6 +86,7 @@ def _cer(gt: str, hyp: str) -> float:
 
 
 def _read(reader, gray) -> str:
+    import config as _config
     try:
         det = reader.readtext(
             gray,
@@ -95,6 +96,7 @@ def _read(reader, gray) -> str:
             beamWidth=5,
             width_ths=0.7,
             height_ths=0.7,
+            canvas_size=getattr(_config, "OCR_CANVAS_SIZE", 2560),
         )
     except TypeError:
         det = reader.readtext(gray, detail=1, paragraph=False, width_ths=0.7, height_ths=0.7)
