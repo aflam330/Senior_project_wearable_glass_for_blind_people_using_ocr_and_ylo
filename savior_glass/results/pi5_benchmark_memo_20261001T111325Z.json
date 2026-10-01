@@ -1,0 +1,186 @@
+{
+  "host": {
+    "hostname": "memo",
+    "device_model": "Raspberry Pi 5 Model B Rev 1.0",
+    "raspberry_pi_5": true,
+    "machine": "aarch64",
+    "os": "Linux-6.18.33+rpt-rpi-2712-aarch64-with-glibc2.41",
+    "python": "3.13.5",
+    "cpu_count": 4,
+    "utc": "2026-10-01T10:36:08.618654+00:00",
+    "torch": "2.14.1+cpu",
+    "torch_threads": 4,
+    "cuda_gpu": null,
+    "ultralytics": "8.4.170",
+    "onnxruntime": "1.30.0",
+    "easyocr": "1.7.2",
+    "cv2": "5.0.0",
+    "cpu_temp_c_start": 57.85,
+    "throttled_start": "0x0",
+    "cpu_temp_c_end": 74.35,
+    "throttled_end": "0x0"
+  },
+  "latency": {
+    "currency_mode_full": {
+      "median_ms": 326.62,
+      "p95_ms": 560.03,
+      "mean_ms": 334.78,
+      "fps_median": 3.06,
+      "iters": 100,
+      "rss_mb_after": 1192.198144,
+      "cpu_temp_c_after": 68.3,
+      "load_ms": 371.8
+    },
+    "taka_yolo_pt": {
+      "median_ms": 507.3,
+      "p95_ms": 602.55,
+      "mean_ms": 521.04,
+      "fps_median": 1.97,
+      "iters": 100,
+      "rss_mb_after": 1245.708288,
+      "cpu_temp_c_after": 69.4,
+      "load_ms": 411.1
+    },
+    "taka_yolo_onnx_fp32": {
+      "median_ms": 485.47,
+      "p95_ms": 575.48,
+      "mean_ms": 502.57,
+      "fps_median": 2.06,
+      "iters": 100,
+      "rss_mb_after": 1332.084736,
+      "cpu_temp_c_after": 76.55,
+      "load_ms": 0.6
+    },
+    "taka_yolo_onnx_int8": {
+      "median_ms": 254.44,
+      "p95_ms": 339.38,
+      "mean_ms": 265.32,
+      "fps_median": 3.93,
+      "iters": 100,
+      "rss_mb_after": 1426.079744,
+      "cpu_temp_c_after": 76.0,
+      "load_ms": 0.4
+    },
+    "watermark_int8_sift": {
+      "median_ms": 372.47,
+      "p95_ms": 853.9,
+      "mean_ms": 478.14,
+      "fps_median": 2.68,
+      "iters": 100,
+      "rss_mb_after": 1435.48416,
+      "cpu_temp_c_after": 64.45,
+      "load_ms": 696.3
+    },
+    "watermark_int8_localizer": {
+      "median_ms": 50.06,
+      "p95_ms": 62.1,
+      "mean_ms": 51.33,
+      "fps_median": 19.98,
+      "iters": 100,
+      "rss_mb_after": 1456.29184,
+      "cpu_temp_c_after": 68.3,
+      "load_ms": 582.0
+    },
+    "jaal_check_qduig": {
+      "median_ms": 36.1,
+      "p95_ms": 49.68,
+      "mean_ms": 38.6,
+      "fps_median": 27.7,
+      "iters": 100,
+      "rss_mb_after": 1457.487872,
+      "cpu_temp_c_after": 66.65,
+      "load_ms": 229.5
+    },
+    "prmvt_1view": {
+      "median_ms": 36.98,
+      "p95_ms": 56.66,
+      "mean_ms": 40.25,
+      "fps_median": 27.04,
+      "iters": 100,
+      "rss_mb_after": 1457.68448,
+      "cpu_temp_c_after": 66.65,
+      "load_ms": 281.2
+    },
+    "prmvt_2view": {
+      "median_ms": 56.57,
+      "p95_ms": 72.14,
+      "mean_ms": 57.22,
+      "fps_median": 17.68,
+      "iters": 100,
+      "rss_mb_after": 1459.503104,
+      "cpu_temp_c_after": 67.75,
+      "load_ms": 297.7
+    },
+    "prmvt_3view": {
+      "median_ms": 62.94,
+      "p95_ms": 86.05,
+      "mean_ms": 65.29,
+      "fps_median": 15.89,
+      "iters": 100,
+      "rss_mb_after": 1459.748864,
+      "cpu_temp_c_after": 65.55,
+      "load_ms": 288.3
+    },
+    "prmvt_4view": {
+      "median_ms": 71.31,
+      "p95_ms": 90.87,
+      "mean_ms": 72.69,
+      "fps_median": 14.02,
+      "iters": 100,
+      "rss_mb_after": 1462.386688,
+      "cpu_temp_c_after": 66.1,
+      "load_ms": 322.7
+    },
+    "prmvt_5view": {
+      "median_ms": 81.55,
+      "p95_ms": 99.25,
+      "mean_ms": 82.69,
+      "fps_median": 12.26,
+      "iters": 100,
+      "rss_mb_after": 1464.844288,
+      "cpu_temp_c_after": 65.55,
+      "load_ms": 304.5
+    },
+    "prmvt_6view": {
+      "median_ms": 90.16,
+      "p95_ms": 106.01,
+      "mean_ms": 90.96,
+      "fps_median": 11.09,
+      "iters": 100,
+      "rss_mb_after": 1466.810368,
+      "cpu_temp_c_after": 66.1,
+      "load_ms": 319.2
+    },
+    "ocr_mode": {
+      "median_ms": 18725.73,
+      "p95_ms": 20403.89,
+      "mean_ms": 18892.33,
+      "fps_median": 0.05,
+      "iters": 100,
+      "rss_mb_after": 1461.12512,
+      "cpu_temp_c_after": 73.8,
+      "load_ms": 6997.9
+    },
+    "emotion": {
+      "median_ms": 48.42,
+      "p95_ms": 52.03,
+      "mean_ms": 48.87,
+      "fps_median": 20.65,
+      "iters": 100,
+      "rss_mb_after": 1479.704576,
+      "cpu_temp_c_after": 67.2,
+      "load_ms": 528.3
+    }
+  },
+  "skipped": {
+    "object_mode": "RuntimeError: no YOLOv8 COCO weights"
+  },
+  "peak_rss_mb": 1479.72096,
+  "sustained": {
+    "minutes": 30.0,
+    "calls": 1229,
+    "max_cpu_temp_c": 77.1,
+    "final_throttled": "0x0",
+    "csv": "pi5_benchmark_memo_20261001T111325Z.csv"
+  }
+}

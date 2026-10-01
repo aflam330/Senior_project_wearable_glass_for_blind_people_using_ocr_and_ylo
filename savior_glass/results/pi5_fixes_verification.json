@@ -1,0 +1,74 @@
+{
+  "_description": "Re-measurement of the 5 proposed fixes from the 2026-10-01 pi5_benchmark run, on the same Raspberry Pi 5 Model B Rev 1.0. Each value below was actually run, not estimated.",
+  "host": {
+    "device_model": "Raspberry Pi 5 Model B Rev 1.0",
+    "measured_utc": "2026-10-01T12:20:00Z"
+  },
+  "ocr_decoder": {
+    "hypothesis": "greedy decoder should be faster than beamsearch (beamWidth=5)",
+    "result": "regressed - greedy measured slower, not faster",
+    "beamsearch_kept_as_default": true,
+    "beamsearch_median_ms": 18725.73,
+    "beamsearch_p95_ms": 20403.89,
+    "beamsearch_n": 100,
+    "greedy_tried_median_ms": 20558.12,
+    "greedy_tried_p95_ms": 23326.47,
+    "greedy_tried_n": 8,
+    "note": "The ~19s cost is EasyOCR's text-detector network on CPU, not the beam-search decode step, so the decoder flag doesn't touch the actual bottleneck. config.OCR_DECODER left at 'beamsearch' (env-overridable)."
+  },
+  "tts_piper": {
+    "en_us": {
+      "before_espeak_median_ms": 4887.21,
+      "before_espeak_p95_ms": 4892.78,
+      "before_n": 30,
+      "after_piper_median_ms": 3299.2,
+      "after_piper_p95_ms": 3525.4,
+      "after_n": 10,
+      "speedup_pct": 32.5
+    },
+    "bn": {
+      "status": "blocked",
+      "before_espeak_median_ms": 6194.0,
+      "after_median_ms": 6194.0,
+      "reason": "piper 2023.11.14-2 (only prebuilt ARM64 release) throws 'Phonemes must be one codepoint' on bn_BD-google-medium.onnx (e.g. the diphthong \"aɪ\" is not a single codepoint in this binary's phoneme id map) and aborts. utils.TTSEngine._piper() now checks piper's return code and falls back to espeak-ng, so Bangla still speaks - just at the unchanged espeak-ng speed."
+    },
+    "playback_fix": {
+      "problem": "On this headless Pi 5 (no display attached), PipeWire has nothing to route the HDMI ALSA device to, so 'aplay' fails to open it (error 524) on every call - and neither that failure nor the piper crash above raised a Python exception, so TTSEngine._piper() would previously return having played nothing at all, silently.",
+      "fix": "utils.TTSEngine._audio_player_cmd() probes 'aplay' then 'pw-cat' once per process and caches whichever one actually opens the device; _piper() also now checks piper_proc.returncode and raises (triggering the espeak-ng fallback) instead of assuming success.",
+      "player_selected_this_run": "pw-cat"
+    }
+  },
+  "object_mode": {
+    "before": "skipped - no YOLOv8 COCO weights in this checkout",
+    "after": {
+      "weights": "models/yolov8n.pt (downloaded via ultralytics, 6.5 MB)",
+      "median_ms": 207.18,
+      "p95_ms": 216.57,
+      "n": 15
+    }
+  },
+  "watermark_localizer": {
+    "claim_checked": "live app already uses the learned localizer, not SIFT, by default",
+    "verified": true,
+    "evidence": "WatermarkChecker.localizer loads whenever config.WATERMARK_LOCALIZER_PATH exists (it does); genuine_prob() calls _window_learned() first and only falls back to SIFT when that returns None. The benchmark's 372ms 'watermark_int8_sift' entry forced checker.localizer=None for comparison - it does not reflect live app behavior.",
+    "action_taken": "none - no code change needed"
+  },
+  "currency_int8": {
+    "claim_checked": "live app already loads best_int8.onnx on Pi 5, not best.pt",
+    "verified": true,
+    "evidence": "config.CURRENCY_YOLO_PATH already selects best_int8.onnx when config.ON_RASPBERRY_PI_5 is true, and _candidate_yolo_paths() inserts it first. Confirmed by live log on this device: 'Currency YOLO loaded from .../best_int8.onnx'. The benchmark's separate taka_yolo_pt/taka_yolo_onnx_fp32 entries are explicit comparison loads, not what currency_mode_full actually runs.",
+    "action_taken": "none - no code change needed"
+  },
+  "end_to_end_recomputed": {
+    "ocr_capture": {
+      "before_ms": 23612.94,
+      "after_ms": 22024.93,
+      "change": "process_frame unchanged; TTS confirmation now via Piper (en-us)"
+    },
+    "currency": {
+      "before_ms": 6520.62,
+      "after_ms": 6520.62,
+      "change": "unchanged - both inference (already int8) and TTS (Bangla, still espeak-ng) are the same path as before"
+    }
+  }
+}

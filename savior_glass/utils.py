@@ -243,8 +243,42 @@ class TTSEngine:
         else:
             self._espeak(text, fallback_voice)
 
+    _player_cmd: list[str] | None = None  # cached across instances once probed
+
+    @classmethod
+    def _audio_player_cmd(cls) -> list[str]:
+        """Pick a working raw-PCM player once per process.
+
+        ``aplay`` against the ALSA "default" device is the common case, but on a
+        headless Pi with no display attached, PipeWire has nothing to route the
+        HDMI ALSA device to and ``aplay`` fails to open it — a failure that would
+        otherwise silently repeat on every single utterance. ``pw-cat`` talks to
+        PipeWire directly and still works (its dummy/virtual sink paces playback
+        in real time). Probe both once with a near-silent buffer and cache the
+        first one that actually opens the device.
+        """
+        if cls._player_cmd is not None:
+            return cls._player_cmd
+        candidates = [
+            ["aplay", "-q", "-r", "22050", "-f", "S16_LE", "-c", "1", "-"],
+            ["pw-cat", "--raw", "--playback", "--format", "s16", "--rate", "22050", "--channels", "1", "-"],
+        ]
+        for cmd in candidates:
+            try:
+                probe = subprocess.run(
+                    cmd, input=b"\x00\x00" * 50,
+                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=3,
+                )
+                if probe.returncode == 0:
+                    cls._player_cmd = cmd
+                    return cmd
+            except Exception:
+                continue
+        cls._player_cmd = candidates[0]
+        return candidates[0]
+
     def _piper(self, text: str, model_path: str, fallback_voice: str) -> None:
-        """Render via Piper and stream raw PCM to aplay."""
+        """Render via Piper and stream raw PCM to whichever player actually works."""
         try:
             piper_proc = subprocess.Popen(
                 [config.PIPER_BINARY, "--model", model_path, "--output-raw"],
@@ -253,7 +287,7 @@ class TTSEngine:
                 stderr=subprocess.DEVNULL,
             )
             aplay_proc = subprocess.Popen(
-                ["aplay", "-r", "22050", "-f", "S16_LE", "-c", "1", "-"],
+                self._audio_player_cmd(),
                 stdin=piper_proc.stdout,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
@@ -266,6 +300,12 @@ class TTSEngine:
 
             aplay_proc.wait()
             piper_proc.wait()
+            # A crashed Piper (e.g. a voice with phonemes this binary's id map lacks)
+            # leaves aplay/pw-cat with nothing to play; both exit, but silently —
+            # neither raises on its own. Without this check the utterance is just
+            # dropped instead of falling back to espeak-ng.
+            if piper_proc.returncode != 0:
+                raise RuntimeError(f"piper exited {piper_proc.returncode}")
         except Exception as exc:
             logger.debug("Piper failed (%s), falling back to espeak-ng", exc)
             self._espeak(text, fallback_voice)

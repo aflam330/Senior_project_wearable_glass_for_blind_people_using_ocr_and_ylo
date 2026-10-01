@@ -132,15 +132,18 @@ class OCRMode(BaseMode):
         texts = []
         if self._reader is not None:
             preprocessed = self._preprocess(frame)
+            decoder = getattr(config, "OCR_DECODER", "greedy")
+            decode_kwargs = {"decoder": decoder}
+            if decoder == "beamsearch":
+                decode_kwargs["beamWidth"] = getattr(config, "OCR_BEAM_WIDTH", 5)
             try:
                 results = self._reader.readtext(
                     preprocessed,
                     detail=1,
                     paragraph=False,   # paragraph=True changes tuple format; keep False for stability
-                    decoder="beamsearch",
-                    beamWidth=5,
                     width_ths=0.7,
                     height_ths=0.7,
+                    **decode_kwargs,
                 )
             except TypeError:
                 results = self._reader.readtext(

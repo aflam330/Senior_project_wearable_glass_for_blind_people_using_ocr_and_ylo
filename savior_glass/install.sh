@@ -73,9 +73,14 @@ if [ ! -f "$PIPER_ARCHIVE" ]; then
         "https://github.com/rhasspy/piper/releases/download/${PIPER_VERSION}/${PIPER_ARCHIVE}"
 fi
 tar -xzf "$PIPER_ARCHIVE" -C /tmp/
-sudo cp /tmp/piper/piper /usr/local/bin/piper
-sudo chmod +x /usr/local/bin/piper
-echo "   Piper binary installed at /usr/local/bin/piper"
+# Project-local, not /usr/local/bin: no sudo needed, and this is what config.PIPER_BINARY
+# expects. The binary's RUNPATH is $ORIGIN, so its bundled .so files travel with it as long
+# as the whole extracted directory (not just the "piper" executable) is copied together.
+# If the install target is an exFAT/FAT filesystem, "cp -r" fails on the archive's symlinked
+# .so files — use "cp -rL" to copy their real contents instead.
+mkdir -p "$PIPER_DIR/engine"
+cp -rL /tmp/piper/* "$PIPER_DIR/engine/"
+echo "   Piper binary installed at $PIPER_DIR/engine/piper"
 
 # English Amy voice (low = ~30 MB, fastest on RPi 5)
 cd "$PIPER_DIR"
@@ -84,8 +89,16 @@ wget -q --show-progress "${EN_BASE}/en_US-amy-low.onnx"       -O en_US-amy-low.o
 wget -q --show-progress "${EN_BASE}/en_US-amy-low.onnx.json"  -O en_US-amy-low.onnx.json
 echo "   English voice downloaded"
 
-echo "   Bangla TTS uses espeak-ng (installed above)"
-echo "   Optional Piper Bangla: place bn_BD-medium.onnx + .json in $PIPER_DIR"
+# Bangla voice: the only public Piper Bangla voice is bn_BD-google-medium (not bn_BD-medium —
+# there is no plain "medium" variant). Measured 2026-10-01 on a Pi 5: this voice's phonemes
+# include multi-codepoint IPA symbols (e.g. "aɪ") that piper 2023.11.14-2 — the only prebuilt
+# ARM64 release — cannot map, and it crashes. utils.TTSEngine catches that and falls back to
+# espeak-ng automatically, so Bangla still speaks, just without Piper's speedup. Downloaded
+# anyway in case a future Piper release fixes the phoneme map.
+BN_BASE="https://huggingface.co/rhasspy/piper-voices/resolve/main/bn/bn_BD/google/medium"
+wget -q --show-progress "${BN_BASE}/bn_BD-google-medium.onnx"      -O bn_BD-google-medium.onnx
+wget -q --show-progress "${BN_BASE}/bn_BD-google-medium.onnx.json" -O bn_BD-google-medium.onnx.json
+echo "   Bangla voice downloaded (falls back to espeak-ng until piper fixes the phoneme map — see comment above)"
 
 # ---------------------------------------------------------------------------
 # 5. YOLOv8n model

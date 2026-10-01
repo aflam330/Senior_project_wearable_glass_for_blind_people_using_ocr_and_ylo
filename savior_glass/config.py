@@ -124,10 +124,12 @@ JAAL_VIEW_WINDOWS = (
 CURRENCY_ANNOUNCE_CONF = 0.60
 LABELS_BN_PATH      = os.path.join(BASE_DIR, "assets", "labels_bn.json")
 
-# Piper TTS models
+# Piper TTS models. Binary is project-local (models/piper/engine/), not /usr/local/bin, because
+# installing there needs sudo and this deploy has none; the binary's RUNPATH is $ORIGIN so its
+# bundled .so files are found alongside it without an installer step.
 PIPER_EN_MODEL = os.path.join(BASE_DIR, "models", "piper", "en_US-amy-low.onnx")
-PIPER_BN_MODEL = os.path.join(BASE_DIR, "models", "piper", "bn_BD-medium.onnx")
-PIPER_BINARY   = "/usr/local/bin/piper"
+PIPER_BN_MODEL = os.path.join(BASE_DIR, "models", "piper", "bn_BD-google-medium.onnx")
+PIPER_BINARY   = os.path.join(BASE_DIR, "models", "piper", "engine", "piper")
 
 # ---------------------------------------------------------------------------
 # Text-to-Speech
@@ -155,6 +157,16 @@ EMOTION_ADAPTIVE_DEFAULT = True
 # ---------------------------------------------------------------------------
 # Inference Thresholds
 # ---------------------------------------------------------------------------
+# EasyOCR decoder. beamsearch (beamWidth=5) is what scripts/eval_ocr_offline.py measured CER
+# with (paper_evidence) and is more accurate on mixed Bangla/English text. Tried greedy on this
+# Pi 5 expecting a speedup (2026-10-01): median went from 18.7 s to 20.6 s (n=8 each) — slightly
+# *slower*, not faster. The ~19 s cost is not the beam-search decode step; it is EasyOCR's text
+# detector running on CPU before decoding ever starts, so switching decoders doesn't touch the
+# bottleneck. Kept beamsearch as the default for its measured accuracy. Override with
+# OCR_DECODER=greedy only if you want to re-check that result yourself.
+OCR_DECODER = os.environ.get("OCR_DECODER", "beamsearch")
+OCR_BEAM_WIDTH = 5
+
 OCR_CONFIDENCE      = 0.4    # EasyOCR minimum confidence
 OBJECT_CONFIDENCE   = 0.50   # YOLO minimum confidence
 CURRENCY_CONFIDENCE = 0.65   # MobileNetV3 minimum softmax score
