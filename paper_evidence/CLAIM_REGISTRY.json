@@ -103,17 +103,24 @@
   },
   {
    "claim_id": "C_PI5",
-   "claim": "Raspberry Pi 5 latency",
-   "dataset": "JaalTaka",
-   "split": "test",
-   "sample_definition": "physical_note",
+   "claim": "Raspberry Pi 5 latency of the QDUIG / PRMVT counterfeit check (median)",
+   "dataset": "benchmark frames",
+   "split": "n/a",
+   "sample_definition": "timed call",
    "training_seed": "42",
-   "evaluation_seed": "42",
+   "evaluation_seed": "n/a",
    "metric": "median_ms",
-   "value": "NOT_MEASURED",
-   "source_artifact": "E:\\Final SP\\realtime_bangla_taka_detection\\results\\qduig\\edge\\edge.json",
-   "script": "scripts/benchmark_edge_qduig.py",
-   "status": "NOT_MEASURED"
+   "value": 36.1,
+   "source_artifact": "savior_glass\\results\\pi5_benchmark_memo_20261001T111325Z.json",
+   "script": "savior_glass/scripts/benchmark_pi5.py --iters 100 --sustained 30",
+   "status": "VERIFIED",
+   "json_key": [
+    "latency",
+    "jaal_check_qduig",
+    "median_ms"
+   ],
+   "hardware": "Raspberry Pi 5 Model B Rev 1.0, 8 GB, measured 2026-10-01",
+   "note": "Was NOT_MEASURED and scoped to scripts/benchmark_edge_qduig.py. Re-pointed 2026-10-01 to the Pi 5 run of benchmark_pi5.py, which times the same QDUIG check."
   },
   {
    "claim_id": "C_CAM",
@@ -4936,7 +4943,232 @@
    "metric": "count",
    "status": "VERIFIED",
    "script": "scripts/eval/eval_capture_guide.py"
+  },
+  {
+   "claim_id": "C_PI5_CURRENCY_FULL",
+   "claim": "Pi 5 currency mode end to end (detect + check), median",
+   "value": 326.62,
+   "json_key": [
+    "latency",
+    "currency_mode_full",
+    "median_ms"
+   ],
+   "source_artifact": "savior_glass\\results\\pi5_benchmark_memo_20261001T111325Z.json",
+   "dataset": "benchmark frames",
+   "split": "n/a",
+   "sample_definition": "timed call",
+   "training_seed": "42",
+   "evaluation_seed": "n/a",
+   "metric": "median_ms",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/benchmark_pi5.py --iters 100 --sustained 30",
+   "hardware": "Raspberry Pi 5 Model B Rev 1.0, 8 GB, measured 2026-10-01"
+  },
+  {
+   "claim_id": "C_PI5_CURRENCY_FULL_P95",
+   "claim": "Pi 5 currency mode end to end, 95th percentile",
+   "value": 560.03,
+   "json_key": [
+    "latency",
+    "currency_mode_full",
+    "p95_ms"
+   ],
+   "source_artifact": "savior_glass\\results\\pi5_benchmark_memo_20261001T111325Z.json",
+   "dataset": "benchmark frames",
+   "split": "n/a",
+   "sample_definition": "timed call",
+   "training_seed": "42",
+   "evaluation_seed": "n/a",
+   "metric": "p95_ms",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/benchmark_pi5.py --iters 100 --sustained 30",
+   "hardware": "Raspberry Pi 5 Model B Rev 1.0, 8 GB, measured 2026-10-01"
+  },
+  {
+   "claim_id": "C_PI5_TAKA_INT8",
+   "claim": "Pi 5 Taka detector INT8 ONNX, median",
+   "value": 254.44,
+   "json_key": [
+    "latency",
+    "taka_yolo_onnx_int8",
+    "median_ms"
+   ],
+   "source_artifact": "savior_glass\\results\\pi5_benchmark_memo_20261001T111325Z.json",
+   "dataset": "benchmark frames",
+   "split": "n/a",
+   "sample_definition": "timed call",
+   "training_seed": "42",
+   "evaluation_seed": "n/a",
+   "metric": "median_ms",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/benchmark_pi5.py --iters 100 --sustained 30",
+   "hardware": "Raspberry Pi 5 Model B Rev 1.0, 8 GB, measured 2026-10-01"
+  },
+  {
+   "claim_id": "C_PI5_WM_LOCALIZER",
+   "claim": "Pi 5 watermark check, learned localizer path, median",
+   "value": 50.06,
+   "json_key": [
+    "latency",
+    "watermark_int8_localizer",
+    "median_ms"
+   ],
+   "source_artifact": "savior_glass\\results\\pi5_benchmark_memo_20261001T111325Z.json",
+   "dataset": "benchmark frames",
+   "split": "n/a",
+   "sample_definition": "timed call",
+   "training_seed": "42",
+   "evaluation_seed": "n/a",
+   "metric": "median_ms",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/benchmark_pi5.py --iters 100 --sustained 30",
+   "hardware": "Raspberry Pi 5 Model B Rev 1.0, 8 GB, measured 2026-10-01"
+  },
+  {
+   "claim_id": "C_PI5_WM_SIFT",
+   "claim": "Pi 5 watermark check, SIFT path, median",
+   "value": 372.47,
+   "json_key": [
+    "latency",
+    "watermark_int8_sift",
+    "median_ms"
+   ],
+   "source_artifact": "savior_glass\\results\\pi5_benchmark_memo_20261001T111325Z.json",
+   "dataset": "benchmark frames",
+   "split": "n/a",
+   "sample_definition": "timed call",
+   "training_seed": "42",
+   "evaluation_seed": "n/a",
+   "metric": "median_ms",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/benchmark_pi5.py --iters 100 --sustained 30",
+   "hardware": "Raspberry Pi 5 Model B Rev 1.0, 8 GB, measured 2026-10-01"
+  },
+  {
+   "claim_id": "C_PI5_OCR",
+   "claim": "Pi 5 OCR mode (EasyOCR, canvas 2560), median",
+   "value": 18725.73,
+   "json_key": [
+    "latency",
+    "ocr_mode",
+    "median_ms"
+   ],
+   "source_artifact": "savior_glass\\results\\pi5_benchmark_memo_20261001T111325Z.json",
+   "dataset": "benchmark frames",
+   "split": "n/a",
+   "sample_definition": "timed call",
+   "training_seed": "42",
+   "evaluation_seed": "n/a",
+   "metric": "median_ms",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/benchmark_pi5.py --iters 100 --sustained 30",
+   "hardware": "Raspberry Pi 5 Model B Rev 1.0, 8 GB, measured 2026-10-01"
+  },
+  {
+   "claim_id": "C_PI5_PEAK_RSS",
+   "claim": "Pi 5 peak resident memory, all models loaded (MB)",
+   "value": 1479.72096,
+   "json_key": [
+    "peak_rss_mb"
+   ],
+   "source_artifact": "savior_glass\\results\\pi5_benchmark_memo_20261001T111325Z.json",
+   "dataset": "benchmark frames",
+   "split": "n/a",
+   "sample_definition": "timed call",
+   "training_seed": "42",
+   "evaluation_seed": "n/a",
+   "metric": "MB",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/benchmark_pi5.py --iters 100 --sustained 30",
+   "hardware": "Raspberry Pi 5 Model B Rev 1.0, 8 GB, measured 2026-10-01"
+  },
+  {
+   "claim_id": "C_PI5_SUSTAINED_TEMP",
+   "claim": "Pi 5 30-minute sustained run, peak CPU temperature (C)",
+   "value": 77.1,
+   "json_key": [
+    "sustained",
+    "max_cpu_temp_c"
+   ],
+   "source_artifact": "savior_glass\\results\\pi5_benchmark_memo_20261001T111325Z.json",
+   "dataset": "benchmark frames",
+   "split": "n/a",
+   "sample_definition": "timed call",
+   "training_seed": "42",
+   "evaluation_seed": "n/a",
+   "metric": "celsius",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/benchmark_pi5.py --iters 100 --sustained 30",
+   "hardware": "Raspberry Pi 5 Model B Rev 1.0, 8 GB, measured 2026-10-01"
+  },
+  {
+   "claim_id": "C_PI5_SUSTAINED_THROTTLE",
+   "claim": "Pi 5 30-minute sustained run, vcgencmd get_throttled stayed 0x0 (no throttling)",
+   "value": "0x0",
+   "source_artifact": "savior_glass\\results\\pi5_benchmark_memo_20261001T111325Z.json",
+   "dataset": "benchmark frames",
+   "split": "n/a",
+   "sample_definition": "timed call",
+   "training_seed": "42",
+   "evaluation_seed": "n/a",
+   "metric": "flag",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/benchmark_pi5.py --iters 100 --sustained 30",
+   "hardware": "Raspberry Pi 5 Model B Rev 1.0, 8 GB, measured 2026-10-01"
+  },
+  {
+   "claim_id": "C_OCR_CANVAS640_CER",
+   "claim": "OCR repaired CER at canvas_size 640 (adopted default)",
+   "value": 0.02238095238095238,
+   "json_key": [
+    "repaired_cer",
+    "640"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_canvas_comparison.json",
+   "dataset": "80 synthetic BN+EN text images (seeded)",
+   "split": "eval",
+   "sample_definition": "rendered phrase",
+   "training_seed": "pretrained EasyOCR",
+   "evaluation_seed": "fixed per sample",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/eval_ocr_offline.py 2560 640"
+  },
+  {
+   "claim_id": "C_OCR_CANVAS2560_CER",
+   "claim": "OCR repaired CER at canvas_size 2560 (old default), same images",
+   "value": 0.026666666666666665,
+   "json_key": [
+    "repaired_cer",
+    "2560"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_canvas_comparison.json",
+   "dataset": "80 synthetic BN+EN text images (seeded)",
+   "split": "eval",
+   "sample_definition": "rendered phrase",
+   "training_seed": "pretrained EasyOCR",
+   "evaluation_seed": "fixed per sample",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/eval_ocr_offline.py 2560 640"
+  },
+  {
+   "claim_id": "C_OCR_CANVAS_P",
+   "claim": "Wilcoxon p, per-sample CER 2560 vs 640",
+   "value": 1.0,
+   "json_key": [
+    "wilcoxon_p"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_canvas_comparison.json",
+   "dataset": "80 synthetic BN+EN text images (seeded)",
+   "split": "eval",
+   "sample_definition": "rendered phrase",
+   "training_seed": "pretrained EasyOCR",
+   "evaluation_seed": "fixed per sample",
+   "metric": "p_value",
+   "status": "VERIFIED",
+   "script": "savior_glass/scripts/eval_ocr_offline.py 2560 640"
   }
  ],
- "updated_utc": "2026-09-30T21:38:02+00:00"
+ "updated_utc": "2026-10-01T13:31:34+00:00"
 }

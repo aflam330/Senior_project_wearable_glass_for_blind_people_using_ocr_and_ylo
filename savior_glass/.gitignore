@@ -19,6 +19,8 @@ env/
 
 # Models (large binary files — download via install.sh)
 models/*.pt
+# 0.45 MB handwritten-letter fallback (writer-disjoint test 90.0 %, results/ekush_letters.json); tracked so the Pi gets it with git pull
+!models/ekush_cnn.pt
 models/*.onnx
 models/piper/*.onnx
 models/piper/*.json

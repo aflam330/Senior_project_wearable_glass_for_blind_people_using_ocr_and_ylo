@@ -36,7 +36,12 @@ CPU / RAM / temperature:
 
 **Correction (2026-10-01, same pass):** the first write-up of this section reported "Currency end-to-end 6.5 s" and "TTS Bangla 6.2 s dominates currency," using the OCR capture confirmation sentence's TTS duration as a stand-in for the currency announcement's. They are different, much shorter phrases (`modes/currency_mode.py`'s `_DENOMINATION_BN`, e.g. "দুই টাকার নোট" for 2 taka, "পাঁচশত টাকার নোট" for 500). Measured directly: 1.98 s (2 taka, shortest) to 2.59 s (500/1000 taka, longest). Corrected currency end-to-end is **326.62 ms + ~2.0–2.6 s ≈ 2.3–2.9 s**, not 6.5 s — it was never a real problem. Full detail: `savior_glass/results/pi5_fixes_verification.json`.
 
-**OCR speed, tried further (2026-10-01):** EasyOCR's detector upscales toward `canvas_size` (default 2560) before running CRAFT; the camera frame is only 640 px wide, so the default buys no resolution, just compute. `canvas_size=640` measured 3× faster (20.2 s → 6.9 s, single-frame) with identical output; a reduced 16-sample accuracy spot-check (not the full 80-sample eval) showed 0.00 CER/WER at both settings. Added `config.OCR_CANVAS_SIZE` (default stays 2560, pending a full `scripts/eval_ocr_offline.py` run — now canvas-size-aware — to confirm on the real 80-sample set before adopting it). Override with `OCR_CANVAS_SIZE=640` to try it; see `pi5_fixes_verification.json` for exact numbers and how to run the full validation.
+**OCR speed, tried further (2026-10-01):** EasyOCR's detector upscales toward `canvas_size` (default 2560) before running CRAFT; the camera frame is only 640 px wide, so the default buys no resolution, just compute. `canvas_size=640` measured 3× faster (20.2 s → 6.9 s, single-frame) with identical output; a reduced 16-sample accuracy spot-check (not the full 80-sample eval) showed 0.00 CER/WER at both settings. **Validated and adopted 2026-10-01:**
+- The full 80-sample `scripts/eval_ocr_offline.py` was run on the laptop CPU, on the same seeded images at both sizes. Source: `savior_glass/results/ocr_canvas_comparison.json`.
+- Repaired CER was 2.67 % at 2560 and 2.24 % at 640; WER 2.5 % and 2.1 %.
+- 77 of 80 outputs were identical (Wilcoxon p = 1.0).
+- `config.OCR_CANVAS_SIZE` now defaults to 640; `OCR_CANVAS_SIZE=2560` restores the old path.
+- The Pi OCR median in the table above (18.7 s) is still the 2560 measurement. Re-run `benchmark_pi5.py --only ocr_mode` on the Pi for the 640 number.
 
 Status: MEASURED.
 
@@ -92,4 +97,4 @@ Status: **MEASURED** (2026-10-01, superseding READY_FOR_DEVICE below).
 
 **Status 2026-09-29: READY_FOR_DEVICE.** No Raspberry Pi 5 was connected during this pass. `savior_glass/scripts/benchmark_pi5.py` already times PRMVT at 1–6 views, which covers the 4-view safe jaal check now in the app (`JAAL_VERDICT_FIXED.md`). Run it on the Pi with `savior_glass/scripts/deploy_pi5.sh` and record the numbers above.
 
-**Status 2026-10-01: MEASURED.** Run on a Raspberry Pi 5 Model B Rev 1.0, see the table and fixes summary above. `C_PI5` in `CLAIM_REGISTRY.json` is left `NOT_MEASURED`: it is scoped to `scripts/benchmark_edge_qduig.py` specifically, a different (qduig-edge-only) script this pass did not run.
+**Status 2026-10-01: MEASURED.** Run on a Raspberry Pi 5 Model B Rev 1.0, see the table and fixes summary above. `C_PI5` in `CLAIM_REGISTRY.json` now points at this run: it was scoped to `scripts/benchmark_edge_qduig.py`, which was not run; `benchmark_pi5.py` times the same QDUIG check (`jaal_check_qduig`, 36.10 ms median). Nine more value-checked `C_PI5_*` claims cover currency end to end, the INT8 detector, both watermark paths, OCR, peak memory and the sustained run.

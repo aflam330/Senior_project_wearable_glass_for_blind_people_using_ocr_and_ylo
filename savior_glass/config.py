@@ -136,7 +136,9 @@ PIPER_BINARY   = os.path.join(BASE_DIR, "models", "piper", "engine", "piper")
 # ---------------------------------------------------------------------------
 ESPEAK_VOICE_BN  = "bn"      # espeak-ng Bangla voice code
 ESPEAK_VOICE_EN  = "en-us"   # espeak-ng English voice code
-ESPEAK_SPEED     = 135        # words per minute — slower than default 150 for clarity
+# Words per minute. 135 is slower than espeak's 150 for clarity. On the Pi 175 wpm would cut speech time by ~27 %;
+# that trades clarity for speed and is for blind users to judge, so the default stays 135. Try it with ESPEAK_SPEED=175.
+ESPEAK_SPEED     = int(os.environ.get("ESPEAK_SPEED", "135"))
 ESPEAK_PITCH     = 45         # 0-99, default 50; slightly lower reads less shrill/robotic
 ESPEAK_WORD_GAP  = 4          # 1/100s pause between words — improves intelligibility
 DEFAULT_VOLUME   = 80         # percent (0–100)
@@ -166,14 +168,12 @@ EMOTION_ADAPTIVE_DEFAULT = True
 # OCR_DECODER=greedy only if you want to re-check that result yourself.
 OCR_DECODER = os.environ.get("OCR_DECODER", "beamsearch")
 OCR_BEAM_WIDTH = 5
-# EasyOCR's detector internally scales the input toward canvas_size (default 2560) before
-# running CRAFT. The glass camera frame is only 640px wide, so the default upscales ~4x for
-# no resolution gained. Measured on this Pi 5 (2026-10-01, synthetic text_frame, n=1 each):
-# canvas_size=2560 (default): 20.2s, canvas_size=640: 6.9s, canvas_size=320: 4.3s, same output
-# on that frame. Left at 2560 until scripts/eval_ocr_offline.py (CER/WER) confirms accuracy
-# holds at a smaller size on the real eval set — do not treat the single-frame timing above as
-# an accuracy result. Override with OCR_CANVAS_SIZE=640 to try the faster path.
-OCR_CANVAS_SIZE = int(os.environ.get("OCR_CANVAS_SIZE", "2560"))
+# EasyOCR's detector scales the input toward canvas_size before running CRAFT. The glass frame is 640 px wide,
+# so the old default (2560) upscaled ~4x for no gain. Pi 5 timing (2026-10-01, one frame): 2560 -> 20.2 s, 640 -> 6.9 s.
+# Accuracy, full 80-sample scripts/eval_ocr_offline.py on the same seeded images (laptop CPU, 2026-10-01):
+# repaired CER 2.67 % (2560) vs 2.24 % (640), WER 2.5 % vs 2.1 %, 77 / 80 identical, Wilcoxon p = 1.0
+# (results/ocr_canvas_comparison.json). Adopted 640. Override with OCR_CANVAS_SIZE=2560 to go back.
+OCR_CANVAS_SIZE = int(os.environ.get("OCR_CANVAS_SIZE", "640"))
 
 OCR_CONFIDENCE      = 0.4    # EasyOCR minimum confidence
 OBJECT_CONFIDENCE   = 0.50   # YOLO minimum confidence

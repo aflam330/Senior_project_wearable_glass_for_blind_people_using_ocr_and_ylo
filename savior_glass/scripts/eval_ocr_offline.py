@@ -1,6 +1,11 @@
 """Measure offline OCR: live glass preprocess + lexicon vs previous eval path.
 
 Does not use currency images. n=80 synthetic BN+EN, same phrases as publish_boost.
+
+Images are drawn with a fixed seed per sample, so every run sees the same 80 images.
+Canvas sizes: `python scripts/eval_ocr_offline.py 2560 640` scores each size on those same images and
+writes results/ocr_offline_repaired_canvas<size>.json plus results/ocr_canvas_comparison.json (paired).
+With no argument it uses config.OCR_CANVAS_SIZE and writes results/ocr_offline_repaired.json as before.
 """
 from __future__ import annotations
 
@@ -54,10 +59,10 @@ def _ocr_font() -> str:
     return ""
 
 
-def _render_text(text: str, font_path: str, wild: bool) -> np.ndarray:
+def _render_text(text: str, font_path: str, wild: bool, seed: int | None = None) -> np.ndarray:
     from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
-    rng = np.random.default_rng()
+    rng = np.random.default_rng(seed)
     w, h = 640, 160
     bg = int(rng.integers(200, 255)) if wild else 255
     img = Image.new("RGB", (w, h), (bg, bg, bg))
@@ -85,8 +90,10 @@ def _cer(gt: str, hyp: str) -> float:
     return levenshtein(gt, hyp) / max(len(gt), 1)
 
 
-def _read(reader, gray) -> str:
+def _read(reader, gray, canvas_size: int | None = None) -> str:
     import config as _config
+    if canvas_size is None:
+        canvas_size = getattr(_config, "OCR_CANVAS_SIZE", 2560)
     try:
         det = reader.readtext(
             gray,
@@ -96,7 +103,7 @@ def _read(reader, gray) -> str:
             beamWidth=5,
             width_ths=0.7,
             height_ths=0.7,
-            canvas_size=getattr(_config, "OCR_CANVAS_SIZE", 2560),
+            canvas_size=canvas_size,
         )
     except TypeError:
         det = reader.readtext(gray, detail=1, paragraph=False, width_ths=0.7, height_ths=0.7)
@@ -131,56 +138,60 @@ def main() -> None:
         for i in range(40):
             text = pool[i % len(pool)]
             wild = i % 2 == 1
-            img = _render_text(text, font, wild=wild)
+            img = _render_text(text, font, wild=wild, seed=1000 * (lang == "en") + i)
             samples.append((text, img, lang, wild))
 
-    rows = []
-    for gt, img_rgb, lang, wild in samples:
-        bgr = cv2.cvtColor(img_rgb, cv2.COLOR_RGB2BGR)
-        gray = ocr._preprocess(bgr)
-        raw = _read(reader, gray)
-        fixed = repair_ocr_text(raw)
-        rows.append({
-            "gt": gt,
-            "raw": raw,
-            "hyp": fixed,
-            "lang": lang,
-            "wild": wild,
-            "cer_raw": _cer(gt, raw),
-            "cer": _cer(gt, fixed),
-            "wer_raw": _token_wer(gt, raw),
-            "wer": _token_wer(gt, fixed),
-        })
+    import time
 
-    def agg(subset, key_cer="cer", key_wer="wer"):
-        return {
-            "n": len(subset),
-            "cer": float(np.mean([r[key_cer] for r in subset])) if subset else 1.0,
-            "wer": float(np.mean([r[key_wer] for r in subset])) if subset else 1.0,
-        }
+    import config as _config
+    sizes = [int(a) for a in sys.argv[1:]] or [None]
+    per_size = {}
+    for size in sizes:
+        cs = size or getattr(_config, "OCR_CANVAS_SIZE", 2560)
+        rows, t0 = [], time.perf_counter()
+        for gt, img_rgb, lang, wild in samples:
+            bgr = cv2.cvtColor(img_rgb, cv2.COLOR_RGB2BGR)
+            gray = ocr._preprocess(bgr)
+            raw = _read(reader, gray, cs)
+            fixed = repair_ocr_text(raw)
+            rows.append({"gt": gt, "raw": raw, "hyp": fixed, "lang": lang, "wild": wild,
+                         "cer_raw": _cer(gt, raw), "cer": _cer(gt, fixed),
+                         "wer_raw": _token_wer(gt, raw), "wer": _token_wer(gt, fixed)})
+        secs = time.perf_counter() - t0
 
-    out = {
-        "n": len(rows),
-        "engine": "easyocr-bn-en + glass preprocess + lexicon (offline)",
-        "font": font,
-        "tesseract": False,
-        "raw": {
-            "overall": agg(rows, "cer_raw", "wer_raw"),
-            "bn": agg([r for r in rows if r["lang"] == "bn"], "cer_raw", "wer_raw"),
-            "en": agg([r for r in rows if r["lang"] == "en"], "cer_raw", "wer_raw"),
-        },
-        "repaired": {
-            "overall": agg(rows),
-            "bn": agg([r for r in rows if r["lang"] == "bn"]),
-            "en": agg([r for r in rows if r["lang"] == "en"]),
-        },
-        "samples_head": rows[:12],
-    }
-    path = RESULTS / "ocr_offline_repaired.json"
-    path.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
-    print("wrote", path)
-    print("RAW     ", out["raw"])
-    print("REPAIRED", out["repaired"])
+        def agg(subset, key_cer="cer", key_wer="wer"):
+            return {"n": len(subset),
+                    "cer": float(np.mean([r[key_cer] for r in subset])) if subset else 1.0,
+                    "wer": float(np.mean([r[key_wer] for r in subset])) if subset else 1.0}
+
+        out = {"n": len(rows), "engine": "easyocr-bn-en + glass preprocess + lexicon (offline)", "font": font,
+               "tesseract": False, "canvas_size": cs, "seeded_images": True,
+               "seconds_total_this_host": round(secs, 1), "host_note": "timing is from the machine that ran this, not the Pi",
+               "raw": {"overall": agg(rows, "cer_raw", "wer_raw"),
+                       "bn": agg([r for r in rows if r["lang"] == "bn"], "cer_raw", "wer_raw"),
+                       "en": agg([r for r in rows if r["lang"] == "en"], "cer_raw", "wer_raw")},
+               "repaired": {"overall": agg(rows), "bn": agg([r for r in rows if r["lang"] == "bn"]),
+                            "en": agg([r for r in rows if r["lang"] == "en"])},
+               "samples_head": rows[:12], "per_sample_cer": [r["cer"] for r in rows]}
+        name = "ocr_offline_repaired.json" if size is None else f"ocr_offline_repaired_canvas{cs}.json"
+        (RESULTS / name).write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+        per_size[cs] = out
+        print("wrote", RESULTS / name, "canvas", cs)
+        print("RAW     ", out["raw"])
+        print("REPAIRED", out["repaired"])
+    if len(per_size) == 2:
+        from scipy.stats import wilcoxon
+        (a, ra), (b, rb) = per_size.items()
+        d = np.array(ra["per_sample_cer"]) - np.array(rb["per_sample_cer"])
+        cmp = {"canvas_a": a, "canvas_b": b, "n": len(d), "same_images": True,
+               "repaired_cer": {str(a): ra["repaired"]["overall"]["cer"], str(b): rb["repaired"]["overall"]["cer"]},
+               "repaired_wer": {str(a): ra["repaired"]["overall"]["wer"], str(b): rb["repaired"]["overall"]["wer"]},
+               "bn_cer": {str(a): ra["repaired"]["bn"]["cer"], str(b): rb["repaired"]["bn"]["cer"]},
+               "en_cer": {str(a): ra["repaired"]["en"]["cer"], str(b): rb["repaired"]["en"]["cer"]},
+               "samples_a_better": int((d < 0).sum()), "samples_b_better": int((d > 0).sum()), "samples_equal": int((d == 0).sum()),
+               "wilcoxon_p": float(wilcoxon(d).pvalue) if np.any(d != 0) else 1.0}
+        (RESULTS / "ocr_canvas_comparison.json").write_text(json.dumps(cmp, indent=1), encoding="utf-8")
+        print(json.dumps(cmp, indent=1))
 
 
 if __name__ == "__main__":
