@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Savior Glass Project Report</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+  :root { --ink:#1b1f24; --muted:#5b6470; --line:#d5dbe2; --accent:#0b5cad; --soft:#eef3f9; --ok:#1d7a3a; --warn:#a35b00; --bad:#a32020; }
+  html, body { background:#fff; }
+  body { font-family: "Segoe UI", "Nirmala UI", Arial, sans-serif; color:var(--ink); font-size:10.2pt; line-height:1.42; margin:0; }
+  h1 { font-size:22pt; margin:0 0 4px; color:var(--accent); }
+  h2 { font-size:14pt; margin:22px 0 8px; padding-bottom:4px; border-bottom:2px solid var(--accent); color:var(--accent); page-break-after:avoid; }
+  h3 { font-size:11.2pt; margin:14px 0 6px; page-break-after:avoid; }
+  p { margin:5px 0 7px; }
+  ul, ol { margin:4px 0 8px 18px; padding:0; }
+  li { margin:2px 0; }
+  table { border-collapse:collapse; width:100%; margin:6px 0 10px; font-size:9.1pt; page-break-inside:auto; }
+  tr { page-break-inside:avoid; }
+  th { background:var(--soft); text-align:left; font-weight:600; }
+  th, td { border:1px solid var(--line); padding:4px 6px; vertical-align:top; }
+  td.n, th.n { text-align:right; white-space:nowrap; }
+  .cover { border-left:6px solid var(--accent); padding:6px 0 6px 14px; margin-bottom:14px; }
+  .sub { color:var(--muted); font-size:10.5pt; }
+  .note { background:var(--soft); border-left:4px solid var(--accent); padding:6px 10px; margin:8px 0; font-size:9.4pt; }
+  .tag { display:inline-block; padding:0 6px; border-radius:3px; font-size:8.4pt; font-weight:600; color:#fff; }
+  .done { background:var(--ok); } .part { background:var(--warn); } .open { background:var(--bad); }
+  .grid { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+  .box { border:1px solid var(--line); border-radius:4px; padding:7px 9px; }
+  .box h4 { margin:0 0 4px; font-size:10pt; color:var(--accent); }
+  .small { font-size:8.6pt; color:var(--muted); }
+  .pb { page-break-before:always; }
+  code { font-family: Consolas, monospace; font-size:8.8pt; background:#f4f6f8; padding:0 3px; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Savior Glass</h1>
+  <div class="sub"><b>An assistive smart glass for blind and low-vision users in Bangladesh, with Bangladeshi Taka recognition and counterfeit (jaal) research</b></div>
+  <div class="small">Project report · 2 October 2026 · Repository branch <code>RPi5_deploy</code> (latest commit f24c93b8) · Every number below comes from a result file in the repository (claim registry: 298 claims, all pass the value check)</div>
+</div>
+
+<h2>1. Summary</h2>
+<p>Savior Glass is a wearable camera glass built on a Raspberry Pi 5. It speaks in Bangla and English through bone conduction. It can:</p>
+<ul>
+  <li>read printed text aloud;</li>
+  <li>name objects around the user;</li>
+  <li>recognise Bangladeshi Taka notes and give a safe genuine-or-check answer for 500 and 1,000 Taka;</li>
+  <li>use an online vision model when the internet is available.</li>
+</ul>
+<p>The research side has three parts:</p>
+<ul>
+  <li>the counterfeit problem on the JaalTaka dataset;</li>
+  <li>a watermark-based check that works on counterfeit prints the model has never seen;</li>
+  <li>an OCR benchmark with correctly shaped Bangla text.</li>
+</ul>
+<div class="grid">
+  <div class="box"><h4>Main results</h4>
+    <ul>
+      <li><b>Taka detector:</b> mAP@0.5 0.995 on 2,282 test images, and 91.5 % correct on 1,536 independent real photos.</li>
+      <li><b>Counterfeit check, unseen prints:</b> 95.0 % (3 seeds, 6 views) with the watermark hybrid.</li>
+      <li><b>OCR, held-out test:</b> character error 9.3 % → 2.4 %; Bangla 11.9 % → 3.2 %.</li>
+      <li><b>Safety:</b> the glass never says "counterfeit". 0 of 88 test counterfeits were passed as genuine.</li>
+      <li><b>Raspberry Pi 5:</b> currency check 327 ms median; 30 minutes with no throttling (peak 77.1 °C).</li>
+    </ul></div>
+  <div class="box"><h4>Main findings</h4>
+    <ul>
+      <li><b>JaalTaka's usual split</b> lets the same counterfeit print appear in training and test. It is a reprint test.</li>
+      <li><b>On truly unseen prints</b>, accuracy drops from about 98 % to about 90 %. The banknote watermark recovers about 5 points.</li>
+      <li><b>Earlier Bangla OCR tests</b> used wrongly drawn Bangla (no text shaping). They were redone.</li>
+      <li><b>Remaining gains need data</b>: more counterfeit prints, glass-camera photos and a user study, not more models.</li>
+    </ul></div>
+</div>
+
+<h2>2. Problem statement</h2>
+<ol>
+  <li><b>Daily independence.</b> Blind and low-vision people in Bangladesh cannot read signs, labels, medicine packets or prices without help, and cannot always tell which note they are holding. Most assistive tools are English-first, need an internet connection or a phone in the hand, and do not read Bangla.</li>
+  <li><b>Counterfeit notes.</b> Counterfeit 500 and 1,000 Taka notes circulate, and a blind person cannot feel a watermark. A wrong "genuine" answer costs money. A wrong "counterfeit" answer can cause a public accusation. A device must therefore be safe before it is clever.</li>
+  <li><b>Evaluation is misleading.</b> Published counterfeit results on JaalTaka look near-perfect. But counterfeits printed from the same plate share one serial and appear in both training and test, so the number measures recognition of known reprints, not new counterfeits.</li>
+  <li><b>Bangla OCR is fragile.</b> Bangla script has conjuncts and vowel signs that move around the consonant. Off-the-shelf OCR is weaker on Bangla than on English, and synthetic test images are easy to draw wrongly.</li>
+  <li><b>Small hardware.</b> All of this has to run offline on a Raspberry Pi 5 inside a glass frame, within a few hundred milliseconds, without overheating.</li>
+</ol>
+
+<h2>3. What the glass can do (features)</h2>
+<table>
+  <tr><th>Feature</th><th>How it works</th><th>Status</th></tr>
+  <tr><td>Text reading (OCR mode)</td><td>Capture button stores the text; the Read button speaks it. EasyOCR (Bangla + English) with OCR pipeline v2: CLAHE, tuned detector, main-text-block selection, line ordering, cleanup rules. Fallbacks: Tesseract, then the Ekush handwritten-letter CNN.</td><td><span class="tag done">working</span></td></tr>
+  <tr><td>Object naming</td><td>YOLOv8 (COCO classes), automatic scan every 1.5 s, per-class cooldown so it does not repeat itself.</td><td><span class="tag done">working</span></td></tr>
+  <tr><td>Currency (Taka) recognition</td><td>YOLOv8s trained on 9 Taka denominations; INT8 ONNX on the Pi; announces only above a confidence chosen on validation, to avoid naming unknown notes.</td><td><span class="tag done">working</span></td></tr>
+  <tr><td>Safe counterfeit check</td><td>For 500 / 1,000 Taka, four views are cut from the note and scored by the PRMVT network. It says "সম্ভবত আসল" (likely genuine) only above a validation-fixed threshold, otherwise "হাতে যাচাই করুন" (check by hand). It never says "counterfeit".</td><td><span class="tag done">working</span></td></tr>
+  <tr><td>Watermark check with guided capture</td><td>After the denomination is spoken, the glass asks the user to hold the note up to a light. It rejects dark or blurry frames with a spoken reason. A learned localizer finds the watermark window, and a 2.6 MB INT8 MobileNetV2 scores it.</td><td><span class="tag done">on (Pi)</span></td></tr>
+  <tr><td>Online vision mode</td><td>Claude vision describes a scene when internet and an API key are available.</td><td><span class="tag part">needs API key</span></td></tr>
+  <tr><td>Emotion-adaptive feedback</td><td>Facial-expression model (RAF-DB) can adapt feedback.</td><td><span class="tag done">working</span></td></tr>
+  <tr><td>Speech output</td><td>Piper TTS for English (faster), espeak-ng for Bangla; queued, interruptible, volume buttons.</td><td><span class="tag done">working</span></td></tr>
+  <tr><td>Buttons and haptics</td><td>Mode, Action, Read, Volume up / down on GPIO; vibration patterns for detection and verdict.</td><td><span class="tag done">tested (simulated GPIO)</span></td></tr>
+  <tr><td>Fast mode switching</td><td>Mode name spoken at once; models load and warm up in the background; currency preloaded at start.</td><td><span class="tag done">working</span></td></tr>
+  <tr><td>Study logging</td><td>Every watermark check is logged (participant, guided / unguided condition, time, rejected frames, outcome) for the user study.</td><td><span class="tag done">ready</span></td></tr>
+</table>
+
+<h2>4. Datasets</h2>
+<table>
+  <tr><th>Dataset</th><th>Content</th><th>Used for</th></tr>
+  <tr><td>JaalTaka</td><td>1,390 notes (802 genuine, 588 counterfeit) × 6 views; 500 and 1,000 BDT</td><td>Counterfeit research. Note-disjoint split 974 / 208 / 208 and serial-disjoint split 946 / 222 / 222 (unseen prints)</td></tr>
+  <tr><td>Detector composites</td><td>22,333 synthetic images (17,839 / 2,212 / 2,282) from BanglaTaka notes on backgrounds</td><td>Taka detector training and test</td></tr>
+  <tr><td>Fresh composite test</td><td>566 images, test notes on COCO backgrounds</td><td>Second detector test</td></tr>
+  <tr><td>Bangla Money (Kaggle)</td><td>1,536 real photos, 8 denominations</td><td>Independent detector test</td></tr>
+  <tr><td>NSTU-BDTAKA (Mendeley)</td><td>186 detection images, 1,144 close-ups</td><td>Independent detector test</td></tr>
+  <tr><td>Bangladeshi Counterfeit Currency Image Dataset</td><td>Whole-note photos: 1,199 genuine, 87 counterfeit (about 4 physical notes)</td><td>Whole-note counterfeit check (deployment check only)</td></tr>
+  <tr><td>Large Scale BDT DB 2026</td><td>100,000 images incl. coins</td><td>Surveyed; not the 9-note task</td></tr>
+  <tr><td>MVP-N, ModelNet40</td><td>Multi-view object sets</td><td>Test whether the view-count findings hold outside currency</td></tr>
+  <tr><td>COCO 2017</td><td>Everyday photos</td><td>Backgrounds, object-mode test, OCR photo scenes</td></tr>
+  <tr><td>RAF-DB</td><td>15,339 faces, 7 emotions</td><td>Emotion model</td></tr>
+  <tr><td>Ekush, MatriVasha</td><td>Bangla handwritten letters</td><td>Handwritten-letter fallback (Ekush CNN)</td></tr>
+  <tr><td>OCR benchmark (new)</td><td>Bangla + English phrases drawn with correct HarfBuzz shaping in 10 Bangla and 9 Latin fonts; clean, distorted and real-photo scenes; 3 seeds; separate validation and test phrases and fonts</td><td>OCR Tasks 1–7</td></tr>
+  <tr><td>Word lists</td><td>50k Bangla and 50k English frequency words (MIT)</td><td>OCR dictionary test, fine-tuning text</td></tr>
+</table>
+
+<h2 class="pb">5. Models and algorithms</h2>
+<table>
+  <tr><th>Model / algorithm</th><th>Role</th><th>Size / runtime</th></tr>
+  <tr><td>YOLOv8s Taka detector</td><td>Finds the note and names the denomination</td><td>18 MB INT8 ONNX; 254 ms median on Pi 5</td></tr>
+  <tr><td>Open-set confidence rule</td><td>Announce only above 0.60 (chosen on validation) to avoid naming unknown or demonetised notes</td><td>—</td></tr>
+  <tr><td>PRMVT (prefix-robust multi-view training)</td><td>Counterfeit network: MobileNetV3-Small + TinyViT per view, attention fusion; trained on random first-k views so it works with 1 to 6 views</td><td>16.6 MB; 36 ms on Pi 5</td></tr>
+  <tr><td>Prefix network, shared BN</td><td>Recommended JaalTaka model (chosen on validation)</td><td>—</td></tr>
+  <tr><td>Policy E (safe threshold)</td><td>"Likely genuine" only above the highest validation counterfeit score; otherwise "check by hand". Backed by Theorem 8 (pass probability 1/(n+1))</td><td>—</td></tr>
+  <tr><td>Image-quality gate</td><td>Rejects dark, blurred or occluded frames before any verdict</td><td>—</td></tr>
+  <tr><td>Watermark window detector</td><td>SIFT + RANSAC registration to a note template, crop of the watermark window</td><td>372 ms on Pi 5</td></tr>
+  <tr><td>Learned watermark localizer</td><td>MobileNetV3-Small regresses the window's four corners; no template, no SIFT</td><td>4.3 MB; 50 ms with classifier on Pi 5</td></tr>
+  <tr><td>Watermark classifier</td><td>MobileNetV2, static INT8 (same decisions as FP32)</td><td>2.6 MB</td></tr>
+  <tr><td>Hybrid</td><td>Logistic regression fitted on validation over network score + watermark score</td><td>—</td></tr>
+  <tr><td>Fine-tuned ResNet-50</td><td>Fair image baseline on full-resolution views</td><td>—</td></tr>
+  <tr><td>Capture guide</td><td>Brightness and Laplacian-sharpness thresholds (2nd percentile of validation photos), spoken prompts</td><td>—</td></tr>
+  <tr><td>EasyOCR + OCR pipeline v2</td><td>CRAFT text detector + CRNN recognizer (Bangla + English); dominant-text-block selection; CLAHE; tuned thresholds; cleanup rules</td><td>~1.9 s per frame on laptop CPU</td></tr>
+  <tr><td>Tesseract 5, Ekush CNN</td><td>OCR fallbacks (printed / handwritten letters)</td><td>Ekush 0.45 MB</td></tr>
+  <tr><td>YOLOv8n (COCO)</td><td>Object naming</td><td>207 ms on Pi 5</td></tr>
+  <tr><td>Emotion CNN</td><td>RAF-DB facial expression</td><td>48 ms on Pi 5</td></tr>
+  <tr><td>Piper / espeak-ng</td><td>Speech</td><td>English 3.3 s (Piper) per sentence on Pi 5</td></tr>
+  <tr><td>Statistics</td><td>Exact McNemar, Wilson intervals, three seeds, noncentral-t power analysis, Holm correction</td><td>—</td></tr>
+</table>
+
+<h2>6. Results</h2>
+<h3>6.1 Taka denomination detector</h3>
+<table>
+  <tr><th>Test</th><th class="n">Result</th></tr>
+  <tr><td>Synthetic composites, 2,282 images</td><td class="n">Precision 0.995, recall 0.996, mAP@0.5 0.995, mAP@0.5:0.95 0.849</td></tr>
+  <tr><td>Fresh composites, 566 images</td><td class="n">mAP@0.5 0.992</td></tr>
+  <tr><td>Bangla Money, 1,536 real photos (no retraining)</td><td class="n">91.5 % correct denomination</td></tr>
+  <tr><td>NSTU-BDTAKA detection, 186 images</td><td class="n">AP50 0.796</td></tr>
+  <tr><td>NSTU hand-held close-ups, 1,144</td><td class="n">18.5 % (very different framing; a known weakness)</td></tr>
+  <tr><td>Open-set rule (Bangla Money test)</td><td class="n">1-taka notes named as another value: 43.6 % → 22.8 %</td></tr>
+</table>
+
+<h3>6.2 Counterfeit research on JaalTaka (note-disjoint split, 208 test notes, 3 seeds)</h3>
+<table>
+  <tr><th>Method</th><th class="n">1 view</th><th class="n">6 views</th></tr>
+  <tr><td>Fixed 6-view training, shared BN</td><td class="n">71.2 ± 11.4 %</td><td class="n">98.1 ± 0.5 %</td></tr>
+  <tr><td><b>Prefix training, shared BN (recommended)</b></td><td class="n"><b>98.2 ± 0.7 %</b></td><td class="n"><b>98.7 ± 0.3 %</b></td></tr>
+  <tr><td>PRMVT (prefix, per-count BN)</td><td class="n">96.5 ± 1.5 %</td><td class="n">98.1 ± 1.0 %</td></tr>
+  <tr><td>CNN+ViT baseline</td><td class="n">76.1 ± 3.6 %</td><td class="n">92.3 ± 0.8 %</td></tr>
+  <tr><td>Frozen ResNet-50 probe</td><td class="n">98.1 %</td><td class="n">99.0 %</td></tr>
+</table>
+<p><b>Findings:</b></p>
+<ul>
+  <li><b>Prefix training</b> removes the one-view collapse of fixed-view training (McNemar p down to 10<sup>-22</sup>) and makes results stable across seeds.</li>
+  <li><b>Frozen ImageNet backbones match it on this split</b>: 60 paired tests, none significant. So no state-of-the-art claim is made on JaalTaka.</li>
+</ul>
+
+<h3>6.3 Unseen counterfeit prints (serial-disjoint split, 222 test notes, 101 counterfeit)</h3>
+<table>
+  <tr><th>Method (3 seeds)</th><th class="n">1 view</th><th class="n">6 views</th></tr>
+  <tr><td>Frozen ResNet-50 probe</td><td class="n">85.1 %</td><td class="n">83.8 %</td></tr>
+  <tr><td>Prefix network</td><td class="n">89.9 ± 0.7 %</td><td class="n">89.3 ± 1.3 %</td></tr>
+  <tr><td>Fine-tuned ResNet-50, full resolution (fair baseline)</td><td class="n">94.9 ± 1.8 %</td><td class="n">94.4 ± 2.6 %</td></tr>
+  <tr><td><b>Prefix network + watermark (hybrid)</b></td><td class="n"><b>94.4 ± 0.5 %</b></td><td class="n"><b>95.0 ± 0.0 %</b></td></tr>
+  <tr><td>Watermark alone, MobileNetV2 (registered notes)</td><td class="n" colspan="2">92.9 %, AUC 0.976</td></tr>
+  <tr><td>Watermark with learned localizer (all 222 notes)</td><td class="n" colspan="2">92.6 ± 0.5 % (ties SIFT, p = 1.0; covers 222 / 222 instead of 197)</td></tr>
+</table>
+<p><b>Findings:</b></p>
+<ul>
+  <li>Accuracy drops by about 8 points when counterfeit prints are truly new.</li>
+  <li>The watermark brings it back to 95 % and is stable across seeds.</li>
+  <li>The hybrid ties a properly fine-tuned ResNet-50. It does not significantly beat it: there are only about 24 distinct test prints.</li>
+  <li>A serial blacklist catches 0 of 19 unseen-serial counterfeits.</li>
+</ul>
+
+<h3>6.4 Safety of the deployed counterfeit check (policy E)</h3>
+<table>
+  <tr><th>Measure</th><th class="n">Result</th></tr>
+  <tr><td>JaalTaka test counterfeits passed as "likely genuine"</td><td class="n">0 / 88 (95 % CI 0–4.2 %)</td></tr>
+  <tr><td>Whole-note counterfeit photos passed (app code path)</td><td class="n">0 / 20</td></tr>
+  <tr><td>"Counterfeit" spoken in 1,889 app runs</td><td class="n">0 times</td></tr>
+  <tr><td>Wrong verdicts under bad light, with the quality gate</td><td class="n">0 / 208 per condition</td></tr>
+  <tr><td>Cost: genuine whole notes confirmed</td><td class="n">low (0.4–2 % on independent photos): the glass often asks for a hand check</td></tr>
+</table>
+
+<h3 class="pb">6.5 OCR (new benchmark, held-out test, read once per method)</h3>
+<table>
+  <tr><th>Pipeline</th><th class="n">Overall CER</th><th class="n">Bangla</th><th class="n">English</th><th class="n">Signs in photos</th></tr>
+  <tr><td>Glass app before this work</td><td class="n">9.3 %</td><td class="n">11.9 %</td><td class="n">6.6 %</td><td class="n">10.7 %</td></tr>
+  <tr><td><b>OCR pipeline v2 (now in the app)</b></td><td class="n"><b>2.4 %</b></td><td class="n"><b>3.2 %</b></td><td class="n"><b>1.6 %</b></td><td class="n"><b>2.2 %</b></td></tr>
+  <tr><td>Tesseract 5 on the text block (best other engine)</td><td class="n">16.6 %</td><td class="n">18.5 %</td><td class="n">14.7 %</td><td class="n">32.5 %</td></tr>
+  <tr><td>PaddleOCR (English only; no Bangla model)</td><td class="n">11.0 %</td><td class="n">—</td><td class="n">11.0 %</td><td class="n">33.1 %</td></tr>
+</table>
+<p><b>What was tested (Tasks 1–7):</b></p>
+<ul>
+  <li><b>Kept:</b>
+    <ul>
+      <li>text-region selection, the largest gain;</li>
+      <li>CLAHE (a marginal gain);</li>
+      <li>EasyOCR parameter tuning (31 settings);</li>
+      <li>cleanup rules.</li>
+    </ul></li>
+  <li><b>Not kept:</b>
+    <ul>
+      <li>binarisation;</li>
+      <li>multi-scale reading;</li>
+      <li>dictionary and ByT5 correction (ByT5 invents text);</li>
+      <li>the old lexicon repair;</li>
+      <li>TrOCR;</li>
+      <li>fine-tuning the recognizer: better Bangla, worse English on validation. It was better on test, but it was not adopted, because adopting it would mean choosing on the test set.</li>
+    </ul></li>
+  <li><b>Speed:</b> v2 costs no extra time.</li>
+</ul>
+
+<h3>6.6 Other assistive modules</h3>
+<table>
+  <tr><th>Module</th><th class="n">Result</th></tr>
+  <tr><td>Emotion, RAF-DB test (3,068 faces)</td><td class="n">86.5 % accuracy, macro-F1 0.795</td></tr>
+  <tr><td>Object detection, COCO val2017 subset</td><td class="n">mAP@0.5 0.604</td></tr>
+  <tr><td>Ekush handwritten letters (122 classes, unseen writers)</td><td class="n">90.0 %</td></tr>
+  <tr><td>Guided capture thresholds (test back-lit photos)</td><td class="n">213 / 222 clean accepted; 0 / 222 darkened or defocused accepted</td></tr>
+  <tr><td>Mode switch, first currency check (laptop CPU)</td><td class="n">661 ms → 43 ms after warm-up</td></tr>
+</table>
+
+<h3>6.7 Raspberry Pi 5 (measured 1 Oct 2026, 8 GB, 100 iterations + 30-minute run)</h3>
+<table>
+  <tr><th>Module</th><th class="n">Median</th><th class="n">95th percentile</th></tr>
+  <tr><td>Currency mode, end to end (detect + check)</td><td class="n">327 ms</td><td class="n">560 ms</td></tr>
+  <tr><td>Taka detector, INT8 ONNX</td><td class="n">254 ms</td><td class="n">339 ms</td></tr>
+  <tr><td>Watermark check, learned localizer</td><td class="n">50 ms</td><td class="n">62 ms</td></tr>
+  <tr><td>Watermark check, SIFT path</td><td class="n">372 ms</td><td class="n">854 ms</td></tr>
+  <tr><td>Counterfeit network (QDUIG / PRMVT)</td><td class="n">36 ms</td><td class="n">50 ms</td></tr>
+  <tr><td>Object mode (YOLOv8n)</td><td class="n">207 ms</td><td class="n">217 ms</td></tr>
+  <tr><td>Emotion</td><td class="n">48 ms</td><td class="n">52 ms</td></tr>
+  <tr><td>OCR mode (EasyOCR, canvas 2560)</td><td class="n">18.7 s</td><td class="n">20.4 s</td></tr>
+</table>
+<p><b>System behaviour during the run:</b></p>
+<ul>
+  <li>Peak memory 1.48 GB.</li>
+  <li>Peak temperature 77.1 °C, with no throttling in 30 minutes (1,229 calls).</li>
+  <li>Currency from button press to finished speech: about 2.3–2.9 s.</li>
+  <li>OCR on the Pi is slow (about 19 s). Canvas 640 is about 3× faster, for about one point more Bangla error.</li>
+</ul>
+
+<h3>6.8 Theory</h3>
+<ul>
+  <li><b>Theorem 8 (safe threshold).</b> With the threshold set at the highest of n validation counterfeit scores, the probability that a new counterfeit passes is 1/(n+1). For n = 88, that is 1.1 %.</li>
+  <li><b>Theorem 9.</b> Under a distribution shift the pass rate grows by at most the total-variation distance.</li>
+  <li><b>Theorem 10.</b> The quality gate's false-rejection bound.</li>
+  <li><b>Proposition 11.</b> Fixed-view training does not identify the few-view predictor, which explains the seed instability.</li>
+  <li><b>Theorem 16.</b> The effective test size is the number of prints, not notes.</li>
+</ul>
+
+<h2 class="pb">7. What is done and what is not</h2>
+<table>
+  <tr><th>Item</th><th>Status</th><th>Note</th></tr>
+  <tr><td>Glass app: OCR, objects, currency, safe check, watermark + guided capture, speech, buttons, haptics</td><td><span class="tag done">done</span></td><td>All glass tests pass on the laptop</td></tr>
+  <tr><td>Taka detector, cross-dataset tests, INT8 export</td><td><span class="tag done">done</span></td><td></td></tr>
+  <tr><td>JaalTaka research: 18 methods × 3 seeds, serial audit, unseen-print split, watermark hybrid, fair ResNet baseline</td><td><span class="tag done">done</span></td><td></td></tr>
+  <tr><td>Learned watermark localizer, print-locked capture tool, study logging and analysis script</td><td><span class="tag done">done</span></td><td></td></tr>
+  <tr><td>OCR Tasks 1–7 and pipeline v2 in the app</td><td><span class="tag done">done</span></td><td>On a synthetic benchmark</td></tr>
+  <tr><td>Raspberry Pi 5 benchmark and 30-minute thermal run</td><td><span class="tag done">done</span></td><td>OCR v2 and mode-switch speed not yet re-measured on the Pi</td></tr>
+  <tr><td>Papers (workshop, D&amp;B, journal drafts), theorems, figures, claim registry</td><td><span class="tag done">done</span></td><td>Author names and affiliation still missing</td></tr>
+  <tr><td>Whole-note counterfeit photos from the glass camera, grouped by physical note</td><td><span class="tag open">not done</span></td><td>Needed to trust a whole-note counterfeit verdict</td></tr>
+  <tr><td>Print-disjoint counterfeit dataset (~100 unseen prints) with a bank or police partner</td><td><span class="tag open">not done</span></td><td>Tools ready; data collection needed</td></tr>
+  <tr><td>Second currency (INR or USD)</td><td><span class="tag open">not done</span></td><td>Breaks the earlier "Taka only" rule; your decision</td></tr>
+  <tr><td>User study with blind / low-vision participants</td><td><span class="tag open">not done</span></td><td>Protocol, pre-registration and analysis ready</td></tr>
+  <tr><td>Glass-camera calibration of the capture-guide thresholds</td><td><span class="tag open">not done</span></td><td>Current values come from JaalTaka photos</td></tr>
+  <tr><td>Battery life</td><td><span class="tag open">not done</span></td><td>Needs a USB-C power meter</td></tr>
+  <tr><td>Bangla Piper voice on the Pi</td><td><span class="tag part">blocked</span></td><td>The ARM Piper build cannot phonemise the Bangla voice; falls back to espeak-ng</td></tr>
+  <tr><td>Speech speed (135 vs 175 words per minute)</td><td><span class="tag part">your decision</span></td><td>Can be tried with <code>ESPEAK_SPEED=175</code></td></tr>
+  <tr><td>OCR on real glass photos; fine-tuning with real data</td><td><span class="tag open">not done</span></td><td>Current OCR numbers are synthetic</td></tr>
+  <tr><td>KenLM, DBNet, EAST, YOLO text detector</td><td><span class="tag part">not run</span></td><td>No C++ compiler / no public weights on this laptop</td></tr>
+  <tr><td>Online vision mode measured</td><td><span class="tag part">not measured</span></td><td>Needs an API key</td></tr>
+  <tr><td>Live-camera note accuracy on the glass</td><td><span class="tag open">not done</span></td><td>Needs glass photos</td></tr>
+  <tr><td>Revoke the Pi's GitHub deploy key</td><td><span class="tag part">your action</span></td><td>GitHub → Settings → Deploy keys</td></tr>
+</table>
+
+<h2>8. Limitations</h2>
+<ul>
+  <li><b>Counterfeit results rest on about 24 distinct counterfeit prints</b> in the unseen-print test. The uncertainty is about ±12 points at the print level.</li>
+  <li><b>Whole-note counterfeit checking on the glass is not proven.</b> The model was trained on close-ups, so the glass is set to be safe rather than decisive.</li>
+  <li><b>OCR numbers come from rendered text.</b> Real signs, glare and curved packets will be harder.</li>
+  <li><b>Detector accuracy drops on hand-held close-ups</b> (NSTU, 18.5 %).</li>
+  <li><b>No user has worn the glass yet</b> in a study.</li>
+</ul>
+
+<h2>9. Research questions</h2>
+<ol>
+  <li><b>RQ1.</b> How much does counterfeit-detection accuracy fall when every test counterfeit comes from a print never seen in training, and what is the right unit of evaluation: notes, serials or prints?</li>
+  <li><b>RQ2.</b> Can a physical security feature (the transmitted-light watermark), found by a learned localizer, generalise to unseen prints and to a second currency better than a fine-tuned whole-note CNN?</li>
+  <li><b>RQ3.</b> Does training on random prefixes of views (1 to k) remove the accuracy collapse that fixed-view multi-view models show when fewer views are available, and does this hold beyond banknotes (MVP-N, ModelNet)?</li>
+  <li><b>RQ4.</b> Can an assistive device give provably safe counterfeit feedback, with zero "counterfeit" accusations and a bounded chance of passing a counterfeit, while still being useful to blind users?</li>
+  <li><b>RQ5.</b> Does guided capture (spoken prompts to hold the note to the light, rejecting dark or blurry frames) reduce the time per note and the number of "check by hand" answers for blind and low-vision users?</li>
+  <li><b>RQ6.</b> Which parts of a Bangla OCR pipeline matter most for scene text read by a wearable camera: detection and region selection, preprocessing, recognizer fine-tuning, or language post-processing?</li>
+  <li><b>RQ7.</b> How far can a multi-function assistive system (OCR, objects, currency, counterfeit check) be pushed on a Raspberry Pi 5 within latency, memory and thermal limits that a wearable needs?</li>
+  <li><b>RQ8.</b> How large must a print-disjoint counterfeit dataset be, in prints, to show a significant difference between two detectors?</li>
+</ol>
+
+<p class="small" style="margin-top:14px">Sources in the repository:</p>
+<ul class="small">
+  <li><code>paper_evidence/FINAL_RESULTS.md</code>, <code>BEAT_RESNET50_FINAL.md</code>, <code>WATERMARK_LOCALIZER.md</code>, <code>PI5_RESULTS.md</code></li>
+  <li><code>OCR_*.md</code>, <code>JAAL_VERDICT_FIXED.md</code>, <code>THEOREMS.md</code>, <code>A_STAR_ROADMAP.md</code></li>
+  <li><code>CLAIM_REGISTRY.json</code></li>
+</ul>
+</body>
+</html>
