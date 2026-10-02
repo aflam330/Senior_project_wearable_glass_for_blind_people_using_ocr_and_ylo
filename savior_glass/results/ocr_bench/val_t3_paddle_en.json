@@ -1,0 +1,1792 @@
+{
+ "overall": {
+  "n": 216,
+  "cer": 0.4344365446796002,
+  "wer": 0.459104938271605,
+  "exact": 0.9120370370370371
+ },
+ "bn": null,
+ "en": {
+  "n": 216,
+  "cer": 0.4344365446796002,
+  "wer": 0.459104938271605,
+  "exact": 0.9120370370370371
+ },
+ "by_cond": {
+  "clean": {
+   "all": {
+    "n": 72,
+    "cer": 0.0,
+    "wer": 0.0,
+    "exact": 1.0
+   },
+   "bn": null
+  },
+  "scene": {
+   "all": {
+    "n": 72,
+    "cer": 1.3033096340388006,
+    "wer": 1.3773148148148147,
+    "exact": 0.7361111111111112
+   },
+   "bn": null
+  },
+  "wild": {
+   "all": {
+    "n": 72,
+    "cer": 0.0,
+    "wer": 0.0,
+    "exact": 1.0
+   },
+   "bn": null
+  }
+ },
+ "per_seed_cer": [
+  0.9183752204585538,
+  0.22985559964726632,
+  0.15507881393298062
+ ],
+ "per_seed_bn_cer": [
+  null,
+  null,
+  null
+ ],
+ "cer_seed_sd": 0.42076760017431875,
+ "latency_ms_median": 1435.1919000037014,
+ "meta": {
+  "set": "val",
+  "task": 3,
+  "engine": "PaddleOCR PP-OCRv5 en",
+  "note": "English items only; no Bangla model"
+ },
+ "per_sample": [
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Emergency Room",
+   "hyp": "Emergency Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Emergency Room",
+   "hyp": "Emergency Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Emergency Room",
+   "hyp": "Emergency Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Do Not Disturb",
+   "hyp": "Do Not Disturb",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Do Not Disturb",
+   "hyp": "Do Not Disturb",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Do Not Disturb",
+   "hyp": "BODACIOUS DR Do Not Disturb",
+   "cer": 0.9285714285714286
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall 177626",
+   "cer": 0.7777777777777778
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Closed on Monday",
+   "hyp": "Closed on Monday",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Closed on Monday",
+   "hyp": "Closed on Monday",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Closed on Monday",
+   "hyp": "茶府 90ae Closed on Monday",
+   "cer": 0.5
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Potato",
+   "hyp": "Potato",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Potato",
+   "hyp": "Potato",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Potato",
+   "hyp": "Potato (Photograph by Paul Shideler.) Fio. 2.—The telegraph editor examining copy just taken from the teletype The pile next to the spindle hook contains the big stories that eventually will hine. On the spindle hook at the right are stories that he has rejected. nd their place on Page 1, and in the pile at the left are secondary stories that will edit as needed for inside pages.",
+   "cer": 62.666666666666664
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "To Let",
+   "hyp": "To Let",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "To Let",
+   "hyp": "To Let",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "To Let",
+   "hyp": "To Let",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Salt",
+   "hyp": "STOP Salt",
+   "cer": 1.25
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Emergency Room",
+   "hyp": "Emergency Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Emergency Room",
+   "hyp": "Emergency Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Emergency Room",
+   "hyp": "Emergency Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Do Not Disturb",
+   "hyp": "Do Not Disturb",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Do Not Disturb",
+   "hyp": "Do Not Disturb",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Do Not Disturb",
+   "hyp": "Do Not Disturb",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027 Spenser Steele'© 2009",
+   "cer": 1.375
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Library",
+   "hyp": "munc hausen Babb CNTOG E BOG S 10 g0s af1 Library",
+   "cer": 6.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Parking",
+   "hyp": "郑胖子乐山川菜馆 Parking",
+   "cer": 1.2857142857142858
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall © Giorgio Raffaelli",
+   "cer": 2.2222222222222223
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Closed on Monday",
+   "hyp": "Closed on Monday",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Closed on Monday",
+   "hyp": "Closed on Monday",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Closed on Monday",
+   "hyp": "Closed on Monday",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Potato",
+   "hyp": "Potato",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Potato",
+   "hyp": "Potato",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Potato",
+   "hyp": "Potato",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Cash Counter",
+   "hyp": "FLM SMOTOR AVIDSON HARLEY-DAVID cobragt Cash Counter",
+   "cer": 3.3333333333333335
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "To Let",
+   "hyp": "To Let",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "To Let",
+   "hyp": "To Let",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "To Let",
+   "hyp": "To Let DODGE 70 DUDE",
+   "cer": 2.3333333333333335
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Emergency Room",
+   "hyp": "Emergency Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Emergency Room",
+   "hyp": "Emergency Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Emergency Room",
+   "hyp": "Sweetness Bakery MJ Emergency Room",
+   "cer": 1.4285714285714286
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Do Not Disturb",
+   "hyp": "Do Not Disturb",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Do Not Disturb",
+   "hyp": "Do Not Disturb",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Do Not Disturb",
+   "hyp": "Fidelity Do Not Disturb TH SHANGHA HKA CHN TW",
+   "cer": 2.2142857142857144
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Reception",
+   "hyp": "Reception 2",
+   "cer": 0.2222222222222222
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Manager",
+   "hyp": "23 15 SER Manager",
+   "cer": 1.4285714285714286
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Drinking Water",
+   "hyp": "Drinking V Water",
+   "cer": 0.14285714285714285
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Closed on Monday",
+   "hyp": "Closed on Monday",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Closed on Monday",
+   "hyp": "Closed on Monday",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Closed on Monday",
+   "hyp": "公共卫生间 PUBLIC TOILET 150m Closed on Monday",
+   "cer": 1.5625
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Potato",
+   "hyp": "Potato",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Potato",
+   "hyp": "Potato",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Potato",
+   "hyp": "Potato",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Soap",
+   "hyp": "2002202 Soap",
+   "cer": 2.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "To Let",
+   "hyp": "To Let",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "To Let",
+   "hyp": "To Let",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "To Let",
+   "hyp": "lo Let 1et 052_119",
+   "cer": 2.1666666666666665
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg",
+   "cer": 0.0
+  }
+ ]
+}

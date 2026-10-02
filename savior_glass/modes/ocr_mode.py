@@ -20,6 +20,7 @@ import numpy as np
 
 import config
 from ocr_repair import repair_ocr_text, tesseract_available, tesseract_read
+from ocr_text_region import clean_text, dominant_block, order_lines
 from utils import detect_language
 from .base_mode import BaseMode
 
@@ -130,10 +131,17 @@ class OCRMode(BaseMode):
             return "ইঞ্জিন লোড হয়নি, অনুগ্রহ করে অপেক্ষা করুন"  # engine not loaded
 
         texts = []
-        if self._reader is not None:
+        v2 = getattr(config, "OCR_PIPELINE", "legacy") == "v2"
+        if self._reader is not None and v2:
+            texts = self._read_v2(frame)
+        if self._reader is not None and not v2:
             preprocessed = self._preprocess(frame)
             decoder = getattr(config, "OCR_DECODER", "beamsearch")
-            decode_kwargs = {"decoder": decoder, "canvas_size": getattr(config, "OCR_CANVAS_SIZE", 2560)}
+            decode_kwargs = {
+                "decoder": decoder,
+                "canvas_size": getattr(config, "OCR_CANVAS_SIZE", 2560),
+                "slope_ths": float(getattr(config, "OCR_SLOPE_THS", 0.1)),
+            }
             if decoder == "beamsearch":
                 decode_kwargs["beamWidth"] = getattr(config, "OCR_BEAM_WIDTH", 5)
             try:
@@ -192,7 +200,7 @@ class OCRMode(BaseMode):
             self._stored_lang = "en"
             return "কোনো লেখা পাওয়া যায়নি"  # no text found
 
-        combined = repair_ocr_text(" ".join(texts))
+        combined = clean_text(" ".join(texts)) if v2 else repair_ocr_text(" ".join(texts))
         lang = detect_language(combined)
         logger.info("OCR result (lang=%s, %d chars): %s", lang, len(combined), combined[:80])
 
@@ -217,6 +225,27 @@ class OCRMode(BaseMode):
         if self._stored_lang == "bn":
             return "পড়া হচ্ছে: " + self._stored_text   # "Reading: ..."
         return "Reading: " + self._stored_text
+
+    def _read_v2(self, frame: np.ndarray) -> list:
+        """OCR pipeline v2: CLAHE, tuned EasyOCR, dominant text block, reading order (see config.OCR_PIPELINE)."""
+        h, w = frame.shape[:2]
+        if w < 1200:
+            frame = cv2.resize(frame, (1200, int(h * 1200 / w)), interpolation=cv2.INTER_CUBIC)
+        elif w > 1600:
+            frame = cv2.resize(frame, (1600, int(h * 1600 / w)), interpolation=cv2.INTER_AREA)
+        gray = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8)).apply(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
+        decoder = getattr(config, "OCR_DECODER", "beamsearch")
+        kw = dict(getattr(config, "OCR_V2_PARAMS", {}))
+        kw.update(decoder=decoder, canvas_size=getattr(config, "OCR_CANVAS_SIZE", 2560))
+        if decoder == "beamsearch":
+            kw["beamWidth"] = getattr(config, "OCR_BEAM_WIDTH", 5)
+        try:
+            det = self._reader.readtext(gray, detail=1, paragraph=False, width_ths=0.7, height_ths=0.7, **kw)
+        except Exception as exc:
+            logger.warning("EasyOCR inference error: %s", exc)
+            return []
+        text = order_lines(dominant_block(det, getattr(config, "OCR_V2_MIN_CONF", 0.2)))
+        return [text] if text else []
 
     # ------------------------------------------------------------------
     # Preprocessing

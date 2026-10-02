@@ -1,0 +1,3543 @@
+{
+ "overall": {
+  "n": 432,
+  "cer": 1.0550001669713411,
+  "wer": 1.9643132716049383,
+  "exact": 0.5555555555555556
+ },
+ "bn": {
+  "n": 216,
+  "cer": 1.0863483878949032,
+  "wer": 1.923225308641975,
+  "exact": 0.5324074074074074
+ },
+ "en": {
+  "n": 216,
+  "cer": 1.0236519460477795,
+  "wer": 2.005401234567901,
+  "exact": 0.5787037037037037
+ },
+ "by_cond": {
+  "clean": {
+   "all": {
+    "n": 144,
+    "cer": 0.0935947204968944,
+    "wer": 0.11226851851851853,
+    "exact": 0.8541666666666666
+   },
+   "bn": {
+    "n": 72,
+    "cer": 0.11873706004140787,
+    "wer": 0.14814814814814814,
+    "exact": 0.7916666666666666
+   }
+  },
+  "scene": {
+   "all": {
+    "n": 144,
+    "cer": 2.945072006166688,
+    "wer": 5.615162037037036,
+    "exact": 0.013888888888888888
+   },
+   "bn": {
+    "n": 72,
+    "cer": 2.9653742412094393,
+    "wer": 5.436342592592592,
+    "exact": 0.027777777777777776
+   }
+  },
+  "wild": {
+   "all": {
+    "n": 144,
+    "cer": 0.12633377425044093,
+    "wer": 0.16550925925925924,
+    "exact": 0.7986111111111112
+   },
+   "bn": {
+    "n": 72,
+    "cer": 0.17493386243386244,
+    "wer": 0.1851851851851852,
+    "exact": 0.7777777777777778
+   }
+  }
+ },
+ "per_seed_cer": [
+  1.175804244311544,
+  1.0461083277642047,
+  0.9430879288382751
+ ],
+ "per_seed_bn_cer": [
+  1.3063325647013306,
+  1.2406148237182444,
+  0.7120977752651345
+ ],
+ "cer_seed_sd": 0.11661269002654762,
+ "latency_ms_median": 61.127199995098636,
+ "meta": {
+  "set": "val",
+  "task": 3,
+  "config": {
+   "engine": "tesseract",
+   "where": "frame",
+   "psm": 11
+  }
+ },
+ "per_sample": [
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ধূমপান নিষেধ",
+   "hyp": "ধুমপান নিষেধ",
+   "cer": 0.08333333333333333
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ধূমপান নিষেধ",
+   "hyp": "ধুমপান নিষেধ",
+   "cer": 0.08333333333333333
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ধূমপান নিষেধ",
+   "hyp": "il TN i লা il i ১] [ii ple ছা ধূমপান নিষেধ",
+   "cer": 2.5
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "রান্নাঘর",
+   "hyp": "রান্নাঘর",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "রান্নাঘর",
+   "hyp": "ররাঘর",
+   "cer": 0.5
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "রান্নাঘর",
+   "hyp": "6 hn nh wr ¥ ns EN HE i ৮৬ fan yo ৮ রা রানাঘর Se Boy ig Ce, Sg ৬ ek 5 + oN, Go Xa",
+   "cer": 9.375
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "মেয়াদ উত্তীর্ণের তারিখ",
+   "hyp": "মেয়াদ Sete তারিখ",
+   "cer": 0.43478260869565216
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "মেয়াদ উত্তীর্ণের তারিখ",
+   "hyp": "মেয়াদ উত্তীর্ণের তারিখ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "মেয়াদ উত্তীর্ণের তারিখ",
+   "hyp": "| i ELI A ( By _ মেয়াদ উত্তীর্ণের E",
+   "cer": 0.9565217391304348
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "দাম ৮৫ টাকা",
+   "hyp": "দাম ৮৫ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "দাম ৮৫ টাকা",
+   "hyp": "দাম ৮৫ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "দাম ৮৫ টাকা",
+   "hyp": "দাম ৮৫ টাকা তা পা TT ——",
+   "cer": 1.0909090909090908
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সরকারি প্রাথমিক বিদ্যালয়",
+   "hyp": "সরকারি প্রাথমিক বিদ্যালয়",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সরকারি প্রাথমিক বিদ্যালয়",
+   "hyp": "সরকারি প্রাথমিক বিদ্যালয়",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সরকারি প্রাথমিক বিদ্যালয়",
+   "hyp": "টে .নকে, sy ass H সরকারি প্রাথমিক [Arse - ঢু Ba 18 = Soa fo পুলে মম | প্্্পাঙ্্ দ্র, we | Te ane | রি লি",
+   "cer": 3.44
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ডাকঘর",
+   "hyp": "ডাকঘর",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ডাকঘর",
+   "hyp": "ডাকঘর",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ডাকঘর",
+   "hyp": "SA AS 8৪. ৯",
+   "cer": 2.2
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ভিতরে আসুন",
+   "hyp": "ভিতরে আসুন",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ভিতরে আসুন",
+   "hyp": "ভিতরে আসুন",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ভিতরে আসুন",
+   "hyp": "মা & bm 8 J",
+   "cer": 1.1
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "জুতা খুলে প্রবেশ করুন",
+   "hyp": "GOT খুলে প্রবেশ করুন",
+   "cer": 0.19047619047619047
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "জুতা খুলে প্রবেশ করুন",
+   "hyp": "জুতা খুলে প্রবেশ",
+   "cer": 0.23809523809523808
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "জুতা খুলে প্রবেশ করুন",
+   "hyp": "Lb ee Tal | iffy জুতা খুলে প্রবেশ করুন",
+   "cer": 0.8095238095238095
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "চিনি এক কেজি",
+   "hyp": "চিনি এক কেজি",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "চিনি এক কেজি",
+   "hyp": "চিনি এক কেজি",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "চিনি এক কেজি",
+   "hyp": "Se এক কেজি সত J Po ধু এ",
+   "cer": 1.4166666666666667
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "পরীক্ষার হল",
+   "hyp": "পরীক্ষার হল",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "পরীক্ষার হল",
+   "hyp": "পরীক্ষার হল",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "পরীক্ষার হল",
+   "hyp": "— নদ Winer, Te = এ =F 0 3 < Sara £5 ir xr SO =X > গু dpe F এ J Sl Se XH দেল ৭ ১... Em -. SS maa",
+   "cer": 8.454545454545455
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ব্যবস্থাপক",
+   "hyp": "ব্যবস্থাপক",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ব্যবস্থাপক",
+   "hyp": "ব্যবস্থাপক",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ব্যবস্থাপক",
+   "hyp": "7 on i 8 কি Gs ০৮৭ ব্যবইাপক i",
+   "cer": 2.4
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ঢাকা মেডিকেল কলেজ",
+   "hyp": "ঢাকা মেডিকেল কলেজ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ঢাকা মেডিকেল কলেজ",
+   "hyp": "ঢাকা মেডিকেল কলেজ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ঢাকা মেডিকেল কলেজ",
+   "hyp": "anen fig | HE",
+   "cer": 0.8823529411764706
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "নিরাপদ পানীয় জল",
+   "hyp": "নিরাপদ পানীয় জল",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "নিরাপদ পানীয় জল",
+   "hyp": "নিরাপদ পানীয় জল",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "নিরাপদ পানীয় জল",
+   "hyp": "'রূপসিদ HAR Ge প্র 5 a 473 _- ¥ =i dia) id পা »_ a",
+   "cer": 2.8125
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সোমবার বন্ধ",
+   "hyp": "সোমবার বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সোমবার বন্ধ",
+   "hyp": "সোমবার বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সোমবার বন্ধ",
+   "hyp": "যী , - | = i on | = চু সোমবার বন্ধ | |",
+   "cer": 2.4545454545454546
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "রক্ত পরীক্ষা কেন্দ্র",
+   "hyp": "রক্ত পরীক্ষা কেন্দ্র",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "রক্ত পরীক্ষা কেন্দ্র",
+   "hyp": "রক্ত পরীক্ষা কেন্দ্র",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "রক্ত পরীক্ষা কেন্দ্র",
+   "hyp": "Law",
+   "cer": 1.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "আলু",
+   "hyp": "161",
+   "cer": 1.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "আলু",
+   "hyp": "RUG",
+   "cer": 1.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "আলু",
+   "hyp": "ফ্ল্যাট Ya “vee -*€« ক ১০৭ ৭ | - £m w রর ৮ P, oN ) + আপ 1 | (00 V2 TH",
+   "cer": 22.666666666666668
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বিদ্যুৎ বিল",
+   "hyp": "বিদ্যুৎ বিল",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বিদ্যুৎ বিল",
+   "hyp": "বিদ্যুৎ বিল",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বিদ্যুৎ বিল",
+   "hyp": "iy জম - পা বিদ্যুৎ বিল",
+   "cer": 1.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "শিশুদের খেলার মাঠ",
+   "hyp": "শিশুদের খেলার মাঠ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "শিশুদের খেলার মাঠ",
+   "hyp": "শিশুদের খেলার মাঠ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "শিশুদের খেলার মাঠ",
+   "hyp": "A > IDNA GIG RP) স্লো pe NN",
+   "cer": 1.4705882352941178
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ক্যাশ কাউন্টার",
+   "hyp": "ক্যাশ কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ক্যাশ কাউন্টার",
+   "hyp": "ক্যাশ কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ক্যাশ কাউন্টার",
+   "hyp": "“B= Ve 1 শি 9 . - ক্যাশ কা উন্টার i. 7] 7% be",
+   "cer": 2.2142857142857144
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সাবান",
+   "hyp": "শাবণন",
+   "cer": 0.4
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সাবান",
+   "hyp": "৮৪1801",
+   "cer": 1.2
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সাবান",
+   "hyp": "be ad Sb =! wy Bi » 11 Nd ন্‌. ৭ | ১১৬১ 2 a A art 49 A ১৪612)",
+   "cer": 12.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ভাড়া দেওয়া হবে",
+   "hyp": "ওভড়ীটেউয়াহবে",
+   "cer": 0.4375
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ভাড়া দেওয়া হবে",
+   "hyp": "ভাড়া দেওয়া হবে",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ভাড়া দেওয়া হবে",
+   "hyp": "(SIO পেওযা হবে",
+   "cer": 0.4375
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "চক্ষু বিভাগ",
+   "hyp": "চক্ষু বিভাগ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "চক্ষু বিভাগ",
+   "hyp": "চক্ষু বিভাগ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "চক্ষু বিভাগ",
+   "hyp": "প্্হ্৯ চক্ষু বিভাগ arn >",
+   "cer": 1.1818181818181819
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "লবণ",
+   "hyp": "লবণ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "লবণ",
+   "hyp": "লবণ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "লবণ",
+   "hyp": "রা JIE = চু to বণ ig",
+   "cer": 6.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ট্রেনের সময়সূচি",
+   "hyp": "ট্রেনের সময়সূচি",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ট্রেনের সময়সূচি",
+   "hyp": "ট্রেনের সময়সূচি",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ট্রেনের সময়সূচি",
+   "hyp": "a fb ER সময়স্মত",
+   "cer": 0.625
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Emergency Room",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Emergency Room",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Emergency Room",
+   "hyp": "= 4 I a ৩ ie",
+   "cer": 0.9285714285714286
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Do Not Disturb",
+   "hyp": "Do Not Disturb",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Do Not Disturb",
+   "hyp": "Do Not Distyrt,",
+   "cer": 0.21428571428571427
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Do Not Disturb",
+   "hyp": "— te রন BODAC US D মু Do Not Didar Ld 1",
+   "cer": 2.142857142857143
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Best Before 2027",
+   "hyp": "LO bin $v 3 oe ৯১২ > i A 4 AA লি স্‌ ₹ না an td 3] store 2 ৫ > Best = EL +& =",
+   "cer": 4.3125
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Price 120 Taka",
+   "hyp": "NH ~ «i i. (A Price 120 Taka “ANY WLW oN XA 4), Pa hey",
+   "cer": 2.857142857142857
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Library",
+   "hyp": "3 Library >",
+   "cer": 0.5714285714285714
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Reception",
+   "hyp": "—— ug ee SS হা পা NY a pace পু ee Reception",
+   "cer": 3.7777777777777777
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Wet Floor",
+   "hyp": "on ৷ সে | Ps 8 Wet Floor",
+   "cer": 1.6666666666666667
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Parking",
+   "hyp": "— চ 1 Par K in g | কো পে তা 4. od =i নল চ না",
+   "cer": 5.428571428571429
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Post Office",
+   "hyp": "tl | Post Office N wa — gy ER of wd =",
+   "cer": 2.3636363636363638
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Exam Hall",
+   "hyp": "Exam Ha",
+   "cer": 0.2222222222222222
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Exam Hall",
+   "hyp": "রা Fi] Exam Hall ome a লিস্ভজঞঞ, fam a i)",
+   "cer": 3.5555555555555554
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Manager",
+   "hyp": "Re] ~ ~ wh [ পু ৬ ও Manager rr জা",
+   "cer": 3.7142857142857144
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Drinking Water",
+   "hyp": "ZN নি Drinking \\ Wear = IW F কে a ws Ey I i si | Sr.",
+   "cer": 2.857142857142857
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Closed on Monday",
+   "hyp": "Closed on Monday",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Closed on Monday",
+   "hyp": "Closed on Monday",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Closed on Monday",
+   "hyp": "Sef Closed on Monday n ee Ee C3 RE A —————",
+   "cer": 1.625
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Blood Bank",
+   "hyp": "= Blood Bank 1 জি Sh | i ৪৯ পাপ! vy | — _— প্ Pa",
+   "cer": 3.8
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Potato",
+   "hyp": "Potato",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Potato",
+   "hyp": "Potato",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Potato",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Electricity Bill",
+   "hyp": "by “2 B= oN Electricity Bill = : o §",
+   "cer": 1.25
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Playground",
+   "hyp": "সপ El Tr | p laygroun AAS “Nl BE",
+   "cer": 2.4
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Cash Counter",
+   "hyp": "A——— Aree ad as পা - A, pet tt 11 a 1 > 2. » a, 9. i) — we we a po { ae po | চে সে po ¥ po | Cash Counter | -_",
+   "cer": 8.166666666666666
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Soap",
+   "hyp": "I 2 rw WY 4 ০০",
+   "cer": 3.5
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "To Let",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "To Let",
+   "hyp": "1016",
+   "cer": 1.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "To Let",
+   "hyp": "্্্্্েং্সনা। bd fu ~ 10 |e 4 A C\\",
+   "cer": 5.166666666666667
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Eye Clinic",
+   "hyp": "gye Clinic",
+   "cer": 0.1
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Eye Clinic",
+   "hyp": "ঠা",
+   "cer": 1.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Salt",
+   "hyp": "rid ~~ oo. a DE J a, a /",
+   "cer": 5.75
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Train Schedule",
+   "hyp": "NK) Train Schedule : rr ® < & Ta a ra Xe >",
+   "cer": 2.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "৬ amol ১০ mg y \" A",
+   "cer": 0.8888888888888888
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ধূমপান নিষেধ",
+   "hyp": "ধুমপান নিষেধ",
+   "cer": 0.08333333333333333
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ধূমপান নিষেধ",
+   "hyp": "ধূমপান নিষেধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ধূমপান নিষেধ",
+   "hyp": "fi or Le ১. i A : = alos = — Is ধন্মপান নিষেধ Yi al il ধস pm an rT 4. ই = (2 ~_@ ARIA —— AD pis LL এ |",
+   "cer": 7.583333333333333
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "রান্নাঘর",
+   "hyp": "রান্নাঘর",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "রান্নাঘর",
+   "hyp": "রান্নাঘর",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "রান্নাঘর",
+   "hyp": "\" FER | ৷ I i pe [4 Tr HH oo Ha ঢা ৯4",
+   "cer": 4.5
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "মেয়াদ উত্তীর্ণের তারিখ",
+   "hyp": "মেয়াদ উত্তীর্ণের তারিখ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "মেয়াদ উত্তীর্ণের তারিখ",
+   "hyp": "মেয়াদ উত্তীর্ণের তারিখ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "মেয়াদ উত্তীর্ণের তারিখ",
+   "hyp": "A i sli LS বেন afl oy 7% 27, Er WE Gi, Rh উত্তীর্ণের say 0 A Wo Be. EA a RY.",
+   "cer": 2.739130434782609
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "দাম ৮৫ টাকা",
+   "hyp": "দাম ৮৫ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "দাম ৮৫ টাকা",
+   "hyp": "দাম ৮৫ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "দাম ৮৫ টাকা",
+   "hyp": "দাম ৮৫ টাকা i 1)",
+   "cer": 0.45454545454545453
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সরকারি প্রাথমিক বিদ্যালয়",
+   "hyp": "সরকারি প্রাথমিক বিদ্যালয়",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সরকারি প্রাথমিক বিদ্যালয়",
+   "hyp": "সরকারি প্রাথমিক বিদ্যালয়",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সরকারি প্রাথমিক বিদ্যালয়",
+   "hyp": "pore AN SS \\ = ti 1 সরকারি প্রাথমিক বিদ্যালয় a && র্‌ 4 a.",
+   "cer": 1.36
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ডাকঘর",
+   "hyp": "[LPH]",
+   "cer": 1.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ডাকঘর",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ডাকঘর",
+   "hyp": "-_—- A —.— A W be | A ৬কঘরছা -7",
+   "cer": 5.6
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ভিতরে আসুন",
+   "hyp": "ভিতরে আসুন",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ভিতরে আসুন",
+   "hyp": "ভিতরে আসুন",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ভিতরে আসুন",
+   "hyp": "ভিত তরে আসুন ৪. a — ই সস ৯ কা",
+   "cer": 1.9
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "জুতা খুলে প্রবেশ করুন",
+   "hyp": "জুতা খুলে প্রবেশ করুন",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "জুতা খুলে প্রবেশ করুন",
+   "hyp": "জুতা খুলে প্রবেশ করুন",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "জুতা খুলে প্রবেশ করুন",
+   "hyp": "ET",
+   "cer": 1.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "চিনি এক কেজি",
+   "hyp": "চিনি এক কেজি",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "চিনি এক কেজি",
+   "hyp": "চিনি এক কেজি",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "চিনি এক কেজি",
+   "hyp": "চিনি এক কেজি টস. — Pa i FW N ~~ A % i",
+   "cer": 2.0833333333333335
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "পরীক্ষার হল",
+   "hyp": "পরীক্ষার হল",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "পরীক্ষার হল",
+   "hyp": "পরীক্ষার হল",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "পরীক্ষার হল",
+   "hyp": "চল FE Eid ১ AE a aT T",
+   "cer": 1.8181818181818181
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ব্যবস্থাপক",
+   "hyp": "ব্যবস্থাপক",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ব্যবস্থাপক",
+   "hyp": "ব্যবস্থাপক",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ব্যবস্থাপক",
+   "hyp": "মা শ্শ্ববহাপক — rR 2 - হস্ত",
+   "cer": 2.3
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ঢাকা মেডিকেল কলেজ",
+   "hyp": "ঢাকা মেডিকেল কলেজ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ঢাকা মেডিকেল কলেজ",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ঢাকা মেডিকেল কলেজ",
+   "hyp": "gE CF এ ৮ ঢাকা | মেডি কেল কলেজ | 4 গ < eo",
+   "cer": 1.411764705882353
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "নিরাপদ পানীয় জল",
+   "hyp": "নিরাপদ পানীয় জল",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "নিরাপদ পানীয় জল",
+   "hyp": "নিরাপদ পানীয় জল",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "নিরাপদ পানীয় জল",
+   "hyp": "[A AT J 3 i x A Zz a ৬: চেটে ৬ A. নরাপদ পানীয় জল, ্ট",
+   "cer": 2.4375
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সোমবার বন্ধ",
+   "hyp": "সোমবার বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সোমবার বন্ধ",
+   "hyp": "সোমবার বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সোমবার বন্ধ",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "রক্ত পরীক্ষা কেন্দ্র",
+   "hyp": "রক্ত পরীক্ষা কেন্দ্র",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "রক্ত পরীক্ষা কেন্দ্র",
+   "hyp": "রক্ত পরীক্ষা কেন্দ্র",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "রক্ত পরীক্ষা কেন্দ্র",
+   "hyp": "রক্ত পরীক্ষা কেন্দ্র od \">, Ph © Ay Toon 4 চি AS \\ \\ N NW ) x \\ | ৬ hi enti ৭7 wa ৬৮ J 4 0 Vl ৭৪",
+   "cer": 3.8
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "আলু",
+   "hyp": "৯161",
+   "cer": 1.3333333333333333
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "আলু",
+   "hyp": "৮১৪",
+   "cer": 1.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "আলু",
+   "hyp": "- a <4 Bw mi ats a Siw we % টং বশ fa rain 7] 5 a ch Ea = — pics: er ডল",
+   "cer": 23.333333333333332
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বিদ্যুৎ বিল",
+   "hyp": "বিদ্যুৎ বিল",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বিদ্যুৎ বিল",
+   "hyp": "বিদ্যুৎ বিল",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বিদ্যুৎ বিল",
+   "hyp": "en বিদ্যুৎ বিল Le nek = = = -. ol er © ক",
+   "cer": 2.6363636363636362
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "শিশুদের খেলার মাঠ",
+   "hyp": "শিশুদের খেলার মাঠ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "শিশুদের খেলার মাঠ",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "শিশুদের খেলার মাঠ",
+   "hyp": "oa B= Way 127 p= aL no : | | গু. জন | ভবে দাত ্া 238) Jy ke VAN শিশুদের খেলার মাঠ ই 2 =",
+   "cer": 4.117647058823529
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ক্যাশ কাউন্টার",
+   "hyp": "ক্যাশ কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ক্যাশ কাউন্টার",
+   "hyp": "ক্যাশ কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ক্যাশ কাউন্টার",
+   "hyp": "TN er ah 4 ক্যাশ কাউন্টার i ষ্ঠ ৯৮ J Sh AE wr",
+   "cer": 2.2142857142857144
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সাবান",
+   "hyp": "সাবান",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সাবান",
+   "hyp": "NSIC",
+   "cer": 1.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সাবান",
+   "hyp": "সাবান ক 5 = pi",
+   "cer": 1.8
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ভাড়া দেওয়া হবে",
+   "hyp": "© দেওয়া হবে",
+   "cer": 0.3125
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ভাড়া দেওয়া হবে",
+   "hyp": "ভাড়া দেওয়া হবে",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ভাড়া দেওয়া হবে",
+   "hyp": "ভাড়া দেওয়া হবে টাটা ie -— ou",
+   "cer": 0.875
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "চক্ষু বিভাগ",
+   "hyp": "চক্ষু বিভাগ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "চক্ষু বিভাগ",
+   "hyp": "চক্ষু বিভাগ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "চক্ষু বিভাগ",
+   "hyp": "| চক্ষু বিভা re rr = lf nf [<7",
+   "cer": 1.8181818181818181
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "লবণ",
+   "hyp": "লবণ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "লবণ",
+   "hyp": "লবণ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "লবণ",
+   "hyp": "PD, 51 po",
+   "cer": 3.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ট্রেনের সময়সূচি",
+   "hyp": "ট্রেনের সময়সূচি",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ট্রেনের সময়সূচি",
+   "hyp": "ট্রেনের সময়সূচি",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ট্রেনের সময়সূচি",
+   "hyp": "Es 0 ট্রেনের সময়সূচি সস a +i er Be | রা ৯ ইল",
+   "cer": 1.8125
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Emergency Room",
+   "hyp": "[17070160170 Roo",
+   "cer": 0.9285714285714286
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Emergency Room",
+   "hyp": "Emergency Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Emergency Room",
+   "hyp": "রি Emergency Room ৬১, | i Wey",
+   "cer": 1.0714285714285714
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Do Not Disturb",
+   "hyp": "Do Not Disturb",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Do Not Disturb",
+   "hyp": "Do Not Disturb",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Do Not Disturb",
+   "hyp": "id opi t Disturb a oe",
+   "cer": 0.7857142857142857
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Best Before 2027",
+   "hyp": "ঙ Van esx Before 2027 Ca. os",
+   "cer": 0.875
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 1 20 Taka",
+   "cer": 0.07142857142857142
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka | ~. li EL",
+   "cer": 0.7857142857142857
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Library",
+   "hyp": "4 iol = ES] “ Library",
+   "cer": 2.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Reception",
+   "hyp": "27 Fu 5 : Re ception",
+   "cer": 1.2222222222222223
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Wet Floor",
+   "hyp": "রর লা fie > Wet | i lo Oo 0 r",
+   "cer": 2.3333333333333335
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Parking",
+   "hyp": "NR aN i | Parking fl i NF yr 8",
+   "cer": 3.2857142857142856
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Post Office",
+   "hyp": "J Post Office 4 পু",
+   "cer": 0.6363636363636364
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Exam Hall",
+   "hyp": "/ Exam Hall © A “ A ya)",
+   "cer": 1.5555555555555556
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Manager",
+   "hyp": "চু Manager -n 2% ( RD — i Ul Eph",
+   "cer": 3.5714285714285716
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Drinking Water",
+   "hyp": "4, Drinking Water Po 4",
+   "cer": 0.5714285714285714
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Closed on Monday",
+   "hyp": "Closed on Monday",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Closed on Monday",
+   "hyp": "Closed on Monday",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Closed on Monday",
+   "hyp": "- & &",
+   "cer": 0.875
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Blood Bank",
+   "hyp": "2",
+   "cer": 1.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Potato",
+   "hyp": "Potato",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Potato",
+   "hyp": "potato",
+   "cer": 0.16666666666666666
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Potato",
+   "hyp": "290909 dug r—",
+   "cer": 2.1666666666666665
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Electricity Bill",
+   "hyp": "ঢা Bill EET",
+   "cer": 0.875
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Playground",
+   "hyp": "playground",
+   "cer": 0.1
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Playground",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Cash Counter",
+   "hyp": "১ Wore mg 0 I) BCR 001২ পি ৮৫ / <2 —l ) 9p) | Cas h Cou n ter",
+   "cer": 4.083333333333333
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Soap",
+   "hyp": "১৬৮০০০০০ =. § Soap",
+   "cer": 3.5
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "To Let",
+   "hyp": "[10 Led",
+   "cer": 0.6666666666666666
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "To Let",
+   "hyp": "[10 | ef",
+   "cer": 1.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "To Let",
+   "hyp": "১২ . = চু, ya 10 Let ry RR = মম ০০ [ ভে 4D hs si a i তই TE পা CAE + EL a",
+   "cer": 11.333333333333334
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Eye Clinic",
+   "hyp": "4 Ne B | \\ ® en al _ Eye Clinic ৫ (মত. LR a . ৬",
+   "cer": 3.7
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Salt",
+   "hyp": "[I 1 চু | i || i 13 Salt টা )..",
+   "cer": 6.75
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Train Schedule",
+   "hyp": "৷ ৷ফ৷ফ্ফাম t pms rain Schedule A — ॥ ৩6 ki",
+   "cer": 2.0714285714285716
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "paraceta mol 500 mg",
+   "cer": 0.1111111111111111
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Par: etamol 500 i ঠা গা A i | Tl - “ * ® Fury Vig) Al ১",
+   "cer": 2.2222222222222223
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ধূমপান নিষেধ",
+   "hyp": "ধুমপান নিষেধ",
+   "cer": 0.08333333333333333
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ধূমপান নিষেধ",
+   "hyp": "ধূমপান নিষেধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ধূমপান নিষেধ",
+   "hyp": "47, 25 | ৯ ধুমপান নিষেধ যা A",
+   "cer": 1.4166666666666667
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "রান্নাঘর",
+   "hyp": "রান্নাঘর",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "রান্নাঘর",
+   "hyp": "RIBIRE!",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "রান্নাঘর",
+   "hyp": "Pha. রান্নাঘর চো নম্র টে ৷ জল SE — a ৪৯",
+   "cer": 3.875
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "মেয়াদ উত্তীর্ণের তারিখ",
+   "hyp": "মেয়াদ উত্তীর্ণের তারিখ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "মেয়াদ উত্তীর্ণের তারিখ",
+   "hyp": "মেয়াদ উত্তীর্ণের তারিখ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "মেয়াদ উত্তীর্ণের তারিখ",
+   "hyp": "[চা",
+   "cer": 0.9565217391304348
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "দাম ৮৫ টাকা",
+   "hyp": "দাম ৮৫ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "দাম ৮৫ টাকা",
+   "hyp": "দাম ৮৫ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "দাম ৮৫ টাকা",
+   "hyp": "| i দাম ৮৫ টাকা. মা) al",
+   "cer": 1.0909090909090908
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সরকারি প্রাথমিক বিদ্যালয়",
+   "hyp": "সরকারি প্রাথমিক বিদ্যালয়",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সরকারি প্রাথমিক বিদ্যালয়",
+   "hyp": "সরকারি প্রাথমিক বিদ্যালয়",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সরকারি প্রাথমিক বিদ্যালয়",
+   "hyp": "৯১৯৬ সরকারি প্রাথমিক বিদ্যালয় পা 3 F —&",
+   "cer": 0.6
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ডাকঘর",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ডাকঘর",
+   "hyp": "তে!",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ডাকঘর",
+   "hyp": "ডাকঘর",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ভিতরে আসুন",
+   "hyp": "ভিতরে আসুন",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ভিতরে আসুন",
+   "hyp": "ভিতরে আসুন",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ভিতরে আসুন",
+   "hyp": "J ভিতরে আসুন Eo inp",
+   "cer": 0.9
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "জুতা খুলে প্রবেশ করুন",
+   "hyp": "GOT খুলে প্রবেশ করুন",
+   "cer": 0.19047619047619047
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "জুতা খুলে প্রবেশ করুন",
+   "hyp": "Grol খুলে প্রবেশ করুন",
+   "cer": 0.19047619047619047
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "জুতা খুলে প্রবেশ করুন",
+   "hyp": "res জুতা খুলে প্রবেশ করুন \\",
+   "cer": 0.2857142857142857
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "চিনি এক কেজি",
+   "hyp": "চিনি এক কেজি",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "চিনি এক কেজি",
+   "hyp": "চিনি এক কেজি",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "চিনি এক কেজি",
+   "hyp": "৫1 WN) ক 5 ১, / ৰ চিনি এক fa \\ 4",
+   "cer": 2.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "পরীক্ষার হল",
+   "hyp": "পরীক্ষার হল",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "পরীক্ষার হল",
+   "hyp": "পরীক্ষার হল",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "পরীক্ষার হল",
+   "hyp": "ভি পরীক্ষার হ স্ব za",
+   "cer": 0.9090909090909091
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ব্যবস্থাপক",
+   "hyp": "ব্যবস্থাপক",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ব্যবস্থাপক",
+   "hyp": "ব্যবস্থাপক",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ব্যবস্থাপক",
+   "hyp": "ব্যবস্থাপক",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ঢাকা মেডিকেল কলেজ",
+   "hyp": "ঢাকা মেডিকেল কলেজ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ঢাকা মেডিকেল কলেজ",
+   "hyp": "ঢাকা মেডিকেল কলেজ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ঢাকা মেডিকেল কলেজ",
+   "hyp": "z= ঢাকা মেডিকেল কলেজ পোদ ভা, ১০১৬",
+   "cer": 0.9411764705882353
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "নিরাপদ পানীয় জল",
+   "hyp": "নিরাপদ পানীয় জল",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "নিরাপদ পানীয় জল",
+   "hyp": "নিরাপদ পানীয় জল",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "নিরাপদ পানীয় জল",
+   "hyp": "Al EF \\ i \\ 7 রন A f NS 4 নিরাপদ পানী ॥",
+   "cer": 1.875
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সোমবার বন্ধ",
+   "hyp": "সোমবার বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সোমবার বন্ধ",
+   "hyp": "সোমবার বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সোমবার বন্ধ",
+   "hyp": "= চে ক Eis —— টার, কেটি me ক... ii | aps ~ সোমবার BE] ( a টা 0 HE",
+   "cer": 5.2727272727272725
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "রক্ত পরীক্ষা কেন্দ্র",
+   "hyp": "রক্ত পরীক্ষা কেন্দ্র",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "রক্ত পরীক্ষা কেন্দ্র",
+   "hyp": "রুক্ত পরীক্ষা কেন্দ্র",
+   "cer": 0.05
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "রক্ত পরীক্ষা কেন্দ্র",
+   "hyp": "রক্ত পরীক্ষা কেন্দ্র Fe ১ ৯. পরলেন] সা ad Bo; gully",
+   "cer": 1.55
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "আলু",
+   "hyp": "আলু",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "আলু",
+   "hyp": "৬৯৪!",
+   "cer": 1.3333333333333333
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "আলু",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বিদ্যুৎ বিল",
+   "hyp": "বিদ্যুৎ বিল",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বিদ্যুৎ বিল",
+   "hyp": "বিদ্যুৎ বিল",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বিদ্যুৎ বিল",
+   "hyp": "বিদ্যুৎ বিল (/ | ক th. ™",
+   "cer": 1.1818181818181819
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "শিশুদের খেলার মাঠ",
+   "hyp": "শিশুদের খেলার মাঠ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "শিশুদের খেলার মাঠ",
+   "hyp": "শিশুদের খেলার মাঠ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "শিশুদের খেলার মাঠ",
+   "hyp": "| ৯৯০৯১ || শিশুদের খেলার মাঠ গা. [ I\" TN",
+   "cer": 1.3529411764705883
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ক্যাশ কাউন্টার",
+   "hyp": "ক্যাশ কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ক্যাশ কাউন্টার",
+   "hyp": "ক্যাশ কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ক্যাশ কাউন্টার",
+   "hyp": "লা “id Di | Il BS ক্যাশ কাউন্টার a Te বম",
+   "cer": 1.8571428571428572
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সাবান",
+   "hyp": "RISIR",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সাবান",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সাবান",
+   "hyp": "al ৬ পম 2 wat wif} 3) A oS ——",
+   "cer": 5.8
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ভাড়া দেওয়া হবে",
+   "hyp": "ELIS",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ভাড়া দেওয়া হবে",
+   "hyp": "ভাড়া দেওয়া হবে",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ভাড়া দেওয়া হবে",
+   "hyp": "hh 3 A RTP % 2.1 w= SO | ULI ৮৬ 5 YG ছা SiH তা — él Jo wn pid a] Z\\ JE =< A",
+   "cer": 4.4375
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "চক্ষু বিভাগ",
+   "hyp": "চক্ষু বিভাগ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "চক্ষু বিভাগ",
+   "hyp": "চক্ষু বিভাগ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "চক্ষু বিভাগ",
+   "hyp": "5p বিভাগ AE +, 4 a. LY A —— নীট পাদ, চু a",
+   "cer": 3.4545454545454546
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "লবণ",
+   "hyp": "লবণ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "লবণ",
+   "hyp": "লবণ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "লবণ",
+   "hyp": "an পু",
+   "cer": 1.6666666666666667
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ট্রেনের সময়সূচি",
+   "hyp": "ট্রেনের সময়সূচি",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ট্রেনের সময়সূচি",
+   "hyp": "ট্রেনের সময়সূচি",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ট্রেনের সময়সূচি",
+   "hyp": "2 ০০০... তা =",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Emergency Room",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Emergency Room",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Emergency Room",
+   "hyp": "Sweetness Bak, ew কলা mn চে >, | » “মা! পু জা",
+   "cer": 2.9285714285714284
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Do Not Disturb",
+   "hyp": "Do Not Disturb",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Do Not Disturb",
+   "hyp": "Do Not Disturb",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Do Not Disturb",
+   "hyp": "al ! Do Not t Distur 7h ol HE A",
+   "cer": 1.2857142857142858
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Best Before 2027",
+   "hyp": "Best Before 2027",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Best Before 2027",
+   "hyp": "ha oN wir Ne he = 4 পি [3 \" oR Va Xt » 5 a) yi ৯২ | 7 A be al Best Before 2027 টু. ক 4",
+   "cer": 4.375
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Price 120 Taka",
+   "hyp": "Price 120 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Price 120 Taka",
+   "hyp": "- wed dl >, a Price 1 20 Taka ee টু ছু 7 নন ছা ডেস্ক লা",
+   "cer": 2.9285714285714284
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Library",
+   "hyp": "পাস জে ৯ #£ = ii — Lib oy §",
+   "cer": 3.4285714285714284
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Reception",
+   "hyp": "Reception",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Reception",
+   "hyp": "Reception 2 SE ~~ | ২২",
+   "cer": 1.4444444444444444
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Wet Floor",
+   "hyp": "Wet Floor",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Wet Floor",
+   "hyp": "NS NAL Oa ONIN OKA MO DK ML Dr LAAN NIN, Gg | Wet Floor / AN টে \\g ৯",
+   "cer": 6.555555555555555
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Parking",
+   "hyp": "ty Parking od N= e =D ay Re | “NN",
+   "cer": 3.7142857142857144
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Post Office",
+   "hyp": "Post Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Post Office",
+   "hyp": "২ তং ৯ ৬ a] il 3 . ost Office পাদ | | pe",
+   "cer": 2.727272727272727
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Exam Hall",
+   "hyp": "Exam Hall",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Exam Hall",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Manager",
+   "hyp": "Manager",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Manager",
+   "hyp": "সু ৮৮ জাগা 27 ) “i Manager",
+   "cer": 2.7142857142857144
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Drinking Water",
+   "hyp": "Drinking Water",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Drinking Water",
+   "hyp": "Drin Kin ing Wa ter",
+   "cer": 0.42857142857142855
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Closed on Monday",
+   "hyp": "Closed on Monday",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Closed on Monday",
+   "hyp": "Closed on Monday",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Closed on Monday",
+   "hyp": "ARON 5 JAS ™ a cl ঢা! চু BLIC TOILET Nu I 2 150m _ Closed on Monday",
+   "cer": 3.1875
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Blood Bank",
+   "hyp": "Blood Bank",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Blood Bank",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Potato",
+   "hyp": "Potato",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Potato",
+   "hyp": "Potato",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Potato",
+   "hyp": "oy we Ss a i pt eS £3 i S ঢ | A ' 2 _ 5 7 3 1a 57 a hs bg SR || is 3 Gry i za Li ix £ 7 + il] fi",
+   "cer": 15.666666666666666
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Electricity Bill",
+   "hyp": "Electricity Bill",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Electricity Bill",
+   "hyp": "LL 7! Ug » সই সক | Flecticity Bill —",
+   "cer": 1.4375
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Playground",
+   "hyp": "Playground",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Playground",
+   "hyp": "Playground ~ =, |",
+   "cer": 0.7
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Cash Counter",
+   "hyp": "Cash Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Cash Counter",
+   "hyp": "৯৬ Cash Counter IY i Xfm",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Soap",
+   "hyp": "Soap",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Soap",
+   "hyp": "ey ৮ ৬ £ Vd Soap",
+   "cer": 3.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "To Let",
+   "hyp": "[lo Let",
+   "cer": 0.3333333333333333
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "To Let",
+   "hyp": "॥ Tet",
+   "cer": 0.5
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "To Let",
+   "hyp": "৬ ফর ae W § ক Le iA da মা IEE td ছে পা ৮ Pd eo তে [সং এ ক্ষ খাছ J পি গগি।",
+   "cer": 11.5
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Eye Clinic",
+   "hyp": "Eye Clinic",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Eye Clinic",
+   "hyp": "42 ডে স্্্া =, ar 7 জে 3 ml gy বি 3 | | 2 SR ®",
+   "cer": 4.4
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Salt",
+   "hyp": "Salt",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Salt",
+   "hyp": "| pe alt 4 ; | হা Em P|",
+   "cer": 5.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Train Schedule",
+   "hyp": "Train Schedule",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Train Schedule",
+   "hyp": "«",
+   "cer": 1.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamg 500 mg",
+   "cer": 0.1111111111111111
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Paracetamol 500 mg",
+   "hyp": "Paracetamol 500 mg vw",
+   "cer": 0.16666666666666666
+  }
+ ]
+}

@@ -1,0 +1,1218 @@
+﻿=== pip deskew pytesseract ===
+Collecting deskew
+  Downloading deskew-1.6.1-py3-none-any.whl.metadata (4.5 kB)
+Collecting pytesseract
+  Downloading pytesseract-0.3.13-py3-none-any.whl.metadata (11 kB)
+Requirement already satisfied: numpy in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from deskew) (2.5.2)
+Requirement already satisfied: scikit-image in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from deskew) (0.26.0)
+Requirement already satisfied: packaging>=21.3 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from pytesseract) (26.3)
+Requirement already satisfied: Pillow>=8.0.0 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from pytesseract) (12.3.0)
+Requirement already satisfied: scipy>=1.11.4 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from scikit-image->deskew) (1.18.1)
+Requirement already satisfied: networkx>=3.0 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from scikit-image->deskew) (3.6.1)
+Requirement already satisfied: imageio!=2.35.0,>=2.33 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from scikit-image->deskew) (2.38.0)
+Requirement already satisfied: tifffile>=2022.8.12 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from scikit-image->deskew) (2026.9.20)
+Requirement already satisfied: lazy-loader>=0.4 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from scikit-image->deskew) (0.6)
+Downloading deskew-1.6.1-py3-none-any.whl (8.3 kB)
+Downloading pytesseract-0.3.13-py3-none-any.whl (14 kB)
+Installing collected packages: pytesseract, deskew
+python :   WARNING: The script pytesseract.exe is installed in 
+'C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Scripts' which is not on PATH.
+At C:\Users\LAM\AppData\Local\Temp\ps-script-4d37d1c6-3543-4ed7-bf25-b6c1e3699cea.ps1:102 char:129
++ ... -Encoding utf8; python -m pip install deskew pytesseract 2>&1 | Out-F ...
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (  WARNING: The ...is not on PATH.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script deskew.exe is installed in 'C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Scripts' which 
+is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+
+
+Successfully installed deskew-1.6.1 pytesseract-0.3.13
+=== pip transformers ===
+Collecting transformers
+  Downloading transformers-5.18.0-py3-none-any.whl.metadata (32 kB)
+Collecting huggingface-hub<3.0,>=1.31.0 (from transformers)
+  Downloading huggingface_hub-2.1.1-py3-none-any.whl.metadata (16 kB)
+Requirement already satisfied: numpy>=1.17 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from transformers) (2.5.2)
+Requirement already satisfied: packaging>=20.0 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from transformers) (26.3)
+Requirement already satisfied: pyyaml>=5.1 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from transformers) (6.0.3)
+Collecting regex>=2025.10.22 (from transformers)
+  Downloading regex-2026.9.29-cp314-cp314-win_amd64.whl.metadata (41 kB)
+Collecting tokenizers<0.24.0,>=0.23.1 (from transformers)
+  Downloading tokenizers-0.23.2-cp310-abi3-win_amd64.whl.metadata (10 kB)
+Collecting typer (from transformers)
+  Downloading typer-0.27.2-py3-none-any.whl.metadata (16 kB)
+Collecting safetensors>=0.8.0 (from transformers)
+  Downloading safetensors-0.8.0-cp310-abi3-win_amd64.whl.metadata (4.2 kB)
+Collecting tqdm>=4.60 (from transformers)
+  Downloading tqdm-4.70.1-py3-none-any.whl.metadata (57 kB)
+Collecting click<9.0.0,>=8.4.2 (from huggingface-hub<3.0,>=1.31.0->transformers)
+  Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Requirement already satisfied: filelock>=3.10.0 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from huggingface-hub<3.0,>=1.31.0->transformers) (3.32.3)
+Requirement already satisfied: fsspec>=2023.5.0 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from huggingface-hub<3.0,>=1.31.0->transformers) (2026.7.0)
+Collecting hf-xet<2.0.0,>=1.6.0 (from huggingface-hub<3.0,>=1.31.0->transformers)
+  Downloading hf_xet-1.6.0-cp38-abi3-win_amd64.whl.metadata (4.9 kB)
+Collecting httpx2<3,>=2.0.0 (from huggingface-hub<3.0,>=1.31.0->transformers)
+  Downloading httpx2-2.13.1-py3-none-any.whl.metadata (9.8 kB)
+Requirement already satisfied: typing-extensions>=4.1.0 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from huggingface-hub<3.0,>=1.31.0->transformers) (4.16.0)
+Requirement already satisfied: anyio>=4.10 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from httpx2<3,>=2.0.0->huggingface-hub<3.0,>=1.31.0->transformers) (4.15.1)
+Collecting httpcore2==2.13.1 (from httpx2<3,>=2.0.0->huggingface-hub<3.0,>=1.31.0->transformers)
+  Downloading httpcore2-2.13.1-py3-none-any.whl.metadata (26 kB)
+Requirement already satisfied: idna>=3.18 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from httpx2<3,>=2.0.0->huggingface-hub<3.0,>=1.31.0->transformers) (3.20)
+Collecting truststore>=0.10 (from httpx2<3,>=2.0.0->huggingface-hub<3.0,>=1.31.0->transformers)
+  Downloading truststore-0.10.4-py3-none-any.whl.metadata (4.4 kB)
+Requirement already satisfied: h11>=0.16 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from httpcore2==2.13.1->httpx2<3,>=2.0.0->huggingface-hub<3.0,>=1.31.0->transformers) (0.16.0)
+Collecting huggingface-hub<3.0,>=1.31.0 (from transformers)
+  Downloading huggingface_hub-1.33.0-py3-none-any.whl.metadata (16 kB)
+Requirement already satisfied: httpx<1,>=0.23.0 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from huggingface-hub<3.0,>=1.31.0->transformers) (0.28.1)
+Requirement already satisfied: certifi in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from httpx<1,>=0.23.0->huggingface-hub<3.0,>=1.31.0->transformers) (2026.7.22)
+Requirement already satisfied: httpcore==1.* in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from httpx<1,>=0.23.0->huggingface-hub<3.0,>=1.31.0->transformers) (1.0.9)
+Collecting colorama (from tqdm>=4.60->transformers)
+  Downloading colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting shellingham>=1.3.0 (from typer->transformers)
+  Downloading shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+Collecting rich>=13.8.0 (from typer->transformers)
+  Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+Collecting annotated-doc>=0.0.2 (from typer->transformers)
+  Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+Collecting markdown-it-py>=2.2.0 (from rich>=13.8.0->typer->transformers)
+  Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting pygments<3.0.0,>=2.13.0 (from rich>=13.8.0->typer->transformers)
+  Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=13.8.0->typer->transformers)
+  Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Downloading transformers-5.18.0-py3-none-any.whl (12.6 MB)
+   ---------------------------------------- 12.6/12.6 MB 2.1 MB/s  0:00:06
+
+Downloading click-8.5.0-py3-none-any.whl (125 kB)
+Downloading hf_xet-1.6.0-cp38-abi3-win_amd64.whl (4.0 MB)
+   ---------------------------------------- 4.0/4.0 MB 2.2 MB/s  0:00:01
+
+Downloading tokenizers-0.23.2-cp310-abi3-win_amd64.whl (2.9 MB)
+   ---------------------------------------- 2.9/2.9 MB 2.2 MB/s  0:00:01
+
+Downloading huggingface_hub-1.33.0-py3-none-any.whl (846 kB)
+   ---------------------------------------- 846.4/846.4 kB 2.8 MB/s  0:00:00
+
+Downloading regex-2026.9.29-cp314-cp314-win_amd64.whl (283 kB)
+Downloading safetensors-0.8.0-cp310-abi3-win_amd64.whl (355 kB)
+Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Downloading typer-0.27.2-py3-none-any.whl (123 kB)
+Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+   ---------------------------------------- 1.3/1.3 MB 2.6 MB/s  0:00:00
+
+Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+Installing collected packages: shellingham, safetensors, regex, pygments, mdurl, hf-xet, colorama, click, annotated-doc, tqdm, markdown-it-py, rich, huggingface-hub, typer, tokenizers, transformers
+python :   WARNING: The script pygmentize.exe is installed in 
+'C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Scripts' which is not on PATH.
+At C:\Users\LAM\AppData\Local\Temp\ps-script-4d37d1c6-3543-4ed7-bf25-b6c1e3699cea.ps1:102 char:282
++ ... ppend -Encoding utf8; python -m pip install transformers 2>&1 | Out-F ...
++                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (  WARNING: The ...is not on PATH.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script tqdm.exe is installed in 'C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Scripts' which is 
+not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script markdown-it.exe is installed in 'C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Scripts' 
+which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts hf.exe, huggingface-cli.exe and tiny-agents.exe are installed in 
+'C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script typer.exe is installed in 'C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Scripts' which 
+is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script transformers.exe is installed in 'C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Scripts' 
+which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+
+
+Successfully installed annotated-doc-0.0.5 click-8.5.0 colorama-0.4.6 hf-xet-1.6.0 huggingface-hub-1.33.0 markdown-it-py-4.2.0 mdurl-0.1.2 pygments-2.21.0 regex-2026.9.29 rich-15.0.0 safetensors-0.8.0 shellingham-1.5.4 tokenizers-0.23.2 tqdm-4.70.1 transformers-5.18.0 typer-0.27.2
+=== pip paddlepaddle paddleocr ===
+python : ERROR: Could not find a version that satisfies the requirement paddlepaddle (from versions: none)
+At C:\Users\LAM\AppData\Local\Temp\ps-script-4d37d1c6-3543-4ed7-bf25-b6c1e3699cea.ps1:102 char:439
++ ... oding utf8; python -m pip install paddlepaddle paddleocr 2>&1 | Out-F ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR: Could no...versions: none):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ERROR: No matching distribution found for paddlepaddle
+=== pip bnlp-toolkit kenlm ===
+Collecting bnlp-toolkit
+  Downloading bnlp_toolkit-4.4.1-py3-none-any.whl.metadata (14 kB)
+Collecting kenlm
+  Downloading kenlm-0.3.0.tar.gz (427 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting sentencepiece>=0.2.0 (from bnlp-toolkit)
+  Downloading sentencepiece-0.2.2-cp314-cp314-win_amd64.whl.metadata (34 kB)
+Collecting gensim>=4.3.3 (from bnlp-toolkit)
+  Downloading gensim-4.4.0.tar.gz (23.3 MB)
+     ---------------------------------------- 23.3/23.3 MB 4.0 MB/s  0:00:05
+
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting nltk (from bnlp-toolkit)
+  Downloading nltk-3.10.3-py3-none-any.whl.metadata (3.2 kB)
+Requirement already satisfied: numpy in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from bnlp-toolkit) (2.5.2)
+Requirement already satisfied: scipy>=1.11.0 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from bnlp-toolkit) (1.18.1)
+Collecting sklearn-crfsuite>=0.5.0 (from bnlp-toolkit)
+  Downloading sklearn_crfsuite-0.5.0-py2.py3-none-any.whl.metadata (4.9 kB)
+Requirement already satisfied: tqdm>=4.66.3 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from bnlp-toolkit) (4.70.1)
+Collecting ftfy>=6.2.0 (from bnlp-toolkit)
+  Downloading ftfy-6.3.1-py3-none-any.whl.metadata (7.3 kB)
+Collecting emoji>=2.0.0 (from bnlp-toolkit)
+  Downloading emoji-2.16.0-py3-none-any.whl.metadata (5.7 kB)
+Requirement already satisfied: requests in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from bnlp-toolkit) (2.34.2)
+Collecting symspellpy>=6.7.0 (from bnlp-toolkit)
+  Downloading symspellpy-6.10.0-py3-none-any.whl.metadata (4.0 kB)
+Collecting wcwidth (from ftfy>=6.2.0->bnlp-toolkit)
+  Downloading wcwidth-0.9.1-cp310-abi3-win_amd64.whl.metadata (24 kB)
+Collecting smart_open>=1.8.1 (from gensim>=4.3.3->bnlp-toolkit)
+  Downloading smart_open-8.0.2-py3-none-any.whl.metadata (24 kB)
+Collecting python-crfsuite>=0.9.7 (from sklearn-crfsuite>=0.5.0->bnlp-toolkit)
+  Downloading python_crfsuite-0.9.12-cp314-cp314-win_amd64.whl.metadata (4.4 kB)
+Requirement already satisfied: scikit-learn>=0.24.0 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from sklearn-crfsuite>=0.5.0->bnlp-toolkit) (1.9.1)
+Collecting tabulate>=0.4.2 (from sklearn-crfsuite>=0.5.0->bnlp-toolkit)
+  Downloading tabulate-0.10.0-py3-none-any.whl.metadata (40 kB)
+Requirement already satisfied: joblib>=1.4.0 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from scikit-learn>=0.24.0->sklearn-crfsuite>=0.5.0->bnlp-toolkit) (1.6.0)
+Requirement already satisfied: narwhals>=2.0.1 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from scikit-learn>=0.24.0->sklearn-crfsuite>=0.5.0->bnlp-toolkit) (2.26.0)
+Requirement already satisfied: threadpoolctl>=3.5.0 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from scikit-learn>=0.24.0->sklearn-crfsuite>=0.5.0->bnlp-toolkit) (3.7.0)
+Requirement already satisfied: cloudpickle>=3.0 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from joblib>=1.4.0->scikit-learn>=0.24.0->sklearn-crfsuite>=0.5.0->bnlp-toolkit) (3.1.2)
+Collecting wrapt (from smart_open>=1.8.1->gensim>=4.3.3->bnlp-toolkit)
+  Downloading wrapt-2.5.0-cp314-cp314-win_amd64.whl.metadata (7.7 kB)
+Requirement already satisfied: colorama in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from tqdm>=4.66.3->bnlp-toolkit) (0.4.6)
+Collecting defusedxml (from nltk->bnlp-toolkit)
+  Downloading defusedxml-0.7.1-py2.py3-none-any.whl.metadata (32 kB)
+Requirement already satisfied: click in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from nltk->bnlp-toolkit) (8.5.0)
+Requirement already satisfied: regex>=2021.8.3 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from nltk->bnlp-toolkit) (2026.9.29)
+Requirement already satisfied: charset_normalizer<4,>=2 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from requests->bnlp-toolkit) (3.5.2)
+Requirement already satisfied: idna<4,>=2.5 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from requests->bnlp-toolkit) (3.20)
+Requirement already satisfied: urllib3<3,>=1.26 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from requests->bnlp-toolkit) (2.8.0)
+Requirement already satisfied: certifi>=2023.5.7 in C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (from requests->bnlp-toolkit) (2026.7.22)
+Downloading bnlp_toolkit-4.4.1-py3-none-any.whl (68 kB)
+Downloading emoji-2.16.0-py3-none-any.whl (610 kB)
+   ---------------------------------------- 610.9/610.9 kB 5.5 MB/s  0:00:00
+
+Downloading ftfy-6.3.1-py3-none-any.whl (44 kB)
+Downloading sentencepiece-0.2.2-cp314-cp314-win_amd64.whl (1.4 MB)
+   ---------------------------------------- 1.4/1.4 MB 5.7 MB/s  0:00:00
+
+Downloading sklearn_crfsuite-0.5.0-py2.py3-none-any.whl (10 kB)
+Downloading python_crfsuite-0.9.12-cp314-cp314-win_amd64.whl (309 kB)
+Downloading smart_open-8.0.2-py3-none-any.whl (73 kB)
+Downloading symspellpy-6.10.0-py3-none-any.whl (2.6 MB)
+   ---------------------------------------- 2.6/2.6 MB 4.9 MB/s  0:00:00
+
+Downloading tabulate-0.10.0-py3-none-any.whl (39 kB)
+Downloading nltk-3.10.3-py3-none-any.whl (1.8 MB)
+   ---------------------------------------- 1.8/1.8 MB 4.9 MB/s  0:00:00
+
+Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+Downloading wcwidth-0.9.1-cp310-abi3-win_amd64.whl (596 kB)
+   ---------------------------------------- 596.7/596.7 kB 4.7 MB/s  0:00:00
+
+Downloading wrapt-2.5.0-cp314-cp314-win_amd64.whl (105 kB)
+Building wheels for collected packages: kenlm, gensim
+  Building wheel for kenlm (pyproject.toml): started
+  Building wheel for kenlm (pyproject.toml): finished with status 'error'
+python :   error: subprocess-exited-with-error
+At C:\Users\LAM\AppData\Local\Temp\ps-script-4d37d1c6-3543-4ed7-bf25-b6c1e3699cea.ps1:102 char:602
++ ... -Encoding utf8; python -m pip install bnlp-toolkit kenlm 2>&1 | Out-F ...
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (  error: subprocess-exited-with-error:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  
+  Building wheel for kenlm (pyproject.toml) did not run successfully.
+  exit code: 1
+  
+  [107 lines of output]
+  'bash' is not recognized as an internal or external command,
+  operable program or batch file.
+  'bash' is not recognized as an internal or external command,
+  operable program or batch file.
+  'bash' is not recognized as an internal or external command,
+  operable program or batch file.
+  Will build with KenLM max_order set to 6
+  running bdist_wheel
+  running build
+  running build_ext
+  -- Building for: NMake Makefiles
+  CMake Error at CMakeLists.txt:14 (project):
+    Generator
+  
+      NMake Makefiles
+  
+    does not support platform specification, but platform
+  
+      x64
+  
+    was specified.
+  
+  
+  CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
+  CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
+  -- Configuring incomplete, errors occurred!
+  Traceback (most recent call last):
+    File "C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pip\_vendor\pyproject_hooks\_in_proces
+s\_in_process.py", line 389, in <module>
+      main()
+      ~~~~^^
+    File "C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pip\_vendor\pyproject_hooks\_in_proces
+s\_in_process.py", line 373, in main
+      json_out["return_val"] = hook(**hook_input["kwargs"])
+                               ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pip\_vendor\pyproject_hooks\_in_proces
+s\_in_process.py", line 280, in build_wheel
+      return _build_backend().build_wheel(
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+          wheel_directory, config_settings, metadata_directory
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      )
+      ^
+    File "C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\build_meta.py", 
+line 441, in build_wheel
+      return _build(['bdist_wheel', '--dist-info-dir', str(metadata_directory)])
+    File "C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\build_meta.py", 
+line 429, in _build
+      return self._build_with_temp_dir(
+             ~~~~~~~~~~~~~~~~~~~~~~~~~^
+          cmd,
+          ^^^^
+      ...<3 lines>...
+          self._arbitrary_args(config_settings),
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      )
+      ^
+    File "C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\build_meta.py", 
+line 410, in _build_with_temp_dir
+      self.run_setup()
+      ~~~~~~~~~~~~~~^^
+    File "C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\build_meta.py", 
+line 520, in run_setup
+      super().run_setup(setup_script=setup_script)
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\build_meta.py", 
+line 317, in run_setup
+      exec(code, locals())  # noqa: S102 # exec is intentional here
+      ~~~~^^^^^^^^^^^^^^^^
+    File "<string>", line 124, in <module>
+    File "C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\__init__.py", 
+line 117, in setup
+      return distutils.core.setup(**attrs)  # type: ignore[return-value]
+             ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+    File 
+"C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\_distutils\core.py", line 
+168, in setup
+      return run_commands(dist)
+    File 
+"C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\_distutils\core.py", line 
+184, in run_commands
+      dist.run_commands()
+      ~~~~~~~~~~~~~~~~~^^
+    File 
+"C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\_distutils\dist.py", line 
+1028, in run_commands
+      self.run_command(cmd)
+      ~~~~~~~~~~~~~~~~^^^^^
+    File "C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\dist.py", line 
+1106, in run_command
+      super().run_command(command)
+      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+    File 
+"C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\_distutils\dist.py", line 
+1047, in run_command
+      cmd_obj.run()
+      ~~~~~~~~~~~^^
+    File 
+"C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\command\bdist_wheel.py", 
+line 385, in run
+      self.run_command("build")
+      ~~~~~~~~~~~~~~~~^^^^^^^^^
+    File 
+"C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\_distutils\cmd.py", line 
+342, in run_command
+      self.distribution.run_command(command)
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+    File "C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\dist.py", line 
+1106, in run_command
+      super().run_command(command)
+      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+    File 
+"C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\_distutils\dist.py", line 
+1047, in run_command
+      cmd_obj.run()
+      ~~~~~~~~~~~^^
+    File "C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\_distutils\comman
+d\build.py", line 137, in run
+      self.run_command(cmd_name)
+      ~~~~~~~~~~~~~~~~^^^^^^^^^^
+    File 
+"C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\_distutils\cmd.py", line 
+342, in run_command
+      self.distribution.run_command(command)
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+    File "C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\dist.py", line 
+1106, in run_command
+      super().run_command(command)
+      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+    File 
+"C:\Users\LAM\AppData\Local\Temp\pip-build-env-8dpesxol\overlay\Lib\site-packages\setuptools\_distutils\dist.py", line 
+1047, in run_command
+      cmd_obj.run()
+      ~~~~~~~~~~~^^
+    File "<string>", line 104, in run
+    File "C:\Users\LAM\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 420, in check_call
+      raise CalledProcessError(retcode, cmd)
+  subprocess.CalledProcessError: Command '['cmake', 
+'C:\\Users\\LAM\\AppData\\Local\\Temp\\pip-install-e7sovoqo\\kenlm_951f27ab9daf4fc8b752c1c4becdd161', '-DCMAKE_LIBRARY_
+OUTPUT_DIRECTORY=C:\\Users\\LAM\\AppData\\Local\\Temp\\pip-install-e7sovoqo\\kenlm_951f27ab9daf4fc8b752c1c4becdd161\\bu
+ild\\lib.win-amd64-cpython-314', '-DBUILD_SHARED_LIBS=ON', '-DBUILD_PYTHON_STANDALONE=ON', '-DKENLM_MAX_ORDER=6', 
+'-DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON', '-DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=C:\\Users\\LAM\\AppData\\Local\\Temp
+\\pip-install-e7sovoqo\\kenlm_951f27ab9daf4fc8b752c1c4becdd161\\build\\lib.win-amd64-cpython-314', '-DCMAKE_LIBRARY_OUT
+PUT_DIRECTORY_RELEASE=C:\\Users\\LAM\\AppData\\Local\\Temp\\pip-install-e7sovoqo\\kenlm_951f27ab9daf4fc8b752c1c4becdd16
+1\\build\\lib.win-amd64-cpython-314', '-DCMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE=C:\\Users\\LAM\\AppData\\Local\\Temp\\p
+ip-install-e7sovoqo\\kenlm_951f27ab9daf4fc8b752c1c4becdd161\\build\\lib.win-amd64-cpython-314', '-A', 'x64']' returned 
+non-zero exit status 1.
+  [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for kenlm
+  Building wheel for gensim (pyproject.toml): started
+  Building wheel for gensim (pyproject.toml): finished with status 'error'
+  error: subprocess-exited-with-error
+  
+  Building wheel for gensim (pyproject.toml) did not run successfully.
+  exit code: 1
+  
+  [716 lines of output]
+  C:\Users\LAM\AppData\Local\Temp\pip-build-env-fu_fm0vs\overlay\Lib\site-packages\setuptools\_distutils\dist.py:318: 
+UserWarning: Unknown distribution option: 'test_suite'
+    warnings.warn(msg)
+  C:\Users\LAM\AppData\Local\Temp\pip-build-env-fu_fm0vs\overlay\Lib\site-packages\setuptools\_distutils\dist.py:318: 
+UserWarning: Unknown distribution option: 'tests_require'
+    warnings.warn(msg)
+  running bdist_wheel
+  running build
+  running build_py
+  creating build\lib.win-amd64-cpython-314\gensim
+  copying gensim\downloader.py -> build\lib.win-amd64-cpython-314\gensim
+  copying gensim\interfaces.py -> build\lib.win-amd64-cpython-314\gensim
+  copying gensim\matutils.py -> build\lib.win-amd64-cpython-314\gensim
+  copying gensim\nosy.py -> build\lib.win-amd64-cpython-314\gensim
+  copying gensim\utils.py -> build\lib.win-amd64-cpython-314\gensim
+  copying gensim\__init__.py -> build\lib.win-amd64-cpython-314\gensim
+  creating build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\bleicorpus.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\csvcorpus.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\dictionary.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\hashdictionary.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\indexedcorpus.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\lowcorpus.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\malletcorpus.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\mmcorpus.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\opinosiscorpus.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\sharded_corpus.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\svmlightcorpus.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\textcorpus.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\ucicorpus.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\wikicorpus.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\corpora\__init__.py -> build\lib.win-amd64-cpython-314\gensim\corpora
+  creating build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\atmodel.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\basemodel.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\bm25model.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\callbacks.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\coherencemodel.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\doc2vec.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\ensemblelda.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\fasttext.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\hdpmodel.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\keyedvectors.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\ldamodel.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\ldamulticore.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\ldaseqmodel.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\lda_dispatcher.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\lda_worker.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\logentropy_model.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\lsimodel.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\lsi_dispatcher.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\lsi_worker.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\nmf.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\normmodel.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\phrases.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\poincare.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\rpmodel.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\tfidfmodel.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\translation_matrix.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\word2vec.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\_fasttext_bin.py -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\__init__.py -> build\lib.win-amd64-cpython-314\gensim\models
+  creating build\lib.win-amd64-cpython-314\gensim\parsing
+  copying gensim\parsing\porter.py -> build\lib.win-amd64-cpython-314\gensim\parsing
+  copying gensim\parsing\preprocessing.py -> build\lib.win-amd64-cpython-314\gensim\parsing
+  copying gensim\parsing\__init__.py -> build\lib.win-amd64-cpython-314\gensim\parsing
+  creating build\lib.win-amd64-cpython-314\gensim\scripts
+  copying gensim\scripts\benchmark.py -> build\lib.win-amd64-cpython-314\gensim\scripts
+  copying gensim\scripts\glove2word2vec.py -> build\lib.win-amd64-cpython-314\gensim\scripts
+  copying gensim\scripts\make_wiki.py -> build\lib.win-amd64-cpython-314\gensim\scripts
+  copying gensim\scripts\make_wikicorpus.py -> build\lib.win-amd64-cpython-314\gensim\scripts
+  copying gensim\scripts\make_wiki_online.py -> build\lib.win-amd64-cpython-314\gensim\scripts
+  copying gensim\scripts\make_wiki_online_nodebug.py -> build\lib.win-amd64-cpython-314\gensim\scripts
+  copying gensim\scripts\package_info.py -> build\lib.win-amd64-cpython-314\gensim\scripts
+  copying gensim\scripts\segment_wiki.py -> build\lib.win-amd64-cpython-314\gensim\scripts
+  copying gensim\scripts\word2vec2tensor.py -> build\lib.win-amd64-cpython-314\gensim\scripts
+  copying gensim\scripts\word2vec_standalone.py -> build\lib.win-amd64-cpython-314\gensim\scripts
+  copying gensim\scripts\__init__.py -> build\lib.win-amd64-cpython-314\gensim\scripts
+  creating build\lib.win-amd64-cpython-314\gensim\similarities
+  copying gensim\similarities\annoy.py -> build\lib.win-amd64-cpython-314\gensim\similarities
+  copying gensim\similarities\docsim.py -> build\lib.win-amd64-cpython-314\gensim\similarities
+  copying gensim\similarities\levenshtein.py -> build\lib.win-amd64-cpython-314\gensim\similarities
+  copying gensim\similarities\nmslib.py -> build\lib.win-amd64-cpython-314\gensim\similarities
+  copying gensim\similarities\termsim.py -> build\lib.win-amd64-cpython-314\gensim\similarities
+  copying gensim\similarities\__init__.py -> build\lib.win-amd64-cpython-314\gensim\similarities
+  creating build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\basetmtests.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\simspeed.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\simspeed2.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\svd_error.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_aggregation.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_api.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_atmodel.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_big.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_bm25model.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_coherencemodel.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_corpora.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_corpora_dictionary.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_corpora_hashdictionary.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_datatype.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_direct_confirmation.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_doc2vec.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_ensemblelda.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_fasttext.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_glove2word2vec.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_hdpmodel.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_indirect_confirmation.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_keyedvectors.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_ldamodel.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_ldaseqmodel.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_lda_callback.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_lee.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_logentropy_model.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_lsimodel.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_matutils.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_miislita.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_nmf.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_normmodel.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_parsing.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_phrases.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_poincare.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_probability_estimation.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_rpmodel.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_scripts.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_segmentation.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_sharded_corpus.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_similarities.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_similarity_metrics.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_text_analysis.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_tfidfmodel.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_tmdiff.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_translation_matrix.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_utils.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\test_word2vec.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\utils.py -> build\lib.win-amd64-cpython-314\gensim\test
+  copying gensim\test\__init__.py -> build\lib.win-amd64-cpython-314\gensim\test
+  creating build\lib.win-amd64-cpython-314\gensim\topic_coherence
+  copying gensim\topic_coherence\aggregation.py -> build\lib.win-amd64-cpython-314\gensim\topic_coherence
+  copying gensim\topic_coherence\direct_confirmation_measure.py -> 
+build\lib.win-amd64-cpython-314\gensim\topic_coherence
+  copying gensim\topic_coherence\indirect_confirmation_measure.py -> 
+build\lib.win-amd64-cpython-314\gensim\topic_coherence
+  copying gensim\topic_coherence\probability_estimation.py -> build\lib.win-amd64-cpython-314\gensim\topic_coherence
+  copying gensim\topic_coherence\segmentation.py -> build\lib.win-amd64-cpython-314\gensim\topic_coherence
+  copying gensim\topic_coherence\text_analysis.py -> build\lib.win-amd64-cpython-314\gensim\topic_coherence
+  copying gensim\topic_coherence\__init__.py -> build\lib.win-amd64-cpython-314\gensim\topic_coherence
+  running egg_info
+  writing gensim.egg-info\PKG-INFO
+  writing dependency_links to gensim.egg-info\dependency_links.txt
+  writing requirements to gensim.egg-info\requires.txt
+  writing top-level names to gensim.egg-info\top_level.txt
+  reading manifest file 'gensim.egg-info\SOURCES.txt'
+  reading manifest template 'MANIFEST.in'
+  adding license file 'COPYING'
+  writing manifest file 'gensim.egg-info\SOURCES.txt'
+  C:\Users\LAM\AppData\Local\Temp\pip-build-env-fu_fm0vs\overlay\Lib\site-packages\setuptools\command\build_py.py:215: 
+_Warning: Package 'gensim.corpora' is absent from the `packages` configuration.
+  !!
+  
+          ********************************************************************************
+          ############################
+          # Package would be ignored #
+          ############################
+          Python recognizes 'gensim.corpora' as an importable package[^1],
+          but it is absent from setuptools' `packages` configuration.
+  
+          This leads to an ambiguous overall configuration. If you want to distribute this
+          package, please make sure that 'gensim.corpora' is explicitly added
+          to the `packages` configuration field.
+  
+          Alternatively, you can also rely on setuptools' discovery methods
+          (for example by using `find_namespace_packages(...)`/`find_namespace:`
+          instead of `find_packages(...)`/`find:`).
+  
+          You can read more about "package discovery" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+  
+          If you don't want 'gensim.corpora' to be distributed and are
+          already explicitly excluding 'gensim.corpora' via
+          `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+          you can try to use `exclude_package_data`, or `include-package-data=False` in
+          combination with a more fine grained `package-data` configuration.
+  
+          You can read more about "package data files" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+  
+  
+          [^1]: For Python, any directory (with suitable naming) can be imported,
+                even if it does not contain any `.py` files.
+                On the other hand, currently there is no concept of package data
+                directory, all directories are treated like packages.
+          ********************************************************************************
+  
+  !!
+    check.warn(importable)
+  C:\Users\LAM\AppData\Local\Temp\pip-build-env-fu_fm0vs\overlay\Lib\site-packages\setuptools\command\build_py.py:215: 
+_Warning: Package 'gensim.models' is absent from the `packages` configuration.
+  !!
+  
+          ********************************************************************************
+          ############################
+          # Package would be ignored #
+          ############################
+          Python recognizes 'gensim.models' as an importable package[^1],
+          but it is absent from setuptools' `packages` configuration.
+  
+          This leads to an ambiguous overall configuration. If you want to distribute this
+          package, please make sure that 'gensim.models' is explicitly added
+          to the `packages` configuration field.
+  
+          Alternatively, you can also rely on setuptools' discovery methods
+          (for example by using `find_namespace_packages(...)`/`find_namespace:`
+          instead of `find_packages(...)`/`find:`).
+  
+          You can read more about "package discovery" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+  
+          If you don't want 'gensim.models' to be distributed and are
+          already explicitly excluding 'gensim.models' via
+          `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+          you can try to use `exclude_package_data`, or `include-package-data=False` in
+          combination with a more fine grained `package-data` configuration.
+  
+          You can read more about "package data files" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+  
+  
+          [^1]: For Python, any directory (with suitable naming) can be imported,
+                even if it does not contain any `.py` files.
+                On the other hand, currently there is no concept of package data
+                directory, all directories are treated like packages.
+          ********************************************************************************
+  
+  !!
+    check.warn(importable)
+  C:\Users\LAM\AppData\Local\Temp\pip-build-env-fu_fm0vs\overlay\Lib\site-packages\setuptools\command\build_py.py:215: 
+_Warning: Package 'gensim.similarities' is absent from the `packages` configuration.
+  !!
+  
+          ********************************************************************************
+          ############################
+          # Package would be ignored #
+          ############################
+          Python recognizes 'gensim.similarities' as an importable package[^1],
+          but it is absent from setuptools' `packages` configuration.
+  
+          This leads to an ambiguous overall configuration. If you want to distribute this
+          package, please make sure that 'gensim.similarities' is explicitly added
+          to the `packages` configuration field.
+  
+          Alternatively, you can also rely on setuptools' discovery methods
+          (for example by using `find_namespace_packages(...)`/`find_namespace:`
+          instead of `find_packages(...)`/`find:`).
+  
+          You can read more about "package discovery" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+  
+          If you don't want 'gensim.similarities' to be distributed and are
+          already explicitly excluding 'gensim.similarities' via
+          `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+          you can try to use `exclude_package_data`, or `include-package-data=False` in
+          combination with a more fine grained `package-data` configuration.
+  
+          You can read more about "package data files" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+  
+  
+          [^1]: For Python, any directory (with suitable naming) can be imported,
+                even if it does not contain any `.py` files.
+                On the other hand, currently there is no concept of package data
+                directory, all directories are treated like packages.
+          ********************************************************************************
+  
+  !!
+    check.warn(importable)
+  C:\Users\LAM\AppData\Local\Temp\pip-build-env-fu_fm0vs\overlay\Lib\site-packages\setuptools\command\build_py.py:215: 
+_Warning: Package 'gensim.test.test_data' is absent from the `packages` configuration.
+  !!
+  
+          ********************************************************************************
+          ############################
+          # Package would be ignored #
+          ############################
+          Python recognizes 'gensim.test.test_data' as an importable package[^1],
+          but it is absent from setuptools' `packages` configuration.
+  
+          This leads to an ambiguous overall configuration. If you want to distribute this
+          package, please make sure that 'gensim.test.test_data' is explicitly added
+          to the `packages` configuration field.
+  
+          Alternatively, you can also rely on setuptools' discovery methods
+          (for example by using `find_namespace_packages(...)`/`find_namespace:`
+          instead of `find_packages(...)`/`find:`).
+  
+          You can read more about "package discovery" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+  
+          If you don't want 'gensim.test.test_data' to be distributed and are
+          already explicitly excluding 'gensim.test.test_data' via
+          `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+          you can try to use `exclude_package_data`, or `include-package-data=False` in
+          combination with a more fine grained `package-data` configuration.
+  
+          You can read more about "package data files" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+  
+  
+          [^1]: For Python, any directory (with suitable naming) can be imported,
+                even if it does not contain any `.py` files.
+                On the other hand, currently there is no concept of package data
+                directory, all directories are treated like packages.
+          ********************************************************************************
+  
+  !!
+    check.warn(importable)
+  C:\Users\LAM\AppData\Local\Temp\pip-build-env-fu_fm0vs\overlay\Lib\site-packages\setuptools\command\build_py.py:215: 
+_Warning: Package 'gensim.test.test_data.DTM' is absent from the `packages` configuration.
+  !!
+  
+          ********************************************************************************
+          ############################
+          # Package would be ignored #
+          ############################
+          Python recognizes 'gensim.test.test_data.DTM' as an importable package[^1],
+          but it is absent from setuptools' `packages` configuration.
+  
+          This leads to an ambiguous overall configuration. If you want to distribute this
+          package, please make sure that 'gensim.test.test_data.DTM' is explicitly added
+          to the `packages` configuration field.
+  
+          Alternatively, you can also rely on setuptools' discovery methods
+          (for example by using `find_namespace_packages(...)`/`find_namespace:`
+          instead of `find_packages(...)`/`find:`).
+  
+          You can read more about "package discovery" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+  
+          If you don't want 'gensim.test.test_data.DTM' to be distributed and are
+          already explicitly excluding 'gensim.test.test_data.DTM' via
+          `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+          you can try to use `exclude_package_data`, or `include-package-data=False` in
+          combination with a more fine grained `package-data` configuration.
+  
+          You can read more about "package data files" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+  
+  
+          [^1]: For Python, any directory (with suitable naming) can be imported,
+                even if it does not contain any `.py` files.
+                On the other hand, currently there is no concept of package data
+                directory, all directories are treated like packages.
+          ********************************************************************************
+  
+  !!
+    check.warn(importable)
+  C:\Users\LAM\AppData\Local\Temp\pip-build-env-fu_fm0vs\overlay\Lib\site-packages\setuptools\command\build_py.py:215: 
+_Warning: Package 'gensim.test.test_data.PathLineSentences' is absent from the `packages` configuration.
+  !!
+  
+          ********************************************************************************
+          ############################
+          # Package would be ignored #
+          ############################
+          Python recognizes 'gensim.test.test_data.PathLineSentences' as an importable package[^1],
+          but it is absent from setuptools' `packages` configuration.
+  
+          This leads to an ambiguous overall configuration. If you want to distribute this
+          package, please make sure that 'gensim.test.test_data.PathLineSentences' is explicitly added
+          to the `packages` configuration field.
+  
+          Alternatively, you can also rely on setuptools' discovery methods
+          (for example by using `find_namespace_packages(...)`/`find_namespace:`
+          instead of `find_packages(...)`/`find:`).
+  
+          You can read more about "package discovery" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+  
+          If you don't want 'gensim.test.test_data.PathLineSentences' to be distributed and are
+          already explicitly excluding 'gensim.test.test_data.PathLineSentences' via
+          `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+          you can try to use `exclude_package_data`, or `include-package-data=False` in
+          combination with a more fine grained `package-data` configuration.
+  
+          You can read more about "package data files" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+  
+  
+          [^1]: For Python, any directory (with suitable naming) can be imported,
+                even if it does not contain any `.py` files.
+                On the other hand, currently there is no concept of package data
+                directory, all directories are treated like packages.
+          ********************************************************************************
+  
+  !!
+    check.warn(importable)
+  C:\Users\LAM\AppData\Local\Temp\pip-build-env-fu_fm0vs\overlay\Lib\site-packages\setuptools\command\build_py.py:215: 
+_Warning: Package 'gensim.test.test_data.old_d2v_models' is absent from the `packages` configuration.
+  !!
+  
+          ********************************************************************************
+          ############################
+          # Package would be ignored #
+          ############################
+          Python recognizes 'gensim.test.test_data.old_d2v_models' as an importable package[^1],
+          but it is absent from setuptools' `packages` configuration.
+  
+          This leads to an ambiguous overall configuration. If you want to distribute this
+          package, please make sure that 'gensim.test.test_data.old_d2v_models' is explicitly added
+          to the `packages` configuration field.
+  
+          Alternatively, you can also rely on setuptools' discovery methods
+          (for example by using `find_namespace_packages(...)`/`find_namespace:`
+          instead of `find_packages(...)`/`find:`).
+  
+          You can read more about "package discovery" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+  
+          If you don't want 'gensim.test.test_data.old_d2v_models' to be distributed and are
+          already explicitly excluding 'gensim.test.test_data.old_d2v_models' via
+          `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+          you can try to use `exclude_package_data`, or `include-package-data=False` in
+          combination with a more fine grained `package-data` configuration.
+  
+          You can read more about "package data files" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+  
+  
+          [^1]: For Python, any directory (with suitable naming) can be imported,
+                even if it does not contain any `.py` files.
+                On the other hand, currently there is no concept of package data
+                directory, all directories are treated like packages.
+          ********************************************************************************
+  
+  !!
+    check.warn(importable)
+  C:\Users\LAM\AppData\Local\Temp\pip-build-env-fu_fm0vs\overlay\Lib\site-packages\setuptools\command\build_py.py:215: 
+_Warning: Package 'gensim.test.test_data.old_w2v_models' is absent from the `packages` configuration.
+  !!
+  
+          ********************************************************************************
+          ############################
+          # Package would be ignored #
+          ############################
+          Python recognizes 'gensim.test.test_data.old_w2v_models' as an importable package[^1],
+          but it is absent from setuptools' `packages` configuration.
+  
+          This leads to an ambiguous overall configuration. If you want to distribute this
+          package, please make sure that 'gensim.test.test_data.old_w2v_models' is explicitly added
+          to the `packages` configuration field.
+  
+          Alternatively, you can also rely on setuptools' discovery methods
+          (for example by using `find_namespace_packages(...)`/`find_namespace:`
+          instead of `find_packages(...)`/`find:`).
+  
+          You can read more about "package discovery" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+  
+          If you don't want 'gensim.test.test_data.old_w2v_models' to be distributed and are
+          already explicitly excluding 'gensim.test.test_data.old_w2v_models' via
+          `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+          you can try to use `exclude_package_data`, or `include-package-data=False` in
+          combination with a more fine grained `package-data` configuration.
+  
+          You can read more about "package data files" on setuptools documentation page:
+  
+          - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+  
+  
+          [^1]: For Python, any directory (with suitable naming) can be imported,
+                even if it does not contain any `.py` files.
+                On the other hand, currently there is no concept of package data
+                directory, all directories are treated like packages.
+          ********************************************************************************
+  
+  !!
+    check.warn(importable)
+  copying gensim\_matutils.c -> build\lib.win-amd64-cpython-314\gensim
+  copying gensim\_matutils.pyx -> build\lib.win-amd64-cpython-314\gensim
+  copying gensim\corpora\_mmreader.c -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\models\doc2vec_corpusfile.cpp -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\doc2vec_inner.cpp -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\fasttext_corpusfile.cpp -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\fasttext_inner.c -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\nmf_pgd.c -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\word2vec_corpusfile.cpp -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\word2vec_inner.c -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\similarities\fastss.c -> build\lib.win-amd64-cpython-314\gensim\similarities
+  copying gensim\corpora\_mmreader.pyx -> build\lib.win-amd64-cpython-314\gensim\corpora
+  copying gensim\models\doc2vec_corpusfile.pyx -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\doc2vec_inner.pxd -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\doc2vec_inner.pyx -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\fast_line_sentence.h -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\fasttext_corpusfile.pyx -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\fasttext_inner.pxd -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\fasttext_inner.pyx -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\nmf_pgd.pyx -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\stdint_wrapper.h -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\voidptr.h -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\word2vec_corpusfile.pxd -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\word2vec_corpusfile.pyx -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\word2vec_inner.pxd -> build\lib.win-amd64-cpython-314\gensim\models
+  copying gensim\models\word2vec_inner.pyx -> build\lib.win-amd64-cpython-314\gensim\models
+  creating build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\EN.1-10.cbow1_wind5_hs0_neg10_size300_smpl1e-05.txt -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\IT.1-10.cbow1_wind5_hs0_neg10_size300_smpl1e-05.txt -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\OPUS_en_it_europarl_train_one2ten.txt -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\alldata-id-10.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\atmodel_3_0_1_model -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\atmodel_3_0_1_model.expElogbeta.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\atmodel_3_0_1_model.id2word -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\atmodel_3_0_1_model.state -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\bgwiki-latest-pages-articles-shortened.xml.bz2 -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\compatible-hash-true.model -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\cp852_fasttext.bin -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\crime-and-punishment.bin -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\crime-and-punishment.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\crime-and-punishment.vec -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\d2v-lee-v0.13.0 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\doc2vec_old -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\doc2vec_old_sep -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\doc2vec_old_sep.syn0_lockf.npy -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\doc2vec_old_sep.syn1neg.npy -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\dtm_test.dict -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\dtm_test.mm -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\ensemblelda -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\enwiki-latest-pages-articles1.xml-p000000010p000030302-shortened.bz2 -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\enwiki-table-markup.xml.bz2 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\euclidean_vectors.bin -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\fasttext_old -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\fasttext_old_sep -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\fasttext_old_sep.syn0_lockf.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\fasttext_old_sep.syn1neg.npy -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\fb-ngrams.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\ft_kv_3.6.0.model.gz -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\ft_model_2.3.0 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\head500.noblanks.cor -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\head500.noblanks.cor.bz2 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\head500.noblanks.cor_tfidf.model -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\head500.noblanks.cor_wordids.txt -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\high_precision.kv.bin -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\high_precision.kv.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\large_tag_doc_10_iter50 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\lda_3_0_1_model -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\lda_3_0_1_model.expElogbeta.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\lda_3_0_1_model.id2word -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\lda_3_0_1_model.state -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\ldamodel_python_2_7 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\ldamodel_python_2_7.expElogbeta.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\ldamodel_python_2_7.id2word -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\ldamodel_python_2_7.state -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\ldamodel_python_3_5 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\ldamodel_python_3_5.expElogbeta.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\ldamodel_python_3_5.id2word -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\ldamodel_python_3_5.state -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\ldavowpalwabbit.dict.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\ldavowpalwabbit.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\lee.cor -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\lee_background.cor -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\lee_fasttext -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\lee_fasttext.bin -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\lee_fasttext.vec -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\lee_fasttext_new.bin -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\miIslita.cor -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\mini_newsgroup -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\model-from-gensim-3.8.0.w2v -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\nmf_model -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\non_ascii_fasttext.bin -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\old_keyedvectors_320.dat -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\pang_lee_polarity.cor -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\pang_lee_polarity_fasttext.bin -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\pang_lee_polarity_fasttext.vec -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\para2para_text1.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\para2para_text2.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\phraser-3.6.0.model -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\phraser-no-common-terms.pkl -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\phraser-no-scoring.pkl -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\phraser-scoring-str.pkl -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\phrases-3.6.0.model -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\phrases-no-common-terms.pkl -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\phrases-no-scoring.pkl -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\phrases-scoring-str.pkl -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\poincare_cp852.tsv -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\poincare_hypernyms.tsv -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\poincare_hypernyms_large.tsv -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\poincare_test_3.4.0 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\poincare_utf8.tsv -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\poincare_vectors.bin -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\pre_0_13_2_model -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\pre_0_13_2_model.state -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\pretrained.vec -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\questions-words.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\reproduce.dat -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\reproduce.dat.gz -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\similarities0-1.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\simlex999.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\small_tag_doc_5_iter50 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\test_corpus_ok.mm -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\test_corpus_small.mm -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\test_glove.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\test_mmcorpus_corrupt.mm -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\test_mmcorpus_no_index.mm -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\test_mmcorpus_no_index.mm.bz2 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\test_mmcorpus_no_index.mm.gz -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\test_mmcorpus_overflow.mm -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\test_mmcorpus_with_index.mm -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\test_mmcorpus_with_index.mm.index -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.blei -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.blei.index -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.blei.vocab -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.low -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.low.index -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.mallet -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.mallet.index -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.mm -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.mm.index -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.svmlight -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.svmlight.index -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.uci -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.uci.index -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.uci.vocab -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\testcorpus.xml.bz2 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\tfidf_model.tst -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\tfidf_model.tst.bz2 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\tfidf_model_3_2.tst -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\toy-data.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\toy-model-pretrained.bin -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\toy-model.bin -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\toy-model.vec -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\varembed_lee_subcorpus.cor -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\varembed_morfessor.bin -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\varembed_vectors.pkl -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\w2v-lee-v0.12.0 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\w2v_keyedvectors_load_test.modeldata -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\w2v_keyedvectors_load_test.vocab -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_3.3 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_old -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_old_sep -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_old_sep.syn0_lockf.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_old_sep.syn1neg.npy -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_c -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_py2 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_py3 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_py3_4 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py2 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py2.neg_labels.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py2.syn0.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py2.syn0_lockf.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py2.syn1neg.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py3 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py3.neg_labels.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py3.syn0.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py3.syn0_lockf.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py3.syn1neg.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py3_4 -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py3_4.neg_labels.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py3_4.syn0.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py3_4.syn0_lockf.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\word2vec_pre_kv_sep_py3_4.syn1neg.npy -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data
+  copying gensim\test\test_data\wordsim353.tsv -> build\lib.win-amd64-cpython-314\gensim\test\test_data
+  creating build\lib.win-amd64-cpython-314\gensim\test\test_data\DTM
+  copying gensim\test\test_data\DTM\ldaseq_3_0_1_model -> build\lib.win-amd64-cpython-314\gensim\test\test_data\DTM
+  copying gensim\test\test_data\DTM\sstats_test.txt -> build\lib.win-amd64-cpython-314\gensim\test\test_data\DTM
+  creating build\lib.win-amd64-cpython-314\gensim\test\test_data\PathLineSentences
+  copying gensim\test\test_data\PathLineSentences\1.txt -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\PathLineSentences
+  copying gensim\test\test_data\PathLineSentences\2.txt.bz2 -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\PathLineSentences
+  creating build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_0.12.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_0.12.1.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_0.12.2.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_0.12.3.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_0.12.4.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_0.13.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_0.13.1.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_0.13.2.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_0.13.3.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_0.13.4.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_1.0.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_1.0.1.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_2.0.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_2.1.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_2.2.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_2.3.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_3.0.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_3.1.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_3.2.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_3.3.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  copying gensim\test\test_data\old_d2v_models\d2v_3.4.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_d2v_models
+  creating build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_0.12.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_0.12.1.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_0.12.2.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_0.12.3.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_0.12.4.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_0.13.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_0.13.1.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_0.13.2.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_0.13.3.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_0.13.4.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_1.0.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_1.0.1.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_2.0.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+Failed to build kenlm gensim
+  copying gensim\test\test_data\old_w2v_models\w2v_2.1.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_2.2.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_2.3.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_3.0.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_3.1.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_3.2.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_3.3.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  copying gensim\test\test_data\old_w2v_models\w2v_3.4.0.mdl -> 
+build\lib.win-amd64-cpython-314\gensim\test\test_data\old_w2v_models
+  running build_ext
+  building 'gensim.models.word2vec_inner' extension
+  error: Microsoft Visual C++ 14.0 or greater is required. Get it with "Microsoft C++ Build Tools": 
+https://visualstudio.microsoft.com/visual-cpp-build-tools/
+  [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for gensim
+error: failed-wheel-build-for-install
+
+Failed to build installable wheels for some pyproject.toml based projects
+
+kenlm, gensim
+=== DONE ===

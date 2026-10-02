@@ -6,6 +6,9 @@ Images are drawn with a fixed seed per sample, so every run sees the same 80 ima
 Canvas sizes: `python scripts/eval_ocr_offline.py 2560 640` scores each size on those same images and
 writes results/ocr_offline_repaired_canvas<size>.json plus results/ocr_canvas_comparison.json (paired).
 With no argument it uses config.OCR_CANVAS_SIZE and writes results/ocr_offline_repaired.json as before.
+It also passes config.OCR_SLOPE_THS (0.2, chosen on a separate validation list). The saved
+ocr_select_canvas*.json and ocr_offline_repaired_canvas*.json files were measured at EasyOCR's
+default slope 0.1, before that change. Do not overwrite those files with a new run.
 """
 from __future__ import annotations
 
@@ -104,6 +107,7 @@ def _read(reader, gray, canvas_size: int | None = None) -> str:
             width_ths=0.7,
             height_ths=0.7,
             canvas_size=canvas_size,
+            slope_ths=float(getattr(_config, "OCR_SLOPE_THS", 0.1)),
         )
     except TypeError:
         det = reader.readtext(gray, detail=1, paragraph=False, width_ths=0.7, height_ths=0.7)

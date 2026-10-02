@@ -1,0 +1,1792 @@
+{
+ "overall": {
+  "n": 216,
+  "cer": 0.11038983483836426,
+  "wer": 0.0952932098765432,
+  "exact": 0.9259259259259259
+ },
+ "bn": null,
+ "en": {
+  "n": 216,
+  "cer": 0.11038983483836426,
+  "wer": 0.0952932098765432,
+  "exact": 0.9259259259259259
+ },
+ "by_cond": {
+  "clean": {
+   "all": {
+    "n": 72,
+    "cer": 0.0,
+    "wer": 0.0,
+    "exact": 1.0
+   },
+   "bn": null
+  },
+  "scene": {
+   "all": {
+    "n": 72,
+    "cer": 0.33116950451509275,
+    "wer": 0.2858796296296296,
+    "exact": 0.7777777777777778
+   },
+   "bn": null
+  },
+  "wild": {
+   "all": {
+    "n": 72,
+    "cer": 0.0,
+    "wer": 0.0,
+    "exact": 1.0
+   },
+   "bn": null
+  }
+ },
+ "per_seed_cer": [
+  0.09063159063159063,
+  0.15973875661375658,
+  0.08079915726974549
+ ],
+ "per_seed_bn_cer": [
+  null,
+  null,
+  null
+ ],
+ "cer_seed_sd": 0.043019254372305506,
+ "latency_ms_median": 1571.831800014479,
+ "meta": {
+  "set": "test",
+  "task": 3,
+  "engine": "PaddleOCR PP-OCRv5 en",
+  "note": "English items only; no Bangla model"
+ },
+ "per_sample": [
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Ladies Only",
+   "hyp": "Ladies Only",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Ladies Only",
+   "hyp": "Ladies Only",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Ladies Only",
+   "hyp": "Ladies Only",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Pharmacy Open",
+   "hyp": "Pharmacy Open",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Pharmacy Open",
+   "hyp": "Pharmacy Open",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Pharmacy Open",
+   "hyp": "Pharmacy Open 4R2139",
+   "cer": 0.5384615384615384
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Manufactured On",
+   "hyp": "Manufactured On",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Manufactured On",
+   "hyp": "Manufactured On",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Manufactured On",
+   "hyp": "Manufactured On",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Price 250 Taka",
+   "hyp": "Price 250 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Price 250 Taka",
+   "hyp": "Price 250 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Price 250 Taka",
+   "hyp": "Price 250 Taka © 2009 Bernard Delmundo",
+   "cer": 1.7142857142857142
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "District Office",
+   "hyp": "District Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "District Office",
+   "hyp": "District Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "District Office",
+   "hyp": "District Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Police Station",
+   "hyp": "Police Station",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Police Station",
+   "hyp": "Police Station",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Police Station",
+   "hyp": "Police Station",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Way Out",
+   "hyp": "Way Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Way Out",
+   "hyp": "Way Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Way Out",
+   "hyp": "Way Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "No Parking",
+   "hyp": "No Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "No Parking",
+   "hyp": "No Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "No Parking",
+   "hyp": "No Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Lentils Half kg",
+   "hyp": "Lentils Half kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Lentils Half kg",
+   "hyp": "Lentils Half kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Lentils Half kg",
+   "hyp": "Lentils Half kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Classroom",
+   "hyp": "Classroom",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Classroom",
+   "hyp": "Classroom",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Classroom",
+   "hyp": "Classroom",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Head Teacher",
+   "hyp": "Head Teacher",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Head Teacher",
+   "hyp": "Head Teacher",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Head Teacher",
+   "hyp": "Head Teacher",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Rajshahi University",
+   "hyp": "Rajshahi University",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Rajshahi University",
+   "hyp": "Rajshahi University",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Rajshahi University",
+   "hyp": "Rajshahi University",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Fire Extinguisher",
+   "hyp": "Fire Extinguisher",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Fire Extinguisher",
+   "hyp": "Fire Extinguisher",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Fire Extinguisher",
+   "hyp": "Fire Extinguisher",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Open on Friday",
+   "hyp": "Open on Friday",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Open on Friday",
+   "hyp": "Open on Friday",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Open on Friday",
+   "hyp": "cPosh mPrS XeBe Cleit ONeTE! SRDOP Ki thh Open on Friday",
+   "cer": 3.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Accident Ward",
+   "hyp": "Accident Ward",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Accident Ward",
+   "hyp": "Accident Ward",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Accident Ward",
+   "hyp": "Accident Ward",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Onion",
+   "hyp": "Onion",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Onion",
+   "hyp": "Onion",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Onion",
+   "hyp": "Onion",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Gas Connection",
+   "hyp": "Gas Connection",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Gas Connection",
+   "hyp": "Gas Connection",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Gas Connection",
+   "hyp": "Gas Connection",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Old Age Home",
+   "hyp": "Old Age Home",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Old Age Home",
+   "hyp": "Old Age Home",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Old Age Home",
+   "hyp": "Old Age Home",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Deposit Money Here",
+   "hyp": "Deposit Money Here",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Deposit Money Here",
+   "hyp": "Deposit Money Here",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Deposit Money Here",
+   "hyp": "Deposit Money Here",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Cooking Oil",
+   "hyp": "Cooking Oil",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Cooking Oil",
+   "hyp": "Cooking Oil",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Cooking Oil",
+   "hyp": "MACLEOD TRAIL Cooking Oil",
+   "cer": 1.2727272727272727
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "For Sale",
+   "hyp": "For Sale",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "For Sale",
+   "hyp": "For Sale",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "For Sale",
+   "hyp": "For Sale",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Dental Care",
+   "hyp": "Dental Care",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Dental Care",
+   "hyp": "Dental Care",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Dental Care",
+   "hyp": "Dental Care",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Chilli",
+   "hyp": "Chilli",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Chilli",
+   "hyp": "Chilli",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Chilli",
+   "hyp": "Chilli",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Bus Fare 30 Taka",
+   "hyp": "Bus Fare 30 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Bus Fare 30 Taka",
+   "hyp": "Bus Fare 30 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Bus Fare 30 Taka",
+   "hyp": "Bus Fare 30 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Ladies Only",
+   "hyp": "Ladies Only",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Ladies Only",
+   "hyp": "Ladies Only",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Ladies Only",
+   "hyp": "Ladies Only",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Pharmacy Open",
+   "hyp": "Pharmacy Open",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Pharmacy Open",
+   "hyp": "Pharmacy Open",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Pharmacy Open",
+   "hyp": "Pharmacy Open",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Manufactured On",
+   "hyp": "Manufactured On",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Manufactured On",
+   "hyp": "Manufactured On",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Manufactured On",
+   "hyp": "Manufactured On",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Price 250 Taka",
+   "hyp": "Price 250 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Price 250 Taka",
+   "hyp": "Price 250 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Price 250 Taka",
+   "hyp": "Price 250 Taka THE LASTME",
+   "cer": 0.7857142857142857
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "District Office",
+   "hyp": "District Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "District Office",
+   "hyp": "District Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "District Office",
+   "hyp": "District Office FUAAUTO 808 1 EMY SP",
+   "cer": 1.4
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Police Station",
+   "hyp": "Police Station",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Police Station",
+   "hyp": "Police Station",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Police Station",
+   "hyp": "Police Station",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Way Out",
+   "hyp": "Way Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Way Out",
+   "hyp": "Way Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Way Out",
+   "hyp": "Way Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "No Parking",
+   "hyp": "No Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "No Parking",
+   "hyp": "No Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "No Parking",
+   "hyp": "No Parking s S ith ε Sons James",
+   "cer": 2.1
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Lentils Half kg",
+   "hyp": "Lentils Half kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Lentils Half kg",
+   "hyp": "Lentils Half kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Lentils Half kg",
+   "hyp": "entils Half kg",
+   "cer": 0.06666666666666667
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Classroom",
+   "hyp": "Classroom",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Classroom",
+   "hyp": "Classroom",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Classroom",
+   "hyp": "Classroom",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Head Teacher",
+   "hyp": "Head Teacher",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Head Teacher",
+   "hyp": "Head Teacher",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Head Teacher",
+   "hyp": "Head Teacher",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Rajshahi University",
+   "hyp": "Rajshahi University",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Rajshahi University",
+   "hyp": "Rajshahi University",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Rajshahi University",
+   "hyp": "Rajshahi University",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Fire Extinguisher",
+   "hyp": "Fire Extinguisher",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Fire Extinguisher",
+   "hyp": "Fire Extinguisher",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Fire Extinguisher",
+   "hyp": "Fire Extinguisher",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Open on Friday",
+   "hyp": "Open on Friday",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Open on Friday",
+   "hyp": "Open on Friday",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Open on Friday",
+   "hyp": "LDKS Open on Friday",
+   "cer": 0.35714285714285715
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Accident Ward",
+   "hyp": "Accident Ward",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Accident Ward",
+   "hyp": "Accident Ward",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Accident Ward",
+   "hyp": "Accident Ward",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Onion",
+   "hyp": "Onion",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Onion",
+   "hyp": "Onion",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Onion",
+   "hyp": "Onion",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Gas Connection",
+   "hyp": "Gas Connection",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Gas Connection",
+   "hyp": "Gas Connection",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Gas Connection",
+   "hyp": "Gas Connection",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Old Age Home",
+   "hyp": "Old Age Home",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Old Age Home",
+   "hyp": "Old Age Home",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Old Age Home",
+   "hyp": "CAYS Old Age Home",
+   "cer": 0.4166666666666667
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Deposit Money Here",
+   "hyp": "Deposit Money Here",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Deposit Money Here",
+   "hyp": "Deposit Money Here",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Deposit Money Here",
+   "hyp": "Deposit Money Here",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Cooking Oil",
+   "hyp": "Cooking Oil",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Cooking Oil",
+   "hyp": "Cooking Oil",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Cooking Oil",
+   "hyp": "Cooking Oil",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "For Sale",
+   "hyp": "For Sale",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "For Sale",
+   "hyp": "For Sale",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "For Sale",
+   "hyp": "For Sale",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Dental Care",
+   "hyp": "Dental Care",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Dental Care",
+   "hyp": "Dental Care",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Dental Care",
+   "hyp": "Dental Care",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Chilli",
+   "hyp": "Chilli",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Chilli",
+   "hyp": "Chilli",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Chilli",
+   "hyp": "Chilli",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Bus Fare 30 Taka",
+   "hyp": "Bus Fare 30 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Bus Fare 30 Taka",
+   "hyp": "Bus Fare 30 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Bus Fare 30 Taka",
+   "hyp": "noose'th nome notwork that's right for you Wireless G Wireless G Wineless N w RangePlus Bus Fare 30 Taka NULTRA NULTRA",
+   "cer": 6.375
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Ladies Only",
+   "hyp": "Ladies Only",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Ladies Only",
+   "hyp": "Ladies Only",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Ladies Only",
+   "hyp": "Ladies Only",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Pharmacy Open",
+   "hyp": "Pharmacy Open",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Pharmacy Open",
+   "hyp": "Pharmacy Open",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Pharmacy Open",
+   "hyp": "Pharmacy Open ©jeth.estacio",
+   "cer": 1.0769230769230769
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Manufactured On",
+   "hyp": "Manufactured On",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Manufactured On",
+   "hyp": "Manufactured On",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Manufactured On",
+   "hyp": "Manufactured On",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Price 250 Taka",
+   "hyp": "Price 250 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Price 250 Taka",
+   "hyp": "Price 250 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Price 250 Taka",
+   "hyp": "Price 250 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "District Office",
+   "hyp": "District Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "District Office",
+   "hyp": "District Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "District Office",
+   "hyp": "District Office",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Police Station",
+   "hyp": "Police Station",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Police Station",
+   "hyp": "Police Station",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Police Station",
+   "hyp": "Police Station",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Way Out",
+   "hyp": "Way Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Way Out",
+   "hyp": "Way Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Way Out",
+   "hyp": "Way Out © Selenium Photography",
+   "cer": 3.2857142857142856
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "No Parking",
+   "hyp": "No Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "No Parking",
+   "hyp": "No Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "No Parking",
+   "hyp": "No Parking",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Lentils Half kg",
+   "hyp": "Lentils Half kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Lentils Half kg",
+   "hyp": "Lentils Half kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Lentils Half kg",
+   "hyp": "Lentils Half kg sangudo",
+   "cer": 0.5333333333333333
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Classroom",
+   "hyp": "Classroom",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Classroom",
+   "hyp": "Classroom",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Classroom",
+   "hyp": "Classroom",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Head Teacher",
+   "hyp": "Head Teacher",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Head Teacher",
+   "hyp": "Head Teacher",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Head Teacher",
+   "hyp": "Head Teacher",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Rajshahi University",
+   "hyp": "Rajshahi University",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Rajshahi University",
+   "hyp": "Rajshahi University",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Rajshahi University",
+   "hyp": "Rajshahi University",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Fire Extinguisher",
+   "hyp": "Fire Extinguisher",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Fire Extinguisher",
+   "hyp": "Fire Extinguisher",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Fire Extinguisher",
+   "hyp": "Fire Extinguisher you're H!",
+   "cer": 0.5882352941176471
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Open on Friday",
+   "hyp": "Open on Friday",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Open on Friday",
+   "hyp": "Open on Friday",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Open on Friday",
+   "hyp": "Open on Friday",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Accident Ward",
+   "hyp": "Accident Ward",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Accident Ward",
+   "hyp": "Accident Ward",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Accident Ward",
+   "hyp": "Accident Ward",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Onion",
+   "hyp": "Onion",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Onion",
+   "hyp": "Onion",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Onion",
+   "hyp": "Onion",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Gas Connection",
+   "hyp": "Gas Connection",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Gas Connection",
+   "hyp": "Gas Connection",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Gas Connection",
+   "hyp": "Gas Connection",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Old Age Home",
+   "hyp": "Old Age Home",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Old Age Home",
+   "hyp": "Old Age Home",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Old Age Home",
+   "hyp": "AYS Old Age Home",
+   "cer": 0.3333333333333333
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Deposit Money Here",
+   "hyp": "Deposit Money Here",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Deposit Money Here",
+   "hyp": "Deposit Money Here",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Deposit Money Here",
+   "hyp": "Deposit Money Here",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Cooking Oil",
+   "hyp": "Cooking Oil",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Cooking Oil",
+   "hyp": "Cooking Oil",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Cooking Oil",
+   "hyp": "Cooking Oil",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "For Sale",
+   "hyp": "For Sale",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "For Sale",
+   "hyp": "For Sale",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "For Sale",
+   "hyp": "For Sale",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Dental Care",
+   "hyp": "Dental Care",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Dental Care",
+   "hyp": "Dental Care",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Dental Care",
+   "hyp": "Dental Care",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Chilli",
+   "hyp": "Chilli",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Chilli",
+   "hyp": "Chilli",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Chilli",
+   "hyp": "Chilli",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Bus Fare 30 Taka",
+   "hyp": "Bus Fare 30 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Bus Fare 30 Taka",
+   "hyp": "Bus Fare 30 Taka",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Bus Fare 30 Taka",
+   "hyp": "Bus Fare 30 Taka",
+   "cer": 0.0
+  }
+ ]
+}

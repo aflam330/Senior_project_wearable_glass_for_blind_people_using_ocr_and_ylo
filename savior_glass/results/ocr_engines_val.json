@@ -1,0 +1,91 @@
+{
+  "n": 144,
+  "sets_opened": "validation phrases only",
+  "easyocr_slope_lexicon": {
+    "raw": {
+      "overall": {
+        "n": 144,
+        "cer": 0.09259603243978244,
+        "wer": 0.0
+      },
+      "bn": {
+        "n": 72,
+        "cer": 0.171303175990676,
+        "wer": 0.0
+      },
+      "en": {
+        "n": 72,
+        "cer": 0.013888888888888888,
+        "wer": 0.0
+      }
+    },
+    "repaired": {
+      "overall": {
+        "n": 144,
+        "cer": 0.08379973614348615,
+        "wer": 0.0
+      },
+      "bn": {
+        "n": 72,
+        "cer": 0.1537105833980834,
+        "wer": 0.0
+      },
+      "en": {
+        "n": 72,
+        "cer": 0.013888888888888888,
+        "wer": 0.0
+      }
+    },
+    "seconds": 30.97,
+    "phrases_in_lexicon": false
+  },
+  "tesseract_on_path": false,
+  "tesseract": {
+    "error": "tesseract binary not on PATH; pytesseract is installed"
+  },
+  "trocr_base_printed": {
+    "model": "microsoft/trocr-base-printed",
+    "note": "English printed model. It is not a Bangla recognizer.",
+    "device": "cuda",
+    "summary": {
+      "overall": {
+        "n": 144,
+        "cer": 1.0951842813821981,
+        "wer": 0.0
+      },
+      "bn": {
+        "n": 72,
+        "cer": 1.0881605855564187,
+        "wer": 0.0
+      },
+      "en": {
+        "n": 72,
+        "cer": 1.1022079772079774,
+        "wer": 0.0
+      }
+    },
+    "seconds": 38.59,
+    "examples": [
+      {
+        "gt": "আসন নম্বর",
+        "hyp": "***",
+        "lang": "bn"
+      },
+      {
+        "gt": "দরজা বন্ধ",
+        "hyp": "MASI 468",
+        "lang": "bn"
+      },
+      {
+        "gt": "জানালা খুলুন",
+        "hyp": "GIRINT SDN",
+        "lang": "bn"
+      },
+      {
+        "gt": "বিদ্যুৎ চলে গেছে",
+        "hyp": "SR:33% BATE RECEIPT",
+        "lang": "bn"
+      }
+    ]
+  }
+}

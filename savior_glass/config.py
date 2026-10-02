@@ -176,6 +176,31 @@ OCR_BEAM_WIDTH = 5
 # 640 misses the margin by 0.05 points (paired Wilcoxon p = 0.48, not significant), so the default stays 2560.
 # OCR_CANVAS_SIZE=640 is the fast option: ~2.5-3x faster for about one point more Bangla character error.
 OCR_CANVAS_SIZE = int(os.environ.get("OCR_CANVAS_SIZE", "2560"))
+# EasyOCR group_text_box: a box whose slope is below this value is merged as a horizontal line.
+# The default 0.1 is about tan(6 degrees), which is the rotation used in the offline renderer,
+# so tilted lines were sent to the free-box path instead of the line merger.
+# Chosen on a validation phrase list that is not the 24-phrase set and not the 80-image phrase
+# list (12 Bangla + 12 English, image seeds 9000/9100/9200, 144 images, GPU). Rule fixed first:
+# lowest raw character error, then Bangla error, then seconds. slope_ths=0.2 won
+# (raw 0.0926, Bangla 0.1713) against the default 0.1 (raw 0.1417, Bangla 0.2168).
+# The 24-phrase set and the 80-image set were read once after that choice
+# (results/ocr_improve_summary.json). They were not used to pick the value.
+# 24-phrase raw 0.1162 (baseline 0.1329), Bangla 0.2324 (baseline 0.2449).
+# 80-image raw 0.0831 (baseline 0.0990), Bangla 0.1428 (baseline 0.1746).
+OCR_SLOPE_THS = float(os.environ.get("OCR_SLOPE_THS", "0.2"))
+
+# OCR pipeline v2 (paper_evidence/OCR_TEXT_REGION.md and the other OCR_*.md files, 2026-10-02).
+# Chosen on a validation set of 48 new phrases drawn with correct Bangla shaping (HarfBuzz) in two fonts,
+# three image seeds, clean / distorted / photo-scene images. Held-out test (48 other phrases, three other fonts),
+# read once: character error 9.3 % (pipeline below "legacy") -> 2.4 %; Bangla 11.9 -> 3.2 %; English 6.6 -> 1.6 %.
+#   CLAHE preprocessing, EasyOCR text_threshold 0.8 / low_text 0.3 / slope_ths 0.4 / adjust_contrast 0.7,
+#   keep the dominant text block (boxes with confidence >= 0.2), lines in reading order, text cleanup rules.
+#   The lexicon repair is off in v2: on phrases outside its 24-phrase list it raised error (val 2.83 -> 4.59 %).
+# OCR_PIPELINE=legacy restores the earlier path (bilateral + CLAHE, confidence >= OCR_CONFIDENCE, lexicon repair).
+OCR_PIPELINE = os.environ.get("OCR_PIPELINE", "v2")
+OCR_V2_PARAMS = {"text_threshold": 0.8, "low_text": 0.3, "link_threshold": 0.4, "mag_ratio": 1.0, "contrast_ths": 0.1,
+                 "adjust_contrast": 0.7, "slope_ths": 0.4}
+OCR_V2_MIN_CONF = 0.2
 
 OCR_CONFIDENCE      = 0.4    # EasyOCR minimum confidence
 OBJECT_CONFIDENCE   = 0.50   # YOLO minimum confidence

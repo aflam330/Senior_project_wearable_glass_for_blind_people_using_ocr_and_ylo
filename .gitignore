@@ -51,3 +51,8 @@ realtime_bangla_taka_detection/results/watermark/crop_feats_resnet50.npz
 
 # Study event log: participant ids, never committed
 savior_glass/logs/study_events.jsonl
+
+# OCR benchmark: regenerable image cache, fine-tuned weights (~215 MB each, see OCR_FINETUNE.md), Tesseract data (tessdata_best download)
+savior_glass/ocr_bench/cache/
+savior_glass/ocr_bench/finetuned/
+savior_glass/ocr_bench/tessdata/

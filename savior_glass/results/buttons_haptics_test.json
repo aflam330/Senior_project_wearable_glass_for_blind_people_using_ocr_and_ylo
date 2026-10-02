@@ -61,10 +61,10 @@
       "pass": true,
       "spoken": "একশত টাকার নোট। জাল যাচাই করা হয়নি",
       "verdict": "not_checked",
-      "press_to_speech_ms": 32,
+      "press_to_speech_ms": 36,
       "vibration_pulses_ms[start,on]": [
         [
-          32,
+          36,
           50
         ]
       ],
@@ -88,7 +88,7 @@
         "pass": true,
         "pulses": [
           [
-            0,
+            1,
             220
           ],
           [
@@ -96,7 +96,7 @@
             220
           ],
           [
-            601,
+            602,
             220
           ]
         ]

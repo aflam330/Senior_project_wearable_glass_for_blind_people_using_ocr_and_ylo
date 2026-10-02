@@ -1,0 +1,522 @@
+{
+ "best_cfg_index": 12,
+ "val_cer": 0.02834528071158684,
+ "config": {
+  "text_threshold": 0.8,
+  "low_text": 0.3,
+  "link_threshold": 0.4,
+  "mag_ratio": 1.0,
+  "contrast_ths": 0.1,
+  "adjust_contrast": 0.7,
+  "decoder": "beamsearch",
+  "slope_ths": 0.4,
+  "canvas_size": 2560,
+  "min_conf": 0.2
+ },
+ "default_val_cer": 0.033665796403834554,
+ "stage1": [
+  {
+   "seed0_cer": 0.03668522733167341,
+   "i": 0,
+   "config": {
+    "text_threshold": 0.7,
+    "low_text": 0.4,
+    "link_threshold": 0.4,
+    "mag_ratio": 1.0,
+    "contrast_ths": 0.1,
+    "adjust_contrast": 0.5,
+    "decoder": "beamsearch",
+    "slope_ths": 0.1,
+    "canvas_size": 2560,
+    "min_conf": 0.1
+   }
+  },
+  {
+   "seed0_cer": 0.030851317799847216,
+   "i": 1,
+   "config": {
+    "text_threshold": 0.5,
+    "low_text": 0.3,
+    "link_threshold": 0.5,
+    "mag_ratio": 1.5,
+    "contrast_ths": 0.1,
+    "adjust_contrast": 0.3,
+    "decoder": "greedy",
+    "slope_ths": 0.4,
+    "canvas_size": 1280,
+    "min_conf": 0.2
+   }
+  },
+  {
+   "seed0_cer": 0.0610103263509327,
+   "i": 2,
+   "config": {
+    "text_threshold": 0.5,
+    "low_text": 0.5,
+    "link_threshold": 0.4,
+    "mag_ratio": 1.0,
+    "contrast_ths": 0.1,
+    "adjust_contrast": 0.3,
+    "decoder": "greedy",
+    "slope_ths": 0.1,
+    "canvas_size": 1280,
+    "min_conf": 0.2
+   }
+  },
+  {
+   "seed0_cer": 0.08453124397724249,
+   "i": 3,
+   "config": {
+    "text_threshold": 0.6,
+    "low_text": 0.5,
+    "link_threshold": 0.5,
+    "mag_ratio": 2.0,
+    "contrast_ths": 0.5,
+    "adjust_contrast": 0.5,
+    "decoder": "greedy",
+    "slope_ths": 0.2,
+    "canvas_size": 2560,
+    "min_conf": 0.05
+   }
+  },
+  {
+   "seed0_cer": 0.06672976690493208,
+   "i": 4,
+   "config": {
+    "text_threshold": 0.6,
+    "low_text": 0.5,
+    "link_threshold": 0.4,
+    "mag_ratio": 1.5,
+    "contrast_ths": 0.3,
+    "adjust_contrast": 0.3,
+    "decoder": "greedy",
+    "slope_ths": 0.2,
+    "canvas_size": 1280,
+    "min_conf": 0.05
+   }
+  },
+  {
+   "seed0_cer": 0.03391130757858699,
+   "i": 5,
+   "config": {
+    "text_threshold": 0.8,
+    "low_text": 0.3,
+    "link_threshold": 0.4,
+    "mag_ratio": 1.5,
+    "contrast_ths": 0.5,
+    "adjust_contrast": 0.5,
+    "decoder": "greedy",
+    "slope_ths": 0.4,
+    "canvas_size": 2560,
+    "min_conf": 0.2
+   }
+  },
+  {
+   "seed0_cer": 0.030012845836987996,
+   "i": 6,
+   "config": {
+    "text_threshold": 0.5,
+    "low_text": 0.4,
+    "link_threshold": 0.3,
+    "mag_ratio": 2.0,
+    "contrast_ths": 0.3,
+    "adjust_contrast": 0.7,
+    "decoder": "beamsearch",
+    "slope_ths": 0.4,
+    "canvas_size": 1280,
+    "min_conf": 0.2
+   }
+  },
+  {
+   "seed0_cer": 0.03610845264031539,
+   "i": 7,
+   "config": {
+    "text_threshold": 0.5,
+    "low_text": 0.3,
+    "link_threshold": 0.5,
+    "mag_ratio": 1.0,
+    "contrast_ths": 0.3,
+    "adjust_contrast": 0.3,
+    "decoder": "greedy",
+    "slope_ths": 0.1,
+    "canvas_size": 2560,
+    "min_conf": 0.1
+   }
+  },
+  {
+   "seed0_cer": 0.05790900059335694,
+   "i": 8,
+   "config": {
+    "text_threshold": 0.8,
+    "low_text": 0.5,
+    "link_threshold": 0.4,
+    "mag_ratio": 1.0,
+    "contrast_ths": 0.3,
+    "adjust_contrast": 0.5,
+    "decoder": "greedy",
+    "slope_ths": 0.4,
+    "canvas_size": 2560,
+    "min_conf": 0.2
+   }
+  },
+  {
+   "seed0_cer": 0.0711064055434793,
+   "i": 9,
+   "config": {
+    "text_threshold": 0.5,
+    "low_text": 0.5,
+    "link_threshold": 0.5,
+    "mag_ratio": 1.0,
+    "contrast_ths": 0.5,
+    "adjust_contrast": 0.7,
+    "decoder": "greedy",
+    "slope_ths": 0.1,
+    "canvas_size": 2560,
+    "min_conf": 0.1
+   }
+  },
+  {
+   "seed0_cer": 0.0733049683238835,
+   "i": 10,
+   "config": {
+    "text_threshold": 0.7,
+    "low_text": 0.5,
+    "link_threshold": 0.5,
+    "mag_ratio": 2.0,
+    "contrast_ths": 0.1,
+    "adjust_contrast": 0.7,
+    "decoder": "beamsearch",
+    "slope_ths": 0.1,
+    "canvas_size": 1280,
+    "min_conf": 0.05
+   }
+  },
+  {
+   "seed0_cer": 0.03668522733167341,
+   "i": 11,
+   "config": {
+    "text_threshold": 0.7,
+    "low_text": 0.4,
+    "link_threshold": 0.4,
+    "mag_ratio": 1.0,
+    "contrast_ths": 0.1,
+    "adjust_contrast": 0.7,
+    "decoder": "beamsearch",
+    "slope_ths": 0.1,
+    "canvas_size": 2560,
+    "min_conf": 0.1
+   }
+  },
+  {
+   "seed0_cer": 0.02742789708475983,
+   "i": 12,
+   "config": {
+    "text_threshold": 0.8,
+    "low_text": 0.3,
+    "link_threshold": 0.4,
+    "mag_ratio": 1.0,
+    "contrast_ths": 0.1,
+    "adjust_contrast": 0.7,
+    "decoder": "beamsearch",
+    "slope_ths": 0.4,
+    "canvas_size": 2560,
+    "min_conf": 0.2
+   }
+  },
+  {
+   "seed0_cer": 0.040726508195870946,
+   "i": 13,
+   "config": {
+    "text_threshold": 0.8,
+    "low_text": 0.4,
+    "link_threshold": 0.3,
+    "mag_ratio": 1.0,
+    "contrast_ths": 0.5,
+    "adjust_contrast": 0.5,
+    "decoder": "greedy",
+    "slope_ths": 0.1,
+    "canvas_size": 1280,
+    "min_conf": 0.05
+   }
+  },
+  {
+   "seed0_cer": 0.07469037791701368,
+   "i": 14,
+   "config": {
+    "text_threshold": 0.6,
+    "low_text": 0.5,
+    "link_threshold": 0.4,
+    "mag_ratio": 2.0,
+    "contrast_ths": 0.1,
+    "adjust_contrast": 0.5,
+    "decoder": "beamsearch",
+    "slope_ths": 0.4,
+    "canvas_size": 2560,
+    "min_conf": 0.2
+   }
+  },
+  {
+   "seed0_cer": 0.07777351584390162,
+   "i": 15,
+   "config": {
+    "text_threshold": 0.7,
+    "low_text": 0.5,
+    "link_threshold": 0.3,
+    "mag_ratio": 2.0,
+    "contrast_ths": 0.5,
+    "adjust_contrast": 0.3,
+    "decoder": "beamsearch",
+    "slope_ths": 0.4,
+    "canvas_size": 2560,
+    "min_conf": 0.05
+   }
+  },
+  {
+   "seed0_cer": 0.027235068059210218,
+   "i": 16,
+   "config": {
+    "text_threshold": 0.7,
+    "low_text": 0.4,
+    "link_threshold": 0.3,
+    "mag_ratio": 1.5,
+    "contrast_ths": 0.1,
+    "adjust_contrast": 0.7,
+    "decoder": "beamsearch",
+    "slope_ths": 0.4,
+    "canvas_size": 1280,
+    "min_conf": 0.2
+   }
+  },
+  {
+   "seed0_cer": 0.10204993285009803,
+   "i": 17,
+   "config": {
+    "text_threshold": 0.5,
+    "low_text": 0.5,
+    "link_threshold": 0.4,
+    "mag_ratio": 2.0,
+    "contrast_ths": 0.5,
+    "adjust_contrast": 0.7,
+    "decoder": "greedy",
+    "slope_ths": 0.1,
+    "canvas_size": 2560,
+    "min_conf": 0.05
+   }
+  },
+  {
+   "seed0_cer": 0.0653408780160432,
+   "i": 18,
+   "config": {
+    "text_threshold": 0.5,
+    "low_text": 0.5,
+    "link_threshold": 0.4,
+    "mag_ratio": 1.5,
+    "contrast_ths": 0.1,
+    "adjust_contrast": 0.3,
+    "decoder": "beamsearch",
+    "slope_ths": 0.2,
+    "canvas_size": 1280,
+    "min_conf": 0.05
+   }
+  },
+  {
+   "seed0_cer": 0.06228951205720174,
+   "i": 19,
+   "config": {
+    "text_threshold": 0.6,
+    "low_text": 0.5,
+    "link_threshold": 0.3,
+    "mag_ratio": 1.0,
+    "contrast_ths": 0.5,
+    "adjust_contrast": 0.5,
+    "decoder": "greedy",
+    "slope_ths": 0.4,
+    "canvas_size": 1280,
+    "min_conf": 0.05
+   }
+  },
+  {
+   "seed0_cer": 0.06547223057719648,
+   "i": 20,
+   "config": {
+    "text_threshold": 0.8,
+    "low_text": 0.5,
+    "link_threshold": 0.3,
+    "mag_ratio": 1.5,
+    "contrast_ths": 0.5,
+    "adjust_contrast": 0.7,
+    "decoder": "beamsearch",
+    "slope_ths": 0.1,
+    "canvas_size": 1280,
+    "min_conf": 0.2
+   }
+  },
+  {
+   "seed0_cer": 0.04804359980524196,
+   "i": 21,
+   "config": {
+    "text_threshold": 0.7,
+    "low_text": 0.4,
+    "link_threshold": 0.5,
+    "mag_ratio": 2.0,
+    "contrast_ths": 0.3,
+    "adjust_contrast": 0.5,
+    "decoder": "beamsearch",
+    "slope_ths": 0.1,
+    "canvas_size": 1280,
+    "min_conf": 0.05
+   }
+  },
+  {
+   "seed0_cer": 0.03281615466051741,
+   "i": 22,
+   "config": {
+    "text_threshold": 0.5,
+    "low_text": 0.4,
+    "link_threshold": 0.3,
+    "mag_ratio": 2.0,
+    "contrast_ths": 0.5,
+    "adjust_contrast": 0.3,
+    "decoder": "greedy",
+    "slope_ths": 0.1,
+    "canvas_size": 1280,
+    "min_conf": 0.2
+   }
+  },
+  {
+   "seed0_cer": 0.03756648534834809,
+   "i": 23,
+   "config": {
+    "text_threshold": 0.5,
+    "low_text": 0.3,
+    "link_threshold": 0.3,
+    "mag_ratio": 1.0,
+    "contrast_ths": 0.3,
+    "adjust_contrast": 0.3,
+    "decoder": "greedy",
+    "slope_ths": 0.2,
+    "canvas_size": 2560,
+    "min_conf": 0.05
+   }
+  },
+  {
+   "seed0_cer": 0.06501019018535537,
+   "i": 24,
+   "config": {
+    "text_threshold": 0.6,
+    "low_text": 0.5,
+    "link_threshold": 0.5,
+    "mag_ratio": 2.0,
+    "contrast_ths": 0.3,
+    "adjust_contrast": 0.3,
+    "decoder": "beamsearch",
+    "slope_ths": 0.2,
+    "canvas_size": 1280,
+    "min_conf": 0.05
+   }
+  },
+  {
+   "seed0_cer": 0.0675457391271543,
+   "i": 25,
+   "config": {
+    "text_threshold": 0.5,
+    "low_text": 0.5,
+    "link_threshold": 0.4,
+    "mag_ratio": 1.5,
+    "contrast_ths": 0.3,
+    "adjust_contrast": 0.5,
+    "decoder": "beamsearch",
+    "slope_ths": 0.4,
+    "canvas_size": 1280,
+    "min_conf": 0.2
+   }
+  },
+  {
+   "seed0_cer": 0.03119854002206943,
+   "i": 26,
+   "config": {
+    "text_threshold": 0.5,
+    "low_text": 0.3,
+    "link_threshold": 0.4,
+    "mag_ratio": 2.0,
+    "contrast_ths": 0.3,
+    "adjust_contrast": 0.3,
+    "decoder": "greedy",
+    "slope_ths": 0.1,
+    "canvas_size": 1280,
+    "min_conf": 0.2
+   }
+  },
+  {
+   "seed0_cer": 0.027150119306982055,
+   "i": 27,
+   "config": {
+    "text_threshold": 0.8,
+    "low_text": 0.3,
+    "link_threshold": 0.4,
+    "mag_ratio": 1.0,
+    "contrast_ths": 0.3,
+    "adjust_contrast": 0.5,
+    "decoder": "greedy",
+    "slope_ths": 0.1,
+    "canvas_size": 2560,
+    "min_conf": 0.2
+   }
+  },
+  {
+   "seed0_cer": 0.06864896189957465,
+   "i": 28,
+   "config": {
+    "text_threshold": 0.5,
+    "low_text": 0.3,
+    "link_threshold": 0.5,
+    "mag_ratio": 2.0,
+    "contrast_ths": 0.1,
+    "adjust_contrast": 0.3,
+    "decoder": "greedy",
+    "slope_ths": 0.1,
+    "canvas_size": 2560,
+    "min_conf": 0.1
+   }
+  },
+  {
+   "seed0_cer": 0.03610845264031539,
+   "i": 29,
+   "config": {
+    "text_threshold": 0.8,
+    "low_text": 0.3,
+    "link_threshold": 0.4,
+    "mag_ratio": 1.0,
+    "contrast_ths": 0.1,
+    "adjust_contrast": 0.5,
+    "decoder": "greedy",
+    "slope_ths": 0.2,
+    "canvas_size": 2560,
+    "min_conf": 0.1
+   }
+  },
+  {
+   "seed0_cer": 0.05410119961284177,
+   "i": 30,
+   "config": {
+    "text_threshold": 0.7,
+    "low_text": 0.4,
+    "link_threshold": 0.5,
+    "mag_ratio": 2.0,
+    "contrast_ths": 0.5,
+    "adjust_contrast": 0.7,
+    "decoder": "beamsearch",
+    "slope_ths": 0.1,
+    "canvas_size": 1280,
+    "min_conf": 0.1
+   }
+  }
+ ],
+ "prep": "clahe",
+ "task1": {
+  "kind": "region",
+  "detector": "craft",
+  "min_conf": 0.1,
+  "second_pass": false
+ }
+}

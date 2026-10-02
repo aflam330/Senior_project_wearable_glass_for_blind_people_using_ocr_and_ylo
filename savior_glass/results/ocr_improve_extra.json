@@ -1,0 +1,184 @@
+{
+  "device": "cuda",
+  "note": "validation only; does not replace slope_ths=0.2",
+  "font": "Nirmala via eval_ocr_improve.samples",
+  "methods": [
+    {
+      "overall": {
+        "n": 144,
+        "cer": 0.1362072244884745,
+        "wer": 0.0
+      },
+      "bn": {
+        "n": 72,
+        "cer": 0.2536854927479928,
+        "wer": 0.0
+      },
+      "en": {
+        "n": 72,
+        "cer": 0.018728956228956227,
+        "wer": 0.0
+      },
+      "seconds": 31.68,
+      "method": "niblack"
+    },
+    {
+      "overall": {
+        "n": 144,
+        "cer": 0.3780171506734007,
+        "wer": 0.0
+      },
+      "bn": {
+        "n": 72,
+        "cer": 0.3965570502028835,
+        "wer": 0.0
+      },
+      "en": {
+        "n": 72,
+        "cer": 0.3594772511439178,
+        "wer": 0.0
+      },
+      "seconds": 31.39,
+      "method": "perspective"
+    },
+    {
+      "overall": {
+        "n": 144,
+        "cer": 0.11175699300699299,
+        "wer": 0.0
+      },
+      "bn": {
+        "n": 72,
+        "cer": 0.18918026418026418,
+        "wer": 0.0
+      },
+      "en": {
+        "n": 72,
+        "cer": 0.03433372183372183,
+        "wer": 0.0
+      },
+      "seconds": 31.82,
+      "method": "gray_only"
+    },
+    {
+      "overall": {
+        "n": 144,
+        "cer": 0.10899128841837175,
+        "wer": 0.0
+      },
+      "bn": {
+        "n": 72,
+        "cer": 0.18724248359665024,
+        "wer": 0.0
+      },
+      "en": {
+        "n": 72,
+        "cer": 0.03074009324009324,
+        "wer": 0.0
+      },
+      "seconds": 31.41,
+      "method": "clahe_only"
+    },
+    {
+      "overall": {
+        "n": 144,
+        "cer": 0.09954047688422689,
+        "wer": 0.0
+      },
+      "bn": {
+        "n": 72,
+        "cer": 0.171303175990676,
+        "wer": 0.0
+      },
+      "en": {
+        "n": 72,
+        "cer": 0.027777777777777776,
+        "wer": 0.0
+      },
+      "seconds": 31.89,
+      "method": "slope_0_15"
+    },
+    {
+      "overall": {
+        "n": 144,
+        "cer": 0.085651587995338,
+        "wer": 0.0
+      },
+      "bn": {
+        "n": 72,
+        "cer": 0.171303175990676,
+        "wer": 0.0
+      },
+      "en": {
+        "n": 72,
+        "cer": 0.0,
+        "wer": 0.0
+      },
+      "seconds": 31.86,
+      "method": "slope_0_30"
+    }
+  ],
+  "per_seed": [
+    {
+      "seed": 9000,
+      "n": 48,
+      "baseline_cer": 0.12820856805231803,
+      "baseline_bn": 0.21938009906759906,
+      "slope_cer": 0.08414918414918415,
+      "slope_bn": 0.1682983682983683
+    },
+    {
+      "seed": 9100,
+      "n": 48,
+      "baseline_cer": 0.17029611013986012,
+      "baseline_bn": 0.21938009906759906,
+      "slope_cer": 0.10658508158508158,
+      "slope_bn": 0.1715034965034965
+    },
+    {
+      "seed": 9200,
+      "n": 48,
+      "baseline_cer": 0.12661713286713286,
+      "baseline_bn": 0.21156759906759906,
+      "slope_cer": 0.08705383158508158,
+      "slope_bn": 0.17410766317016316
+    }
+  ],
+  "cross_seed_char_rules": [
+    {
+      "hold_seed_index": 0,
+      "n_rules": 1,
+      "rules": {
+        "ো": "া"
+      },
+      "raw_cer": 0.08414918414918415,
+      "corrected_cer": 0.07631442631442631
+    },
+    {
+      "hold_seed_index": 1,
+      "n_rules": 1,
+      "rules": {
+        "ো": "া"
+      },
+      "raw_cer": 0.10658508158508158,
+      "corrected_cer": 0.09875032375032373
+    },
+    {
+      "hold_seed_index": 2,
+      "n_rules": 1,
+      "rules": {
+        "ো": "া"
+      },
+      "raw_cer": 0.08705383158508158,
+      "corrected_cer": 0.07921907375032375
+    }
+  ],
+  "dbnet18_error": "Traceback (most recent call last):\n  File \"E:\\Final SP\\savior_glass\\scripts\\eval_ocr_extra.py\", line 208, in main\n    summary, _ = score(db, val, \"baseline\", kw)\n                 ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\Final SP\\savior_glass\\scripts\\eval_ocr_extra.py\", line 91, in score\n    det = reader.readtext(image_for(name, bgr), **kwargs)\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\easyocr\\easyocr.py\", line 456, in readtext\n    horizontal_list, free_list = self.detect(img,\n                                 ~~~~~~~~~~~^^^^^\n                                             min_size = min_size, text_threshold = text_threshold,\\\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<6 lines>...\n                                             bbox_min_size = bbox_min_size, max_candidates = max_candidates\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                             )\n                                             ^\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\easyocr\\easyocr.py\", line 321, in detect\n    text_box_list = self.get_textbox(self.detector,\n                                img,\n    ...<11 lines>...\n                                max_candidates = max_candidates,\n                                )\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\easyocr\\detection_db.py\", line 207, in get_textbox\n    _, polys_list = test_net(image,\n                    ~~~~~~~~^^^^^^^\n                             detector,\n                             ^^^^^^^^^\n    ...<6 lines>...\n                             device = device\n                             ^^^^^^^^^^^^^^^\n                             )\n                             ^\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\easyocr\\detection_db.py\", line 80, in test_net\n    hmap = detector.image2hmap(image_tensor.to(device))\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\easyocr\\DBNet\\DBNet.py\", line 700, in image2hmap\n    return self.model.forward(image_tensor, training=False)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\parallel\\data_parallel.py\", line 194, in forward\n    return self.module(*inputs[0], **module_kwargs[0])\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\easyocr\\DBNet\\model\\model.py\", line 60, in forward\n    pred = self.model(data, training=training)\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\parallel\\data_parallel.py\", line 194, in forward\n    return self.module(*inputs[0], **module_kwargs[0])\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\easyocr\\DBNet\\model\\model.py\", line 21, in forward\n    return self.decoder(self.backbone(data), *args, **kwargs)\n                        ~~~~~~~~~~~~~^^^^^^\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\easyocr\\DBNet\\backbones\\resnet.py\", line 244, in forward\n    x3 = self.layer2(x2)\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\container.py\", line 259, in forward\n    input = module(input)\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\easyocr\\DBNet\\backbones\\resnet.py\", line 90, in forward\n    out = self.conv2(out, offset, mask)\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\easyocr\\DBNet\\assets\\ops\\dcn\\modules\\deform_conv.py\", line 126, in forward\n    return modulated_deform_conv(x, offset, mask, self.weight, self.bias,\n                                 self.stride, self.padding, self.dilation,\n                                 self.groups, self.deformable_groups)\n  File \"C:\\Users\\LAM\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\easyocr\\DBNet\\assets\\ops\\dcn\\functions\\deform_conv.py\", line 230, in forward\n    raise RuntimeError(\n        \"Input type is {}, but 'deform_conv_{}.*.so' is not imported successfully.\".format(device_, device_),\n        )\nRuntimeError: Input type is cuda, but 'deform_conv_cuda.*.so' is not imported successfully.\n",
+  "engine_imports": {
+    "paddleocr": "ModuleNotFoundError: No module named 'paddleocr'",
+    "pytesseract": "import_ok",
+    "transformers": "import_ok",
+    "kenlm": "ModuleNotFoundError: No module named 'kenlm'",
+    "bnlp": "ModuleNotFoundError: No module named 'bnlp'"
+  }
+}

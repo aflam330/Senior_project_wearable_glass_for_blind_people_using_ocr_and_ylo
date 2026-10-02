@@ -1,0 +1,1833 @@
+{
+ "overall": {
+  "n": 216,
+  "cer": 0.01671626984126984,
+  "wer": 0.032407407407407406,
+  "exact": 0.9583333333333334
+ },
+ "bn": {
+  "n": 108,
+  "cer": 0.007109788359788359,
+  "wer": 0.009259259259259259,
+  "exact": 0.9814814814814815
+ },
+ "en": {
+  "n": 108,
+  "cer": 0.026322751322751324,
+  "wer": 0.05555555555555555,
+  "exact": 0.9351851851851852
+ },
+ "by_cond": {
+  "clean": {
+   "all": {
+    "n": 72,
+    "cer": 0.005952380952380952,
+    "wer": 0.013888888888888888,
+    "exact": 0.9861111111111112
+   },
+   "bn": {
+    "n": 36,
+    "cer": 0.0,
+    "wer": 0.0,
+    "exact": 1.0
+   }
+  },
+  "scene": {
+   "all": {
+    "n": 72,
+    "cer": 0.02144510582010582,
+    "wer": 0.02546296296296296,
+    "exact": 0.9583333333333334
+   },
+   "bn": {
+    "n": 36,
+    "cer": 0.017361111111111112,
+    "wer": 0.013888888888888888,
+    "exact": 0.9722222222222222
+   }
+  },
+  "wild": {
+   "all": {
+    "n": 72,
+    "cer": 0.02275132275132275,
+    "wer": 0.057870370370370364,
+    "exact": 0.9305555555555556
+   },
+   "bn": {
+    "n": 36,
+    "cer": 0.003968253968253968,
+    "wer": 0.013888888888888888,
+    "exact": 0.9722222222222222
+   }
+  }
+ },
+ "per_seed_cer": [
+  0.01765873015873016,
+  0.021825396825396824,
+  0.010664682539682538
+ ],
+ "per_seed_bn_cer": [
+  0.0,
+  0.003968253968253968,
+  0.017361111111111112
+ ],
+ "cer_seed_sd": 0.005639730439420601,
+ "latency_ms_median": 218.96294999169186,
+ "meta": {
+  "set": "lexicon",
+  "method": "final + Task 7 recognizer",
+  "seed": 42,
+  "choices": {
+   "task1": {
+    "kind": "region",
+    "detector": "craft",
+    "min_conf": 0.1,
+    "second_pass": false
+   },
+   "prep": "clahe",
+   "params": {
+    "text_threshold": 0.8,
+    "low_text": 0.3,
+    "link_threshold": 0.4,
+    "mag_ratio": 1.0,
+    "contrast_ths": 0.1,
+    "adjust_contrast": 0.7,
+    "decoder": "beamsearch",
+    "slope_ths": 0.4,
+    "canvas_size": 2560,
+    "min_conf": 0.2
+   },
+   "post": "rules"
+  }
+ },
+ "per_sample": [
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বাংলাদেশ ব্যাংক",
+   "hyp": "বাংলাদেশ ব্যাংক",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বাংলাদেশ ব্যাংক",
+   "hyp": "বাংলাদেশ ব্যাংক",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বাংলাদেশ ব্যাংক",
+   "hyp": "বাংলাদেশ ব্যাংক",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "দশ টাকা",
+   "hyp": "দশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "দশ টাকা",
+   "hyp": "দশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "দশ টাকা",
+   "hyp": "দশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বিশ টাকা",
+   "hyp": "বিশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বিশ টাকা",
+   "hyp": "বিশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বিশ টাকা",
+   "hyp": "বিশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "এই পথ বন্ধ",
+   "hyp": "এই পথ বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "এই পথ বন্ধ",
+   "hyp": "এই পথ বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "এই পথ বন্ধ",
+   "hyp": "এই পথ বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "স্টেশন ১২",
+   "hyp": "স্টেশন ১২",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "স্টেশন ১২",
+   "hyp": "স্টেশন ১২",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "স্টেশন ১২",
+   "hyp": "স্টেশন ১২",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "হাসপাতাল",
+   "hyp": "হাসপাতাল",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "হাসপাতাল",
+   "hyp": "হাসপাতাল",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "হাসপাতাল",
+   "hyp": "হাসপাতাল",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ঔষধের দোকান",
+   "hyp": "ঔষধের দোকান",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ঔষধের দোকান",
+   "hyp": "ঔষধের দোকান",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ঔষধের দোকান",
+   "hyp": "ঔষধের দোকান",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বাস স্টপ",
+   "hyp": "বাস স্টপ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বাস স্টপ",
+   "hyp": "বাস স্টপ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বাস স্টপ",
+   "hyp": "বাস স্টপ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ডানদিকে যান",
+   "hyp": "ডানদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ডানদিকে যান",
+   "hyp": "ডানদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ডানদিকে যান",
+   "hyp": "ডানদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বাঁদিকে যান",
+   "hyp": "বাঁদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বাঁদিকে যান",
+   "hyp": "বাঁদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বাঁদিকে যান",
+   "hyp": "বাঁদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "মূল ফটক",
+   "hyp": "মূল ফটক",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "মূল ফটক",
+   "hyp": "মূল ফটক",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "মূল ফটক",
+   "hyp": "মূল ফটক",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "টিকিট কাউন্টার",
+   "hyp": "টিকিট কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "টিকিট কাউন্টার",
+   "hyp": "টিকিট কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "টিকিট কাউন্টার",
+   "hyp": "টিকিট কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "EXIT 12",
+   "hyp": "EXIT 12",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "EXIT 12",
+   "hyp": "EXI12",
+   "cer": 0.2857142857142857
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "EXIT 12",
+   "hyp": "EXIT 12",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Bus Stop",
+   "hyp": "Bus Stop",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Bus Stop",
+   "hyp": "Bus Stop",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Bus Stop",
+   "hyp": "Bus Stop",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Hospital Gate",
+   "hyp": "Hospital Gate",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Hospital Gate",
+   "hyp": "Hospital Gate",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Hospital Gate",
+   "hyp": "Hospital Gate",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Ticket Counter",
+   "hyp": "Ticket Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Ticket Counter",
+   "hyp": "Ticket Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Ticket Counter",
+   "hyp": "PPI Ticket Counter গুগুতে",
+   "cer": 0.7857142857142857
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Main Entrance",
+   "hyp": "Main Entrance",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Main Entrance",
+   "hyp": "Main Entrance",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Main Entrance",
+   "hyp": "Main Entrance",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Pharmacy",
+   "hyp": "Pharmacy",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Pharmacy",
+   "hyp": "Pharmacy",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Pharmacy",
+   "hyp": "Pharmacy",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Turn Right",
+   "hyp": "Turn Right",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Turn Right",
+   "hyp": "Turn Right",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Turn Right",
+   "hyp": "Turn Right",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Turn Left",
+   "hyp": "Turn Left",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Turn Left",
+   "hyp": "Turn Left",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Turn Left",
+   "hyp": "Turn Left",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Platform 3",
+   "hyp": "Platform 3",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Platform 3",
+   "hyp": "Platform 3",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Platform 3",
+   "hyp": "Platform 3",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Danger Keep Out",
+   "hyp": "Danger Keep Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Danger Keep Out",
+   "hyp": "Danger KeepOut",
+   "cer": 0.06666666666666667
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Danger Keep Out",
+   "hyp": "5 Danger Keep Out",
+   "cer": 0.13333333333333333
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Glycemic",
+   "hyp": "Glycemic",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Glycemic",
+   "hyp": "Glycemic",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Glycemic",
+   "hyp": "Glycemic",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Digestive Biscuit",
+   "hyp": "Digestive Biscuit",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Digestive Biscuit",
+   "hyp": "Digestive Biscuit",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Digestive Biscuit",
+   "hyp": "Digestive Biscuit",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বাংলাদেশ ব্যাংক",
+   "hyp": "বাংলাদেশ ব্যাংক",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বাংলাদেশ ব্যাংক",
+   "hyp": "বাংলাদেশ ব্যাংক",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বাংলাদেশ ব্যাংক",
+   "hyp": "বাংলাদেশ ব্যাংক",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "দশ টাকা",
+   "hyp": "দশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "দশ টাকা",
+   "hyp": "দশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "দশ টাকা",
+   "hyp": "দশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বিশ টাকা",
+   "hyp": "বিশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বিশ টাকা",
+   "hyp": "বিশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বিশ টাকা",
+   "hyp": "বিশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "এই পথ বন্ধ",
+   "hyp": "এই পথ বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "এই পথ বন্ধ",
+   "hyp": "এই পথ বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "এই পথ বন্ধ",
+   "hyp": "এই পথ বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "স্টেশন ১২",
+   "hyp": "স্টেশন ১২",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "স্টেশন ১২",
+   "hyp": "স্টেশন ১২",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "স্টেশন ১২",
+   "hyp": "স্টেশন ১২",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "হাসপাতাল",
+   "hyp": "হাসপাতাল",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "হাসপাতাল",
+   "hyp": "হাসপাতাল",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "হাসপাতাল",
+   "hyp": "হাসপাতাল",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ঔষধের দোকান",
+   "hyp": "ঔষধের দোকান",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ঔষধের দোকান",
+   "hyp": "ঔষধের দোকান",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ঔষধের দোকান",
+   "hyp": "ঔষধের দোকান",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বাস স্টপ",
+   "hyp": "বাস স্টপ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বাস স্টপ",
+   "hyp": "বাস স্টপ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বাস স্টপ",
+   "hyp": "বাস স্টপ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ডানদিকে যান",
+   "hyp": "ডানদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ডানদিকে যান",
+   "hyp": "ডানদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ডানদিকে যান",
+   "hyp": "ডানদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বাঁদিকে যান",
+   "hyp": "বাঁদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বাঁদিকে যান",
+   "hyp": "বাঁদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বাঁদিকে যান",
+   "hyp": "বাঁদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "মূল ফটক",
+   "hyp": "মূল ফটক",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "মূল ফটক",
+   "hyp": "মৃল ফটক",
+   "cer": 0.14285714285714285
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "মূল ফটক",
+   "hyp": "মূল ফটক",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "টিকিট কাউন্টার",
+   "hyp": "টিকিট কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "টিকিট কাউন্টার",
+   "hyp": "টিকিট কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "টিকিট কাউন্টার",
+   "hyp": "টিকিট কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "EXIT 12",
+   "hyp": "EXL12",
+   "cer": 0.42857142857142855
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "EXIT 12",
+   "hyp": "EXIT 12",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "EXIT 12",
+   "hyp": "EXIT 12",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Bus Stop",
+   "hyp": "Bus Stop",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Bus Stop",
+   "hyp": "",
+   "cer": 1.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Bus Stop",
+   "hyp": "Bus Stop",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Hospital Gate",
+   "hyp": "Hospital Gate",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Hospital Gate",
+   "hyp": "Hospital Gate",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Hospital Gate",
+   "hyp": "Hospital Gate",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Ticket Counter",
+   "hyp": "Ticket Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Ticket Counter",
+   "hyp": "Ticket Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Ticket Counter",
+   "hyp": "Ticket Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Main Entrance",
+   "hyp": "Main Entrance",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Main Entrance",
+   "hyp": "Main Entrance",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Main Entrance",
+   "hyp": "Main Entrance",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Pharmacy",
+   "hyp": "Pharmacy",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Pharmacy",
+   "hyp": "Pharmacy",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Pharmacy",
+   "hyp": "Pharmacy",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Turn Right",
+   "hyp": "Turn Right",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Turn Right",
+   "hyp": "Turn Right",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Turn Right",
+   "hyp": "Turn Right",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Turn Left",
+   "hyp": "Turn Left",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Turn Left",
+   "hyp": "Turn Left",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Turn Left",
+   "hyp": "Turn Left",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Platform 3",
+   "hyp": "Platform 3",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Platform 3",
+   "hyp": "Platform 3",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Platform 3",
+   "hyp": "Platform 3",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Danger Keep Out",
+   "hyp": "Danger Keep Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Danger Keep Out",
+   "hyp": "Danger Keep Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Danger Keep Out",
+   "hyp": "Danger Keep Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Glycemic",
+   "hyp": "Glycemic",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Glycemic",
+   "hyp": "Glycemic",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Glycemic",
+   "hyp": "Glycemic",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Digestive Biscuit",
+   "hyp": "Digestive Biscuit",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Digestive Biscuit",
+   "hyp": "Digestive Biscuit",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Digestive Biscuit",
+   "hyp": "Digestive Biscuit",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বাংলাদেশ ব্যাংক",
+   "hyp": "বাংলাদেশ ব্যাংক",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বাংলাদেশ ব্যাংক",
+   "hyp": "বাংলাদেশ ব্যাংক",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বাংলাদেশ ব্যাংক",
+   "hyp": "বাংলাদেশ ব্যাংক",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "দশ টাকা",
+   "hyp": "দশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "দশ টাকা",
+   "hyp": "দশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "দশ টাকা",
+   "hyp": "দশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বিশ টাকা",
+   "hyp": "বিশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বিশ টাকা",
+   "hyp": "বিশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বিশ টাকা",
+   "hyp": "বিশ টাকা",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "এই পথ বন্ধ",
+   "hyp": "এই পথ বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "এই পথ বন্ধ",
+   "hyp": "এই পথ বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "এই পথ বন্ধ",
+   "hyp": "এই পথ বন্ধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "স্টেশন ১২",
+   "hyp": "স্টেশন ১২",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "স্টেশন ১২",
+   "hyp": "স্টেশন ১২",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "স্টেশন ১২",
+   "hyp": "স্টেশন ১২",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "হাসপাতাল",
+   "hyp": "হাসপাতাল",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "হাসপাতাল",
+   "hyp": "হাসপাতাল",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "হাসপাতাল",
+   "hyp": "হাসপাতাল",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ঔষধের দোকান",
+   "hyp": "ঔষধের দোকান",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ঔষধের দোকান",
+   "hyp": "ঔষধের দোকান",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ঔষধের দোকান",
+   "hyp": "ঔষধের দোকান",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বাস স্টপ",
+   "hyp": "বাস স্টপ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বাস স্টপ",
+   "hyp": "বাস স্টপ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বাস স্টপ",
+   "hyp": "Asia বাস স্টপ",
+   "cer": 0.625
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "ডানদিকে যান",
+   "hyp": "ডানদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "ডানদিকে যান",
+   "hyp": "ডানদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "ডানদিকে যান",
+   "hyp": "ডানদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "বাঁদিকে যান",
+   "hyp": "বাঁদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "বাঁদিকে যান",
+   "hyp": "বাঁদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "বাঁদিকে যান",
+   "hyp": "বাঁদিকে যান",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "মূল ফটক",
+   "hyp": "মূল ফটক",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "মূল ফটক",
+   "hyp": "মূল ফটক",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "মূল ফটক",
+   "hyp": "মূল ফটক",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "টিকিট কাউন্টার",
+   "hyp": "টিকিট কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "টিকিট কাউন্টার",
+   "hyp": "টিকিট কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "টিকিট কাউন্টার",
+   "hyp": "টিকিট কাউন্টার",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "EXIT 12",
+   "hyp": "EXIT 12",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "EXIT 12",
+   "hyp": "EXIT12",
+   "cer": 0.14285714285714285
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "EXIT 12",
+   "hyp": "EXIT 12",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Bus Stop",
+   "hyp": "Bus Stop",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Bus Stop",
+   "hyp": "Bus Stop",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Bus Stop",
+   "hyp": "Bus Stop",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Hospital Gate",
+   "hyp": "Hospital Gate",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Hospital Gate",
+   "hyp": "Hospital Gate",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Hospital Gate",
+   "hyp": "Hospital Gate",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Ticket Counter",
+   "hyp": "Ticket Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Ticket Counter",
+   "hyp": "Ticket Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Ticket Counter",
+   "hyp": "Ticket Counter",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Main Entrance",
+   "hyp": "Main Entrance",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Main Entrance",
+   "hyp": "Main Entrance",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Main Entrance",
+   "hyp": "Main Entrance",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Pharmacy",
+   "hyp": "Pharmacy",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Pharmacy",
+   "hyp": "Pharmacy",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Pharmacy",
+   "hyp": "Pharmacy",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Turn Right",
+   "hyp": "Turn Right",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Turn Right",
+   "hyp": "Turn Right",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Turn Right",
+   "hyp": "Turn Right",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Turn Left",
+   "hyp": "Turn Left",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Turn Left",
+   "hyp": "Turn Left",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Turn Left",
+   "hyp": "Turn Left",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Platform 3",
+   "hyp": "Platform 3",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Platform 3",
+   "hyp": "Platform 3",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Platform 3",
+   "hyp": "Platform 3",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Danger Keep Out",
+   "hyp": "Danger Keep Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Danger Keep Out",
+   "hyp": "Danger Keep Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Danger Keep Out",
+   "hyp": "Danger Keep Out",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Glycemic",
+   "hyp": "Glycemic",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Glycemic",
+   "hyp": "Glycemic",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Glycemic",
+   "hyp": "Glycemic",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Digestive Biscuit",
+   "hyp": "Digestive Biscuit",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Digestive Biscuit",
+   "hyp": "Digestive Biscuit",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Digestive Biscuit",
+   "hyp": "Digestive Biscuit",
+   "cer": 0.0
+  }
+ ]
+}

@@ -1,0 +1,1811 @@
+{
+ "overall": {
+  "n": 216,
+  "cer": 0.20612238841405509,
+  "wer": 0.21373456790123455,
+  "exact": 0.8657407407407407
+ },
+ "bn": {
+  "n": 108,
+  "cer": 0.12250712250712253,
+  "wer": 0.16358024691358022,
+  "exact": 0.8703703703703703
+ },
+ "en": {
+  "n": 108,
+  "cer": 0.2897376543209877,
+  "wer": 0.2638888888888889,
+  "exact": 0.8611111111111112
+ },
+ "by_cond": {
+  "clean": {
+   "all": {
+    "n": 72,
+    "cer": 0.003472222222222222,
+    "wer": 0.013888888888888888,
+    "exact": 0.9861111111111112
+   },
+   "bn": {
+    "n": 36,
+    "cer": 0.0,
+    "wer": 0.0,
+    "exact": 1.0
+   }
+  },
+  "scene": {
+   "all": {
+    "n": 72,
+    "cer": 0.5959134615384616,
+    "wer": 0.5856481481481481,
+    "exact": 0.6805555555555556
+   },
+   "bn": {
+    "n": 36,
+    "cer": 0.3527065527065527,
+    "wer": 0.4351851851851852,
+    "exact": 0.7222222222222222
+   }
+  },
+  "wild": {
+   "all": {
+    "n": 72,
+    "cer": 0.01898148148148148,
+    "wer": 0.041666666666666664,
+    "exact": 0.9305555555555556
+   },
+   "bn": {
+    "n": 36,
+    "cer": 0.014814814814814815,
+    "wer": 0.05555555555555555,
+    "exact": 0.8888888888888888
+   }
+  }
+ },
+ "per_seed_cer": [
+  0.10985576923076923,
+  0.28050213675213675,
+  0.22800925925925927
+ ],
+ "per_seed_bn_cer": [
+  0.061146723646723654,
+  0.2323005698005698,
+  0.07407407407407408
+ ],
+ "cer_seed_sd": 0.08740321517887885,
+ "latency_ms_median": 214.51315001468174,
+ "meta": {
+  "set": "select",
+  "method": "baseline",
+  "read_once": true
+ },
+ "per_sample": [
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সাবধান",
+   "hyp": "সাবধান",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সাবধান",
+   "hyp": "সাবধান",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সাবধান",
+   "hyp": "সাবধান",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "প্রবেশ নিষেধ",
+   "hyp": "প্রবেশ নিষেধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "প্রবেশ নিষেধ",
+   "hyp": "প্রবেশ নিষেধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "প্রবেশ নিষেধ",
+   "hyp": "প্রবেশ নিষেধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "শৌচাগার",
+   "hyp": "শৌচাগার",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "শৌচাগার",
+   "hyp": "শৌচাগার",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "শৌচাগার",
+   "hyp": "শৌচাগার",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "খোলা আছে",
+   "hyp": "খোলা আছে",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "খোলা আছে",
+   "hyp": "খোলা আছে",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "খোলা আছে",
+   "hyp": "খোলা আছে",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "পানি",
+   "hyp": "পানি",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "পানি",
+   "hyp": "পানি",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "পানি",
+   "hyp": "পানি",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "দুধ",
+   "hyp": "দুধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "দুধ",
+   "hyp": "দুধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "দুধ",
+   "hyp": "দুধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "চাল পাঁচ কেজি",
+   "hyp": "চাল পাঁচ কেজি",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "চাল পাঁচ কেজি",
+   "hyp": "চাল পাঁচ কেজি",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "চাল পাঁচ কেজি",
+   "hyp": "8 [7 চাল পাঁচ কেজি",
+   "cer": 0.38461538461538464
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "লিফট",
+   "hyp": "লিফট",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "লিফট",
+   "hyp": "লিফট",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "লিফট",
+   "hyp": "লিফট",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সিঁড়ি",
+   "hyp": "সিঁড়ি",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সিঁড়ি",
+   "hyp": "সিঁড়ি",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সিঁড়ি",
+   "hyp": "সিঁড়ি",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "জরুরি নির্গমন",
+   "hyp": "জরুরি নির্গমন",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "জরুরি নির্গমন",
+   "hyp": "জরুরি নির্গমন",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "জরুরি নির্গমন",
+   "hyp": "জরুরি নির্গমন",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "নামাজের ঘর",
+   "hyp": "নামাজের ঘর",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "নামাজের ঘর",
+   "hyp": "নমাজের ঘর",
+   "cer": 0.1
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "নামাজের ঘর",
+   "hyp": "0nm]rto নামাজের ঘর [ifo",
+   "cer": 1.3
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "অপেক্ষা কক্ষ",
+   "hyp": "অপেক্ষা কক্ষ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "অপেক্ষা কক্ষ",
+   "hyp": "অপেক্ষা কক্ষ",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "অপেক্ষা কক্ষ",
+   "hyp": "অপেক্ষ] কক্ষ গ53",
+   "cer": 0.4166666666666667
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Lift",
+   "hyp": "Lift",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Lift",
+   "hyp": "Lift",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Lift",
+   "hyp": "Lift ^/( ^",
+   "cer": 1.5
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Stairs",
+   "hyp": "Stairs",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Stairs",
+   "hyp": "Stairs",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Stairs",
+   "hyp": "Stairs",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Toilet",
+   "hyp": "Toilet",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Toilet",
+   "hyp": "Toilet",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Toilet",
+   "hyp": "Toilet",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "No Entry",
+   "hyp": "No Entry",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "No Entry",
+   "hyp": "No Entry",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "No Entry",
+   "hyp": "`ে No Entry",
+   "cer": 0.375
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Open",
+   "hyp": "Open",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Open",
+   "hyp": "Open",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Open",
+   "hyp": "[0010[/[ Open",
+   "cer": 2.25
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Closed",
+   "hyp": "Closed",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Closed",
+   "hyp": "Closed",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Closed",
+   "hyp": "Closed",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Milk",
+   "hyp": "Milk",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Milk",
+   "hyp": "Milk",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Milk",
+   "hyp": "Milk",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Rice 5 kg",
+   "hyp": "Rice 5 kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Rice 5 kg",
+   "hyp": "Rice 5 kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Rice 5 kg",
+   "hyp": "Rice 5 kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Fire Exit",
+   "hyp": "Fire Exit",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Fire Exit",
+   "hyp": "Fire Exit",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Fire Exit",
+   "hyp": "Fire Exit",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Waiting Room",
+   "hyp": "Waiting Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Waiting Room",
+   "hyp": "Room Waiting",
+   "cer": 0.8333333333333334
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Waiting Room",
+   "hyp": "Waiting Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Push",
+   "hyp": "Push",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Push",
+   "hyp": "Push",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Push",
+   "hyp": "07 Push",
+   "cer": 0.75
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Pull",
+   "hyp": "Pull",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Pull",
+   "hyp": "Pull",
+   "cer": 0.0
+  },
+  {
+   "seed": 0,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Pull",
+   "hyp": "Pull",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সাবধান",
+   "hyp": "সাবধান",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সাবধান",
+   "hyp": "সাবধান",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সাবধান",
+   "hyp": "সাবধান",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "প্রবেশ নিষেধ",
+   "hyp": "প্রবেশ নিষেধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "প্রবেশ নিষেধ",
+   "hyp": "প্রবেশ নিষেধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "প্রবেশ নিষেধ",
+   "hyp": ":ARNIER MoDEuS EWAUSto প্রবেশ নিষেধ",
+   "cer": 1.9166666666666667
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "শৌচাগার",
+   "hyp": "শৌচাগার",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "শৌচাগার",
+   "hyp": "শৌচাগার",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "শৌচাগার",
+   "hyp": "শৌচাগার",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "খোলা আছে",
+   "hyp": "খোলা আছে",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "খোলা আছে",
+   "hyp": "খোলা আড়ে",
+   "cer": 0.25
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "খোলা আছে",
+   "hyp": "খোলা আছে $ PE Ex",
+   "cer": 1.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "পানি",
+   "hyp": "পানি",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "পানি",
+   "hyp": "পানি",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "পানি",
+   "hyp": "&880 A SNANE পানি",
+   "cer": 3.25
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "দুধ",
+   "hyp": "দুধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "দুধ",
+   "hyp": "দুধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "দুধ",
+   "hyp": "দুধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "চাল পাঁচ কেজি",
+   "hyp": "চাল পাঁচ কেজি",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "চাল পাঁচ কেজি",
+   "hyp": "চাল পাঁচ কেজি",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "চাল পাঁচ কেজি",
+   "hyp": "IUIu| ucrrrIIN চাল পাঁচ কেজি ৪LUcI",
+   "cer": 1.6153846153846154
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "লিফট",
+   "hyp": "লিফট",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "লিফট",
+   "hyp": "লিফট",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "লিফট",
+   "hyp": "লিফট",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সিঁড়ি",
+   "hyp": "সিঁড়ি",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সিঁড়ি",
+   "hyp": "সিঁড়ি",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সিঁড়ি",
+   "hyp": "সিঁড়ি",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "জরুরি নির্গমন",
+   "hyp": "জরুরি নির্গমন",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "জরুরি নির্গমন",
+   "hyp": "জরুরি নির্গমন",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "জরুরি নির্গমন",
+   "hyp": "জরুরি নির্গমন 70",
+   "cer": 0.23076923076923078
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "নামাজের ঘর",
+   "hyp": "নামাজের ঘর",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "নামাজের ঘর",
+   "hyp": "নমাজের ঘর",
+   "cer": 0.1
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "নামাজের ঘর",
+   "hyp": "নামাজের ঘর",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "অপেক্ষা কক্ষ",
+   "hyp": "অপেক্ষা কক্ষ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "অপেক্ষা কক্ষ",
+   "hyp": "অপেক্ষা কক্ষ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "অপেক্ষা কক্ষ",
+   "hyp": "অপেক্ষা কক্ষ",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Lift",
+   "hyp": "Lift",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Lift",
+   "hyp": "Lift",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Lift",
+   "hyp": "Lift",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Stairs",
+   "hyp": "Stairs",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Stairs",
+   "hyp": "Stairs",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Stairs",
+   "hyp": "Stairs",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Toilet",
+   "hyp": "Toilet",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Toilet",
+   "hyp": "Toilet",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Toilet",
+   "hyp": "Toilet ( #:18| c৫1",
+   "cer": 2.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "No Entry",
+   "hyp": "No Entry",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "No Entry",
+   "hyp": "No Entry",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "No Entry",
+   "hyp": "No Entry",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Open",
+   "hyp": "Open",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Open",
+   "hyp": "Open",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Open",
+   "hyp": "74][8;{{2 70 Open",
+   "cer": 3.25
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Closed",
+   "hyp": "Closed",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Closed",
+   "hyp": "Closed",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Closed",
+   "hyp": "Closed",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Milk",
+   "hyp": "Mlilk",
+   "cer": 0.25
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Milk",
+   "hyp": "Milk",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Milk",
+   "hyp": "Milk",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Rice 5 kg",
+   "hyp": "Rice 5 kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Rice 5 kg",
+   "hyp": "Rice 5 kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Rice 5 kg",
+   "hyp": "Rice 5 kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Fire Exit",
+   "hyp": "Fire Exit",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Fire Exit",
+   "hyp": "Fire Exit",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Fire Exit",
+   "hyp": "ক0o৮ M/8183 Fire Exit",
+   "cer": 1.3333333333333333
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Waiting Room",
+   "hyp": "Waiting Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Waiting Room",
+   "hyp": "Waiting Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Waiting Room",
+   "hyp": "Waiting Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Push",
+   "hyp": "Push",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Push",
+   "hyp": "Push",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Push",
+   "hyp": "$3( FRETAVEN ETaisy Push",
+   "cer": 5.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Pull",
+   "hyp": "Pull",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Pull",
+   "hyp": "Pull",
+   "cer": 0.0
+  },
+  {
+   "seed": 1,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Pull",
+   "hyp": "Pull",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সাবধান",
+   "hyp": "সাবধান",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সাবধান",
+   "hyp": "সাবধান",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সাবধান",
+   "hyp": "সাবধান",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "প্রবেশ নিষেধ",
+   "hyp": "প্রবেশ নিষেধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "প্রবেশ নিষেধ",
+   "hyp": "প্রবেশ নিষেধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "প্রবেশ নিষেধ",
+   "hyp": "প্রবেশ নিষেধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "শৌচাগার",
+   "hyp": "শৌচাগার",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "শৌচাগার",
+   "hyp": "শৌচাগার",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "শৌচাগার",
+   "hyp": "শৌচাগার",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "খোলা আছে",
+   "hyp": "খোলা আছে",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "খোলা আছে",
+   "hyp": "খোলা আছে",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "খোলা আছে",
+   "hyp": "খোলা আছে",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "পানি",
+   "hyp": "পানি",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "পানি",
+   "hyp": "পানি",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "পানি",
+   "hyp": "; পানি 4 ; ; =",
+   "cer": 2.5
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "দুধ",
+   "hyp": "দুধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "দুধ",
+   "hyp": "দুধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "দুধ",
+   "hyp": "দুধ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "চাল পাঁচ কেজি",
+   "hyp": "চাল পাঁচ কেজি",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "চাল পাঁচ কেজি",
+   "hyp": "চাল পাঁচ কেজি",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "চাল পাঁচ কেজি",
+   "hyp": "চাল পাঁচ কেজি",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "লিফট",
+   "hyp": "লিফট",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "লিফট",
+   "hyp": "লিফট",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "লিফট",
+   "hyp": "লিফট",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "সিঁড়ি",
+   "hyp": "সিঁড়ি",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "সিঁড়ি",
+   "hyp": "সিঁড়ি",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "সিঁড়ি",
+   "hyp": "সিঁড়ি",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "জরুরি নির্গমন",
+   "hyp": "জরুরি নির্গমন",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "জরুরি নির্গমন",
+   "hyp": "জরুরি নির্গমন",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "জরুরি নির্গমন",
+   "hyp": "জরুরি নির্গমন",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "নামাজের ঘর",
+   "hyp": "নামাজের ঘর",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "নামাজের ঘর",
+   "hyp": "নামাজের ঘর",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "নামাজের ঘর",
+   "hyp": "নামাজের ঘর",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "clean",
+   "gt": "অপেক্ষা কক্ষ",
+   "hyp": "অপেক্ষা কক্ষ",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "wild",
+   "gt": "অপেক্ষা কক্ষ",
+   "hyp": "অপেক্ষী কক্ষ",
+   "cer": 0.08333333333333333
+  },
+  {
+   "seed": 2,
+   "lang": "bn",
+   "cond": "scene",
+   "gt": "অপেক্ষা কক্ষ",
+   "hyp": "অপেক্ষী কক্ষ",
+   "cer": 0.08333333333333333
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Lift",
+   "hyp": "Lift",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Lift",
+   "hyp": "Lift",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Lift",
+   "hyp": "Lift 0  র sCLE00 4",
+   "cer": 3.25
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Stairs",
+   "hyp": "Stairs",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Stairs",
+   "hyp": "Stairs",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Stairs",
+   "hyp": "Stairs",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Toilet",
+   "hyp": "Toilet",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Toilet",
+   "hyp": "Toilet",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Toilet",
+   "hyp": "Toilet",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "No Entry",
+   "hyp": "No Entry",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "No Entry",
+   "hyp": "No Entry",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "No Entry",
+   "hyp": "No Entry",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Open",
+   "hyp": "Open",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Open",
+   "hyp": "Open",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Open",
+   "hyp": "3৫>) 43088\"98 Oper",
+   "cer": 3.75
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Closed",
+   "hyp": "Closed",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Closed",
+   "hyp": "Closed",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Closed",
+   "hyp": "Closed",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Milk",
+   "hyp": "Milk",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Milk",
+   "hyp": "Milk",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Milk",
+   "hyp": "4 ;; Milk",
+   "cer": 1.25
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Rice 5 kg",
+   "hyp": "Rice 5 kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Rice 5 kg",
+   "hyp": "Rice 5 kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Rice 5 kg",
+   "hyp": "Rice 5 kg",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Fire Exit",
+   "hyp": "Fire Exit",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Fire Exit",
+   "hyp": "Fire Exit",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Fire Exit",
+   "hyp": "Fire Exit",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Waiting Room",
+   "hyp": "Waiting Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Waiting Room",
+   "hyp": "Waiting Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Waiting Room",
+   "hyp": "Waiting Room",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Push",
+   "hyp": "Push",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Push",
+   "hyp": "Push",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Push",
+   "hyp": "Push 1]{{0&[?/0[86",
+   "cer": 3.5
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "clean",
+   "gt": "Pull",
+   "hyp": "Pull",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "wild",
+   "gt": "Pull",
+   "hyp": "Pull",
+   "cer": 0.0
+  },
+  {
+   "seed": 2,
+   "lang": "en",
+   "cond": "scene",
+   "gt": "Pull",
+   "hyp": "6[] Pulll [[",
+   "cer": 2.0
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+[
+ {
+  "val_cer": 0.41829302722467504,
+  "tag": "tesseract_frame_psm3",
+  "config": {
+   "engine": "tesseract",
+   "where": "frame",
+   "psm": 3
+  }
+ },
+ {
+  "val_cer": 0.8487935300565842,
+  "tag": "tesseract_frame_psm6",
+  "config": {
+   "engine": "tesseract",
+   "where": "frame",
+   "psm": 6
+  }
+ },
+ {
+  "val_cer": 1.0550001669713411,
+  "tag": "tesseract_frame_psm11",
+  "config": {
+   "engine": "tesseract",
+   "where": "frame",
+   "psm": 11
+  }
+ },
+ {
+  "val_cer": 0.26332819536588364,
+  "tag": "tesseract_block_psm6",
+  "config": {
+   "engine": "tesseract",
+   "where": "block",
+   "psm": 6
+  }
+ },
+ {
+  "val_cer": 0.23398843533167912,
+  "tag": "tesseract_block_psm7",
+  "config": {
+   "engine": "tesseract",
+   "where": "block",
+   "psm": 7
+  }
+ },
+ {
+  "val_cer": 0.7804728861607592,
+  "tag": "trocr_block_oracle_lang",
+  "config": {
+   "engine": "trocr",
+   "where": "block",
+   "lang": "oracle"
+  }
+ }
+]

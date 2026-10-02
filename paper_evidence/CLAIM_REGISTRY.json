@@ -5244,7 +5244,281 @@
    "metric": "raw_cer",
    "status": "VERIFIED",
    "script": "savior_glass/scripts/eval_ocr_offline.py --select 2560 640 480 320"
+  },
+  {
+   "claim_id": "C_OCR2_TEST_APP",
+   "claim": "OCR held-out test CER, app OCR mode as shipped",
+   "value": 0.09250164663767606,
+   "json_key": [
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\test_glass_app.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "test",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_TEST_FINAL",
+   "claim": "OCR held-out test CER, final pipeline v2 (now in the app)",
+   "value": 0.023999586560861073,
+   "json_key": [
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\test_final.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "test",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_TEST_FINAL_BN",
+   "claim": "OCR held-out test Bangla CER, final pipeline v2",
+   "value": 0.03247258143091476,
+   "json_key": [
+    "bn",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\test_final.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "test",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_TEST_APP_BN",
+   "claim": "OCR held-out test Bangla CER, app as shipped",
+   "value": 0.11930299638632971,
+   "json_key": [
+    "bn",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\test_glass_app.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "test",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_TEST_FINAL_SCENE",
+   "claim": "OCR held-out test CER on photo scenes, final pipeline v2",
+   "value": 0.022155355197634605,
+   "json_key": [
+    "by_cond",
+    "scene",
+    "all",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\test_final.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "test",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_TEST_APP_SCENE",
+   "claim": "OCR held-out test CER on photo scenes, app as shipped",
+   "value": 0.1071614727864728,
+   "json_key": [
+    "by_cond",
+    "scene",
+    "all",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\test_glass_app.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "test",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_TEST_TESS",
+   "claim": "OCR held-out test CER, Tesseract 5 on the text block (best other engine)",
+   "value": 0.16582192191201695,
+   "json_key": [
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\test_t3_tesseract_block_psm7.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "test",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_VAL_FINAL",
+   "claim": "OCR validation CER, final pipeline v2 (selection set)",
+   "value": 0.022922000288306408,
+   "json_key": [
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\val_t5_rules.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "val",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_CPU_V2_MS",
+   "claim": "OCR v2 median latency, laptop CPU quantised path (not Pi)",
+   "value": 1850.9820000035688,
+   "json_key": [
+    "v2_final",
+    "median_ms"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\cpu_latency.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "cpu",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "ms",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_VAL_FT_S42",
+   "claim": "OCR validation CER, final pipeline with fine-tuned recognizer seed 42 (not adopted)",
+   "value": 0.025144575717492384,
+   "json_key": [
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\val_t7_ft_seed42.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "val",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_TEST_FT_S42",
+   "claim": "OCR test CER, final pipeline with fine-tuned recognizer seed 42 (read once, not used to decide)",
+   "value": 0.017868008217272923,
+   "json_key": [
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\test_final_ft_seed42.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "test",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_VAL_FT_S43",
+   "claim": "OCR validation CER, final pipeline with fine-tuned recognizer seed 43 (not adopted)",
+   "value": 0.027239032186948856,
+   "json_key": [
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\val_t7_ft_seed43.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "val",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_TEST_FT_S43",
+   "claim": "OCR test CER, final pipeline with fine-tuned recognizer seed 43 (read once, not used to decide)",
+   "value": 0.01809228239988044,
+   "json_key": [
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\test_final_ft_seed43.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "test",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_VAL_FT_S44",
+   "claim": "OCR validation CER, final pipeline with fine-tuned recognizer seed 44 (not adopted)",
+   "value": 0.025770043356848914,
+   "json_key": [
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\val_t7_ft_seed44.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "val",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
+  },
+  {
+   "claim_id": "C_OCR2_TEST_FT_S44",
+   "claim": "OCR test CER, final pipeline with fine-tuned recognizer seed 44 (read once, not used to decide)",
+   "value": 0.02059445751234967,
+   "json_key": [
+    "overall",
+    "cer"
+   ],
+   "source_artifact": "savior_glass\\results\\ocr_bench\\test_final_ft_seed44.json",
+   "dataset": "OCR benchmark (HarfBuzz-shaped Bangla + English; clean / distorted / COCO scene; seeds 0-2)",
+   "split": "test",
+   "sample_definition": "rendered phrase image",
+   "training_seed": "n/a",
+   "evaluation_seed": "0,1,2",
+   "metric": "cer",
+   "status": "VERIFIED",
+   "script": "savior_glass/ocr_bench/run_test.py"
   }
  ],
- "updated_utc": "2026-10-01T13:46:28+00:00"
+ "updated_utc": "2026-10-02T13:27:29+00:00"
 }

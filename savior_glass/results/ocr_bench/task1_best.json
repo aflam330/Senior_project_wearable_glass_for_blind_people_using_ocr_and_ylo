@@ -1,0 +1,92 @@
+{
+ "best": {
+  "val_cer": 0.034476029258504744,
+  "tag": "region_craft_c0.1_1pass",
+  "config": {
+   "kind": "region",
+   "detector": "craft",
+   "min_conf": 0.1,
+   "second_pass": false
+  }
+ },
+ "all": [
+  {
+   "val_cer": 0.06315940145699132,
+   "tag": "conf0.1",
+   "config": {
+    "kind": "full",
+    "sort": true,
+    "min_conf": 0.1
+   }
+  },
+  {
+   "val_cer": 0.05229825144142954,
+   "tag": "conf0.3",
+   "config": {
+    "kind": "full",
+    "sort": true,
+    "min_conf": 0.3
+   }
+  },
+  {
+   "val_cer": 0.13385801339334835,
+   "tag": "conf0.5",
+   "config": {
+    "kind": "full",
+    "sort": true,
+    "min_conf": 0.5
+   }
+  },
+  {
+   "val_cer": 0.034476029258504744,
+   "tag": "region_craft_c0.1_1pass",
+   "config": {
+    "kind": "region",
+    "detector": "craft",
+    "min_conf": 0.1,
+    "second_pass": false
+   }
+  },
+  {
+   "val_cer": 0.04680877546695251,
+   "tag": "region_craft_c0.1_2pass",
+   "config": {
+    "kind": "region",
+    "detector": "craft",
+    "min_conf": 0.1,
+    "second_pass": true
+   }
+  },
+  {
+   "val_cer": 0.04333435654003464,
+   "tag": "region_craft_c0.3_1pass",
+   "config": {
+    "kind": "region",
+    "detector": "craft",
+    "min_conf": 0.3,
+    "second_pass": false
+   }
+  },
+  {
+   "val_cer": 0.05019688795832586,
+   "tag": "region_craft_c0.3_2pass",
+   "config": {
+    "kind": "region",
+    "detector": "craft",
+    "min_conf": 0.3,
+    "second_pass": true
+   }
+  },
+  {
+   "val_cer": 0.15096752568872668,
+   "tag": "sorted_lines",
+   "config": {
+    "kind": "full",
+    "sort": true
+   }
+  }
+ ],
+ "not_run": {
+  "dbnet18": "EasyOCR DBNet18 needs its deformable-conv C++ extension compiled; no C++ compiler on this laptop"
+ }
+}
