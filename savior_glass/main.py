@@ -68,7 +68,11 @@ class SmartGlass:
         self._running.set()
 
         # Shared resources
-        self._tts    = utils.TTSEngine(volume=config.DEFAULT_VOLUME)
+        if sys.platform == "win32":   # laptop testing: no espeak-ng on Windows (see windows_tts.py)
+            from windows_tts import WindowsTTS
+            self._tts = WindowsTTS(volume=config.DEFAULT_VOLUME)
+        else:
+            self._tts = utils.TTSEngine(volume=config.DEFAULT_VOLUME)
         self._camera = utils.CameraManager()
 
         # Modes — OCR loads lazily; YOLO loads on first activate
@@ -91,6 +95,8 @@ class SmartGlass:
         # Model loading runs off the button thread. A mode's event is set once its models are loaded
         # and warmed up; ACTION waits for it instead of racing a half-loaded model.
         self._ready = [threading.Event() for _ in self._modes]
+        # Every model call (button action, object scan, live test panel) holds this, so two threads never share a model
+        self._model_lock = threading.Lock()
         self._prep_locks = [threading.Lock() for _ in self._modes]
 
         # Detection thread
@@ -264,7 +270,8 @@ class SmartGlass:
                     waited = (time.perf_counter() - t_wait) * 1000
                 mode = self._modes[mode_idx]
                 t0 = time.perf_counter()
-                result = mode.process_frame(frame)
+                with self._model_lock:
+                    result = mode.process_frame(frame)
                 infer_ms = (time.perf_counter() - t0) * 1000
                 if result:
                     self._tts.speak(result)
@@ -333,7 +340,8 @@ class SmartGlass:
                 if frame is not None:
                     try:
                         t0 = time.perf_counter()
-                        result = self._modes[config.MODE_OBJECT].process_frame(frame)
+                        with self._model_lock:
+                            result = self._modes[config.MODE_OBJECT].process_frame(frame)
                         if result:
                             self._tts.speak(result)
                             _flog("object_announce", config.MODE_OBJECT, latency_ms=(time.perf_counter() - t0) * 1000,

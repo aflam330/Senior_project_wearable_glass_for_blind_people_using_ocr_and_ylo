@@ -1,0 +1,104 @@
+{
+ "at": 1791044919.7952464,
+ "frame": [
+  1280,
+  720
+ ],
+ "detector": {
+  "ms": 13.7,
+  "boxes": [
+   {
+    "name": "500_taka",
+    "conf": 0.8801236152648926,
+    "box": [
+     29,
+     55,
+     802,
+     391
+    ]
+   }
+  ],
+  "announce_conf": 0.6
+ },
+ "safe": {
+  "ms": 29.1,
+  "p_genuine": 0.03747853636741638,
+  "tau": 0.9995918869972229,
+  "verdict": "check by hand"
+ },
+ "guide": {
+  "ms": 1.5,
+  "status": "ok",
+  "mean": 200.70586206896553,
+  "lap_var": 3963.512001320353,
+  "min_mean": 73.87,
+  "min_lapvar": 106.75
+ },
+ "watermark": {
+  "ms": 27.1,
+  "p_genuine": 0.6976051330566406,
+  "path": "learned localizer",
+  "quad": [
+   [
+    288,
+    175
+   ],
+   [
+    560,
+    170
+   ],
+   [
+    585,
+    326
+   ],
+   [
+    312,
+    326
+   ]
+  ],
+  "threshold": 0.5
+ },
+ "objects": {
+  "ms": 18.8,
+  "boxes": [
+   {
+    "name": "person",
+    "conf": 0.9063188433647156,
+    "box": [
+     901,
+     381,
+     1198,
+     676
+    ]
+   },
+   {
+    "name": "person",
+    "conf": 0.6485486030578613,
+    "box": [
+     172,
+     130,
+     341,
+     338
+    ]
+   }
+  ]
+ },
+ "emotion": {
+  "ms": 243.4,
+  "face": [
+   886,
+   278,
+   311,
+   412
+  ],
+  "label": "neutral",
+  "prob": 0.7368841171264648,
+  "backend": "rgb_mobilenet_blend"
+ },
+ "ocr": {
+  "loaded": false,
+  "pipeline": "v2",
+  "last_text": null
+ },
+ "first_pass_seconds_including_model_loading": 4.2
+}

@@ -6,6 +6,7 @@ and object / note boxes. Keyboard keys mirror the GPIO buttons so a test can
 run without the button board:
 
   M = Mode   A or Space = Action   R = Read   + / - = Volume   Q or Esc = Quit
+  D = live algorithm panel (live_diag.py): every model runs on the current picture and reports its output and time
 
 Enabled when a desktop is available (DISPLAY or WAYLAND_DISPLAY is set);
 SHOW_PREVIEW=0 turns it off, SHOW_PREVIEW=1 forces it on. The blind user's
@@ -26,6 +27,7 @@ logger = logging.getLogger("smart_glass.preview")
 
 WINDOW = "Smart Glass - test preview"
 PANEL_W = 420
+DIAG_W = 470
 MODE_EN = {config.MODE_OCR: "TEXT (OCR)", config.MODE_OBJECT: "OBJECTS",
            config.MODE_CURRENCY: "CURRENCY", config.MODE_CLAUDE: "ONLINE",
            getattr(config, "MODE_EMOTION", 4): "EMOTION"}
@@ -61,6 +63,10 @@ class Preview:
         self._presses = collections.deque(maxlen=5)     # (time, name, source)
         self._f_big, self._f, self._f_small = _font(26), _font(19), _font(15)
         self._open = False
+        from live_diag import LiveDiagnostics
+        self._diag = LiveDiagnostics(app)
+        if os.environ.get("SHOW_ALGORITHMS", "0").strip() in ("1", "true", "on", "yes"):
+            self._diag.enabled = True
 
         # Record everything the glass says
         speak = app._tts.speak
@@ -90,7 +96,7 @@ class Preview:
         """Draw one frame and handle keys. Returns False when the user quits."""
         if not self._open:
             cv2.namedWindow(WINDOW, cv2.WINDOW_NORMAL)
-            cv2.resizeWindow(WINDOW, 640 + PANEL_W, 480)
+            cv2.resizeWindow(WINDOW, max(640, config.CAMERA_WIDTH) + PANEL_W, min(max(480, config.CAMERA_HEIGHT), 900))
             self._open = True
 
         app = self._app
@@ -100,8 +106,16 @@ class Preview:
         if frame is None:
             frame = np.zeros((480, 640, 3), np.uint8)
         else:
-            frame = cv2.resize(frame, (640, 480))
-        self._draw_boxes(frame, mode_idx)
+            frame = frame.copy()
+        if self._diag.enabled:
+            self._draw_diag(frame)
+        else:
+            self._draw_boxes(frame, mode_idx)   # boxes are in camera coordinates, so draw before any scaling
+        # show the picture at its real size (so a sharper capture looks sharper), between 480 and 900 px high
+        h, w = frame.shape[:2]
+        dh = min(max(h, 480), 900)
+        if dh != h:
+            frame = cv2.resize(frame, (int(w * dh / h), dh), interpolation=cv2.INTER_AREA if dh < h else cv2.INTER_LINEAR)
 
         panel = Image.new("RGB", (PANEL_W, 480), (28, 30, 36))
         d = ImageDraw.Draw(panel)
@@ -138,10 +152,16 @@ class Preview:
                 y += 28 if i == 0 else 21
             y += 4
 
-        d.text((14, 452), "Keys: M mode  A action  R read  +/- vol  Q quit",
+        d.text((14, 452), "Keys: M mode  A action  R read  D algorithms  Q quit",
                font=self._f_small, fill=(130, 130, 140))
 
-        canvas = np.hstack([frame, cv2.cvtColor(np.asarray(panel), cv2.COLOR_RGB2BGR)])
+        side = cv2.cvtColor(np.asarray(panel), cv2.COLOR_RGB2BGR)
+        if side.shape[0] < frame.shape[0]:   # pad the 480-px panel down to the picture height
+            side = cv2.copyMakeBorder(side, 0, frame.shape[0] - side.shape[0], 0, 0, cv2.BORDER_CONSTANT, value=(36, 30, 28))
+        cols = [frame, side]
+        if self._diag.enabled:
+            cols.append(self._diag_panel(frame.shape[0]))
+        canvas = np.hstack(cols)
         cv2.imshow(WINDOW, canvas)
 
         key = cv2.waitKey(30) & 0xFF
@@ -155,6 +175,10 @@ class Preview:
             self._press("_on_vol_up")
         elif key in (ord("-"), ord("_")):
             self._press("_on_vol_down")
+        elif key in (ord("d"), ord("D")):
+            on = self._diag.toggle()
+            cv2.resizeWindow(WINDOW, max(640, config.CAMERA_WIDTH) + PANEL_W + (DIAG_W if on else 0),
+                             min(max(480, config.CAMERA_HEIGHT), 900))
         elif key in (ord("q"), ord("Q"), 27):
             return False
         try:
@@ -193,6 +217,114 @@ class Preview:
                 cv2.rectangle(frame, (x, y), (x + w, y + hh), (255, 120, 255), 2)
                 cv2.putText(frame, f"{last.get('label', '')} {last.get('prob') or 0:.2f}", (x + 3, max(14, y - 5)),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 120, 255), 2)
+
+    # ---- live algorithm panel (live_diag.py) ----
+    def _draw_diag(self, frame) -> None:
+        st = self._diag.state or {}
+        for b in (st.get("objects") or {}).get("boxes") or []:
+            x1, y1, x2, y2 = b["box"]
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 200, 0), 1)
+            cv2.putText(frame, f"{b['name']} {b['conf']:.2f}", (x1 + 3, y2 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 200, 0), 1)
+        for i, b in enumerate((st.get("detector") or {}).get("boxes") or []):
+            x1, y1, x2, y2 = b["box"]
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 170, 255), 3 if i == 0 else 1)
+            cv2.putText(frame, f"NOTE {b['name']} {b['conf']:.2f}", (x1 + 3, max(16, y1 - 6)), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 170, 255), 2)
+        quad = (st.get("watermark") or {}).get("quad")
+        if quad:
+            cv2.polylines(frame, [np.int32(quad)], True, (255, 255, 0), 2)
+            cv2.putText(frame, "watermark window", (quad[0][0], max(14, quad[0][1] - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
+        face = (st.get("emotion") or {}).get("face")
+        if face:
+            x, y, w, h = (int(v) for v in face)
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 120, 255), 2)
+            cv2.putText(frame, f"{st['emotion'].get('label', '')} {st['emotion'].get('prob') or 0:.2f}", (x + 3, max(14, y - 5)),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 120, 255), 2)
+
+    def _diag_panel(self, height: int):
+        st = self._diag.state or {}
+        img = Image.new("RGB", (DIAG_W, height), (20, 24, 30))
+        d = ImageDraw.Draw(img)
+        OK, WARN, DIM, HEAD = (110, 230, 120), (255, 200, 60), (150, 150, 160), (120, 220, 255)
+        y = 10
+        d.text((12, y), "ALGORITHMS - live on this picture", font=self._f, fill=HEAD)
+        y += 28
+        age = time.time() - st.get("at", 0) if st.get("at") else None
+        size = "x".join(str(v) for v in st.get("frame", [])) or "-"
+        d.text((12, y), f"camera {size}   updated {age:.1f}s ago" if age is not None else "starting...", font=self._f_small, fill=DIM)
+        y += 24
+
+        def block(title, lines):
+            nonlocal y
+            if y > height - 40:
+                return
+            d.text((12, y), title, font=self._f_small, fill=HEAD)
+            y += 20
+            for text, col in lines:
+                for line in self._wrap(text, self._f_small, DIAG_W - 34):
+                    if y > height - 22:
+                        return
+                    d.text((24, y), line, font=self._f_small, fill=col)
+                    y += 19
+            y += 7
+
+        if st.get("error"):
+            block("ERROR", [(st["error"], WARN)])
+        det = st.get("detector") or {}
+        if det.get("missing"):
+            block("1. Note detector (YOLOv8s)", [("model not loaded", WARN)])
+        elif det:
+            bx = det.get("boxes") or []
+            lines = [(f"ran in {det['ms']} ms", DIM)]
+            lines += [(f"{b['name']}  confidence {b['conf']:.2f}" + ("" if b["conf"] >= det["announce_conf"] else f"  (< {det['announce_conf']:.2f}: not announced)"),
+                       OK if b["conf"] >= det["announce_conf"] else WARN) for b in bx] or [("no note in the picture", DIM)]
+            block("1. Note detector (YOLOv8s)", lines)
+        sf = st.get("safe") or {}
+        if sf.get("skipped"):
+            block("2. Safe counterfeit check (PRMVT)", [(sf["skipped"], DIM)])
+        elif sf:
+            p = sf.get("p_genuine")
+            block("2. Safe counterfeit check (PRMVT)", [
+                (f"ran in {sf['ms']} ms", DIM),
+                (f"p(genuine) = {p:.4f}   threshold {sf['tau']:.4f}" if p is not None else "no score", (230, 230, 230)),
+                (f"says: {sf.get('verdict')}", OK if sf.get("verdict") == "likely genuine" else WARN),
+                ("never says 'counterfeit'", DIM)])
+        gd = st.get("guide") or {}
+        if gd.get("skipped"):
+            block("3. Capture guide (brightness, sharpness)", [(gd["skipped"], DIM)])
+        elif gd:
+            block("3. Capture guide (brightness, sharpness)", [
+                (f"brightness {gd['mean']:.0f}  (needs {gd['min_mean']:.0f})", OK if (gd['mean'] or 0) >= gd['min_mean'] else WARN),
+                (f"sharpness {gd['lap_var']:.0f}  (needs {gd['min_lapvar']:.0f})", OK if (gd['lap_var'] or 0) >= gd['min_lapvar'] else WARN),
+                (f"frame: {gd['status']}", OK if gd["status"] == "ok" else WARN)])
+        wm = st.get("watermark") or {}
+        if wm.get("skipped"):
+            block("4. Watermark (localizer + MobileNetV2)", [(wm["skipped"], DIM)])
+        elif wm:
+            p = wm.get("p_genuine")
+            block("4. Watermark (localizer + MobileNetV2)", [
+                (f"ran in {wm['ms']} ms   window: {wm.get('path') or 'not found'}", DIM),
+                (f"p(watermark clear) = {p:.3f}   threshold {wm['threshold']:.2f}" if p is not None else "window not found: hold the note straight", (230, 230, 230)),
+                (("says: watermark clear" if p > wm["threshold"] else "says: not clear, check by hand") if p is not None else "", OK if p is not None and p > wm["threshold"] else WARN),
+                ("only meaningful with the note held against a light", DIM)])
+        ob = st.get("objects") or {}
+        if ob.get("missing"):
+            block("5. Objects (YOLOv8, COCO)", [("model not loaded", WARN)])
+        elif ob:
+            names = ", ".join(f"{b['name']} {b['conf']:.2f}" for b in ob.get("boxes") or []) or "nothing above the confidence threshold"
+            block("5. Objects (YOLOv8, COCO)", [(f"ran in {ob['ms']} ms", DIM), (names, OK if ob.get("boxes") else DIM)])
+        em = st.get("emotion") or {}
+        if em.get("missing"):
+            block("6. Emotion", [("model not loaded", WARN)])
+        elif em:
+            block("6. Emotion (face + expression)", [
+                (f"ran in {em['ms']} ms   {em.get('backend', '')}", DIM),
+                (f"{em.get('label')}  {em.get('prob') or 0:.2f}" if em.get("face") else "no face in the picture", OK if em.get("face") else DIM)])
+        oc = st.get("ocr") or {}
+        if oc:
+            block("7. Text reading (EasyOCR, pipeline " + str(oc.get("pipeline")) + ")", [
+                ("loaded; runs on ACTION in TEXT mode (takes seconds)" if oc.get("loaded") else "not loaded yet", DIM),
+                (f"last text: {oc['last_text']}" if oc.get("last_text") else "no text captured yet", (230, 230, 230) if oc.get("last_text") else DIM)])
+        return cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
 
     @staticmethod
     def _wrap(text, font, width):

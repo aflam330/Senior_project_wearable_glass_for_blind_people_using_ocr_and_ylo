@@ -40,6 +40,7 @@ class WatermarkChecker:
         opts.log_severity_level = 3  # INT8 graph prints harmless "unused initializer" warnings otherwise
         self.session = ort.InferenceSession(path, sess_options=opts, providers=["CPUExecutionProvider"])
         self.min_inliers = min_inliers
+        self.last_corners = None
         self.sift = cv2.SIFT_create(nfeatures=4000)
         self.matcher = cv2.BFMatcher(cv2.NORM_L2)
         # learned localizer (scripts/train/train_watermark_localizer.py): no template, no SIFT; used when present
@@ -85,8 +86,10 @@ class WatermarkChecker:
         x = ((x - _MEAN) / _STD).transpose(2, 0, 1)[None].astype(np.float32)
         c = self.localizer.run(None, {"image": x})[0].reshape(4, 2) * np.float32([col.shape[1], col.shape[0]])
         area = cv2.contourArea(c.astype(np.float32)) / (col.shape[0] * col.shape[1])
+        self.last_corners = None
         if not cv2.isContourConvex(c.astype(np.float32)) or not 0.005 < area < 0.5:
             return None  # implausible window: ask the user to hold the note straight
+        self.last_corners = c * (note_bgr.shape[1] / 700.0)   # window corners in the note crop's own pixels
         M = cv2.getPerspectiveTransform(c.astype(np.float32), np.float32([[0, 0], [224, 0], [224, 224], [0, 224]]))
         return cv2.warpPerspective(col, M, (224, 224))
 
@@ -100,6 +103,16 @@ class WatermarkChecker:
         lo = self.session.run(None, {"image": x.astype(np.float32)})[0][0]
         e = np.exp(lo - lo.max())
         return float(e[1] / e.sum())
+
+    def inspect(self, note_bgr: np.ndarray, denom: str) -> dict:
+        """genuine_prob plus where the window was found (for the test preview): prob, corners (note-crop pixels, learned
+        localizer only), and which path produced the window."""
+        self.last_corners = None
+        learned = self._window_learned(note_bgr) if self.localizer is not None else None
+        corners = self.last_corners
+        prob = self.genuine_prob(note_bgr, denom)
+        path = None if prob is None else ("learned localizer" if learned is not None else "SIFT registration")
+        return {"prob": prob, "corners": corners if learned is not None else None, "path": path}
 
     def sentence(self, p: Optional[float]) -> str:
         if p is None:

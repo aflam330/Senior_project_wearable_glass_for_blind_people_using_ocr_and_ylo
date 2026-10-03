@@ -37,8 +37,10 @@ BUTTON_DEBOUNCE_MS = 250
 # after it. Both can be set from the environment. Check what the Pi sees with: python scripts/check_camera.py
 CAMERA_BACKEND = os.environ.get("CAMERA_BACKEND", "auto")
 CAMERA_INDEX  = int(os.environ.get("CAMERA_INDEX", "0"))
-CAMERA_WIDTH  = 640
-CAMERA_HEIGHT = 480
+# Capture size. 640 x 480 is what the Pi was benchmarked at. A larger size gives text and notes more pixels
+# (try CAMERA_WIDTH=1280 CAMERA_HEIGHT=720 on a webcam, 1640 x 1232 on the Pi Camera v2) at the cost of speed.
+CAMERA_WIDTH  = int(os.environ.get("CAMERA_WIDTH", "640"))
+CAMERA_HEIGHT = int(os.environ.get("CAMERA_HEIGHT", "480"))
 CAMERA_FPS    = 30
 FRAME_BUFFER_SIZE = 2  # deque maxlen — keep only the freshest frames
 
