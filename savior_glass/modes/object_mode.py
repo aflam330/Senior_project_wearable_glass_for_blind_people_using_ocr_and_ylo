@@ -76,12 +76,17 @@ class ObjectMode(BaseMode):
 
         # Collect detections sorted by confidence desc
         detections: list[tuple[str, float]] = []
+        sx, sy = frame.shape[1] / 320, frame.shape[0] / 240
+        boxes = []
         for r in results:
             for box in r.boxes:
                 cls_id = int(box.cls[0])
                 conf   = float(box.conf[0])
                 name   = self._model.names.get(cls_id, "unknown")
                 detections.append((name, conf))
+                x1, y1, x2, y2 = (float(v) for v in box.xyxy[0])
+                boxes.append((int(x1 * sx), int(y1 * sy), int(x2 * sx), int(y2 * sy), name, conf))
+        self.last_boxes = boxes  # drawn by the preview window (preview.py)
 
         detections.sort(key=lambda x: x[1], reverse=True)
 

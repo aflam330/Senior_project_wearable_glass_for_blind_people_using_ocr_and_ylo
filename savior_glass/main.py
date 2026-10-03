@@ -145,13 +145,30 @@ class SmartGlass:
                     config.MODE_NAMES_BN[self._current_mode])
 
     def run(self) -> None:
-        """Block until SIGINT / SIGTERM."""
+        """Block until SIGINT / SIGTERM (or Q in the test preview window)."""
+        import preview
+        view = None
+        if preview.enabled():
+            try:
+                view = preview.Preview(self)
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("Preview window unavailable: %s", exc)
         self.start()
         try:
             while self._running.is_set():
-                time.sleep(0.2)
+                if view is None:
+                    time.sleep(0.2)
+                    continue
+                try:
+                    if not view.tick():
+                        break
+                except Exception as exc:  # noqa: BLE001
+                    logger.warning("Preview window failed, continuing without it: %s", exc)
+                    view = None
         except KeyboardInterrupt:
             pass
+        if view is not None:
+            view.close()
         self.shutdown()
 
     def shutdown(self) -> None:
