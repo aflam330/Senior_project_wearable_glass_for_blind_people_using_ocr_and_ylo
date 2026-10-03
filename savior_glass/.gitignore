@@ -21,6 +21,8 @@ env/
 models/*.pt
 # 0.45 MB handwritten-letter fallback (writer-disjoint test 90.0 %, results/ekush_letters.json); tracked so the Pi gets it with git pull
 !models/ekush_cnn.pt
+# 82 MB RAF-DB emotion classifier (EfficientNetV2-S, 86.5 % on the RAF-DB test set); without it the Pi falls back to the weak FER+ model
+!models/emotion_faces.pt
 models/*.onnx
 models/piper/*.onnx
 models/piper/*.json

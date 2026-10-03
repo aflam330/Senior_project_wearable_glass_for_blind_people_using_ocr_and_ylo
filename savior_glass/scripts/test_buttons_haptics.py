@@ -96,13 +96,14 @@ def main() -> None:
                     and gpio.events[p][2] == config.BUTTON_DEBOUNCE_MS for p in pins),
         "pins": pins, "debounce_ms": config.BUTTON_DEBOUNCE_MS}
 
-    # mode cycling: OCR -> Object -> Currency -> Claude -> OCR, each announced
+    # mode cycling: OCR -> Object -> Currency -> Claude -> Emotion -> OCR (every mode), each announced
+    n_modes = len(config.MODE_NAMES_BN)
     seen = []
-    for _ in range(4):
+    for _ in range(n_modes):
         time.sleep(0.3)  # past the 250 ms debounce
         gpio.press(config.BUTTON_MODE)
         seen.append((app._current_mode, tts.spoken[-1][1]))
-    chk["mode_cycle"] = {"pass": [m for m, _ in seen] == [1, 2, 3, 0]
+    chk["mode_cycle"] = {"pass": [m for m, _ in seen] == list(range(1, n_modes)) + [0]
                          and all(s == config.MODE_NAMES_BN[m] for m, s in seen), "sequence": seen}
 
     # debounce: a second press 50 ms later is ignored
@@ -111,8 +112,8 @@ def main() -> None:
     gpio.press(config.BUTTON_MODE)
     time.sleep(0.05)
     gpio.press(config.BUTTON_MODE)
-    chk["debounce"] = {"pass": app._current_mode == (before + 1) % 4, "mode_changes_from_two_presses_50ms_apart":
-                       (app._current_mode - before) % 4}
+    chk["debounce"] = {"pass": app._current_mode == (before + 1) % n_modes, "mode_changes_from_two_presses_50ms_apart":
+                       (app._current_mode - before) % n_modes}
 
     # volume: steps of 10, clamped to 0..100
     vols = []

@@ -49,6 +49,7 @@ MODE_OCR      = 0
 MODE_OBJECT   = 1
 MODE_CURRENCY = 2
 MODE_CLAUDE   = 3   # Online Claude vision (internet + API key required)
+MODE_EMOTION  = 4   # Facial expression of the nearest face (modes/emotion_mode.py)
 
 # Bangla mode announcements spoken on switch
 MODE_NAMES_BN = [
@@ -56,6 +57,7 @@ MODE_NAMES_BN = [
     "অবজেক্ট ডিটেকশন মোড",     # Object Detection Mode
     "কারেন্সি ডিটেকশন মোড",    # Currency Detection Mode
     "অনলাইন ক্লড মোড",         # Online Claude (Windows: C key)
+    "ইমোশন ডিটেকশন মোড",       # Emotion Detection Mode
 ]
 
 # ---------------------------------------------------------------------------

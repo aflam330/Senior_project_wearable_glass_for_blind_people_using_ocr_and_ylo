@@ -90,7 +90,7 @@
   <tr><td>Safe counterfeit check</td><td>For 500 / 1,000 Taka, four views are cut from the note and scored by the PRMVT network. It says "সম্ভবত আসল" (likely genuine) only above a validation-fixed threshold, otherwise "হাতে যাচাই করুন" (check by hand). It never says "counterfeit".</td><td><span class="tag done">working</span></td></tr>
   <tr><td>Watermark check with guided capture</td><td>After the denomination is spoken, the glass asks the user to hold the note up to a light. It rejects dark or blurry frames with a spoken reason. A learned localizer finds the watermark window, and a 2.6 MB INT8 MobileNetV2 scores it.</td><td><span class="tag done">on (Pi)</span></td></tr>
   <tr><td>Online vision mode</td><td>Claude vision describes a scene when internet and an API key are available.</td><td><span class="tag part">needs API key</span></td></tr>
-  <tr><td>Emotion-adaptive feedback</td><td>Facial-expression model (RAF-DB) can adapt feedback.</td><td><span class="tag done">working</span></td></tr>
+  <tr><td>Emotion mode</td><td>Press Action: the glass says the expression of the nearest face. RAF-DB EfficientNetV2-S classifier with a YuNet face detector. Before 3 Oct it existed only in the Windows test program, not in the glass app.</td><td><span class="tag part">added 3 Oct; not tested on the Pi</span></td></tr>
   <tr><td>Speech output</td><td>Piper TTS for English (faster), espeak-ng for Bangla; queued, interruptible, volume buttons.</td><td><span class="tag done">working</span></td></tr>
   <tr><td>Buttons and haptics</td><td>Mode, Action, Read, Volume up / down on GPIO; vibration patterns for detection and verdict.</td><td><span class="tag done">tested (simulated GPIO)</span></td></tr>
   <tr><td>Fast mode switching</td><td>Mode name spoken at once; models load and warm up in the background; currency preloaded at start.</td><td><span class="tag done">working</span></td></tr>
@@ -271,6 +271,7 @@
   <tr><td>OCR Tasks 1–7 and pipeline v2 in the app</td><td><span class="tag done">done</span></td><td>On a synthetic benchmark</td></tr>
   <tr><td>Raspberry Pi 5 benchmark and 30-minute thermal run</td><td><span class="tag done">done</span></td><td>OCR v2 and mode-switch speed not yet re-measured on the Pi</td></tr>
   <tr><td>Papers (workshop, D&amp;B, journal drafts), theorems, figures, claim registry</td><td><span class="tag done">done</span></td><td>Author names and affiliation still missing</td></tr>
+  <tr><td>First real-time test on the Pi (3 Oct)</td><td><span class="tag open">problems found</span></td><td>Currency recognition was unreliable and Bangla text was not read. Cause not yet established; <code>scripts/diagnose_glass.py</code> compares the 640 × 480 feed with a high-resolution capture. Lab numbers in section 6 do not describe the glass camera.</td></tr>
   <tr><td>Whole-note counterfeit photos from the glass camera, grouped by physical note</td><td><span class="tag open">not done</span></td><td>Needed to trust a whole-note counterfeit verdict</td></tr>
   <tr><td>Print-disjoint counterfeit dataset (~100 unseen prints) with a bank or police partner</td><td><span class="tag open">not done</span></td><td>Tools ready; data collection needed</td></tr>
   <tr><td>Second currency (INR or USD)</td><td><span class="tag open">not done</span></td><td>Breaks the earlier "Taka only" rule; your decision</td></tr>

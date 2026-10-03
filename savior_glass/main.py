@@ -26,12 +26,12 @@ warnings.filterwarnings("ignore", message=".*pin_memory.*", category=UserWarning
 import config
 import utils
 from button_handler import ButtonHandler
-from modes import ClaudeMode, CurrencyMode, ObjectMode, OCRMode
+from modes import ClaudeMode, CurrencyMode, EmotionMode, ObjectMode, OCRMode
 
 logger = logging.getLogger("smart_glass.main")
 
 MODE_KEYS = {config.MODE_OCR: "ocr", config.MODE_OBJECT: "object", config.MODE_CURRENCY: "currency",
-             config.MODE_CLAUDE: "claude"}
+             config.MODE_CLAUDE: "claude", config.MODE_EMOTION: "emotion"}
 
 
 def _flog(event, mode_idx=None, **fields):
@@ -54,6 +54,10 @@ def _result_fields(mode, mode_idx):
         return {"denomination": "none"}
     if mode_idx == config.MODE_OCR:
         return {"lang": getattr(mode, "_stored_lang", ""), "ocr_text": getattr(mode, "_stored_text", "") or ""}
+    if mode_idx == config.MODE_EMOTION:
+        last = getattr(mode, "last", None) or {}
+        return {"verdict": last.get("label", ""), "confidence": last.get("prob"), "face_found": last.get("face") is not None,
+                "backend": last.get("backend", "")}
     return {}
 
 
@@ -68,7 +72,7 @@ class SmartGlass:
         self._camera = utils.CameraManager()
 
         # Modes — OCR loads lazily; YOLO loads on first activate
-        self._modes = [OCRMode(), ObjectMode(), CurrencyMode(), ClaudeMode()]
+        self._modes = [OCRMode(), ObjectMode(), CurrencyMode(), ClaudeMode(), EmotionMode()]
         self._current_mode: int = config.MODE_OCR
         self._mode_lock = threading.Lock()
 

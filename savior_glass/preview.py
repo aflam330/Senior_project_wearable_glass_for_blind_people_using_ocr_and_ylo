@@ -27,7 +27,8 @@ logger = logging.getLogger("smart_glass.preview")
 WINDOW = "Smart Glass - test preview"
 PANEL_W = 420
 MODE_EN = {config.MODE_OCR: "TEXT (OCR)", config.MODE_OBJECT: "OBJECTS",
-           config.MODE_CURRENCY: "CURRENCY", config.MODE_CLAUDE: "ONLINE"}
+           config.MODE_CURRENCY: "CURRENCY", config.MODE_CLAUDE: "ONLINE",
+           getattr(config, "MODE_EMOTION", 4): "EMOTION"}
 _FONT_PATH = os.path.join(config.BASE_DIR, "ocr_bench", "fonts", "NotoSansBengali.ttf")
 
 
@@ -184,6 +185,14 @@ class Preview:
                 label = f"{h.get('name', '')} {h.get('conf') or 0:.2f} {h.get('auth', '')}"
                 cv2.putText(frame, label, (x + 3, max(14, y - 5)),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 200, 255), 2)
+
+        elif mode_idx == getattr(config, "MODE_EMOTION", -1):
+            last = getattr(mode, "last", None) or {}
+            if last.get("face"):
+                x, y, w, hh = (int(v) for v in last["face"])
+                cv2.rectangle(frame, (x, y), (x + w, y + hh), (255, 120, 255), 2)
+                cv2.putText(frame, f"{last.get('label', '')} {last.get('prob') or 0:.2f}", (x + 3, max(14, y - 5)),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 120, 255), 2)
 
     @staticmethod
     def _wrap(text, font, width):
