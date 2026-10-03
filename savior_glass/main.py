@@ -119,7 +119,13 @@ class SmartGlass:
             vol_up_cb   = self._on_vol_up,
             vol_down_cb = self._on_vol_down,
         )
-        self._buttons.setup()
+        try:
+            self._buttons.setup()
+        except RuntimeError as exc:
+            logger.critical("%s", exc)
+            self._camera.stop()
+            self._buttons.cleanup()
+            sys.exit(1)
 
         # Activate initial mode (OCR)
         self._prepare(self._current_mode)

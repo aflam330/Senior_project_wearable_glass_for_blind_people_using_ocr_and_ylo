@@ -97,13 +97,19 @@ class ButtonHandler:
             config.BUTTON_VOL_DOWN,
         ]
         for pin in pins:
-            GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-            GPIO.add_event_detect(
-                pin,
-                GPIO.FALLING,
-                callback=self._dispatch,
-                bouncetime=config.BUTTON_DEBOUNCE_MS,
-            )
+            try:
+                GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+                GPIO.add_event_detect(
+                    pin,
+                    GPIO.FALLING,
+                    callback=self._dispatch,
+                    bouncetime=config.BUTTON_DEBOUNCE_MS,
+                )
+            except Exception as exc:  # noqa: BLE001  (lgpio.error 'GPIO busy' when another process holds the pin)
+                raise RuntimeError(
+                    f"Button pin GPIO {pin} is busy ({exc}). Another copy of the glass app is probably still running. "
+                    "Stop it with:  pkill -f main.py   then start again."
+                ) from exc
 
         logger.info("GPIO buttons initialised on pins %s", pins)
 

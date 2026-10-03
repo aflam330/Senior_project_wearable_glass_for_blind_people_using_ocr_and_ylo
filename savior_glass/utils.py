@@ -381,6 +381,12 @@ class CameraManager:
             except Exception as exc:  # noqa: BLE001  (not installed, no ribbon camera, or a library mismatch)
                 errors.append(f"picamera2: {exc}")
                 self._picam = None
+                if self._ribbon_camera_present():
+                    # the camera exists but could not be started: almost always another process has it open
+                    raise RuntimeError(
+                        f"The Pi Camera is present but could not be started ({exc}). Another program is probably using it. "
+                        "Stop it with:  pkill -f main.py ; pkill -f rpicam   then start again."
+                    ) from exc
         if self._picam is None and backend in ("auto", "opencv"):
             for idx in self._candidate_indices():
                 cap = self._open_cv(idx)
@@ -411,14 +417,33 @@ class CameraManager:
         cam.start()
         self._picam = cam
 
+    @staticmethod
+    def _ribbon_camera_present() -> bool:
+        try:
+            from picamera2 import Picamera2
+            return bool(Picamera2.global_camera_info())
+        except Exception:  # noqa: BLE001
+            return False
+
+    @staticmethod
+    def _is_real_capture_node(idx: int) -> bool:
+        """False for the Pi's internal image-pipeline nodes (pispbe, rp1-cfe, codecs): they open but are not cameras."""
+        try:
+            with open(f"/sys/class/video4linux/video{idx}/name", encoding="utf-8") as f:
+                name = f.read().strip().lower()
+        except OSError:
+            return True   # not Linux, or no sysfs entry: let OpenCV decide
+        return not any(k in name for k in ("pisp", "rp1-cfe", "bcm2835-codec", "bcm2835-isp", "hevc", "rpivid"))
+
     def _candidate_indices(self) -> list:
-        first = [self._index]
+        first = [self._index] if self._is_real_capture_node(self._index) else []
         try:
             import glob
             nodes = sorted(int(p.rsplit("video", 1)[1]) for p in glob.glob("/dev/video*") if p.rsplit("video", 1)[1].isdigit())
         except Exception:  # noqa: BLE001
             nodes = []
-        return first + [i for i in (nodes or list(range(1, 4))) if i != self._index][:12]
+        rest = [i for i in (nodes or list(range(1, 4))) if i != self._index and self._is_real_capture_node(i)]
+        return first + rest[:8]
 
     def _open_cv(self, idx: int):
         """An opened capture that has already delivered a frame, or None."""
