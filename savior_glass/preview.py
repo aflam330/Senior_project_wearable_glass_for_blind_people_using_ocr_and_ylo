@@ -147,9 +147,14 @@ class Preview:
             for line in self._wrap(self._study.status, self._f_small, PANEL_W - 30)[:2]:
                 d.text((14, y), line, font=self._f_small, fill=(255, 90, 90) if listening else (255, 200, 60))
                 y += 19
+            if listening:                      # live microphone level: the bar must move when the participant speaks
+                d.rectangle((14, y + 2, 14 + PANEL_W - 40, y + 14), outline=(120, 120, 130))
+                d.rectangle((14, y + 2, 14 + int((PANEL_W - 40) * self._study.level), y + 14), fill=(90, 220, 110))
+                y += 20
             if self._study.last_heard:
-                d.text((14, y), ("heard: " + self._study.last_heard)[:48], font=self._f_small, fill=(200, 200, 200))
-                y += 19
+                for line in self._wrap("heard: " + self._study.last_heard, self._f_small, PANEL_W - 30)[:2]:
+                    d.text((14, y), line, font=self._f_small, fill=(200, 200, 200))
+                    y += 19
         y += 4
 
         d.text((14, y), "Last presses:", font=self._f_small, fill=(160, 160, 170))

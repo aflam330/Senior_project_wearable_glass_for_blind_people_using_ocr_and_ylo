@@ -48,8 +48,8 @@ QUESTIONS = [
     ("trust", "চশমার উত্তরের উপর কি আপনি ভরসা করতে পারেন?"),                   # Can you trust its answers?
     ("would_use_daily", "আপনি কি প্রতিদিন এই চশমা ব্যবহার করতে চাইবেন?"),        # Would you use it every day?
 ]
-YES = ("হ্যাঁ", "হ্যা", "হাঁ", "হা", "জি", "জ্বি", "জী", "ঠিক", "অবশ্যই", "yes", "yeah", "ha", "ji")
-NO = ("না", "নাহ", "নয়", "নাই", "no", "nope", "na")
+YES = ("হ্যাঁ", "হ্যা", "হাঁ", "হা", "হ্যাঁা", "হ্যান", "হুম", "হু", "জি", "জ্বি", "জী", "ঠিক", "অবশ্যই", "আচ্ছা", "yes", "yeah", "yah", "ha", "han", "ji")
+NO = ("না", "নাহ", "নয়", "নাই", "নো", "no", "nope", "na", "nah")
 
 
 def parse_yes_no(text: str):
@@ -71,6 +71,11 @@ class VoiceStudy:
         self.status = "study: not started"
         self.last_heard = ""
         self.key_answer = None          # set by the preview when the experimenter presses Y or N
+        self.level = 0.0                # live microphone level while listening (0..1), drawn by the preview
+        self.spoke = False              # whether the last recording contained speech above the room noise
+        self.rate = RATE
+        self.mic_name = ""
+        self._mic_cfg = None
         self._busy = threading.Lock()
         self._start = None
         os.makedirs(ROOT, exist_ok=True)
@@ -112,31 +117,92 @@ class VoiceStudy:
         except Exception:  # noqa: BLE001  (not Windows: no beep)
             time.sleep(0.1)
 
-    def _record(self, seconds: float, path: str) -> np.ndarray:
+    def _mic(self):
+        """(device index, sample rate, channels). STUDY_MIC=<part of the name> picks a microphone (e.g. a headset).
+        On Windows the WASAPI entry of the microphone is used at its own sample rate: the default (MME) entry at
+        16 kHz cut speech off on the test laptop."""
         import sounddevice as sd
+        if self._mic_cfg is not None:
+            return self._mic_cfg
+        devs, apis = sd.query_devices(), sd.query_hostapis()
+        want = os.environ.get("STUDY_MIC", "").strip().lower()
+        default = sd.query_devices(kind="input")
+        key = want or default["name"][:16].lower()
+        pick = None
+        for i, d in enumerate(devs):
+            if d["max_input_channels"] > 0 and "WASAPI" in apis[d["hostapi"]]["name"] and key in d["name"].lower():
+                pick = (i, int(d["default_samplerate"]), min(2, d["max_input_channels"]))
+                break
+        if pick is None and want:
+            for i, d in enumerate(devs):
+                if d["max_input_channels"] > 0 and want in d["name"].lower():
+                    pick = (i, int(d["default_samplerate"]), min(2, d["max_input_channels"]))
+                    break
+        if pick is None:
+            pick = (None, int(default["default_samplerate"]), min(2, default["max_input_channels"]))
+        self._mic_cfg = pick
+        self.mic_name = devs[pick[0]]["name"] if pick[0] is not None else default["name"]
+        logger.info("study microphone: %s, %d Hz", self.mic_name, pick[1])
+        return pick
+
+    def _record(self, max_seconds: float, path: str) -> np.ndarray:
+        """Listen until the person has spoken and stopped (or max_seconds). Returns mono float audio at self.rate,
+        trimmed to the speech and level-normalised; the untrimmed recording is saved to `path`."""
+        import sounddevice as sd
+        dev, rate, ch = self._mic()
+        self.rate = rate
+        block = rate // 20                      # 50 ms
+        chunks, levels = [], []
+        started, quiet_blocks = False, 0
         self._beep()
-        audio = sd.rec(int(seconds * RATE), samplerate=RATE, channels=1, dtype="int16")
-        t_end = time.time() + seconds
-        while time.time() < t_end and self.key_answer is None:
-            time.sleep(0.05)
-        if self.key_answer is not None:
-            sd.stop()
-        else:
-            sd.wait()
+        with sd.InputStream(device=dev, samplerate=rate, channels=ch, dtype="float32", blocksize=block) as stream:
+            noise = None
+            t_end = time.time() + max_seconds
+            while time.time() < t_end and self.key_answer is None:
+                data, _ = stream.read(block)
+                x = data.mean(axis=1)
+                chunks.append(x)
+                lvl = float(np.abs(x).mean())
+                levels.append(lvl)
+                self.level = min(1.0, lvl * 12)   # shown as a bar in the preview
+                if len(levels) == 6:              # first 0.3 s: the room's own noise
+                    noise = max(float(np.median(levels)), 1e-4)
+                if noise is None:
+                    continue
+                loud = lvl > max(noise * 3.5, 0.012)
+                if loud:
+                    started, quiet_blocks = True, 0
+                elif started:
+                    quiet_blocks += 1
+                    if quiet_blocks >= 18:        # 0.9 s of quiet after speech: the answer is finished
+                        break
+        self.level = 0.0
+        audio = np.concatenate(chunks) if chunks else np.zeros(1, np.float32)
         with wave.open(path, "wb") as w:
             w.setnchannels(1)
             w.setsampwidth(2)
-            w.setframerate(RATE)
-            w.writeframes(audio.tobytes())
-        return audio
+            w.setframerate(rate)
+            w.writeframes((np.clip(audio, -1, 1) * 32767).astype(np.int16).tobytes())
+        self.spoke = started
+        if started and noise is not None:      # keep the speech with a little margin, then bring it to a normal level
+            lv = np.array(levels)
+            idx = np.where(lv > max(noise * 3.5, 0.012))[0]
+            a, b = max(0, (idx[0] - 6) * block), min(len(audio), (idx[-1] + 8) * block)
+            audio = audio[a:b]
+        audio = audio - audio.mean()
+        return audio / max(float(np.percentile(np.abs(audio), 99.9)), 1e-6) * 0.8
 
-    def _transcribe(self, audio: np.ndarray) -> str:
+    def _transcribe(self, audio: np.ndarray) -> list:
+        """Every guess Google returns (best first), so a yes / no hidden in a lower-ranked guess is still found."""
         try:
             import speech_recognition as sr
-            return sr.Recognizer().recognize_google(sr.AudioData(audio.tobytes(), RATE, 2), language="bn-BD")
-        except Exception as exc:  # noqa: BLE001  (nothing understood, or no internet)
+            data = sr.AudioData((np.clip(audio, -1, 1) * 32767).astype(np.int16).tobytes(), self.rate, 2)
+            res = sr.Recognizer().recognize_google(data, language="bn-BD", show_all=True)
+            alts = [a.get("transcript", "") for a in (res.get("alternative") if isinstance(res, dict) else []) or []]
+            return [t for t in alts if t]
+        except Exception as exc:  # noqa: BLE001  (no internet, or the service refused)
             logger.info("speech not recognised: %s", type(exc).__name__)
-            return ""
+            return []
 
     # ---- steps ----
     def _next_id(self) -> str:
@@ -152,12 +218,17 @@ class VoiceStudy:
         self.pid = self._next_id()
         folder = os.path.join(ROOT, self.pid)
         os.makedirs(folder, exist_ok=True)
-        self.status = f"{self.pid}: asking the name"
-        self._say("আপনার নাম বলুন।")                                   # please say your name
-        self.status = f"{self.pid}: LISTENING for the name"
-        audio = self._record(4.0, os.path.join(folder, "name.wav"))
-        self.name = self._transcribe(audio)
-        self.last_heard = self.name
+        self.name = ""
+        for attempt in (1, 2):
+            self.status = f"{self.pid}: asking the name"
+            self._say("আপনার নাম বলুন।" if attempt == 1 else "শুনতে পাইনি। একটু জোরে আপনার নাম বলুন।")   # please say your name / louder please
+            self.status = f"{self.pid}: LISTENING for the name - speak now"
+            audio = self._record(7.0, os.path.join(folder, "name.wav" if attempt == 1 else "name_retry.wav"))
+            guesses = self._transcribe(audio) if self.spoke else []
+            self.name = guesses[0] if guesses else ""
+            self.last_heard = self.name or ("(no speech heard)" if not self.spoke else "(speech not understood)")
+            if self.name:
+                break
         self._start = dt.datetime.now()
         self.status = f"{self.pid} {self.name or '(name not recognised; saved as audio)'}: using the glass. Press D when done"
         digits = " ".join(str(int(c)) for c in self.pid[1:])
@@ -166,7 +237,7 @@ class VoiceStudy:
 
     def _ask_questions(self) -> None:
         folder = os.path.join(ROOT, self.pid)
-        answers, heard = {}, {}
+        answers, heard, sources = {}, {}, {}
         self._say("কয়েকটি ছোট প্রশ্ন। হ্যাঁ অথবা না বলুন।")                    # a few short questions; say yes or no
         for i, (key, question) in enumerate(QUESTIONS, 1):
             ans = None
@@ -174,25 +245,28 @@ class VoiceStudy:
                 self.key_answer = None
                 self.status = f"{self.pid}: question {i} of {len(QUESTIONS)} (asking)"
                 self._say(question if attempt == 1 else "বুঝতে পারিনি। হ্যাঁ অথবা না বলুন। " + question)
-                self.status = f"{self.pid}: question {i} of {len(QUESTIONS)} LISTENING (or press Y / N)"
-                audio = self._record(3.5, os.path.join(folder, f"q{i}_{key}{'' if attempt == 1 else '_retry'}.wav"))
+                self.status = f"{self.pid}: question {i} of {len(QUESTIONS)} LISTENING - say হ্যাঁ or না (or press Y / N)"
+                audio = self._record(6.0, os.path.join(folder, f"q{i}_{key}{'' if attempt == 1 else '_retry'}.wav"))
                 if self.key_answer is not None:
-                    ans, text = self.key_answer, f"(key {self.key_answer})"
+                    ans, text, source = self.key_answer, f"(key {self.key_answer})", "key"
                 else:
-                    text = self._transcribe(audio)
-                    ans = parse_yes_no(text)
+                    guesses = self._transcribe(audio) if self.spoke else []
+                    ans = next((a for a in (parse_yes_no(g) for g in guesses) if a), None)
+                    text = " | ".join(guesses[:3]) if guesses else ("(no speech heard)" if not self.spoke else "(speech not understood)")
+                    source = "voice"
                 heard[key] = text
-                self.last_heard = f"{text or '(nothing recognised)'} -> {ans or 'unclear'}"
+                sources[key] = source if ans else "none"
+                self.last_heard = f"{text} -> {ans or 'unclear'}"
                 if ans:
                     break
             answers[key] = ans or "unclear"
         self.key_answer = None
-        self._save(folder, answers, heard, done=True)
+        self._save(folder, answers, heard, done=True, sources=sources)
         self.status = f"{self.pid} saved. Press N for the next participant"
         self._say("ধন্যবাদ। আপনার উত্তর সংরক্ষণ করা হয়েছে।")                    # thank you; your answers are saved
         self.pid, self.name = None, ""
 
-    def _save(self, folder: str, answers: dict, heard: dict | None = None, done: bool = False) -> None:
+    def _save(self, folder: str, answers: dict, heard: dict | None = None, done: bool = False, sources: dict | None = None) -> None:
         end = dt.datetime.now()
         run_dir = ""
         try:
@@ -203,20 +277,21 @@ class VoiceStudy:
         rec = {"id": self.pid, "name": self.name, "start": self._start.isoformat(timespec="seconds") if self._start else "",
                "end": end.isoformat(timespec="seconds") if done else "", "complete": done,
                "minutes": round((end - self._start).total_seconds() / 60, 1) if (done and self._start) else "",
-               "answers": answers, "heard": heard or {}, "field_run": run_dir,
+               "answers": answers, "heard": heard or {}, "answered_by": sources or {}, "microphone": self.mic_name, "field_run": run_dir,
                "questions": {k: q for k, q in QUESTIONS}}
         with open(os.path.join(folder, "answers.json"), "w", encoding="utf-8") as f:
             json.dump(rec, f, ensure_ascii=False, indent=1)
         if not done:
             return
         path = os.path.join(ROOT, "responses.csv")
-        cols = ["id", "name", "start", "end", "minutes"] + [k for k, _ in QUESTIONS] + ["field_run"]
+        cols = ["id", "name", "start", "end", "minutes"] + [k for k, _ in QUESTIONS] + ["answered_by_voice", "field_run"]
         new = not os.path.exists(path)
         with open(path, "a", newline="", encoding="utf-8-sig") as f:
             w = csv.writer(f)
             if new:
                 w.writerow(cols)
-            w.writerow([rec["id"], rec["name"], rec["start"], rec["end"], rec["minutes"]] + [answers.get(k, "") for k, _ in QUESTIONS] + [run_dir])
+            w.writerow([rec["id"], rec["name"], rec["start"], rec["end"], rec["minutes"]] + [answers.get(k, "") for k, _ in QUESTIONS]
+                       + [sum(v == "voice" for v in (sources or {}).values()), run_dir])
         try:
             import main
             main._flog("study_answers", result=json.dumps(answers, ensure_ascii=False), participant=self.pid)
