@@ -90,3 +90,27 @@ All methods were applied to the same saved validation readings of the Task 4 pip
 | + rules (final) | 2.4 % | 3.2 % | 1.6 % | 7.9 % | 2.4 % | 2.6 % | 2.2 % | 3.3 / 1.4 / 2.4 |
 
 On test the rules change 42 of 432 readings, but almost all of these are Unicode normalisation, which the metric already applies. The few real edits cost the same number of characters ("টাক| জম দিন" → "টাক জম দিন"). So test CER is unchanged; the spoken text is cleaner.
+
+<!-- ocr-followup-2026-10-03 -->
+## KenLM language model (2026-10-03)
+
+**Correction to the section above.** It says KenLM does not build here. It now does.
+
+- **Compiler:** a portable MinGW-w64 g++ 16.2 (winlibs) unpacks without administrator rights.
+- **Build:** KenLM's Python module was compiled with it for Python 3.10: Cython on `python/kenlm.pyx`, then g++ over 40 source files, linked to `python310.dll`. `libwinpthread-1.dll` sits next to the module.
+- **Trainer:** KenLM's own trainer (`lmplz`) needs Boost, which is not here. `savior_glass/ocr_bench/kenlm_lm.py` writes the ARPA file itself.
+- **Model:** a 5-gram character model with absolute discounting and backoff, trained on the words of the general 50k Bangla and English frequency lists. No benchmark phrase is used.
+
+**Method.** For a word that is not in the vocabulary, the SymSpell candidates one edit away are re-ranked by the character model (log10 probability per character, queried with KenLM). The word is replaced only when the best candidate beats it by a margin.
+
+### Validation, on the saved Task 4 readings (3 seeds)
+
+| Method | CER | Bangla CER | English CER | WER | Readings changed |
+|---|---:|---:|---:|---:|---:|
+| rules | 2.3 % | 1.9 % | 2.7 % | 5.1 % | 0 of 432 |
+| rules+kenlm_margin0.1 | 2.7 % | 2.7 % | 2.6 % | 5.7 % | 25 of 432 |
+| rules+kenlm_margin0.25 | 2.7 % | 2.7 % | 2.6 % | 5.7 % | 25 of 432 |
+| rules+kenlm_margin0.5 | 2.7 % | 2.7 % | 2.6 % | 6.0 % | 20 of 432 |
+| rules+kenlm_margin1.0 | 2.7 % | 2.7 % | 2.8 % | 6.7 % | 12 of 432 |
+
+**Not kept.** Every margin is worse than the rules alone. The character model prefers common spellings, so it changes correct but less common Bangla words. This is the same failure as the plain dictionary. Nothing was read on test.

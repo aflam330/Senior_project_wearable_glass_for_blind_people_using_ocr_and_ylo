@@ -62,3 +62,9 @@ savior_glass/logs/field/
 
 # Research evidence database: merged inbox files are already in experiments.json
 research_results/inbox/merged/
+
+# OCR detector weights (EAST, OpenCV DB, YOLO text; about 260 MB; download commands in paper_evidence/OCR_TEXT_REGION.md)
+savior_glass/ocr_bench/detectors/
+
+# Generated character language model (rebuild with: py -3.10 savior_glass/ocr_bench/kenlm_lm.py build)
+savior_glass/ocr_bench/lexicon/char5.arpa

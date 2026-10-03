@@ -1,8 +1,15 @@
 """
-Online Claude vision mode.
+Online vision mode (the "Claude" mode of the glass).
 
-Sends the current camera frame to the Anthropic Messages API and returns a
-short Bangla/English assistive description (text, objects, Taka notes).
+Sends the current camera frame to an online vision model and returns a short
+Bangla/English assistive description (text, objects, Taka notes).
+
+Providers: Anthropic Messages API (ANTHROPIC_API_KEY, the default) or OpenAI Chat
+Completions (OPENAI_API_KEY). With both keys set, ONLINE_PROVIDER=openai|anthropic
+chooses; otherwise the provider whose key is present is used.
+The OpenAI path was added on 2026-10-03 and has NOT been verified end to end: the
+test account had no credits (HTTP 429 insufficient_quota). Measure it with
+scripts/eval_online_mode.py once the account has credit.
 
 This is the online path. Offline text reading stays in ocr_mode.py (EasyOCR)
 and is not used here.
@@ -27,6 +34,7 @@ from .base_mode import BaseMode
 logger = logging.getLogger("smart_glass.claude_mode")
 
 _API_URL = "https://api.anthropic.com/v1/messages"
+_OPENAI_URL = "https://api.openai.com/v1/chat/completions"
 _ANTHROPIC_VERSION = "2023-06-01"
 _PROMPT = (
     "You are Savior Glass, a camera aid for a visually impaired user in Bangladesh. "
@@ -80,7 +88,7 @@ class ClaudeMode(BaseMode):
         if frame is None:
             return "ক্যামেরা প্রস্তুত নয়"
 
-        key = self._api_key()
+        provider, key = self._provider()
         if not key:
             return (
                 "অনলাইন ক্লড কী নেই। ANTHROPIC_API_KEY সেট করুন "
@@ -92,12 +100,14 @@ class ClaudeMode(BaseMode):
             return "ছবি পাঠানো যায়নি"
 
         try:
-            text = self._call_claude(key, jpeg)
+            text = self.describe(jpeg, provider=provider, key=key)
         except urllib.error.HTTPError as exc:
             body = exc.read().decode("utf-8", errors="replace")[:300]
-            logger.error("Claude HTTP %s: %s", exc.code, body)
+            logger.error("Online vision HTTP %s (%s): %s", exc.code, provider, body)
             if exc.code in (401, 403):
                 return "ক্লড এপিআই কী ভুল অথবা অনুমতি নেই।"
+            if exc.code == 429 and ("quota" in body or "credit" in body):
+                return "অনলাইন অ্যাকাউন্টে ক্রেডিট নেই।"  # the online account has no credit left
             return "ক্লড এপিআই ব্যর্থ হয়েছে। ইন্টারনেট ও কী চেক করুন।"
         except urllib.error.URLError as exc:
             logger.error("Claude network error: %s", exc)
@@ -119,12 +129,49 @@ class ClaudeMode(BaseMode):
         return self._stored_text
 
     def _api_key(self) -> str:
+        return self._provider()[1]
+
+    def _provider(self) -> tuple:
+        """(provider, key). Anthropic unless only an OpenAI key exists or ONLINE_PROVIDER says otherwise."""
         _load_dotenv()
-        return (
-            os.environ.get("ANTHROPIC_API_KEY", "").strip()
-            or getattr(config, "ANTHROPIC_API_KEY", "")
-            or ""
-        ).strip()
+        ant = (os.environ.get("ANTHROPIC_API_KEY", "").strip() or getattr(config, "ANTHROPIC_API_KEY", "") or "").strip()
+        oai = os.environ.get("OPENAI_API_KEY", "").strip()
+        want = os.environ.get("ONLINE_PROVIDER", "").strip().lower()
+        if want == "openai" and oai:
+            return "openai", oai
+        if want == "anthropic" and ant:
+            return "anthropic", ant
+        if ant:
+            return "anthropic", ant
+        if oai:
+            return "openai", oai
+        return "anthropic", ""
+
+    def describe(self, jpeg_b64: str, prompt: Optional[str] = None, provider: Optional[str] = None, key: Optional[str] = None) -> str:
+        """One online call. `prompt` defaults to the assistive prompt; scripts pass a task prompt (e.g. read the text only)."""
+        if provider is None or key is None:
+            provider, key = self._provider()
+        if provider == "openai":
+            return self._call_openai(key, jpeg_b64, prompt or _PROMPT)
+        return self._call_claude(key, jpeg_b64, prompt or _PROMPT)
+
+    def _call_openai(self, api_key: str, jpeg_b64: str, prompt: str) -> str:
+        payload = {
+            "model": os.environ.get("OPENAI_MODEL", getattr(config, "OPENAI_MODEL", "gpt-5.4-mini")),
+            "max_completion_tokens": int(getattr(config, "CLAUDE_MAX_TOKENS", 600)),
+            "messages": [{"role": "user", "content": [
+                {"type": "text", "text": prompt},
+                {"type": "image_url", "image_url": {"url": "data:image/jpeg;base64," + jpeg_b64}},
+            ]}],
+        }
+        request = urllib.request.Request(
+            _OPENAI_URL, data=json.dumps(payload).encode("utf-8"), method="POST",
+            headers={"Content-Type": "application/json", "Authorization": "Bearer " + api_key},
+        )
+        with urllib.request.urlopen(request, timeout=60, context=ssl.create_default_context()) as response:
+            data = json.loads(response.read().decode("utf-8"))
+        choices = data.get("choices") or []
+        return ((choices[0].get("message") or {}).get("content") or "").strip() if choices else ""
 
     def _encode_jpeg(self, frame: np.ndarray) -> Optional[str]:
         h, w = frame.shape[:2]
@@ -141,7 +188,7 @@ class ClaudeMode(BaseMode):
             return None
         return base64.b64encode(buf.tobytes()).decode("ascii")
 
-    def _call_claude(self, api_key: str, jpeg_b64: str) -> str:
+    def _call_claude(self, api_key: str, jpeg_b64: str, prompt: str = _PROMPT) -> str:
         payload = {
             "model": getattr(config, "CLAUDE_MODEL", "claude-sonnet-4-5"),
             "max_tokens": int(getattr(config, "CLAUDE_MAX_TOKENS", 600)),
@@ -157,7 +204,7 @@ class ClaudeMode(BaseMode):
                                 "data": jpeg_b64,
                             },
                         },
-                        {"type": "text", "text": _PROMPT},
+                        {"type": "text", "text": prompt},
                     ],
                 }
             ],

@@ -117,6 +117,30 @@ Mean ± sd over the stored runs; sd appears only where two or more runs exist.
 | final_ft_seed44 | 0.8 % | 0.6 % | 0.6 % | 1.0 % | 0.9 % | 0.6 % | 0.9 % | 96.8 % | 2.1 % |
 | glass_app | 7.6 % | 5.7 % | 5.6 % | 9.5 % | 10.1 % | 1.0 % | 7.1 % | 91.7 % | 7.9 % |
 
+**Dataset:** OCR benchmark (HarfBuzz-shaped Bangla + English) · **Split:** test · **Hardware:** DESKTOP-EA33S9L
+
+| Variant | cer | cer_bangla | cer_clean | cer_english | cer_scene | cer_wild | exact_match | wer | latency_ms_median |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| det_db_td500 | 2.7 % | 3.5 % | 3.6 % | 1.8 % | 3.4 % | 1.0 % | 82.6 % | 10.2 % | 317.5 |
+
+**Dataset:** OCR benchmark (HarfBuzz-shaped Bangla + English) · **Split:** val · **Hardware:** DESKTOP-EA33S9L
+
+| Variant | cer | cer_bangla | cer_clean | cer_english | cer_scene | cer_wild | exact_match | wer | latency_ms_median |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| det_db_ic15 | 4.9 % | 6.0 % | 4.5 % | 3.9 % | 7.7 % | 2.5 % | 82.4 % | 11.2 % | 333.2 |
+| det_db_td500 | 3.4 % | 3.3 % | 3.7 % | 3.4 % | 5.7 % | 0.7 % | 88.7 % | 7.8 % | 328.4 |
+| det_east | 18.3 % | 16.7 % | 13.3 % | 19.8 % | 35.7 % | 5.8 % | 44.4 % | 51.6 % | 538.2 |
+| det_yolo | 50.6 % | 50.6 % | 42.2 % | 50.6 % | 63.8 % | 46.0 % | 12.0 % | 107.9 % | 258.6 |
+
+**Dataset:** OCR benchmark (HarfBuzz-shaped Bangla + English) · **Split:** validation (48 phrases; every choice made here) · **Hardware:** DESKTOP-EA33S9L
+
+| Variant | cer | cer_bangla | cer_english | exact_match | wer |
+|---|---:|---:|---:|---:|---:|
+| rules+kenlm_margin0.1 | 2.7 % | 2.7 % | 2.6 % | 92.4 % | 5.7 % |
+| rules+kenlm_margin0.25 | 2.7 % | 2.7 % | 2.6 % | 92.4 % | 5.7 % |
+| rules+kenlm_margin0.5 | 2.7 % | 2.7 % | 2.6 % | 91.7 % | 6.0 % |
+| rules+kenlm_margin1.0 | 2.7 % | 2.7 % | 2.8 % | 90.7 % | 6.7 % |
+
 **Dataset:** OCR benchmark (HarfBuzz-shaped Bangla + English) · **Split:** validation (48 phrases; every choice made here) · **Hardware:** laptop (DESKTOP-EA33S9L)
 
 | Variant | cer | cer_bangla | cer_clean | cer_english | cer_scene | cer_seed_sd | cer_wild | exact_match | wer |

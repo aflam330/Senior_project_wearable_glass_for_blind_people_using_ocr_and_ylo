@@ -37,7 +37,7 @@
 <div class="cover">
   <h1>Savior Glass</h1>
   <div class="sub"><b>An assistive smart glass for blind and low-vision users in Bangladesh, with Bangladeshi Taka recognition and counterfeit (jaal) research</b></div>
-  <div class="small">Project report · 2 October 2026 · Repository branch <code>RPi5_deploy</code> (latest commit f24c93b8) · Every number below comes from a result file in the repository (claim registry: 298 claims, all pass the value check)</div>
+  <div class="small">Project report · 3 October 2026 (updated) · Repository branch <code>RPi5_deploy</code> (latest commit f24c93b8) · Every number below comes from a result file in the repository (claim registry: 298 claims, all pass the value check)</div>
 </div>
 
 <h2>1. Summary</h2>
@@ -280,8 +280,8 @@
   <tr><td>Bangla Piper voice on the Pi</td><td><span class="tag part">blocked</span></td><td>The ARM Piper build cannot phonemise the Bangla voice; falls back to espeak-ng</td></tr>
   <tr><td>Speech speed (135 vs 175 words per minute)</td><td><span class="tag part">your decision</span></td><td>Can be tried with <code>ESPEAK_SPEED=175</code></td></tr>
   <tr><td>OCR on real glass photos; fine-tuning with real data</td><td><span class="tag open">not done</span></td><td>Current OCR numbers are synthetic</td></tr>
-  <tr><td>KenLM, DBNet, EAST, YOLO text detector</td><td><span class="tag part">not run</span></td><td>No C++ compiler / no public weights on this laptop</td></tr>
-  <tr><td>Online vision mode measured</td><td><span class="tag part">not measured</span></td><td>Needs an API key</td></tr>
+  <tr><td>KenLM, DBNet (OpenCV), EAST, YOLO text detector</td><td><span class="tag done">done</span></td><td>All run on 3 Oct. None beats the current detector or the cleanup rules, so nothing changed in the app</td></tr>
+  <tr><td>Online vision mode measured</td><td><span class="tag part">blocked</span></td><td>OpenAI support added and an evaluation script is ready; the supplied account has no credits (HTTP 429), so no number exists</td></tr>
   <tr><td>Live-camera note accuracy on the glass</td><td><span class="tag open">not done</span></td><td>Needs glass photos</td></tr>
   <tr><td>Revoke the Pi's GitHub deploy key</td><td><span class="tag part">your action</span></td><td>GitHub → Settings → Deploy keys</td></tr>
 </table>

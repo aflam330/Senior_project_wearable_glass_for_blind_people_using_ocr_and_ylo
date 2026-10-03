@@ -2,7 +2,7 @@
  "schema_version": "1.0",
  "description": "Research evidence database. Source of truth; CSV files are generated from it.",
  "created": "2026-10-03T11:47:47+06:00",
- "updated": "2026-10-03T11:47:52+06:00",
+ "updated": "2026-10-03T12:27:43+06:00",
  "experiments": [
   {
    "experiment_id": "EXP_0001",
@@ -13470,6 +13470,703 @@
    ],
    "recorded_at": "2026-10-03T11:47:52+06:00",
    "record_key": "964f6f364e9d177bd42a"
+  },
+  {
+   "experiment_id": "EXP_0195",
+   "experiment_name": "OCR det_east on val",
+   "task": "ocr",
+   "mode": "ocr",
+   "status": "partially_verified",
+   "verification": {
+    "method": "recorded automatically by the evaluation script; not yet reviewed"
+   },
+   "metrics": {
+    "cer": 0.18264958400343986,
+    "wer": 0.5162037037037037,
+    "exact_match": 0.4444444444444444,
+    "cer_bangla": 0.16739444284521013,
+    "cer_english": 0.19790472516166957,
+    "cer_clean": 0.13263989667562237,
+    "cer_scene": 0.3571455373980949,
+    "cer_wild": 0.058163317936602246
+   },
+   "comparison_group": {
+    "id": "OCR_BENCHMARK",
+    "name": "OCR pipelines on the shaped Bangla + English benchmark",
+    "purpose": ""
+   },
+   "comparison": {
+    "variant": "det_east"
+   },
+   "dataset": {
+    "name": "OCR benchmark (HarfBuzz-shaped Bangla + English)",
+    "split": "val",
+    "samples": 432,
+    "real_or_synthetic": "synthetic text on clean / distorted pages and real COCO photos"
+   },
+   "configuration": {
+    "method": "final pipeline with east detector"
+   },
+   "runs": {
+    "count": 3,
+    "metric": "cer per image seed",
+    "values": [
+     0.18322549579596148,
+     0.19138337409330589,
+     0.1733398821210522
+    ]
+   },
+   "evidence": [
+    {
+     "type": "evaluation_output",
+     "file": "savior_glass/results/ocr_bench/val_det_east.json",
+     "selector": "overall, bn, en, by_cond",
+     "sha256": "9bafa8312751d279c50768417d2d002f6858bdd7c9b8f9c903612866e1ab7981"
+    }
+   ],
+   "performance": {
+    "latency_ms_median": 538.2468500001778
+   },
+   "timestamp": "2026-10-03T12:13:17+06:00",
+   "software_environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.7",
+    "framework_versions": {
+     "torch": "2.14.0+cu126",
+     "torchvision": "0.29.0+cu126",
+     "easyocr": "1.7.2",
+     "cv2": "5.0.0",
+     "numpy": "2.5.2"
+    }
+   },
+   "hardware": {
+    "device": "DESKTOP-EA33S9L",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU"
+   },
+   "versioning": {
+    "code_commit": "c13cbbeea6f1b08abed83d410613063ab4d0da00"
+   },
+   "recorded_at": "2026-10-03T12:27:43+06:00",
+   "record_key": "b307a8f33bdc3c0d4269"
+  },
+  {
+   "experiment_id": "EXP_0196",
+   "experiment_name": "OCR det_db_td500 on val",
+   "task": "ocr",
+   "mode": "ocr",
+   "status": "partially_verified",
+   "verification": {
+    "method": "recorded automatically by the evaluation script; not yet reviewed"
+   },
+   "metrics": {
+    "cer": 0.033723073895663765,
+    "wer": 0.078125,
+    "exact_match": 0.8865740740740741,
+    "cer_bangla": 0.033477910524479154,
+    "cer_english": 0.033968237266848375,
+    "cer_clean": 0.037356731413103965,
+    "cer_scene": 0.056577867258014315,
+    "cer_wild": 0.007234623015873016
+   },
+   "comparison_group": {
+    "id": "OCR_BENCHMARK",
+    "name": "OCR pipelines on the shaped Bangla + English benchmark",
+    "purpose": ""
+   },
+   "comparison": {
+    "variant": "det_db_td500"
+   },
+   "dataset": {
+    "name": "OCR benchmark (HarfBuzz-shaped Bangla + English)",
+    "split": "val",
+    "samples": 432,
+    "real_or_synthetic": "synthetic text on clean / distorted pages and real COCO photos"
+   },
+   "configuration": {
+    "method": "final pipeline with db_td500 detector"
+   },
+   "runs": {
+    "count": 3,
+    "metric": "cer per image seed",
+    "values": [
+     0.028176977230286053,
+     0.04547853063784437,
+     0.027513713818860877
+    ]
+   },
+   "evidence": [
+    {
+     "type": "evaluation_output",
+     "file": "savior_glass/results/ocr_bench/val_det_db_td500.json",
+     "selector": "overall, bn, en, by_cond",
+     "sha256": "33a0f9550f6f618f50ec7a45d3a1a1b6b58a9fc04f9d72a13d60f1d20260fa94"
+    }
+   ],
+   "performance": {
+    "latency_ms_median": 328.38260000016817
+   },
+   "timestamp": "2026-10-03T12:16:55+06:00",
+   "software_environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.7",
+    "framework_versions": {
+     "torch": "2.14.0+cu126",
+     "torchvision": "0.29.0+cu126",
+     "easyocr": "1.7.2",
+     "cv2": "5.0.0",
+     "numpy": "2.5.2"
+    }
+   },
+   "hardware": {
+    "device": "DESKTOP-EA33S9L",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU"
+   },
+   "versioning": {
+    "code_commit": "c13cbbeea6f1b08abed83d410613063ab4d0da00"
+   },
+   "recorded_at": "2026-10-03T12:27:43+06:00",
+   "record_key": "d1d42c25eb6c8fb662ac"
+  },
+  {
+   "experiment_id": "EXP_0197",
+   "experiment_name": "OCR det_db_ic15 on val",
+   "task": "ocr",
+   "mode": "ocr",
+   "status": "partially_verified",
+   "verification": {
+    "method": "recorded automatically by the evaluation script; not yet reviewed"
+   },
+   "metrics": {
+    "cer": 0.04947528354715233,
+    "wer": 0.1124614197530864,
+    "exact_match": 0.8240740740740741,
+    "cer_bangla": 0.060349610437792446,
+    "cer_english": 0.03860095665651221,
+    "cer_clean": 0.04547974108396104,
+    "cer_scene": 0.07747628833959291,
+    "cer_wild": 0.02546982121790306
+   },
+   "comparison_group": {
+    "id": "OCR_BENCHMARK",
+    "name": "OCR pipelines on the shaped Bangla + English benchmark",
+    "purpose": ""
+   },
+   "comparison": {
+    "variant": "det_db_ic15"
+   },
+   "dataset": {
+    "name": "OCR benchmark (HarfBuzz-shaped Bangla + English)",
+    "split": "val",
+    "samples": 432,
+    "real_or_synthetic": "synthetic text on clean / distorted pages and real COCO photos"
+   },
+   "configuration": {
+    "method": "final pipeline with db_ic15 detector"
+   },
+   "runs": {
+    "count": 3,
+    "metric": "cer per image seed",
+    "values": [
+     0.04110968845889988,
+     0.05074215929235111,
+     0.056574002890206004
+    ]
+   },
+   "evidence": [
+    {
+     "type": "evaluation_output",
+     "file": "savior_glass/results/ocr_bench/val_det_db_ic15.json",
+     "selector": "overall, bn, en, by_cond",
+     "sha256": "e6d2399bb223f058c2ee569be0a27d2fea164e66157d1392efe003f6b8a00536"
+    }
+   ],
+   "performance": {
+    "latency_ms_median": 333.23890000019674
+   },
+   "timestamp": "2026-10-03T12:20:40+06:00",
+   "software_environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.7",
+    "framework_versions": {
+     "torch": "2.14.0+cu126",
+     "torchvision": "0.29.0+cu126",
+     "easyocr": "1.7.2",
+     "cv2": "5.0.0",
+     "numpy": "2.5.2"
+    }
+   },
+   "hardware": {
+    "device": "DESKTOP-EA33S9L",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU"
+   },
+   "versioning": {
+    "code_commit": "c13cbbeea6f1b08abed83d410613063ab4d0da00"
+   },
+   "recorded_at": "2026-10-03T12:27:43+06:00",
+   "record_key": "52a99f8de06575fed501"
+  },
+  {
+   "experiment_id": "EXP_0198",
+   "experiment_name": "OCR det_yolo on val",
+   "task": "ocr",
+   "mode": "ocr",
+   "status": "partially_verified",
+   "verification": {
+    "method": "recorded automatically by the evaluation script; not yet reviewed"
+   },
+   "metrics": {
+    "cer": 0.506340015407666,
+    "wer": 1.0794753086419755,
+    "exact_match": 0.12037037037037036,
+    "cer_bangla": 0.5063633086999988,
+    "cer_english": 0.5063167221153333,
+    "cer_clean": 0.4215366441097739,
+    "cer_scene": 0.6377429916758827,
+    "cer_wild": 0.45974041043734143
+   },
+   "comparison_group": {
+    "id": "OCR_BENCHMARK",
+    "name": "OCR pipelines on the shaped Bangla + English benchmark",
+    "purpose": ""
+   },
+   "comparison": {
+    "variant": "det_yolo"
+   },
+   "dataset": {
+    "name": "OCR benchmark (HarfBuzz-shaped Bangla + English)",
+    "split": "val",
+    "samples": 432,
+    "real_or_synthetic": "synthetic text on clean / distorted pages and real COCO photos"
+   },
+   "configuration": {
+    "method": "final pipeline with yolo detector"
+   },
+   "runs": {
+    "count": 3,
+    "metric": "cer per image seed",
+    "values": [
+     0.5491827131507705,
+     0.4729739912086193,
+     0.4968633418636082
+    ]
+   },
+   "evidence": [
+    {
+     "type": "evaluation_output",
+     "file": "savior_glass/results/ocr_bench/val_det_yolo.json",
+     "selector": "overall, bn, en, by_cond",
+     "sha256": "4e4076c00a75e9b8d293809dde8b72ed14c8dd815e0e64e45804794d93a0ea00"
+    }
+   ],
+   "performance": {
+    "latency_ms_median": 258.6317999998755
+   },
+   "timestamp": "2026-10-03T12:23:39+06:00",
+   "software_environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.7",
+    "framework_versions": {
+     "torch": "2.14.0+cu126",
+     "torchvision": "0.29.0+cu126",
+     "ultralytics": "8.4.171",
+     "easyocr": "1.7.2",
+     "cv2": "5.0.0",
+     "numpy": "2.5.2"
+    }
+   },
+   "hardware": {
+    "device": "DESKTOP-EA33S9L",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU"
+   },
+   "versioning": {
+    "code_commit": "c13cbbeea6f1b08abed83d410613063ab4d0da00"
+   },
+   "recorded_at": "2026-10-03T12:27:43+06:00",
+   "record_key": "e6516344a73b1c63a17b"
+  },
+  {
+   "experiment_id": "EXP_0199",
+   "experiment_name": "OCR det_db_td500 on test",
+   "task": "ocr",
+   "mode": "ocr",
+   "status": "partially_verified",
+   "verification": {
+    "method": "recorded automatically by the evaluation script; not yet reviewed"
+   },
+   "metrics": {
+    "cer": 0.02677312602385702,
+    "wer": 0.10204475308641975,
+    "exact_match": 0.8263888888888888,
+    "cer_bangla": 0.035310503539670204,
+    "cer_english": 0.01823574850804383,
+    "cer_clean": 0.03612768049445682,
+    "cer_scene": 0.03422368526535194,
+    "cer_wild": 0.009968012311762312
+   },
+   "comparison_group": {
+    "id": "OCR_BENCHMARK",
+    "name": "OCR pipelines on the shaped Bangla + English benchmark",
+    "purpose": ""
+   },
+   "comparison": {
+    "variant": "det_db_td500"
+   },
+   "dataset": {
+    "name": "OCR benchmark (HarfBuzz-shaped Bangla + English)",
+    "split": "test",
+    "samples": 432,
+    "real_or_synthetic": "synthetic text on clean / distorted pages and real COCO photos"
+   },
+   "configuration": {
+    "method": "final pipeline with db_td500 detector"
+   },
+   "runs": {
+    "count": 3,
+    "metric": "cer per image seed",
+    "values": [
+     0.025739644229227563,
+     0.02578465739101704,
+     0.02879507645132645
+    ]
+   },
+   "evidence": [
+    {
+     "type": "evaluation_output",
+     "file": "savior_glass/results/ocr_bench/test_det_db_td500.json",
+     "selector": "overall, bn, en, by_cond",
+     "sha256": "e7674b4798a5d1ffe4e06f3ca25a07ae85680e6c9eb36ed945fb84aa64c0f7eb"
+    }
+   ],
+   "performance": {
+    "latency_ms_median": 317.54945000011503
+   },
+   "timestamp": "2026-10-03T12:27:25+06:00",
+   "software_environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.7",
+    "framework_versions": {
+     "torch": "2.14.0+cu126",
+     "torchvision": "0.29.0+cu126",
+     "easyocr": "1.7.2",
+     "cv2": "5.0.0",
+     "numpy": "2.5.2"
+    }
+   },
+   "hardware": {
+    "device": "DESKTOP-EA33S9L",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU"
+   },
+   "versioning": {
+    "code_commit": "c13cbbeea6f1b08abed83d410613063ab4d0da00"
+   },
+   "recorded_at": "2026-10-03T12:27:43+06:00",
+   "record_key": "bd0e6b952c7747e994c6"
+  },
+  {
+   "experiment_id": "EXP_0200",
+   "experiment_name": "OCR post-processing rules+kenlm_margin1.0 on val",
+   "task": "ocr",
+   "status": "partially_verified",
+   "verification": {
+    "method": "recorded automatically by the evaluation script; not yet reviewed"
+   },
+   "evidence": [
+    {
+     "type": "evaluation_output",
+     "file": "savior_glass/results/ocr_bench/val_t5_kenlm.json",
+     "selector": "methods.rules+kenlm_margin1.0",
+     "sha256": "429cc64f4c61ffe60f8b6c1f82e696c81b32cebc37c2f48a9be7fb1a1cc782bd"
+    }
+   ],
+   "mode": "ocr",
+   "algorithm": "SymSpell candidates re-ranked by a 5-gram character language model queried with KenLM",
+   "comparison_group": {
+    "id": "OCR_BENCHMARK",
+    "name": "OCR pipelines on the shaped Bangla + English benchmark"
+   },
+   "comparison": {
+    "variant": "rules+kenlm_margin1.0",
+    "decision": "not_kept",
+    "selected_on": "validation set"
+   },
+   "ablation": {
+    "enabled": true,
+    "component": "post-processing",
+    "configuration": "rules+kenlm_margin1.0"
+   },
+   "dataset": {
+    "name": "OCR benchmark (HarfBuzz-shaped Bangla + English)",
+    "split": "validation (48 phrases; every choice made here)",
+    "samples": 432,
+    "real_or_synthetic": "synthetic text on clean / distorted pages and real COCO photos"
+   },
+   "raw_measurements": {
+    "readings_changed_vs_rules": 12
+   },
+   "notes": [
+    "KenLM Python module built with a portable MinGW g++; ARPA written by ocr_bench/kenlm_lm.py."
+   ],
+   "metrics": {
+    "cer": 0.027397308930281722,
+    "cer_bangla": 0.026577760129816823,
+    "cer_english": 0.02821685773074662,
+    "wer": 0.06674382716049382,
+    "exact_match": 0.9074074074074074
+   },
+   "timestamp": "2026-10-03T12:27:43+06:00",
+   "software_environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.7",
+    "framework_versions": {}
+   },
+   "hardware": {
+    "device": "DESKTOP-EA33S9L",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD"
+   },
+   "versioning": {
+    "code_commit": "c13cbbeea6f1b08abed83d410613063ab4d0da00"
+   },
+   "recorded_at": "2026-10-03T12:27:43+06:00",
+   "record_key": "6be2cd3fc9a0fcac89eb"
+  },
+  {
+   "experiment_id": "EXP_0201",
+   "experiment_name": "OCR post-processing rules+kenlm_margin0.5 on val",
+   "task": "ocr",
+   "status": "partially_verified",
+   "verification": {
+    "method": "recorded automatically by the evaluation script; not yet reviewed"
+   },
+   "evidence": [
+    {
+     "type": "evaluation_output",
+     "file": "savior_glass/results/ocr_bench/val_t5_kenlm.json",
+     "selector": "methods.rules+kenlm_margin0.5",
+     "sha256": "429cc64f4c61ffe60f8b6c1f82e696c81b32cebc37c2f48a9be7fb1a1cc782bd"
+    }
+   ],
+   "mode": "ocr",
+   "algorithm": "SymSpell candidates re-ranked by a 5-gram character language model queried with KenLM",
+   "comparison_group": {
+    "id": "OCR_BENCHMARK",
+    "name": "OCR pipelines on the shaped Bangla + English benchmark"
+   },
+   "comparison": {
+    "variant": "rules+kenlm_margin0.5",
+    "decision": "not_kept",
+    "selected_on": "validation set"
+   },
+   "ablation": {
+    "enabled": true,
+    "component": "post-processing",
+    "configuration": "rules+kenlm_margin0.5"
+   },
+   "dataset": {
+    "name": "OCR benchmark (HarfBuzz-shaped Bangla + English)",
+    "split": "validation (48 phrases; every choice made here)",
+    "samples": 432,
+    "real_or_synthetic": "synthetic text on clean / distorted pages and real COCO photos"
+   },
+   "raw_measurements": {
+    "readings_changed_vs_rules": 20
+   },
+   "notes": [
+    "KenLM Python module built with a portable MinGW g++; ARPA written by ocr_bench/kenlm_lm.py."
+   ],
+   "metrics": {
+    "cer": 0.02693612908797443,
+    "cer_bangla": 0.027377732896701354,
+    "cer_english": 0.0264945252792475,
+    "wer": 0.06018518518518518,
+    "exact_match": 0.9166666666666666
+   },
+   "timestamp": "2026-10-03T12:27:43+06:00",
+   "software_environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.7",
+    "framework_versions": {}
+   },
+   "hardware": {
+    "device": "DESKTOP-EA33S9L",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD"
+   },
+   "versioning": {
+    "code_commit": "c13cbbeea6f1b08abed83d410613063ab4d0da00"
+   },
+   "recorded_at": "2026-10-03T12:27:43+06:00",
+   "record_key": "32f3817ee88636074c3c"
+  },
+  {
+   "experiment_id": "EXP_0202",
+   "experiment_name": "OCR post-processing rules+kenlm_margin0.1 on val",
+   "task": "ocr",
+   "status": "partially_verified",
+   "verification": {
+    "method": "recorded automatically by the evaluation script; not yet reviewed"
+   },
+   "evidence": [
+    {
+     "type": "evaluation_output",
+     "file": "savior_glass/results/ocr_bench/val_t5_kenlm.json",
+     "selector": "methods.rules+kenlm_margin0.1",
+     "sha256": "429cc64f4c61ffe60f8b6c1f82e696c81b32cebc37c2f48a9be7fb1a1cc782bd"
+    }
+   ],
+   "mode": "ocr",
+   "algorithm": "SymSpell candidates re-ranked by a 5-gram character language model queried with KenLM",
+   "comparison_group": {
+    "id": "OCR_BENCHMARK",
+    "name": "OCR pipelines on the shaped Bangla + English benchmark"
+   },
+   "comparison": {
+    "variant": "rules+kenlm_margin0.1",
+    "decision": "not_kept",
+    "selected_on": "validation set"
+   },
+   "ablation": {
+    "enabled": true,
+    "component": "post-processing",
+    "configuration": "rules+kenlm_margin0.1"
+   },
+   "dataset": {
+    "name": "OCR benchmark (HarfBuzz-shaped Bangla + English)",
+    "split": "validation (48 phrases; every choice made here)",
+    "samples": 432,
+    "real_or_synthetic": "synthetic text on clean / distorted pages and real COCO photos"
+   },
+   "raw_measurements": {
+    "readings_changed_vs_rules": 25
+   },
+   "notes": [
+    "KenLM Python module built with a portable MinGW g++; ARPA written by ocr_bench/kenlm_lm.py."
+   ],
+   "metrics": {
+    "cer": 0.02656095016509019,
+    "cer_bangla": 0.026884576697023415,
+    "cer_english": 0.026237323633156968,
+    "wer": 0.05709876543209876,
+    "exact_match": 0.9236111111111112
+   },
+   "timestamp": "2026-10-03T12:27:43+06:00",
+   "software_environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.7",
+    "framework_versions": {}
+   },
+   "hardware": {
+    "device": "DESKTOP-EA33S9L",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD"
+   },
+   "versioning": {
+    "code_commit": "c13cbbeea6f1b08abed83d410613063ab4d0da00"
+   },
+   "recorded_at": "2026-10-03T12:27:43+06:00",
+   "record_key": "d45da771d0cef41bb823"
+  },
+  {
+   "experiment_id": "EXP_0203",
+   "experiment_name": "OCR post-processing rules+kenlm_margin0.25 on val",
+   "task": "ocr",
+   "status": "partially_verified",
+   "verification": {
+    "method": "recorded automatically by the evaluation script; not yet reviewed"
+   },
+   "evidence": [
+    {
+     "type": "evaluation_output",
+     "file": "savior_glass/results/ocr_bench/val_t5_kenlm.json",
+     "selector": "methods.rules+kenlm_margin0.25",
+     "sha256": "429cc64f4c61ffe60f8b6c1f82e696c81b32cebc37c2f48a9be7fb1a1cc782bd"
+    }
+   ],
+   "mode": "ocr",
+   "algorithm": "SymSpell candidates re-ranked by a 5-gram character language model queried with KenLM",
+   "comparison_group": {
+    "id": "OCR_BENCHMARK",
+    "name": "OCR pipelines on the shaped Bangla + English benchmark"
+   },
+   "comparison": {
+    "variant": "rules+kenlm_margin0.25",
+    "decision": "not_kept",
+    "selected_on": "validation set"
+   },
+   "ablation": {
+    "enabled": true,
+    "component": "post-processing",
+    "configuration": "rules+kenlm_margin0.25"
+   },
+   "dataset": {
+    "name": "OCR benchmark (HarfBuzz-shaped Bangla + English)",
+    "split": "validation (48 phrases; every choice made here)",
+    "samples": 432,
+    "real_or_synthetic": "synthetic text on clean / distorted pages and real COCO photos"
+   },
+   "raw_measurements": {
+    "readings_changed_vs_rules": 25
+   },
+   "notes": [
+    "KenLM Python module built with a portable MinGW g++; ARPA written by ocr_bench/kenlm_lm.py."
+   ],
+   "metrics": {
+    "cer": 0.02656095016509019,
+    "cer_bangla": 0.026884576697023415,
+    "cer_english": 0.026237323633156968,
+    "wer": 0.05709876543209876,
+    "exact_match": 0.9236111111111112
+   },
+   "timestamp": "2026-10-03T12:27:43+06:00",
+   "software_environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.7",
+    "framework_versions": {}
+   },
+   "hardware": {
+    "device": "DESKTOP-EA33S9L",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD"
+   },
+   "versioning": {
+    "code_commit": "c13cbbeea6f1b08abed83d410613063ab4d0da00"
+   },
+   "recorded_at": "2026-10-03T12:27:43+06:00",
+   "record_key": "73d62fcb6f6457875abd"
+  },
+  {
+   "experiment_id": "EXP_0204",
+   "experiment_name": "Online vision mode on the OCR test set (OpenAI provider)",
+   "task": "ocr",
+   "mode": "online vision",
+   "status": "failed",
+   "evidence": [
+    {
+     "type": "evaluation_script",
+     "file": "savior_glass/scripts/eval_online_mode.py",
+     "sha256": "2dd6d20173e5fc15431d42cc48c442d2c9427353eb04d18086f224c7cacc55ee"
+    }
+   ],
+   "notes": [
+    "Attempted 2026-10-03. The API key was accepted (model list returned) but every vision call returned HTTP 429 insufficient_quota: the account has no credits.",
+    "No accuracy or latency number exists. Run scripts/eval_online_mode.py after adding credit."
+   ],
+   "timestamp": "2026-10-03T12:27:43+06:00",
+   "software_environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.7",
+    "framework_versions": {}
+   },
+   "hardware": {
+    "device": "DESKTOP-EA33S9L",
+    "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD"
+   },
+   "versioning": {
+    "code_commit": "c13cbbeea6f1b08abed83d410613063ab4d0da00"
+   },
+   "recorded_at": "2026-10-03T12:27:43+06:00",
+   "record_key": "e343204829a3f8ed084b"
   }
  ],
  "comparison_groups": [

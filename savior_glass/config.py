@@ -152,6 +152,8 @@ TTS_INTER_UTTERANCE_PAUSE = 0.15  # seconds between queued utterances (sentences
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 CLAUDE_MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-5")
 CLAUDE_MAX_TOKENS = 600
+# Second online provider (modes/claude_mode.py). Used when only OPENAI_API_KEY is set, or with ONLINE_PROVIDER=openai.
+OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-5.4-mini")
 
 # Emotion-adaptive feedback (E key in Windows test)
 EMOTION_ADAPTIVE_DEFAULT = True

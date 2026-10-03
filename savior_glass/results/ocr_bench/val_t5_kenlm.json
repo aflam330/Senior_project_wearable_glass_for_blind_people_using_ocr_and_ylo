@@ -1,0 +1,52 @@
+{
+ "set": "val",
+ "source": "val_t4_cfg12.json",
+ "lm": "5-gram character ARPA, absolute discounting, queried with KenLM",
+ "methods": {
+  "rules": {
+   "cer": 0.022922000288306408,
+   "cer_bangla": 0.019170352722409415,
+   "cer_english": 0.02667364785420341,
+   "wer": 0.05054012345679012,
+   "exact": 0.9236111111111112,
+   "readings_changed_vs_rules": 0,
+   "n": 432
+  },
+  "rules+kenlm_margin0.1": {
+   "cer": 0.02656095016509019,
+   "cer_bangla": 0.026884576697023415,
+   "cer_english": 0.026237323633156968,
+   "wer": 0.05709876543209876,
+   "exact": 0.9236111111111112,
+   "readings_changed_vs_rules": 25,
+   "n": 432
+  },
+  "rules+kenlm_margin0.25": {
+   "cer": 0.02656095016509019,
+   "cer_bangla": 0.026884576697023415,
+   "cer_english": 0.026237323633156968,
+   "wer": 0.05709876543209876,
+   "exact": 0.9236111111111112,
+   "readings_changed_vs_rules": 25,
+   "n": 432
+  },
+  "rules+kenlm_margin0.5": {
+   "cer": 0.02693612908797443,
+   "cer_bangla": 0.027377732896701354,
+   "cer_english": 0.0264945252792475,
+   "wer": 0.06018518518518518,
+   "exact": 0.9166666666666666,
+   "readings_changed_vs_rules": 20,
+   "n": 432
+  },
+  "rules+kenlm_margin1.0": {
+   "cer": 0.027397308930281722,
+   "cer_bangla": 0.026577760129816823,
+   "cer_english": 0.02821685773074662,
+   "wer": 0.06674382716049382,
+   "exact": 0.9074074074074074,
+   "readings_changed_vs_rules": 12,
+   "n": 432
+  }
+ }
+}

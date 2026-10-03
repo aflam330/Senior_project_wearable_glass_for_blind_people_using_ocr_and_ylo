@@ -107,3 +107,45 @@ The text region alone takes test CER from 9.3 % (app) to 2.4 %. The photo-scene 
 | Final pipeline (v2, now in the app) | 1851 ms | 5201 ms | 1.8 % |
 
 The region step costs nothing measurable, because it reuses the boxes EasyOCR already returns.
+
+<!-- ocr-followup-2026-10-03 -->
+## Other text detectors: EAST, DBNet through OpenCV, YOLO (2026-10-03)
+
+**Correction to the section above.** It says DBNet, EAST and YOLO text detectors could not be run. That was wrong for three of them.
+
+- **DBNet and EAST:** OpenCV runs both from public weights, with no compiler.
+- **YOLO:** one public YOLO text model exists.
+- **EasyOCR's own DBNet18 path:** this one still cannot run here; it needs a compiled extension.
+
+**Setup** (`savior_glass/ocr_bench/alt_detectors.py`, `run_detectors.py`):
+- **Pipeline:** each detector replaces CRAFT inside the same final pipeline: the same preprocessing, EasyOCR recognizer, dominant-block rule, line ordering and cleanup rules.
+- **Settings:** the published defaults; nothing was tuned.
+- **Box padding:** boxes get the padding EasyOCR gives its own boxes (10 % of the height).
+- **Weights** (in `savior_glass/ocr_bench/detectors/`, not committed, about 260 MB):
+  - `frozen_east_text_detection.pb` (github.com/oyyd/frozen_east_text_detection.pb);
+  - `DB_TD500_resnet18.onnx` and `DB_IC15_resnet18.onnx` (OpenCV model zoo, Google Drive);
+  - `yolo11x_text_detection.pt` (Hugging Face `Daniil-Domino/yolo11x-text-detection`, AGPL-3.0).
+
+### Validation (3 seeds)
+
+| Detector (same recognizer, same final pipeline) | CER | Bangla CER | English CER | Photo scene | CER per seed | Median time (GPU) |
+|---|---:|---:|---:|---:|---|---:|
+| CRAFT (EasyOCR, kept) | 2.3 % | 1.9 % | 2.7 % | 4.2 % | 2.0 / 2.2 / 2.6 | 221 ms |
+| DB / DBNet ResNet-18, TD500 weights (OpenCV) | 3.4 % | 3.3 % | 3.4 % | 5.7 % | 2.8 / 4.5 / 2.8 | 328 ms |
+| DB / DBNet ResNet-18, IC15 weights (OpenCV) | 4.9 % | 6.0 % | 3.9 % | 7.7 % | 4.1 / 5.1 / 5.7 | 333 ms |
+| EAST (OpenCV) | 18.3 % | 16.7 % | 19.8 % | 35.7 % | 18.3 / 19.1 / 17.3 | 538 ms |
+| YOLO11x text detector (Russian handwriting model) | 50.6 % | 50.6 % | 50.6 % | 63.8 % | 54.9 / 47.3 / 49.7 | 259 ms |
+
+**What the table shows.**
+- **CRAFT stays the detector.** DBNet with the TD500 weights is close.
+- **EAST:** it returns word boxes that clip characters on these images.
+- **YOLO:** the public model was trained on Russian handwritten school notebooks, not scene text or Bangla; its result says nothing about a YOLO detector trained for this task.
+
+### Test, read once (the best alternative on validation only)
+
+| Detector (same recognizer, same final pipeline) | CER | Bangla CER | English CER | Photo scene | CER per seed | Median time (GPU) |
+|---|---:|---:|---:|---:|---|---:|
+| CRAFT (final pipeline) | 2.4 % | 3.2 % | 1.6 % | 2.2 % | 3.3 / 1.4 / 2.4 | 222 ms |
+| DB TD500 (best alternative on validation) | 2.7 % | 3.5 % | 1.8 % | 3.4 % | 2.6 / 2.6 / 2.9 | 318 ms |
+
+The DB detector is slightly worse than CRAFT on test as well. No change to the app.
