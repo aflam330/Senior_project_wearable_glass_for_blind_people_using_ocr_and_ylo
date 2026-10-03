@@ -12,6 +12,7 @@ before TTS. Optional Tesseract (ben+eng) is used only if EasyOCR
 returns nothing.
 """
 import logging
+import os
 import re
 from typing import Optional
 
@@ -99,7 +100,15 @@ class OCRMode(BaseMode):
             try:
                 import easyocr
                 # gpu=False is correct for RPi 5 (no CUDA GPU)
-                self._reader = easyocr.Reader(["bn", "en"], gpu=False, verbose=False)
+                use_gpu = False
+                try:
+                    import torch
+                    use_gpu = bool(torch.cuda.is_available()) and os.environ.get("OCR_GPU", "1") == "1"
+                except Exception:  # noqa: BLE001
+                    pass
+                # GPU when there is one (a laptop): about ten times faster. The Pi has none and runs on CPU as before.
+                self._reader = easyocr.Reader(["bn", "en"], gpu=use_gpu, verbose=False)
+                logger.info("EasyOCR on %s", "GPU" if use_gpu else "CPU")
                 logger.info("EasyOCR ready")
             except Exception as exc:
                 logger.error("Failed to load EasyOCR: %s", exc)

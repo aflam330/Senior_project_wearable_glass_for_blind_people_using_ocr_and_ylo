@@ -48,8 +48,9 @@ QUESTIONS = [
     ("trust", "চশমার উত্তরের উপর কি আপনি ভরসা করতে পারেন?"),                   # Can you trust its answers?
     ("would_use_daily", "আপনি কি প্রতিদিন এই চশমা ব্যবহার করতে চাইবেন?"),        # Would you use it every day?
 ]
-YES = ("হ্যাঁ", "হ্যা", "হাঁ", "হা", "হ্যাঁা", "হ্যান", "হুম", "হু", "জি", "জ্বি", "জী", "ঠিক", "অবশ্যই", "আচ্ছা", "yes", "yeah", "yah", "ha", "han", "ji")
-NO = ("না", "নাহ", "নয়", "নাই", "নো", "no", "nope", "na", "nah")
+YES = ("হ্যাঁ", "হ্যা", "হাঁ", "হা", "হ্যাঁা", "হ্যান", "হুম", "হু", "হ্যাঁগো", "জি", "জ্বি", "জী", "জ্বী", "ঠিক", "অবশ্যই", "আচ্ছা",
+       "ইয়েস", "ইয়াস", "ইয়েশ", "ইয়েছ", "ইয়া", "ওকে", "yes", "yeah", "yah", "yep", "ya", "ok", "okay", "ha", "han", "haan", "ji")
+NO = ("না", "নাহ", "নয়", "নাই", "নো", "নোপ", "নাহি", "no", "nope", "na", "nah", "not")
 
 
 def parse_yes_no(text: str):
@@ -73,6 +74,7 @@ class VoiceStudy:
         self.key_answer = None          # set by the preview when the experimenter presses Y or N
         self.level = 0.0                # live microphone level while listening (0..1), drawn by the preview
         self.spoke = False              # whether the last recording contained speech above the room noise
+        self.clipped = False            # the last recording hit full scale (input level too high)
         self.rate = RATE
         self.mic_name = ""
         self._mic_cfg = None
@@ -153,7 +155,7 @@ class VoiceStudy:
         self.rate = rate
         block = rate // 20                      # 50 ms
         chunks, levels = [], []
-        started, quiet_blocks = False, 0
+        started, quiet_blocks, loud_blocks = False, 0, 0
         self._beep()
         with sd.InputStream(device=dev, samplerate=rate, channels=ch, dtype="float32", blocksize=block) as stream:
             noise = None
@@ -171,10 +173,15 @@ class VoiceStudy:
                     continue
                 loud = lvl > max(noise * 3.5, 0.012)
                 if loud:
-                    started, quiet_blocks = True, 0
-                elif started:
+                    loud_blocks += 1
+                    quiet_blocks = 0
+                    if loud_blocks >= 4:          # 0.2 s of sound: a voice, not a click or a key press
+                        started = True
+                else:
                     quiet_blocks += 1
-                    if quiet_blocks >= 18:        # 0.9 s of quiet after speech: the answer is finished
+                    if not started and quiet_blocks >= 6:
+                        loud_blocks = 0           # a short noise: forget it and keep waiting
+                    if started and quiet_blocks >= 20:   # 1 s of quiet after speech: the answer is finished
                         break
         self.level = 0.0
         audio = np.concatenate(chunks) if chunks else np.zeros(1, np.float32)
@@ -184,6 +191,9 @@ class VoiceStudy:
             w.setframerate(rate)
             w.writeframes((np.clip(audio, -1, 1) * 32767).astype(np.int16).tobytes())
         self.spoke = started
+        self.clipped = bool(len(audio)) and float((np.abs(audio) > 0.985).mean()) > 0.002   # input level too high: distorted
+        if self.clipped:
+            logger.info("microphone is clipping: lower the input level in Windows sound settings or move back a little")
         if started and noise is not None:      # keep the speech with a little margin, then bring it to a normal level
             lv = np.array(levels)
             idx = np.where(lv > max(noise * 3.5, 0.012))[0]
@@ -192,17 +202,21 @@ class VoiceStudy:
         audio = audio - audio.mean()
         return audio / max(float(np.percentile(np.abs(audio), 99.9)), 1e-6) * 0.8
 
-    def _transcribe(self, audio: np.ndarray) -> list:
-        """Every guess Google returns (best first), so a yes / no hidden in a lower-ranked guess is still found."""
-        try:
-            import speech_recognition as sr
-            data = sr.AudioData((np.clip(audio, -1, 1) * 32767).astype(np.int16).tobytes(), self.rate, 2)
-            res = sr.Recognizer().recognize_google(data, language="bn-BD", show_all=True)
-            alts = [a.get("transcript", "") for a in (res.get("alternative") if isinstance(res, dict) else []) or []]
-            return [t for t in alts if t]
-        except Exception as exc:  # noqa: BLE001  (no internet, or the service refused)
-            logger.info("speech not recognised: %s", type(exc).__name__)
-            return []
+    def _transcribe(self, audio: np.ndarray, yes_no: bool = False) -> list:
+        """Every guess Google returns (best first), so a yes / no hidden in a lower-ranked guess is still found.
+        For yes / no answers a second pass in English is made when the Bangla pass has no yes or no in it."""
+        import speech_recognition as sr
+        data = sr.AudioData((np.clip(audio, -1, 1) * 32767).astype(np.int16).tobytes(), self.rate, 2)
+        out = []
+        for lang in ("bn-BD", "en-US") if yes_no else ("bn-BD",):
+            try:
+                res = sr.Recognizer().recognize_google(data, language=lang, show_all=True)
+                out += [a.get("transcript", "") for a in (res.get("alternative") if isinstance(res, dict) else []) or [] if a.get("transcript")]
+            except Exception as exc:  # noqa: BLE001  (no internet, or the service refused)
+                logger.info("speech not recognised (%s): %s", lang, type(exc).__name__)
+            if any(parse_yes_no(t) for t in out):
+                break
+        return out
 
     # ---- steps ----
     def _next_id(self) -> str:
@@ -246,17 +260,17 @@ class VoiceStudy:
                 self.status = f"{self.pid}: question {i} of {len(QUESTIONS)} (asking)"
                 self._say(question if attempt == 1 else "বুঝতে পারিনি। হ্যাঁ অথবা না বলুন। " + question)
                 self.status = f"{self.pid}: question {i} of {len(QUESTIONS)} LISTENING - say হ্যাঁ or না (or press Y / N)"
-                audio = self._record(6.0, os.path.join(folder, f"q{i}_{key}{'' if attempt == 1 else '_retry'}.wav"))
+                audio = self._record(8.0, os.path.join(folder, f"q{i}_{key}{'' if attempt == 1 else '_retry'}.wav"))
                 if self.key_answer is not None:
                     ans, text, source = self.key_answer, f"(key {self.key_answer})", "key"
                 else:
-                    guesses = self._transcribe(audio) if self.spoke else []
+                    guesses = self._transcribe(audio, yes_no=True) if self.spoke else []
                     ans = next((a for a in (parse_yes_no(g) for g in guesses) if a), None)
                     text = " | ".join(guesses[:3]) if guesses else ("(no speech heard)" if not self.spoke else "(speech not understood)")
                     source = "voice"
                 heard[key] = text
                 sources[key] = source if ans else "none"
-                self.last_heard = f"{text} -> {ans or 'unclear'}"
+                self.last_heard = f"{text} -> {ans or 'unclear'}" + ("  [mic too loud: clipping]" if self.clipped else "")
                 if ans:
                     break
             answers[key] = ans or "unclear"

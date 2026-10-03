@@ -3,6 +3,7 @@
     python scripts/run_voice_study.py              # the study as participants should get it
     python scripts/run_voice_study.py --verdict    # also speak genuine / counterfeit (unreliable on whole notes; demo only)
     python scripts/run_voice_study.py --results    # print the answers saved so far
+    python scripts/run_voice_study.py --mics       # list the microphones; choose one with STUDY_MIC=<part of its name>
 
 In the preview window: the glass asks the participant's name by itself. The participant uses the glass
 (M mode, A action, R read). Press D when they are done: six yes / no questions are asked in Bangla and answered by
@@ -40,6 +41,16 @@ def results() -> None:
 def main() -> None:
     if "--results" in sys.argv:
         return results()
+    if "--mics" in sys.argv:
+        import sounddevice as sd
+        apis = sd.query_hostapis()
+        print("Microphones (start with  STUDY_MIC=<part of the name>  to choose one):")
+        for d in sd.query_devices():
+            if d["max_input_channels"] > 0 and "WASAPI" in apis[d["hostapi"]]["name"]:
+                print("  ", d["name"])
+        return
+    os.environ.setdefault("CAMERA_WIDTH", "1280")
+    os.environ.setdefault("CAMERA_HEIGHT", "720")
     env = dict(os.environ, STUDY_VOICE="1", FIELD_LOG_ENABLED="1", FIELD_LOG_SAVE_FRAMES="1", FIELD_LOG_DIR=str(VOICE / "_runs"),
                WATERMARK_CHECK_ENABLED="1", SHOW_PREVIEW="1", PYTHONIOENCODING="utf-8")
     code = "import config; " + ("config.JAAL_VERDICT_ENABLED = True; " if "--verdict" in sys.argv else "") + "import main; main.main()"
