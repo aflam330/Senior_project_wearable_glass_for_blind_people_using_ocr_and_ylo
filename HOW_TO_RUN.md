@@ -72,12 +72,12 @@ cd Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass
 bash scripts/deploy_pi5.sh
 ```
 
-`deploy_pi5.sh` creates `.venv` inside `savior_glass/`, installs `requirements.txt` (PyTorch, OpenCV, ONNX Runtime, and the rest), and runs the preflight. The first install takes a while.
+`deploy_pi5.sh` creates the Python environment in `~/.venvs/savior_glass` (on the Pi's own disk, because a FAT or exFAT USB drive cannot hold one), installs `requirements.txt` (PyTorch, OpenCV, ONNX Runtime, and the rest), and runs the preflight. The first install takes a while.
 
 If the preflight prints `ok` for the watermark model, the INT8 detector, the safe-check checkpoint, and both templates, start the glass:
 
 ```bash
-source .venv/bin/activate
+source ~/.venvs/savior_glass/bin/activate
 python main.py
 ```
 

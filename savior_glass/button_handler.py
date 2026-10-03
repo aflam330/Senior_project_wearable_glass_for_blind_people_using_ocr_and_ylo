@@ -12,14 +12,22 @@ Wiring (all buttons connect pin → GND; internal pull-ups enabled):
   GPIO 23 → VOL DOWN button
 """
 import logging
+import os
+import tempfile
 import threading
 from typing import Callable, Optional
+
+# lgpio creates a small notification pipe (.lgd-nfy*) in its working directory. When the project sits on a
+# FAT / exFAT USB drive that fails ("No such file or directory: '.lgd-nfy-3'"), because those file systems
+# cannot hold pipes. LG_WD points lgpio at a folder on the Pi's own disk instead.
+os.environ.setdefault("LG_WD", tempfile.gettempdir())
 
 try:
     import RPi.GPIO as GPIO          # provided by rpi-lgpio on RPi 5
     _GPIO_AVAILABLE = True
-except (ImportError, RuntimeError):
+except (ImportError, RuntimeError, OSError) as _gpio_exc:   # OSError: lgpio could not create its pipe
     _GPIO_AVAILABLE = False
+    logging.getLogger("smart_glass.button_handler").warning("GPIO not available, buttons disabled: %s", _gpio_exc)
 
 import config
 
