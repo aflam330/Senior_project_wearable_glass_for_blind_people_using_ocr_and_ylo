@@ -209,6 +209,9 @@ class OCRMode(BaseMode):
         self._stored_text = combined
         self._stored_lang = lang
 
+        if getattr(config, "OCR_SPEAK_ON_CAPTURE", True):
+            # say what was read straight away, so the user hears the detection itself; READ repeats it
+            return ("লেখা আছে: " if lang == "bn" else "The text says: ") + combined
         if lang == "bn":
             return "লেখা সংরক্ষণ করা হয়েছে। শুনতে রিড বাটন চাপুন"   # "Text saved. Press READ to listen"
         return "Text captured. Press the READ button to listen."

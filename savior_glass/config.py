@@ -212,6 +212,8 @@ OCR_V2_PARAMS = {"text_threshold": 0.8, "low_text": 0.3, "link_threshold": 0.4, 
                  "adjust_contrast": 0.7, "slope_ths": 0.4}
 OCR_V2_MIN_CONF = 0.2
 
+# Speak the captured text immediately after ACTION (READ repeats it). 0 = only confirm the capture, as before.
+OCR_SPEAK_ON_CAPTURE = os.environ.get("OCR_SPEAK_ON_CAPTURE", "1") == "1"
 OCR_CONFIDENCE      = 0.4    # EasyOCR minimum confidence
 OBJECT_CONFIDENCE   = 0.50   # YOLO minimum confidence
 CURRENCY_CONFIDENCE = 0.65   # MobileNetV3 minimum softmax score

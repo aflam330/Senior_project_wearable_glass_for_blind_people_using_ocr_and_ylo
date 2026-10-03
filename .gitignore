@@ -75,3 +75,6 @@ savior_glass/results/camera_check.jpg
 # Test-panel check image (contains a dataset face photo) and the laptop run log
 savior_glass/results/live_diag_check.png
 savior_glass/logs/laptop_test_run.log
+
+# User-study data: participant photos, answers and questionnaires. Never commit.
+savior_glass/study_data/
