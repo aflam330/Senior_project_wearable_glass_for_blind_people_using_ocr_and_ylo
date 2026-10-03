@@ -6,7 +6,9 @@ and object / note boxes. Keyboard keys mirror the GPIO buttons so a test can
 run without the button board:
 
   M = Mode   A or Space = Action   R = Read   + / - = Volume   Q or Esc = Quit
-  D = live algorithm panel (live_diag.py): every model runs on the current picture and reports its output and time
+  L = live algorithm panel (live_diag.py): every model runs on the current picture and reports its output and time
+  Voice study (STUDY_VOICE=1, voice_study.py): the name is asked at start; D = done, asks the yes / no questions;
+  N = next participant; Y / N while a question is listening = answer by key
 
 Enabled when a desktop is available (DISPLAY or WAYLAND_DISPLAY is set);
 SHOW_PREVIEW=0 turns it off, SHOW_PREVIEW=1 forces it on. The blind user's
@@ -67,6 +69,11 @@ class Preview:
         self._diag = LiveDiagnostics(app)
         if os.environ.get("SHOW_ALGORITHMS", "0").strip() in ("1", "true", "on", "yes"):
             self._diag.enabled = True
+        self._study = None
+        if os.environ.get("STUDY_VOICE", "0").strip() in ("1", "true", "on", "yes"):
+            from voice_study import VoiceStudy
+            self._study = VoiceStudy(app)
+            self._study_started = False
 
         # Record everything the glass says
         speak = app._tts.speak
@@ -102,6 +109,9 @@ class Preview:
         app = self._app
         with app._mode_lock:
             mode_idx = app._current_mode
+        if self._study is not None and not self._study_started and app._ready[mode_idx].is_set():
+            self._study_started = True          # the app is up: ask the first participant's name
+            self._study.new_participant()
         frame = app._camera.get_frame()
         if frame is None:
             frame = np.zeros((480, 640, 3), np.uint8)
@@ -131,7 +141,16 @@ class Preview:
         d.text((14, y), status, font=self._f, fill=col)
         y += 30
         d.text((14, y), f"Volume: {app._volume}%", font=self._f_small, fill=(200, 200, 200))
-        y += 28
+        y += 24
+        if self._study is not None:
+            listening = "LISTENING" in self._study.status
+            for line in self._wrap(self._study.status, self._f_small, PANEL_W - 30)[:2]:
+                d.text((14, y), line, font=self._f_small, fill=(255, 90, 90) if listening else (255, 200, 60))
+                y += 19
+            if self._study.last_heard:
+                d.text((14, y), ("heard: " + self._study.last_heard)[:48], font=self._f_small, fill=(200, 200, 200))
+                y += 19
+        y += 4
 
         d.text((14, y), "Last presses:", font=self._f_small, fill=(160, 160, 170))
         y += 22
@@ -152,7 +171,7 @@ class Preview:
                 y += 28 if i == 0 else 21
             y += 4
 
-        d.text((14, 452), "Keys: M mode  A action  R read  D algorithms  Q quit",
+        d.text((14, 452), "M mode  A action  R read  L algorithms  Q quit" + ("  D done  N next" if self._study is not None else ""),
                font=self._f_small, fill=(130, 130, 140))
 
         side = cv2.cvtColor(np.asarray(panel), cv2.COLOR_RGB2BGR)
@@ -175,7 +194,13 @@ class Preview:
             self._press("_on_vol_up")
         elif key in (ord("-"), ord("_")):
             self._press("_on_vol_down")
-        elif key in (ord("d"), ord("D")):
+        elif self._study is not None and self._study._busy.locked() and key in (ord("y"), ord("Y"), ord("n"), ord("N")):
+            self._study.key_answer = "yes" if key in (ord("y"), ord("Y")) else "no"
+        elif self._study is not None and key in (ord("d"), ord("D")):
+            self._study.finish()                # done using the glass: ask the questions
+        elif self._study is not None and key in (ord("n"), ord("N")):
+            self._study.new_participant()
+        elif key in (ord("l"), ord("L")) or (self._study is None and key in (ord("d"), ord("D"))):
             on = self._diag.toggle()
             cv2.resizeWindow(WINDOW, max(640, config.CAMERA_WIDTH) + PANEL_W + (DIAG_W if on else 0),
                              min(max(480, config.CAMERA_HEIGHT), 900))
