@@ -59,3 +59,6 @@ savior_glass/ocr_bench/tessdata/
 
 # Field-test runs (may contain photos and participant data): copy off the Pi, never commit
 savior_glass/logs/field/
+
+# Research evidence database: merged inbox files are already in experiments.json
+research_results/inbox/merged/

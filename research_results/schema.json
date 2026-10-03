@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Research evidence database",
+  "description": "Experiment-level results. One record per finished experiment. Blocks that do not apply to an experiment are simply left out.",
+  "type": "object",
+  "required": ["schema_version", "experiments", "comparison_groups", "publication_claims"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "description": {"type": "string"},
+    "created": {"type": "string"},
+    "updated": {"type": "string"},
+    "experiments": {"type": "array", "items": {"$ref": "#/definitions/experiment"}},
+    "comparison_groups": {
+      "type": "array",
+      "items": {"type": "object", "required": ["id", "name"],
+                "properties": {"id": {"type": "string"}, "name": {"type": "string"}, "purpose": {"type": "string"}}}
+    },
+    "publication_claims": {
+      "type": "array",
+      "items": {"type": "object", "required": ["claim_id", "claim", "supporting_experiments", "status"],
+                "properties": {"claim_id": {"type": "string", "pattern": "^CLAIM_\\d{3,}$"},
+                               "claim": {"type": "string"},
+                               "supporting_experiments": {"type": "array", "items": {"type": "string", "pattern": "^EXP_\\d{4,}$"}},
+                               "status": {"$ref": "#/definitions/status"},
+                               "created": {"type": "string"}, "notes": {"type": "string"}}}
+    }
+  },
+  "definitions": {
+    "status": {"enum": ["verified", "partially_verified", "unverified", "failed", "planned"]},
+    "numbers": {
+      "description": "Flexible dictionary of measured numbers. Values: number, null, boolean, a list of numbers, or a nested dictionary of the same.",
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [{"type": ["number", "null", "boolean"]},
+                  {"type": "array", "items": {"type": "number"}},
+                  {"$ref": "#/definitions/numbers"}]
+      }
+    },
+    "experiment": {
+      "type": "object",
+      "required": ["experiment_id", "experiment_name", "timestamp", "task", "status"],
+      "properties": {
+        "experiment_id": {"type": "string", "pattern": "^EXP_\\d{4,}$", "description": "Assigned by results_db.py; never reused."},
+        "experiment_name": {"type": "string"},
+        "timestamp": {"type": "string", "description": "ISO-8601. When the experiment produced its result (for imported records: the evidence file's time)."},
+        "recorded_at": {"type": "string", "description": "ISO-8601. When the record was written."},
+        "record_key": {"type": "string", "description": "Hash of name + evidence files + selectors + file hashes. Prevents the same evidence being recorded twice."},
+        "task": {"type": "string", "description": "e.g. currency_detection, counterfeit_detection, ocr, object_detection, emotion_recognition, system_performance, user_study"},
+        "mode": {"type": "string", "description": "Glass mode or system part the experiment belongs to."},
+        "algorithm": {"type": "string"},
+        "experiment_group": {"type": "string", "description": "Runs that repeat the same experiment (e.g. seeds) share this."},
+        "experiment_metadata": {"type": "object",
+          "properties": {"research_question": {"type": "string"}, "hypothesis": {"type": "string"}, "objective": {"type": "string"}}},
+        "model": {"type": "object",
+          "properties": {"name": {"type": "string"}, "architecture": {"type": "string"}, "version": {"type": "string"},
+                         "framework": {"type": "string"}, "weights": {"type": "string"}, "parameters": {"type": "object"},
+                         "input_size": {"type": ["string", "number"]}, "confidence_threshold": {"type": ["number", "null"]},
+                         "iou_threshold": {"type": ["number", "null"]}, "training": {"type": "object"}}},
+        "dataset": {"type": "object",
+          "properties": {"name": {"type": "string"}, "version": {"type": "string"}, "split": {"type": "string"},
+                         "samples": {"type": ["integer", "null"]}, "classes": {"type": "array"}, "source": {"type": "string"},
+                         "real_or_synthetic": {"type": "string"}, "preprocessing": {"type": "string"}, "augmentation": {"type": "string"}}},
+        "configuration": {"type": "object"},
+        "metrics": {"$ref": "#/definitions/numbers", "description": "Derived summary metrics of model / system quality (accuracy, CER, mAP, ...)."},
+        "performance": {"$ref": "#/definitions/numbers", "description": "Speed and resource numbers (latency_ms, fps, memory_mb, temperature, ...)."},
+        "raw_measurements": {"type": "object", "description": "Small raw values the metrics were derived from (counts, per-seed values), or references to large files."},
+        "human_feedback": {"$ref": "#/definitions/numbers", "description": "Participant results, kept apart from model metrics."},
+        "hardware": {"type": "object"},
+        "software_environment": {"type": "object"},
+        "test_conditions": {"type": "object"},
+        "run": {"type": "object",
+          "properties": {"run_id": {"type": ["integer", "string"]}, "seed": {"type": ["integer", "string", "null"]},
+                         "rerun_of": {"type": "string", "pattern": "^EXP_\\d{4,}$"}}},
+        "runs": {"type": "object", "description": "Values of repeated runs kept inside one record (e.g. per image seed).",
+          "properties": {"count": {"type": "integer"}, "metric": {"type": "string"}, "values": {"type": "array", "items": {"type": "number"}}}},
+        "comparison_group": {"type": "object", "required": ["id"],
+          "properties": {"id": {"type": "string"}, "name": {"type": "string"}, "purpose": {"type": "string"}}},
+        "comparison": {"type": "object",
+          "properties": {"variant": {"type": "string", "description": "The thing being compared (method / model / setting name)."},
+                         "baseline": {"type": "string"}, "decision": {"type": "string", "description": "kept / not_kept / reference / baseline, when a choice was made"},
+                         "selected_on": {"type": "string"}}},
+        "ablation": {"type": "object",
+          "properties": {"enabled": {"type": "boolean"}, "component": {"type": "string"}, "configuration": {"type": "string"}}},
+        "versioning": {"type": "object",
+          "properties": {"project_version": {"type": "string"}, "code_commit": {"type": "string"}, "model_version": {"type": "string"},
+                         "dataset_version": {"type": "string"}}},
+        "evidence": {"type": "array",
+          "items": {"type": "object", "required": ["file"],
+            "properties": {"type": {"type": "string"}, "file": {"type": "string", "description": "Path from the repository root."},
+                           "selector": {"type": "string", "description": "Where in the file the numbers are (key path)."},
+                           "sha256": {"type": "string"}}}},
+        "verification": {"type": "object",
+          "properties": {"method": {"type": "string"}, "checked_at": {"type": "string"}, "by": {"type": "string"}}},
+        "status_history": {"type": "array", "description": "Status changes made by the review command (the measured numbers never change).",
+          "items": {"type": "object", "properties": {"from": {"type": "string"}, "to": {"type": "string"}, "at": {"type": "string"},
+                                                     "by": {"type": "string"}, "note": {"type": "string"}}}},
+        "notes": {"type": "array", "items": {"type": "string"}},
+        "status": {"$ref": "#/definitions/status"}
+      }
+    }
+  }
+}

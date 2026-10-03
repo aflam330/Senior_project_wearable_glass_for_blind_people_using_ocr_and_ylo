@@ -94,6 +94,20 @@ def window_crop(bgr700, corners):
     return cv2.warpPerspective(bgr700, M, (224, 224))
 
 
+def _research_record(kind, *args):
+    """Experiment-level record for research_results/ (see research_results/README.md). Never raises."""
+    try:
+        import sys as _sys
+        from pathlib import Path as _P
+        root = next(p for p in _P(__file__).resolve().parents if (p / "research_results" / "hooks.py").exists())
+        if str(root) not in _sys.path:
+            _sys.path.insert(0, str(root))
+        from research_results import hooks
+        hooks.call(kind, *args)
+    except Exception as exc:  # noqa: BLE001
+        print("[research_results] not recorded:", exc)
+
+
 def main() -> None:
     global L, CACHE
     seed = int(sys.argv[1]) if len(sys.argv) > 1 else 42
@@ -208,6 +222,8 @@ def main() -> None:
         "test_note_ids": [r["note_id"] for r in te], "test_probs_localizer": np.round(pg, 6).tolist(),
         "test_corners": np.round(pt, 5).tolist()}
     (L / f"seed{seed}.json").write_text(json.dumps(res, indent=1), encoding="utf-8")
+    if not generic:
+        _research_record("watermark_localizer", res, L / f"seed{seed}.json")
     print(json.dumps({k: res[k] for k in ("best_epoch", "test_localization", "test_classification")}, indent=1))
 
 

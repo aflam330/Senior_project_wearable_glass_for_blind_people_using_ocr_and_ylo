@@ -318,6 +318,20 @@ def sustained(benches: dict, frames: dict, minutes: float, csv_path: Path) -> di
     }
 
 
+def _research_record(kind, *args):
+    """Experiment-level record for research_results/ (see research_results/README.md). Never raises."""
+    try:
+        import sys as _sys
+        from pathlib import Path as _P
+        root = next(p for p in _P(__file__).resolve().parents if (p / "research_results" / "hooks.py").exists())
+        if str(root) not in _sys.path:
+            _sys.path.insert(0, str(root))
+        from research_results import hooks
+        hooks.call(kind, *args)
+    except Exception as exc:  # noqa: BLE001
+        print("[research_results] not recorded:", exc)
+
+
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--iters", type=int, default=30)
@@ -358,6 +372,8 @@ def main() -> None:
     payload["host"]["cpu_temp_c_end"] = cpu_temp_c()
     payload["host"]["throttled_end"] = throttled()
     base.with_suffix(".json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    if not args.only:  # a full benchmark: one record per module (medians, not per-call rows)
+        _research_record("pi5_benchmark", payload, base.with_suffix(".json"))
     print(f"wrote {base.with_suffix('.json')}", flush=True)
 
 

@@ -224,12 +224,28 @@ def summarise(rows) -> dict:
     return out
 
 
+def _research_record(kind, *args):
+    """Experiment-level record for research_results/ (see research_results/README.md). Never raises."""
+    try:
+        import sys as _sys
+        from pathlib import Path as _P
+        root = next(p for p in _P(__file__).resolve().parents if (p / "research_results" / "hooks.py").exists())
+        if str(root) not in _sys.path:
+            _sys.path.insert(0, str(root))
+        from research_results import hooks
+        hooks.call(kind, *args)
+    except Exception as exc:  # noqa: BLE001
+        print("[research_results] not recorded:", exc)
+
+
 def save(result: dict, path: Path, meta: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     keep = {k: v for k, v in result.items() if k != "rows"}
     keep["meta"] = meta
     keep["per_sample"] = [{k: r[k] for k in ("seed", "lang", "cond", "gt", "hyp", "cer")} for r in result["rows"]]
     path.write_text(json.dumps(keep, ensure_ascii=False, indent=1), encoding="utf-8")
+    if "rows" in result:  # a full benchmark run: one experiment-level record (no per-image data)
+        _research_record("ocr_bench", {k: v for k, v in result.items() if k != "rows"}, path, meta)
 
 
 def line(name: str, r: dict) -> str:

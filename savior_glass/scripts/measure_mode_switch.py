@@ -43,6 +43,20 @@ def ms(t0):
     return round((time.perf_counter() - t0) * 1000, 1)
 
 
+def _research_record(kind, *args):
+    """Experiment-level record for research_results/ (see research_results/README.md). Never raises."""
+    try:
+        import sys as _sys
+        from pathlib import Path as _P
+        root = next(p for p in _P(__file__).resolve().parents if (p / "research_results" / "hooks.py").exists())
+        if str(root) not in _sys.path:
+            _sys.path.insert(0, str(root))
+        from research_results import hooks
+        hooks.call(kind, *args)
+    except Exception as exc:  # noqa: BLE001
+        print("[research_results] not recorded:", exc)
+
+
 def main() -> None:
     fr = frames()
     m = CurrencyMode()
@@ -61,6 +75,7 @@ def main() -> None:
     print(json.dumps(res, indent=1))
     if len(sys.argv) > 1:
         Path(sys.argv[1]).write_text(json.dumps(res, indent=1), encoding="utf-8")
+        _research_record("mode_switch", res, Path(sys.argv[1]))
 
 
 if __name__ == "__main__":

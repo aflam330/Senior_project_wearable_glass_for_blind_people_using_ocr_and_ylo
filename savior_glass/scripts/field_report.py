@@ -2,6 +2,7 @@
 
   python scripts/field_report.py logs/field/<run>          # summary.md + summary.json, and labels.csv if missing
   python scripts/field_report.py logs/field/<run> --all    # also every run under logs/field, side by side
+  python scripts/field_report.py logs/field/<run> --record # also add the run to research_results/ (see its README)
 
 labels.csv has one row per answer the glass gave (currency, OCR, watermark check, Claude) with empty columns
 true_denomination, true_label (genuine / counterfeit), true_text and note. The tester fills them in (from
@@ -157,6 +158,20 @@ def to_md(s: dict) -> str:
     return "\n".join(L) + "\n"
 
 
+def _research_record(kind, *args):
+    """Experiment-level record for research_results/ (see research_results/README.md). Never raises."""
+    try:
+        import sys as _sys
+        from pathlib import Path as _P
+        root = next(p for p in _P(__file__).resolve().parents if (p / "research_results" / "hooks.py").exists())
+        if str(root) not in _sys.path:
+            _sys.path.insert(0, str(root))
+        from research_results import hooks
+        hooks.call(kind, *args)
+    except Exception as exc:  # noqa: BLE001
+        print("[research_results] not recorded:", exc)
+
+
 def main() -> None:
     if len(sys.argv) < 2:
         sys.exit(__doc__)
@@ -167,6 +182,8 @@ def main() -> None:
         (r / "summary.json").write_text(json.dumps(s, ensure_ascii=False, indent=1), encoding="utf-8")
         (r / "summary.md").write_text(to_md(s), encoding="utf-8")
         print(to_md(s))
+        if "--record" in sys.argv:  # one experiment-level record for research_results/ (summary only, no frames)
+            _research_record("field_run", s, r)
 
 
 if __name__ == "__main__":
