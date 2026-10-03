@@ -117,6 +117,32 @@ This times currency, the INT8 detector, the watermark check, object detection, O
 
 Copy the median, 95th percentile, CPU, RAM, and temperature into `paper_evidence/PI5_RESULTS.md` after the run. Do not type a laptop time into that file. Battery minutes are a separate measurement; do not guess them from the benchmark.
 
+## Record a real-time test on the Pi
+
+Every run of `python main.py` writes a folder `savior_glass/logs/field/<date_time>_<host>/`:
+
+| File | What is in it |
+|---|---|
+| `events.csv` | One row per event: button presses, mode switches, every answer spoken, time taken, note and confidence and verdict for currency, the text for OCR, errors |
+| `system.csv` | Every 10 s: CPU temperature, throttling flags, CPU load, free memory, app memory |
+| `session.json` | Start and end time, device, and the settings that affect the results |
+| `frames/` | Only with `FIELD_LOG_SAVE_FRAMES=1`: one small JPEG per button press, so you can check answers later |
+
+The logger only queues each event (about 2 microseconds); a background thread writes once a second. Turn it off with `FIELD_LOG_ENABLED=0`.
+
+After a test session, run this on the Pi or the laptop:
+
+```bash
+python scripts/field_report.py logs/field/<run>
+```
+
+It writes `summary.md` (events, speed per mode, temperature, memory, errors) and `labels.csv`. Fill in `true_denomination`, `true_label` (genuine / counterfeit) and `true_text` in `labels.csv`, then run the script again to get:
+- denomination accuracy;
+- counterfeits wrongly passed as genuine;
+- OCR character error.
+
+To copy runs to the laptop: `scp -r <user>@<pi-ip>:<repo>/savior_glass/logs/field ./field_runs`. The logs are not committed to git, because they can hold photos and participant data.
+
 ## Collect the print-disjoint dataset
 
 Use `realtime_bangla_taka_detection/scripts/dataset/print_capture.py`: `plan` first, then `add` for each photo, then `check`. The full plan is in `paper_evidence/PRINT_DISJOINT_DATASET_PLAN.md`. The tool refuses a photo whose print is already in another split.

@@ -218,5 +218,12 @@ DETECTION_THREAD_SLEEP    = 0.1   # Main loop sleep when not in object mode
 # Logging
 # ---------------------------------------------------------------------------
 LOG_FILE        = os.path.join(BASE_DIR, "logs", "smart_glass.log")
+# Field-test log (field_log.py): logs/field/<run>/events.csv + system.csv + session.json, written by a background
+# thread in batches. FIELD_LOG_ENABLED=0 turns it off; FIELD_LOG_SAVE_FRAMES=1 also keeps one 640 px JPEG per
+# ACTION press (for checking answers later; capped at 2,000 frames and stops when under 500 MB is free).
+FIELD_LOG_ENABLED = os.environ.get("FIELD_LOG_ENABLED", "1") == "1"
+FIELD_LOG_DIR = os.environ.get("FIELD_LOG_DIR", os.path.join(BASE_DIR, "logs", "field"))
+FIELD_LOG_SYS_INTERVAL_S = float(os.environ.get("FIELD_LOG_SYS_INTERVAL_S", "10"))
+FIELD_LOG_SAVE_FRAMES = os.environ.get("FIELD_LOG_SAVE_FRAMES", "0") == "1"
 LOG_MAX_BYTES   = 5 * 1024 * 1024   # 5 MB
 LOG_BACKUP_COUNT = 3

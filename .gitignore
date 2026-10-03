@@ -56,3 +56,6 @@ savior_glass/logs/study_events.jsonl
 savior_glass/ocr_bench/cache/
 savior_glass/ocr_bench/finetuned/
 savior_glass/ocr_bench/tessdata/
+
+# Field-test runs (may contain photos and participant data): copy off the Pi, never commit
+savior_glass/logs/field/

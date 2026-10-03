@@ -30,6 +30,32 @@ from modes import ClaudeMode, CurrencyMode, ObjectMode, OCRMode
 
 logger = logging.getLogger("smart_glass.main")
 
+MODE_KEYS = {config.MODE_OCR: "ocr", config.MODE_OBJECT: "object", config.MODE_CURRENCY: "currency",
+             config.MODE_CLAUDE: "claude"}
+
+
+def _flog(event, mode_idx=None, **fields):
+    """Field-test log (field_log.py). Cheap: puts one row on a queue; never raises into the app."""
+    try:
+        import field_log
+        return field_log.get().log(event, MODE_KEYS.get(mode_idx, "") if mode_idx is not None else "", **fields)
+    except Exception:  # noqa: BLE001
+        return 0
+
+
+def _result_fields(mode, mode_idx):
+    """What each mode decided, for the field log."""
+    if mode_idx == config.MODE_CURRENCY:
+        hits = getattr(mode, "last_hits", None) or []
+        if hits:
+            h = hits[0]
+            return {"denomination": h.get("name", ""), "confidence": h.get("conf"), "verdict": h.get("auth", ""),
+                    "score": h.get("genuine_prob"), "boxes": len(hits)}
+        return {"denomination": "none"}
+    if mode_idx == config.MODE_OCR:
+        return {"lang": getattr(mode, "_stored_lang", ""), "ocr_text": getattr(mode, "_stored_text", "") or ""}
+    return {}
+
 
 class SmartGlass:
 
@@ -74,6 +100,7 @@ class SmartGlass:
 
     def start(self) -> None:
         logger.info("=== Smart Glass starting ===")
+        _flog("session_start", self._current_mode)
         self._tts.speak("স্মার্ট গ্লাস চালু হচ্ছে")   # "Smart glass starting"
 
         # Start camera
@@ -122,6 +149,11 @@ class SmartGlass:
         self.shutdown()
 
     def shutdown(self) -> None:
+        try:
+            import field_log
+            field_log.get().close()
+        except Exception:  # noqa: BLE001
+            pass
         logger.info("Shutting down…")
         self._running.clear()
         self._tts.speak("বন্ধ হচ্ছে")   # "Shutting down"
@@ -161,6 +193,7 @@ class SmartGlass:
         self._modes[old_mode].deactivate()
         # say the new mode at once; loading happens in the background
         self._tts.speak(config.MODE_NAMES_BN[new_mode])
+        _flog("mode_switch", new_mode, result=MODE_KEYS.get(new_mode, ""), from_mode=MODE_KEYS.get(old_mode, ""))
         threading.Thread(target=self._prepare, args=(new_mode,), daemon=True, name=f"prepare-{new_mode}").start()
         logger.info("Mode → %s", config.MODE_NAMES_BN[new_mode])
 
@@ -171,12 +204,14 @@ class SmartGlass:
         frame = self._camera.get_frame()
         if frame is None:
             self._tts.speak("ক্যামেরা প্রস্তুত নয়")
+            _flog("camera_not_ready", mode_idx)
             return
 
         # In object mode, ACTION forces an immediate announce with no cooldown
         if mode_idx == config.MODE_OBJECT:
             obj_mode: ObjectMode = self._modes[config.MODE_OBJECT]  # type: ignore[assignment]
             obj_mode.force_announce_now()
+            _flog("action_press", mode_idx, frame=frame)
             return
 
         # OCR and currency: run inference in a short-lived thread so we don't
@@ -185,21 +220,40 @@ class SmartGlass:
         # Reader / classifier and queue overlapping, garbled TTS output.
         if self._inferring.is_set():
             logger.debug("Ignoring ACTION press — inference already in progress")
+            _flog("action_ignored_busy", mode_idx)
             return
         self._inferring.set()
 
+        t_press = time.perf_counter()
+        eid = _flog("action_press", mode_idx, frame=frame)
+
         def _infer():
             try:
+                waited = 0.0
                 if not self._ready[mode_idx].is_set():
                     self._tts.speak("একটু অপেক্ষা করুন")  # please wait a moment (models still loading)
+                    t_wait = time.perf_counter()
                     self._ready[mode_idx].wait(timeout=120)
+                    waited = (time.perf_counter() - t_wait) * 1000
                 mode = self._modes[mode_idx]
+                t0 = time.perf_counter()
                 result = mode.process_frame(frame)
+                infer_ms = (time.perf_counter() - t0) * 1000
                 if result:
                     self._tts.speak(result)
+                _flog("result", mode_idx, latency_ms=infer_ms, result=result or "", press_event=eid,
+                      press_to_result_ms=round((time.perf_counter() - t_press) * 1000, 1),
+                      waited_for_load_ms=round(waited, 1), **_result_fields(mode, mode_idx))
                 # 500 / 1,000 Taka: guided back-lit watermark check (config.CAPTURE_GUIDE_ENABLED)
                 if mode_idx == config.MODE_CURRENCY and mode.wants_guided_watermark():
-                    mode.guided_watermark(self._camera.get_frame, self._tts.speak)
+                    ev = mode.guided_watermark(self._camera.get_frame, self._tts.speak) or {}
+                    _flog("watermark_check", mode_idx, latency_ms=1000 * float(ev.get("seconds") or 0),
+                          result=ev.get("outcome", "failed"), denomination=ev.get("denomination", ""),
+                          verdict=ev.get("outcome", ""), score=ev.get("watermark_prob"), press_event=eid,
+                          frames=ev.get("frames"), rejected=ev.get("rejected"), condition=ev.get("condition"))
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("Inference failed: %s", exc)
+                _flog("error", mode_idx, result=f"{type(exc).__name__}: {exc}", press_event=eid)
             finally:
                 self._inferring.clear()
 
@@ -223,16 +277,19 @@ class SmartGlass:
             return
         if result:
             self._tts.speak(result)
+        _flog("read_press", mode_idx, result=result or "")
 
     def _on_vol_up(self) -> None:
         self._volume = min(100, self._volume + config.VOLUME_STEP)
         self._tts.set_volume(self._volume)
         logger.info("Volume → %d%%", self._volume)
+        _flog("volume", result=str(self._volume))
 
     def _on_vol_down(self) -> None:
         self._volume = max(0, self._volume - config.VOLUME_STEP)
         self._tts.set_volume(self._volume)
         logger.info("Volume → %d%%", self._volume)
+        _flog("volume", result=str(self._volume))
 
     # ------------------------------------------------------------------
     # Detection loop (object mode auto-scan)
@@ -248,11 +305,15 @@ class SmartGlass:
                 frame = self._camera.get_frame()
                 if frame is not None:
                     try:
+                        t0 = time.perf_counter()
                         result = self._modes[config.MODE_OBJECT].process_frame(frame)
                         if result:
                             self._tts.speak(result)
+                            _flog("object_announce", config.MODE_OBJECT, latency_ms=(time.perf_counter() - t0) * 1000,
+                                  result=result)
                     except Exception as exc:
                         logger.warning("Object detection error: %s", exc)
+                        _flog("error", config.MODE_OBJECT, result=f"{type(exc).__name__}: {exc}")
                 time.sleep(config.OBJECT_SCAN_INTERVAL)
             else:
                 time.sleep(config.DETECTION_THREAD_SLEEP)

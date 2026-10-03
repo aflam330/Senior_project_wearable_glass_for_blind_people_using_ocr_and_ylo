@@ -410,6 +410,7 @@ class CurrencyMode(BaseMode):
                 hit["text"] = hit["text"] + "। " + self._wm.sentence(p)
             except Exception as exc:
                 logger.warning("Watermark check failed: %s", exc)
+        self.last_hits = hits  # read by the field log (main.py)
         if hits:
             self.last_bbox = hits[0]["bbox"]
             self.last_class = hits[0]["name"]
