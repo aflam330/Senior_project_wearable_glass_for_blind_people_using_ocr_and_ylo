@@ -4,13 +4,13 @@
 
 \section{Design Overview}
 
-The implementation of Savior Glass was guided by usability for people without sight, by the limited computing power of a Raspberry Pi, and by the need to work without the internet. The system was not designed as a single large model; instead, each function is a small, replaceable mode that uses the best available offline model and falls back to a simpler method if a model is missing. The work progressed in three stages: a user-centred interaction design, a desktop prototype with a webcam, and packaging for the Raspberry Pi~5.
+The implementation of Savior Glass was guided by usability for people without sight, by the limited computing power of a Raspberry Pi, and by the need to work without the internet. The system was not designed as a single large model; instead, each function is a small, replaceable mode that uses the best available offline model and falls back to a simpler method if a model is missing. The work progressed in four stages: a user-centred interaction design, a desktop prototype with a webcam, deployment and measurement on the Raspberry Pi~5, and a first hands-on test of the glass.
 
 \subsection{User-Centred Design}
-A person who cannot see the device must be able to find every control by touch and must never need a screen. For this reason the glass uses five physical buttons with distinct positions, confirms every action with speech, and speaks the name of the mode after every mode change. Heavy tasks run only on request, so that the user decides when the device speaks. Messages are short, in Bangla, and can be repeated with the READ button in text mode.
+A person who cannot see the device must be able to find every control by touch and must never need a screen. For this reason the glass uses five physical buttons with distinct positions, confirms every action with speech, and speaks the name of the mode after every mode change. Heavy tasks run only on request, so that the user decides when the device speaks. Messages are short, in Bangla, and can be repeated with the READ button in text mode. When the device cannot do what was asked, it says why: ``no note found, hold it in front of the camera'', ``hold the note closer to the light'', ``no face found''.
 
 \subsection{Prototype Development Environment}
-Most development and all model training were done on Windows~11 laptops with NVIDIA GPUs. The trained YOLOv8s Taka detector was trained on an RTX~4060 Laptop GPU (8~GB), and the authentication and emotion models on an RTX~3050 Laptop GPU with CUDA~12.4 and PyTorch~2.6. The same Python code runs on the Raspberry Pi~5; only the button and audio back-ends differ.
+Most development and all model training were done on Windows~11 laptops with NVIDIA GPUs. The authentication, watermark, emotion and OCR experiments, and all evaluations reported in this thesis, were run on an RTX~3050 Laptop GPU with CUDA~12.4 and PyTorch~2.6 \cite{pytorch}. The same Python code runs on the Raspberry Pi~5; only the camera, button and audio back-ends differ.
 
 \section{Hardware Implementation}
 
@@ -21,14 +21,14 @@ The camera module is mounted at the bridge of the spectacle frame so that it poi
 \subsection*{1. Raspberry Pi~5 Power}
 The Raspberry Pi~5 is powered through its USB-C port from a power bank. The system starts automatically when power is connected.
 
-\subsection*{2. Camera Module~3}
-The camera is connected to the CSI connector. The installation script adds \texttt{dtoverlay=imx708} to the boot configuration. If a USB webcam is used, only \texttt{CAMERA\_INDEX} in \texttt{config.py} is changed.
+\subsection*{2. Camera Module~2}
+The camera is connected to the CSI connector and read with Picamera2. On the Raspberry Pi~5 the OpenCV capture interface opened the camera device but received no frames, so the camera manager now tries Picamera2 first, then OpenCV, and finally scans the video devices while skipping the Pi's internal image-processing nodes. If the camera is already in use by another program, the manager stops with a message that says so. A USB webcam is selected with \texttt{CAMERA\_BACKEND} and \texttt{CAMERA\_INDEX}; the frame size is set with \texttt{CAMERA\_WIDTH} and \texttt{CAMERA\_HEIGHT}.
 
 \subsection*{3. Push-Buttons}
-Each button connects one GPIO pin (BCM 17, 27, 24, 22, 23) to ground. The pins are configured as inputs with internal pull-up resistors, and a falling edge generates an interrupt that is debounced in software for 250~ms using the \texttt{rpi-lgpio} library.
+Each button connects one GPIO pin (BCM 17, 27, 24, 22, 23) to ground. The pins are configured as inputs with internal pull-up resistors, and a falling edge generates an interrupt that is debounced in software for 250~ms using the \texttt{rpi-lgpio} library. The library creates a notification pipe in its working directory; because the project was kept on a FAT-formatted USB drive, which cannot hold pipes, the working directory of the library is set to the system's temporary folder. A pin that is already claimed by another process produces an error message with instructions instead of a stack trace.
 
 \subsection*{4. Vibration Motor}
-The vibration motor is driven with PWM from BCM pin 13. Patterns are defined as lists of (on, off) durations in milliseconds, for example two pulses of 80~ms for ``genuine'' and three pulses of 220~ms for ``counterfeit''.
+The vibration motor is driven with PWM from BCM pin 13. Patterns are defined as lists of (on, off) durations in milliseconds; a detected note gives one pulse of 50~ms.
 
 \subsection*{5. Audio}
 Speech is sent to the default ALSA device with \texttt{aplay}; the volume is changed with \texttt{amixer}. Piper produces 16-bit mono PCM at 22,050~Hz, which is streamed directly to \texttt{aplay} without writing a file.
@@ -36,7 +36,7 @@ Speech is sent to the default ALSA device with \texttt{aplay}; the volume is cha
 \section{Software Deployment and Functional Integration}
 
 \subsection{Environment Setup and Libraries}
-The software stack is summarised in Table~\ref{tab:libraries}. On the Raspberry Pi, the installation script \texttt{install.sh} performs seven steps: (1) install system packages (libcamera, espeak-ng, ALSA utilities, OpenBLAS), (2) create a Python virtual environment, (3) install the Python requirements, (4) install the Piper ARM64 binary and an English voice, (5) copy or download the YOLO weights, (6) enable the camera overlay, and (7) enable the systemd service.
+The software stack is summarised in Table~\ref{tab:libraries}. On the Raspberry Pi, the deployment script \texttt{scripts/deploy\_pi5.sh} installs the system packages (libcamera, Picamera2, espeak-ng, ALSA utilities, OpenBLAS), creates a Python virtual environment, installs the Python requirements, the Piper ARM64 program and an English voice, and copies the model files. The virtual environment is created in the user's home folder with access to the system packages: Picamera2 is a system package, and the FAT-formatted drive that holds the project cannot store the symbolic links a virtual environment needs. A pre-flight script (\texttt{scripts/pi5\_preflight.py}) then checks that every model and library is present before the application is started.
 
 \begin{table}[!htbp]
 \centering
@@ -46,11 +46,15 @@ The software stack is summarised in Table~\ref{tab:libraries}. On the Raspberry 
 \hline
 \textbf{Library / Tool} & \textbf{Use in the project} \\ \hline
 Python 3 & Application language \\ \hline
-OpenCV & Camera capture, pre-processing, Haar or YuNet face detection, contours, HSV analysis \\ \hline
+OpenCV \cite{opencv} & Pre-processing, YuNet or Haar face detection, SIFT registration, USB camera capture \\ \hline
+Picamera2 & Capture from the Pi camera \\ \hline
 PyTorch, torchvision & Training and inference of MobileNetV3, EfficientNet-V2-S, TinyViT models \\ \hline
 Ultralytics YOLOv8 & Object and Taka detection, training, export to ONNX and TorchScript \\ \hline
-ONNX Runtime & Inference of ONNX and INT8 ONNX models, FER+ fall-back \\ \hline
+ONNX Runtime & Inference of the INT8 Taka detector, the watermark localizer and classifier, FER+ fall-back \\ \hline
 EasyOCR & Bangla and English text recognition \\ \hline
+HarfBuzz, FreeType & Correct shaping of Bangla text in the OCR benchmark images \\ \hline
+Tesseract, PaddleOCR, KenLM, SymSpell & OCR engines and correctors compared in the benchmark \\ \hline
+sounddevice, SpeechRecognition & Microphone capture and speech recognition in the voice study tool \\ \hline
 Piper, espeak-ng & Offline neural and formant speech synthesis \\ \hline
 rpi-lgpio & GPIO buttons and PWM on Raspberry Pi~5 \\ \hline
 pytorch-grad-cam & Grad-CAM visual explanations \\ \hline
@@ -65,13 +69,18 @@ Integration was carried out step by step:
     \item Button handling: mode cycling with spoken mode names.
     \item Each mode added and tested separately in the Windows harness.
     \item Concurrency: object scanning in parallel with on-demand OCR and currency, protected by an inference flag.
-    \item Packaging: installation script, systemd service and logging with rotation (5~MB, 3 backups).
+    \item Packaging: deployment script, systemd service and logging with rotation (5~MB, 3 backups).
+    \item Deployment on the Raspberry Pi~5 and benchmark of every mode.
+    \item Field log, live algorithm panel and study tools.
 \end{enumerate}
 
 \section*{Core Implementation Modules}
 
 \subsection*{Camera Manager}
 The \texttt{CameraManager} runs a background thread that reads frames continuously and keeps only the most recent one. Modes always receive a fresh frame, and a slow OCR call never causes a backlog of old frames.
+
+\subsection*{Mode Switching}
+Loading a model takes one to two seconds, which is too long to wait in silence. When MODE is pressed, the name of the mode is spoken at once and the model is loaded and warmed up in a background thread; a lock prevents two models from loading at the same time, and the currency mode is preloaded when the application starts. On the laptop CPU this reduced the first currency check after a mode change from 661~ms to 43~ms.
 
 \subsection*{Language Detection and Speech Segmentation}
 The speech engine decides the language of each piece of text by counting Bangla characters, and splits mixed-script text into runs that are spoken with the correct voice:
@@ -89,50 +98,58 @@ def detect_language(text: str) -> str:
 Speaking a mixed Bangla--English sentence as one block forces the wrong voice onto half of it, which made early OCR output sound garbled. Splitting on script boundaries fixed this while keeping the original reading order.
 
 \subsection*{Text Reading with EasyOCR}
-The OCR mode loads the EasyOCR reader for Bangla and English lazily on first use, because it needs about 600~MB of memory. The pre-processing is shown below:
+The OCR mode loads the EasyOCR reader for Bangla and English lazily on first use, because it needs about 600~MB of memory; on a machine with a GPU it uses the GPU, on the Pi the CPU. The frame is contrast-enhanced with CLAHE and read once with the tuned settings. The step that matters most is the selection of the main text block, shown below as it is in the code. It starts from the box with the largest product of height and confidence and repeatedly adds boxes that have a similar height and lie within one and a half text heights of the block:
 
 \begin{lstlisting}[language=Python]
-def _preprocess(self, frame):          # simplified
-    # Upscale -> denoise -> CLAHE. Deliberately no binarisation:
-    # binarising lowered mean confidence (~0.69 vs ~0.84).
-    h, w = frame.shape[:2]
-    target_w = 1200
-    if w < target_w:
-        scale = target_w / w
-        frame = cv2.resize(frame, (target_w, int(h * scale)),
-                           interpolation=cv2.INTER_CUBIC)
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    gray = cv2.bilateralFilter(gray, 9, 75, 75)
-    clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8))
-    return clahe.apply(gray)
+def dominant_block(det, min_conf=0.2, h_ratio=0.6, gap=1.5):
+    boxes = [b for b in _boxes(det) if b["c"] >= min_conf]
+    if not boxes:
+        return []
+    seed = max(boxes, key=lambda b: b["h"] * b["c"])
+    block, rest = [seed], [b for b in boxes if b is not seed]
+    grown = True
+    while grown:
+        grown = False
+        for b in list(rest):
+            hs = float(np.median([x["h"] for x in block]))
+            if not (h_ratio <= b["h"] / max(hs, 1.0) <= 1 / h_ratio):
+                continue                      # different text size
+            if any(b["x0"] - x["x1"] < gap * hs and
+                   x["x0"] - b["x1"] < gap * hs and
+                   b["y0"] - x["y1"] < gap * hs and
+                   x["y0"] - b["y1"] < gap * hs for x in block):
+                block.append(b)               # touches the block
+                rest.remove(b)
+                grown = True
+    return block
 \end{lstlisting}
 
-Upscaling to about 1,200 pixels in width was found to be the most important step for Bangla; larger upscales (1,800 and 2,400 pixels) reduced confidence, probably because they amplify blur. After recognition, boxes are sorted top-to-bottom and left-to-right, filtered, joined, and stored. A short confirmation tells the user that text has been saved and that READ will speak it.
+The boxes of the block are then grouped into lines by their vertical centre, each line is sorted from left to right, and the clean-up rules are applied. The text is spoken once directly after capture and stored, so that READ can repeat it.
+
+EasyOCR enlarges the image towards a canvas size before detection. A canvas of 640 pixels makes OCR about three times faster on the Pi than the default of 2,560, but on a selection set of phrases that the OCR pipeline had never seen it missed the pre-set margin of 0.5 points (13.84\% against 13.29\% CER, Wilcoxon $p = 0.48$), so the default stays at 2,560 and the faster setting is available through \texttt{OCR\_CANVAS\_SIZE}.
 
 \subsection*{Object Detection with YOLOv8}
 The detection loop runs only in object mode. Every 1.5 seconds it takes the latest frame, resizes it to 320$\times$240, runs YOLOv8 with confidence 0.50, keeps the three most confident unique classes whose cooldown has expired, translates them to Bangla with \texttt{labels\_bn.json}, and queues a sentence of the form ``in front: \textit{object 1}, \textit{object 2}''. Pressing ACTION forces the next scan to ignore the cooldown.
 
 \subsection*{Currency Detection and Authentication}
-The currency mode first tries the YOLOv8s Taka detector. If it finds a note, the glass vibrates, speaks the Bangla name of the denomination and says that the counterfeit check was not done. The genuine/counterfeit verdict is switched off (\texttt{JAAL\_VERDICT\_ENABLED = False} in \texttt{config.py}) because it was wrong on 20--59\% of genuine whole-note photographs (Section~\ref{sec:jaal_deployed}); when it is switched on, the authenticator checks the crop and plays the genuine or counterfeit vibration pattern. If the detector is loaded but finds nothing, the user is asked to hold the note in front of the camera; the HSV guess is not used in that case because it announced wrong denominations too often. The simplified logic is:
+The currency mode first runs the YOLOv8s Taka detector. The logic that follows was shaped by three failures. An earlier version fell back to a colour guess when the detector found nothing, and announced wrong denominations; the colour guess is now used only when no detector is installed. An earlier version announced every detection, and named 1 Taka notes, which the detector does not know, as other notes; a detection is now announced only at a confidence of at least 0.60. And an earlier version spoke ``genuine'' or ``counterfeit'' from one crop of the note, which was wrong on 20--59\% of genuine whole-note photographs (Section~\ref{sec:jaal_deployed}); it was first switched off and then replaced by the safe policy. The simplified logic is:
 
 \begin{lstlisting}[language=Python]
-def process_frame(self, frame):
-    hits = self.detect_live(frame)          # Stage 0: YOLOv8s Taka
+def process_frame(self, frame):               # simplified
+    hits = self.detect_live(frame)            # YOLOv8s Taka + safe check
+    if hits and hits[0]["conf"] < config.CURRENCY_ANNOUNCE_CONF:
+        return NOT_SURE_HOLD_CLOSER           # possibly an unknown note
     if hits:
         self._buzz("detect")
-        return hits[0]["text"]
+        if hits[0]["auth"] in ("likely_genuine", "check_by_hand"):
+            return hits[0]["text"]            # value + safe verdict
+        return hits[0]["text"] + CHECK_NOT_DONE   # other denominations
     if self._yolo is not None:
         return NOTE_NOT_FOUND_MESSAGE
-    roi, bbox = self._detect_note_region(frame)   # Stage 1: contour
-    color, color_score = self._color_match(roi)   #          + HSV
-    if self._classifier is not None:              # Stage 2: MobileNetV3
-        cls, score = self._classify(roi)
-        if score >= config.CURRENCY_CONFIDENCE:
-            return DENOMINATION_BN[cls]
-    if color and color_score >= 0.30:
-        return DENOMINATION_BN[color]
-    return HOLD_CLOSER_MESSAGE
+    ...                                       # no detector: colour fall-back
 \end{lstlisting}
+
+For a 500 or 1,000 Taka note the four view windows are cut from the detected box and scored, and the text becomes the denomination followed by ``likely genuine'' or ``check by hand''. When the watermark check is switched on (the default on the Pi), the capture guide then asks the user to hold the note up to a light and runs the watermark path of Section~\ref{sec:watermark_method}. Every watermark check is written to a study log with the participant, the condition (guided or not), the time, the rejected frames and the outcome.
 
 The detector is also used in a live desktop application that draws boxes on the webcam image and speaks the detected note when SPACE is pressed (Figure~\ref{fig:webcam}). Frames darker than a mean intensity of 80 are brightened with a gain of 3.0 and a gamma of 0.5 before detection, which fixed a failure observed in dim rooms.
 
@@ -155,11 +172,17 @@ To check that the detector looks at meaningful parts of the note, Grad-CAM \cite
 \subsection*{Model Export for the Edge}
 The Taka detector was exported to TorchScript, ONNX and INT8-quantised ONNX. The first INT8 export quantised the whole network, including the detection head; its class scores collapsed (highest score 0.007) and it detected no note on the test images, so it was discarded. The INT8 model now used is statically quantised with ONNX Runtime, calibrated on 200 validation images, with the detection head and the first convolution kept in 32-bit floating point. On the full synthetic test split it matches the FP32 ONNX model (mAP@0.5 0.995 for both; mAP@0.5:0.95 0.823 against 0.821), and the file is 18.0~MB compared with 22.5~MB for the PyTorch weights.
 
-\subsection*{Emotion Recognition}
-The emotion recogniser runs in its own thread in the desktop harness. It detects the largest face with a Haar cascade (or with the YuNet detector on OpenCV~5, which no longer ships Haar cascades), crops and resizes it to 224$\times$224, and classifies it with EfficientNet-V2-S, averaging the prediction with that of the horizontally flipped face. The label is shown in a status line and passed to the speech function, which adapts the rate, prefix and length of the message as described in Section~\ref{sec:software}. On the glass form factor the camera faces outward, so it sees the face of the person in front of the user rather than the user; applying the adaptation to the user's own state would need an inward-facing camera and is left as future work.
+\subsection*{Emotion Mode}
+The emotion mode detects the nearest face with YuNet, crops and resizes it to 224$\times$224, and classifies it with EfficientNet-V2-S, averaging the prediction with that of the mirrored face. It speaks one sentence, ``the person in front looks happy'' (in Bangla), or says that no face was found and that the camera should be pointed at a face. The model file is 82~MB. Until 3~October 2026 emotion recognition ran only in the desktop harness, where it adapted the speaking style; an earlier project report described it as working on the glass, which was wrong, and the mode was added after the first field test showed that it was missing. On the glass the camera faces outward, so the mode describes the person in front of the user, not the user.
 
 \subsection*{Optional Online Scene Description}
-An optional fourth mode sends the current frame to a cloud vision--language model through the Anthropic Messages API and speaks a short Bangla or English description. It requires an internet connection and an API key, is disabled by default, and is never used by the offline modes.
+The online mode sends the current frame to a cloud vision--language model and speaks a short Bangla or English description. It supports the Anthropic and the OpenAI API, requires an internet connection and an API key, and is never used by the other modes. Its accuracy and latency have not been measured: the account supplied for the test had no credit, and the evaluation script returned an error for every request.
+
+\subsection*{Field Log and Live Algorithm Panel}
+The field logger writes two CSV files per run. \texttt{events.csv} has one row per event with the columns time, event, mode, latency, result, denomination, confidence, verdict, score, language and detail; \texttt{system.csv} has the CPU temperature, throttling state, load, free memory and the memory of the application every 10~seconds. Rows are put on a queue and written by a separate thread, so logging does not slow the modes; if the queue is full, the event is counted as dropped. For demonstrations and debugging, the preview window has a panel (key L) that runs every model on the current picture and shows its output and time.
+
+\subsection*{Voice Study Tool}
+For the user study, a session runner asks the participant's name by voice, lets the participant use the glass, and, when the experimenter presses D, asks six yes/no questions in Bangla (ease of use, clarity of speech, help with currency, help with reading, trust, willingness to use daily). Answers are spoken. The microphone is read at its native sample rate, recording starts after 0.2~seconds of sound and stops after 1~second of silence, so that a click is not taken for an answer; the recording is sent to an online speech recogniser in Bangla and, if no yes or no is found, in English, and every alternative transcription is searched for a yes or no word. The experimenter can also answer with the Y and N keys. Each session receives an identifier (P001, P002, \dots) and is saved automatically with the recordings, the recognised text and whether each answer came by voice or key. This tool needs the internet and runs on the laptop, not on the Pi.
 
 \subsection*{Start at Boot}
 The glass runs as a systemd service so that it starts without a keyboard or screen and restarts automatically after a crash:
@@ -176,25 +199,46 @@ SupplementaryGroups=gpio audio video
 \end{lstlisting}
 
 \subsection{Windows Development Harness}
-Because hardware testing is slow, a Windows harness (\texttt{test\_windows.py}) runs the same modes with a laptop webcam. The keys M, A, R, +, $-$ and Q replace the five buttons and the power switch; C opens the online mode and E toggles emotion-adaptive speech. A small window shows the camera image, the detections and a status line with the current emotion and mode. Windows SAPI is used when Piper is not installed; SAPI cannot speak Bangla well, so Bangla speech is best tested with Piper or on the Pi with espeak-ng.
+Because hardware testing is slow, the same application runs on a Windows laptop with a webcam and a preview window. The keys M, A, R, +, $-$ and Q replace the five buttons and the power switch, L opens the algorithm panel, and in a study session D ends the use phase and N starts the next participant. The window shows the camera image, the detections and a status panel. On Windows, English is spoken with the system speech engine and Bangla with an online voice, because the system engine cannot speak Bangla; offline Bangla speech is tested on the Pi with espeak-ng.
 
 \subsection{Error Handling and Functional Validation}
-Every model is loaded inside a \texttt{try} block. If a model file is missing, the mode logs a warning and falls back to the next stage instead of crashing: the currency mode falls back from YOLO to HSV and MobileNet, object detection from YOLOv8s to YOLOv8n, speech from Piper to espeak-ng, and emotion recognition from EfficientNet-V2-S to FER+. Camera failures produce a spoken message (``camera not ready''). The speech queue drops old messages when full, so that a burst of detections never delays the user by more than a few seconds.
+Every model is loaded inside a \texttt{try} block. If a model file is missing, the mode logs a warning and falls back to the next stage instead of crashing: the watermark window falls back from the learned localizer to SIFT registration, OCR from EasyOCR to Tesseract, object detection from YOLOv8s to YOLOv8n, speech from Piper to espeak-ng, and emotion recognition from EfficientNet-V2-S to FER+. One such fall-back had hidden a fault: when Piper failed on the Pi it produced no sound at all instead of falling back, which was found and fixed during the Pi benchmark. Camera failures produce a spoken message (``camera not ready''). The speech queue drops old messages when full, so that a burst of detections never delays the user by more than a few seconds.
 
 \section{Testing and Calibration}
 Testing proceeded from single functions to the complete system.
 
 \subsubsection{Camera and OCR Testing}
-Printed Bangla and English words were rendered and photographed under different conditions, and the pre-processing parameters (upscale width, filter strength, CLAHE clip limit, binarisation on/off) were chosen by comparing recognition confidence on the same frames.
+The OCR pipeline was first tuned by comparing recognition confidence on rendered words. This was replaced by the benchmark of Section~\ref{sec:ocr_bench_data}, in which every choice is made on validation phrases and fonts and scored by the error rate, not by the engine's own confidence.
 
 \subsubsection{Currency Detector Testing}
-The detector was evaluated on held-out composites, run live twice for about five minutes each without errors, checked with diagnostic webcam captures in dim light (mean brightness 40 raised to 174 by the brightening step), and evaluated on 450 raw phone photographs of notes.
+The detector was evaluated on held-out composites, run live twice for about five minutes each without errors, checked with diagnostic webcam captures in dim light (mean brightness 40 raised to 174 by the brightening step), and evaluated on independent photograph collections.
 
 \subsubsection{Authenticator Testing}
-All authentication models were evaluated with 1, 2, 3, 4, 5 and 6 views on the same note-disjoint test split, with 13 image corruptions and with calibration metrics.
+All authentication models were evaluated with 1, 2, 3, 4, 5 and 6 views on the same note-disjoint test split, with 13 image corruptions and with calibration metrics, and the main models again on the print-disjoint split. The path used by the application (localizer and INT8 classifier) was checked against the research path on the 222 test photographs and made the same decision on 99.1\% of them.
 
 \subsubsection{Voice and Audio Calibration}
 The espeak-ng voice was slowed from the default 150 to 135 words per minute, the pitch was lowered from 50 to 45, and a word gap was added, which made Bangla speech easier to follow. A 0.15-second pause between segments separates sentences.
 
 \subsubsection{End-to-End Interaction Testing}
-Complete sequences (boot, mode change, capture, read, currency detection, volume change) were run in the Windows harness. End-to-end timing on the Raspberry Pi~5 and a structured test with visually impaired users have not yet been carried out.
+Complete sequences (boot, mode change, capture, read, currency detection, volume change) were run in the Windows harness and then on the Raspberry Pi~5, where every mode was timed (Section~\ref{sec:pi5}). A first hands-on test of the glass followed (Section~\ref{sec:field_test}). A structured test with visually impaired users has not yet been carried out.
+
+\section{Deployment Problems on the Raspberry Pi~5}
+\label{sec:deploy_problems}
+Bringing the application from the laptop to the Pi exposed problems that no laptop test could show. They are listed in Table~\ref{tab:deploy} because each of them stopped the glass from starting.
+
+\begin{table}[!htbp]
+\centering
+\caption{Problems met when deploying on the Raspberry Pi~5, and their fixes}
+\label{tab:deploy}
+\begin{tabular}{|p{4.4cm}|p{4.6cm}|p{5.0cm}|}
+\hline
+\textbf{Symptom} & \textbf{Cause} & \textbf{Fix} \\ \hline
+Virtual environment cannot be created & Project on a FAT USB drive, which cannot hold symbolic links & Environment in the home folder, with system packages visible \\ \hline
+GPIO library fails with ``file not found'' & Its notification pipe cannot be created on the same drive & Working directory of the library set to the temporary folder \\ \hline
+``Camera: no frames received'' & OpenCV capture does not deliver frames from the Pi camera & Picamera2 as the first back-end \\ \hline
+``Camera in use'', ``GPIO busy'' & A second copy of the application was running & Clear error message; stop the other copy \\ \hline
+Missing ONNX Runtime & Not in the requirements for the Pi & Added; pre-flight check of all libraries and models \\ \hline
+No sound when Piper fails & Silent failure instead of fall-back & Fall-back to espeak-ng \\ \hline
+Bangla Piper voice unusable & The prebuilt ARM64 Piper cannot phonemise the Bangla voice & espeak-ng for Bangla (open problem) \\ \hline
+\end{tabular}
+\end{table}

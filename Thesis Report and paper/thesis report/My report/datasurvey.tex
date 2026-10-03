@@ -3,7 +3,7 @@
 \label{chap:dataset}
 
 \section{Dataset}
-Savior Glass combines several vision tasks, and each task needs its own data. Table~\ref{tab:datasets} lists every dataset used in this project, what it was used for, and how it was split. All training, validation and test splits are disjoint; where the same physical note or person could appear in more than one image, the split was made by the physical unit (note or writer), not by image.
+Savior Glass combines several vision tasks, and each task needs its own data. Table~\ref{tab:datasets} lists every dataset used in this project, what it was used for, and how it was split. All training, validation and test splits are disjoint; where the same physical note or person could appear in more than one image, the split was made by the physical unit (note or writer), not by image. For counterfeit notes even that is not enough, as Section~\ref{sec:serial_audit} shows.
 
 \begin{table}[!htbp]
 \centering
@@ -13,20 +13,24 @@ Savior Glass combines several vision tasks, and each task needs its own data. Ta
 \hline
 \textbf{Dataset} & \textbf{Content} & \textbf{Task} & \textbf{Split / use} \\ \hline
 BanglaTaka \cite{banglataka} & 5,073 background-free Taka photos, 9 denominations & Currency foregrounds & 80/10/10 by source note \\ \hline
-COCO val2017 \cite{coco} & 1,500 natural photos (of 5,000 on disk) & Backgrounds & Random crops for compositing \\ \hline
-Synthetic Taka detection set & 22,315 composites (this work) & Taka detection & 17,844 / 2,233 / 2,238 \\ \hline
-Raw Taka photos & 450 phone photos, 50 per denomination & Taka detection & Test only \\ \hline
-JaalTaka \cite{jaaltaka} & 1,390 notes $\times$ 6 views = 8,340 images & Genuine vs counterfeit & 974 / 208 / 208 notes \\ \hline
+COCO \cite{coco} & Natural photographs & Backgrounds; object test; OCR photo scenes & Random crops for compositing \\ \hline
+Synthetic Taka detection set & 22,333 composites (this work) & Taka detection & 17,839 / 2,212 / 2,282 \\ \hline
+Fresh composite test & 566 composites of test notes on other backgrounds & Taka detection & Test only \\ \hline
+Bangla Money (Kaggle) & 1,536 photographs, 8 denominations; 101 photographs of 1 Taka & Taka detection & Independent test only \\ \hline
+NSTU-BDTAKA \cite{nstubdtaka2024} & 186 detection images, 1,144 hand-held close-ups & Taka detection & Independent test only \\ \hline
+JaalTaka \cite{jaaltaka} & 1,390 notes $\times$ 6 views = 8,340 images; 500 and 1,000 Taka & Genuine vs counterfeit & Note-disjoint 974 / 208 / 208; print-disjoint 946 / 222 / 222 \\ \hline
+Bangladeshi Counterfeit Currency Image Dataset & Whole-note photographs: 1,199 genuine, 87 counterfeit (about 4 physical counterfeit notes) & Check of the deployed verdict & Test only \\ \hline
+MVP-N \cite{mvpn}, ModelNet40 \cite{modelnet} & Multi-view object sets & Whether the view-count finding holds outside currency & Their own splits \\ \hline
 RAF-DB \cite{rafdb} & 15,339 face images, 7 expressions & Emotion & Official 12,271 / 3,068 \\ \hline
-OCR test set & 40 Bangla + 40 English phrases & OCR evaluation & Test only \\ \hline
-Ekush \cite{ekush} & 367,018 handwritten Bangla characters, 122 classes & Bangla character recognition & Writer-disjoint 2,429 / 303 / 305 writers \\ \hline
+OCR benchmark (this work) & Bangla and English phrases rendered with correct shaping; 432 images per phrase set & OCR development and test & Separate validation and test phrases and fonts \\ \hline
+Ekush \cite{ekush} & 367,018 handwritten Bangla characters, 122 classes & Handwritten-letter fall-back & Writer-disjoint 2,429 / 303 / 305 writers \\ \hline
 COCO val2017 subset & 250 images, 77 classes present & Object evaluation & Test only \\ \hline
 \end{tabular}
 \end{table}
 \FloatBarrier
 
 \subsection{Implications of These Datasets on Our Research}
-The datasets define what each result means. The Taka detector is trained only on synthetic composites, so its test score on composites measures performance on data that is statistically similar to training; the raw photograph set is closer to real use. JaalTaka is split by physical note, so the authenticator is never tested on a note it has seen in training, but all notes come from one capture collection, so camera and session changes are not tested. RAF-DB is a standard benchmark with an official split, which allows comparison with published work. The OCR set is small and mainly printed text, which is enough to show the difference between Bangla and English but not to give a precise estimate for all kinds of signs.
+The datasets define what each result means. The Taka detector is trained only on synthetic composites, so its test score on composites measures performance on data that is statistically similar to training; the raw photograph set is closer to real use. JaalTaka is split by physical note, so the authenticator is never tested on a note it has seen in training; but many of its counterfeit notes are copies of the same print, so the note-disjoint split measures the recognition of known prints, and a second, print-disjoint split is needed. All its notes come from one capture collection, so camera and session changes are not tested. RAF-DB is a standard benchmark with an official split, which allows comparison with published work. The OCR benchmark consists of rendered text, some of it placed in real photographs; it separates the effect of each pipeline step cleanly, but real signs, glare and curved packets will be harder. None of the datasets was photographed through the glass camera.
 
 \section{Currency Detection Data Engineering}
 
@@ -90,7 +94,7 @@ Balance & Negative images & 10\% background-only images with empty labels \\ \hl
 \FloatBarrier
 
 \subsection{Final Detection Dataset}
-Four composites were generated per source note, plus background-only negatives. The data was split 80/10/10 \textit{by source note}, so no physical note image appears in more than one split (Table~\ref{tab:split}).
+Four composites were generated per source note, plus background-only negatives. The data was split 80/10/10 \textit{by source note}, so no physical note image appears in more than one split (Table~\ref{tab:split}). The counts are those of the dataset as it is stored on disk; an earlier version of this thesis gave 22,315 images, a figure taken from a generation log that no longer matches the files.
 
 \begin{table}[!htbp]
 \centering
@@ -99,15 +103,18 @@ Four composites were generated per source note, plus background-only negatives. 
 \begin{tabular}{|l|r|r|r|r|}
 \hline
 \textbf{Split} & \textbf{Positive} & \textbf{Negative} & \textbf{Total} & \textbf{Note instances} \\ \hline
-Train & 16,224 & 1,620 & 17,844 & 16,224 \\ \hline
-Validation & 2,016 & 217 & 2,233 & 2,016 \\ \hline
-Test & 2,052 & 186 & 2,238 & 2,052 \\ \hline
-\textbf{Total} & \textbf{20,292} & \textbf{2,023} & \textbf{22,315} & \textbf{20,292} \\ \hline
+Train & 16,224 & 1,615 & 17,839 & 16,224 \\ \hline
+Validation & 2,016 & 196 & 2,212 & 2,016 \\ \hline
+Test & 2,052 & 230 & 2,282 & 2,052 \\ \hline
+\textbf{Total} & \textbf{20,292} & \textbf{2,041} & \textbf{22,333} & \textbf{20,292} \\ \hline
 \end{tabular}
 \end{table}
 
 \subsection{Raw Photograph Test Set}
-To test the detector on images that are not composites, 450 raw phone photographs of notes, 50 for each of the nine denominations, were taken from the raw BanglaTaka collection and labelled with their denomination. These images show real paper, real lighting and real camera noise, but they are not independent of the training data in the strict sense: the raw collection is the same source from which the training foregrounds were cropped, so some physical notes may overlap. This set is therefore a useful but optimistic check of real-image behaviour.
+To test the detector on images that are not composites, 450 raw phone photographs of notes, 50 for each of the nine denominations, were taken from the raw BanglaTaka collection and labelled with their denomination. These images show real paper, real lighting and real camera noise, but they are not independent of the training data in the strict sense: the raw collection is the same source from which the training foregrounds were cropped, so some physical notes may overlap. This set is therefore a source-domain check, not a test.
+
+\subsection{Independent Photograph Collections}
+The real test of the detector uses photographs taken by other people and never used for training or selection. \textit{Bangla Money}, a public Kaggle collection, has 1,536 photographs of eight of the nine denominations (no 200 Taka) and 101 photographs of the 1 Taka note, a class the detector does not know. \textit{NSTU-BDTAKA} \cite{nstubdtaka2024} provides 186 annotated detection images and 1,144 close-ups in which a folded note is held in a hand. A third public collection was excluded because its files are byte-identical to the training source. A further set of 566 composites was built from the test-split notes on backgrounds from a different COCO subset, as a second synthetic test.
 
 \section{Currency Authentication Data}
 The authenticator is trained on the JaalTaka collection of genuine and counterfeit Bangladeshi notes \cite{jaaltaka}. Every physical note is photographed in six ordered close-up views that show different regions and security features (Figure~\ref{fig:jaaltaka}). Table~\ref{tab:jaaltaka} gives the statistics of the split used in all experiments.
@@ -141,7 +148,40 @@ Note overlap between splits (train--val, train--test, val--test) & 0 / 0 / 0 \\ 
 \end{tabular}
 \end{table}
 
-An earlier split of the same data at the image level produced an accuracy of 1.00, because views of the same note appeared in both training and test data. That number was a data-leakage artefact and is not reported as a result; all authentication results in this thesis use the note-disjoint split above.
+An earlier split of the same data at the image level produced an accuracy of 1.00, because views of the same note appeared in both training and test data. That number was a data-leakage artefact and is not reported as a result; all authentication results in this thesis use the note-disjoint split above or the print-disjoint split below.
+
+\subsection{Serial-Number Audit}
+\label{sec:serial_audit}
+A genuine banknote has a unique serial number. A counterfeit is printed from a scanned or engraved original, so every copy of one print carries the same serial. To see how many distinct prints JaalTaka contains, the serial number at the lower left of each note was read with OCR, Bangla digits were mapped to 0--9, and the first six digits were compared (one digit can be misread). Table~\ref{tab:serial} gives the result.
+
+\begin{table}[!htbp]
+\centering
+\caption{Serial numbers read from JaalTaka notes}
+\label{tab:serial}
+\begin{tabular}{|l|c|c|c|p{4.6cm}|}
+\hline
+\textbf{Class} & \textbf{Notes} & \textbf{Serial read} & \textbf{Distinct} & \textbf{Most common serial} \\ \hline
+500 Taka counterfeit & 324 & 322 & 27 & on 279 notes (86.6\% of those read) \\ \hline
+1,000 Taka counterfeit & 261 & 201 & 66 & on 43 notes; two near-identical readings on 29 more \\ \hline
+500 Taka genuine & 397 & 331 & 233 & 1.2\% \\ \hline
+1,000 Taka genuine & 401 & 270 & 227 & 1.5\% \\ \hline
+\end{tabular}
+\end{table}
+
+Genuine notes have almost one serial per note. Counterfeit notes are dominated by a few serials: 279 of the 322 readable 500 Taka counterfeits carry the same one. The note-disjoint split is therefore not print-disjoint. On its test split, 68 of 87 counterfeits have a serial that also occurs on a training counterfeit, and a rule that needs no knowledge of counterfeiting at all, ``counterfeit if the serial occurs among the training counterfeits'', scores 90.2\% on the 205 test notes that could be reconstructed as whole notes. This is a shortcut in the sense of \cite{geirhos2020shortcut}, and it affects every result published on this split, not only ours. The data article does not mention it.
+
+\subsection{Print-Disjoint Split}
+\label{sec:serial_split}
+A second split was built in which no test counterfeit shares its serial with a training or validation counterfeit: 946 training, 222 validation and 222 test notes. The test split has 121 genuine and 101 counterfeit notes, and its counterfeits come from about 24 distinct prints. This small number is the real size of the test: two detectors can only be compared on about 24 independent counterfeit prints, however many notes there are. All results labelled ``unseen prints'' in Chapter~\ref{chap:results} use this split.
+
+\subsection{Back-Lit Views and Watermark Labels}
+The sixth view of each note is a back-lit photograph in which the watermark is visible on a genuine note. For the watermark classifier, the window was cut from each back-lit view after registration to a note template; registration succeeded on 867 of 946 training, 197 of 222 validation and 197 of 222 test photographs. The corner positions of these windows, mapped back into each photograph, are the training labels of the localizer.
+
+\subsection{Whole-Note Counterfeit Photographs}
+The glass sees whole notes, not close-up views. To check the deployed verdict, the Bangladeshi Counterfeit Currency Image Dataset was used, which has whole-note photographs of 500 and 1,000 Taka notes: 1,199 genuine and 87 counterfeit, of which 60 are augmented copies. The counterfeit photographs show about four physical notes, so this set can support a safety check but cannot prove it. The genuine 500 and 1,000 Taka photographs of Bangla Money and BanglaTaka were used as further genuine notes.
+
+\subsection{A Tool for a Larger Print-Disjoint Dataset}
+A dataset with about 100 unseen counterfeit prints would be needed to compare detectors with confidence. Such notes can only be obtained with a bank or the police, which was outside the reach of this project. A collection tool was written for that future work: it registers each photograph with its note and its print, refuses a print that would appear in two splits, a note that changes print, contradicting labels and duplicates, and exports the split. A second tool records the watermark window by four mouse clicks, and the localizer training script accepts these labels.
 
 \section{Emotion Recognition Data}
 Emotion recognition uses the Real-world Affective Faces Database (RAF-DB) \cite{rafdb} with its official training (12,271 images) and test (3,068 images) split. The class distribution of the test set is imbalanced (Table~\ref{tab:rafdb}): happy faces are sixteen times as frequent as fearful ones, which later explains the weaker recall for fear and disgust.
@@ -158,8 +198,17 @@ Emotion recognition uses the Real-world Affective Faces Database (RAF-DB) \cite{
 \end{table}
 
 \section{Text Recognition Data}
-\subsection{OCR Evaluation Set}
-To measure OCR accuracy we built a test set of 80 short phrases, 40 in Bangla and 40 in English, typical of what a visually impaired person needs to read: bank and currency words, shop and hospital signs, directions (``turn right'', ``turn left''), station and counter names. The phrases were rendered with the Vrinda Bangla font, and part of the set was degraded to imitate photographs (``wild'' samples). The ground truth is the exact phrase.
+\subsection{OCR Benchmark}
+\label{sec:ocr_bench_data}
+The first OCR test set of this project had 80 phrases rendered with one font. Two faults made its numbers unusable. First, the images were drawn with a graphics library that, on the development machine, did not shape Bangla text: vowel signs that belong before the consonant were drawn after it, and conjuncts were broken apart. Real print never looks like that. Second, the correction step of the OCR mode used a word list that contained the test phrases. A new benchmark was therefore built:
+\begin{itemize}[noitemsep]
+    \item \textbf{Shaping.} Text is shaped with HarfBuzz \cite{harfbuzz} and drawn with FreeType, the way a printer or a browser does it.
+    \item \textbf{Phrases.} Short phrases of the kind a visually impaired person needs to read (signs, counters, labels, directions). The validation set has 24 Bangla and 24 English phrases; the test set has 48 other phrases. A further 24 phrases were used once, for the canvas-size decision.
+    \item \textbf{Fonts.} Validation images use Nirmala UI and Noto Serif Bengali for Bangla and Georgia and Verdana for English; test images use Nirmala UI, Noto Sans Bengali and Tiro Bangla, and Arial, Times and Calibri. In all, 10 Bangla and 9 Latin fonts are used, and the fonts used to train a recogniser are never scored.
+    \item \textbf{Conditions.} Every phrase appears three ways: on a clean page, on a distorted page (rotation, blur, low resolution), and as a sign placed into a real COCO photograph at 640$\times$480 pixels, the frame size of the glass.
+    \item \textbf{Seeds.} Three image seeds, giving 432 images per phrase set.
+\end{itemize}
+Every choice was made on the validation set; the test set was read once per finished method. For the fine-tuning experiment, training text came from general frequency lists of 50,000 Bangla and 50,000 English words, with every word of every benchmark phrase removed.
 
 \subsection{Ekush Handwritten Characters}
 As an additional study of Bangla recognition, a CNN classifier for 122 classes of isolated handwritten Bangla characters (vowels, consonants, conjuncts, modifiers and digits) was trained on the Ekush dataset \cite{ekush}. The data was split by writer (2,429 / 303 / 305 writers; 292,974 / 35,436 / 38,608 images) so that no writer's handwriting appears in both training and test data.
@@ -168,4 +217,4 @@ As an additional study of Bangla recognition, a CNN classifier for 122 classes o
 The object mode uses a YOLOv8 model pre-trained on COCO without retraining. To check its accuracy in our pipeline, it was evaluated on a random subset of 250 images from COCO val2017, in which 77 of the 80 classes appear.
 
 \section{Note on User Survey}
-Unlike many assistive-technology projects, this work does not yet include a survey or interview study with visually impaired participants. A study protocol has been prepared (8--12 participants, tasks for denomination identification, genuine/counterfeit decision and adaptive feedback, measures including task time, accuracy, NASA-TLX and the System Usability Scale), but no participant data has been collected, and no user-study result is reported in this thesis. Conducting this study, with ethical approval, is the most important next step (Chapter~\ref{chap:conclusion}).
+This work does not yet include a study with visually impaired participants. A protocol has been prepared and its hypotheses and analysis were written down in advance (8--12 participants; tasks for denomination identification, the watermark check with and without spoken guidance, and reading; measures including task time, accuracy, NASA-TLX \cite{nasatlx} and the System Usability Scale \cite{sus}). The software for it exists: the study log of the watermark check, an analysis script, and the voice-driven questionnaire. The questionnaire tool was tried in three pilot sessions run by the project team, each about three and a half minutes long, to test that names and spoken answers are recorded; in the last two sessions five and six of the six answers were recognised from speech. These sessions test the tool. They are not study data, and no user-study result is reported in this thesis. Conducting the study, with ethical approval, is the most important next step (Chapter~\ref{chap:conclusion}).

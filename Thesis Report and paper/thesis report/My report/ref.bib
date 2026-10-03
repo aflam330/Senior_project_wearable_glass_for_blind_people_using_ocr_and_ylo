@@ -1,8 +1,9 @@
 % ---------------------------------------------------------------
 % References for the Savior Glass thesis.
 % Entries marked from "Review and paper links.xlsx" use the title,
-% year and link recorded in the project review sheet. Please verify
-% author lists before final submission.
+% year and link recorded in the project review sheet. Entries without
+% an author field still need their author list copied from the linked
+% page before final submission.
 % ---------------------------------------------------------------
 
 @misc{who2023vision,
@@ -13,6 +14,7 @@
 }
 
 @article{smartglass_mdpi2021,
+  author  = {Mukhiddinov, Mukhriddin and Cho, Jinsoo},
   title   = {Smart Glass System Using Deep Learning for the Blind and Visually Impaired},
   journal = {Electronics},
   volume  = {10},
@@ -23,6 +25,10 @@
 }
 
 @article{googleglass2021,
+  author  = {Ali A., Hafeez and Rao, Sanjeev U. and Ranganath, Swaroop and Ashwin, T. S. and Reddy, Guddeti Ram Mohana},
+  volume  = {9},
+  pages   = {166351--166369},
+  doi     = {10.1109/ACCESS.2021.3135024},
   title   = {A Google Glass Based Real-Time Scene Analysis for the Visually Impaired},
   journal = {IEEE Access},
   year    = {2021},
@@ -30,6 +36,7 @@
 }
 
 @article{dlreader2022,
+  author  = {Ganesan, Jothi and Azar, Ahmad Taher and Alsenan, Shrooq and Kamal, Nashwa Ahmad and Qureshi, Basit and Hassanien, Aboul Ella},
   title   = {Deep Learning Reader for Visually Impaired},
   journal = {Electronics},
   volume  = {11},
@@ -87,6 +94,7 @@
 }
 
 @inproceedings{fingerreader2014,
+  author  = {Shilkrot, Roy and Huber, Jochen and Liu, Connie and Maes, Pattie and Nanayakkara, Suranga Chandima},
   title     = {FingerReader: A Wearable Device to Explore Printed Text on the Go},
   booktitle = {Proceedings of the ACM Conference on Human Factors in Computing Systems (CHI)},
   year      = {2014},
@@ -141,6 +149,7 @@
 }
 
 @misc{airis2024,
+  author  = {Brilli, Dionysia Danai and Georgaras, Evangelos and Tsilivaki, Stefania and Melanitis, Nikos and Nikita, Konstantina},
   title        = {AIris: An AI-powered Wearable Assistive Device for the Visually Impaired},
   year         = {2024},
   howpublished = {arXiv:2405.07606},
@@ -148,6 +157,9 @@
 }
 
 @article{nstubdtaka2024,
+  author  = {Rafi, Md. Jubayar Alam and Rony, Mohammad and Majadi, Nazia},
+  volume  = {55},
+  pages   = {110701},
   title   = {NSTU-BDTAKA: An open dataset for Bangladeshi paper currency detection and recognition},
   journal = {Data in Brief},
   year    = {2024},
@@ -155,6 +167,7 @@
 }
 
 @article{wearable_review2024,
+  author  = {Zhang, Xiaochen and Huang, Xiaoyu and Ding, Yiran and Long, Liumei and Li, Wujing and Xu, Xing},
   title   = {Advancements in Smart Wearable Mobility Aids for Visual Impairments: A Bibliometric Narrative Review},
   journal = {Sensors},
   volume  = {24},
@@ -475,4 +488,380 @@
   author       = {{Raspberry Pi Ltd}},
   year         = {2023},
   howpublished = {\url{https://www.raspberrypi.com/products/raspberry-pi-5/}}
+}
+
+
+% ---------------- Added October 2026: methods used in the final system ----------------
+
+@article{gbd2021vision,
+  author  = {{GBD 2019 Blindness and Vision Impairment Collaborators}},
+  title   = {Trends in Prevalence of Blindness and Distance and Near Vision Impairment over 30 Years: An Analysis for the Global Burden of Disease Study},
+  journal = {The Lancet Global Health},
+  volume  = {9},
+  number  = {2},
+  pages   = {e130--e143},
+  year    = {2021}
+}
+
+@inproceedings{craft,
+  author    = {Baek, Youngmin and Lee, Bado and Han, Dongyoon and Yun, Sangdoo and Lee, Hwalsuk},
+  title     = {Character Region Awareness for Text Detection},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {9365--9374},
+  year      = {2019}
+}
+
+@article{crnn,
+  author  = {Shi, Baoguang and Bai, Xiang and Yao, Cong},
+  title   = {An End-to-End Trainable Neural Network for Image-Based Sequence Recognition and Its Application to Scene Text Recognition},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume  = {39},
+  number  = {11},
+  pages   = {2298--2304},
+  year    = {2017}
+}
+
+@inproceedings{ctc,
+  author    = {Graves, Alex and Fern{\'a}ndez, Santiago and Gomez, Faustino and Schmidhuber, J{\"u}rgen},
+  title     = {Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  pages     = {369--376},
+  year      = {2006}
+}
+
+@inproceedings{dbnet,
+  author    = {Liao, Minghui and Wan, Zhaoyi and Yao, Cong and Chen, Kai and Bai, Xiang},
+  title     = {Real-Time Scene Text Detection with Differentiable Binarization},
+  booktitle = {AAAI Conference on Artificial Intelligence},
+  volume    = {34},
+  pages     = {11474--11481},
+  year      = {2020}
+}
+
+@inproceedings{east,
+  author    = {Zhou, Xinyu and Yao, Cong and Wen, He and Wang, Yuzhi and Zhou, Shuchang and He, Weiran and Liang, Jiajun},
+  title     = {{EAST}: An Efficient and Accurate Scene Text Detector},
+  booktitle = {IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {5551--5560},
+  year      = {2017}
+}
+
+@inproceedings{tesseract,
+  author    = {Smith, Ray},
+  title     = {An Overview of the {Tesseract} {OCR} Engine},
+  booktitle = {International Conference on Document Analysis and Recognition (ICDAR)},
+  pages     = {629--633},
+  year      = {2007}
+}
+
+@inproceedings{trocr,
+  author    = {Li, Minghao and Lv, Tengchao and Chen, Jingye and Cui, Lei and Lu, Yijuan and Florencio, Dinei and Zhang, Cha and Li, Zhoujun and Wei, Furu},
+  title     = {{TrOCR}: Transformer-Based Optical Character Recognition with Pre-trained Models},
+  booktitle = {AAAI Conference on Artificial Intelligence},
+  volume    = {37},
+  pages     = {13094--13102},
+  year      = {2023}
+}
+
+@article{byt5,
+  author  = {Xue, Linting and Barua, Aditya and Constant, Noah and Al-Rfou, Rami and Narang, Sharan and Kale, Mihir and Roberts, Adam and Raffel, Colin},
+  title   = {{ByT5}: Towards a Token-Free Future with Pre-trained Byte-to-Byte Models},
+  journal = {Transactions of the Association for Computational Linguistics},
+  volume  = {10},
+  pages   = {291--306},
+  year    = {2022}
+}
+
+@inproceedings{kenlm,
+  author    = {Heafield, Kenneth},
+  title     = {{KenLM}: Faster and Smaller Language Model Queries},
+  booktitle = {Proceedings of the Sixth Workshop on Statistical Machine Translation},
+  pages     = {187--197},
+  year      = {2011}
+}
+
+@misc{symspell,
+  author       = {Garbe, Wolf},
+  title        = {{SymSpell}: Symmetric Delete Spelling Correction Algorithm},
+  howpublished = {\url{https://github.com/wolfgarbe/SymSpell}}
+}
+
+@misc{paddleocr,
+  author       = {{PaddlePaddle Authors}},
+  title        = {{PaddleOCR}: Multilingual OCR Toolkits Based on PaddlePaddle},
+  howpublished = {\url{https://github.com/PaddlePaddle/PaddleOCR}}
+}
+
+@misc{harfbuzz,
+  author       = {{HarfBuzz Project}},
+  title        = {{HarfBuzz}: A Text Shaping Engine},
+  howpublished = {\url{https://harfbuzz.github.io}}
+}
+
+@article{levenshtein1966,
+  author  = {Levenshtein, Vladimir I.},
+  title   = {Binary Codes Capable of Correcting Deletions, Insertions, and Reversals},
+  journal = {Soviet Physics Doklady},
+  volume  = {10},
+  number  = {8},
+  pages   = {707--710},
+  year    = {1966}
+}
+
+@article{sift,
+  author  = {Lowe, David G.},
+  title   = {Distinctive Image Features from Scale-Invariant Keypoints},
+  journal = {International Journal of Computer Vision},
+  volume  = {60},
+  number  = {2},
+  pages   = {91--110},
+  year    = {2004}
+}
+
+@article{ransac,
+  author  = {Fischler, Martin A. and Bolles, Robert C.},
+  title   = {Random Sample Consensus: A Paradigm for Model Fitting with Applications to Image Analysis and Automated Cartography},
+  journal = {Communications of the ACM},
+  volume  = {24},
+  number  = {6},
+  pages   = {381--395},
+  year    = {1981}
+}
+
+@inproceedings{mobilenetv2,
+  author    = {Sandler, Mark and Howard, Andrew and Zhu, Menglong and Zhmoginov, Andrey and Chen, Liang-Chieh},
+  title     = {{MobileNetV2}: Inverted Residuals and Linear Bottlenecks},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {4510--4520},
+  year      = {2018}
+}
+
+@inproceedings{resnet,
+  author    = {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  title     = {Deep Residual Learning for Image Recognition},
+  booktitle = {IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {770--778},
+  year      = {2016}
+}
+
+@inproceedings{vit,
+  author    = {Dosovitskiy, Alexey and Beyer, Lucas and Kolesnikov, Alexander and Weissenborn, Dirk and Zhai, Xiaohua and Unterthiner, Thomas and Dehghani, Mostafa and Minderer, Matthias and Heigold, Georg and Gelly, Sylvain and Uszkoreit, Jakob and Houlsby, Neil},
+  title     = {An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2021}
+}
+
+@article{yunet,
+  author  = {Wu, Wei and Peng, Hanyang and Yu, Shiqi},
+  title   = {{YuNet}: A Tiny Millisecond-Level Face Detector},
+  journal = {Machine Intelligence Research},
+  volume  = {20},
+  number  = {5},
+  pages   = {656--665},
+  year    = {2023}
+}
+
+@inproceedings{ferplus,
+  author    = {Barsoum, Emad and Zhang, Cha and Canton Ferrer, Cristian and Zhang, Zhengyou},
+  title     = {Training Deep Networks for Facial Expression Recognition with Crowd-Sourced Label Distribution},
+  booktitle = {ACM International Conference on Multimodal Interaction (ICMI)},
+  pages     = {279--283},
+  year      = {2016}
+}
+
+@inproceedings{mvcnn,
+  author    = {Su, Hang and Maji, Subhransu and Kalogerakis, Evangelos and Learned-Miller, Erik},
+  title     = {Multi-View Convolutional Neural Networks for {3D} Shape Recognition},
+  booktitle = {IEEE International Conference on Computer Vision (ICCV)},
+  pages     = {945--953},
+  year      = {2015}
+}
+
+@inproceedings{modelnet,
+  author    = {Wu, Zhirong and Song, Shuran and Khosla, Aditya and Yu, Fisher and Zhang, Linguang and Tang, Xiaoou and Xiao, Jianxiong},
+  title     = {{3D ShapeNets}: A Deep Representation for Volumetric Shapes},
+  booktitle = {IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {1912--1920},
+  year      = {2015}
+}
+
+@inproceedings{mvpn,
+  author    = {Wang, Ren and Wang, Jiayue and Kim, Tae Sung and Kim, Jin-Sung and Lee, Hyuk-Jae},
+  title     = {{MVP-N}: A Dataset and Benchmark for Real-World Multi-View Object Classification},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS), Datasets and Benchmarks Track},
+  volume    = {35},
+  year      = {2022}
+}
+
+@article{moddrop,
+  author  = {Neverova, Natalia and Wolf, Christian and Taylor, Graham and Nebout, Florian},
+  title   = {{ModDrop}: Adaptive Multi-Modal Gesture Recognition},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume  = {38},
+  number  = {8},
+  pages   = {1692--1706},
+  year    = {2016}
+}
+
+@article{chow1970,
+  author  = {Chow, C. K.},
+  title   = {On Optimum Recognition Error and Reject Tradeoff},
+  journal = {IEEE Transactions on Information Theory},
+  volume  = {16},
+  number  = {1},
+  pages   = {41--46},
+  year    = {1970}
+}
+
+@inproceedings{selective2017,
+  author    = {Geifman, Yonatan and El-Yaniv, Ran},
+  title     = {Selective Classification for Deep Neural Networks},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume    = {30},
+  year      = {2017}
+}
+
+@book{vovk2005,
+  author    = {Vovk, Vladimir and Gammerman, Alexander and Shafer, Glenn},
+  title     = {Algorithmic Learning in a Random World},
+  publisher = {Springer},
+  year      = {2005}
+}
+
+@article{kapoor2023leakage,
+  author  = {Kapoor, Sayash and Narayanan, Arvind},
+  title   = {Leakage and the Reproducibility Crisis in Machine-Learning-Based Science},
+  journal = {Patterns},
+  volume  = {4},
+  number  = {9},
+  pages   = {100804},
+  year    = {2023}
+}
+
+@article{geirhos2020shortcut,
+  author  = {Geirhos, Robert and Jacobsen, J{\"o}rn-Henrik and Michaelis, Claudio and Zemel, Richard and Brendel, Wieland and Bethge, Matthias and Wichmann, Felix A.},
+  title   = {Shortcut Learning in Deep Neural Networks},
+  journal = {Nature Machine Intelligence},
+  volume  = {2},
+  number  = {11},
+  pages   = {665--673},
+  year    = {2020}
+}
+
+@inproceedings{cutpaste2017,
+  author    = {Dwibedi, Debidatta and Misra, Ishan and Hebert, Martial},
+  title     = {Cut, Paste and Learn: Surprisingly Easy Synthesis for Instance Detection},
+  booktitle = {IEEE International Conference on Computer Vision (ICCV)},
+  pages     = {1301--1310},
+  year      = {2017}
+}
+
+@inproceedings{copypaste2021,
+  author    = {Ghiasi, Golnaz and Cui, Yin and Srinivas, Aravind and Qian, Rui and Lin, Tsung-Yi and Cubuk, Ekin D. and Le, Quoc V. and Zoph, Barret},
+  title     = {Simple Copy-Paste is a Strong Data Augmentation Method for Instance Segmentation},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {2918--2928},
+  year      = {2021}
+}
+
+@inproceedings{tobin2017domain,
+  author    = {Tobin, Josh and Fong, Rachel and Ray, Alex and Schneider, Jonas and Zaremba, Wojciech and Abbeel, Pieter},
+  title     = {Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World},
+  booktitle = {IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  pages     = {23--30},
+  year      = {2017}
+}
+
+@inproceedings{jacob2018quantization,
+  author    = {Jacob, Benoit and Kligys, Skirmantas and Chen, Bo and Zhu, Menglong and Tang, Matthew and Howard, Andrew and Adam, Hartwig and Kalenichenko, Dmitry},
+  title     = {Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {2704--2713},
+  year      = {2018}
+}
+
+@inproceedings{pechpacheco2000,
+  author    = {Pech-Pacheco, Jos{\'e} Luis and Crist{\'o}bal, Gabriel and Chamorro-Martinez, Jes{\'u}s and Fern{\'a}ndez-Valdivia, Joaqu{\'i}n},
+  title     = {Diatom Autofocusing in Brightfield Microscopy: A Comparative Study},
+  booktitle = {International Conference on Pattern Recognition (ICPR)},
+  volume    = {3},
+  pages     = {314--317},
+  year      = {2000}
+}
+
+@article{wilson1927,
+  author  = {Wilson, Edwin B.},
+  title   = {Probable Inference, the Law of Succession, and Statistical Inference},
+  journal = {Journal of the American Statistical Association},
+  volume  = {22},
+  number  = {158},
+  pages   = {209--212},
+  year    = {1927}
+}
+
+@article{wilcoxon1945,
+  author  = {Wilcoxon, Frank},
+  title   = {Individual Comparisons by Ranking Methods},
+  journal = {Biometrics Bulletin},
+  volume  = {1},
+  number  = {6},
+  pages   = {80--83},
+  year    = {1945}
+}
+
+@article{holm1979,
+  author  = {Holm, Sture},
+  title   = {A Simple Sequentially Rejective Multiple Test Procedure},
+  journal = {Scandinavian Journal of Statistics},
+  volume  = {6},
+  number  = {2},
+  pages   = {65--70},
+  year    = {1979}
+}
+
+@incollection{sus,
+  author    = {Brooke, John},
+  title     = {{SUS}: A Quick and Dirty Usability Scale},
+  booktitle = {Usability Evaluation in Industry},
+  publisher = {Taylor \& Francis},
+  pages     = {189--194},
+  year      = {1996}
+}
+
+@incollection{nasatlx,
+  author    = {Hart, Sandra G. and Staveland, Lowell E.},
+  title     = {Development of {NASA-TLX} (Task Load Index): Results of Empirical and Theoretical Research},
+  booktitle = {Human Mental Workload},
+  series    = {Advances in Psychology},
+  volume    = {52},
+  publisher = {North-Holland},
+  pages     = {139--183},
+  year      = {1988}
+}
+
+@inproceedings{pytorch,
+  author    = {Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga, Luca and others},
+  title     = {{PyTorch}: An Imperative Style, High-Performance Deep Learning Library},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume    = {32},
+  year      = {2019}
+}
+
+@misc{onnxruntime,
+  author       = {{ONNX Runtime Developers}},
+  title        = {{ONNX Runtime}},
+  howpublished = {\url{https://onnxruntime.ai}}
+}
+
+@article{opencv,
+  author  = {Bradski, Gary},
+  title   = {The {OpenCV} Library},
+  journal = {Dr. Dobb's Journal of Software Tools},
+  year    = {2000}
+}
+
+@misc{picamera2,
+  author       = {{Raspberry Pi Ltd}},
+  title        = {The {Picamera2} Library},
+  howpublished = {\url{https://github.com/raspberrypi/picamera2}}
 }

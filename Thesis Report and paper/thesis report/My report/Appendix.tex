@@ -46,8 +46,17 @@
 \begin{tabular}{|l|c|p{4.8cm}|}
 \hline
 \textbf{Parameter} & \textbf{Value} & \textbf{Meaning} \\ \hline
-OCR\_CONFIDENCE & 0.4 & Minimum EasyOCR confidence \\ \hline
-OCR\_MIN\_CHARS & 3 & Shorter results are discarded \\ \hline
+OCR\_PIPELINE & v2 & Text pipeline of Section~\ref{sec:ocr_method} \\ \hline
+OCR\_V2\_MIN\_CONF & 0.2 & Minimum box confidence in pipeline v2 \\ \hline
+OCR\_CANVAS\_SIZE & 2560 & Detector canvas (640 is faster on the Pi) \\ \hline
+OCR\_DECODER & beamsearch & Recogniser decoding, beam width 5 \\ \hline
+CURRENCY\_ANNOUNCE\_CONF & 0.60 & Minimum detector confidence to name a note \\ \hline
+JAAL\_SAFE\_TAU & 0.99959 & ``Likely genuine'' above this probability \\ \hline
+WATERMARK\_CLEAR\_THRESHOLD & 0.5 & Watermark classifier threshold \\ \hline
+CAPTURE\_GUIDE\_MIN\_MEAN & 73.87 & Minimum brightness of a back-lit frame \\ \hline
+CAPTURE\_GUIDE\_MIN\_LAPVAR & 106.75 & Minimum sharpness (Laplacian variance) \\ \hline
+CAPTURE\_GUIDE\_TIMEOUT\_S & 10 s & Guided capture gives up after this time \\ \hline
+FIELD\_LOG\_SYS\_INTERVAL\_S & 10 s & Interval of system readings in the field log \\ \hline
 OBJECT\_CONFIDENCE & 0.50 & Minimum YOLO confidence for objects \\ \hline
 CURRENCY\_CONFIDENCE & 0.65 & Minimum MobileNetV3 softmax score \\ \hline
 OBJECT\_SCAN\_INTERVAL & 1.5 s & Time between automatic object scans \\ \hline
@@ -58,7 +67,7 @@ TTS\_QUEUE\_MAXSIZE & 5 & Maximum queued messages \\ \hline
 TTS\_INTER\_UTTERANCE\_PAUSE & 0.15 s & Pause between segments \\ \hline
 ESPEAK\_SPEED / PITCH & 135 wpm / 45 & espeak-ng voice settings \\ \hline
 Button debounce & 250 ms & Ignore repeated edges \\ \hline
-Camera & 640$\times$480, 30 FPS & Capture resolution \\ \hline
+Camera & 640$\times$480 & Capture resolution (CAMERA\_WIDTH, CAMERA\_HEIGHT) \\ \hline
 \end{tabular}
 \end{table}
 
@@ -94,9 +103,65 @@ python -m venv venv
 .\venv\Scripts\python.exe scripts\realtime_detect.py   # live demo
 
 # Smart glass on Raspberry Pi 5 (from savior_glass/)
-chmod +x install.sh && ./install.sh
-sudo systemctl enable --now smart_glass.service
+bash scripts/deploy_pi5.sh                  # packages, environment, models
+python scripts/pi5_preflight.py             # check libraries and models
+python main.py                              # start the glass
+python scripts/benchmark_pi5.py --iters 100 --sustained 30
+python scripts/diagnose_glass.py currency   # live frame vs high resolution
+python scripts/field_report.py              # summary of the field log
 
-# Smart glass on Windows without GPIO
-python test_windows.py
+# Smart glass on a laptop with a webcam (preview window, keyboard keys)
+SHOW_PREVIEW=1 python main.py
+python scripts/run_voice_study.py           # voice questionnaire session
+python scripts/run_voice_study.py --results
+
+# OCR benchmark (from savior_glass/ocr_bench/)
+python run_task1.py ... run_task6.py        # validation experiments
+python run_test.py                          # test set, once per method
+
+# Counterfeit experiments (from realtime_bangla_taka_detection/)
+python scripts/eval/jaaltaka_serial_audit.py
+python scripts/train/train_watermark_localizer.py 42
+
+# Experiment database
+python research_results/results_db.py review
 \end{lstlisting}
+
+\section{Spoken Messages}
+\label{app:messages}
+The glass speaks Bangla. Table~\ref{tab:app_messages} gives the main messages in English translation.
+
+\begin{table}[H]
+\centering
+\caption{Main spoken messages of Savior Glass (translated from Bangla)}
+\label{tab:app_messages}
+\begin{tabular}{|p{4.2cm}|p{9.6cm}|}
+\hline
+\textbf{Situation} & \textbf{Message} \\ \hline
+Note recognised & ``Five hundred Taka note'' \\ \hline
+Safe check passed & ``Likely genuine'' \\ \hline
+Safe check not passed & ``Check by hand whether it is genuine'' \\ \hline
+Other denominations & ``The counterfeit check was not done'' \\ \hline
+Low detector confidence & ``Could not confirm the note. Hold it closer.'' \\ \hline
+No note found & ``No note detected. Hold it in front of the camera.'' \\ \hline
+Watermark check starts & ``Hold the note up to the light'' \\ \hline
+Frame too dark & ``Hold the note closer to the light'' \\ \hline
+Frame blurred & ``Keep the note still'' \\ \hline
+No watermark window & ``Hold the note straight in front of the light'' \\ \hline
+Guided capture timed out & ``The picture was not clear. Check by hand whether it is genuine.'' \\ \hline
+Emotion & ``The person in front looks happy'' \\ \hline
+No face & ``No face found. Point the camera at a person's face.'' \\ \hline
+\end{tabular}
+\end{table}
+
+\section{User Study Questionnaire}
+\label{app:questions}
+The six yes/no questions asked by the voice study tool, translated from Bangla:
+\begin{enumerate}[noitemsep]
+    \item Was the glass easy to use?
+    \item Was the speech of the glass clear?
+    \item Did the glass help you recognise banknotes?
+    \item Did the glass help you read text?
+    \item Can you trust the answers of the glass?
+    \item Would you want to use this glass every day?
+\end{enumerate}
