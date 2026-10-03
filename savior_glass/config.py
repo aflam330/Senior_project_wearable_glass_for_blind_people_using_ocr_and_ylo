@@ -32,7 +32,11 @@ BUTTON_DEBOUNCE_MS = 250
 # ---------------------------------------------------------------------------
 # Camera
 # ---------------------------------------------------------------------------
-CAMERA_INDEX  = 0      # 0 = Pi Camera via libcamera-apps, 1+ = USB
+# Camera. CAMERA_BACKEND: auto (Pi ribbon camera through picamera2 if one is detected, else OpenCV),
+# picamera2, or opencv. CAMERA_INDEX is the first OpenCV device tried; other /dev/video* devices are tried
+# after it. Both can be set from the environment. Check what the Pi sees with: python scripts/check_camera.py
+CAMERA_BACKEND = os.environ.get("CAMERA_BACKEND", "auto")
+CAMERA_INDEX  = int(os.environ.get("CAMERA_INDEX", "0"))
 CAMERA_WIDTH  = 640
 CAMERA_HEIGHT = 480
 CAMERA_FPS    = 30

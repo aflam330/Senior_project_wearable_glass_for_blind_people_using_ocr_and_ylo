@@ -68,3 +68,6 @@ savior_glass/ocr_bench/detectors/
 
 # Generated character language model (rebuild with: py -3.10 savior_glass/ocr_bench/kenlm_lm.py build)
 savior_glass/ocr_bench/lexicon/char5.arpa
+
+# One frame saved by scripts/check_camera.py (a photo of the room)
+savior_glass/results/camera_check.jpg

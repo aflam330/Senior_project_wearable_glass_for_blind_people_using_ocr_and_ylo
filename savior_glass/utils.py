@@ -7,6 +7,7 @@ import os
 import queue
 import re
 import subprocess
+import sys
 import threading
 import time
 from logging.handlers import RotatingFileHandler
@@ -360,6 +361,7 @@ class CameraManager:
         self._height = height
         self._fps = fps
         self._cap: cv2.VideoCapture | None = None
+        self._picam = None   # Picamera2 object when the ribbon camera is used
         self._buffer: collections.deque = collections.deque(
             maxlen=config.FRAME_BUFFER_SIZE
         )
@@ -368,31 +370,75 @@ class CameraManager:
         self._thread: threading.Thread | None = None
 
     def start(self) -> None:
-        self._cap = cv2.VideoCapture(self._index)
-        if not self._cap.isOpened():
-            raise RuntimeError(
-                f"Cannot open camera at index {self._index}. "
-                "Check 'libcamera-hello --nopreview' and camera cable."
-            )
-        self._cap.set(cv2.CAP_PROP_FRAME_WIDTH, self._width)
-        self._cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self._height)
-        self._cap.set(cv2.CAP_PROP_FPS, self._fps)
-        self._cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)   # minimise latency
-
+        """Open the camera. Order (config.CAMERA_BACKEND = auto): the Pi Camera on the ribbon cable through
+        picamera2, then OpenCV on CAMERA_INDEX, then the other video devices until one delivers frames.
+        On a Pi 5, OpenCV can open a ribbon camera's /dev/video0 but never receives a frame from it."""
+        backend = str(getattr(config, "CAMERA_BACKEND", "auto")).lower()
+        errors = []
+        if backend in ("auto", "picamera2"):
+            try:
+                self._start_picamera2()
+            except Exception as exc:  # noqa: BLE001  (not installed, no ribbon camera, or a library mismatch)
+                errors.append(f"picamera2: {exc}")
+                self._picam = None
+        if self._picam is None and backend in ("auto", "opencv"):
+            for idx in self._candidate_indices():
+                cap = self._open_cv(idx)
+                if cap is not None:
+                    self._cap, self._index = cap, idx
+                    break
+                errors.append(f"opencv index {idx}: no frames")
+        if self._picam is None and self._cap is None:
+            raise RuntimeError("No working camera. Tried " + "; ".join(errors) + ". Run: python scripts/check_camera.py")
         self._running = True
-        self._thread = threading.Thread(
-            target=self._capture_loop, daemon=True, name="camera"
-        )
+        self._thread = threading.Thread(target=self._capture_loop, daemon=True, name="camera")
         self._thread.start()
-        # Wait until first frame arrives
         timeout = time.time() + 5.0
         while not self._buffer and time.time() < timeout:
             time.sleep(0.05)
         if not self._buffer:
-            raise RuntimeError("Camera opened but no frames received within 5 s.")
-        logger.info(
-            "Camera started: %dx%d @ %d fps", self._width, self._height, self._fps
-        )
+            raise RuntimeError("Camera opened but no frames received within 5 s. Run: python scripts/check_camera.py")
+        logger.info("Camera started (%s): %dx%d @ %d fps", "picamera2" if self._picam is not None else f"opencv index {self._index}",
+                    self._width, self._height, self._fps)
+
+    def _start_picamera2(self) -> None:
+        from picamera2 import Picamera2
+        if not Picamera2.global_camera_info():
+            raise RuntimeError("no ribbon (CSI) camera detected")
+        cam = Picamera2()
+        # "RGB888" gives arrays in BGR order, which is what OpenCV and the models expect
+        cam.configure(cam.create_video_configuration(main={"size": (self._width, self._height), "format": "RGB888"}))
+        cam.start()
+        self._picam = cam
+
+    def _candidate_indices(self) -> list:
+        first = [self._index]
+        try:
+            import glob
+            nodes = sorted(int(p.rsplit("video", 1)[1]) for p in glob.glob("/dev/video*") if p.rsplit("video", 1)[1].isdigit())
+        except Exception:  # noqa: BLE001
+            nodes = []
+        return first + [i for i in (nodes or list(range(1, 4))) if i != self._index][:12]
+
+    def _open_cv(self, idx: int):
+        """An opened capture that has already delivered a frame, or None."""
+        cap = cv2.VideoCapture(idx, cv2.CAP_V4L2) if sys.platform.startswith("linux") else cv2.VideoCapture(idx)
+        if not cap.isOpened():
+            cap.release()
+            return None
+        cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*"MJPG"))  # USB cameras: full frame rate at 640x480
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, self._width)
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self._height)
+        cap.set(cv2.CAP_PROP_FPS, self._fps)
+        cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)   # minimise latency
+        deadline = time.time() + 2.5
+        while time.time() < deadline:
+            ok, frame = cap.read()
+            if ok and frame is not None and frame.size:
+                return cap
+            time.sleep(0.05)
+        cap.release()
+        return None
 
     def stop(self) -> None:
         self._running = False
@@ -400,6 +446,12 @@ class CameraManager:
             self._thread.join(timeout=2.0)
         if self._cap:
             self._cap.release()
+        if self._picam is not None:
+            try:
+                self._picam.stop()
+                self._picam.close()
+            except Exception:  # noqa: BLE001
+                pass
 
     def get_frame(self):
         """Return the latest frame (numpy array) or None if not ready."""
@@ -408,7 +460,14 @@ class CameraManager:
 
     def _capture_loop(self) -> None:
         while self._running:
-            ret, frame = self._cap.read()
+            if self._picam is not None:
+                try:
+                    frame = self._picam.capture_array()
+                    ret = frame is not None
+                except Exception:  # noqa: BLE001
+                    ret, frame = False, None
+            else:
+                ret, frame = self._cap.read()
             if ret:
                 with self._lock:
                     self._buffer.append(frame)
