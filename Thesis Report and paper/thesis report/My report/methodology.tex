@@ -74,7 +74,18 @@ Savior Glass is designed as a pair of spectacles with a small camera at the brid
 When the device boots it announces that the smart glass is starting and then speaks the name of the active mode. The user cycles through the modes with the MODE button. In \textit{text reading mode}, ACTION captures and recognises text, speaks it once and stores it, and READ speaks the stored text again. In \textit{object mode}, the glass scans the scene every 1.5~seconds and announces up to three objects, for example ``in front: chair, person''. In \textit{currency mode}, ACTION detects the note, speaks its value in Bangla and gives a vibration pattern; for a 500 or 1,000 Taka note it then gives the result of the safe check, and it can ask the user to hold the note up to a light for the watermark check. In \textit{emotion mode}, ACTION announces the facial expression of the nearest face. The \textit{online mode} describes the scene when the internet and an API key are available. VOLUME~UP and VOLUME~DOWN change the volume in 10\% steps. The name of a mode is spoken immediately after MODE is pressed, while its model loads in the background.
 
 \subsection{Structural Characteristics of Savior Glass}
-The prototype consists of a spectacle frame carrying the camera module, a cable to the Raspberry Pi~5 in a small enclosure, a push-button pad, a vibration motor and an earphone. Separating the processing unit from the frame keeps the glasses light and moves the heat of the processor away from the face.
+The design places only the camera on the spectacle frame and carries the Raspberry Pi~5, the push-button pad, the vibration motor and the battery in a small enclosure at the waist or in a pocket. Separating the processing unit from the frame keeps the glasses light and moves the heat of the processor away from the face.
+
+The first prototype (Figure~\ref{fig:prototype}) is simpler than this design. It is a 3D-printed white spectacle frame with the camera module fixed above the bridge, so that the camera looks where the wearer's face points. The Raspberry Pi~5, with its heat sink and fan, is tied to the right temple of the frame, and a flat ribbon cable loops from the camera to the board. This was the quickest way to get a working device on a person's head, and it is enough for testing the software. It also shows why the design calls for a separate enclosure: with the board on one temple the frame is heavy on one side, the fan sits next to the ear, and the ribbon cable stands above the head.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\textwidth]{proto_front.jpg}
+    \includegraphics[width=0.32\textwidth]{proto_side.jpg}
+    \includegraphics[width=0.32\textwidth]{proto_top.jpg}
+    \caption{First prototype of Savior Glass: the camera module above the bridge of a 3D-printed frame (left), the Raspberry Pi~5 with heat sink and fan tied to the right temple (centre), and the ribbon cable between camera and board (right)}
+    \label{fig:prototype}
+\end{figure}
 
 \subsection{Interactive Features and Interface Design}
 Several interaction decisions were made specifically for users without sight:

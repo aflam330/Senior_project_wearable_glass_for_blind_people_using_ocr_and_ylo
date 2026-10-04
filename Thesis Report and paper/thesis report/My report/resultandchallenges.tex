@@ -114,6 +114,21 @@ The detector transfers to full-note photographs taken by other people, with 1000
 \subsection{Unknown Notes}
 The detector has no ``unknown note'' output, and it named 44 of the 101 one-Taka photographs as a known denomination (43.6\%). A simple rule reduces this: a denomination is announced only when the confidence is at least 0.60, a value chosen on validation data. On the Bangla Money test photographs the share of 1 Taka notes named as another value falls from 43.6\% to 22.8\%. The rule is used in the glass; about one unknown note in five is still named wrongly.
 
+\subsection{Live Check with a Laptop Webcam}
+The detector was also run live on a laptop webcam with real notes held in the hand (Figure~\ref{fig:live_webcam}). The application draws a box with the denomination and the confidence on the camera image and speaks the note when the space bar is pressed. In these sessions 10, 50, 100, 200, 500 and 1,000 Taka notes were named correctly at confidences between 0.63 and 0.89, including worn and folded notes, notes held at an angle, and two or three notes in one picture. The pictures also show the detector's weak points. The boxes are loose: they include the hand and part of the background. When notes are close together the boxes overlap, and in the last picture the 500 Taka box also covers the 200 Taka note. These pictures are illustrations from informal sessions. No error rate was counted, so they add no number to the results above.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=4.4cm]{live_50.jpg}
+    \includegraphics[height=4.4cm]{live_200.jpg}
+    \includegraphics[height=4.4cm]{live_100.jpg}\\[3pt]
+    \includegraphics[height=4.4cm]{live_10.jpg}
+    \includegraphics[height=4.4cm]{live_1000_500.jpg}
+    \includegraphics[height=4.4cm]{live_three.jpg}
+    \caption{Live detection of real notes with a laptop webcam (photographs of the screen). Top: 50, 200 and 100 Taka. Bottom: a worn 10 Taka note, 1,000 and 500 Taka together, and three notes in one frame.}
+    \label{fig:live_webcam}
+\end{figure}
+
 \subsection{Fall-Back Classifier}
 The MobileNetV3-Small classifier used as a fall-back reached a best validation accuracy of 99.2\% on the nine-class BanglaTaka crops. This is a whole-note classification score on clean crops, not a detection score in a scene.
 
@@ -544,7 +559,10 @@ On 3~October 2026 the glass was tried by hand for the first time with its own ca
 \end{enumerate}
 The cause of the second and third problem has not been established. The suspected causes are the 640$\times$480 frame and the fixed-focus lens of the camera, with which a note or a printed line held at reading distance may be neither large nor sharp enough; the training photographs and the benchmark images are sharp. A diagnosis script was written that compares the result on the live 640$\times$480 frame with the result on a high-resolution capture of the same scene, but it has not yet been run on the device. Until it has, the laboratory figures of this chapter must not be read as the performance of the worn glass. This is the most important open problem of the project.
 
-On the laptop with a webcam at 1,280$\times$720, the same application was then run through all modes, with the live algorithm panel showing every model's output. Sound was at first missing on Windows and was fixed by a separate speech back-end.
+On the laptop with a webcam at 1,280$\times$720, the same application was then run through all modes, with the live algorithm panel showing every model's output. Sound was at first missing on Windows and was fixed by a separate speech back-end. With the laptop webcam, notes held in the hand were recognised (Figure~\ref{fig:live_webcam}), which supports the suspicion that the problem on the glass lies in the picture from its camera and not in the detector.
+
+\subsection*{Trial sessions with a visually impaired participant}
+After the first field test, trial sessions with the worn prototype were started with a visually impaired participant (Figure~\ref{fig:worn}), and a survey is being collected. The data from these sessions were not available when this chapter was written. No result from them is reported here, and none of the conclusions of this thesis rests on them; they will be added once the survey is complete.
 
 \section{Corrections to Earlier Figures}
 \label{sec:corrections}
@@ -633,7 +651,7 @@ The results answer the research questions of Section~\ref{sec:Research Question}
 The following limitations must be considered when interpreting the results:
 \begin{enumerate}[noitemsep]
     \item \textbf{The worn glass is not validated.} In the first field test currency recognition was unreliable and Bangla text was not read, and the cause is not established. No accuracy has been measured on photographs taken through the glass camera.
-    \item \textbf{No user study.} The system has not been tested with visually impaired participants; usability claims are design intentions, not measured outcomes.
+    \item \textbf{No user-study results yet.} Trial sessions with a visually impaired participant have started, but their data are not yet reported; usability claims are design intentions, not measured outcomes.
     \item \textbf{Few counterfeit prints.} The unseen-print results rest on about 24 distinct counterfeit prints, with an uncertainty of about $\pm$12 points at the level of prints, and on one currency.
     \item \textbf{Whole-note counterfeit checking is safe but not useful.} The policy confirms 0.4--2\% of genuine whole notes from independent photographs, and its safety on whole notes rests on about four physical counterfeit notes.
     \item \textbf{Synthetic OCR benchmark.} The OCR figures come from rendered text, some of it placed in real photographs. Real signs, glare and curved packets will be harder.

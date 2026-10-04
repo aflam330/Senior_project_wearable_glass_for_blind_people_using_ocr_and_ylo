@@ -15,7 +15,16 @@ Most development and all model training were done on Windows~11 laptops with NVI
 \section{Hardware Implementation}
 
 \subsection{Component Assembly}
-The camera module is mounted at the bridge of the spectacle frame so that it points where the user's face points. The ribbon cable runs along the temple of the frame to the Raspberry Pi~5 enclosure, which also carries the button pad. The earphone connects to the audio output and the vibration motor is placed in the enclosure so that the user can feel it in the hand or pocket.
+The camera module is mounted above the bridge of the spectacle frame so that it points where the user's face points. In the first prototype the Raspberry Pi~5 is tied to the right temple of the frame and the ribbon cable loops over the head from the camera to the board (Figure~\ref{fig:prototype}); Figure~\ref{fig:worn} shows it being worn. In the intended design the cable runs along the temple to a separate enclosure, which carries the board and the button pad, the earphone connects to the audio output, and the vibration motor sits in the enclosure so that the user can feel it in the hand or pocket.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=6.2cm]{worn_front.jpg}
+    \includegraphics[height=6.2cm]{worn_200.jpg}
+    \includegraphics[height=6.2cm]{worn_100.jpg}
+    \caption{The first prototype worn during a trial session. A 200 Taka and a 100 Taka note are held in front of the camera for the currency mode. The photographs are used with the wearer's consent.}
+    \label{fig:worn}
+\end{figure}
 
 \subsection{Connectivity and Wiring}
 \subsection*{1. Raspberry Pi~5 Power}
