@@ -3,11 +3,14 @@
 \usepackage{enumitem}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{newtxtext}   % Times for the body text
+\usepackage{carlito}     % Carlito (metric-compatible with Calibri) for headings
 \usepackage{placeins}
 \usepackage{amsmath}
 \numberwithin{table}{subsection}
 \usepackage{graphicx}
 \usepackage{amsmath, amssymb}
+\usepackage{newtxmath}   % mathematics to match the Times text
 \usepackage{microtype}
 \usepackage{subcaption}
 \usepackage{array}
@@ -69,14 +72,21 @@
 \counterwithout{figure}{chapter}
 
 % Section formatting
+\definecolor{headingblue}{HTML}{4F81BD}
+\newcommand{\headingfont}{\normalfont\sffamily\bfseries\color{headingblue}}
 \titleformat{\chapter}[block]
-  {\normalfont\huge\bfseries}{\thechapter}{1em}{\Huge}
+  {\headingfont\huge}{\thechapter}{1em}{\Huge}
 \titleformat{\section}
-  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+  {\headingfont\Large}{\thesection}{1em}{}
 \titleformat{\subsection}
-  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+  {\headingfont\large}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}
-  {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+  {\headingfont\normalsize}{\thesubsubsection}{1em}{}
+
+% List of tables: table numbers such as 2.10.0.1 need more room than the default
+\makeatletter
+\renewcommand*\l@table{\@dottedtocline{1}{1.5em}{4.6em}}
+\makeatother
 
 \begin{document}
 
