@@ -17,6 +17,10 @@
 \usepackage{cellspace}
 \setlength\cellspacetoplimit{5pt}
 \setlength\cellspacebottomlimit{5pt}
+% Table cells set ragged-right, so that long words and file names do not run into the next column
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\raggedright\arraybackslash}m{#1}}
+\emergencystretch=2em
 \usepackage{titlesec}
 \usepackage{framed}
 \usepackage{fancybox}

@@ -80,7 +80,7 @@ Before comparing technologies, it helps to see what the devices themselves look 
 \caption{Summary of reviewed assistive reading systems for the visually impaired}
 \label{tab:reviewed_systems}
 \small
-\begin{tabular}{|>{\centering\arraybackslash}m{2.7cm}|m{2.2cm}|m{3.2cm}|m{3.0cm}|m{3.2cm}|}
+\begin{tabular}{|>{\centering\arraybackslash}m{2.6cm}|M{2.1cm}|M{3.0cm}|M{2.9cm}|M{3.0cm}|}
 \hline
 \textbf{Device} & \textbf{System} & \textbf{How it works} & \textbf{What it gives the user} & \textbf{What is missing} \\ \hline
 \vspace{2pt}\includegraphics[width=2.5cm]{dev_optacon.jpg}\vspace{1pt} & Optacon (1966) \cite{linvill1966} & A small hand-held camera is moved along the line; the shape of each letter is reproduced on a pad of vibrating pins under one fingertip & Any printed text can be read without a sighted helper & Slow; months of training; no speech; no longer manufactured \\ \hline
@@ -105,7 +105,8 @@ Table~\ref{tab:assistive_compare} compares representative systems from the liter
 \centering
 \caption{Overview of assistive vision systems for visually impaired users, with key technologies, strengths and limitations}
 \label{tab:assistive_compare}
-\begin{tabular}{|p{1.4cm}|p{2.4cm}|p{3.6cm}|p{3.3cm}|p{3.3cm}|}
+\small
+\begin{tabular}{|L{1.3cm}|L{2.3cm}|L{3.5cm}|L{3.2cm}|L{3.2cm}|}
 \hline
 \textbf{Citation} & \textbf{System} & \textbf{Key Technologies} & \textbf{Strengths} & \textbf{Limitations} \\ \hline
 \cite{smartglass_mdpi2021} & Deep learning smart glass & Low-light enhancement CNN, transformer object recognition & Works at night, rich scene information & Heavy models, English labels, no currency \\ \hline
@@ -126,7 +127,8 @@ Table~\ref{tab:currency_compare} focuses on currency recognition. Direct numeric
 \centering
 \caption{Comparison of currency recognition methods related to Bangladeshi Taka}
 \label{tab:currency_compare}
-\begin{tabular}{|p{3.6cm}|p{1.8cm}|p{2.2cm}|p{1.6cm}|p{1.6cm}|p{2.4cm}|}
+\small
+\begin{tabular}{|L{3.3cm}|L{1.8cm}|L{2.1cm}|L{1.7cm}|L{1.7cm}|L{2.3cm}|}
 \hline
 \textbf{Work} & \textbf{Task} & \textbf{Labels} & \textbf{mAP@0.5} & \textbf{mAP@ 0.5:0.95} & \textbf{P / R or Acc.} \\ \hline
 Axis-symmetrical masks \cite{axissym} & Classify & Image-level & -- & -- & 98.6\% acc. \\ \hline
@@ -154,7 +156,9 @@ Recent work on assistive devices relevant to this thesis falls into four areas, 
 
 \begin{table}[!htbp]
 \centering
-\begin{tabular}{|p{4cm}|p{10.5cm}|}
+\caption{Key research categories in assistive vision technology}
+\label{tab:key_areas}
+\begin{tabular}{|L{4cm}|L{10.5cm}|}
 \hline
 \textbf{Citation(s)} & \textbf{Category and Function/Details} \\
 \hline
@@ -171,8 +175,6 @@ Recent work on assistive devices relevant to this thesis falls into four areas, 
 \textbf{Currency Recognition:} Template and colour matching, neural classifiers, YOLO detection of Taka and other currencies, currency features in mobile apps. \\
 \hline
 \end{tabular}
-\caption{Key research categories in assistive vision technology}
-\label{tab:key_areas}
 \end{table}
 \FloatBarrier
 

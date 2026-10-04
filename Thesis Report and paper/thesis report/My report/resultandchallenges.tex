@@ -99,7 +99,7 @@ Two public collections that were never used for training or selection were score
 \centering
 \caption{Taka detection on independent photograph collections}
 \label{tab:external}
-\begin{tabular}{|l|c|p{7cm}|}
+\begin{tabular}{|L{5.6cm}|c|L{7.0cm}|}
 \hline
 \textbf{Set} & \textbf{n} & \textbf{Result} \\ \hline
 Bangla Money (Kaggle), 8 denominations & 1,536 & 91.5\% correct denomination; no note found 3.9\%; 95.2\% correct when a note is found \\ \hline
@@ -346,7 +346,7 @@ The policy of Section~\ref{sec:safe_policy} was fixed on validation data (0 of 8
 \centering
 \caption{Deployed verdict policy: ``likely genuine'' above $\tau$, otherwise ``check by hand''}
 \label{tab:safe}
-\begin{tabular}{|p{8.0cm}|c|c|}
+\begin{tabular}{|L{6.8cm}|c|c|}
 \hline
 \textbf{Measure} & \textbf{Result} & \textbf{95\% Wilson interval} \\ \hline
 Genuine notes told ``counterfeit'' & 0 (cannot be said) & -- \\ \hline
@@ -470,7 +470,7 @@ Table~\ref{tab:ocr} gives the test results.
 \centering
 \caption{OCR on the held-out test set (432 images, three seeds), read once per method}
 \label{tab:ocr}
-\begin{tabular}{|p{5.2cm}|c|c|c|c|c|}
+\begin{tabular}{|L{4.3cm}|c|c|c|c|c|}
 \hline
 \textbf{Pipeline} & \textbf{CER} & \textbf{Bangla} & \textbf{English} & \textbf{Photo scene} & \textbf{WER} \\ \hline
 Glass application before this work & 9.3\% & 11.9\% & 6.6\% & 10.7\% & 15.8\% \\ \hline
