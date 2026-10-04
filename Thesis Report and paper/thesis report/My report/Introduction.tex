@@ -29,7 +29,9 @@ The thesis is also an account of what did not work. The first Bangla OCR measure
 
 \section{Problem Statement}
 \label{sec:Problem Statement}
-Visually impaired people in Bangladesh depend on family members, shopkeepers or passers-by to read text, identify objects and handle money. This dependence creates three concrete risks: loss of independence in daily activities, exposure to fraud when receiving change or counterfeit notes, and loss of privacy when others must read personal documents. Existing assistive technologies do not solve these problems for Bangladeshi users.
+Think of an ordinary errand. A blind person in Dhaka buys medicine, hands over a note and receives change. To know what the label on the packet says, which note came back, and whether that note is real, this person has to ask someone: a family member, the shopkeeper, a stranger. Most of the time the answer is honest. But the person has no way to check it, and has to ask again for the next label and the next note.
+
+This dependence creates three concrete risks: loss of independence in daily activities, exposure to fraud when receiving change or counterfeit notes, and loss of privacy when others must read personal documents. Existing assistive technologies do not solve these problems for Bangladeshi users.
 
 Common limitations in current solutions include:
 
@@ -51,7 +53,19 @@ On the technical side, five specific problems had to be addressed:
     \item \textbf{Fragile Bangla reading on small hardware.} Bangla has conjuncts and vowel signs that move around the consonant, open OCR engines are weaker on it than on English, and everything has to run on a Raspberry Pi~5 without overheating.
 \end{enumerate}
 
-This project addresses these gaps and develops Savior Glass, an offline assistive smart glass that uniquely integrates:
+\subsection*{The problem in one statement}
+Put together, the problem this thesis works on is the following.
+
+\begin{quote}
+\textit{A blind or low-vision person in Bangladesh has no affordable wearable device that reads Bangla text aloud, tells which Taka note is in the hand, and gives trustworthy advice on whether that note may be counterfeit, without a phone, a screen or an internet connection. The public data and test protocols on which such functions are built also make them look more reliable than they are in real use.}
+\end{quote}
+
+The statement has two halves on purpose. The first is an engineering problem: build the device. The second is a measurement problem: find out how good the device really is. A sighted user notices when a device is wrong and stops trusting it. A blind user often cannot notice, so an error that goes unmeasured in the laboratory becomes an error that goes unnoticed in the street. For this user group, honest evaluation is part of the product, not an afterthought.
+
+\subsection*{Who is affected and what success would look like}
+The people affected are blind and low-vision adults who handle cash and printed Bangla every day, and, indirectly, the family members they now depend on. For them the work would count as successful if a user wearing the glass can, alone and with buttons only, (i) hear a short Bangla sign or label read correctly, (ii) hear the right denomination of a note, (iii) be told honestly when the device is not sure, and (iv) never be told that a genuine note is counterfeit. Chapter~\ref{chap:results} reports how far the present prototype is from each of these four points.
+
+This project addresses these gaps and develops Savior Glass, an assistive smart glass that brings together:
 
 \begin{itemize}[noitemsep]
     \item Bangla and English text reading with a capture-then-read interaction;
@@ -150,7 +164,7 @@ This thesis is organized into seven chapters, each addressing a specific aspect 
     This chapter provides the background, problem statement, objectives, scope, research questions, contributions and thesis structure.
 
     \item \textbf{Chapter 2: Literature Review} \\
-    This chapter reviews assistive technologies for visually impaired people, smart glasses, OCR and text-to-speech systems, object detection, Bangladeshi currency recognition, multi-view learning, evaluation leakage and safe prediction.
+    This chapter reviews assistive technologies for visually impaired people, existing reading devices, smart glasses, OCR and text-to-speech systems, object detection, Bangladeshi currency recognition, multi-view learning, evaluation leakage and safe prediction.
 
     \item \textbf{Chapter 3: System Design and Methodology} \\
     This chapter describes the framework, hardware components, software design and the methodology of Savior Glass.

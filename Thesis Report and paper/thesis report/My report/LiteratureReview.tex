@@ -12,7 +12,7 @@ A recent bibliometric review of 533 articles on wearable mobility aids published
 \section{Historical Background and Evolution}
 \label{sec:history}
 
-Early reading machines combined a scanner, a hand-crafted OCR engine and concatenative speech synthesis. Assistive reading systems of that period localised text with connected-component labelling and histogram analysis on binarised images and produced speech through recorded phoneme units \cite{assistreading2014, speechiface2013}. These systems worked on clean printed pages but not on natural scenes.
+The first electronic reading aid, the Optacon, did not recognise letters at all: it turned the image of each printed letter into a vibrating pattern that the reader felt with a fingertip \cite{linvill1966}. Early reading machines then combined a scanner, a hand-crafted OCR engine and concatenative speech synthesis. Assistive reading systems of that period localised text with connected-component labelling and histogram analysis on binarised images and produced speech through recorded phoneme units \cite{assistreading2014, speechiface2013}. These systems worked on clean printed pages but not on natural scenes.
 
 The next generation moved to portable hardware. FingerReader used a finger-worn camera to read printed text on the go \cite{fingerreader2014}, and product-label readers used motion to isolate a held object in front of a Pi camera \cite{labelreading2017}. With the arrival of the Raspberry Pi, many low-cost readers were built from a Pi board, a USB or Pi camera, Tesseract OCR and a speaker \cite{readingaid_rpi2023, visionvoice2024, cameraocr2023, itra2022, imgproc_text2019}. Most of these systems read English only and use Google Text-to-Speech, which requires an internet connection.
 
@@ -69,6 +69,32 @@ Multi-function devices combine several modules. The Third Eye clips a camera to 
 
 \subsection{Mobile Applications}
 Smartphone apps such as BLIND ASSIST \cite{blindassist2021}, IV Smart \cite{ivsmart2024} and assistants based on NLP \cite{ai_nlp2025} are convenient but require the user to aim a phone and use a touch screen, which many blind users find difficult.
+
+\section{Summary of Reviewed Assistive Reading Systems}
+\label{sec:reviewed_systems}
+
+Before comparing technologies, it helps to see what the devices themselves look like. Table~\ref{tab:reviewed_systems} puts five existing reading aids side by side, from the first electronic one to a recent research prototype, and ends with the device built in this thesis. Looking at them in order tells a short story. The Optacon let a blind person read ordinary print sixty years ago, but by touch, slowly, and only after long training \cite{linvill1966}. Commercial products such as OrCam MyEye made the idea small enough to clip on a spectacle frame and replaced touch with speech \cite{orcam}. Glass-type devices and research prototypes then added scene description and face recognition, usually by sending pictures to a server \cite{googleglass2021, airis2024}. What none of them offers is the combination a blind person in Bangladesh needs: Bangla, Taka, and no dependence on the internet.
+
+\begin{table}[!htbp]
+\centering
+\caption{Summary of reviewed assistive reading systems for the visually impaired}
+\label{tab:reviewed_systems}
+\small
+\begin{tabular}{|>{\centering\arraybackslash}m{2.7cm}|m{2.2cm}|m{3.2cm}|m{3.0cm}|m{3.2cm}|}
+\hline
+\textbf{Device} & \textbf{System} & \textbf{How it works} & \textbf{What it gives the user} & \textbf{What is missing} \\ \hline
+\vspace{2pt}\includegraphics[width=2.5cm]{dev_optacon.jpg}\vspace{1pt} & Optacon (1966) \cite{linvill1966} & A small hand-held camera is moved along the line; the shape of each letter is reproduced on a pad of vibrating pins under one fingertip & Any printed text can be read without a sighted helper & Slow; months of training; no speech; no longer manufactured \\ \hline
+\vspace{2pt}\includegraphics[width=2.5cm]{dev_orcam.jpg}\vspace{1pt} & OrCam MyEye \cite{orcam} & A camera and speaker clipped to the side of a spectacle frame; recognition runs inside the device & Reads printed text aloud; recognises faces, products and some banknotes & Price far beyond most users in Bangladesh; no Bangla; no Taka \\ \hline
+\vspace{2pt}\includegraphics[width=2.5cm]{dev_googleglass.jpg}\vspace{1pt} & Google Glass scene analysis (2021) \cite{googleglass2021} & Camera of a Google Glass; pictures are analysed by a cloud vision service; bone-conduction audio & Spoken description of the scene in front of the user & Needs the internet; expensive glass; no local language or currency \\ \hline
+\vspace{2pt}\includegraphics[width=2.5cm]{dev_esight.jpg}\vspace{1pt} & eSight eyewear \cite{esight} & Head-worn camera with two small screens in front of the eyes; magnifies and raises contrast & People with low vision can read and see faces with their remaining sight & No help for a totally blind user; expensive; nothing is read aloud \\ \hline
+\vspace{2pt}\includegraphics[width=2.5cm]{dev_airis.jpg}\vspace{1pt} & AIris (2024) \cite{airis2024} & Camera on a 3D-printed frame, a Raspberry Pi, and a remote server that runs the models & Text reading, scene description, face recognition, money counting by voice request & Depends on a server; English; not Bangladeshi currency \\ \hline
+\IfFileExists{DIagram fig tab/savior_glass_prototype.jpg}{\vspace{2pt}\includegraphics[width=2.5cm]{savior_glass_prototype.jpg}\vspace{1pt}}{\textit{Savior Glass prototype}} & \textbf{Savior Glass (this work)} & Camera on a spectacle frame, Raspberry Pi~5, five buttons; all models except one optional mode run on the device & Bangla and English reading, objects, nine Taka notes, cautious counterfeit check, Bangla speech & Slow text reading on the Pi; not yet validated with the glass camera or with users \\ \hline
+\end{tabular}
+
+\vspace{3pt}
+\raggedright{\footnotesize Image credits: Optacon, by DrBliss, public domain; OrCam MyEye, by Ylip, CC BY-SA 4.0; Google Glass Explorer Edition, by Ted Eytan, CC BY-SA 2.0; eSight~4, by eSight Digital, CC BY-SA 4.0 (all four from Wikimedia Commons). AIris prototype reproduced from \cite{airis2024}. The Google Glass photograph shows the hardware used in \cite{googleglass2021}, not that study's own set-up.}
+\end{table}
+\FloatBarrier
 
 \section{Comparative Evaluation of Assistive Vision Systems}
 \label{sec:comparison}
@@ -152,14 +178,42 @@ Recent work on assistive devices relevant to this thesis falls into four areas, 
 
 \section{Research Gap}
 \label{sec:gap}
-From the review, the following gaps are identified:
-\begin{enumerate}[noitemsep]
-    \item Very few assistive glasses work completely offline; most depend on cloud OCR, cloud recognition or online TTS.
-    \item Bangla is rarely supported, either for reading text or for speaking results.
-    \item Bangladeshi Taka detection has been studied as a stand-alone computer vision task, but it has not been integrated in a wearable, and detectors rely on small, manually labelled datasets.
-    \item Counterfeit-note checking with a normal camera has not been addressed in assistive devices, and the problem of an unreliable number of captured views has not been studied.
-    \item Counterfeit results are reported on splits made by image or by note. Whether the test counterfeits come from prints that were also in the training data is not checked.
-    \item How a device should word an uncertain counterfeit verdict for a user who cannot verify it by sight has not been studied.
-    \item Many prototypes are reported without quantitative evaluation of each module, without measurements on the target hardware, and without negative results.
-\end{enumerate}
-Savior Glass is designed to address these gaps.
+The review leaves a clear picture. The pieces of an assistive glass exist: cameras are cheap, object detectors run in real time, OCR engines read many languages, and small computers can carry all of it. What is missing is not another piece. It is the fit between those pieces and one particular user, a blind person in Bangladesh, and an honest account of how well the result works. We group what is missing into three kinds of gap.
+
+\subsection*{Gap 1: No existing device fits the user}
+Every system in Tables~\ref{tab:reviewed_systems} and~\ref{tab:assistive_compare} fails this user on at least one point. The commercial glasses cost far more than most users here can pay and do not speak Bangla or know Taka. The low-cost Raspberry Pi readers read English only and speak through an online service, so they fall silent when the connection drops. The recent research glasses send pictures to a server. Work on Bangladeshi Taka exists, but as computer-vision experiments on a desktop, not inside something a person can wear. Nobody has put Bangla reading, Taka recognition and Bangla speech together in one device that works without the internet.
+
+\subsection*{Gap 2: Three method problems are unsolved}
+\begin{itemize}[noitemsep]
+    \item \textbf{A blind user cannot promise how many pictures the device gets.} Multi-view models are trained and tested with a fixed number of views. What happens to a counterfeit check when the user manages only one view instead of six has not been studied.
+    \item \textbf{A blind user cannot check the answer.} A sighted person who is told ``this note is counterfeit'' can look again. A blind person cannot, and may accuse someone wrongly. How a device should word an uncertain verdict for someone who cannot verify it has not been addressed.
+    \item \textbf{Taka detectors depend on hand-labelled data.} The published detectors were trained on a few thousand manually annotated images. Whether a detector can be trained without any manual labels and still work on other people's photographs is open.
+\end{itemize}
+
+\subsection*{Gap 3: The evidence is weaker than it looks}
+\begin{itemize}[noitemsep]
+    \item \textbf{Counterfeit results may measure memory, not detection.} Counterfeit datasets are split by image or by note. No study checks whether the test counterfeits are copies of prints that were also in the training data, so a high score may only show that the model recognises reprints it has already seen.
+    \item \textbf{Modules are rarely measured one by one, and almost never on the target hardware.} Many prototypes report that the system ``works'' without an error rate for each function, without timings on the device, and without saying what failed.
+    \item \textbf{Users are missing from the evaluation.} Few prototypes report task times, errors or usability scores with blind participants.
+\end{itemize}
+
+Table~\ref{tab:gap} sets each gap against what this thesis does about it. The last column is deliberately honest: two of the gaps are only partly closed here.
+
+\begin{table}[!htbp]
+\centering
+\caption{Research gaps and how this thesis responds to them}
+\label{tab:gap}
+\small
+\begin{tabular}{|p{3.4cm}|p{4.2cm}|p{4.4cm}|p{2.2cm}|}
+\hline
+\textbf{Gap} & \textbf{State of existing work} & \textbf{Response in this thesis} & \textbf{Closed?} \\ \hline
+No device fits a Bangla-speaking blind user & English, online speech, cloud recognition, or high price & Bangla-first glass on a Raspberry Pi~5; all core modes on the device & Yes, as a prototype \\ \hline
+Unknown number of views & Models trained and tested with a fixed view count & Training on random prefixes of views (Section~\ref{sec:method}) & Yes \\ \hline
+Uncertain verdict for a user who cannot verify it & Not addressed & Policy that never says ``counterfeit'' and has a bounded chance of passing one (Section~\ref{sec:safe_policy}) & Safe; not yet useful on whole notes \\ \hline
+Hand-labelled Taka data & A few thousand manual labels & 22,333 automatically labelled composites (Chapter~\ref{chap:dataset}) & Yes, for full-note photographs \\ \hline
+Leakage between counterfeit prints & Splits by image or note; prints not checked & Serial-number audit and a print-disjoint split (Section~\ref{sec:serial_audit}) & Yes; test set still small \\ \hline
+Missing per-module and on-device figures & ``Works'' without numbers & Every module measured on held-out data and on the Pi~5; negative results reported & Yes \\ \hline
+No evaluation with users & Rare in prototypes & Protocol, logging and questionnaire tools prepared & No: study not yet run \\ \hline
+\end{tabular}
+\end{table}
+\FloatBarrier
