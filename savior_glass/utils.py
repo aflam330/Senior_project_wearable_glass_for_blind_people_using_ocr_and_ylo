@@ -409,21 +409,28 @@ class CameraManager:
 
     def _start_picamera2(self) -> None:
         from picamera2 import Picamera2
-        if not Picamera2.global_camera_info():
+        ribbon = self._ribbon_cameras()
+        if not ribbon:
             raise RuntimeError("no ribbon (CSI) camera detected")
-        cam = Picamera2()
+        cam = Picamera2(ribbon[0]["Num"])
         # "RGB888" gives arrays in BGR order, which is what OpenCV and the models expect
         cam.configure(cam.create_video_configuration(main={"size": (self._width, self._height), "format": "RGB888"}))
         cam.start()
         self._picam = cam
 
     @staticmethod
-    def _ribbon_camera_present() -> bool:
+    def _ribbon_cameras() -> list:
+        """Ribbon (CSI) cameras only. libcamera also lists USB webcams (UVC), but picamera2 hands their
+        frames over with red and blue swapped, so webcams are left to OpenCV, which gives correct BGR."""
         try:
             from picamera2 import Picamera2
-            return bool(Picamera2.global_camera_info())
+            return [c for c in Picamera2.global_camera_info() if "usb" not in str(c.get("Id", "")).lower()]
         except Exception:  # noqa: BLE001
-            return False
+            return []
+
+    @classmethod
+    def _ribbon_camera_present(cls) -> bool:
+        return bool(cls._ribbon_cameras())
 
     @staticmethod
     def _is_real_capture_node(idx: int) -> bool:
