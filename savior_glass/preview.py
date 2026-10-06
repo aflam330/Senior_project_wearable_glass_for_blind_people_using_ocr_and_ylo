@@ -17,6 +17,7 @@ glass runs headless, so nothing here is on the normal code path.
 import collections
 import logging
 import os
+import threading
 import time
 
 import cv2
@@ -120,6 +121,7 @@ class Preview:
         if self._diag.enabled:
             self._draw_diag(frame)
         else:
+            self._start_live(frame, mode_idx)
             self._draw_boxes(frame, mode_idx)   # boxes are in camera coordinates, so draw before any scaling
         # show the picture at its real size (so a sharper capture looks sharper), between 480 and 900 px high
         h, w = frame.shape[:2]
@@ -225,8 +227,87 @@ class Preview:
 
     # ------------------------------------------------------------------
 
+    # ---- live boxes: the current mode's own detector on the live picture (config.PREVIEW_LIVE_BOXES) ----
+    def _start_live(self, frame, mode_idx) -> None:
+        if not getattr(config, "PREVIEW_LIVE_BOXES", False):
+            return
+        if mode_idx not in (config.MODE_CURRENCY, getattr(config, "MODE_EMOTION", -1)):
+            return
+        now = time.time()
+        live = getattr(self, "_live", None) or {}
+        if live.get("busy") or now - live.get("t", 0) < getattr(config, "PREVIEW_LIVE_INTERVAL_S", 1.0):
+            return
+        app = self._app
+        if not app._ready[mode_idx].is_set() or app._inferring.is_set():
+            return   # a model is still loading, or a button capture is running: leave the model to it
+        self._live = {**live, "busy": True, "t": now}
+        threading.Thread(target=self._live_run, args=(frame.copy(), mode_idx), daemon=True, name="preview-live").start()
+
+    def _live_run(self, frame, mode_idx) -> None:
+        app, boxes = self._app, []
+        try:
+            if not app._model_lock.acquire(blocking=False):
+                return
+            try:
+                mode = app._modes[mode_idx]
+                if mode_idx == config.MODE_CURRENCY and getattr(mode, "_yolo", None) is not None:
+                    r = mode._yolo.predict(frame, conf=0.25, verbose=False, imgsz=640)[0]
+                    if r.boxes is not None:
+                        for i in range(len(r.boxes)):
+                            x1, y1, x2, y2 = (int(v) for v in r.boxes.xyxy[i].tolist())
+                            boxes.append((x1, y1, x2, y2, str(r.names[int(r.boxes.cls[i].item())]), float(r.boxes.conf[i].item())))
+                elif mode_idx == getattr(config, "MODE_EMOTION", -1) and getattr(mode, "_detector", None) is not None:
+                    res = mode._detector.predict(frame)
+                    if res.get("face") is not None:
+                        x, y, w, h = (int(v) for v in res["face"])
+                        boxes.append((x, y, x + w, y + h, str(res.get("label", "")), float(res.get("prob") or 0)))
+            finally:
+                app._model_lock.release()
+            self._live = {"busy": False, "t": time.time(), "mode": mode_idx, "boxes": boxes}
+        except Exception as exc:  # noqa: BLE001
+            logger.debug("Live boxes failed: %s", exc)
+        finally:
+            if getattr(self, "_live", {}).get("busy"):
+                self._live = {**self._live, "busy": False}
+
+    @staticmethod
+    def _label(frame, text, x, y, colour) -> None:
+        (tw, th), _ = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 1)
+        y = max(th + 4, y)
+        cv2.rectangle(frame, (x, y - th - 4), (x + tw + 4, y + 2), colour, -1)
+        cv2.putText(frame, text, (x + 2, y - 2), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
+
     def _draw_boxes(self, frame, mode_idx) -> None:
         mode = self._app._modes[mode_idx]
+        now = time.time()
+        live = getattr(self, "_live", None) or {}
+        fresh = live.get("mode") == mode_idx and now - live.get("t", 0) < 3 * getattr(config, "PREVIEW_LIVE_INTERVAL_S", 1.0)
+        keep = getattr(config, "PREVIEW_CAPTURE_BOX_S", 15.0)
+        if mode_idx == config.MODE_OCR:
+            if now - getattr(mode, "last_boxes_t", 0) < keep:
+                for x1, y1, x2, y2, conf, main in getattr(mode, "last_boxes", None) or []:
+                    colour = (0, 220, 0) if main else (150, 150, 150)
+                    cv2.rectangle(frame, (x1, y1), (x2, y2), colour, 2 if main else 1)
+                    self._label(frame, ("text " if main else "") + f"{conf:.2f}", x1, y1 - 2, colour)
+            return
+        if mode_idx == config.MODE_CLAUDE:
+            if now - getattr(mode, "last_sent_t", 0) < keep:
+                h, w = frame.shape[:2]
+                cv2.rectangle(frame, (2, 2), (w - 3, h - 3), (255, 200, 0), 3)
+                self._label(frame, "whole picture sent to the online model", 8, 22, (255, 200, 0))
+            return
+        if mode_idx == config.MODE_CURRENCY and fresh:
+            for x1, y1, x2, y2, name, conf in live.get("boxes") or []:
+                ok = conf >= getattr(config, "CURRENCY_ANNOUNCE_CONF", 0.0)
+                colour = (0, 200, 255) if ok else (120, 120, 120)
+                cv2.rectangle(frame, (x1, y1), (x2, y2), colour, 2)
+                self._label(frame, f"{name} {conf:.2f}" + ("" if ok else " (too low)"), x1, y1 - 2, colour)
+            return
+        if mode_idx == getattr(config, "MODE_EMOTION", -1) and fresh:
+            for x1, y1, x2, y2, label, prob in live.get("boxes") or []:
+                cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 120, 255), 2)
+                self._label(frame, f"{label} {prob:.2f}", x1, y1 - 2, (255, 120, 255))
+            return
         if mode_idx == config.MODE_OBJECT:
             for x1, y1, x2, y2, name, conf in getattr(mode, "last_boxes", None) or []:
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)

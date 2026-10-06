@@ -14,6 +14,7 @@ returns nothing.
 import logging
 import os
 import re
+import time
 from typing import Optional
 
 import cv2
@@ -21,6 +22,7 @@ import numpy as np
 
 import config
 from ocr_repair import repair_ocr_text, tesseract_available, tesseract_read
+from ocr_text_region import _boxes as _text_boxes
 from ocr_text_region import clean_text, dominant_block, order_lines
 from utils import detect_language
 from .base_mode import BaseMode
@@ -140,6 +142,7 @@ class OCRMode(BaseMode):
             return "ইঞ্জিন লোড হয়নি, অনুগ্রহ করে অপেক্ষা করুন"  # engine not loaded
 
         texts = []
+        self.last_boxes, self.last_boxes_t = [], time.time()
         v2 = getattr(config, "OCR_PIPELINE", "legacy") == "v2"
         if self._reader is not None and v2:
             texts = self._read_v2(frame)
@@ -175,6 +178,9 @@ class OCRMode(BaseMode):
                 results = []
 
             results = sorted(results, key=_reading_order_key)
+            s = frame.shape[1] / float(preprocessed.shape[1])
+            for b in _text_boxes(results):   # every box, for the preview; the kept ones are marked below
+                self.last_boxes.append([int(b["x0"] * s), int(b["y0"] * s), int(b["x1"] * s), int(b["y1"] * s), b["c"], False])
             for item in results:
                 if len(item) == 3:
                     _bbox, text, conf = item
@@ -189,6 +195,11 @@ class OCRMode(BaseMode):
                     logger.debug("Discarding non-text OCR fragment (conf=%.2f): %r", conf, text)
                     continue
                 texts.append(text)
+                if len(item) == 3:
+                    ys = [p[1] * s for p in item[0]]
+                    for box in self.last_boxes:
+                        if abs(box[1] - min(ys)) < 1 and abs(box[3] - max(ys)) < 1:
+                            box[5] = True
 
             if not texts and tesseract_available():
                 tess = tesseract_read(preprocessed)
@@ -241,6 +252,7 @@ class OCRMode(BaseMode):
     def _read_v2(self, frame: np.ndarray) -> list:
         """OCR pipeline v2: CLAHE, tuned EasyOCR, dominant text block, reading order (see config.OCR_PIPELINE)."""
         h, w = frame.shape[:2]
+        w0 = w
         if w < 1200:
             frame = cv2.resize(frame, (1200, int(h * 1200 / w)), interpolation=cv2.INTER_CUBIC)
         elif w > 1600:
@@ -256,7 +268,12 @@ class OCRMode(BaseMode):
         except Exception as exc:
             logger.warning("EasyOCR inference error: %s", exc)
             return []
-        text = order_lines(dominant_block(det, getattr(config, "OCR_V2_MIN_CONF", 0.2)))
+        block = dominant_block(det, getattr(config, "OCR_V2_MIN_CONF", 0.2))
+        # boxes for the preview, in the camera picture's own pixels; the main text block is marked
+        s, kept = w0 / float(gray.shape[1]), {(b["x0"], b["y0"]) for b in block}
+        self.last_boxes = [[int(b["x0"] * s), int(b["y0"] * s), int(b["x1"] * s), int(b["y1"] * s), b["c"],
+                            (b["x0"], b["y0"]) in kept] for b in _text_boxes(det)]
+        text = order_lines(block)
         return [text] if text else []
 
     # ------------------------------------------------------------------

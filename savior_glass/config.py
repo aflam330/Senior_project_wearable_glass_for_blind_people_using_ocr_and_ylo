@@ -213,6 +213,12 @@ OCR_V2_PARAMS = {"text_threshold": 0.8, "low_text": 0.3, "link_threshold": 0.4, 
 OCR_V2_MIN_CONF = 0.2
 
 # Speak the captured text immediately after ACTION (READ repeats it). 0 = only confirm the capture, as before.
+# Test preview (preview.py): run the current mode's own detector on the live picture every
+# PREVIEW_LIVE_INTERVAL_S seconds so its boxes follow the camera (currency notes, faces). Only the
+# window for sighted testers uses this; the blind user's headless glass never does. Set to 0 on a busy Pi.
+PREVIEW_LIVE_BOXES = os.environ.get("PREVIEW_LIVE_BOXES", "1") == "1"
+PREVIEW_LIVE_INTERVAL_S = float(os.environ.get("PREVIEW_LIVE_INTERVAL_S", "1.5" if ON_RASPBERRY_PI_5 else "0.7"))
+PREVIEW_CAPTURE_BOX_S = 15.0   # how long the boxes of one capture (text, online picture) stay on screen
 OCR_SPEAK_ON_CAPTURE = os.environ.get("OCR_SPEAK_ON_CAPTURE", "1") == "1"
 OCR_CONFIDENCE      = 0.4    # EasyOCR minimum confidence
 OBJECT_CONFIDENCE   = 0.50   # YOLO minimum confidence

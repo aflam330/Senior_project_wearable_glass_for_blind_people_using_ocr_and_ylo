@@ -21,6 +21,7 @@ import json
 import logging
 import os
 import ssl
+import time
 import urllib.error
 import urllib.request
 from typing import Optional
@@ -98,6 +99,7 @@ class ClaudeMode(BaseMode):
         jpeg = self._encode_jpeg(frame)
         if jpeg is None:
             return "ছবি পাঠানো যায়নি"
+        self.last_sent_t = time.time()   # the preview outlines the whole picture: it is sent as one image"
 
         try:
             text = self.describe(jpeg, provider=provider, key=key)
