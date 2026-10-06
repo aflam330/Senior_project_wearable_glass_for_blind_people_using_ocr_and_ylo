@@ -216,6 +216,11 @@ OCR_V2_MIN_CONF = 0.2
 OCR_SPEAK_ON_CAPTURE = os.environ.get("OCR_SPEAK_ON_CAPTURE", "1") == "1"
 OCR_CONFIDENCE      = 0.4    # EasyOCR minimum confidence
 OBJECT_CONFIDENCE   = 0.50   # YOLO minimum confidence
+# Stricter minimum for animals only. In dim indoor tests (2026-10-06) the COCO model called dark clutter
+# "cat" (0.39-0.48) and "dog" (0.48) while the real desk objects scored 0.55-0.65; 0.65 drops the false animals
+# and keeps those objects. Any class not listed uses OBJECT_CONFIDENCE.
+OBJECT_CLASS_CONFIDENCE = {name: 0.65 for name in (
+    "bird", "cat", "dog", "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe", "teddy bear")}
 CURRENCY_CONFIDENCE = 0.65   # MobileNetV3 minimum softmax score
 OCR_MIN_CHARS       = 3      # Discard OCR hits shorter than this
 

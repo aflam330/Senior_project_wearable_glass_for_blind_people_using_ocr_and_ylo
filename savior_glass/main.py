@@ -342,7 +342,9 @@ class SmartGlass:
                         t0 = time.perf_counter()
                         with self._model_lock:
                             result = self._modes[config.MODE_OBJECT].process_frame(frame)
-                        if result:
+                        with self._mode_lock:
+                            still_object = self._current_mode == config.MODE_OBJECT
+                        if result and still_object:   # the user left object mode during the scan: stay quiet
                             self._tts.speak(result)
                             _flog("object_announce", config.MODE_OBJECT, latency_ms=(time.perf_counter() - t0) * 1000,
                                   result=result)

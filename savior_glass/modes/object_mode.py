@@ -83,6 +83,8 @@ class ObjectMode(BaseMode):
                 cls_id = int(box.cls[0])
                 conf   = float(box.conf[0])
                 name   = self._model.names.get(cls_id, "unknown")
+                if conf < getattr(config, "OBJECT_CLASS_CONFIDENCE", {}).get(name, 0.0):
+                    continue
                 detections.append((name, conf))
                 x1, y1, x2, y2 = (float(v) for v in box.xyxy[0])
                 boxes.append((int(x1 * sx), int(y1 * sy), int(x2 * sx), int(y2 * sy), name, conf))
