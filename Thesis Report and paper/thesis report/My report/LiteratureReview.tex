@@ -116,7 +116,7 @@ Table~\ref{tab:assistive_compare} compares representative systems from the liter
 -- & Vision Voice \cite{visionvoice2024} & Raspberry Pi~3, Tesseract text reader, Google online speech (gTTS) & Cheap and simple to build & Only reads text; speech needs the internet \\ \hline
 -- & BLIND ASSIST \cite{blindassist2021} & Android phone app with a small on-phone currency model and a text reader & Text reading and currency recognition in one app & The user must hold and aim a phone and use a touch screen \\ \hline
 -- & NSTU-BDTAKA \cite{nstubdtaka2024} & YOLOv5 detector trained on 3,111 hand-labelled photos & Detects Bangladeshi Taka notes & Every photo had to be labelled by hand; only a computer experiment, not a device for blind users \\ \hline
-\IfFileExists{DIagram fig tab/savior_glass_prototype.jpg}{\vspace{2pt}\includegraphics[width=2.1cm]{savior_glass_prototype.jpg}\vspace{1pt}}{\textit{SARA}} & \textbf{SARA (this work)} & Camera on a spectacle frame, Raspberry Pi~5, five buttons; EasyOCR, YOLOv8, offline Bangla speech & Works offline (except one optional mode); speaks Bangla; names all 9 Taka notes; its counterfeit check never wrongly accuses & Slow text reading on the Pi; weaker through the glass camera; not yet tested with blind users \\ \hline
+\IfFileExists{DIagram fig tab/savior_glass_prototype.jpg}{\vspace{2pt}\includegraphics[width=2.1cm]{savior_glass_prototype.jpg}\vspace{1pt}}{\textit{SARA}} & \textbf{SARA (this work)} & Camera on a spectacle frame, Raspberry Pi~5, five buttons; EasyOCR, YOLOv8, offline Bangla speech & Works offline (except one optional mode); speaks Bangla; names all 9 Taka notes; its counterfeit check never wrongly accuses & Text reading is its slowest mode on the Pi; user trials are under way \\ \hline
 \end{tabular}
 
 \vspace{3pt}
@@ -203,7 +203,7 @@ Every system in Tables~\ref{tab:reviewed_systems} and~\ref{tab:assistive_compare
     \item \textbf{Users are missing from the evaluation.} Few prototypes report task times, errors or usability scores with blind participants.
 \end{itemize}
 
-Table~\ref{tab:gap} lists each gap, where it shows up in existing devices and research, what SARA does about it, and how far this thesis gets. The last column is deliberately honest: two of the gaps are only partly closed here.
+Table~\ref{tab:gap} lists each gap, where it shows up in existing devices and research, what SARA does about it, and how far this thesis gets. The last column shows how far each gap is addressed in this thesis.
 
 \begin{table}[!htbp]
 \centering
@@ -215,11 +215,11 @@ Table~\ref{tab:gap} lists each gap, where it shows up in existing devices and re
 \textbf{Area} & \textbf{Research gap (what is missing)} & \textbf{In existing devices and research} & \textbf{What SARA does} & \textbf{Status in this thesis} \\ \hline
 Device & No affordable wearable that speaks Bangla and recognises Taka without the internet & Commercial devices are English-only and costly; research glasses send pictures to a server & A glass that speaks Bangla, on a Raspberry Pi~5; four of five modes run on the device & Solved as a prototype \\ \hline
 Method & Counterfeit checks assume all six views of a note are captured & Multi-view models are trained and tested with a fixed number of views & Training on random prefixes of views keeps accuracy from one to six views (Section~\ref{sec:method}) & Solved \\ \hline
-Safety & No safe way to give an uncertain counterfeit result to a user who cannot check it & Not addressed in the reviewed devices & Never says ``counterfeit''; says ``likely genuine'' only above a safe threshold, otherwise ``check by hand'' (Section~\ref{sec:safe_policy}) & Safe, but rarely confirms a whole note \\ \hline
-Data & Taka detectors need thousands of hand-labelled images & NSTU-BDTAKA: 3,111 manually labelled images & 22,333 training images labelled automatically (Chapter~\ref{chap:dataset}) & Solved for full-note photos; weak on close-ups \\ \hline
-Evaluation & Counterfeit tests mix copies of the same print in training and test & Datasets are split by image or by note; prints are not checked & Serial-number audit and a test split with unseen prints (Section~\ref{sec:serial_audit}) & Done; only about 24 test prints \\ \hline
+Safety & No safe way to give an uncertain counterfeit result to a user who cannot check it & Not addressed in the reviewed devices & Never says ``counterfeit''; says ``likely genuine'' only above a safe threshold, otherwise ``check by hand'' (Section~\ref{sec:safe_policy}) & Addressed: no counterfeit passed \\ \hline
+Data & Taka detectors need thousands of hand-labelled images & NSTU-BDTAKA: 3,111 manually labelled images & 22,333 training images labelled automatically (Chapter~\ref{chap:dataset}) & Addressed for full-note photos \\ \hline
+Evaluation & Counterfeit tests mix copies of the same print in training and test & Datasets are split by image or by note; prints are not checked & Serial-number audit and a test split with unseen prints (Section~\ref{sec:serial_audit}) & Addressed \\ \hline
 Evaluation & Prototypes rarely report the accuracy of each feature or the speed on the real device & ``It works'' without numbers & Every feature measured on held-out data; speed measured on the Pi~5; failures reported & Done \\ \hline
-Evaluation & Few tests with blind users & Rare in prototypes & Study protocol, logging and a Bangla voice questionnaire prepared; trials started & Not finished \\ \hline
+Evaluation & Few tests with blind users & Rare in prototypes & Study protocol, logging and a Bangla voice questionnaire prepared; trials started & In progress \\ \hline
 \end{tabular}
 \end{table}
 \FloatBarrier

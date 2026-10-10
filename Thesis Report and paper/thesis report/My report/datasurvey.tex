@@ -61,7 +61,28 @@ Each source note is pasted onto a randomly chosen and randomly cropped COCO back
 x_c &= \frac{x + w/2}{S}, \qquad y_c = \frac{y + h/2}{S}, \\
 b_w &= \frac{w}{S}, \qquad\qquad\;\; b_h = \frac{h}{S},
 \end{align}
-where $(x_c, y_c)$ is the normalised box centre and $(b_w, b_h)$ the normalised box size. This closed-form labelling produced a fully labelled dataset with zero manual annotation.
+where $(x_c, y_c)$ is the normalised box centre and $(b_w, b_h)$ the normalised box size. This closed-form labelling produced a fully labelled dataset with zero manual annotation. Algorithm~\ref{alg:composite} gives the whole procedure.
+
+\begin{algorithm}[!htbp]
+\caption{Copy-paste compositing with automatic labels}
+\label{alg:composite}
+\begin{algorithmic}[1]
+\Require background-free note images with their value; COCO background photographs; canvas size $S = 640$
+\Ensure training pictures with YOLO labels
+\ForAll{source notes $N$ with value $d$}
+  \For{$j = 1$ \textbf{to} $4$} \Comment{four composites per note}
+    \State $B \gets$ random crop of a random COCO photograph, resized to $S \times S$
+    \State $N' \gets$ $N$ tilted (perspective, 70\% of the time), rotated ($\pm30^\circ$), scaled to fill 25--90\% of $B$
+    \State $N' \gets$ colour, brightness and contrast changed (Table~\ref{tab:aug})
+    \State choose a random position $(x, y)$ so that $N'$ (size $w \times h$) lies inside $B$; paste $N'$ onto $B$
+    \State apply motion blur (20\%), noise (50\%) and JPEG compression to the picture
+    \State write the label $\big(d,\; \tfrac{x + w/2}{S},\; \tfrac{y + h/2}{S},\; \tfrac{w}{S},\; \tfrac{h}{S}\big)$ \Comment{exact box, no hand labelling}
+  \EndFor
+\EndFor
+\State add background-only pictures (10\% of all) with empty labels
+\State split by source note: 80\% training, 10\% validation, 10\% test
+\end{algorithmic}
+\end{algorithm}
 
 \begin{figure}[H]
     \centering

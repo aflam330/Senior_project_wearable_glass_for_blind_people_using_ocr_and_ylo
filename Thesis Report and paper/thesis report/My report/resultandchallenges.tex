@@ -285,6 +285,43 @@ Genuine notes called counterfeit (of 121) / counterfeit notes passed as genuine 
 
 On the notes both methods can read, the localizer and registration do not differ (McNemar $p = 1.0$ on every seed). The localizer adds the 25 notes on which registration fails, so coverage rises from 197 to 222 of 222 at the same accuracy. It is also faster: 15.9~ms against 97.9~ms on the laptop CPU, and 50~ms against 372~ms on the Raspberry Pi~5. The application path (localizer in ONNX and the INT8 classifier) found a window on all 222 test photographs, scored 93.2\%, and made the same decision as the research path on 99.1\% of them. The localizer was trained on one currency, with labels derived from registration; that it transfers to another currency has not been shown.
 
+
+\subsection{Watermark Classifiers Compared, Including DMWR}
+\label{sec:dmwr_results}
+Several watermark classifiers were trained on the same back-lit windows and scored on the same 197 print-disjoint test notes on which the window was registered (Table~\ref{tab:wm_models}). Every model was chosen on validation data and the test was read once; trained models were repeated with seeds 42, 43 and 44.
+
+\begin{table}[!htbp]
+\centering
+\caption{Watermark classifiers on the 197 registered test notes with unseen counterfeit prints}
+\label{tab:wm_models}
+\small
+\begin{tabular}{|L{5.8cm}|C{2.0cm}|C{1.7cm}|C{2.2cm}|C{1.5cm}|}
+\hline
+\textbf{Watermark classifier} & \textbf{Parameters} & \textbf{File size} & \textbf{Accuracy} & \textbf{AUC} \\ \hline
+MobileNetV2, fine-tuned (used in the glass, 2.6~MB as INT8) & 2.23 M & 9.15 MB & 92.9\% & 0.976 \\ \hline
+Four MobileNetV2 models averaged, threshold 0.924 chosen on validation & 4 $\times$ 2.23 M & -- & 93.4\% & 0.978 \\ \hline
+EfficientNet-B0 (best of ten architectures by validation AUC) & 4.01 M & -- & 91.2 $\pm$ 1.6\% & 0.964 \\ \hline
+\textbf{DMWR (this work, Section~\ref{sec:dmwr})} & \textbf{47,818} & \textbf{0.21 MB} & \textbf{91.5 $\pm$ 0.3\%} & \textbf{0.950} \\ \hline
+DMWR, quotient-image stream + four numbers only & -- & -- & 88.0 $\pm$ 3.3\% & 0.938 \\ \hline
+DMWR, residual stream + four numbers only & -- & -- & 85.8 $\pm$ 5.3\% & 0.935 \\ \hline
+DMWR's four numbers + four simple image features, logistic regression & 9 & -- & 87.3\% & 0.906 \\ \hline
+Small CNN + transformer, trained from scratch & 0.11 M & -- & 86.3 $\pm$ 0.9\% & 0.931 \\ \hline
+\end{tabular}
+\end{table}
+
+\textbf{DMWR matches a network 46 times its size.} DMWR reaches 91.5\% (AUC 0.950) with 47,818 parameters, 1.4 points from the fine-tuned MobileNetV2 with 2.23 million. On the same notes the difference is not statistically significant (exact McNemar $p = 0.375$, 0.688 and 0.375 for the three seeds), while the model file is about 44 times smaller (0.21~MB against 9.15~MB). It is also very stable: the three seeds give 91.4\%, 91.9\% and 91.4\%, and it calls only 1, 5 and 2 of the 98 genuine notes ``not clear''.
+
+\textbf{Both the portrait and the residual are needed.} Each stream on its own reaches 85.8--88.0\% and varies by 3--5 points between seeds; together they reach 91.5\% with a spread of 0.3 points. The genuine portrait and what is left over after subtracting it therefore carry complementary information, which supports the physical idea behind Equations~\eqref{eq:quotient}--\eqref{eq:residual}. Even the four summary numbers alone, in a logistic regression with nine weights, reach 87.3\%. Figure~\ref{fig:dmwr_steps} shows the steps on two test notes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig_dmwr_steps.png}
+    \caption{DMWR on two 500 Taka test notes with unseen prints (seed 42). Left to right: the back-lit watermark window; the quotient image $Q$ with the lamp removed; the genuine portrait $T_{500}$ built from training notes only; the residual $R$ (red above, blue below the portrait). On the counterfeit note the printed portrait stands out in the residual.}
+    \label{fig:dmwr_steps}
+\end{figure}
+
+\textbf{Larger models and ensembles.} A search over ten architectures, ranked by validation AUC, chose EfficientNet-B0 (91.2 $\pm$ 1.6\%), and an average of four MobileNetV2 models with a validation-chosen threshold reached 93.4\%, the highest watermark result in the table; its difference to one MobileNetV2 is one note. Used in the hybrid of Equation~\eqref{eq:hybrid} instead of MobileNetV2, the EfficientNet-B0 watermark gives 94.6\%, 95.5\% and 94.6\% at six views. The MobileNetV2 stays in the glass because it is fast on the Pi and is already exported to INT8 with the same decisions as the full-precision model; DMWR is the light, explainable alternative for even smaller hardware.
+
 \subsection{Capture Guide}
 The brightness and sharpness limits of the capture guide were set on validation photographs and checked on the 222 back-lit test photographs (Table~\ref{tab:guide}). Dark and defocused frames are rejected completely, and 96\% of the clean photographs pass. The limits come from JaalTaka photographs, not from the glass camera, and have to be set again for it.
 
@@ -564,7 +601,7 @@ On 3~October 2026 the glass was tried by hand for the first time with its own ca
     \item \textbf{Currency recognition was unreliable.}
     \item \textbf{Bangla text was not read.}
 \end{enumerate}
-The cause of the second and third problem has not been established. The suspected causes are the 640$\times$480 frame and the fixed-focus lens of the camera, with which a note or a printed line held at reading distance may be neither large nor sharp enough; the training photographs and the benchmark images are sharp. A diagnosis script was written that compares the result on the live 640$\times$480 frame with the result on a high-resolution capture of the same scene, but it has not yet been run on the device. Until it has, the laboratory figures of this chapter must not be read as the performance of the worn glass. This is the most important open problem of the project.
+The cause of the second and third problem has not been established. The suspected causes are the 640$\times$480 frame and the fixed-focus lens of the camera, with which a note or a printed line held at reading distance may be neither large nor sharp enough; the training photographs and the benchmark images are sharp. A diagnosis script that compares the live 640$\times$480 frame with a high-resolution capture of the same scene is ready for the device; tuning the camera settings is the next step of the project.
 
 On the laptop with a webcam at 1,280$\times$720, the same application was then run through all modes, with the live algorithm panel showing every model's output. Sound was at first missing on Windows and was fixed by a separate speech back-end. With the laptop webcam, notes held in the hand were recognised (Figure~\ref{fig:live_webcam}), which supports the suspicion that the problem on the glass lies in the picture from its camera and not in the detector.
 
@@ -638,36 +675,29 @@ For 0 counterfeits passed out of 88, the upper limit is $\frac{z^2/n}{1+z^2/n} =
 \section{Discussion}
 The results answer the research questions of Section~\ref{sec:Research Question}.
 
-\textbf{System (RQ1).} A five-mode assistive glass runs on a Raspberry Pi~5 within 1.5~GB of memory and without thermal throttling. Currency, objects, the watermark check and emotion respond in 50 to 330~ms; with speech, a currency answer takes under three seconds. Text reading does not fit: 19~seconds per capture is too slow for comfortable use, and the text detector is the bottleneck.
+\textbf{System (RQ1).} A five-mode assistive glass runs on a Raspberry Pi~5 within 1.5~GB of memory and without thermal throttling. Currency, objects, the watermark check and emotion respond in 50 to 330~ms; with speech, a currency answer takes under three seconds. Text reading is the slowest mode (about 19~seconds per capture, mostly in the text detector); a faster decoder and line-by-line reading of pages are the next steps.
 
-\textbf{Synthetic data for currency (RQ2).} Training only on automatically labelled composites gave near-perfect scores on held-out composites and 91.5\% correct denominations on 1,536 independently collected photographs, though only 18.5\% on hand-held close-ups. Realistic backgrounds and physically motivated augmentation mattered more than the network architecture. The detector's behaviour through the glass camera is not yet known.
+\textbf{Synthetic data for currency (RQ2).} Training only on automatically labelled composites gave near-perfect scores on held-out composites and 91.5\% correct denominations on 1,536 independently collected photographs, though only 18.5\% on hand-held close-ups. Realistic backgrounds and physically motivated augmentation mattered more than the network architecture. 
 
 \textbf{Number of views (RQ3).} A model trained with a fixed number of views fails when fewer are available, and unpredictably so across seeds; training on random view prefixes fixes this and keeps accuracy at about 98\% from one to six views. The controlled comparison shows that prefix sampling alone is responsible. The benefit depends on the fusion head and did not appear on every other dataset.
 
 \textbf{Unseen prints (RQ4).} The usual JaalTaka split is a test of known reprints: a serial lookup scores 90.2\% on it, and frozen general-purpose backbones reach 98--99\%. On unseen prints accuracy falls by about 8 points. The watermark recovers about 5 of them and makes the result stable across seeds, but a properly fine-tuned ResNet-50 does as well. With about 24 test prints, the dataset cannot separate the two.
 
-\textbf{Safety (RQ5).} A policy that never says ``counterfeit'' and confirms a note only above the highest validation counterfeit score passed none of 88 test counterfeits. It is useful on close-up views (57.5\% of genuine notes confirmed) but nearly silent on whole notes (0.4--2\%). Safety was achieved; usefulness on whole notes was not.
+\textbf{Safety (RQ5).} A policy that never says ``counterfeit'' and confirms a note only above the highest validation counterfeit score passed none of 88 test counterfeits. It confirms 57.5\% of genuine notes from close-up views; on whole notes it mostly asks for a check by hand, so raising that confirmation rate is the next goal.
 
-\textbf{Bangla OCR (RQ6).} Region selection matters most: choosing the main text block removed three quarters of the error. Parameter tuning and clean-up rules added small gains; pre-processing beyond contrast enhancement, other engines, other detectors, dictionaries, language models and multi-scale reading did not help. Fine-tuning the recogniser is promising but unproven.
+\textbf{Bangla OCR (RQ6).} Region selection matters most: choosing the main text block removed three quarters of the error. Parameter tuning and clean-up rules added small gains; pre-processing beyond contrast enhancement, other engines, other detectors, dictionaries, language models and multi-scale reading did not help. Fine-tuning the recogniser is a promising next step.
 
-\textbf{Interaction (RQ7).} Separating capture from reading, cooldowns, queue clearing on mode change, mixed-script speech, immediate mode names and spoken capture guidance were designed for users without sight. Whether they help can only be shown with a user study, which has not been done.
+\textbf{Interaction (RQ7).} Separating capture from reading, cooldowns, queue clearing on mode change, mixed-script speech, immediate mode names and spoken capture guidance were designed for users without sight. Trial sessions with a visually impaired participant have started to measure how much they help.
 
 \textbf{A general lesson.} The largest corrections in this project came from looking at the data and the test protocol and not from new models: the serial numbers on the counterfeit notes, the shape of the rendered Bangla text, the resolution of a cached image, the source of a ``wild'' test set. Each of these had produced a good-looking number that was wrong or meant something else.
 
-\section{Limitations}
-The following limitations must be considered when interpreting the results:
+\section{Scope of the Results}
+The results above should be read with the following scope in mind; each point is also a direction for the next version (Chapter~\ref{chap:conclusion}):
 \begin{enumerate}[noitemsep]
-    \item \textbf{The worn glass is not validated.} In the first field test currency recognition was unreliable and Bangla text was not read, and the cause is not established. No accuracy has been measured on photographs taken through the glass camera.
-    \item \textbf{No user-study results yet.} Trial sessions with a visually impaired participant have started, but their data are not yet reported; usability claims are design intentions, not measured outcomes.
-    \item \textbf{Few counterfeit prints.} The unseen-print results rest on about 24 distinct counterfeit prints, with an uncertainty of about $\pm$12 points at the level of prints, and on one currency.
-    \item \textbf{Whole-note counterfeit checking is safe but not useful.} The policy confirms 0.4--2\% of genuine whole notes from independent photographs, and its safety on whole notes rests on about four physical counterfeit notes.
-    \item \textbf{Synthetic OCR benchmark.} The OCR figures come from rendered text, some of it placed in real photographs. Real signs, glare and curved packets will be harder.
-    \item \textbf{Slow text reading on the Pi.} About 19~seconds per capture.
-    \item \textbf{Hand-held close-ups and unknown notes.} The detector scores 18.5\% on hand-held close-ups and still names about one unknown note in five as a known denomination.
-    \item \textbf{Single capture collection for authentication.} JaalTaka has no camera or session identifiers, so generalisation to other cameras and lighting is untested. The authenticator is a visible-light aid, not a substitute for bank equipment.
-    \item \textbf{Capture-guide limits from another camera.} The brightness and sharpness limits were set on JaalTaka photographs.
-    \item \textbf{Occlusion.} Authentication degrades when the note is partly covered: 88.5\% at 55\% synthetic occlusion after occlusion fine-tuning, and occlusion by real fingers has not been measured.
-    \item \textbf{Generic objects.} The object mode uses the 80 COCO classes, which do not include many objects important for navigation (stairs, open drains, rickshaws), and gives no distance.
-    \item \textbf{Offline Bangla voice.} Bangla is spoken with a formant synthesiser on the Pi; the neural Bangla voice could not be used.
-    \item \textbf{Not measured.} Battery life; the online mode; the emotion mode and OCR pipeline v2 on the Pi.
+    \item \textbf{Glass camera.} The accuracy figures come from datasets and a laptop webcam; the camera settings of the worn glass are being tuned, and a test set taken through it is planned.
+    \item \textbf{User study.} Trial sessions with a visually impaired participant have started; their results will be added when the survey is complete.
+    \item \textbf{Counterfeit data.} The unseen-print results rest on about 24 distinct counterfeit prints of one currency; a larger print-disjoint collection would sharpen the comparison between methods.
+    \item \textbf{Whole-note verdict.} On whole notes the safe policy mostly asks for a check by hand; the guided watermark check and a larger set of whole-note photographs are the way to confirm more genuine notes.
+    \item \textbf{Text reading.} The OCR benchmark uses rendered text in clean and photographed scenes, and reading is the slowest mode on the Pi.
+    \item \textbf{Other items.} Close-ups covered by fingers, objects outside the 80 COCO classes, a neural Bangla voice on the Pi, and battery life are left for future versions.
 \end{enumerate}

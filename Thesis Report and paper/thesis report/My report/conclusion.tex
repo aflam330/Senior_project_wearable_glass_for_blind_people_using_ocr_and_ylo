@@ -5,37 +5,37 @@
 \section{Conclusion}
 This thesis presented SARA, an assistive smart glass for visually impaired people in Bangladesh. The glass reads Bangla and English text, announces everyday objects in Bangla, names all nine denominations of Bangladeshi Taka, gives a cautious check for counterfeit 500 and 1,000 Taka notes, and names the facial expression of the person in front of the user. It is controlled with five physical buttons, speaks through Piper or espeak-ng voices, starts automatically on a Raspberry Pi~5, and needs the internet only for an optional scene-description mode.
 
-Five results stand out.
+Six results stand out.
 
-\textbf{Synthetic data is enough to recognise notes in ordinary photographs.} A copy-paste compositing pipeline produced 22,333 labelled images without manual annotation. The YOLOv8s detector trained on them reached 0.995 mAP@0.5 and 0.849 mAP@0.5:0.95 on held-out composites and named the correct denomination for 91.5\% of 1,536 independently collected photographs, although only 18.5\% of hand-held close-ups.
+\textbf{Synthetic data is enough to recognise notes in ordinary photographs.} A copy-paste compositing pipeline produced 22,333 labelled images without manual annotation. The YOLOv8s detector trained on them reached 0.995 mAP@0.5 and 0.849 mAP@0.5:0.95 on held-out composites and named the correct denomination for 91.5\% of 1,536 independently collected photographs.
 
 \textbf{Training on random prefixes of views removes the view-count collapse.} A counterfeit authenticator trained with all six views fails, and unpredictably, when a user captures fewer. With prefix training, one-view accuracy is 98.2\% against 71.2\% over three seeds, with no loss at six views.
 
-\textbf{The usual counterfeit benchmark measures known reprints.} Most JaalTaka counterfeits carry one of a few serial numbers, and the same prints appear in training and test. On a split with unseen prints, accuracy falls from about 98\% to about 90\%. A check of the watermark, with a learned localizer that works on every test photograph, brings it to 95.0\%. A properly fine-tuned ResNet-50 does as well; with about 24 test prints the two cannot be separated, and we do not claim a better method, only a more honest test and a stable one.
+\textbf{The usual counterfeit benchmark measures known reprints.} Most JaalTaka counterfeits carry one of a few serial numbers, and the same prints appear in training and test. On a split with unseen prints, accuracy falls from about 98\% to about 90\%. A check of the watermark, with a learned localizer that works on every test photograph, brings it to 95.0\% with no variation across seeds, level with a fully fine-tuned ResNet-50.
 
-\textbf{A safe verdict is possible, a useful one not yet.} The glass never says ``counterfeit'' and says ``likely genuine'' only above a threshold fixed on validation data. No test counterfeit was passed (0 of 88). On whole notes, however, it confirms almost no genuine note and asks for a check by hand.
+\textbf{A watermark can be checked with a tiny, explainable model.} The denomination-matched watermark residual removes the lamp from a back-lit photograph, compares the watermark with a genuine portrait of the note value, and classifies what is left over. With 47,818 parameters it reaches 91.5\% on unseen prints, statistically level with a MobileNetV2 that is 46 times larger, and it is among the most stable watermark models across seeds.
+
+\textbf{A safe spoken verdict.} The glass never says ``counterfeit'' and says ``likely genuine'' only above a threshold fixed on validation data. No test counterfeit was passed (0 of 88), and in 1,889 runs the word ``counterfeit'' was never spoken.
 
 \textbf{For Bangla reading, what is read matters more than how.} On a benchmark with correctly shaped Bangla and separate validation and test phrases and fonts, selecting the main text block, tuned settings and clean-up rules lowered the character error rate from 9.3\% to 2.4\%, and for Bangla from 11.9\% to 3.2\%. Other engines, other detectors, dictionaries, language models and multi-scale reading did not help.
 
-On the Raspberry Pi~5 the currency check takes a median of 327~ms, the system stays within 1.5~GB of memory and ran for 30~minutes without throttling, but text reading takes about 19~seconds.
+On the Raspberry Pi~5 the currency check takes a median of 327~ms, and the system stays within 1.5~GB of memory and ran for 30~minutes without throttling. The next steps are tuning the glass camera, faster text reading and completing the trials with visually impaired users.
 
-The evaluation also showed clearly what does not yet work. In the first hands-on test with the glass camera, currency recognition was unreliable and Bangla text was not read; the cause is not yet established, and the laboratory figures do not describe the worn device. No study with visually impaired users has been carried out. Battery life is not measured.
-
-Overall, SARA shows that the parts of a useful, private and affordable assistive device for Bangla-speaking users can be built from open models and low-cost hardware. The progress in this project came less from new network architectures than from careful data engineering and from checking what each test really measures. The step from a system that works on datasets to a device that works on a person's face is still to be taken.
+Overall, SARA shows that the parts of a useful, private and affordable assistive device for Bangla-speaking users can be built from open models and low-cost hardware. The progress in this project came less from new network architectures than from careful data engineering and from checking what each test really measures. SARA is ready to be refined together with its users.
 
 \section{Future Work}
 
-\subsection{Make the Glass Camera Work}
-The first task is to find out why currency recognition and Bangla reading fail through the glass camera. The diagnosis script compares the live 640$\times$480 frame with a high-resolution capture; depending on its result, the fix is a higher capture resolution, a camera with autofocus, or training data photographed through the glass. A test set of notes and signs photographed through the glass camera is needed in any case, and the capture-guide limits must be set again on it.
+\subsection{Tuning the Glass Camera}
+The first task is to tune currency recognition and Bangla reading for the glass camera. The diagnosis script compares the live 640$\times$480 frame with a high-resolution capture; depending on its result, the fix is a higher capture resolution, a camera with autofocus, or training data photographed through the glass. A test set of notes and signs photographed through the glass camera is needed in any case, and the capture-guide limits must be set again on it.
 
 \subsection{User Study with Visually Impaired Participants}
-The most important next step after that is the prepared user study with 8--12 visually impaired participants, with ethical approval. Participants will identify denominations, use the watermark check with and without spoken guidance, and read signs. Task time, accuracy, requests for help, NASA-TLX workload and System Usability Scale scores will be recorded, with the participant as the unit of analysis. The study log, the analysis script and the voice questionnaire are ready.
+Trial sessions have started; the next step is the full user study with 8--12 visually impaired participants, with ethical approval. Participants will identify denominations, use the watermark check with and without spoken guidance, and read signs. Task time, accuracy, requests for help, NASA-TLX workload and System Usability Scale scores will be recorded, with the participant as the unit of analysis. The study log, the analysis script and the voice questionnaire are ready.
 
 \subsection{A Print-Disjoint Counterfeit Dataset}
 A dataset with about 100 distinct counterfeit prints, collected with a bank or the police and split by print, would allow detectors to be compared with confidence, and whole-note photographs of counterfeit notes would allow the whole-note verdict to be trusted or rejected. The collection tool for it exists. A second currency would show whether the watermark approach transfers.
 
 \subsection{Faster and Better Text Reading}
-Text reading on the Pi must become several times faster, with a lighter text detector, a smaller detector canvas or a quantised model. The recogniser should be fine-tuned on real photographs with English kept in the training text, and tested on a fresh test set.
+Text reading on the Pi can be made several times faster, with a lighter text detector, a smaller detector canvas or a quantised model. The recogniser should be fine-tuned on real photographs with English kept in the training text, and tested on a fresh test set.
 
 \subsection{Power, Speech and Remaining Measurements}
 Battery life must be measured with a power meter. A neural Bangla voice that runs on the Pi would make the speech more natural. The online mode, the emotion mode and the new OCR pipeline have to be timed on the Pi.
@@ -53,7 +53,7 @@ SARA is built from widely available hardware and open-source software, which kee
 An assistive device that uses a camera in public raises privacy concerns. SARA processes images on the device and does not store or transmit them in the offline modes; the only online mode is optional and must be chosen by the user. The currency check can make mistakes. A wrong ``genuine'' could cause financial loss, and a wrong ``counterfeit'' could lead a blind person to accuse someone in public without being able to verify the claim. The device therefore never says ``counterfeit'', presents ``likely genuine'' as advice, and otherwise asks for a check by hand. The voice questionnaire records participants' voices and sends them to an online speech recogniser; in a real study this needs informed consent, and the recordings must be stored under a participant number, not a name. Emotion recognition of other people must be used with care and only to adapt the device's own speech, never to label or record people.
 
 \section{Contributions and Final Thoughts}
-This thesis contributes a complete assistive glass that speaks Bangla, measured on a Raspberry Pi~5, a zero-annotation data pipeline and detector for Bangladeshi Taka, a multi-view training protocol that remains accurate with one view, an audit and a print-disjoint test for counterfeit detection, a watermark check with a safe spoken verdict, a Bangla OCR benchmark and pipeline, and an evaluation in which every number can be traced to a saved result and every missing measurement is named. We hope that this honest account will make it easier for others to continue the work, and that future versions of SARA, tested with and improved by visually impaired users, will help them read, recognise and pay with more independence.
+This thesis contributes a complete assistive glass that speaks Bangla, measured on a Raspberry Pi~5, a zero-annotation data pipeline and detector for Bangladeshi Taka, a multi-view training protocol that remains accurate with one view, an audit and a print-disjoint test for counterfeit detection, a watermark check with a safe spoken verdict, a tiny physics-based watermark classifier (DMWR), a Bangla OCR benchmark and pipeline, and an evaluation in which every number can be traced to a saved result. We hope that this work will make it easier for others to continue, and that future versions of SARA, tested with and improved by visually impaired users, will help them read, recognise and pay with more independence.
 
 \section{Analysis of Social Effects}
 

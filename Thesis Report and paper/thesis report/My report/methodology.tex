@@ -203,7 +203,32 @@ The text module uses EasyOCR \cite{easyocr}: a CRAFT text detector \cite{craft} 
     \item \textbf{Main text block.} Starting from the most confident tall box, boxes of similar height that touch it are added. This block is the sign or label the user faces; stray text in the background is dropped.
     \item \textbf{Line ordering and clean-up.} The boxes are grouped into lines and read from top to bottom and left to right. The text is normalised to Unicode NFC, invisible characters and stray symbols at word edges are removed, and digits are put in the script of the words around them.
 \end{enumerate}
-The main-text-block step reuses the boxes that EasyOCR already returns, so it costs no extra time. If EasyOCR cannot be loaded, the mode falls back to Tesseract~5 \cite{tesseract}, and for single handwritten letters to a small CNN trained on Ekush \cite{ekush}.
+The main-text-block step reuses the boxes that EasyOCR already returns, so it costs no extra time. If EasyOCR cannot be loaded, the mode falls back to Tesseract~5 \cite{tesseract}, and for single handwritten letters to a small CNN trained on Ekush \cite{ekush}. Algorithm~\ref{alg:ocr} gives the steps.
+
+\begin{algorithm}[!htbp]
+\caption{Text reading with the main text block (pipeline v2)}
+\label{alg:ocr}
+\begin{algorithmic}[1]
+\Require camera frame $F$; minimum confidence $c_{\min}=0.2$; height ratio $r=0.6$; gap factor $g=1.5$
+\Ensure text to speak
+\State $G \gets \textsc{CLAHE}(\textsc{Grey}(F))$ \Comment{contrast boost only}
+\State $B \gets \{\,b \in \textsc{EasyOCR}(G) : \mathrm{conf}(b) \ge c_{\min}\,\}$ \Comment{boxes with text and confidence}
+\If{$B = \emptyset$} \State \Return ``no text found'' \EndIf
+\State $s \gets \arg\max_{b \in B}\; h(b)\cdot \mathrm{conf}(b)$ \Comment{tall, confident seed box}
+\State $K \gets \{s\}$, \; $B \gets B \setminus \{s\}$
+\Repeat \Comment{grow the block}
+  \State $\bar h \gets \operatorname{median}_{k \in K} h(k)$
+  \ForAll{$b \in B$}
+    \If{$r \le h(b)/\bar h \le 1/r$ \textbf{and} $b$ lies within $g\,\bar h$ of some $k \in K$}
+      \State $K \gets K \cup \{b\}$, \; $B \gets B \setminus \{b\}$
+    \EndIf
+  \EndFor
+\Until{no box was added}
+\State group $K$ into lines by vertical centre (within half a text height); sort lines top to bottom and boxes left to right
+\State \Return $\textsc{CleanUp}(\text{joined line text})$ \Comment{Unicode NFC, stray symbols, digit script}
+\end{algorithmic}
+\end{algorithm}
+
 
 \subsection{Object Detection Module}
 The object module runs a COCO-pretrained YOLOv8 model (small variant, with the nano variant as fall-back; the nano variant was the one timed on the Raspberry Pi~5) on a 320$\times$240 copy of the frame every 1.5 seconds with a confidence threshold of 0.50. The three most confident unique classes are translated to Bangla with a lookup table of the 80 COCO classes and announced, subject to a per-class cooldown of 4 seconds.
@@ -261,7 +286,28 @@ The threshold $\tau = 0.99959$ is the highest $p$ that any counterfeit note of t
 \begin{equation}
 P(p_{\text{new}} > \tau) = \frac{1}{n+1},
 \end{equation}
-which is $1/89 = 1.1\%$ for $n = 88$. The guarantee holds only for notes that resemble the validation notes; a change of camera or of counterfeit print weakens it by at most the total-variation distance between the two distributions. The policy applies to 500 and 1,000 Taka notes, the only denominations in JaalTaka; for other notes the glass says that the check was not done. An image-quality gate rejects dark, blurred or covered frames before any verdict is given.
+which is $1/89 = 1.1\%$ for $n = 88$. The guarantee holds only for notes that resemble the validation notes; a change of camera or of counterfeit print weakens it by at most the total-variation distance between the two distributions. The policy applies to 500 and 1,000 Taka notes, the only denominations in JaalTaka; for other notes the glass says that the check was not done. An image-quality gate rejects dark, blurred or covered frames before any verdict is given. Algorithm~\ref{alg:safe} gives the complete currency answer.
+
+\begin{algorithm}[!htbp]
+\caption{Currency answer with the safe verdict policy}
+\label{alg:safe}
+\begin{algorithmic}[1]
+\Require frame $F$; announce threshold $0.60$; safe threshold $\tau = 0.99959$
+\Ensure spoken sentence
+\State $(d, c, \text{box}) \gets$ most confident note found by the YOLOv8s Taka detector in $F$
+\If{no note} \State \Return ``No note detected. Hold it in front of the camera.'' \EndIf
+\If{$c < 0.60$} \State \Return ``Could not confirm the note. Hold it closer.'' \EndIf
+\State $S \gets$ name of note $d$ in Bangla
+\If{$d \notin \{500, 1000\}$} \State \Return $S$ + ``the counterfeit check was not done'' \EndIf
+\State $N \gets$ note crop resized to width 640, turned to landscape
+\State $V_{1..4} \gets$ windows of $N$ at the positions of JaalTaka views 1--4 (measured on training notes)
+\State $p \gets \textsc{Authenticator}(V_{1..4})$ \Comment{probability that the note is genuine}
+\If{$p > \tau$} \State \Return $S$ + ``likely genuine''
+\Else \State \Return $S$ + ``check by hand whether it is genuine'' \Comment{the word ``counterfeit'' is never spoken}
+\EndIf
+\end{algorithmic}
+\end{algorithm}
+
 
 \subsection{Watermark Check with Guided Capture}
 \label{sec:watermark_method}
@@ -271,7 +317,13 @@ A genuine note has a watermark that becomes visible when the note is held agains
 
 \textbf{Watermark window.} The first version registered the photograph to a note template with SIFT and RANSAC and cut a fixed box. The current version is a MobileNetV3-Small \cite{mobilenetv3} that regresses the four corners of the window directly from a 320$\times$320 copy of the photograph. It needs no template and works on photographs where registration fails. Its training labels are the registration boxes mapped back into each photograph, so it learned where that box is; it did not discover the window by itself. A quadrilateral that is not convex or has an implausible area is rejected and the user is asked to hold the note straight. Registration remains as a fall-back.
 
-\textbf{Watermark classifier.} The window is classified as ``watermark present'' or not by a MobileNetV2 \cite{mobilenetv2}, quantised to 8-bit integers (2.6~MB). In the research experiments its score is combined with the authenticator's score by a logistic regression fitted on the validation split (the \textit{hybrid}).
+\textbf{Watermark classifier.} The window is classified as ``watermark present'' or not by a MobileNetV2 \cite{mobilenetv2}, quantised to 8-bit integers (2.6~MB). In the research experiments its score is combined with the authenticator's score by a logistic regression fitted on the validation split (the \textit{hybrid}):
+\begin{equation}
+p_{\text{hyb}} = \sigma\!\big(\beta_0 + \beta_1\, \ell_{\text{net}} + \beta_2\, \ell_{\text{wm}} + \beta_3\, m\big),
+\qquad \ell = \log\frac{p}{1-p},
+\label{eq:hybrid}
+\end{equation}
+where $\ell_{\text{net}}$ and $\ell_{\text{wm}}$ are the log-odds of the multi-view network and of the watermark classifier, $m = 1$ when no watermark window could be found (then $p_{\text{wm}} = 0.5$), $\sigma$ is the logistic function, and the weights $\beta$ are fitted on validation notes only. A note is called genuine when $p_{\text{hyb}} \ge 0.5$.
 
 \begin{figure}[H]
 \centering
@@ -292,6 +344,105 @@ A genuine note has a watermark that becomes visible when the note is held agains
 \caption{Watermark check with guided capture}
 \label{fig:wm_flow}
 \end{figure}
+
+Algorithm~\ref{alg:guide} gives the guided capture step by step.
+
+\begin{algorithm}[!htbp]
+\caption{Guided back-lit capture and watermark check}
+\label{alg:guide}
+\begin{algorithmic}[1]
+\Require note value $d \in \{500, 1000\}$; brightness limit $\mu_{\min}=73.87$; sharpness limit $\lambda_{\min}=106.75$; time limit $T=10$\,s; prompt gap $2.5$\,s
+\Ensure spoken watermark answer
+\State say ``Hold the note up to the light''
+\While{elapsed time $< T$}
+  \State $F \gets$ latest frame; \; $C \gets$ note crop from the Taka detector
+  \If{$\operatorname{mean}(C) < \mu_{\min}$} \State $e \gets$ ``Hold the note closer to the light''
+  \ElsIf{$\operatorname{Var}(\nabla^2 C) < \lambda_{\min}$} \State $e \gets$ ``Keep the note still''
+  \Else
+    \State $Q \gets \textsc{Localizer}(C)$ \Comment{four corners of the watermark window}
+    \If{$Q$ is convex and of plausible area}
+      \State $w \gets \textsc{WatermarkClassifier}(\textsc{Warp}(C, Q))$
+      \If{$w > 0.5$} \State \Return ``The watermark is clear'' \Else \State \Return ``The watermark is not clear. Check by hand whether it is genuine.'' \EndIf
+    \EndIf
+    \State $e \gets$ ``Hold the note straight in front of the light''
+  \EndIf
+  \State say $e$ if 2.5\,s have passed since the last prompt
+\EndWhile
+\State \Return ``The picture was not clear. Check by hand whether it is genuine.''
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsection{Denomination-Matched Watermark Residual (DMWR)}
+\label{sec:dmwr}
+The MobileNetV2 above learns the watermark from data, but it does not say \emph{what} it compares. We therefore designed a second watermark classifier from the physics of a back-lit banknote. This is one of the new methods of this thesis.
+
+\textbf{Image model.} When a note is held against a lamp, the camera records the light that passes through the paper. With $L(x,y)$ the brightness of the lamp behind the note and $t(x,y)$ the transmittance of the paper, the recorded grey image is approximately
+\begin{equation}
+I(x,y) \approx L(x,y)\, t(x,y).
+\label{eq:backlit}
+\end{equation}
+The watermark is made by changing the thickness of the paper, so it lives in $t$; the lamp $L$ changes slowly across the note and differs from one photograph to the next.
+
+\textbf{Step 1: remove the lamp (quotient image).} The crop of the watermark window is resized to $128\times128$ pixels and divided by a strongly blurred copy of itself. Because $L$ is smooth, the blur keeps $L$ and the division cancels it:
+\begin{equation}
+\tilde Q = \frac{I}{G_{\sigma} * I} \approx \frac{t}{G_{\sigma} * t}, \qquad
+Q = \frac{\tilde Q - \operatorname{mean}(\tilde Q)}{\operatorname{std}(\tilde Q)},
+\label{eq:quotient}
+\end{equation}
+where $G_\sigma *$ is a Gaussian blur with $\sigma = 16$ pixels. $Q$ is a picture of the paper thickness alone, the same under a bright or a dim lamp.
+
+\textbf{Step 2: the genuine watermark portrait of each note value.} For each denomination $d$, the portrait $T_d$ is the pixel-wise median of the quotient images of the \emph{genuine training} notes of that value:
+\begin{equation}
+T_d(x,y) = \operatorname*{median}_{n \in \mathcal{G}_d} \; Q_n(x,y),
+\label{eq:portrait}
+\end{equation}
+where $\mathcal{G}_d$ is the set of genuine training notes of value $d$ (235 notes of 500 Taka and 260 of 1,000 Taka). If a value had fewer than 8 such notes, the median over all 495 genuine training notes would be used. Validation and test notes never enter a portrait, and no counterfeit note is needed to build it.
+
+\textbf{Step 3: what is left over (residual).} A genuine watermark should look like the portrait. A counterfeit has to imitate a change of paper thickness by other means, so it is expected to leave a pattern that the portrait does not explain:
+\begin{equation}
+R = Q - T_d .
+\label{eq:residual}
+\end{equation}
+
+\textbf{Step 4: four summary numbers.} The agreement with the portrait and the size and texture of the residual are summarised by
+\begin{equation}
+\mathbf{s} = \Big[\, \rho(Q, T_d), \;\; \operatorname{std}(R), \;\; \operatorname{Var}\!\big(\nabla^2 R\big), \;\; \operatorname{mean}\big|Q - G_{2} * Q\big| \,\Big],
+\label{eq:scalars}
+\end{equation}
+\begin{equation}
+\rho(A,B) = \frac{\sum (A-\bar A)(B-\bar B)}{\sqrt{\sum (A-\bar A)^2 \sum (B-\bar B)^2}},
+\label{eq:ncc}
+\end{equation}
+that is, the normalised correlation with the portrait, the strength of the residual, the sharpness of the residual (variance of its Laplacian), and the energy of fine detail. Each number is standardised with the mean and standard deviation of the training notes, giving $\hat{\mathbf{s}}$.
+
+\textbf{Step 5: decision.} Two small convolutional streams $\phi_P$ and $\phi_R$ (three stride-2 convolutions with 16, 32 and 64 channels each) read the quotient image and the standardised residual $\bar R$. Their pooled features and the four numbers are joined by one linear layer:
+\begin{equation}
+p_{\text{wm}} = \operatorname{softmax}\!\Big( W \big[\, \phi_P(Q) \,;\, \phi_R(\bar R) \,;\, \hat{\mathbf{s}} \,\big] + \mathbf{b} \Big)_{\text{genuine}},
+\qquad \text{``watermark clear'' if } p_{\text{wm}} \ge 0.5 .
+\label{eq:dmwr}
+\end{equation}
+The whole classifier has 47,818 parameters (0.21~MB), against 2.23 million (9.15~MB) for the MobileNetV2. It is trained for 12 epochs with AdamW (learning rate $10^{-3}$), with small rotations ($\pm5^\circ$) and shifts ($\pm3$ pixels) applied before the residual is formed; the epoch is chosen by validation AUC and the threshold stays at 0.5. Algorithm~\ref{alg:dmwr} summarises the method, and Section~\ref{sec:dmwr_results} gives its results.
+
+\begin{algorithm}[!htbp]
+\caption{Denomination-matched watermark residual (DMWR)}
+\label{alg:dmwr}
+\begin{algorithmic}[1]
+\Statex \textit{Training (once)}
+\Require watermark crops of training notes with value $d$ and label genuine/counterfeit
+\ForAll{training crops $I_n$} \State $Q_n \gets \textsc{Quotient}(I_n)$ \Comment{Eq.~\eqref{eq:quotient}} \EndFor
+\ForAll{note values $d$} \State $T_d \gets$ pixel-wise median of $Q_n$ over genuine training notes of value $d$ \Comment{Eq.~\eqref{eq:portrait}} \EndFor
+\State fit the mean and standard deviation of $\mathbf{s}$ on the training notes
+\State train $\phi_P, \phi_R, W, \mathbf{b}$ with cross-entropy; keep the epoch with the best validation AUC
+\Statex \textit{Checking one note}
+\Require watermark crop $I$, note value $d$
+\State $Q \gets \textsc{Quotient}(I)$; \; $R \gets Q - T_d$ \Comment{Eq.~\eqref{eq:residual}}
+\State $\hat{\mathbf{s}} \gets$ standardised $\big[\rho(Q,T_d), \operatorname{std}(R), \operatorname{Var}(\nabla^2 R), \operatorname{mean}|Q - G_2 * Q|\big]$
+\State $p_{\text{wm}} \gets$ Eq.~\eqref{eq:dmwr}
+\State \Return ``watermark clear'' if $p_{\text{wm}} \ge 0.5$, else ``check by hand''
+\end{algorithmic}
+\end{algorithm}
+
 
 \subsection{Emotion Mode}
 The emotion mode finds the nearest face with the YuNet detector \cite{yunet} (an OpenCV Haar cascade is the fall-back) and classifies it into seven expressions (happy, sad, angry, surprise, fear, disgust, neutral) with an EfficientNet-V2-S network \cite{efficientnetv2} at 224$\times$224 pixels, averaging the prediction with that of the mirrored face. A FER+ model \cite{ferplus} is kept as a fall-back. When ACTION is pressed, the glass speaks the expression in Bangla. In the desktop harness the detected emotion can also change the style of the speech: slower with a short reassuring phrase for sad, fearful or angry expressions. Until 3~October 2026 the recogniser existed only in the desktop harness; it was added to the glass application as a mode on that date.
@@ -373,7 +524,27 @@ A model trained with all six views on every sample sees only one ``number of vie
     \item Six epochs of mixed view dropout with a per-view gate, batch normalisation per view count, an auxiliary single-view loss and a light contrastive loss.
     \item Three epochs of fine-tuning at learning rate $3\times10^{-4}$, where half of the batches use all six views so that six-view accuracy is not lost.
 \end{enumerate}
-The checkpoint is selected by the mean validation accuracy over one to six views; the test split is never used for selection. A simpler variant, the same network with one shared batch normalisation and prefix sampling only, was added later as a controlled comparison and turned out to be the most accurate (Section~\ref{sec:auth_results}).
+The checkpoint is selected by the mean validation accuracy over one to six views; the test split is never used for selection. Algorithm~\ref{alg:prmvt} shows one training step.
+
+\begin{algorithm}[!htbp]
+\caption{Prefix-robust multi-view training (PRMVT)}
+\label{alg:prmvt}
+\begin{algorithmic}[1]
+\Require training notes, each with six ordered views $(v_1,\dots,v_6)$ and a label $y$; stage-1 epochs $6$, stage-2 epochs $3$
+\Ensure authenticator that works with any number of views
+\For{each epoch and each batch $\mathcal{B}$}
+  \If{stage 2 \textbf{and} the batch is one of the half kept at six views} \State $k \gets 6$
+  \Else \State $k \sim \mathrm{Uniform}\{1,\dots,6\}$ \Comment{random prefix length}
+  \EndIf
+  \State keep views $v_1,\dots,v_k$ of every note in $\mathcal{B}$ and mask the rest
+  \State $h_i \gets \textsc{Encoder}(v_i)$ for $i \le k$ \Comment{MobileNetV3-Small + TinyViT}
+  \State $p \gets \sigma\big(\textsc{Fusion}(h_1,\dots,h_k)\big)$ \Comment{batch normalisation for view count $k$}
+  \State $\mathcal{L} \gets \mathrm{BCE}(p, y)$ + auxiliary single-view loss + light contrastive loss (stage 1)
+  \State update the weights with $\nabla \mathcal{L}$
+\EndFor
+\State keep the checkpoint with the best mean validation accuracy over $k = 1,\dots,6$
+\end{algorithmic}
+\end{algorithm} A simpler variant, the same network with one shared batch normalisation and prefix sampling only, was added later as a controlled comparison and turned out to be the most accurate (Section~\ref{sec:auth_results}).
 
 \subsection{System Integration}
 The trained models were integrated as modes of the glass application. Integration was first done on a Windows laptop with a webcam through a preview window, where the keyboard keys M, A, R, +, $-$ and Q replace the buttons, and then deployed on the Raspberry Pi~5 with a deployment script and a systemd service.
