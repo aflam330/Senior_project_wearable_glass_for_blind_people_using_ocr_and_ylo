@@ -83,6 +83,8 @@ def main() -> None:
     import config
     import main as app_main
     app_main.utils.TTSEngine = FakeTTS
+    import windows_tts
+    windows_tts.WindowsTTS = FakeTTS   # on Windows main.py uses windows_tts instead of utils.TTSEngine
     app_main.utils.CameraManager = FakeCamera
     app = app_main.SmartGlass()
     app.start()

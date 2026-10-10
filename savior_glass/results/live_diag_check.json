@@ -1,11 +1,11 @@
 {
- "at": 1791044919.7952464,
+ "at": 1791660340.0777647,
  "frame": [
   1280,
   720
  ],
  "detector": {
-  "ms": 13.7,
+  "ms": 14.8,
   "boxes": [
    {
     "name": "500_taka",
@@ -21,13 +21,13 @@
   "announce_conf": 0.6
  },
  "safe": {
-  "ms": 29.1,
+  "ms": 28.0,
   "p_genuine": 0.03747853636741638,
   "tau": 0.9995918869972229,
   "verdict": "check by hand"
  },
  "guide": {
-  "ms": 1.5,
+  "ms": 1.4,
   "status": "ok",
   "mean": 200.70586206896553,
   "lap_var": 3963.512001320353,
@@ -35,7 +35,7 @@
   "min_lapvar": 106.75
  },
  "watermark": {
-  "ms": 27.1,
+  "ms": 21.7,
   "p_genuine": 0.6976051330566406,
   "path": "learned localizer",
   "quad": [
@@ -59,7 +59,7 @@
   "threshold": 0.5
  },
  "objects": {
-  "ms": 18.8,
+  "ms": 19.0,
   "boxes": [
    {
     "name": "person",
@@ -84,7 +84,7 @@
   ]
  },
  "emotion": {
-  "ms": 243.4,
+  "ms": 269.9,
   "face": [
    886,
    278,
@@ -100,5 +100,5 @@
   "pipeline": "v2",
   "last_text": null
  },
- "first_pass_seconds_including_model_loading": 4.2
+ "first_pass_seconds_including_model_loading": 4.7
 }
