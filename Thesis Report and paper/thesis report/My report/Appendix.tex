@@ -43,31 +43,31 @@
 \caption{Main configuration parameters of SARA (\texttt{config.py})}
 \label{tab:app_config}
 \small
-\begin{tabular}{|l|c|p{4.8cm}|}
+\begin{tabular}{|L{6.4cm}|C{1.9cm}|L{5.8cm}|}
 \hline
-\textbf{Parameter} & \textbf{Value} & \textbf{Meaning} \\ \hline
-OCR\_PIPELINE & v2 & Text pipeline of Section~\ref{sec:ocr_method} \\ \hline
-OCR\_V2\_MIN\_CONF & 0.2 & Minimum box confidence in pipeline v2 \\ \hline
-OCR\_CANVAS\_SIZE & 2560 & Detector canvas (640 is faster on the Pi) \\ \hline
-OCR\_DECODER & beamsearch & Recogniser decoding, beam width 5 \\ \hline
-CURRENCY\_ANNOUNCE\_CONF & 0.60 & Minimum detector confidence to name a note \\ \hline
-JAAL\_SAFE\_TAU & 0.99959 & ``Likely genuine'' above this probability \\ \hline
-WATERMARK\_CLEAR\_THRESHOLD & 0.5 & Watermark classifier threshold \\ \hline
-CAPTURE\_GUIDE\_MIN\_MEAN & 73.87 & Minimum brightness of a back-lit frame \\ \hline
-CAPTURE\_GUIDE\_MIN\_LAPVAR & 106.75 & Minimum sharpness (Laplacian variance) \\ \hline
-CAPTURE\_GUIDE\_TIMEOUT\_S & 10 s & Guided capture gives up after this time \\ \hline
-FIELD\_LOG\_SYS\_INTERVAL\_S & 10 s & Interval of system readings in the field log \\ \hline
-OBJECT\_CONFIDENCE & 0.50 & Minimum YOLO confidence for objects \\ \hline
-CURRENCY\_CONFIDENCE & 0.65 & Minimum MobileNetV3 softmax score \\ \hline
-OBJECT\_SCAN\_INTERVAL & 1.5 s & Time between automatic object scans \\ \hline
-OBJECT\_ANNOUNCE\_COOLDOWN & 4.0 s & Per-class repetition cooldown \\ \hline
-DEFAULT\_VOLUME & 80\% & Volume at start \\ \hline
-VOLUME\_STEP & 10\% & Change per button press \\ \hline
-TTS\_QUEUE\_MAXSIZE & 5 & Maximum queued messages \\ \hline
-TTS\_INTER\_UTTERANCE\_PAUSE & 0.15 s & Pause between segments \\ \hline
-ESPEAK\_SPEED / PITCH & 135 wpm / 45 & espeak-ng voice settings \\ \hline
-Button debounce & 250 ms & Ignore repeated edges \\ \hline
-Camera & 640$\times$480 & Capture resolution (CAMERA\_WIDTH, CAMERA\_HEIGHT) \\ \hline
+\textbf{Setting (name in the code)} & \textbf{Value} & \textbf{What it controls} \\ \hline
+OCR\_PIPELINE & v2 & Which text-reading pipeline is used (Section~\ref{sec:ocr_method}) \\ \hline
+OCR\_V2\_MIN\_CONF & 0.2 & Words the reader is less sure about than this are dropped \\ \hline
+OCR\_CANVAS\_SIZE & 2560 & Picture size used to find text; 640 is faster on the Pi but less accurate \\ \hline
+OCR\_DECODER & beamsearch & How the reader turns its output into letters (beam search keeps the 5 best guesses) \\ \hline
+CURRENCY\_ANNOUNCE\_CONF & 0.60 & A note is named only when the detector is at least this sure \\ \hline
+JAAL\_SAFE\_TAU & 0.99959 & The glass says ``likely genuine'' only above this score; otherwise ``check by hand'' \\ \hline
+WATERMARK\_CLEAR\_THRESHOLD & 0.5 & Score above which the watermark counts as present \\ \hline
+CAPTURE\_GUIDE\_MIN\_MEAN & 73.87 & A note photo held against light must be at least this bright (0--255) \\ \hline
+CAPTURE\_GUIDE\_MIN\_LAPVAR & 106.75 & The photo must be at least this sharp (Laplacian variance) \\ \hline
+CAPTURE\_GUIDE\_TIMEOUT\_S & 10 s & If no good photo arrives in this time, the glass asks the user to check by hand \\ \hline
+FIELD\_LOG\_SYS\_INTERVAL\_S & 10 s & How often temperature, memory and load are written to the field log \\ \hline
+OBJECT\_CONFIDENCE & 0.50 & An object is spoken only when the detector is at least this sure \\ \hline
+CURRENCY\_CONFIDENCE & 0.65 & Minimum score of the back-up Taka classifier (MobileNetV3) \\ \hline
+OBJECT\_SCAN\_INTERVAL & 1.5 s & How often object mode looks for objects by itself \\ \hline
+OBJECT\_ANNOUNCE\_COOLDOWN & 4.0 s & The same object is not repeated within this time \\ \hline
+DEFAULT\_VOLUME & 80\% & Loudness when the glass starts \\ \hline
+VOLUME\_STEP & 10\% & Loudness change per VOLUME button press \\ \hline
+TTS\_QUEUE\_MAXSIZE & 5 & At most this many sentences wait to be spoken \\ \hline
+TTS\_INTER\_UTTERANCE\_PAUSE & 0.15 s & Short pause between spoken sentences \\ \hline
+ESPEAK\_SPEED / PITCH & 135 wpm / 45 & Speed (words per minute) and pitch of the espeak-ng voice \\ \hline
+Button debounce & 250 ms & A second press within this time is ignored (stops accidental double presses) \\ \hline
+CAMERA\_WIDTH, CAMERA\_HEIGHT & 640$\times$480 & Picture size taken from the camera \\ \hline
 \end{tabular}
 \end{table}
 
@@ -75,18 +75,19 @@ Camera & 640$\times$480 & Capture resolution (CAMERA\_WIDTH, CAMERA\_HEIGHT) \\ 
 \centering
 \caption{Training hyper-parameters of the YOLOv8s Taka detector}
 \label{tab:app_yolo}
-\begin{tabular}{|l|p{8cm}|}
+\small
+\begin{tabular}{|L{4.6cm}|L{10.0cm}|}
 \hline
-\textbf{Item} & \textbf{Value} \\ \hline
-Model & YOLOv8s (11.1 M parameters, 28.5 GFLOPs), COCO-pretrained \\ \hline
-Epochs / patience & 80 / 15 \\ \hline
-Image size / batch & 640 / 16 \\ \hline
-Optimiser & SGD, lr0 = 0.01, lrf = 0.01, momentum 0.937, weight decay 0.0005 \\ \hline
-Warm-up & 3 epochs \\ \hline
-Loss weights & box (CIoU) 7.5, class (BCE) 0.5, DFL 1.5 \\ \hline
-Online augmentation & mosaic 1.0, mixup 0.15, HSV (0.02, 0.7, 0.4), degrees 20, shear 5, scale 0.5, translate 0.1 \\ \hline
-Flips & Disabled (left--right and up--down) \\ \hline
-Framework & Ultralytics 8.4.64, PyTorch 2.6.0 + CUDA 12.4 \\ \hline
+\textbf{Setting} & \textbf{Value} \\ \hline
+Model & YOLOv8s (11.1 million parameters, 28.5 GFLOPs), starting from weights already trained on COCO \\ \hline
+Training rounds (epochs) / stop early if no progress for & 80 / 15 epochs \\ \hline
+Picture size / pictures per step (batch) & 640 pixels / 16 \\ \hline
+Learning method (optimiser) & SGD; starting learning rate 0.01, final factor 0.01; momentum 0.937; weight decay 0.0005 \\ \hline
+Gentle start (warm-up) & 3 epochs \\ \hline
+Weights of the three training losses & Box position (CIoU) 7.5; note type (BCE) 0.5; box edges (DFL) 1.5 \\ \hline
+Extra random changes during training & Mosaic of four pictures 1.0; mixing two pictures 0.15; colour shift (hue 0.02, saturation 0.7, brightness 0.4); rotation up to 20$^\circ$; shear 5$^\circ$; resize $\pm$50\%; shift 10\% \\ \hline
+Mirror flips & Off (left--right and up--down), because a mirrored note is not a real note \\ \hline
+Software & Ultralytics 8.4.64, PyTorch 2.6.0 with CUDA 12.4 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -135,22 +136,22 @@ The glass speaks Bangla. Table~\ref{tab:app_messages} gives the main messages in
 \centering
 \caption{Main spoken messages of SARA (translated from Bangla)}
 \label{tab:app_messages}
-\begin{tabular}{|p{4.2cm}|p{9.6cm}|}
+\begin{tabular}{|L{5.0cm}|L{9.4cm}|}
 \hline
-\textbf{Situation} & \textbf{Message} \\ \hline
-Note recognised & ``Five hundred Taka note'' \\ \hline
-Safe check passed & ``Likely genuine'' \\ \hline
-Safe check not passed & ``Check by hand whether it is genuine'' \\ \hline
-Other denominations & ``The counterfeit check was not done'' \\ \hline
-Low detector confidence & ``Could not confirm the note. Hold it closer.'' \\ \hline
-No note found & ``No note detected. Hold it in front of the camera.'' \\ \hline
-Watermark check starts & ``Hold the note up to the light'' \\ \hline
-Frame too dark & ``Hold the note closer to the light'' \\ \hline
-Frame blurred & ``Keep the note still'' \\ \hline
-No watermark window & ``Hold the note straight in front of the light'' \\ \hline
-Guided capture timed out & ``The picture was not clear. Check by hand whether it is genuine.'' \\ \hline
-Emotion & ``The person in front looks happy'' \\ \hline
-No face & ``No face found. Point the camera at a person's face.'' \\ \hline
+\textbf{When} & \textbf{What the glass says} \\ \hline
+A note is recognised & ``Five hundred Taka note'' \\ \hline
+The counterfeit check is passed & ``Likely genuine'' \\ \hline
+The counterfeit check is not passed & ``Check by hand whether it is genuine'' \\ \hline
+A note other than 500 or 1,000 Taka (no check available) & ``The counterfeit check was not done'' \\ \hline
+The detector is not sure enough & ``Could not confirm the note. Hold it closer.'' \\ \hline
+No note is found & ``No note detected. Hold it in front of the camera.'' \\ \hline
+The watermark check starts & ``Hold the note up to the light'' \\ \hline
+The picture is too dark & ``Hold the note closer to the light'' \\ \hline
+The picture is blurred & ``Keep the note still'' \\ \hline
+The watermark area cannot be found & ``Hold the note straight in front of the light'' \\ \hline
+No good picture within 10 seconds & ``The picture was not clear. Check by hand whether it is genuine.'' \\ \hline
+Emotion mode finds a face & ``The person in front looks happy'' \\ \hline
+Emotion mode finds no face & ``No face found. Point the camera at a person's face.'' \\ \hline
 \end{tabular}
 \end{table}
 

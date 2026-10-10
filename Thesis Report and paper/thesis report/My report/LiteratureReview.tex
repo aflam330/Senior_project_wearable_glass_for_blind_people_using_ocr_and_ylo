@@ -106,18 +106,21 @@ Table~\ref{tab:assistive_compare} compares representative systems from the liter
 \caption{Overview of assistive vision systems for visually impaired users, with key technologies, strengths and limitations}
 \label{tab:assistive_compare}
 \small
-\begin{tabular}{|L{1.3cm}|L{2.3cm}|L{3.5cm}|L{3.2cm}|L{3.2cm}|}
+\begin{tabular}{|>{\centering\arraybackslash}m{2.1cm}|M{2.3cm}|M{3.1cm}|M{3.0cm}|M{3.2cm}|}
 \hline
-\textbf{Citation} & \textbf{System} & \textbf{Key Technologies} & \textbf{Strengths} & \textbf{Limitations} \\ \hline
-\cite{smartglass_mdpi2021} & Deep learning smart glass & Low-light enhancement CNN, transformer object recognition & Works at night, rich scene information & Heavy models, English labels, no currency \\ \hline
-\cite{googleglass2021} & Google Glass scene analysis & Azure Custom Vision (cloud), bone conduction & Commercial glass hardware, real-time & Needs internet, expensive glass \\ \hline
-\cite{airis2024} & AIris & Eyewear camera, Raspberry Pi, remote server & Face, text, scene description & Remote processing, English \\ \hline
-\cite{aiblind2025} & RPi 4 blind assistance & YOLOv8n, Tesseract, LiDAR, Haar faces & Distance measurement, several modules & English OCR only, no currency \\ \hline
-\cite{visionvoice2024} & Vision Voice & Raspberry Pi 3, PyTesseract, gTTS & Low cost, simple & Text only, online TTS \\ \hline
-\cite{blindassist2021} & BLIND ASSIST & Android, TensorFlow Lite currency, OCR & One app, currency feature & Phone and touch screen needed \\ \hline
-\cite{nstubdtaka2024} & NSTU-BDTAKA & YOLOv5, 3,111 labelled images & Bangladeshi Taka detection & Manual labels, no assistive device \\ \hline
-\textbf{This work} & \textbf{SARA} & \textbf{EasyOCR bn/en, YOLOv8, synthetic Taka data, multi-view authenticator, watermark check, Piper/espeak-ng} & \textbf{On-device, Bangla speech, 9 Taka classes, safe counterfeit check, buttons, measured on Pi~5} & \textbf{Slow OCR on the Pi; weak with the glass camera; no user study yet} \\ \hline
+\textbf{Picture} & \textbf{System} & \textbf{What it is built with} & \textbf{What it does well} & \textbf{What it cannot do (limitations)} \\ \hline
+-- & Deep-learning smart glass \cite{smartglass_mdpi2021} & A neural network that brightens dark pictures, and a transformer model that recognises objects & Recognises objects even at night; describes the scene in detail & Large models need strong hardware; English labels only; no currency detection \\ \hline
+\vspace{2pt}\includegraphics[width=2.1cm]{dev_googleglass.jpg}\vspace{1pt} & Google Glass scene analysis \cite{googleglass2021} & Google Glass camera; pictures are analysed by a Microsoft Azure cloud service; bone-conduction sound & Uses ready-made commercial glasses; answers in real time & Does not work without the internet; no Bangla; the glasses are expensive \\ \hline
+\vspace{2pt}\includegraphics[width=2.1cm]{dev_airis.jpg}\vspace{1pt} & AIris \cite{airis2024} & Camera on an eyeglass frame, a Raspberry Pi, and a remote server that runs the models & Reads text, recognises faces and describes the scene & The models run on a distant server, so it needs the internet; English only \\ \hline
+-- & Raspberry Pi~4 blind assistant \cite{aiblind2025} & YOLOv8n object detector, Tesseract text reader, LiDAR distance sensor, simple face detector & Tells how far away objects are; has several functions in one device & Reads English text only; no currency detection \\ \hline
+-- & Vision Voice \cite{visionvoice2024} & Raspberry Pi~3, Tesseract text reader, Google online speech (gTTS) & Cheap and simple to build & Only reads text; speech needs the internet \\ \hline
+-- & BLIND ASSIST \cite{blindassist2021} & Android phone app with a small on-phone currency model and a text reader & Text reading and currency recognition in one app & The user must hold and aim a phone and use a touch screen \\ \hline
+-- & NSTU-BDTAKA \cite{nstubdtaka2024} & YOLOv5 detector trained on 3,111 hand-labelled photos & Detects Bangladeshi Taka notes & Every photo had to be labelled by hand; only a computer experiment, not a device for blind users \\ \hline
+\IfFileExists{DIagram fig tab/savior_glass_prototype.jpg}{\vspace{2pt}\includegraphics[width=2.1cm]{savior_glass_prototype.jpg}\vspace{1pt}}{\textit{SARA}} & \textbf{SARA (this work)} & Camera on a spectacle frame, Raspberry Pi~5, five buttons; EasyOCR, YOLOv8, offline Bangla speech & Works offline (except one optional mode); speaks Bangla; names all 9 Taka notes; its counterfeit check never wrongly accuses & Slow text reading on the Pi; weaker through the glass camera; not yet tested with blind users \\ \hline
 \end{tabular}
+
+\vspace{3pt}
+\raggedright{\footnotesize ``--'': no picture of the device is available. Picture credits as in Table~\ref{tab:reviewed_systems}.}
 \end{table}
 \FloatBarrier
 
@@ -128,17 +131,21 @@ Table~\ref{tab:currency_compare} focuses on currency recognition. Direct numeric
 \caption{Comparison of currency recognition methods related to Bangladeshi Taka}
 \label{tab:currency_compare}
 \small
-\begin{tabular}{|L{3.3cm}|L{1.8cm}|L{2.1cm}|L{1.7cm}|L{1.7cm}|L{2.3cm}|}
+\begin{tabular}{|L{2.3cm}|L{3.2cm}|L{2.3cm}|L{1.7cm}|L{1.7cm}|L{2.1cm}|}
 \hline
-\textbf{Work} & \textbf{Task} & \textbf{Labels} & \textbf{mAP@0.5} & \textbf{mAP@ 0.5:0.95} & \textbf{P / R or Acc.} \\ \hline
-Axis-symmetrical masks \cite{axissym} & Classify & Image-level & -- & -- & 98.6\% acc. \\ \hline
-YOLOv5 Taka \cite{nstubdtaka2024} & Detect & 3,111 manual & -- & -- & 0.95 / 0.93 \\ \hline
-YOLOv8n-SE \cite{yolov8nse} & Detect (multi-currency) & Manual & 0.972 & 0.804 & 0.965 / 0.952 \\ \hline
-\textbf{This work (YOLOv8s)} & \textbf{Detect (9 BDT)} & \textbf{22,333 automatic} & \textbf{0.995*} & \textbf{0.849*} & \textbf{0.995 / 0.996*} \\ \hline
+\textbf{Work} & \textbf{What it does} & \textbf{How the training images were labelled} & \textbf{mAP@ 0.5\textsuperscript{a}} & \textbf{mAP@ 0.5:0.95\textsuperscript{b}} & \textbf{Precision / Recall, or Accuracy\textsuperscript{c}} \\ \hline
+Axis-symmetrical masks \cite{axissym} & Tells which Taka note is in the picture (one note per picture; does not find its position) & One label for the whole picture (no boxes) & -- & -- & Accuracy 98.6\% \\ \hline
+YOLOv5 Taka \cite{nstubdtaka2024} & Finds Taka notes in the picture and names each one & 3,111 images, boxes drawn by hand & -- & -- & 0.95 / 0.93 \\ \hline
+YOLOv8n-SE \cite{yolov8nse} & Finds and names notes of several countries' currencies & Boxes drawn by hand & 0.972 & 0.804 & 0.965 / 0.952 \\ \hline
+\textbf{This work (YOLOv8s)} & \textbf{Finds and names all 9 types of Bangladeshi currency notes (BDT: 2, 5, 10, 20, 50, 100, 200, 500 and 1,000 Taka)} & \textbf{22,333 images, labelled automatically (no hand labelling)} & \textbf{0.995*} & \textbf{0.849*} & \textbf{0.995 / 0.996*} \\ \hline
 \end{tabular}
 
 \vspace{2pt}
-{\footnotesize *Measured on held-out synthetic composites; see Chapter~\ref{chap:results} for the evaluation on independent photographs.}
+\raggedright{\footnotesize
+\textsuperscript{a}\,mAP@0.5: how often a note is found and named correctly, counting a box as correct when it overlaps the true note by at least half (1.0 = perfect).
+\textsuperscript{b}\,mAP@0.5:0.95: the same, but also rewarding boxes that fit the note tightly; a stricter score.
+\textsuperscript{c}\,Precision: of the notes the model reported, the share that were right. Recall: of the notes in the pictures, the share the model found. ``--'': not reported by that study.\\
+*Measured on held-out synthetic pictures made the same way as the training data; see Chapter~\ref{chap:results} for the results on independent real photographs, which are lower. Each study used its own data, so the numbers are not directly comparable.}
 \end{table}
 \FloatBarrier
 
@@ -158,21 +165,18 @@ Recent work on assistive devices relevant to this thesis falls into four areas, 
 \centering
 \caption{Key research categories in assistive vision technology}
 \label{tab:key_areas}
-\begin{tabular}{|L{4cm}|L{10.5cm}|}
+\small
+\begin{tabular}{|L{2.6cm}|L{4.8cm}|L{4.0cm}|L{2.6cm}|}
 \hline
-\textbf{Citation(s)} & \textbf{Category and Function/Details} \\
+\textbf{Research area} & \textbf{What the works in this area do} & \textbf{What is still missing for a blind user in Bangladesh} & \textbf{Studies} \\
 \hline
-\cite{fingerreader2014,assistreading2014,readingaid_rpi2023,visionvoice2024,cameraocr2023,itra2022,dlreader2022} &
-\textbf{Text Reading Systems:} Finger-worn and Raspberry Pi readers, Tesseract and EasyOCR engines, image description in printed documents, translation to regional languages. \\
+\textbf{Text reading systems} & Read printed text aloud: finger-worn and Raspberry Pi readers using the Tesseract or EasyOCR text readers; some describe pictures in documents or translate into regional languages & Mostly English; weak or no Bangla reading; often need an online speech service & \cite{fingerreader2014,assistreading2014,readingaid_rpi2023,visionvoice2024,cameraocr2023,itra2022,dlreader2022} \\
 \hline
-\cite{studentglass2017,smartglass_mdpi2021,googleglass2021,airis2024,thirdeye2019,lightweight_glass2025,smartglass_vip2025} &
-\textbf{Smart Glasses and Wearables:} Camera glasses with voice feedback, cloud scene analysis, lightweight Arduino glasses with vibration, IoT emergency glasses. \\
+\textbf{Smart glasses and wearables} & Put the camera, computer and sound on the body: camera glasses with voice output, scene description in the cloud, light Arduino glasses that vibrate, glasses that send emergency alerts & Advanced functions increasingly depend on a cloud server and the internet & \cite{studentglass2017,smartglass_mdpi2021,googleglass2021,airis2024,thirdeye2019,lightweight_glass2025,smartglass_vip2025} \\
 \hline
-\cite{echolight2025,aiblind2025,voicereading2025,ivsmart2024,navassist2024,ai_nlp2025} &
-\textbf{Object and Scene Recognition:} YOLOv4/v5/v8 object detection, LiDAR and ultrasonic distance, face detection, navigation with GPS. \\
+\textbf{Object and scene recognition} & Tell the user what is around them: YOLO object detectors (v4, v5, v8), distance with LiDAR or ultrasonic sensors, face detection, GPS navigation & Object names are given in English & \cite{echolight2025,aiblind2025,voicereading2025,ivsmart2024,navassist2024,ai_nlp2025} \\
 \hline
-\cite{currency2017,currency2023,axissym,nstubdtaka2024,yolov8nse,blindassist2021,divyadrishti2021} &
-\textbf{Currency Recognition:} Template and colour matching, neural classifiers, YOLO detection of Taka and other currencies, currency features in mobile apps. \\
+\textbf{Currency recognition} & Tell which note it is: template and colour matching, neural-network classifiers, YOLO detection of Taka and other currencies, currency features in phone apps & Checking whether a note is genuine with an ordinary camera is almost unexplored in assistive devices & \cite{currency2017,currency2023,axissym,nstubdtaka2024,yolov8nse,blindassist2021,divyadrishti2021} \\
 \hline
 \end{tabular}
 \end{table}
@@ -206,10 +210,10 @@ Table~\ref{tab:gap} lists each gap, where it shows up in existing devices and re
 \caption{Research gaps and how this thesis responds to them}
 \label{tab:gap}
 \small
-\begin{tabular}{|L{1.7cm}|L{3.3cm}|L{3.2cm}|L{3.4cm}|L{2.3cm}|}
+\begin{tabular}{|L{1.7cm}|L{3.3cm}|L{3.2cm}|L{3.3cm}|L{2.2cm}|}
 \hline
 \textbf{Area} & \textbf{Research gap (what is missing)} & \textbf{In existing devices and research} & \textbf{What SARA does} & \textbf{Status in this thesis} \\ \hline
-Device & No affordable wearable that speaks Bangla and recognises Taka without the internet & Commercial devices are English-only and costly; research glasses send pictures to a server & Bangla-first glass on a Raspberry Pi~5; four of five modes run on the device & Solved as a prototype \\ \hline
+Device & No affordable wearable that speaks Bangla and recognises Taka without the internet & Commercial devices are English-only and costly; research glasses send pictures to a server & A glass that speaks Bangla, on a Raspberry Pi~5; four of five modes run on the device & Solved as a prototype \\ \hline
 Method & Counterfeit checks assume all six views of a note are captured & Multi-view models are trained and tested with a fixed number of views & Training on random prefixes of views keeps accuracy from one to six views (Section~\ref{sec:method}) & Solved \\ \hline
 Safety & No safe way to give an uncertain counterfeit result to a user who cannot check it & Not addressed in the reviewed devices & Never says ``counterfeit''; says ``likely genuine'' only above a safe threshold, otherwise ``check by hand'' (Section~\ref{sec:safe_policy}) & Safe, but rarely confirms a whole note \\ \hline
 Data & Taka detectors need thousands of hand-labelled images & NSTU-BDTAKA: 3,111 manually labelled images & 22,333 training images labelled automatically (Chapter~\ref{chap:dataset}) & Solved for full-note photos; weak on close-ups \\ \hline

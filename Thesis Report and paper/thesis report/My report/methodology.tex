@@ -110,16 +110,16 @@ Table~\ref{tab:hardware} summarises the hardware of the prototype. Each componen
 \caption{Hardware components of SARA}
 \label{tab:hardware}
 \small
-\begin{tabular}{|>{\centering\arraybackslash}m{2.6cm}|M{2.6cm}|M{5.0cm}|M{4.1cm}|}
+\begin{tabular}{|>{\centering\arraybackslash}m{2.6cm}|M{2.6cm}|M{4.8cm}|M{4.0cm}|}
 \hline
-\textbf{Picture} & \textbf{Component} & \textbf{Specification} & \textbf{Role} \\ \hline
-\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_pi5.jpg}\vspace{1pt} & Raspberry Pi~5 with active cooler & Quad-core Cortex-A76, 2.4 GHz, 4/8 GB RAM & Runs all models and the application \\ \hline
-\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_camera.jpg}\vspace{1pt} & Camera Module 2 & Sony IMX219 sensor, fixed focus, used at 640$\times$480 & Captures the scene \\ \hline
-\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_buttons.jpg}\vspace{1pt} & Push-buttons (5) & Momentary, wired to GND, BCM 17/27/24/22/23 & MODE, ACTION, READ, VOL+, VOL$-$ \\ \hline
-\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_motor.jpg}\vspace{1pt} & Vibration motor & Small eccentric-mass motor driven by PWM on BCM 13 & Haptic feedback \\ \hline
-\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_earphone.jpg}\vspace{1pt} & Earphone / speaker & 3.5 mm or USB audio through ALSA & Speech output \\ \hline
-\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_powerbank.jpg}\vspace{1pt} & Power bank & USB-C power bank (the official Pi~5 supply is rated 5 V, 5 A) & Portable power \\ \hline
-\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_frame.jpg}\vspace{1pt} & Spectacle frame & 3D-printed frame with the camera above the bridge & Wearable form factor \\ \hline
+\textbf{Picture} & \textbf{Component} & \textbf{Details} & \textbf{What it does in SARA} \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_pi5.jpg}\vspace{1pt} & Raspberry Pi~5 with active cooler & Small computer with a four-core 2.4 GHz processor and 4 or 8 GB of memory; no graphics accelerator is used & The ``brain'': runs all the AI models and the program \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_camera.jpg}\vspace{1pt} & Camera Module 2 & 8-megapixel Sony IMX219 sensor with a fixed-focus lens; used at 640$\times$480 pixels & Takes the pictures of text, notes and surroundings \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_buttons.jpg}\vspace{1pt} & Push-buttons (5) & Press-to-click buttons connected to Pi pins 17, 27, 24, 22 and 23 & Let the user control the glass without a screen: MODE, ACTION, READ, VOLUME UP, VOLUME DOWN \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_motor.jpg}\vspace{1pt} & Vibration motor & Small motor that shakes when switched on; driven from Pi pin 13 & A short buzz tells the user something was found (for example a note) \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_earphone.jpg}\vspace{1pt} & Earphone / speaker & Wired 3.5 mm or USB earphone, or a small speaker & Speaks every result to the user \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_powerbank.jpg}\vspace{1pt} & Power bank & USB-C power bank (the official Pi~5 supply is rated 5 V, 5 A) & Lets the user carry the glass anywhere \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_frame.jpg}\vspace{1pt} & Spectacle frame & 3D-printed frame with the camera above the nose bridge & Holds the camera where the user looks, so the glass is worn like ordinary spectacles \\ \hline
 \end{tabular}
 
 \vspace{3pt}
@@ -139,14 +139,14 @@ Five push-buttons connect GPIO pins to ground with internal pull-up resistors. A
 \centering
 \caption{Button map of SARA}
 \label{tab:buttons}
-\begin{tabular}{|c|c|p{9cm}|}
+\begin{tabular}{|c|c|L{10cm}|}
 \hline
-\textbf{BCM pin} & \textbf{Button} & \textbf{Behaviour} \\ \hline
-17 & MODE & Cycle text $\rightarrow$ object $\rightarrow$ currency $\rightarrow$ online $\rightarrow$ emotion \\ \hline
-27 & ACTION & Capture text / force object announcement / detect currency / describe scene / name expression \\ \hline
-24 & READ & Speak the stored text \\ \hline
-22 & VOL\_UP & Increase volume by 10\% \\ \hline
-23 & VOL\_DOWN & Decrease volume by 10\% \\ \hline
+\textbf{Pi pin} & \textbf{Button} & \textbf{What happens when it is pressed} \\ \hline
+17 & MODE & Moves to the next mode, in the order text $\rightarrow$ object $\rightarrow$ currency $\rightarrow$ online $\rightarrow$ emotion, and says the mode's name \\ \hline
+27 & ACTION & Does the main job of the current mode: text mode reads the text in view; object mode says the objects in view now; currency mode names the note; online mode describes the scene; emotion mode names the facial expression \\ \hline
+24 & READ & Repeats the last text that was read \\ \hline
+22 & VOL\_UP & Makes the speech 10\% louder \\ \hline
+23 & VOL\_DOWN & Makes the speech 10\% quieter \\ \hline
 \end{tabular}
 \end{table}
 
@@ -172,24 +172,24 @@ The software is written in Python and organised as a small core with plug-in mod
 \small
 \begin{tabular}{|L{5.6cm}|L{9.0cm}|}
 \hline
-\textbf{Module} & \textbf{Responsibility} \\ \hline
-\texttt{main.py} (SmartGlass) & Life cycle, mode cycling, button routing, object-detection loop, signal handling \\ \hline
-\texttt{config.py} & GPIO pins, camera settings, model paths, thresholds, TTS and logging settings \\ \hline
-\texttt{button\_handler.py} & GPIO interrupts with debounce \\ \hline
-\texttt{utils.py} & Logging, language detection and splitting, TTSEngine, CameraManager \\ \hline
-\texttt{modes/ocr\_mode.py} & Bangla/English OCR with store-and-read \\ \hline
-\texttt{modes/object\_mode.py} & YOLOv8 object detection, cooldown, Bangla labels \\ \hline
-\texttt{ocr\_text\_region.py} & Main text block, line ordering and clean-up rules of the OCR pipeline \\ \hline
-\texttt{modes/currency\_mode.py} & YOLOv8s Taka detection, announcement threshold, safe counterfeit check, haptics \\ \hline
-\texttt{modes/watermark\_check.py} & Watermark window (learned localizer, SIFT fall-back) and watermark classifier \\ \hline
-\texttt{modes/capture\_guide.py} & Brightness and sharpness test of back-lit frames, spoken prompts, study log \\ \hline
-\texttt{modes/emotion\_mode.py} & Facial expression of the nearest face \\ \hline
-\texttt{modes/claude\_mode.py} & Optional online scene description (internet and API key required) \\ \hline
-\texttt{field\_log.py} & Event and system log in CSV, written by a background thread \\ \hline
-\texttt{preview.py}, \texttt{live\_diag.py} & Test window with keyboard keys and a live panel of all model outputs \\ \hline
-\texttt{voice\_study.py} & Voice-driven questionnaire for the user study \\ \hline
-\texttt{roboeye/} package & Authenticator, emotion recogniser, haptics, speaker, Grad-CAM overlay \\ \hline
-\texttt{scripts/deploy\_pi5.sh}, \texttt{smart\_glass.service} & Installation on the Pi and start at boot \\ \hline
+\textbf{Program file} & \textbf{What it does} \\ \hline
+\texttt{main.py} (SmartGlass) & Starts and stops the glass, switches modes, passes each button press to the current mode, and runs the object-detection loop \\ \hline
+\texttt{config.py} & All settings in one place: button pins, camera, model files, decision thresholds, speech and logging \\ \hline
+\texttt{button\_handler.py} & Notices button presses and ignores accidental double presses \\ \hline
+\texttt{utils.py} & Shared helpers: logging, telling Bangla from English, the speech engine and the camera \\ \hline
+\texttt{modes/ocr\_mode.py} & Text mode: reads Bangla and English text and keeps it for the READ button \\ \hline
+\texttt{modes/object\_mode.py} & Object mode: finds everyday objects with YOLOv8 and names them in Bangla, without repeating itself too often \\ \hline
+\texttt{ocr\_text\_region.py} & Picks the main block of text, puts the lines in reading order and cleans up the result \\ \hline
+\texttt{modes/currency\_mode.py} & Currency mode: finds and names Taka notes with YOLOv8s, runs the safe counterfeit check, and buzzes the motor \\ \hline
+\texttt{modes/watermark\_check.py} & Finds the watermark area on a note held against light and checks it \\ \hline
+\texttt{modes/capture\_guide.py} & Checks that a picture of a note held against light is bright and sharp enough, and tells the user how to hold it \\ \hline
+\texttt{modes/emotion\_mode.py} & Emotion mode: names the facial expression of the nearest person \\ \hline
+\texttt{modes/claude\_mode.py} & Online mode (optional): describes the scene using an online AI service; needs the internet and an API key \\ \hline
+\texttt{field\_log.py} & Records what happened and how the Pi was doing (for field tests) in a CSV file \\ \hline
+\texttt{preview.py}, \texttt{live\_diag.py} & Test window for the laptop: keyboard keys act as buttons; shows boxes and the outputs of all models \\ \hline
+\texttt{voice\_study.py} & Spoken questionnaire for the user study, answered by voice \\ \hline
+\texttt{roboeye/} package & Counterfeit checker, emotion recogniser, vibration and speaker drivers, and heat-map pictures of what the models look at (Grad-CAM) \\ \hline
+\texttt{scripts/deploy\_pi5.sh}, \texttt{smart\_glass.service} & Installs everything on the Pi and starts the glass automatically when the Pi is switched on \\ \hline
 \end{tabular}
 \end{table}
 

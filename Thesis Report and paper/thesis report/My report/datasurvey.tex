@@ -9,22 +9,23 @@ SARA combines several vision tasks, and each task needs its own data. Table~\ref
 \centering
 \caption{Datasets used in this project}
 \label{tab:datasets}
-\begin{tabular}{|p{3.2cm}|p{3.4cm}|p{3.1cm}|p{4.2cm}|}
+\small
+\begin{tabular}{|L{3.0cm}|L{3.9cm}|L{3.1cm}|L{3.9cm}|}
 \hline
-\textbf{Dataset} & \textbf{Content} & \textbf{Task} & \textbf{Split / use} \\ \hline
-BanglaTaka \cite{banglataka} & 5,073 background-free Taka photos, 9 denominations & Currency foregrounds & 80/10/10 by source note \\ \hline
-COCO \cite{coco} & Natural photographs & Backgrounds; object test; OCR photo scenes & Random crops for compositing \\ \hline
-Synthetic Taka detection set & 22,333 composites (this work) & Taka detection & 17,839 / 2,212 / 2,282 \\ \hline
-Fresh composite test & 566 composites of test notes on other backgrounds & Taka detection & Test only \\ \hline
-Bangla Money (Kaggle) & 1,536 photographs, 8 denominations; 101 photographs of 1 Taka & Taka detection & Independent test only \\ \hline
-NSTU-BDTAKA \cite{nstubdtaka2024} & 186 detection images, 1,144 hand-held close-ups & Taka detection & Independent test only \\ \hline
-JaalTaka \cite{jaaltaka} & 1,390 notes $\times$ 6 views = 8,340 images; 500 and 1,000 Taka & Genuine vs counterfeit & Note-disjoint 974 / 208 / 208; print-disjoint 946 / 222 / 222 \\ \hline
-Bangladeshi Counterfeit Currency Image Dataset & Whole-note photographs: 1,199 genuine, 87 counterfeit (about 4 physical counterfeit notes) & Check of the deployed verdict & Test only \\ \hline
-MVP-N \cite{mvpn}, ModelNet40 \cite{modelnet} & Multi-view object sets & Whether the view-count finding holds outside currency & Their own splits \\ \hline
-RAF-DB \cite{rafdb} & 15,339 face images, 7 expressions & Emotion & Official 12,271 / 3,068 \\ \hline
-OCR benchmark (this work) & Bangla and English phrases rendered with correct shaping; 432 images per phrase set & OCR development and test & Separate validation and test phrases and fonts \\ \hline
-Ekush \cite{ekush} & 367,018 handwritten Bangla characters, 122 classes & Handwritten-letter fall-back & Writer-disjoint 2,429 / 303 / 305 writers \\ \hline
-COCO val2017 subset & 250 images, 77 classes present & Object evaluation & Test only \\ \hline
+\textbf{Dataset} & \textbf{What it contains} & \textbf{What we used it for} & \textbf{How it was divided (train / validation / test)} \\ \hline
+BanglaTaka \cite{banglataka} & 5,073 photos of Taka notes with the background cut away; all 9 note types & The notes that were pasted onto backgrounds to make training pictures & 80\% / 10\% / 10\%, by physical note \\ \hline
+COCO \cite{coco} & Everyday photographs (rooms, streets, desks, hands) & Backgrounds for the Taka pictures; scenes for the text-reading test & Random parts of photos used as backgrounds \\ \hline
+Synthetic Taka detection set (made in this work) & 22,333 pictures of notes pasted onto real backgrounds, labelled automatically & Training and testing the Taka detector & 17,839 / 2,212 / 2,282 pictures \\ \hline
+Fresh synthetic test & 566 pictures of test notes on backgrounds never used in training & A second test of the Taka detector & Test only \\ \hline
+Bangla Money (Kaggle) & 1,536 photos of 8 note types; 101 photos of the 1 Taka note & Testing the Taka detector on other people's photos & Test only (never used for training) \\ \hline
+NSTU-BDTAKA \cite{nstubdtaka2024} & 186 photos with boxes around notes; 1,144 close-ups of notes held in a hand & Testing the Taka detector on other people's photos & Test only (never used for training) \\ \hline
+JaalTaka \cite{jaaltaka} & 1,390 genuine and counterfeit 500 and 1,000 Taka notes, each photographed from 6 views (8,340 photos) & Training and testing the counterfeit check & By note: 974 / 208 / 208 notes; by print (no counterfeit print in two parts): 946 / 222 / 222 \\ \hline
+Bangladeshi Counterfeit Currency Image Dataset & Photos of whole notes: 1,199 genuine, 87 counterfeit (about 4 physical counterfeit notes) & Checking that the glass's counterfeit answer is safe & Test only \\ \hline
+MVP-N \cite{mvpn}, ModelNet40 \cite{modelnet} & Objects photographed or drawn from many views & Checking whether our finding about the number of views also holds outside currency & The datasets' own divisions \\ \hline
+RAF-DB \cite{rafdb} & 15,339 face photos, each labelled with one of 7 expressions & Training and testing emotion recognition & Official division: 12,271 train / 3,068 test \\ \hline
+OCR benchmark (made in this work) & Bangla and English phrases drawn with correct Bangla letter shapes; 432 pictures per phrase set & Choosing and testing the text-reading settings & Different phrases and fonts for validation and for test \\ \hline
+Ekush \cite{ekush} & 367,018 handwritten Bangla letters and signs, 122 kinds & A back-up reader for single handwritten letters & By writer: 2,429 / 303 / 305 writers \\ \hline
+COCO val2017 subset & 250 photos containing 77 kinds of objects & Testing the object mode & Test only \\ \hline
 \end{tabular}
 \end{table}
 \FloatBarrier
@@ -43,7 +44,7 @@ The banknote images come from the BanglaTaka dataset, ``A Diverse Image Dataset 
 \label{tab:banglataka}
 \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
 \hline
-\textbf{Denomination} & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 500 & 1000 & \textbf{Total} \\ \hline
+\textbf{Note (Taka)} & 2 & 5 & 10 & 20 & 50 & 100 & 200 & 500 & 1000 & \textbf{Total} \\ \hline
 \textbf{Images} & 445 & 660 & 419 & 480 & 416 & 565 & 423 & 1,243 & 422 & \textbf{5,073} \\ \hline
 \end{tabular}
 \end{table}
@@ -76,19 +77,20 @@ Table~\ref{tab:aug} lists the domain-randomisation operations. The ranges were c
 \centering
 \caption{Domain-randomisation operations used in compositing}
 \label{tab:aug}
-\begin{tabular}{|p{2.6cm}|p{4.6cm}|p{6cm}|}
+\small
+\begin{tabular}{|L{2.6cm}|L{3.8cm}|L{4.0cm}|L{3.5cm}|}
 \hline
-\textbf{Stage} & \textbf{Operation} & \textbf{Setting} \\ \hline
-\multirow{4}{*}{Geometry} & Perspective warp & 70\% probability, corner jitter 8\% \\ \cline{2-3}
- & Rotation & $\pm30^\circ$, expanded canvas, transparent fill \\ \cline{2-3}
- & Scale & Note occupies 0.25--0.90 of the canvas \\ \cline{2-3}
- & Placement & Random position \\ \hline
-\multirow{2}{*}{Photometric} & HSV jitter & H $\pm18^\circ$, S $\times$0.5--1.5, V $\times$0.4--1.6 \\ \cline{2-3}
- & Brightness / contrast & 0.4--1.6 / 0.7--1.3 \\ \hline
-\multirow{3}{*}{Sensor} & Motion blur & 20\% probability, kernel 3/5/7, horizontal or vertical \\ \cline{2-3}
- & Gaussian noise & 50\% probability, $\sigma \approx 12$ \\ \cline{2-3}
- & JPEG re-compression & Quality 55--92 \\ \hline
-Balance & Negative images & 10\% background-only images with empty labels \\ \hline
+\textbf{What is imitated} & \textbf{Change made to the note} & \textbf{Setting} & \textbf{Real situation it imitates} \\ \hline
+\multirow{4}{2.6cm}{\raggedright How the note is held} & Tilted (perspective warp) & 70\% of pictures; corners moved by up to 8\% & Note not held flat to the camera \\ \cline{2-4}
+ & Rotated & Up to 30$^\circ$ either way & Note held at an angle \\ \cline{2-4}
+ & Resized & Note fills 25--90\% of the picture & Note held near or far \\ \cline{2-4}
+ & Moved & Random position in the picture & Note not in the centre \\ \hline
+\multirow{2}{2.6cm}{\raggedright Light and colour} & Colour shifted (HSV jitter) & Hue $\pm18^\circ$; saturation $\times$0.5--1.5; brightness $\times$0.4--1.6 & Different lamps, sunlight, old faded notes \\ \cline{2-4}
+ & Brightness and contrast & Brightness $\times$0.4--1.6; contrast $\times$0.7--1.3 & Dark rooms and bright light \\ \hline
+\multirow{3}{2.6cm}{\raggedright Camera faults} & Motion blur & 20\% of pictures; small, medium or strong, horizontal or vertical & Head or hand moving \\ \cline{2-4}
+ & Grain (Gaussian noise) & 50\% of pictures; strength about 12 & Cheap camera in low light \\ \cline{2-4}
+ & JPEG compression & Quality 55--92 & Compressed camera pictures \\ \hline
+No note & Background-only pictures & 10\% of all pictures, with no label & Teaches the detector not to see notes where there are none \\ \hline
 \end{tabular}
 \end{table}
 \FloatBarrier
@@ -100,9 +102,9 @@ Four composites were generated per source note, plus background-only negatives. 
 \centering
 \caption{Composition of the synthetic Taka detection dataset}
 \label{tab:split}
-\begin{tabular}{|l|r|r|r|r|}
+\begin{tabular}{|l|R{2.3cm}|R{2.5cm}|R{1.9cm}|R{2.3cm}|}
 \hline
-\textbf{Split} & \textbf{Positive} & \textbf{Negative} & \textbf{Total} & \textbf{Note instances} \\ \hline
+\textbf{Part} & \textbf{Pictures with a note} & \textbf{Background only (no note)} & \textbf{All pictures} & \textbf{Notes in the pictures} \\ \hline
 Train & 16,224 & 1,615 & 17,839 & 16,224 \\ \hline
 Validation & 2,016 & 196 & 2,212 & 2,016 \\ \hline
 Test & 2,052 & 230 & 2,282 & 2,052 \\ \hline
@@ -135,16 +137,16 @@ The authenticator is trained on the JaalTaka collection of genuine and counterfe
 \centering
 \caption{JaalTaka split used for authentication (split seed 42)}
 \label{tab:jaaltaka}
-\begin{tabular}{|l|c|}
+\begin{tabular}{|L{10cm}|c|}
 \hline
-\textbf{Item} & \textbf{Value} \\ \hline
+\textbf{What is counted} & \textbf{Number} \\ \hline
 Physical notes & 1,390 \\ \hline
 Genuine / counterfeit notes & 802 / 588 \\ \hline
-Views per note & 6 \\ \hline
-Images & 8,340 \\ \hline
-Train / validation / test notes & 974 / 208 / 208 \\ \hline
-Train genuine / counterfeit & 562 / 412 \\ \hline
-Note overlap between splits (train--val, train--test, val--test) & 0 / 0 / 0 \\ \hline
+Photos (views) of each note & 6 \\ \hline
+Photos in total & 8,340 \\ \hline
+Notes for training / validation / test & 974 / 208 / 208 \\ \hline
+Genuine / counterfeit notes in the training part & 562 / 412 \\ \hline
+Notes that appear in two parts (train and validation, train and test, validation and test) & 0 / 0 / 0 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -158,13 +160,14 @@ A genuine banknote has a unique serial number. A counterfeit is printed from a s
 \centering
 \caption{Serial numbers read from JaalTaka notes}
 \label{tab:serial}
-\begin{tabular}{|l|c|c|c|p{4.6cm}|}
+\small
+\begin{tabular}{|L{2.6cm}|C{1.4cm}|C{2.2cm}|C{2.2cm}|L{5.4cm}|}
 \hline
-\textbf{Class} & \textbf{Notes} & \textbf{Serial read} & \textbf{Distinct} & \textbf{Most common serial} \\ \hline
-500 Taka counterfeit & 324 & 322 & 27 & on 279 notes (86.6\% of those read) \\ \hline
-1,000 Taka counterfeit & 261 & 201 & 66 & on 43 notes; two near-identical readings on 29 more \\ \hline
-500 Taka genuine & 397 & 331 & 233 & 1.2\% \\ \hline
-1,000 Taka genuine & 401 & 270 & 227 & 1.5\% \\ \hline
+\textbf{Notes} & \textbf{Notes in the dataset} & \textbf{Serial number could be read} & \textbf{Different serial numbers} & \textbf{How often the most common serial number appears} \\ \hline
+500 Taka counterfeit & 324 & 322 & 27 & On 279 notes (86.6\% of those read): most counterfeits are copies of one print \\ \hline
+1,000 Taka counterfeit & 261 & 201 & 66 & On 43 notes, and two almost identical readings on 29 more \\ \hline
+500 Taka genuine & 397 & 331 & 233 & On 1.2\% of those read (almost every genuine note has its own number) \\ \hline
+1,000 Taka genuine & 401 & 270 & 227 & On 1.5\% of those read \\ \hline
 \end{tabular}
 \end{table}
 
@@ -192,8 +195,8 @@ Emotion recognition uses the Real-world Affective Faces Database (RAF-DB) \cite{
 \label{tab:rafdb}
 \begin{tabular}{|l|c|c|c|c|c|c|c|c|}
 \hline
-\textbf{Class} & Happy & Sad & Angry & Surprise & Fear & Disgust & Neutral & \textbf{Total} \\ \hline
-\textbf{Images} & 1,185 & 478 & 162 & 329 & 74 & 160 & 680 & \textbf{3,068} \\ \hline
+\textbf{Expression} & Happy & Sad & Angry & Surprise & Fear & Disgust & Neutral & \textbf{Total} \\ \hline
+\textbf{Test photos} & 1,185 & 478 & 162 & 329 & 74 & 160 & 680 & \textbf{3,068} \\ \hline
 \end{tabular}
 \end{table}
 

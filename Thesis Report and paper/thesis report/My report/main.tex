@@ -1,16 +1,24 @@
 \documentclass[12pt]{report}
 \usepackage{adjustbox}
 \usepackage{enumitem}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{newtxtext}   % Times for the body text
-\usepackage{carlito}     % Carlito (metric-compatible with Calibri) for headings
 \usepackage{placeins}
 \usepackage{amsmath}
 \numberwithin{table}{subsection}
 \usepackage{graphicx}
 \usepackage{amsmath, amssymb}
 \usepackage{newtxmath}   % mathematics to match the Times text
+% Compile with XeLaTeX: the real Times New Roman font for the whole report.
+% Loaded after newtxmath, so digits and operators in formulas are Times New Roman too.
+\usepackage{mathspec}    % loads fontspec; also puts Times New Roman digits and letters into formulas
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman}
+\setmonofont{Courier New}[Scale=0.92]
+\setmathsfont(Digits,Latin)[Numbers={Lining,Proportional}]{Times New Roman}
+\setmathrm{Times New Roman}
+% "%" and the hat accent in formulas would otherwise come from Latin Modern
+\let\pctchar\%
+\DeclareRobustCommand{\%}{\ifmmode\mbox{\pctchar}\else\pctchar\fi}
+\AtBeginDocument{\let\hat\widehat}
 \usepackage{microtype}
 \usepackage{subcaption}
 \usepackage{array}
@@ -20,6 +28,8 @@
 % Table cells set ragged-right, so that long words and file names do not run into the next column
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{M}[1]{>{\raggedright\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
 \emergencystretch=2em
 \usepackage{titlesec}
 \usepackage{framed}
@@ -77,7 +87,7 @@
 
 % Section formatting
 \definecolor{headingblue}{HTML}{4F81BD}
-\newcommand{\headingfont}{\normalfont\sffamily\bfseries\color{headingblue}}
+\newcommand{\headingfont}{\normalfont\bfseries\color{headingblue}}
 \titleformat{\chapter}[block]
   {\headingfont\huge}{\thechapter}{1em}{\Huge}
 \titleformat{\section}
@@ -97,7 +107,7 @@
 \begin{titlepage}
     \centering
     \includegraphics[width=0.5\textwidth]{iub_logo.png}\par\vspace{0.2cm}
-    {\Large \textbf{SARA (Smart Assistive Reading Aid): An Offline, Bangla-First Wearable for Text Reading, Object Awareness and Safe Banknote Verification}\par}
+    {\Large \textbf{SARA (Smart Assistive Reading Aid): An Offline Smart Glass for Visually Impaired People that Reads Bangla and English Text, Detects Objects, and Recognises and Checks Bangladeshi Taka Notes}\par}
     \vspace{0.5cm}
     {\Large Spring 2026 \par}
     \vspace{1cm}

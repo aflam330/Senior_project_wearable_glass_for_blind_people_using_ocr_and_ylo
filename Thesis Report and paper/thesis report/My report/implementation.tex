@@ -51,23 +51,24 @@ The software stack is summarised in Table~\ref{tab:libraries}. On the Raspberry 
 \centering
 \caption{Main libraries and tools used in SARA}
 \label{tab:libraries}
-\begin{tabular}{|p{3.6cm}|p{10.2cm}|}
+\small
+\begin{tabular}{|L{3.4cm}|L{4.6cm}|L{6.3cm}|}
 \hline
-\textbf{Library / Tool} & \textbf{Use in the project} \\ \hline
-Python 3 & Application language \\ \hline
-OpenCV \cite{opencv} & Pre-processing, YuNet or Haar face detection, SIFT registration, USB camera capture \\ \hline
-Picamera2 & Capture from the Pi camera \\ \hline
-PyTorch, torchvision & Training and inference of MobileNetV3, EfficientNet-V2-S, TinyViT models \\ \hline
-Ultralytics YOLOv8 & Object and Taka detection, training, export to ONNX and TorchScript \\ \hline
-ONNX Runtime & Inference of the INT8 Taka detector, the watermark localizer and classifier, FER+ fall-back \\ \hline
-EasyOCR & Bangla and English text recognition \\ \hline
-HarfBuzz, FreeType & Correct shaping of Bangla text in the OCR benchmark images \\ \hline
-Tesseract, PaddleOCR, KenLM, SymSpell & OCR engines and correctors compared in the benchmark \\ \hline
-sounddevice, SpeechRecognition & Microphone capture and speech recognition in the voice study tool \\ \hline
-Piper, espeak-ng & Offline neural and formant speech synthesis \\ \hline
-rpi-lgpio & GPIO buttons and PWM on Raspberry Pi~5 \\ \hline
-pytorch-grad-cam & Grad-CAM visual explanations \\ \hline
-systemd & Start at boot and automatic restart \\ \hline
+\textbf{Library / tool} & \textbf{What it is} & \textbf{What we use it for in SARA} \\ \hline
+Python 3 & Programming language & The whole program is written in it \\ \hline
+OpenCV \cite{opencv} & Image-processing library & Cleaning up pictures before the models see them, finding faces (YuNet or Haar), lining up two pictures of a note (SIFT), reading a USB camera \\ \hline
+Picamera2 & Raspberry Pi camera library & Taking pictures with the Pi camera on the glass \\ \hline
+PyTorch, torchvision & Deep-learning framework & Training and running the counterfeit-check and emotion models (MobileNetV3, EfficientNet-V2-S, TinyViT) \\ \hline
+Ultralytics YOLOv8 & Object-detection library & Training and running the object and Taka detectors, and saving them in faster formats (ONNX, TorchScript) \\ \hline
+ONNX Runtime & Fast model runner for the CPU & Running the compressed (INT8) Taka detector, the watermark finder and checker, and a back-up emotion model (FER+) \\ \hline
+EasyOCR & Text-reading (OCR) library & Reading Bangla and English text \\ \hline
+HarfBuzz, FreeType & Text-drawing libraries & Drawing Bangla letters correctly in the test images used to measure text reading \\ \hline
+Tesseract, PaddleOCR, KenLM, SymSpell & Other text readers and spelling correctors & Compared with EasyOCR in the text-reading tests; not used on the glass \\ \hline
+sounddevice, SpeechRecognition & Microphone and speech-recognition libraries & Recording and understanding spoken answers in the voice questionnaire \\ \hline
+Piper, espeak-ng & Offline text-to-speech programs & Speaking all results without the internet (Piper: natural voice; espeak-ng: simpler, robotic voice) \\ \hline
+rpi-lgpio & Pin-control library for the Pi~5 & Reading the buttons and driving the vibration motor \\ \hline
+pytorch-grad-cam & Model-explanation library & Heat maps that show which part of the picture the Taka detector looked at (Grad-CAM) \\ \hline
+systemd & Linux service manager & Starting the glass automatically when the Pi is switched on, and restarting it if it crashes \\ \hline
 \end{tabular}
 \end{table}
 
@@ -239,15 +240,16 @@ Bringing the application from the laptop to the Pi exposed problems that no lapt
 \centering
 \caption{Problems met when deploying on the Raspberry Pi~5, and their fixes}
 \label{tab:deploy}
-\begin{tabular}{|p{4.4cm}|p{4.6cm}|p{5.0cm}|}
+\small
+\begin{tabular}{|L{4.3cm}|L{5.0cm}|L{5.0cm}|}
 \hline
-\textbf{Symptom} & \textbf{Cause} & \textbf{Fix} \\ \hline
-Virtual environment cannot be created & Project on a FAT USB drive, which cannot hold symbolic links & Environment in the home folder, with system packages visible \\ \hline
-GPIO library fails with ``file not found'' & Its notification pipe cannot be created on the same drive & Working directory of the library set to the temporary folder \\ \hline
-``Camera: no frames received'' & OpenCV capture does not deliver frames from the Pi camera & Picamera2 as the first back-end \\ \hline
-``Camera in use'', ``GPIO busy'' & A second copy of the application was running & Clear error message; stop the other copy \\ \hline
-Missing ONNX Runtime & Not in the requirements for the Pi & Added; pre-flight check of all libraries and models \\ \hline
-No sound when Piper fails & Silent failure instead of fall-back & Fall-back to espeak-ng \\ \hline
-Bangla Piper voice unusable & The prebuilt ARM64 Piper cannot phonemise the Bangla voice & espeak-ng for Bangla (open problem) \\ \hline
+\textbf{What went wrong} & \textbf{Why it happened} & \textbf{How we fixed it} \\ \hline
+The Python environment could not be created & The project was on a USB drive formatted as FAT, which cannot store the shortcut files (symbolic links) the environment needs & Created the environment in the home folder of the Pi instead, still able to use the Pi's own camera library \\ \hline
+The button library stopped with ``file not found'' & It needs to make a special file, which the same USB drive cannot hold & Told the library to make that file in the Pi's temporary folder \\ \hline
+``Camera: no frames received'' & The OpenCV camera reader gets no pictures from the Pi camera on the Pi~5 & Use the Pi's own camera library (Picamera2) first \\ \hline
+``Camera in use'' or ``GPIO busy'' & A second copy of the program was already running and holding the camera and buttons & A clear error message that tells the user to stop the other copy \\ \hline
+A library (ONNX Runtime) was missing & It was not in the list of libraries to install on the Pi & Added it, plus a check before start-up that every library and model file is present \\ \hline
+No sound at all when the Piper voice failed & The program did not switch to another voice & Switch automatically to the espeak-ng voice \\ \hline
+The Bangla Piper voice could not be used & The ready-made Pi version of Piper cannot turn Bangla letters into sounds for that voice & Bangla is spoken with espeak-ng for now (still an open problem) \\ \hline
 \end{tabular}
 \end{table}
