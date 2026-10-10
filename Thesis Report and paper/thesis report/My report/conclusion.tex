@@ -3,7 +3,7 @@
 \label{chap:conclusion}
 
 \section{Conclusion}
-This thesis presented Savior Glass, a Bangla-first assistive smart glass for visually impaired people in Bangladesh. The glass reads Bangla and English text, announces everyday objects in Bangla, names all nine denominations of Bangladeshi Taka, gives a cautious check for counterfeit 500 and 1,000 Taka notes, and names the facial expression of the person in front of the user. It is controlled with five physical buttons, speaks through Piper or espeak-ng voices, starts automatically on a Raspberry Pi~5, and needs the internet only for an optional scene-description mode.
+This thesis presented SARA, a Bangla-first assistive smart glass for visually impaired people in Bangladesh. The glass reads Bangla and English text, announces everyday objects in Bangla, names all nine denominations of Bangladeshi Taka, gives a cautious check for counterfeit 500 and 1,000 Taka notes, and names the facial expression of the person in front of the user. It is controlled with five physical buttons, speaks through Piper or espeak-ng voices, starts automatically on a Raspberry Pi~5, and needs the internet only for an optional scene-description mode.
 
 Five results stand out.
 
@@ -21,7 +21,7 @@ On the Raspberry Pi~5 the currency check takes a median of 327~ms, the system st
 
 The evaluation also showed clearly what does not yet work. In the first hands-on test with the glass camera, currency recognition was unreliable and Bangla text was not read; the cause is not yet established, and the laboratory figures do not describe the worn device. No study with visually impaired users has been carried out. Battery life is not measured.
 
-Overall, Savior Glass shows that the parts of a useful, private and affordable assistive device for Bangla-speaking users can be built from open models and low-cost hardware. The progress in this project came less from new network architectures than from careful data engineering and from checking what each test really measures. The step from a system that works on datasets to a device that works on a person's face is still to be taken.
+Overall, SARA shows that the parts of a useful, private and affordable assistive device for Bangla-speaking users can be built from open models and low-cost hardware. The progress in this project came less from new network architectures than from careful data engineering and from checking what each test really measures. The step from a system that works on datasets to a device that works on a person's face is still to be taken.
 
 \section{Future Work}
 
@@ -47,18 +47,18 @@ Future versions can add obstacle distance (ultrasonic or depth sensors), navigat
 A lighter, integrated spectacle frame with the camera, an earpiece or bone-conduction speaker and a compact battery would make the glass more comfortable and less noticeable.
 
 \section{Impact and Sustainability}
-Savior Glass is built from widely available hardware and open-source software, which keeps the cost low and allows local repair and extension. Because all core functions run on the device, it does not require a data plan and continues to work in rural areas with poor connectivity. The modular mode design makes it possible to add new languages, currencies or functions without redesigning the system, and the desktop harness lets students and developers improve the software without the hardware. The experiment database and the claim registry let a later team check every number of this thesis against its result file.
+SARA is built from widely available hardware and open-source software, which keeps the cost low and allows local repair and extension. Because all core functions run on the device, it does not require a data plan and continues to work in rural areas with poor connectivity. The modular mode design makes it possible to add new languages, currencies or functions without redesigning the system, and the desktop harness lets students and developers improve the software without the hardware. The experiment database and the claim registry let a later team check every number of this thesis against its result file.
 
 \section{Social and Ethical Considerations}
-An assistive device that uses a camera in public raises privacy concerns. Savior Glass processes images on the device and does not store or transmit them in the offline modes; the only online mode is optional and must be chosen by the user. The currency check can make mistakes. A wrong ``genuine'' could cause financial loss, and a wrong ``counterfeit'' could lead a blind person to accuse someone in public without being able to verify the claim. The device therefore never says ``counterfeit'', presents ``likely genuine'' as advice, and otherwise asks for a check by hand. The voice questionnaire records participants' voices and sends them to an online speech recogniser; in a real study this needs informed consent, and the recordings must be stored under a participant number, not a name. Emotion recognition of other people must be used with care and only to adapt the device's own speech, never to label or record people.
+An assistive device that uses a camera in public raises privacy concerns. SARA processes images on the device and does not store or transmit them in the offline modes; the only online mode is optional and must be chosen by the user. The currency check can make mistakes. A wrong ``genuine'' could cause financial loss, and a wrong ``counterfeit'' could lead a blind person to accuse someone in public without being able to verify the claim. The device therefore never says ``counterfeit'', presents ``likely genuine'' as advice, and otherwise asks for a check by hand. The voice questionnaire records participants' voices and sends them to an online speech recogniser; in a real study this needs informed consent, and the recordings must be stored under a participant number, not a name. Emotion recognition of other people must be used with care and only to adapt the device's own speech, never to label or record people.
 
 \section{Contributions and Final Thoughts}
-This thesis contributes a complete Bangla-first assistive glass measured on a Raspberry Pi~5, a zero-annotation data pipeline and detector for Bangladeshi Taka, a multi-view training protocol that remains accurate with one view, an audit and a print-disjoint test for counterfeit detection, a watermark check with a safe spoken verdict, a Bangla OCR benchmark and pipeline, and an evaluation in which every number can be traced to a saved result and every missing measurement is named. We hope that this honest account will make it easier for others to continue the work, and that future versions of Savior Glass, tested with and improved by visually impaired users, will help them read, recognise and pay with more independence.
+This thesis contributes a complete Bangla-first assistive glass measured on a Raspberry Pi~5, a zero-annotation data pipeline and detector for Bangladeshi Taka, a multi-view training protocol that remains accurate with one view, an audit and a print-disjoint test for counterfeit detection, a watermark check with a safe spoken verdict, a Bangla OCR benchmark and pipeline, and an evaluation in which every number can be traced to a saved result and every missing measurement is named. We hope that this honest account will make it easier for others to continue the work, and that future versions of SARA, tested with and improved by visually impaired users, will help them read, recognise and pay with more independence.
 
 \section{Analysis of Social Effects}
 
 \subsection*{Improving Independence}
-Reading a label, knowing which note is in the hand and knowing what is in front of oneself without asking another person are small tasks that together decide how independent a person can be. Savior Glass targets exactly these daily tasks.
+Reading a label, knowing which note is in the hand and knowing what is in front of oneself without asking another person are small tasks that together decide how independent a person can be. SARA targets exactly these daily tasks.
 
 \subsection{Reducing Fraud and Financial Risk}
 Visually impaired people are vulnerable to receiving wrong change or counterfeit notes. Denomination detection can reduce this risk and increase confidence in cash transactions. The counterfeit check, in its present cautious form, tells the user when a note deserves a second look by a trusted person; it does not replace that look.
@@ -73,4 +73,4 @@ A low-cost device built locally, speaking the user's language, can change the pe
 Over-reliance on an imperfect device, privacy concerns of people around the user, and the stigma of wearing a visible device are possible risks, which must be studied together with users.
 
 \subsection{Summary of Social Impact}
-If validated with users, Savior Glass can increase independence, reduce financial risk and improve access to information for visually impaired people in Bangladesh, while keeping their data private.
+If validated with users, SARA can increase independence, reduce financial risk and improve access to information for visually impaired people in Bangladesh, while keeping their data private.

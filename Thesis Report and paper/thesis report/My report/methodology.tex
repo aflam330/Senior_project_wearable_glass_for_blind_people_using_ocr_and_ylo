@@ -2,10 +2,10 @@
 \chapter{System Design and Methodology}
 \label{chap:design}
 
-\section{Framework of Savior Glass}
+\section{Framework of SARA}
 \label{sec:framework}
 
-The framework of Savior Glass follows an input--process--output structure (Figure~\ref{fig:framework}). The user gives commands only through physical buttons, the camera provides the visual input, the on-board models interpret the scene according to the active mode, and the result is returned through speech and vibration.
+The framework of SARA follows an input--process--output structure (Figure~\ref{fig:framework}). The user gives commands only through physical buttons, the camera provides the visual input, the on-board models interpret the scene according to the active mode, and the result is returned through speech and vibration.
 
 \subsection*{Input}
 \begin{itemize}[noitemsep]
@@ -52,15 +52,15 @@ The framework of Savior Glass follows an input--process--output structure (Figur
   \draw[arrow] (cur.east) -- ++(0.5,0) |- (hap.west);
 \end{tikzpicture}
 \end{adjustbox}
-\caption{Input--process--output framework of Savior Glass. The emotion mode and the optional online mode use the same path and are omitted for clarity.}
+\caption{Input--process--output framework of SARA. The emotion mode and the optional online mode use the same path and are omitted for clarity.}
 \label{fig:framework}
 \end{figure}
 
 
-\section{Overview of Savior Glass System Design}
+\section{Overview of SARA System Design}
 \label{sec:overview}
 
-Savior Glass is designed as a pair of spectacles with a small camera at the bridge and a processing unit worn at the waist or in a pocket. The design follows five principles derived from the problems described in Chapter~\ref{chap:introduction}:
+SARA is designed as a pair of spectacles with a small camera at the bridge and a processing unit worn at the waist or in a pocket. The design follows five principles derived from the problems described in Chapter~\ref{chap:introduction}:
 
 \begin{enumerate}[noitemsep]
     \item \textbf{Offline first:} every core function runs locally. The only online feature is an optional scene-description mode that the user must choose on purpose.
@@ -70,10 +70,10 @@ Savior Glass is designed as a pair of spectacles with a small camera at the brid
     \item \textbf{Safe before decisive:} when the device is not sure, it says so. It never tells the user that a note is counterfeit.
 \end{enumerate}
 
-\subsection{General Overview of Savior Glass}
+\subsection{General Overview of SARA}
 When the device boots it announces that the smart glass is starting and then speaks the name of the active mode. The user cycles through the modes with the MODE button. In \textit{text reading mode}, ACTION captures and recognises text, speaks it once and stores it, and READ speaks the stored text again. In \textit{object mode}, the glass scans the scene every 1.5~seconds and announces up to three objects, for example ``in front: chair, person''. In \textit{currency mode}, ACTION detects the note, speaks its value in Bangla and gives a vibration pattern; for a 500 or 1,000 Taka note it then gives the result of the safe check, and it can ask the user to hold the note up to a light for the watermark check. In \textit{emotion mode}, ACTION announces the facial expression of the nearest face. The \textit{online mode} describes the scene when the internet and an API key are available. VOLUME~UP and VOLUME~DOWN change the volume in 10\% steps. The name of a mode is spoken immediately after MODE is pressed, while its model loads in the background.
 
-\subsection{Structural Characteristics of Savior Glass}
+\subsection{Structural Characteristics of SARA}
 The design places only the camera on the spectacle frame and carries the Raspberry Pi~5, the push-button pad, the vibration motor and the battery in a small enclosure at the waist or in a pocket. Separating the processing unit from the frame keeps the glasses light and moves the heat of the processor away from the face.
 
 The first prototype (Figure~\ref{fig:prototype}) is simpler than this design. It is a 3D-printed white spectacle frame with the camera module fixed above the bridge, so that the camera looks where the wearer's face points. The Raspberry Pi~5, with its heat sink and fan, is tied to the right temple of the frame, and a flat ribbon cable loops from the camera to the board. This was the quickest way to get a working device on a person's head, and it is enough for testing the software. It also shows why the design calls for a separate enclosure: with the board on one temple the frame is heavy on one side, the fan sits next to the ear, and the ribbon cable stands above the head.
@@ -83,7 +83,7 @@ The first prototype (Figure~\ref{fig:prototype}) is simpler than this design. It
     \includegraphics[width=0.32\textwidth]{proto_front.jpg}
     \includegraphics[width=0.32\textwidth]{proto_side.jpg}
     \includegraphics[width=0.32\textwidth]{proto_top.jpg}
-    \caption{First prototype of Savior Glass: the camera module above the bridge of a 3D-printed frame (left), the Raspberry Pi~5 with heat sink and fan tied to the right temple (centre), and the ribbon cable between camera and board (right)}
+    \caption{First prototype of SARA: the camera module above the bridge of a 3D-printed frame (left), the Raspberry Pi~5 with heat sink and fan tied to the right temple (centre), and the ribbon cable between camera and board (right)}
     \label{fig:prototype}
 \end{figure}
 
@@ -107,19 +107,23 @@ Table~\ref{tab:hardware} summarises the hardware of the prototype. Each componen
 
 \begin{table}[!htbp]
 \centering
-\caption{Hardware components of Savior Glass}
+\caption{Hardware components of SARA}
 \label{tab:hardware}
-\begin{tabular}{|p{3.3cm}|p{5.4cm}|p{5.3cm}|}
+\small
+\begin{tabular}{|>{\centering\arraybackslash}m{2.6cm}|M{2.6cm}|M{5.0cm}|M{4.1cm}|}
 \hline
-\textbf{Component} & \textbf{Specification} & \textbf{Role} \\ \hline
-Raspberry Pi~5 & Quad-core Cortex-A76, 2.4 GHz, 4/8 GB RAM & Runs all models and the application \\ \hline
-Camera Module 2 & Sony IMX219 sensor, fixed focus, used at 640$\times$480 & Captures the scene \\ \hline
-Push-buttons (5) & Momentary, wired to GND, BCM 17/27/24/22/23 & MODE, ACTION, READ, VOL+, VOL$-$ \\ \hline
-Vibration motor & Driven by PWM on BCM 13 & Haptic feedback \\ \hline
-Earphone / speaker & 3.5 mm or USB audio through ALSA & Speech output \\ \hline
-Power bank & USB-C power bank (the official Pi~5 supply is rated 5 V, 5 A) & Portable power \\ \hline
-Spectacle frame & Frame with camera mount at the bridge & Wearable form factor \\ \hline
+\textbf{Picture} & \textbf{Component} & \textbf{Specification} & \textbf{Role} \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_pi5.jpg}\vspace{1pt} & Raspberry Pi~5 with active cooler & Quad-core Cortex-A76, 2.4 GHz, 4/8 GB RAM & Runs all models and the application \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_camera.jpg}\vspace{1pt} & Camera Module 2 & Sony IMX219 sensor, fixed focus, used at 640$\times$480 & Captures the scene \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_buttons.jpg}\vspace{1pt} & Push-buttons (5) & Momentary, wired to GND, BCM 17/27/24/22/23 & MODE, ACTION, READ, VOL+, VOL$-$ \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_motor.jpg}\vspace{1pt} & Vibration motor & Small eccentric-mass motor driven by PWM on BCM 13 & Haptic feedback \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_earphone.jpg}\vspace{1pt} & Earphone / speaker & 3.5 mm or USB audio through ALSA & Speech output \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_powerbank.jpg}\vspace{1pt} & Power bank & USB-C power bank (the official Pi~5 supply is rated 5 V, 5 A) & Portable power \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_frame.jpg}\vspace{1pt} & Spectacle frame & 3D-printed frame with the camera above the bridge & Wearable form factor \\ \hline
 \end{tabular}
+
+\vspace{3pt}
+\raggedright{\footnotesize Picture credits (Wikimedia Commons): Raspberry Pi~5 with active cooler, by SimonWaldherr, CC BY 4.0; Camera Module v2, by the Raspberry Pi Foundation, CC BY-SA 4.0; tactile push-buttons and vibration motor, by Raimond Spekking, CC BY-SA 4.0; earphones, by Berthold Werner, CC BY-SA 3.0; USB power bank, by Pinguinguy, CC0. Spectacle frame: our first prototype. The pictures show the type of part, not necessarily the exact model used.}
 \end{table}
 
 \subsection*{Processing Unit}
@@ -133,7 +137,7 @@ Five push-buttons connect GPIO pins to ground with internal pull-up resistors. A
 
 \begin{table}[!htbp]
 \centering
-\caption{Button map of Savior Glass}
+\caption{Button map of SARA}
 \label{tab:buttons}
 \begin{tabular}{|c|c|p{9cm}|}
 \hline
@@ -163,7 +167,7 @@ The software is written in Python and organised as a small core with plug-in mod
 
 \begin{table}[!htbp]
 \centering
-\caption{Software modules of Savior Glass}
+\caption{Software modules of SARA}
 \label{tab:modules}
 \small
 \begin{tabular}{|L{5.6cm}|L{9.0cm}|}
@@ -333,15 +337,15 @@ Figure~\ref{fig:flow} shows the control flow of the application. The program run
   \draw[arrow] (loop) |- (speak);
   \draw[arrow] (btn.west) -- node[above, font=\scriptsize]{no} (loop.east);
 \end{tikzpicture}
-\caption{Overall control flow of Savior Glass}
+\caption{Overall control flow of SARA}
 \label{fig:flow}
 \end{figure}
 
 
-\section{Methodology: Building Savior Glass}
+\section{Methodology: Building SARA}
 \label{sec:method}
 
-The development of Savior Glass followed an iterative methodology in four phases: requirement analysis, data engineering and model development, system integration, and evaluation.
+The development of SARA followed an iterative methodology in four phases: requirement analysis, data engineering and model development, system integration, and evaluation.
 
 \subsection{Requirement Analysis}
 The requirements were derived from the review of existing systems (Chapter~\ref{chap:literature}) and from the situation of visually impaired people in Bangladesh: the device must work offline, speak Bangla, read Bangla and English, recognise Taka notes, help with counterfeit notes, and be usable without a screen. These requirements defined the modes, the button interface and the choice of offline models.

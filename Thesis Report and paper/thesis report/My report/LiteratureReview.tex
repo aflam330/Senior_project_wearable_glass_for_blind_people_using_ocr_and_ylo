@@ -7,7 +7,7 @@
 
 Assistive technology (AT) for blind and visually impaired (BVI) people aims to replace or supplement visual information with another channel, usually sound or touch. Traditional aids such as the white cane, guide dogs and Braille are reliable but provide limited information: a cane detects an obstacle but cannot say what it is, and Braille is available only for a small fraction of printed material. Over the last two decades, the combination of low-cost cameras, embedded processors and deep learning has made it possible to build devices that ``see'' on behalf of the user and describe the scene through speech \cite{at_review2025, wearable_review2024}.
 
-A recent bibliometric review of 533 articles on wearable mobility aids published between 2014 and 2024 shows a clear shift from single-sensor prototypes towards user-centred, multi-function systems that combine computer vision, audio and haptic feedback \cite{wearable_review2024}. Reviews of image-to-voice systems describe a common two-stage pipeline: a vision model converts the image into text or labels, and a text-to-speech (TTS) engine converts that text into audio \cite{imgspeech_review2024}. Savior Glass follows the same general pipeline, but specialises each stage for Bangla and for offline use.
+A recent bibliometric review of 533 articles on wearable mobility aids published between 2014 and 2024 shows a clear shift from single-sensor prototypes towards user-centred, multi-function systems that combine computer vision, audio and haptic feedback \cite{wearable_review2024}. Reviews of image-to-voice systems describe a common two-stage pipeline: a vision model converts the image into text or labels, and a text-to-speech (TTS) engine converts that text into audio \cite{imgspeech_review2024}. SARA follows the same general pipeline, but specialises each stage for Bangla and for offline use.
 
 \section{Historical Background and Evolution}
 \label{sec:history}
@@ -82,13 +82,13 @@ Before comparing technologies, it helps to see what the devices themselves look 
 \small
 \begin{tabular}{|>{\centering\arraybackslash}m{2.6cm}|M{2.1cm}|M{3.0cm}|M{2.9cm}|M{3.0cm}|}
 \hline
-\textbf{Device} & \textbf{System} & \textbf{How it works} & \textbf{What it gives the user} & \textbf{What is missing} \\ \hline
-\vspace{2pt}\includegraphics[width=2.5cm]{dev_optacon.jpg}\vspace{1pt} & Optacon (1966) \cite{linvill1966} & A small hand-held camera is moved along the line; the shape of each letter is reproduced on a pad of vibrating pins under one fingertip & Any printed text can be read without a sighted helper & Slow; months of training; no speech; no longer manufactured \\ \hline
-\vspace{2pt}\includegraphics[width=2.5cm]{dev_orcam.jpg}\vspace{1pt} & OrCam MyEye \cite{orcam} & A camera and speaker clipped to the side of a spectacle frame; recognition runs inside the device & Reads printed text aloud; recognises faces, products and some banknotes & Price far beyond most users in Bangladesh; no Bangla; no Taka \\ \hline
-\vspace{2pt}\includegraphics[width=2.5cm]{dev_googleglass.jpg}\vspace{1pt} & Google Glass scene analysis (2021) \cite{googleglass2021} & Camera of a Google Glass; pictures are analysed by a cloud vision service; bone-conduction audio & Spoken description of the scene in front of the user & Needs the internet; expensive glass; no local language or currency \\ \hline
-\vspace{2pt}\includegraphics[width=2.5cm]{dev_esight.jpg}\vspace{1pt} & eSight eyewear \cite{esight} & Head-worn camera with two small screens in front of the eyes; magnifies and raises contrast & People with low vision can read and see faces with their remaining sight & No help for a totally blind user; expensive; nothing is read aloud \\ \hline
-\vspace{2pt}\includegraphics[width=2.5cm]{dev_airis.jpg}\vspace{1pt} & AIris (2024) \cite{airis2024} & Camera on a 3D-printed frame, a Raspberry Pi, and a remote server that runs the models & Text reading, scene description, face recognition, money counting by voice request & Depends on a server; English; not Bangladeshi currency \\ \hline
-\IfFileExists{DIagram fig tab/savior_glass_prototype.jpg}{\vspace{2pt}\includegraphics[width=2.5cm]{savior_glass_prototype.jpg}\vspace{1pt}}{\textit{Savior Glass prototype}} & \textbf{Savior Glass (this work)} & Camera on a spectacle frame, Raspberry Pi~5, five buttons; all models except one optional mode run on the device & Bangla and English reading, objects, nine Taka notes, cautious counterfeit check, Bangla speech & Slow text reading on the Pi; not yet validated with the glass camera or with users \\ \hline
+\textbf{Device} & \textbf{System} & \textbf{How it works} & \textbf{What it gives the user} & \textbf{Missing features and limitations} \\ \hline
+\vspace{2pt}\includegraphics[width=2.5cm]{dev_optacon.jpg}\vspace{1pt} & Optacon (1966) \cite{linvill1966} & A small hand-held camera is moved along the line; the shape of each letter is reproduced on a pad of vibrating pins under one fingertip & Any printed text can be read without a sighted helper & Reads by touch only, no speech output; slow; needs months of training; no longer manufactured \\ \hline
+\vspace{2pt}\includegraphics[width=2.5cm]{dev_orcam.jpg}\vspace{1pt} & OrCam MyEye \cite{orcam} & A camera and speaker clipped to the side of a spectacle frame; recognition runs inside the device & Reads printed text aloud; recognises faces, products and some banknotes & No Bangla language support; no Bangladeshi Taka (currency) detection; too expensive for most users in Bangladesh \\ \hline
+\vspace{2pt}\includegraphics[width=2.5cm]{dev_googleglass.jpg}\vspace{1pt} & Google Glass scene analysis (2021) \cite{googleglass2021} & Camera of a Google Glass; pictures are analysed by a cloud vision service; bone-conduction audio & Spoken description of the scene in front of the user & Does not work without the internet; no Bangla language support; no Taka detection; costly hardware \\ \hline
+\vspace{2pt}\includegraphics[width=2.5cm]{dev_esight.jpg}\vspace{1pt} & eSight eyewear \cite{esight} & Head-worn camera with two small screens in front of the eyes; magnifies and raises contrast & People with low vision can read and see faces with their remaining sight & Of no use to a totally blind user; does not read text aloud; expensive \\ \hline
+\vspace{2pt}\includegraphics[width=2.5cm]{dev_airis.jpg}\vspace{1pt} & AIris (2024) \cite{airis2024} & Camera on a 3D-printed frame, a Raspberry Pi, and a remote server that runs the models & Text reading, scene description, face recognition, money counting by voice request & Needs a remote server and the internet; English only, no Bangla; no Taka detection \\ \hline
+\IfFileExists{DIagram fig tab/savior_glass_prototype.jpg}{\vspace{2pt}\includegraphics[width=2.5cm]{savior_glass_prototype.jpg}\vspace{1pt}}{\textit{SARA prototype}} & \textbf{SARA (this work)} & Camera on a spectacle frame, Raspberry Pi~5, five buttons; all models except one optional mode run on the device & Bangla and English reading, objects, nine Taka notes, cautious counterfeit check, Bangla speech & Text reading is slow on the Pi (about 19 s per capture); not yet tested through the glass camera or with users \\ \hline
 \end{tabular}
 
 \vspace{3pt}
@@ -116,7 +116,7 @@ Table~\ref{tab:assistive_compare} compares representative systems from the liter
 \cite{visionvoice2024} & Vision Voice & Raspberry Pi 3, PyTesseract, gTTS & Low cost, simple & Text only, online TTS \\ \hline
 \cite{blindassist2021} & BLIND ASSIST & Android, TensorFlow Lite currency, OCR & One app, currency feature & Phone and touch screen needed \\ \hline
 \cite{nstubdtaka2024} & NSTU-BDTAKA & YOLOv5, 3,111 labelled images & Bangladeshi Taka detection & Manual labels, no assistive device \\ \hline
-\textbf{This work} & \textbf{Savior Glass} & \textbf{EasyOCR bn/en, YOLOv8, synthetic Taka data, multi-view authenticator, watermark check, Piper/espeak-ng} & \textbf{On-device, Bangla speech, 9 Taka classes, safe counterfeit check, buttons, measured on Pi~5} & \textbf{Slow OCR on the Pi; weak with the glass camera; no user study yet} \\ \hline
+\textbf{This work} & \textbf{SARA} & \textbf{EasyOCR bn/en, YOLOv8, synthetic Taka data, multi-view authenticator, watermark check, Piper/espeak-ng} & \textbf{On-device, Bangla speech, 9 Taka classes, safe counterfeit check, buttons, measured on Pi~5} & \textbf{Slow OCR on the Pi; weak with the glass camera; no user study yet} \\ \hline
 \end{tabular}
 \end{table}
 \FloatBarrier
@@ -142,7 +142,7 @@ YOLOv8n-SE \cite{yolov8nse} & Detect (multi-currency) & Manual & 0.972 & 0.804 &
 \end{table}
 \FloatBarrier
 
-\section{Key Research Areas Relevant to Savior Glass}
+\section{Key Research Areas Relevant to SARA}
 
 Recent work on assistive devices relevant to this thesis falls into four areas, summarised in Table~\ref{tab:key_areas}.
 
@@ -199,23 +199,23 @@ Every system in Tables~\ref{tab:reviewed_systems} and~\ref{tab:assistive_compare
     \item \textbf{Users are missing from the evaluation.} Few prototypes report task times, errors or usability scores with blind participants.
 \end{itemize}
 
-Table~\ref{tab:gap} sets each gap against what this thesis does about it. The last column is deliberately honest: two of the gaps are only partly closed here.
+Table~\ref{tab:gap} lists each gap, where it shows up in existing devices and research, what SARA does about it, and how far this thesis gets. The last column is deliberately honest: two of the gaps are only partly closed here.
 
 \begin{table}[!htbp]
 \centering
 \caption{Research gaps and how this thesis responds to them}
 \label{tab:gap}
 \small
-\begin{tabular}{|p{3.4cm}|p{4.2cm}|p{4.4cm}|p{2.2cm}|}
+\begin{tabular}{|L{1.7cm}|L{3.3cm}|L{3.2cm}|L{3.4cm}|L{2.3cm}|}
 \hline
-\textbf{Gap} & \textbf{State of existing work} & \textbf{Response in this thesis} & \textbf{Closed?} \\ \hline
-No device fits a Bangla-speaking blind user & English, online speech, cloud recognition, or high price & Bangla-first glass on a Raspberry Pi~5; all core modes on the device & Yes, as a prototype \\ \hline
-Unknown number of views & Models trained and tested with a fixed view count & Training on random prefixes of views (Section~\ref{sec:method}) & Yes \\ \hline
-Uncertain verdict for a user who cannot verify it & Not addressed & Policy that never says ``counterfeit'' and has a bounded chance of passing one (Section~\ref{sec:safe_policy}) & Safe; not yet useful on whole notes \\ \hline
-Hand-labelled Taka data & A few thousand manual labels & 22,333 automatically labelled composites (Chapter~\ref{chap:dataset}) & Yes, for full-note photographs \\ \hline
-Leakage between counterfeit prints & Splits by image or note; prints not checked & Serial-number audit and a print-disjoint split (Section~\ref{sec:serial_audit}) & Yes; test set still small \\ \hline
-Missing per-module and on-device figures & ``Works'' without numbers & Every module measured on held-out data and on the Pi~5; negative results reported & Yes \\ \hline
-No evaluation with users & Rare in prototypes & Protocol, logging and questionnaire tools prepared & No: study not yet run \\ \hline
+\textbf{Area} & \textbf{Research gap (what is missing)} & \textbf{In existing devices and research} & \textbf{What SARA does} & \textbf{Status in this thesis} \\ \hline
+Device & No affordable wearable that speaks Bangla and recognises Taka without the internet & Commercial devices are English-only and costly; research glasses send pictures to a server & Bangla-first glass on a Raspberry Pi~5; four of five modes run on the device & Solved as a prototype \\ \hline
+Method & Counterfeit checks assume all six views of a note are captured & Multi-view models are trained and tested with a fixed number of views & Training on random prefixes of views keeps accuracy from one to six views (Section~\ref{sec:method}) & Solved \\ \hline
+Safety & No safe way to give an uncertain counterfeit result to a user who cannot check it & Not addressed in the reviewed devices & Never says ``counterfeit''; says ``likely genuine'' only above a safe threshold, otherwise ``check by hand'' (Section~\ref{sec:safe_policy}) & Safe, but rarely confirms a whole note \\ \hline
+Data & Taka detectors need thousands of hand-labelled images & NSTU-BDTAKA: 3,111 manually labelled images & 22,333 training images labelled automatically (Chapter~\ref{chap:dataset}) & Solved for full-note photos; weak on close-ups \\ \hline
+Evaluation & Counterfeit tests mix copies of the same print in training and test & Datasets are split by image or by note; prints are not checked & Serial-number audit and a test split with unseen prints (Section~\ref{sec:serial_audit}) & Done; only about 24 test prints \\ \hline
+Evaluation & Prototypes rarely report the accuracy of each feature or the speed on the real device & ``It works'' without numbers & Every feature measured on held-out data; speed measured on the Pi~5; failures reported & Done \\ \hline
+Evaluation & Few tests with blind users & Rare in prototypes & Study protocol, logging and a Bangla voice questionnaire prepared; trials started & Not finished \\ \hline
 \end{tabular}
 \end{table}
 \FloatBarrier

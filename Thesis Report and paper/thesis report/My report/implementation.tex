@@ -4,7 +4,7 @@
 
 \section{Design Overview}
 
-The implementation of Savior Glass was guided by usability for people without sight, by the limited computing power of a Raspberry Pi, and by the need to work without the internet. The system was not designed as a single large model; instead, each function is a small, replaceable mode that uses the best available offline model and falls back to a simpler method if a model is missing. The work progressed in four stages: a user-centred interaction design, a desktop prototype with a webcam, deployment and measurement on the Raspberry Pi~5, and a first hands-on test of the glass.
+The implementation of SARA was guided by usability for people without sight, by the limited computing power of a Raspberry Pi, and by the need to work without the internet. The system was not designed as a single large model; instead, each function is a small, replaceable mode that uses the best available offline model and falls back to a simpler method if a model is missing. The work progressed in four stages: a user-centred interaction design, a desktop prototype with a webcam, deployment and measurement on the Raspberry Pi~5, and a first hands-on test of the glass.
 
 \subsection{User-Centred Design}
 A person who cannot see the device must be able to find every control by touch and must never need a screen. For this reason the glass uses five physical buttons with distinct positions, confirms every action with speech, and speaks the name of the mode after every mode change. Heavy tasks run only on request, so that the user decides when the device speaks. Messages are short, in Bangla, and can be repeated with the READ button in text mode. When the device cannot do what was asked, it says why: ``no note found, hold it in front of the camera'', ``hold the note closer to the light'', ``no face found''.
@@ -49,7 +49,7 @@ The software stack is summarised in Table~\ref{tab:libraries}. On the Raspberry 
 
 \begin{table}[!htbp]
 \centering
-\caption{Main libraries and tools used in Savior Glass}
+\caption{Main libraries and tools used in SARA}
 \label{tab:libraries}
 \begin{tabular}{|p{3.6cm}|p{10.2cm}|}
 \hline
@@ -164,8 +164,8 @@ The detector is also used in a live desktop application that draws boxes on the 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth]{fig9_webcam_detection.png}
-    \caption{Live detection application: a 100 Taka and a 50 Taka note are detected with confidence 0.87 and 0.78 in an indoor scene}
+    \includegraphics[width=0.55\textwidth]{live_1000_500.jpg}
+    \caption{Live detection application on a laptop webcam: a 1,000 Taka and a 500 Taka note held by hand are detected with confidence 0.82 and 0.63}
     \label{fig:webcam}
 \end{figure}
 

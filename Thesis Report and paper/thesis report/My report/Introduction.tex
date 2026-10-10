@@ -16,11 +16,11 @@ Commercial assistive products such as OrCam MyEye \cite{orcam}, Envision Glasses
     \includegraphics[width=0.45\textwidth]{sample_note_10_taka.jpg}
     \hspace{0.3cm}
     \includegraphics[width=0.45\textwidth]{sample_detection_100_taka.jpg}
-    \caption{Left: a 10 Taka note from the local currency dataset. Right: a 100 Taka note placed on a real street background, the kind of cluttered scene the currency detector of Savior Glass is trained to handle.}
+    \caption{Left: a 10 Taka note from the local currency dataset. Right: a 100 Taka note placed on a real street background, the kind of cluttered scene the currency detector of SARA is trained to handle.}
     \label{fig:intro_samples}
 \end{figure}
 
-This thesis presents \textbf{Savior Glass}, a wearable, offline, Bangla-first smart glass for visually impaired users. Savior Glass is designed around a Raspberry Pi~5 \cite{raspberrypi5}, a camera module mounted near the eyes, five physical push-buttons and an earphone or speaker. It offers five modes that a user cycles with a single button: \textit{text reading} (Bangla and English OCR), \textit{object detection} (spoken names of everyday objects in Bangla), \textit{currency detection} (denomination of Bangladeshi Taka notes, with a safe counterfeit check for 500 and 1,000 Taka notes), an optional \textit{online scene description}, and \textit{emotion} (the facial expression of the person in front of the user). All modes except the online one run on the device itself without internet access once the models are installed.
+This thesis presents \textbf{SARA (Smart Assistive Reading Aid)}, a wearable, offline, Bangla-first smart glass for visually impaired users. SARA is designed around a Raspberry Pi~5 \cite{raspberrypi5}, a camera module mounted near the eyes, five physical push-buttons and an earphone or speaker. It offers five modes that a user cycles with a single button: \textit{text reading} (Bangla and English OCR), \textit{object detection} (spoken names of everyday objects in Bangla), \textit{currency detection} (denomination of Bangladeshi Taka notes, with a safe counterfeit check for 500 and 1,000 Taka notes), an optional \textit{online scene description}, and \textit{emotion} (the facial expression of the person in front of the user). All modes except the online one run on the device itself without internet access once the models are installed.
 
 The work is also a data-engineering study. Public Bangladeshi currency datasets consist mainly of clean, close-up scans of notes. A model trained only on them learns that ``the whole frame is the note'' and fails on a live camera. We therefore built a copy-paste compositing pipeline that places notes on real photographs and generates exact bounding boxes automatically. For counterfeit detection we worked with a six-view genuine/counterfeit note dataset and found that a model trained only on six views collapses when it sees one view, which led to a prefix-robust training protocol. We then found that the dataset's usual split is easier than it looks: most counterfeit notes are copies of a few prints, and the same print appears in training and test. This led to a second split with unseen prints, to a check of the banknote watermark, and to a deliberately cautious spoken verdict.
 
@@ -65,7 +65,7 @@ The statement has two halves on purpose. The first is an engineering problem: bu
 \subsection*{Who is affected and what success would look like}
 The people affected are blind and low-vision adults who handle cash and printed Bangla every day, and, indirectly, the family members they now depend on. For them the work would count as successful if a user wearing the glass can, alone and with buttons only, (i) hear a short Bangla sign or label read correctly, (ii) hear the right denomination of a note, (iii) be told honestly when the device is not sure, and (iv) never be told that a genuine note is counterfeit. Chapter~\ref{chap:results} reports how far the present prototype is from each of these four points.
 
-This project addresses these gaps and develops Savior Glass, an assistive smart glass that brings together:
+This project addresses these gaps and develops SARA, an assistive smart glass that brings together:
 
 \begin{itemize}[noitemsep]
     \item Bangla and English text reading with a capture-then-read interaction;
@@ -80,7 +80,7 @@ This project addresses these gaps and develops Savior Glass, an assistive smart 
 \section{Objectives}
 \label{sec:Objective}
 
-The primary objective of this project is to design, implement and evaluate Savior Glass, an affordable, offline, Bangla-first assistive smart glass for visually impaired people. The specific goals are:
+The primary objective of this project is to design, implement and evaluate SARA, an affordable, offline, Bangla-first assistive smart glass for visually impaired people. The specific goals are:
 
 \begin{enumerate}[noitemsep]
     \item To build a wearable prototype on Raspberry Pi~5 that is operated entirely through physical buttons and audio feedback.
@@ -144,7 +144,7 @@ This research addresses the following questions:
 \label{sec:contributions}
 The main contributions of this thesis are:
 \begin{enumerate}[noitemsep]
-    \item A complete five-mode assistive smart-glass system (Savior Glass) with Bangla-first speech and physical button control, measured on a Raspberry Pi~5: a median of 327~ms for the currency check, 1.48~GB peak memory and no thermal throttling in a 30-minute run.
+    \item A complete five-mode assistive smart-glass system (SARA) with Bangla-first speech and physical button control, measured on a Raspberry Pi~5: a median of 327~ms for the currency check, 1.48~GB peak memory and no thermal throttling in a 30-minute run.
     \item A copy-paste compositing pipeline that turns 5,073 clean note images into a 22,333-image detection dataset with automatic bounding boxes, and a YOLOv8s Taka detector trained on it that names 91.5\% of 1,536 independent photographs correctly.
     \item A prefix-robust multi-view training protocol that removes the train/test mismatch in the number of views: one-view accuracy 98.2\% against 71.2\% for fixed six-view training, over three seeds on a note-disjoint test set.
     \item An audit showing that most JaalTaka counterfeits share a few printed serial numbers, a print-disjoint split built from it, and the finding that accuracy drops from about 98\% to about 90\% on unseen prints.
@@ -167,7 +167,7 @@ This thesis is organized into seven chapters, each addressing a specific aspect 
     This chapter reviews assistive technologies for visually impaired people, existing reading devices, smart glasses, OCR and text-to-speech systems, object detection, Bangladeshi currency recognition, multi-view learning, evaluation leakage and safe prediction.
 
     \item \textbf{Chapter 3: System Design and Methodology} \\
-    This chapter describes the framework, hardware components, software design and the methodology of Savior Glass.
+    This chapter describes the framework, hardware components, software design and the methodology of SARA.
 
     \item \textbf{Chapter 4: Implementation Process} \\
     This chapter explains how each module was implemented, integrated and deployed.
