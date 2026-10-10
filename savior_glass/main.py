@@ -77,6 +77,7 @@ class SmartGlass:
 
         # Modes — OCR loads lazily; YOLO loads on first activate
         self._modes = [OCRMode(), ObjectMode(), CurrencyMode(), ClaudeMode(), EmotionMode()]
+        self._modes[config.MODE_OCR].speak_line = lambda t: self._tts.speak(t)   # pages are spoken line by line
         self._current_mode: int = config.MODE_OCR
         self._mode_lock = threading.Lock()
 

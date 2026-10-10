@@ -131,8 +131,44 @@ def compare(threads=4):
                                                             indent=1, ensure_ascii=False), encoding="utf-8")
 
 
+def stream(threads=4):
+    """The glass's own capture path (OCRMode.process_frame) with line-by-line speech: time until the first line is
+    handed to speech, total time, error on the pages, and the validation phrases (which must not change)."""
+    import torch
+    torch.set_num_threads(threads)
+    m = _ocr_mode()
+    spoken = []
+    m.speak_line = lambda t: spoken.append((time.perf_counter(), t))
+    pages = [make_page(s, w, h) for s in (0, 1, 2) for (w, h) in ((640, 480), (1280, 720))]
+    m.process_frame(pages[0][0])
+    firsts, totals, cers, streamed = [], [], [], 0
+    for img, gt in pages:
+        spoken.clear()
+        t0 = time.perf_counter()
+        m.process_frame(img)
+        totals.append(time.perf_counter() - t0)
+        if spoken:
+            firsts.append(spoken[0][0] - t0)
+        streamed += int(m.streamed)
+        cers.append(B.cer(gt, m._stored_text or ""))
+    def read(img):
+        m.process_frame(img)
+        return m._stored_text or ""
+    val = B.score(read, "val")
+    n_stream_val = 0
+    res = {"page_first_line_s_median": float(np.median(firsts)) if firsts else None,
+           "page_total_s_median": float(np.median(totals)), "page_cer": float(np.mean(cers)),
+           "pages_streamed": streamed, "pages": len(pages),
+           "val_cer": val["overall"]["cer"], "val_cer_bn": val["bn"]["cer"], "val_cer_en": val["en"]["cer"]}
+    print(json.dumps(res, indent=1))
+    (OUT / "page_streaming.json").write_text(json.dumps({"threads": threads, **res}, indent=1), encoding="utf-8")
+
+
 def main():
     cmd = sys.argv[1] if len(sys.argv) > 1 else "profile"
+    if cmd == "stream":
+        stream()
+        return
     if cmd == "profile":
         profile()
     elif cmd == "compare":

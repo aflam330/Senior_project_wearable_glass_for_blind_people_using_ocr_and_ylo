@@ -211,6 +211,20 @@ OCR_PIPELINE = os.environ.get("OCR_PIPELINE", "v2")
 OCR_V2_PARAMS = {"text_threshold": 0.8, "low_text": 0.3, "link_threshold": 0.4, "mag_ratio": 1.0, "contrast_ths": 0.1,
                  "adjust_contrast": 0.7, "slope_ths": 0.4}
 OCR_V2_MIN_CONF = 0.2
+# Decoder for pipeline v2. Whole-page benchmark (ocr_bench/page_bench.py, laptop CPU limited to 4 threads like the
+# Pi, results/ocr_bench/page_speed_compare.json, 2026-10-11): greedy reads a 12-line page in 6.5 s against 8.9 s
+# for beam search, with the same validation error (48 val phrases x 3 seeds: 2.14 % vs 2.18 %; Bangla 1.59 vs
+# 1.64 %). Rule as for the canvas: keep the faster setting only if validation error stays within 0.5 points.
+# Batch size 16 gave no speed-up; reading at the camera's own size was 41 % faster but +0.74 points error (rejected).
+# The legacy pipeline keeps OCR_DECODER.
+OCR_V2_DECODER = os.environ.get("OCR_V2_DECODER", "greedy")
+# Pages: when the main text block holds at least OCR_STREAM_MIN_LINES lines, each line is spoken as soon as it is
+# read, while the rest of the page is still being read. Measured (results/ocr_bench/page_streaming.json, same 4-thread
+# laptop): first line after 5.5 s on a 12-line page; validation error unchanged (2.14 %, 432 images). Fewer lines
+# (signs, labels) take the normal path. Without the main-text-block rule on pages, validation error rose to 4.95 %
+# (results/ocr_bench/page_streaming_control.json), so the rule is applied on both paths. Not yet timed on the Pi.
+OCR_STREAM_PAGES = os.environ.get("OCR_STREAM_PAGES", "1") == "1"
+OCR_STREAM_MIN_LINES = int(os.environ.get("OCR_STREAM_MIN_LINES", "4"))
 
 # Speak the captured text immediately after ACTION (READ repeats it). 0 = only confirm the capture, as before.
 # Test preview (preview.py): run the current mode's own detector on the live picture every

@@ -1,0 +1,11 @@
+{
+ "threads": 4,
+ "page_first_line_s_median": 5.461124799971003,
+ "page_total_s_median": 9.678978949959856,
+ "page_cer": 0.0023980815347721825,
+ "pages_streamed": 6,
+ "pages": 6,
+ "val_cer": 0.021426740147212936,
+ "val_cer_bn": 0.0159180379075946,
+ "val_cer_en": 0.026935442386831276
+}

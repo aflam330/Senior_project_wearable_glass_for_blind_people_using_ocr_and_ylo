@@ -77,6 +77,9 @@ class OCRMode(BaseMode):
         # it away before listening to a (possibly long) read-out.
         self._stored_text: Optional[str] = None
         self._stored_lang: str = "en"
+        # set by main.py to the speech function: pages are spoken line by line while the rest is still being read
+        self.speak_line = None
+        self.streamed = False   # the last capture was already spoken line by line
 
     def _ensure_ekush(self):
         if self._ekush is None:
@@ -142,6 +145,7 @@ class OCRMode(BaseMode):
             return "ইঞ্জিন লোড হয়নি, অনুগ্রহ করে অপেক্ষা করুন"  # engine not loaded
 
         texts = []
+        self.streamed = False
         self.last_boxes, self.last_boxes_t = [], time.time()
         v2 = getattr(config, "OCR_PIPELINE", "legacy") == "v2"
         if self._reader is not None and v2:
@@ -229,6 +233,9 @@ class OCRMode(BaseMode):
         self._stored_text = combined
         self._stored_lang = lang
 
+        if self.streamed:
+            # every line has already been spoken while it was read; READ repeats the whole page
+            return "পড়া শেষ। আবার শুনতে রিড বাটন চাপুন" if lang == "bn" else "Done. Press READ to hear it again."
         if getattr(config, "OCR_SPEAK_ON_CAPTURE", True):
             # say what was read straight away, so the user hears the detection itself; READ repeats it
             return ("লেখা আছে: " if lang == "bn" else "The text says: ") + combined
@@ -258,11 +265,15 @@ class OCRMode(BaseMode):
         elif w > 1600:
             frame = cv2.resize(frame, (1600, int(h * 1600 / w)), interpolation=cv2.INTER_AREA)
         gray = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8)).apply(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
-        decoder = getattr(config, "OCR_DECODER", "beamsearch")
+        decoder = getattr(config, "OCR_V2_DECODER", getattr(config, "OCR_DECODER", "beamsearch"))
         kw = dict(getattr(config, "OCR_V2_PARAMS", {}))
         kw.update(decoder=decoder, canvas_size=getattr(config, "OCR_CANVAS_SIZE", 2560))
         if decoder == "beamsearch":
             kw["beamWidth"] = getattr(config, "OCR_BEAM_WIDTH", 5)
+        if self.speak_line is not None and getattr(config, "OCR_STREAM_PAGES", False):
+            page = self._read_page_streaming(gray, kw, w0)
+            if page is not None:
+                return page
         try:
             det = self._reader.readtext(gray, detail=1, paragraph=False, width_ths=0.7, height_ths=0.7, **kw)
         except Exception as exc:
@@ -275,6 +286,67 @@ class OCRMode(BaseMode):
                             (b["x0"], b["y0"]) in kept] for b in _text_boxes(det)]
         text = order_lines(block)
         return [text] if text else []
+
+    def _read_page_streaming(self, gray: np.ndarray, kw: dict, w0: int):
+        """Whole pages: find all text first, then read and speak it line by line in reading order.
+        Returns None when the picture has fewer than OCR_STREAM_MIN_LINES lines (the normal path then runs)."""
+        det_kw = {k: kw[k] for k in ("text_threshold", "low_text", "link_threshold", "canvas_size", "mag_ratio", "slope_ths")
+                  if k in kw}
+        rec_kw = {k: kw[k] for k in ("decoder", "beamWidth", "contrast_ths", "adjust_contrast") if k in kw}
+        try:
+            hl, fl = self._reader.detect(gray, width_ths=0.7, height_ths=0.7, **det_kw)
+        except Exception as exc:
+            logger.warning("EasyOCR detection error: %s", exc)
+            return None
+        boxes = list(hl[0]) if hl else []          # [x_min, x_max, y_min, y_max]
+        if not boxes:
+            return None
+        # the same main-text-block rule as the normal path, on geometry only (no confidence before recognition):
+        # without it, background text in a photographed scene counted as "lines" and was read (validation CER
+        # 2.14 % -> 4.95 %, results/ocr_bench/page_streaming_control.json). Tilted boxes are not read on pages.
+        quads = [([[b[0], b[2]], [b[1], b[2]], [b[1], b[3]], [b[0], b[3]]], i, 1.0) for i, b in enumerate(boxes)]
+        boxes = [boxes[d["t"]] for d in dominant_block(quads, 0.0)]
+        free = []
+        # group the boxes into lines: a box joins the line whose centre is within half a text height
+        lines = []
+        for b in sorted(boxes, key=lambda b: (b[2] + b[3]) / 2):
+            yc, h = (b[2] + b[3]) / 2, max(1, b[3] - b[2])
+            if lines and abs(yc - lines[-1]["yc"]) < 0.5 * max(h, lines[-1]["h"]):
+                lines[-1]["boxes"].append(b)
+            else:
+                lines.append({"yc": yc, "h": h, "boxes": [b]})
+        if len(lines) < getattr(config, "OCR_STREAM_MIN_LINES", 4):
+            return None
+        self.streamed = True
+        min_conf = getattr(config, "OCR_V2_MIN_CONF", 0.2)
+        s = w0 / float(gray.shape[1])
+        out, first = [], True
+        for ln in lines + ([{"boxes": [], "free": free}] if free else []):
+            try:
+                res = self._reader.recognize(gray, horizontal_list=sorted(ln["boxes"], key=lambda b: b[0]),
+                                             free_list=ln.get("free", []), detail=1, paragraph=False, **rec_kw)
+            except Exception as exc:
+                logger.warning("EasyOCR recognition error: %s", exc)
+                continue
+            words = []
+            for item in res:
+                if len(item) < 3 or float(item[2]) < min_conf:
+                    continue
+                words.append(item[1])
+                xs, ys = [p[0] for p in item[0]], [p[1] for p in item[0]]
+                self.last_boxes.append([int(min(xs) * s), int(min(ys) * s), int(max(xs) * s), int(max(ys) * s),
+                                        float(item[2]), True])
+            text = clean_text(" ".join(words))
+            if not text:
+                continue
+            out.append(text)
+            if first:
+                lead = "লেখা আছে: " if detect_language(text) == "bn" else "The text says: "
+                self.speak_line(lead + text)
+                first = False
+            else:
+                self.speak_line(text)
+        return out
 
     # ------------------------------------------------------------------
     # Preprocessing
