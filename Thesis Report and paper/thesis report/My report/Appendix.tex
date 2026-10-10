@@ -42,14 +42,15 @@
 \centering
 \caption{Main configuration parameters of SARA (\texttt{config.py})}
 \label{tab:app_config}
-\small
+\footnotesize
 \begin{tabular}{|L{6.4cm}|C{1.9cm}|L{5.8cm}|}
 \hline
 \textbf{Setting (name in the code)} & \textbf{Value} & \textbf{What it controls} \\ \hline
 OCR\_PIPELINE & v2 & Which text-reading pipeline is used (Section~\ref{sec:ocr_method}) \\ \hline
 OCR\_V2\_MIN\_CONF & 0.2 & Words the reader is less sure about than this are dropped \\ \hline
 OCR\_CANVAS\_SIZE & 2560 & Picture size used to find text; 640 is faster on the Pi but less accurate \\ \hline
-OCR\_DECODER & beamsearch & How the reader turns its output into letters (beam search keeps the 5 best guesses) \\ \hline
+OCR\_V2\_DECODER & greedy & How the reader turns its output into letters (greedy: the best letter at each step) \\ \hline
+OCR\_STREAM\_PAGES & on, 4 lines & Pages with at least 4 lines are spoken line by line \\ \hline
 CURRENCY\_ANNOUNCE\_CONF & 0.60 & A note is named only when the detector is at least this sure \\ \hline
 JAAL\_SAFE\_TAU & 0.99959 & The glass says ``likely genuine'' only above this score; otherwise ``check by hand'' \\ \hline
 WATERMARK\_CLEAR\_THRESHOLD & 0.5 & Score above which the watermark counts as present \\ \hline
