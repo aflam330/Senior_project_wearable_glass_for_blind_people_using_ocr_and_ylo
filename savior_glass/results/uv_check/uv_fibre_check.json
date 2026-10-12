@@ -1,0 +1,105 @@
+{
+ "date": "2026-10-12",
+ "photographs": 118,
+ "note_box_found": 111,
+ "split": "by capture order per value: first 60 % calibrate, last 40 % test",
+ "threshold_rule": "largest value accepting >= 95 % of calibration notes, at least (max surface fibres) + 2",
+ "UV_MIN_FIBRES": 14,
+ "calibrate": {
+  "notes": 68,
+  "accepted": 65,
+  "fibres_percentiles_5_50_95": [
+   14.4,
+   47.0,
+   176.4
+  ],
+  "surface_patches": 50,
+  "surface_max_fibres": 0
+ },
+ "test": {
+  "notes": 43,
+  "accepted": 29,
+  "accepted_rate": 0.6744,
+  "accepted_wilson95": [
+   0.5252,
+   0.7951
+  ],
+  "fibres_percentiles_5_50_95": [
+   4.0,
+   23.0,
+   289.8
+  ],
+  "per_value": {
+   "200": {
+    "n": 19,
+    "accepted": 19,
+    "median_fibres": 164.0
+   },
+   "500": {
+    "n": 16,
+    "accepted": 7,
+    "median_fibres": 11.5
+   },
+   "1000": {
+    "n": 8,
+    "accepted": 3,
+    "median_fibres": 9.5
+   }
+  },
+  "surface_patches": 21,
+  "surface_rejected": 21,
+  "surface_rejected_wilson95": [
+   0.8454,
+   1.0
+  ],
+  "surface_max_fibres": 0
+ },
+ "test_under_other_conditions": {
+  "as photographed": {
+   "accepted": 29,
+   "n": 43,
+   "rate": 0.6744
+  },
+  "half as bright": {
+   "accepted": 29,
+   "n": 43,
+   "rate": 0.6744
+  },
+  "1.5 times brighter": {
+   "accepted": 32,
+   "n": 43,
+   "rate": 0.7442
+  },
+  "colour cast (blue x0.8, green x1.2)": {
+   "accepted": 34,
+   "n": 43,
+   "rate": 0.7907
+  },
+  "slightly out of focus (sigma 1.5)": {
+   "accepted": 13,
+   "n": 43,
+   "rate": 0.3023
+  },
+  "sensor noise (sigma 6)": {
+   "accepted": 40,
+   "n": 43,
+   "rate": 0.9302
+  },
+  "JPEG quality 50": {
+   "accepted": 38,
+   "n": 43,
+   "rate": 0.8837
+  },
+  "half the resolution": {
+   "accepted": 19,
+   "n": 43,
+   "rate": 0.4419
+  }
+ },
+ "not_measured": [
+  "counterfeit notes (none available)",
+  "the glass camera and the lamp on the glass",
+  "notes of other values",
+  "worn or washed notes as a separate group"
+ ]
+}

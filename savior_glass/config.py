@@ -118,6 +118,26 @@ CAPTURE_GUIDE_TIMEOUT_S = 10.0
 # light and checks the first frame with a note in it (no dark / blur rejection). Logged with every check.
 STUDY_CONDITION = os.environ.get("STUDY_CONDITION", "guided")
 CAPTURE_GUIDE_PROMPT_GAP_S = 2.5
+
+# UV security-fibre check (modes/uv_check.py) for 200, 500 and 1,000 Taka notes: a genuine note shows short glowing
+# fibres under a UV lamp, on paper that stays dull. OFF by default: it was measured on phone photographs only, not
+# through the glass camera, and never on a counterfeit note (none were available).
+# Measured 2026-10-12 on 118 photographs of genuine notes (scripts/uv_dataset.py, results/uv_check/uv_fibre_check.json;
+# split by capture order, threshold fixed on the calibration part): 29 of 43 test notes accepted (67 %; 200 Taka 19/19,
+# 500 Taka 7/16, 1,000 Taka 3/8), 21 of 21 patches of the plain surface beside the note rejected. The misses are
+# photographs taken from far away or of the note's back, where few fibres are visible; slight blur halves the rate.
+# The UV picture must therefore be close and sharp (lamp and camera in a hood, about 10-15 cm from the note).
+UV_CHECK_ENABLED = os.environ.get("UV_CHECK_ENABLED", "0") == "1"
+UV_DENOMINATIONS = ("200_taka", "500_taka", "1000_taka")
+UV_MIN_FIBRES = int(os.environ.get("UV_MIN_FIBRES", "14"))      # from the calibration photographs; set again for the glass
+UV_REL_THRESHOLD = 0.12                                        # fibre brightness relative to the local lamp level
+_uv_pin = os.environ.get("UV_LIGHT_PIN", "")
+UV_LIGHT_PIN = int(_uv_pin) if _uv_pin else None               # BCM pin that switches the lamp; None = lamp switched by hand
+UV_SETTLE_S = 0.4
+UV_TIMEOUT_S = 6.0
+# The word "counterfeit" is not spoken unless this is switched on by hand. A worn or washed genuine note can lose its
+# fibres, and the user cannot check the answer; the default wording is "UV marks not found, check by hand".
+UV_SAY_COUNTERFEIT = os.environ.get("UV_SAY_COUNTERFEIT", "0") == "1"
 JAAL_VIEW_WINDOWS = (
     (0.0, 0.0, 0.4758, 1.0),
     (0.2843, 0.0, 0.8256, 1.0),

@@ -93,13 +93,18 @@ def split_language_segments(text: str) -> list[tuple[str, str]]:
     current_lang: str | None = None
     current_chars: list[str] = []
 
+    # Only letters decide the language. Punctuation (also the Bangla full stop "।", which is outside the Bangla
+    # block), digits and symbols belong to the run they stand in. Before this, every comma and full stop in a
+    # Bangla sentence was cut out as a one-character "English" piece: a new voice process and a pause each time,
+    # which is what made Bangla reading break up.
+    first = next((("bn" if _BANGLA_RE.match(c) else "en") for c in text if _BANGLA_RE.match(c) or (c.isascii() and c.isalpha())), "en")
     for ch in text:
         if _BANGLA_RE.match(ch):
             ch_lang = "bn"
-        elif ch.isspace():
-            ch_lang = current_lang or "en"
-        else:
+        elif ch.isascii() and ch.isalpha():
             ch_lang = "en"
+        else:
+            ch_lang = current_lang or first
 
         if current_lang is None:
             current_lang = ch_lang
@@ -133,7 +138,13 @@ class TTSEngine:
 
     def __init__(self, volume: int = config.DEFAULT_VOLUME):
         self._volume = volume
-        self._queue: queue.Queue = queue.Queue(maxsize=config.TTS_QUEUE_MAXSIZE)
+        # One entry per speak() call: (pieces, keep). A long text is one entry, so it can never push its own first
+        # sentences out of the queue (before, the queue held 5 pieces and a page lost its beginning).
+        self._msgs: collections.deque = collections.deque()
+        self._cv = threading.Condition()
+        self._busy = False
+        self._gen = 0                       # raised by stop_current(): the message being spoken is abandoned
+        self._piper_failed: set = set()     # voices Piper could not speak in this run (skipped afterwards)
         self._current_proc: subprocess.Popen | None = None
         self._lock = threading.Lock()
         self._worker = threading.Thread(target=self._run, daemon=True, name="tts-worker")
@@ -144,9 +155,10 @@ class TTSEngine:
     # Public API
     # ------------------------------------------------------------------
 
-    def speak(self, text: str, lang: str = "auto") -> None:
+    def speak(self, text: str, lang: str = "auto", keep: bool = False) -> None:
         """
-        Enqueue text for speech. Non-blocking; drops oldest if full.
+        Enqueue text for speech. Non-blocking. When more than TTS_QUEUE_MAXSIZE messages wait, the oldest one
+        that was not marked keep=True is dropped (object announcements go stale; the lines of a page do not).
 
         When lang="auto", mixed Bangla/English text is split into
         script-homogeneous runs (and each run further into sentences) so
@@ -158,35 +170,32 @@ class TTSEngine:
             return
 
         if lang == "auto":
-            for seg_text, seg_lang in split_language_segments(text):
-                for sentence in split_sentences(seg_text):
-                    self._enqueue(sentence, seg_lang)
+            pieces = [(s, seg_lang) for seg_text, seg_lang in split_language_segments(text)
+                      for s in split_sentences(seg_text)]
         else:
-            for sentence in split_sentences(text):
-                self._enqueue(sentence, lang)
-
-    def _enqueue(self, text: str, lang: str) -> None:
-        try:
-            self._queue.put_nowait((text, lang))
-        except queue.Full:
-            try:
-                self._queue.get_nowait()   # drop oldest
-            except queue.Empty:
-                pass
-            self._queue.put_nowait((text, lang))
+            pieces = [(s, lang) for s in split_sentences(text)]
+        # a piece without a letter or digit (a stray symbol) is not worth a voice process and a pause
+        pieces = [(s, l) for s, l in pieces if any(c.isalnum() for c in s)]
+        if not pieces:
+            return
+        with self._cv:
+            self._msgs.append((pieces, keep))
+            if sum(1 for _, k in self._msgs if not k) > config.TTS_QUEUE_MAXSIZE:
+                for i, (_, k) in enumerate(self._msgs):
+                    if not k:
+                        del self._msgs[i]          # drop the oldest message that may go stale
+                        break
+            self._cv.notify()
 
     def stop_current(self) -> None:
         """Interrupt currently playing audio immediately."""
+        with self._cv:
+            self._gen += 1                 # the rest of the message being spoken is abandoned
+            self._msgs.clear()             # and nothing stale is replayed
         with self._lock:
             if self._current_proc and self._current_proc.poll() is None:
                 self._current_proc.terminate()
                 self._current_proc = None
-        # Drain any queued items so we don't replay stale speech
-        while not self._queue.empty():
-            try:
-                self._queue.get_nowait()
-            except queue.Empty:
-                break
 
     def set_volume(self, pct: int) -> None:
         pct = max(0, min(100, pct))
@@ -204,7 +213,7 @@ class TTSEngine:
     def drain(self, timeout: float = 5.0) -> None:
         """Block until the audio queue is empty (max timeout seconds)."""
         deadline = time.time() + timeout
-        while not self._queue.empty() and time.time() < deadline:
+        while (self._msgs or self._busy) and time.time() < deadline:
             time.sleep(0.05)
 
     # ------------------------------------------------------------------
@@ -213,17 +222,24 @@ class TTSEngine:
 
     def _run(self) -> None:
         while True:
-            text, lang = self._queue.get()
+            with self._cv:
+                while not self._msgs:
+                    self._cv.wait()
+                pieces, _ = self._msgs.popleft()
+                gen, self._busy = self._gen, True
             try:
-                self._synthesize(text, lang)
-                # Brief pause between consecutive utterances — without this,
-                # back-to-back queue items run together and sound like one
-                # rushed, unintelligible block.
-                time.sleep(config.TTS_INTER_UTTERANCE_PAUSE)
+                for text, lang in pieces:
+                    if gen != self._gen:           # stop_current() was called: drop the rest of this message
+                        break
+                    self._synthesize(text, lang)
+                    # Brief pause between consecutive utterances — without this,
+                    # back-to-back pieces run together and sound like one
+                    # rushed, unintelligible block.
+                    time.sleep(config.TTS_INTER_UTTERANCE_PAUSE)
             except Exception as exc:
                 logger.warning("TTS error: %s", exc)
             finally:
-                self._queue.task_done()
+                self._busy = False
 
     def _synthesize(self, text: str, lang: str) -> None:
         """Choose Piper or espeak-ng and play audio.
@@ -239,7 +255,8 @@ class TTSEngine:
         else:
             model_path, fallback_voice = config.PIPER_EN_MODEL, config.ESPEAK_VOICE_EN
 
-        if os.path.isfile(model_path) and os.path.isfile(config.PIPER_BINARY):
+        if (model_path not in self._piper_failed and os.path.isfile(model_path)
+                and os.path.isfile(config.PIPER_BINARY)):
             self._piper(text, model_path, fallback_voice)
         else:
             self._espeak(text, fallback_voice)
@@ -308,7 +325,12 @@ class TTSEngine:
             if piper_proc.returncode != 0:
                 raise RuntimeError(f"piper exited {piper_proc.returncode}")
         except Exception as exc:
-            logger.debug("Piper failed (%s), falling back to espeak-ng", exc)
+            # The prebuilt Pi Piper crashes on the Bangla voice. Trying it again before every sentence cost a
+            # model load and a crash each time (a gap before each piece of Bangla), so it is tried once per run.
+            if model_path not in self._piper_failed:
+                self._piper_failed.add(model_path)
+                logger.warning("Piper cannot speak with %s (%s); espeak-ng is used for it from now on",
+                               os.path.basename(model_path), exc)
             self._espeak(text, fallback_voice)
         finally:
             with self._lock:

@@ -77,7 +77,7 @@ class SmartGlass:
 
         # Modes — OCR loads lazily; YOLO loads on first activate
         self._modes = [OCRMode(), ObjectMode(), CurrencyMode(), ClaudeMode(), EmotionMode()]
-        self._modes[config.MODE_OCR].speak_line = lambda t: self._tts.speak(t)   # pages are spoken line by line
+        self._modes[config.MODE_OCR].speak_line = lambda t: self._tts.speak(t, keep=True)   # pages are spoken line by line; no line is dropped
         self._current_mode: int = config.MODE_OCR
         self._mode_lock = threading.Lock()
 
@@ -286,6 +286,15 @@ class SmartGlass:
                           result=ev.get("outcome", "failed"), denomination=ev.get("denomination", ""),
                           verdict=ev.get("outcome", ""), score=ev.get("watermark_prob"), press_event=eid,
                           frames=ev.get("frames"), rejected=ev.get("rejected"), condition=ev.get("condition"))
+                # 200 / 500 / 1,000 Taka: UV security-fibre check (config.UV_CHECK_ENABLED, off by default)
+                if (mode_idx == config.MODE_CURRENCY and getattr(config, "UV_CHECK_ENABLED", False)
+                        and getattr(mode, "last_class", None) in getattr(config, "UV_DENOMINATIONS", ())):
+                    from modes.uv_check import guided_uv_check
+                    denom = mode.last_class
+                    ev = guided_uv_check(self._camera.get_frame, mode.locate_note, self._tts.speak)
+                    _flog("uv_check", mode_idx, latency_ms=1000 * float(ev.get("seconds") or 0),
+                          result=ev.get("outcome", "failed"), denomination=denom, verdict=ev.get("outcome", ""),
+                          score=ev.get("fibres"), press_event=eid, frames=ev.get("frames"))
             except Exception as exc:  # noqa: BLE001
                 logger.warning("Inference failed: %s", exc)
                 _flog("error", mode_idx, result=f"{type(exc).__name__}: {exc}", press_event=eid)

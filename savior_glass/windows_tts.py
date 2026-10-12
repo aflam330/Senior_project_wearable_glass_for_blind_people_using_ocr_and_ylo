@@ -33,7 +33,7 @@ _SAPI = (
 class WindowsTTS:
     def __init__(self, volume: int = 80):
         self._volume = max(0, min(100, volume))
-        self._q: queue.Queue = queue.Queue(maxsize=5)
+        self._q: queue.Queue = queue.Queue()      # bounded by hand in speak(): lines marked keep are not dropped
         self._proc = None
         self._lock = threading.Lock()
         self._idle = threading.Event()
@@ -44,8 +44,8 @@ class WindowsTTS:
     def speak(self, text: str, *args, **kwargs) -> None:
         if not text or not text.strip():
             return
-        if self._q.full():   # keep the newest lines, as the Pi engine does
-            try:
+        if not kwargs.get("keep") and self._q.qsize() >= 5:   # keep the newest lines, as the Pi engine does;
+            try:                                                # the lines of a page (keep=True) are never dropped
                 self._q.get_nowait()
             except queue.Empty:
                 pass
