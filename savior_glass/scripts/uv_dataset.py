@@ -33,6 +33,9 @@ ROOT = HERE.parents[1]
 DATA = ROOT / "data set" / "uv_notes"
 OUT = HERE.parent / "results" / "uv_check"
 VALUES = ("200", "500", "1000")
+# This script measures the FIRST design of the check (12 October), before the colour condition existed.
+# Its settings are pinned so that the documented numbers stay reproducible when config.py changes.
+FIRST = dict(colour_threshold=0.0, lum_threshold=0.0)
 DETECTOR = ROOT / "realtime_bangla_taka_detection" / "models" / "best.pt"
 
 
@@ -81,7 +84,7 @@ def prepare():
                 boxes.append([value, f.name, split, int(x1), int(y1), int(x2), int(y2), round(float(r.boxes.conf[j]), 3)])
                 vis = img.copy()
                 cv2.rectangle(vis, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 255), max(2, W // 300))
-                mask, n, _ = fibre_mask(inner(img[int(y1):int(y2), int(x1):int(x2)]))
+                mask, n, _ = fibre_mask(inner(img[int(y1):int(y2), int(x1):int(x2)]), **FIRST)
                 cv2.putText(vis, f"{value} Taka  fibres {n}", (int(x1), max(30, int(y1) - 12)), cv2.FONT_HERSHEY_SIMPLEX,
                             W / 900, (0, 255, 255), max(2, W // 400))
             else:
@@ -139,7 +142,7 @@ def evaluate():
         img = read(DATA / r["value"] / r["file"])
         x1, y1, x2, y2 = (int(r[k]) for k in ("x1", "y1", "x2", "y2"))
         crop = inner(img[y1:y2, x1:x2])
-        _, n, ab = fibre_mask(crop)
+        _, n, ab = fibre_mask(crop, **FIRST)
         if ab is None:
             continue
         notes[r["split"]].append((r["value"], r["file"], n))
@@ -147,7 +150,7 @@ def evaluate():
             crops.append((r["value"], crop))
         p = _surface_patch(img, x1, y1, x2, y2)
         if p is not None:
-            surf[r["split"]].append(fibre_mask(p)[1])
+            surf[r["split"]].append(fibre_mask(p, **FIRST)[1])
     cal = np.array([n for _, _, n in notes["calibrate"]])
     cal_s = np.array(surf["calibrate"])
     # rule fixed before the test part is read: the largest threshold that still accepts at least 95 % of the
@@ -174,7 +177,7 @@ def evaluate():
     robust = {}
     for v, crop in crops:
         for name, img in _variants(crop, rng):
-            n = fibre_mask(img)[1]
+            n = fibre_mask(img, **FIRST)[1]
             k = robust.setdefault(name, [0, 0])
             k[0] += int(n >= thr)
             k[1] += 1

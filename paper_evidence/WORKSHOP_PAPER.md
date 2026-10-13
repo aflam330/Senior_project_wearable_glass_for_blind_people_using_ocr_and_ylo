@@ -107,3 +107,11 @@ Sources are listed in `LITERATURE_SEARCH.md`.
 ## 9. Conclusion
 
 A counterfeit detector should be judged on counterfeit prints it has never seen. On JaalTaka, doing so removes about 8–14 points of apparent accuracy. A watermark-window check recovers most of it. A policy that never asserts "counterfeit" makes the result safe to deploy on an assistive device.
+
+## Addendum, 2026-10-13: results since this draft
+
+Nothing in the draft above is changed. These results are from result files dated 11 to 13 October.
+
+- **A small physics-based watermark classifier (DMWR).** Quotient image (the back-lit photograph divided by a blurred copy of itself), a genuine "portrait" per note value built from genuine training notes only, and a two-stream network on the image and the residual. 47,818 parameters: 91.5 ± 0.3 % on the 197 registered unseen-print test notes, against 92.9 % for the fine-tuned MobileNetV2 with 2.23 million; McNemar p = 0.375, 0.688, 0.375. It does not change the hybrid's 95.0 %. Statements on what the quotient image removes and why the residual is the right input are Propositions 5 and 6 of `THEORY_STRONG.md`.
+- **A second physical check, and a caution.** An ultraviolet fibre check accepted 92.8 % of 111 photographs of genuine notes. A simulation with fibre-free printed sheets then showed it accepted 93 % of those too under JPEG compression. With a colour condition: 85.6 % of genuine photographs accepted, 88.6 % of held-out simulated sheets rejected (`UV_SYNTHETIC_TEST.md`). No counterfeit has been photographed under UV. For this paper it is a second example of the paper's own theme: a check that looks good until the right negative is tried.
+- **Still true.** About 24 unseen counterfeit prints; the hybrid ties a fully fine-tuned ResNet-50.

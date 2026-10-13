@@ -33,7 +33,7 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 from modes.uv_check import fibre_mask, inner  # noqa: E402
-from scripts.uv_dataset import DATA, OUT, VALUES, _surface_patch, read  # noqa: E402
+from scripts.uv_dataset import DATA, FIRST, OUT, VALUES, _surface_patch, read  # noqa: E402
 
 K = 5
 
@@ -60,12 +60,12 @@ def main():
         for i, r in enumerate(rv):
             img = read(DATA / v / r["file"])
             x1, y1, x2, y2 = (int(r[k]) for k in ("x1", "y1", "x2", "y2"))
-            _, n, ab = fibre_mask(inner(img[y1:y2, x1:x2]))
+            _, n, ab = fibre_mask(inner(img[y1:y2, x1:x2]), **FIRST)
             if ab is None:
                 continue
             p = _surface_patch(img, x1, y1, x2, y2)
             items.append({"value": v, "file": r["file"], "block": min(K - 1, i * K // len(rv)), "n": n,
-                          "surface": fibre_mask(p)[1] if p is not None else None})
+                          "surface": fibre_mask(p, **FIRST)[1] if p is not None else None})
     out = {"A_one_threshold": [], "B_threshold_per_value": []}
     thr_log = {"A": [], "B": []}
     for b in range(K):

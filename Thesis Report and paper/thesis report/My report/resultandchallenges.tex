@@ -130,6 +130,9 @@ The detector was also run live on a laptop webcam with real notes held in the ha
     \label{fig:live_webcam}
 \end{figure}
 
+\subsection{Several Notes in One Picture}
+The count and the spoken total were measured on 900 pictures built for this test: one, two or three notes of the detector's test split on backgrounds that were not used in training, with the training generator's tilt, rotation, colour, blur and compression, and notes that overlap by at most 5\%. The counting rule has no tuned number. The count was right in 99.7\% of the pictures and every note, and so the total, in 99.2\% (one note: 299 of 300; two notes: 298 of 300; three notes: 296 of 300). No note was counted twice. These are synthetic pictures on the laptop; a hand holding a fan of overlapping notes will be harder.
+
 \subsection{Fall-Back Classifier}
 The MobileNetV3-Small classifier used as a fall-back reached a best validation accuracy of 99.2\% on the nine-class BanglaTaka crops. This is a whole-note classification score on clean crops, not a detection score in a scene.
 
@@ -341,7 +344,26 @@ First test: one split by capture order & 29 of 43 (67\%) & 19 of 19 & 7 of 16 & 
 \end{tabular}
 \end{table}
 
-With the blocked protocol the check recognises 92.8\% of the photographs of genuine notes (95\% Wilson interval 86.4--96.3\%). In the first test, halving the brightness of the photographs left the result unchanged (29 of 43), while a slight defocus lowered it to 13 of 43: the fibres are thin, and the UV picture has to be close and sharp. The thresholds are low (4 to 10 fibres), and the only fibre-free examples are smooth surfaces, so printed paper without fibres and real counterfeit notes still have to be tested before the check can be relied on.
+With the blocked protocol the check recognises 92.8\% of the photographs of genuine notes (95\% Wilson interval 86.4--96.3\%). In the first test, halving the brightness of the photographs left the result unchanged (29 of 43), while a slight defocus lowered it to 13 of 43: the fibres are thin, and the UV picture has to be close and sharp. The thresholds are low (4 to 10 fibres), and the only fibre-free examples so far are smooth surfaces.
+
+\textbf{A simulated printed copy, and a repair.} To see what the check does with print, fibre-free printed sheets were simulated: normal-light photographs of genuine notes (security fibres are invisible in normal light), given the lamp's measured colour and brightness, the camera noise measured on the UV photographs, and JPEG compression. Noise alone made the check accept none of 120 sheets. JPEG compression at quality 90 made it accept 112 of them (93\%): compression stores colour more coarsely than brightness, and the colour smear at the edges of print was counted as fibres. The 92.8\% above therefore measured that thin coloured structures are found on a note, which a printed copy has as well. A brightness condition did not help (balanced accuracy 0.50). The colour condition of Equation~\eqref{eq:uv_colour} does. With a colour threshold of 0.2, a genuine note shows a median of 5 strongly coloured fibres instead of 41 counted structures. Table~\ref{tab:uv_colour} gives the nested measurement: for each fold, the colour threshold and the fibre count were chosen on four blocks of genuine photographs and on development sheets, and applied to the fifth block and to held-out sheets.
+
+\begin{table}[!htbp]
+\centering
+\caption{UV fibre check before and after the colour condition. Genuine side: real photographs. Fibre-free side: simulated printed sheets; no counterfeit note was photographed.}
+\label{tab:uv_colour}
+\small
+\begin{tabular}{|L{6.6cm}|C{3.6cm}|C{3.9cm}|}
+\hline
+\textbf{Measure} & \textbf{First check} & \textbf{With the colour condition} \\ \hline
+Genuine photographs accepted (blocked 5-fold) & 103 of 111 (92.8\%) & 95 of 111 (85.6\%; 77.9--90.9) \\ \hline
+200 / 500 / 1,000 Taka & 45 of 45, 36 of 40, 22 of 26 & 44 of 45, 31 of 40, 20 of 26 \\ \hline
+Held-out simulated fibre-free sheets rejected & 4 of 240 (1.7\%) & 88.6\% (mean of five folds) \\ \hline
+With the setting now in the glass: held-out sheets rejected & -- & 223 of 240; with JPEG quality 50: 48 of 60 \\ \hline
+\end{tabular}
+\end{table}
+
+The repaired check gives up seven points of genuine acceptance and, in the simulation, rejects about nine in ten fibre-free sheets. A single strongly coloured fibre decides, which is fragile; it is what these hand-held, already compressed phone photographs support. This is still not evidence about counterfeit notes: a real counterfeit's ink and paper may behave differently under the lamp, and none has been photographed.
 
 \subsection{Capture Guide}
 The brightness and sharpness limits of the capture guide were set on validation photographs and checked on the 222 back-lit test photographs (Table~\ref{tab:guide}). Dark and defocused frames are rejected completely, and 96\% of the clean photographs pass. The limits come from JaalTaka photographs, not from the glass camera, and have to be set again for it.
@@ -655,7 +677,7 @@ Text reading of one picture (EasyOCR, canvas 2,560) & 18.7 s & 20.4 s \\ \hline
 
 \textbf{Faster reading of whole pages.} For pages, the recogniser's share of the time grows with the number of lines. On 12-line pages photographed at 640$\times$480 and 1,280$\times$720, read on the laptop CPU limited to four threads like the Pi~5, a greedy decoder reads a page in 6.5~s against 8.9~s with beam search (27\% faster), with the same validation error (2.14\% against 2.18\%), and was adopted. Reading at the camera's own size was faster still (5.3~s) but added 0.74 points of validation error and was rejected. In addition, pages are now spoken line by line (Section~\ref{sec:ocr_method}): the first line is ready after about 5.5~s, while speaking the page takes much longer than reading it, and the validation error stays at 2.14\%. These page timings are from the laptop and still have to be repeated on the Pi.
 
-\textbf{A faster text detector.} Because the time of a capture is in the text detector, the detector (CRAFT) was exported to ONNX and run with ONNX Runtime, as was done for the Taka detector. On the laptop CPU limited to four threads, the detector then takes 2.6~s instead of 5.6~s on a 1,200$\times$900 picture, a 12-line page 5.6~s instead of 10.0~s, and one benchmark picture 1.2~s instead of 2.3~s, with the same validation error (2.14\%); its outputs differ from PyTorch's by about $10^{-7}$. It is now used whenever its file is present. A version quantised to 8-bit integers is faster again (detector 1.3~s, page 4.3~s) but raises the validation error to 2.79\%, 0.65 points more, which is over the 0.5-point rule; it is offered as an option and is not the default. The laptop was slower in this run than in the one above, so these figures compare with each other only. None of them is a Pi measurement.
+\textbf{A faster text detector.} Because the time of a capture is in the text detector, the detector (CRAFT) was exported to ONNX and run with ONNX Runtime, as was done for the Taka detector. On the laptop CPU limited to four threads, the detector then takes 2.6~s instead of 5.6~s on a 1,200$\times$900 picture, a 12-line page 5.6~s instead of 10.0~s, and one benchmark picture 1.2~s instead of 2.3~s, with the same validation error (2.14\%); its outputs differ from PyTorch's by about $10^{-7}$. It is now used whenever its file is present. A version quantised to 8-bit integers is faster again (detector 1.3~s, page 4.3~s) but raises the validation error to 2.79\%, 0.65 points more, which is over the 0.5-point rule; a larger calibration set (128 images) brought this to 0.57 points, still over the rule. It is offered as an option and is not the default. The laptop was slower in this run than in the one above, so these figures compare with each other only. None of them is a Pi measurement.
 
 \textbf{Speech.} English with Piper takes 3.3~seconds for the test sentence against 4.9~seconds with espeak-ng. Bangla cannot use Piper on the Pi and stays on espeak-ng.
 
@@ -767,7 +789,7 @@ The results above should be read with the following scope in mind; each point is
     \item \textbf{Counterfeit data.} The unseen-print results rest on about 24 distinct counterfeit prints of one currency; a larger print-disjoint collection would sharpen the comparison between methods.
     \item \textbf{Whole-note verdict.} On whole notes the safe policy mostly asks for a check by hand; the guided watermark check and a larger set of whole-note photographs are the way to confirm more genuine notes.
     \item \textbf{Text reading.} On real street photographs the letter error is about 39\% for Bangla and 62\% for Latin script, against 2.5\% on the rendered benchmark (Section~\ref{sec:ocr_real}), and reading is the slowest mode on the Pi.
-    \item \textbf{UV check.} It recognises 92.8\% of the photographs of genuine notes but has not been tested on counterfeit notes, on printed paper without fibres, or through the glass camera.
+    \item \textbf{UV check.} It accepts 85.6\% of the photographs of genuine notes and rejects about nine in ten simulated fibre-free sheets, but has not been tested on a real counterfeit note, on real printed paper under the lamp, or through the glass camera.
     \item \textbf{Objects.} With the model timed on the Pi (YOLOv8n) and small pictures, mAP@0.5 is 0.34 to 0.45; the classes are the 80 of COCO.
     \item \textbf{Other items.} Close-ups covered by fingers, objects outside the 80 COCO classes, a neural Bangla voice on the Pi, and battery life are left for future versions.
 \end{enumerate}

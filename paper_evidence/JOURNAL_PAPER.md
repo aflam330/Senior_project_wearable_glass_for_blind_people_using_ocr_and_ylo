@@ -120,3 +120,20 @@ Design for 105 participants, a 30-day plan, an IRB draft and SUS / NASA-TLX scor
 - They should be evaluated on unseen counterfeit prints.
 - They should lean on physical security features such as the watermark.
 - They should never assert "counterfeit" without whole-note evidence.
+
+## Addendum, 2026-10-13: results since this draft
+
+Nothing in the draft above is changed. To be worked into an extended version:
+
+| Result | Number | File |
+|---|---|---|
+| DMWR watermark classifier | 91.5 ± 0.3 % on unseen prints with 47,818 parameters; not significantly different from MobileNetV2 (92.9 %) | `WATERMARK_DMWR.md` |
+| Quotient-image bound; matched-filter statement; median portrait convergence; safe threshold for several note values | Propositions 5, 6, 18, 17 | `THEORY_STRONG.md`, `THEORY_6.md` |
+| UV fibre check, first design | Accepted 92.8 % of genuine photographs and 93 % of simulated fibre-free sheets under JPEG | `UV_SYNTHETIC_TEST.md` |
+| UV fibre check with a colour condition | 85.6 % genuine accepted; 88.6 % of held-out simulated sheets rejected | `UV_SYNTHETIC_TEST.md` |
+| Several notes in one picture | Count right 99.7 %, total right 99.2 % on 900 pictures from test-split notes | `NEW_FEATURES.md` |
+| Text reading on real photographs | Bangla 39.2 %, Latin script 62.5 % CER on 1,000 real words, against 2.5 % on the rendered benchmark; fine-tuning on real words in `OCR_REAL_IMPROVED.md` | `OCR_REAL.md` |
+| Text detector through ONNX Runtime | 2.1 times faster on four CPU threads, identical output | `OCR_SPEED_IMPROVED.md` |
+| Object detection on all of COCO val2017 | YOLOv8s 0.551 (an earlier 0.604 was a 250-image sample) | `OBJECT_IMPROVED.md` |
+
+Open for a journal version, unchanged: Raspberry Pi 5 timings of the current code, results through the glass camera, a user study, and more than about 24 unseen counterfeit prints.

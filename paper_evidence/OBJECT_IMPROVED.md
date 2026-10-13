@@ -43,3 +43,16 @@ This is a correction of a mistake in the code, not a tuned setting. It was check
 ## 4. What the thesis should say
 
 Replace "mAP@0.5 = 0.604 on a 250-image subset" by the full-set figures: YOLOv8s 0.551 at 640, and 0.521 through the glass's own path after the fix (0.493 before).
+
+## Addendum, 2026-10-13 evening: Objects365 and new classes
+
+The request was to download Objects365, keep the classes a blind user needs, fine-tune YOLOv8s and reach mAP 0.70 or more. It was not done.
+
+- **Size.** Objects365 has about 2 million images and several hundred gigabytes. The laptop has 66 GB free on its data drive and a 4 GB graphics card on which one epoch of COCO (118,000 images) takes over an hour.
+- **Fit to the Bangladeshi street was not checked.** Its class list was not gone through for this note, and its photographs come from other countries. Whether it has usable examples of cycle rickshaws, CNG auto-rickshaws or open drains is unknown.
+- **Bangla names** already exist for all 80 COCO classes in the object mode.
+- **Distance.** No depth model was added. A monocular depth network on the Pi's CPU beside the detector has not been timed, and a spoken distance that is wrong is worse for a blind pedestrian than none.
+
+What would be worth doing with a day of photography: 300 to 500 labelled photographs each of rickshaws, CNGs, stairs, doors and open drains from Dhaka streets, split by street, and a fine-tune of YOLOv8s that keeps the COCO classes. That is a data task first.
+
+The measured state is unchanged from the sections above: YOLOv8s 0.551 on all of COCO val2017; 0.521 through the glass path after the shrink was removed.

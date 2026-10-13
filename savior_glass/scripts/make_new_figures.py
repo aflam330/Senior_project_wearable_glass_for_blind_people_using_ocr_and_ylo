@@ -80,7 +80,7 @@ def uv_counts():
     per = {"200": [], "500": [], "1000": []}
     for r in rows:
         img = read(DATA / r["value"] / r["file"])
-        _, n, ab = fibre_mask(inner(img[int(r["y1"]):int(r["y2"]), int(r["x1"]):int(r["x2"])]))
+        _, n, ab = fibre_mask(inner(img[int(r["y1"]):int(r["y2"]), int(r["x1"]):int(r["x2"])]), colour_threshold=0.0, lum_threshold=0.0)
         if ab is not None:
             per[r["value"]].append(n)
     fig, ax = plt.subplots(figsize=(6.6, 3.4))
@@ -91,10 +91,10 @@ def uv_counts():
         ax.hlines(np.median(y), i - 0.3, i + 0.3, color=INK, lw=1.5)
         ax.annotate(f"median {np.median(y):.0f}", (i + 0.32, np.median(y)), va="center", fontsize=9, color=INK)
     ax.axhline(6, color=MUTED, lw=1, ls="--")
-    ax.annotate("threshold: 6 fibres", (-0.45, 6), va="bottom", fontsize=9, color=MUTED, xytext=(0, 2), textcoords="offset points")
+    ax.annotate("first check's threshold: 6", (-0.45, 6), va="bottom", fontsize=9, color=MUTED, xytext=(0, 2), textcoords="offset points")
     ax.set_yscale("log"); ax.set_xticks(range(3), ["200 Taka", "500 Taka", "1,000 Taka"]); ax.set_xlim(-0.5, 2.9)
     ax.set_ylabel("Fibres found in the note (log scale)"); ax.grid(axis="x", visible=False)
-    ax.set_title("UV fibres found on 111 photos of genuine notes (plain surface: 0)", loc="left", fontsize=11)
+    ax.set_title("First UV check: structures counted on 111 photos of genuine notes", loc="left", fontsize=11)
     save(fig, "fig42_uv_fibre_counts.png")
 
 
@@ -186,8 +186,115 @@ def detector():
     save(fig, "fig47_detector_onnx.png")
 
 
+def uv_sim():
+    a = load("uv_check/uv_stress_sim.json")
+    if not a:
+        return
+    c = a["conditions"]
+    names = list(c)
+    vals = [100 * c[k]["rate"] for k in names]
+    fig, ax = plt.subplots(figsize=(7.4, 4.0))
+    bars = ax.barh(range(len(names))[::-1], vals, 0.62, color=C2)
+    for b, v in zip(bars, vals):
+        ax.annotate(f"{v:.0f}%", (v, b.get_y() + b.get_height() / 2), va="center", xytext=(4, 0), textcoords="offset points", fontsize=9)
+    ax.set_yticks(range(len(names))[::-1], names, fontsize=8.5); ax.set_xlim(0, 112)
+    ax.set_xlabel(f"Simulated fibre-free printed sheets wrongly accepted (%), {a['sheets']} sheets"); ax.grid(axis="y", visible=False)
+    ax.set_title("First UV check on simulated fibre-free printed sheets", loc="left", fontsize=11)
+    save(fig, "fig48_uv_simulated_sheets.png")
+
+
+def uv_colour():
+    a = load("uv_check/uv_robust_study.json")
+    if not a or "colour_threshold" not in a["folds"][0]:
+        return
+    n = a["nested_result"]
+    before = a["before_brightness_condition_T6"]
+    x = np.arange(2)
+    cv = load("uv_check/uv_blocked_cv.json")["A_one_threshold"]          # the first check, same five blocks
+    old = [100 * cv["rate"], 100 * before["held_out_sheets_rejected"] / before["n"]]
+    new = [100 * n["rate"], 100 * n["held_out_sheets_rejected_mean_over_folds"]]
+    fig, ax = plt.subplots(figsize=(6.2, 3.8))
+    b1 = ax.bar(x - 0.19, old, 0.36, color=C1, label="First check (blocked 5-fold)")
+    b2 = ax.bar(x + 0.19, new, 0.36, color=C2, label="With the colour condition (nested 5-fold)")
+    labels(ax, b1, "{:.0f}%"); labels(ax, b2, "{:.0f}%")
+    ax.set_xticks(x, ["Genuine photographs\naccepted (real)", "Fibre-free printed sheets\nrejected (simulated)"]); ax.set_ylim(0, 118)
+    ax.set_ylabel("%"); ax.grid(axis="x", visible=False)
+    ax.legend(frameon=False, fontsize=9, loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=2)
+    ax.set_title("UV fibre check before and after the colour condition", loc="left", fontsize=11)
+    save(fig, "fig49_uv_colour_condition.png")
+
+
+def multi_note():
+    a = load("multi_note_total.json")
+    if not a:
+        return
+    ks = ["1", "2", "3"]
+    x = np.arange(3)
+    fig, ax = plt.subplots(figsize=(6.2, 3.6))
+    b1 = ax.bar(x - 0.19, [100 * a["by_count"][k]["count_right_rate"] for k in ks], 0.36, color=C1, label="Count right")
+    b2 = ax.bar(x + 0.19, [100 * a["by_count"][k]["total_right_rate"] for k in ks], 0.36, color=C2, label="Spoken total right")
+    labels(ax, b1, "{:.1f}"); labels(ax, b2, "{:.1f}")
+    ax.set_xticks(x, ["1 note", "2 notes", "3 notes"]); ax.set_ylim(90, 101.5); ax.set_ylabel("% of 300 pictures (axis starts at 90)")
+    ax.grid(axis="x", visible=False); ax.legend(frameon=False, fontsize=9, loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=2)
+    ax.set_title("Several notes in one picture: count and total (test-split notes)", loc="left", fontsize=11)
+    save(fig, "fig50_multi_note.png")
+
+
+def int8_variants():
+    a = load("ocr_bench/detector_int8_variants.json")
+    if not a:
+        return
+    v = {k: x for k, x in a["variants"].items() if "val_cer" in x}
+    names = list(v)
+    vals = [100 * v[k]["val_cer"] for k in names]
+    fig, ax = plt.subplots(figsize=(5.6, 3.5))
+    b = ax.bar(range(len(names)), vals, 0.55, color=C1); labels(ax, b, "{:.2f}")
+    ax.axhline(vals[0] + 0.5, color=MUTED, ls="--", lw=1)
+    ax.annotate("limit: +0.5 points", (-0.4, vals[0] + 0.5), va="bottom", fontsize=9, color=MUTED)
+    ax.set_xticks(range(len(names)), ["Full precision\n(default)" if k == "full precision" else "INT8, MinMax\n128 images" for k in names])
+    ax.set_ylabel("Validation letter error (%)"); ax.set_ylim(0, max(vals) + 0.9); ax.grid(axis="x", visible=False)
+    ax.set_title("INT8 text detector with a larger calibration set", loc="left", fontsize=11)
+    save(fig, "fig51_int8_variants.png")
+
+
+def real_ft_curves():
+    runs = [load(f"ocr_bench/real_ft_seed{s}.json") for s in (42, 43, 44)]
+    runs = [r for r in runs if r]
+    if not runs:
+        return
+    fig, ax = plt.subplots(figsize=(6.4, 3.7))
+    for r, c in zip(runs, (C1, C2, C3)):
+        st = [h["step"] for h in r["history"]]
+        ax.plot(st, [100 * h["real_val_crop_cer"] for h in r["history"]], color=c, lw=2, label=f"Real validation words, seed {r['seed']}")
+        ax.plot(st, [100 * h["rendered_val_crop_cer"] for h in r["history"]], color=c, lw=2, ls=":")
+    ax.plot([], [], color=MUTED, lw=2, ls=":", label="Rendered validation lines (dotted)")
+    ax.set_xlabel("Training step"); ax.set_ylabel("Letter error on word crops (%)"); ax.set_ylim(0, None)
+    ax.legend(frameon=False, fontsize=8.5)
+    ax.set_title("Fine-tuning the recogniser on real word photographs", loc="left", fontsize=11)
+    save(fig, "fig52_real_finetune_curves.png")
+
+
+def real_ft_test():
+    a, first = load("ocr_bench/real_ft_eval.json"), load("ocr_bench/real_words_mlt19.json")
+    t = load("ocr_bench/real_words_tune.json")
+    if not (a and first and t and "test" in a):
+        return
+    x = np.arange(2)
+    steps = [("First reading", [100 * first[l]["all"]["cer"] for l in ("bn", "en")], C1),
+             ("Confidence filter 0.1", [100 * t["winner_on_real_test"][l]["cer"] for l in ("bn", "en")], C2),
+             ("Final configuration", [100 * a["test"]["real_words"][l]["cer"] for l in ("bn", "en")], C3)]
+    fig, ax = plt.subplots(figsize=(6.4, 3.8))
+    for i, (name, v, c) in enumerate(steps):
+        b = ax.bar(x + (i - 1) * 0.27, v, 0.25, color=c, label=name); labels(ax, b, "{:.1f}")
+    ax.set_xticks(x, ["Bangla", "Latin script"]); ax.set_ylabel("Letter error on 500 real test words (%)"); ax.set_ylim(0, 75)
+    ax.grid(axis="x", visible=False); ax.legend(frameon=False, fontsize=9)
+    ax.set_title("Text reading on real photographs, step by step", loc="left", fontsize=11)
+    save(fig, "fig53_real_words_steps.png")
+
+
 if __name__ == "__main__":
-    for f in (uv_protocols, uv_counts, uv_conditions, ocr_page_speed, ocr_real, objects, detector):
+    for f in (uv_protocols, uv_counts, uv_conditions, ocr_page_speed, ocr_real, objects, detector,
+              uv_sim, uv_colour, multi_note, int8_variants, real_ft_curves, real_ft_test):
         try:
             f()
         except Exception as exc:

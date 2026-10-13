@@ -78,7 +78,7 @@ def sheet(grey, real, d, sigma, jpeg, rng):
 
 def main():
     real = measure_real()
-    thr = int(config.UV_MIN_FIBRES)
+    thr = 6          # the first design's threshold (12-13 October); pinned so the documented result stays reproducible
     rng = np.random.default_rng(0)
     notes = []
     for v in ("200", "500", "1000"):
@@ -100,7 +100,7 @@ def main():
     out = {"date": "2026-10-13", "kind": "SIMULATION with stated assumptions; no counterfeit note was photographed",
            "measured_on_real_uv_photographs": real, "UV_MIN_FIBRES": thr, "sheets": len(notes), "conditions": {}}
     for name, d, sigma, jpeg in grid:
-        counts = np.array([fibre_mask(inner(sheet(g, real, d, sigma, jpeg, rng)))[1] for g in notes])
+        counts = np.array([fibre_mask(inner(sheet(g, real, d, sigma, jpeg, rng)), colour_threshold=0.0, lum_threshold=0.0)[1] for g in notes])
         acc = int((counts >= thr).sum())
         out["conditions"][name] = {"glow_d": d, "noise_sigma": round(sigma, 2), "jpeg": jpeg, "wrongly_accepted": acc, "n": len(counts),
                                    "rate": round(acc / len(counts), 4), "fibres_median": float(np.median(counts)),
