@@ -1,0 +1,34 @@
+{
+ "date": "2026-10-13",
+ "set": "rendered benchmark, TEST, 432 images (48 phrases x 3 conditions x 3 seeds)",
+ "setting": {
+  "decoder": "greedy",
+  "min_conf": 0.1,
+  "params": {
+   "text_threshold": 0.8,
+   "low_text": 0.3,
+   "link_threshold": 0.4,
+   "mag_ratio": 1.0,
+   "contrast_ths": 0.1,
+   "adjust_contrast": 0.7,
+   "slope_ths": 0.4
+  },
+  "detector": "OrtDetector"
+ },
+ "cer": 0.0246,
+ "cer_bn": 0.0325,
+ "cer_en": 0.0167,
+ "wer": 0.0802,
+ "exact": 0.8588,
+ "by_condition_cer": {
+  "clean": 0.0238,
+  "scene": 0.0239,
+  "wild": 0.026
+ },
+ "per_seed_cer": [
+  0.0334,
+  0.0162,
+  0.0241
+ ],
+ "latency_ms_median": 1799.0
+}

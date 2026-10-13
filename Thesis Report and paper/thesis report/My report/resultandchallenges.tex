@@ -567,13 +567,17 @@ To see how far the benchmark figures carry, the pipeline was run once on real ph
 \textbf{Words} & \textbf{Number} & \textbf{Letter error (CER), 95\% range} & \textbf{Word exactly right} & \textbf{Nothing read} \\ \hline
 Bangla, all & 500 & 41.7\% (38.0--45.5) & 36.8\% & 24.6\% \\ \hline
 Bangla, upright & 458 & 37.8\% (34.0--41.9) & 39.7\% & 21.6\% \\ \hline
+\textbf{Bangla, all, confidence filter 0.1 (now)} & 500 & \textbf{39.2\%} & 37.4\% & 17.0\% \\ \hline
 Latin script, all & 500 & 64.9\% (60.9--68.8) & 20.4\% & 48.4\% \\ \hline
 Latin script, upright and at least 32 pixels high & 282 & 46.8\% (41.4--52.4) & 32.6\% & 27.7\% \\ \hline
+\textbf{Latin script, all, confidence filter 0.1 (now)} & 500 & \textbf{62.5\%} & 20.4\% & 38.0\% \\ \hline
 Rendered benchmark, test set (Table~\ref{tab:ocr}) & 432 & 2.4\% & -- & -- \\ \hline
 \end{tabular}
 \end{table}
 
 The benchmark figures do not carry over to real street photographs: the error is more than ten times higher. Much of it is silence. On a quarter of the Bangla words and on half of the Latin-script words nothing was read at all, which points to the text-finding thresholds and the confidence filter, both chosen on rendered text. Words rotated by 90$^\circ$ are not read (84\% and 99\% error), and many Latin-script words are small or are French, German or Italian, for which the recogniser has no model. For orientation, the BanglaWild benchmark reports 48.4\% CER for plain EasyOCR on real Bangla scene photographs \cite{banglawild}; the data differ, so only the order of magnitude can be compared. Reading real signs is therefore the main open problem of the text mode, next to the glass camera.
+
+\textbf{Settings chosen on real words.} Because so many words were left unread, four settings of the text finder and of the confidence filter were compared on a separate real validation sample (150 Bangla and 150 Latin-script words that are not among the 1,000 test words). The rule was fixed beforehand: the lowest error on the real validation words wins, among settings whose error on the rendered validation set stays within 0.5 points. Lowering the confidence filter from 0.2 to 0.1 won (real validation 47.8\% against 51.1\%; rendered validation 2.58\% against 2.14\%). EasyOCR's own detector defaults were worse on both kinds of data. Read once on the 1,000 test words, the new setting lowers the error from 41.7\% to 39.2\% for Bangla and from 64.9\% to 62.5\% for Latin script, and the share of unread words from 24.6\% to 17.0\% and from 48.4\% to 38.0\% (bold rows of Table~\ref{tab:ocr_real}). The gain is real but small: the words that are now read are often read wrongly. On the rendered test set the pipeline as it now is in the glass (greedy decoder, confidence filter 0.1) scores 2.5\% CER (Bangla 3.3\%, English 1.7\%), practically unchanged. Thresholds are now exhausted; the remaining error lies in the recogniser, and the next step is training on real photographs.
 
 \subsection{Handwritten Bangla Character Recognition}
 The CNN trained on Ekush reached 90.0\% test accuracy on 38,608 characters from 305 unseen writers (best validation accuracy 91.1\%). Accuracy was 94.3\% for digits, 94.2\% for modifiers, 93.1\% for vowels, 89.9\% for consonants and 87.7\% for conjuncts. The lower accuracy for conjuncts confirms that compound characters are the hardest part of Bangla recognition, which is also the main source of the OCR errors above.
@@ -762,7 +766,7 @@ The results above should be read with the following scope in mind; each point is
     \item \textbf{User study.} Trial sessions with a visually impaired participant have started; their results will be added when the survey is complete.
     \item \textbf{Counterfeit data.} The unseen-print results rest on about 24 distinct counterfeit prints of one currency; a larger print-disjoint collection would sharpen the comparison between methods.
     \item \textbf{Whole-note verdict.} On whole notes the safe policy mostly asks for a check by hand; the guided watermark check and a larger set of whole-note photographs are the way to confirm more genuine notes.
-    \item \textbf{Text reading.} On real street photographs the letter error is about 42\% for Bangla and 65\% for Latin script, against 2.4\% on the rendered benchmark (Section~\ref{sec:ocr_real}), and reading is the slowest mode on the Pi.
+    \item \textbf{Text reading.} On real street photographs the letter error is about 39\% for Bangla and 62\% for Latin script, against 2.5\% on the rendered benchmark (Section~\ref{sec:ocr_real}), and reading is the slowest mode on the Pi.
     \item \textbf{UV check.} It recognises 92.8\% of the photographs of genuine notes but has not been tested on counterfeit notes, on printed paper without fibres, or through the glass camera.
     \item \textbf{Objects.} With the model timed on the Pi (YOLOv8n) and small pictures, mAP@0.5 is 0.34 to 0.45; the classes are the 80 of COCO.
     \item \textbf{Other items.} Close-ups covered by fingers, objects outside the 80 COCO classes, a neural Bangla voice on the Pi, and battery life are left for future versions.

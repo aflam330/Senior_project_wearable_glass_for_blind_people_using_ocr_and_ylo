@@ -199,7 +199,7 @@ The text module uses EasyOCR \cite{easyocr}: a CRAFT text detector \cite{craft} 
 \begin{enumerate}[noitemsep]
     \item \textbf{Pre-processing.} The frame is converted to grey scale and its contrast is enhanced with CLAHE \cite{clahe}. Binarisation is not used; it increased the error rate.
     \item \textbf{Detection and recognition.} EasyOCR reads the whole frame once, with detector settings chosen on validation data (text threshold 0.8, low-text threshold 0.3, link threshold 0.4, greedy decoding).
-    \item \textbf{Confidence filter.} Boxes with a confidence below 0.2 are dropped.
+    \item \textbf{Confidence filter.} Boxes with a confidence below 0.1 are dropped. The value was 0.2, chosen on rendered text, until a test on real photographs showed that too many words were then not read at all (Section~\ref{sec:ocr_real}).
     \item \textbf{Main text block.} Starting from the most confident tall box, boxes of similar height that touch it are added. This block is the sign or label the user faces; stray text in the background is dropped.
     \item \textbf{Line ordering and clean-up.} The boxes are grouped into lines and read from top to bottom and left to right. The text is normalised to Unicode NFC, invisible characters and stray symbols at word edges are removed, and digits are put in the script of the words around them.
 \end{enumerate}
@@ -211,7 +211,7 @@ The main-text-block step reuses the boxes that EasyOCR already returns, so it co
 \caption{Text reading with the main text block (pipeline v2)}
 \label{alg:ocr}
 \begin{algorithmic}[1]
-\Require camera frame $F$; minimum confidence $c_{\min}=0.2$; height ratio $r=0.6$; gap factor $g=1.5$
+\Require camera frame $F$; minimum confidence $c_{\min}=0.1$; height ratio $r=0.6$; gap factor $g=1.5$
 \Ensure text to speak
 \State $G \gets \textsc{CLAHE}(\textsc{Grey}(F))$ \Comment{contrast boost only}
 \State $B \gets \{\,b \in \textsc{EasyOCR}(G) : \mathrm{conf}(b) \ge c_{\min}\,\}$ \Comment{boxes with text and confidence}

@@ -45,6 +45,28 @@ For comparison, the same pipeline scores 2.4 % CER (Bangla 3.2 %, English 1.6 %)
 - A word image placed on a grey frame is easier than a word in its scene in one way (no clutter) and harder in another (no context).
 - One seed, one sample of 500 per script.
 
-## Next
+## Settings study on real words
 
-A settings study on real words, with its own real validation sample that does not overlap these 1,000 test words, is described in the section below if it has been run.
+Source: `savior_glass/ocr_bench/real_words_tune.py` → `results/ocr_bench/real_words_tune.json`.
+
+Protocol, fixed before the run: four candidate settings; a real validation sample of 150 Bangla and 150 Latin-script words (seed 1) that does not overlap the 1,000 test words; a candidate is admissible only if its CER on the rendered benchmark's validation set stays within 0.5 points of the current setting; the admissible candidate with the lowest real-validation CER wins and is run once on the 1,000 test words.
+
+| Candidate (text / low-text / link threshold, minimum confidence) | Real validation CER (mean of both scripts) | Nothing read, Bangla / Latin | Rendered validation CER | Admissible |
+|---|---:|---:|---:|---|
+| A current (0.8 / 0.3 / 0.4, 0.2) | 51.1 % | 21 % / 51 % | 2.14 % | yes |
+| B EasyOCR defaults (0.7 / 0.4 / 0.4, 0.2) | 56.7 % | 25 % / 58 % | 3.39 % | no |
+| **C current thresholds, confidence 0.1** | **47.8 %** | 10 % / 43 % | 2.58 % | yes |
+| D permissive (0.6 / 0.3 / 0.4, 0.1) | 47.9 % | 9 % / 42 % | 2.95 % | no |
+
+C wins. On the 1,000 real test words, read once with C:
+
+| Words | CER before | CER with C | Nothing read before | Nothing read with C | Word exactly right before / with C |
+|---|---:|---:|---:|---:|---:|
+| Bangla | 41.7 % | 39.2 % | 24.6 % | 17.0 % | 36.8 % / 37.4 % |
+| Latin script | 64.9 % | 62.5 % | 48.4 % | 38.0 % | 20.4 % / 20.4 % |
+
+- The gain is real but small: about 2.5 points of CER, and 8 to 10 points fewer words left unread. The words that are now read are often read wrongly, so exact matches barely move.
+- The price is on rendered text: validation CER 2.14 % → 2.58 %.
+- `OCR_V2_MIN_CONF` is now 0.1 in the glass.
+- EasyOCR's own detector defaults (B) were worse on both kinds of data, so the detector thresholds chosen earlier were not the cause.
+- **Settings are exhausted.** The remaining error is in the recogniser on real text. The next step is training data from real photographs, not another threshold.

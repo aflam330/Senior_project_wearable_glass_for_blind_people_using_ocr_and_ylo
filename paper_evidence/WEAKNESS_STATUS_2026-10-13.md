@@ -1,23 +1,33 @@
-# Status of the ten requested improvements (2026-10-13)
+# Status of the ten requested improvements (end of 13 October 2026)
 
-One row per requested task. "Done" means a number exists in a result file. Nothing here is estimated or projected.
+One row per requested task. A number appears here only if it is in a result file. Nothing is estimated.
 
-| # | Task and target | Status | What exists | What is needed to go further |
+| # | Task and target | Outcome | Measured | Target met? |
 |---|---|---|---|---|
-| 1 | UV fibre check 67 % → 85 % | **Done, with limits** | Blocked 5-fold: 103 / 111 genuine notes accepted (92.8 %), 71 / 71 plain-surface patches rejected (`UV_CHECK_IMPROVED.md`) | Counterfeit notes, printed negatives, glass-camera photographs |
-| 2 | OCR on the Pi 18.7 s → 3–5 s | **Not measured** | Laptop, 4 threads: greedy decoder 6.5 s vs 8.9 s per 12-line page at the same validation CER; line-by-line speech. Earlier Pi run: canvas 640 was 6.9 s vs 20.2 s on one frame, +0.55 points raw CER (opt-in) | A run of `scripts/benchmark_pi5.py` on the Pi. No Pi number can be produced on the laptop |
-| 3 | Objects mAP 0.604 → 0.80 | **Not started** | COCO-pretrained YOLOv8s, mAP@0.5 0.604 on 250 COCO images | Labelled photographs of the new classes (stairs, door, rickshaw, CNG, medicine). No such dataset is on disk |
-| 4 | Online mode working | **Blocked** | Code path for two providers; `scripts/eval_online_mode.py` | API credit on the user's account, or a decision to download and run a local vision-language model (several GB; too slow for the Pi) |
-| 5 | OCR on real photographs | **Not started** | Benchmark of rendered text, some placed in real photographs: CER 2.4 % | About 200 real photographs with their text typed out |
-| 6 | Counterfeit prints 24 → 100+ | **Not possible from existing data** | Print-disjoint split with about 24 test prints; a print-locked collection tool | New counterfeit notes from a bank or the police. Augmenting the existing prints adds pictures, not prints |
-| 7 | User study with 105 participants | **Not started (trials began)** | Protocol, logging, voice questionnaire | Ethics approval, participants, sessions |
-| 8 | Proofs | **Not written** | The safe-threshold bound 1/(n+1) is a standard exchangeability result and is in the thesis | The other five items are empirical findings on one dataset, not theorems. A proof would need assumptions that the data cannot check |
-| 9 | 20 new figures | **1 new figure** | `fig_uv_fibres.jpg` | Figures need new results |
-| 10 | Four papers | **Not written** | Thesis, slides, feature summary | The user-study paper needs a user study; the others need the items above |
+| 1 | UV fibre check 67 % → 85 % | Blocked 5-fold evaluation; threshold 6 fibres; spoken guidance | 103 / 111 genuine notes accepted (92.8 %); 71 / 71 plain-surface patches rejected (`UV_CHECK_IMPROVED.md`) | **Yes for genuine notes.** No counterfeit tested |
+| 2 | OCR on the Pi 18.7 s → 3–5 s | Text detector through ONNX Runtime (default); INT8 opt-in; greedy decoder; line-by-line speech | Laptop, 4 threads: detector 5.55 → 2.63 s, page 9.99 → 5.59 s, same validation CER; INT8 page 4.28 s at +0.65 points (`OCR_SPEED_IMPROVED.md`) | **Unknown.** No Pi measurement |
+| 3 | Objects mAP 0.604 → 0.80 | Full evaluation; one fix (no needless shrink) | YOLOv8s 0.551 on 5,000 photographs (the 0.604 was a 250-image sample); glass path 0.493 → 0.521 (`OBJECT_IMPROVED.md`) | **No.** The honest figure went down, then up by 3 points |
+| 4 | Online mode working | Two routes tried | Cloud: refused, no credit. Local model: blocked by Windows Application Control (`ONLINE_MODE.md`) | **No.** Blocked outside the code |
+| 5 | OCR on real photographs | First real test; settings study with its own real validation sample | 1,000 real word images: CER 41.7 % → 39.2 % Bangla, 64.9 % → 62.5 % Latin script; nothing read 25 % → 17 % and 48 % → 38 % (`OCR_REAL.md`) | **Tested: yes.** Good: no. Rendered benchmark is 2.4 % |
+| 6 | Counterfeit prints 24 → 100+ | Nothing | — | **No.** Needs real counterfeit notes; augmenting 24 prints adds pictures, not prints |
+| 7 | User study with 105 participants | Nothing new; package was already complete | — | **No.** Needs ethics approval and participants |
+| 8 | Proofs | Six items sorted into proved, proved under a stated model, and not a theorem | `THEORY_STRONG.md`; one earlier claim corrected (colour balance does not cancel in the UV method) | Partly: 4 statements proved; cross-currency transfer is not a theorem |
+| 9 | 20 new figures | 8 new figures, each from a result file | `figures/fig41`–`fig47`, `fig_uv_fibres.jpg` | **No (8 of 20).** Figures need results |
+| 10 | Four papers | Index of the existing drafts and what each lacks | `PAPERS/README.md` | **No.** Three drafts existed; the user-study paper cannot be written without a study |
 
-## Also fixed in this round (not on the list)
+## Also done in this pass
 
-- Bangla speech no longer breaks at commas, digits and full stops; long texts keep their beginning; the Piper voice that fails on Bangla is tried once per run (`savior_glass/scripts/test_tts_queue.py`).
+- Bangla speech no longer breaks at commas, digits and full stops; long texts keep their beginning; the Piper voice that fails on Bangla is tried once per run.
+- The thesis and `SARA_Features.pdf` carry all of the above, including the corrected object figure and the real-photograph results.
+
+## What only the team can supply
+
+1. A run of `scripts/benchmark_pi5.py` on the Pi (task 2), once as it is and once with `OCR_DETECTOR=onnx_int8`.
+2. UV photographs through the glass camera, printed sheets without fibres, and counterfeit notes at a bank or with the police (tasks 1 and 6).
+3. Real photographs of Bangla signs and labels from Bangladesh with their text typed out, for training and testing (task 5).
+4. Labelled photographs of the new object classes (task 3).
+5. API credit, or the Windows policy lifted for the Python packages (task 4).
+6. Ethics approval and participants (task 7).
 
 ## Venue probabilities
 

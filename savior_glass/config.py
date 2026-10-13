@@ -234,7 +234,14 @@ OCR_SLOPE_THS = float(os.environ.get("OCR_SLOPE_THS", "0.2"))
 OCR_PIPELINE = os.environ.get("OCR_PIPELINE", "v2")
 OCR_V2_PARAMS = {"text_threshold": 0.8, "low_text": 0.3, "link_threshold": 0.4, "mag_ratio": 1.0, "contrast_ths": 0.1,
                  "adjust_contrast": 0.7, "slope_ths": 0.4}
-OCR_V2_MIN_CONF = 0.2
+# Words the recogniser is less sure about than this are dropped. 0.2 was chosen on rendered text. On real word
+# photographs (ICDAR 2019 MLT) a quarter to a half of the words were then not read at all, so four settings were
+# compared on a real validation sample (150 Bangla + 150 Latin-script words, disjoint from the test words;
+# ocr_bench/real_words_tune.py, results/ocr_bench/real_words_tune.json, 2026-10-13). Rule fixed beforehand: lowest
+# real-validation CER among settings whose rendered-validation CER stays within 0.5 points. 0.1 won: real validation
+# 47.8 % against 51.1 %, rendered validation 2.58 % against 2.14 %. On the 1,000 real test words, read once:
+# Bangla 39.2 % (was 41.7 %), Latin script 62.5 % (was 64.9 %); nothing read on 17 % and 38 % (was 25 % and 48 %).
+OCR_V2_MIN_CONF = 0.1
 # Decoder for pipeline v2. Whole-page benchmark (ocr_bench/page_bench.py, laptop CPU limited to 4 threads like the
 # Pi, results/ocr_bench/page_speed_compare.json, 2026-10-11): greedy reads a 12-line page in 6.5 s against 8.9 s
 # for beam search, with the same validation error (48 val phrases x 3 seeds: 2.14 % vs 2.18 %; Bangla 1.59 vs

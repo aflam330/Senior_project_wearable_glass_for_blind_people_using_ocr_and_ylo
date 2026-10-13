@@ -1,0 +1,118 @@
+{
+ "date": "2026-10-13",
+ "real_validation": "150 Bangla + 150 Latin-script words, seed 1, disjoint from the 1,000 test words",
+ "candidates": {
+  "A current (0.8 / 0.3 / 0.4, conf 0.2)": {
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.3724,
+     "nothing_read": 0.2133,
+     "word_exact": 0.3533
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.6488,
+     "nothing_read": 0.5133,
+     "word_exact": 0.2067
+    },
+    "mean_cer": 0.5106
+   },
+   "rendered_val_cer": 0.0214,
+   "rendered_val_cer_bn": 0.0159,
+   "rendered_val_cer_en": 0.0269
+  },
+  "B EasyOCR defaults (0.7 / 0.4 / 0.4, conf 0.2)": {
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.4567,
+     "nothing_read": 0.2533,
+     "word_exact": 0.2933
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.6767,
+     "nothing_read": 0.58,
+     "word_exact": 0.18
+    },
+    "mean_cer": 0.5667
+   },
+   "rendered_val_cer": 0.0339,
+   "rendered_val_cer_bn": 0.0289,
+   "rendered_val_cer_en": 0.0388
+  },
+  "C current thresholds, conf 0.1": {
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.3424,
+     "nothing_read": 0.1,
+     "word_exact": 0.3533
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.6129,
+     "nothing_read": 0.4333,
+     "word_exact": 0.2133
+    },
+    "mean_cer": 0.4777
+   },
+   "rendered_val_cer": 0.0258,
+   "rendered_val_cer_bn": 0.0189,
+   "rendered_val_cer_en": 0.0327
+  },
+  "D permissive (0.6 / 0.3 / 0.4, conf 0.1)": {
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.3391,
+     "nothing_read": 0.0867,
+     "word_exact": 0.3533
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.6182,
+     "nothing_read": 0.42,
+     "word_exact": 0.2133
+    },
+    "mean_cer": 0.4787
+   },
+   "rendered_val_cer": 0.0295,
+   "rendered_val_cer_bn": 0.0213,
+   "rendered_val_cer_en": 0.0377
+  }
+ },
+ "admissible": [
+  "A current (0.8 / 0.3 / 0.4, conf 0.2)",
+  "C current thresholds, conf 0.1"
+ ],
+ "winner": "C current thresholds, conf 0.1",
+ "winner_on_real_test": {
+  "bn": {
+   "n": 500,
+   "cer": 0.3916,
+   "nothing_read": 0.17,
+   "word_exact": 0.374
+  },
+  "en": {
+   "n": 500,
+   "cer": 0.6245,
+   "nothing_read": 0.38,
+   "word_exact": 0.204
+  },
+  "mean_cer": 0.5081
+ },
+ "first_test_with_current_settings": {
+  "bn": {
+   "cer": 0.4171,
+   "nothing_read": 0.246,
+   "word_exact": 0.368
+  },
+  "en": {
+   "cer": 0.649,
+   "nothing_read": 0.484,
+   "word_exact": 0.204
+  }
+ }
+}
