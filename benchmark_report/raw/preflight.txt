@@ -1,0 +1,10 @@
+capture guide: all checks pass
+ok  watermark INT8  2.62 MB
+ok  watermark localizer  4.32 MB
+ok  note detector INT8  17.99 MB
+ok  safe-check checkpoint  16.62 MB
+ok  500 template  0.61 MB
+ok  1000 template  0.60 MB
+ok  INT8 watermark, watermark localizer and INT8 detector graphs each ran one dummy input
+Latency is not measured here. On the Pi: python scripts/benchmark_pi5.py --iters 100 --sustained 30
+preflight exit 0

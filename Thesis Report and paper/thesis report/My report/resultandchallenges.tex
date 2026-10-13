@@ -683,6 +683,51 @@ Text reading of one picture (EasyOCR, canvas 2,560) & 18.7 s & 20.4 s \\ \hline
 
 \textbf{Not measured on the Pi.} The emotion entry was timed before the emotion mode was added to the application, and the mode has not been timed again. The mode-switch improvement was measured on the laptop only. Battery life was not measured.
 
+\subsection{Raspberry Pi 5, Second Run (13 October 2026)}
+\label{sec:pi5_second}
+The glass was benchmarked again on its own board after the changes of 11 to 13 October, with 30 calls per row after 3 warm-up calls, and the text reader was timed through the call the application makes when ACTION is pressed (Table~\ref{tab:pi5_second}). The full report, its raw files and its scripts are in \texttt{benchmark\_report/}.
+
+\textbf{The board was at its temperature limit.} The Pi was at 73~$^\circ$C before the first timed call, after two sessions with the application. It reached 88.7~$^\circ$C, and the firmware reported throttling or clock capping in 76\% of the samples during the text-reading test, with the CPU clock down to 1.5~GHz instead of 2.4~GHz. The power supply was not the cause (no under-voltage) and the fan was running. Every figure in the table is therefore the speed of a hot, throttled board; the first run ended at 77.1~$^\circ$C without throttling. How much of the slowdown is heat cannot be said from this run.
+
+\begin{table}[!htbp]
+\centering
+\caption{Second run on the Raspberry Pi~5 (13 October 2026), on a hot and throttled board}
+\label{tab:pi5_second}
+\small
+\begin{tabular}{|L{7.6cm}|C{2.2cm}|C{2.2cm}|C{2.1cm}|}
+\hline
+\textbf{Part of the glass} & \textbf{Typical time (median)} & \textbf{Slow case (95th percentile)} & \textbf{First run, 1 October} \\ \hline
+Currency mode, whole job & 399 ms & 524 ms & 327 ms \\ \hline
+Taka detector, compressed INT8 ONNX (used) & 306 ms & 446 ms & 254 ms \\ \hline
+Watermark check, learned watermark finder (used) & 64 ms & 109 ms & 50 ms \\ \hline
+Counterfeit checker, 1 view / 6 views & 43 / 98 ms & 146 / 121 ms & 37 / 90 ms \\ \hline
+Object scan as the application runs it (YOLOv8s) & 562 ms & 610 ms & -- \\ \hline
+Object detector YOLOv8n alone & 227 ms & 342 ms & 207 ms \\ \hline
+Emotion, with a face in view & 680 ms & 926 ms & -- \\ \hline
+Emotion, no face in view (face search only) & 48 ms & 50 ms & 48 ms \\ \hline
+Text reading, 3-line English sign, as the application ran it & 34.0 s & 34.7 s (slowest of 3) & -- \\ \hline
+The same sign with the text found once & 18.3 s & 18.5 s (slowest of 4) & 18.7 s \\ \hline
+Text reading, 12-line page: first line spoken / whole page & 16.4 s / 36.5 s & -- / 39.9 s & -- \\ \hline
+Text reading, no text in view & 27.5 s & 28.6 s (slowest of 3) & -- \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{pi5_ocr_response.png}
+    \caption{Text reading on the Raspberry Pi~5 on 13 October 2026: response time of each capture and where it goes (from the benchmark report)}
+    \label{fig:pi5_ocr}
+\end{figure}
+
+Four things in this run are findings about the software, not about the heat.
+\begin{enumerate}[noitemsep]
+    \item \textbf{A short sign paid for the text detector twice.} The line-by-line path ran the detector to count the lines, and for fewer than four lines the normal path ran it again: 34.0~s instead of 18.3~s. The detector now runs once per capture and both paths use its boxes; the text read is identical to before on the benchmark images.
+    \item \textbf{A picture with no text was not answered with ``no text found''.} After 27.5~s the fall-back reader for handwritten letters returned 48 letters that were not there. A picture in which the detector finds nothing is now answered at once, and the handwritten-letter reader is not tried on it.
+    \item \textbf{The emotion figure of the first run was a frame without a face.} With a face to classify, one answer takes 680~ms, not 48~ms.
+    \item \textbf{One pass of the text detector takes 11 to 18~s on this board}, with the full-precision ONNX detector and whatever is in the picture. The 8-bit detector, which costs 0.57 points of error on the rendered validation set and so does not meet the 0.5-point rule, was made the default on the Pi as a stated exception, for speed. Its speed on the Pi has not been measured yet.
+\end{enumerate}
+The application's own log of the two sessions before the benchmark agrees with the table: currency check 406~ms (8 checks), object scan and announcement 777~ms (10), one text capture 39.9~s, three UV fibre checks at 0.8 to 1.4~s. Speech adds almost nothing to the response time (under 30~ms to synthesise a sentence). Not repeated in this run: the 30-minute sustained test, and a run on a cool board.
+
 \section{First Field Test with the Glass}
 \label{sec:field_test}
 On 3~October 2026 the glass was tried by hand for the first time with its own camera, after the deployment problems of Section~\ref{sec:deploy_problems} had been solved and the application started correctly. This was an informal test by the developers, not a measurement, and no error rates were recorded. Three problems were observed:
@@ -765,7 +810,7 @@ For 0 counterfeits passed out of 88, the upper limit is $\frac{z^2/n}{1+z^2/n} =
 \section{Discussion}
 The results answer the research questions of Section~\ref{sec:Research Question}.
 
-\textbf{System (RQ1).} A five-mode assistive glass runs on a Raspberry Pi~5 within 1.5~GB of memory and without thermal throttling. Currency, objects, the watermark check and emotion respond in 50 to 330~ms; with speech, a currency answer takes under three seconds. Text reading is the slowest mode (about 19~seconds per capture, mostly in the text detector); for pages, a faster decoder and line-by-line reading are now in place.
+\textbf{System (RQ1).} A five-mode assistive glass runs on a Raspberry Pi~5 within 1.5~GB of memory; in a second run after two sessions of use the board reached its temperature limit and was throttled (Section~\ref{sec:pi5_second}). Currency, objects, the watermark check and emotion respond in 50 to 330~ms; with speech, a currency answer takes under three seconds. Text reading is the slowest mode (about 19~seconds per capture, mostly in the text detector); for pages, a faster decoder and line-by-line reading are now in place.
 
 \textbf{Synthetic data for currency (RQ2).} Training only on automatically labelled composites gave near-perfect scores on held-out composites and 91.5\% correct denominations on 1,536 independently collected photographs, though only 18.5\% on hand-held close-ups. Realistic backgrounds and physically motivated augmentation mattered more than the network architecture. 
 

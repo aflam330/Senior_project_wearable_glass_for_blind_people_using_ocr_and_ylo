@@ -1,0 +1,74 @@
+{
+ "results": {
+  "emotion_with_face": {
+   "median_ms": 680.32,
+   "p95_ms": 926.48,
+   "mean_ms": 706.48,
+   "fps_median": 1.47,
+   "iters": 30,
+   "rss_mb_after": 676.757504,
+   "cpu_temp_c_after": 83.15,
+   "load_ms": 2212.2,
+   "face_found": true,
+   "backend": "rgb_mobilenet_blend",
+   "label": "happiness",
+   "face_detector": "yunet",
+   "strong_classifier": true
+  },
+  "object_yolov8n": {
+   "median_ms": 226.86,
+   "p95_ms": 342.05,
+   "mean_ms": 242.1,
+   "fps_median": 4.41,
+   "iters": 30,
+   "rss_mb_after": 710.656,
+   "cpu_temp_c_after": 82.6,
+   "load_ms": 57.8
+  },
+  "object_yolov8s": {
+   "median_ms": 557.31,
+   "p95_ms": 671.65,
+   "mean_ms": 571.27,
+   "fps_median": 1.79,
+   "iters": 30,
+   "rss_mb_after": 783.384576,
+   "cpu_temp_c_after": 83.7,
+   "load_ms": 68.4
+  },
+  "speech_bn_short": {
+   "median_ms": 17.5,
+   "max_ms": 24.5,
+   "iters": 8,
+   "characters": 42,
+   "audio_seconds": 5.93,
+   "voice": "bn"
+  },
+  "speech_en_short": {
+   "median_ms": 14.3,
+   "max_ms": 15.8,
+   "iters": 8,
+   "characters": 45,
+   "audio_seconds": 5.57,
+   "voice": "en-us"
+  },
+  "speech_bn_page": {
+   "median_ms": 28.5,
+   "max_ms": 29.2,
+   "iters": 8,
+   "characters": 136,
+   "audio_seconds": 16.72,
+   "voice": "bn"
+  },
+  "camera": {
+   "open_to_first_frame_ms": 1433.0,
+   "frame_interval_ms_median": 132.21,
+   "frame_interval_ms_p95": 136.2,
+   "fps_median": 7.6,
+   "frames": 90,
+   "size": "640x480",
+   "index": 0
+  }
+ },
+ "skipped": {},
+ "cpu_temp_c_end": 75.45
+}
