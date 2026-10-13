@@ -25,7 +25,8 @@ MVP-N \cite{mvpn}, ModelNet40 \cite{modelnet} & Objects photographed or drawn fr
 RAF-DB \cite{rafdb} & 15,339 face photos, each labelled with one of 7 expressions & Training and testing emotion recognition & Official division: 12,271 train / 3,068 test \\ \hline
 OCR benchmark (made in this work) & Bangla and English phrases drawn with correct Bangla letter shapes; 432 pictures per phrase set & Choosing and testing the text-reading settings & Different phrases and fonts for validation and for test \\ \hline
 Ekush \cite{ekush} & 367,018 handwritten Bangla letters and signs, 122 kinds & A back-up reader for single handwritten letters & By writer: 2,429 / 303 / 305 writers \\ \hline
-COCO val2017 subset & 250 photos containing 77 kinds of objects & Testing the object mode & Test only \\ \hline
+COCO val2017 & 5,000 photos with 80 kinds of objects & Testing the object mode & Test only \\ \hline
+UV note photographs (made in this work) & 118 phone photos of genuine 200, 500 and 1,000 Taka notes under a UV lamp & Testing the UV fibre check & By capture order: blocked 5-fold \\ \hline
 \end{tabular}
 \end{table}
 \FloatBarrier
@@ -238,7 +239,7 @@ Every choice was made on the validation set; the test set was read once per fini
 As an additional study of Bangla recognition, a CNN classifier for 122 classes of isolated handwritten Bangla characters (vowels, consonants, conjuncts, modifiers and digits) was trained on the Ekush dataset \cite{ekush}. The data was split by writer (2,429 / 303 / 305 writers; 292,974 / 35,436 / 38,608 images) so that no writer's handwriting appears in both training and test data.
 
 \section{Object Detection Data}
-The object mode uses a YOLOv8 model pre-trained on COCO without retraining. To check its accuracy in our pipeline, it was evaluated on a random subset of 250 images from COCO val2017, in which 77 of the 80 classes appear.
+The object mode uses a YOLOv8 model pre-trained on COCO without retraining. To check its accuracy in our pipeline, it was evaluated on the 5,000 photographs of COCO val2017 (an earlier evaluation used a random subset of 250 of them).
 
 \section{Note on User Survey}
 This work does not yet include results from a study with visually impaired participants. Trial sessions and a survey have started (Section~\ref{sec:field_test}), and their data will be added when they are complete. A protocol has been prepared and its hypotheses and analysis were written down in advance (8--12 participants; tasks for denomination identification, the watermark check with and without spoken guidance, and reading; measures including task time, accuracy, NASA-TLX \cite{nasatlx} and the System Usability Scale \cite{sus}). The software for it exists: the study log of the watermark check, an analysis script, and the voice-driven questionnaire. The questionnaire tool was tried in three pilot sessions run by the project team, each about three and a half minutes long, to test that names and spoken answers are recorded; in the last two sessions five and six of the six answers were recognised from speech. These sessions test the tool. They are not study data, and no user-study result is reported in this thesis. Conducting the study, with ethical approval, is the most important next step (Chapter~\ref{chap:conclusion}).

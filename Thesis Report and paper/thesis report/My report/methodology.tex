@@ -233,7 +233,7 @@ The main-text-block step reuses the boxes that EasyOCR already returns, so it co
 
 
 \subsection{Object Detection Module}
-The object module runs a COCO-pretrained YOLOv8 model (small variant, with the nano variant as fall-back; the nano variant was the one timed on the Raspberry Pi~5) on a 320$\times$240 copy of the frame every 1.5 seconds with a confidence threshold of 0.50. The three most confident unique classes are translated to Bangla with a lookup table of the 80 COCO classes and announced, subject to a per-class cooldown of 4 seconds.
+The object module runs a COCO-pretrained YOLOv8 model (small variant, with the nano variant as fall-back; the nano variant was the one timed on the Raspberry Pi~5) on the camera frame every 1.5 seconds with a confidence threshold of 0.50. An earlier version first shrank the frame to 320$\times$240; the detector enlarges every picture to its 640-pixel input anyway, so this saved no time and cost detail (Section~\ref{sec:object_results}). The three most confident unique classes are translated to Bangla with a lookup table of the 80 COCO classes and announced, subject to a per-class cooldown of 4 seconds.
 
 \subsection{Currency Detection Module}
 The currency module is a cascade that degrades gracefully when models are missing:
@@ -446,6 +446,28 @@ The whole classifier has 47,818 parameters (0.21~MB), against 2.23 million (9.15
 \end{algorithm}
 
 
+\subsection{UV Security-Fibre Check}
+\label{sec:uv_method}
+Bangladeshi 200, 500 and 1,000 Taka notes carry short security fibres that glow under ultraviolet (UV) light, on paper that stays dull, while ordinary white paper glows as a whole. Our own UV photographs of genuine notes show exactly this (Figure~\ref{fig:uv_fibres}). A genuine note therefore \emph{has} UV marks; a note without them is the suspicious one. As an additional, optional check, a UV lamp beside the camera is switched on after the note has been named, and the fibres inside the note box are counted.
+
+\textbf{Method (excitation-normalised fluorescence residual).} The lamp's own light reaches the camera as blue. Anything that fluoresces gives off light of another colour. For the paper of one note, green and red are a fixed share of blue, estimated in the same picture as $a = \operatorname{median}(G/B)$ and $b = \operatorname{median}(R/B)$. What that share does not explain is fluorescence:
+\begin{equation}
+E = \max\big(G - a B,\; R - b B\big), \qquad
+r = \frac{\operatorname{tophat}(E)}{G_{6} * B + 1},
+\label{eq:enfr}
+\end{equation}
+where $\operatorname{tophat}$ is the white top-hat with a 9-pixel disc (it keeps thin bright structures) and $G_6 * B$ is the local lamp level. Fibres are the connected parts of $r > 0.12$ that are 5 to 70 pixels long and thin, in a note crop brought to a width of 600 pixels. The note is accepted when at least $T$ fibres are found. Because $a$, $b$ and the lamp level are measured in the same picture, the brightness and distance of the lamp cancel: multiplying the lamp intensity by any factor leaves $a$, $b$ and (up to the constant 1) $r$ unchanged. A change of the camera's colour balance does not cancel: the paper still gives $E = 0$, but the contrast of a fibre is multiplied by the green-to-blue gain ratio, so $T$ and the threshold on $r$ belong to one camera.
+
+The check is switched off by default and its wording is cautious (``UV marks found, likely genuine'' or ``UV marks not found, check by hand''), because it has not been tested on counterfeit notes or through the glass camera (Section~\ref{sec:uv_results}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{fig_uv_fibres.jpg}
+    \caption{Genuine 200 and 1,000 Taka notes under a UV lamp (left of each pair) and the security fibres found by the check (green, right of each pair)}
+    \label{fig:uv_fibres}
+\end{figure}
+
+
 \subsection{Emotion Mode}
 The emotion mode finds the nearest face with the YuNet detector \cite{yunet} (an OpenCV Haar cascade is the fall-back) and classifies it into seven expressions (happy, sad, angry, surprise, fear, disgust, neutral) with an EfficientNet-V2-S network \cite{efficientnetv2} at 224$\times$224 pixels, averaging the prediction with that of the mirrored face. A FER+ model \cite{ferplus} is kept as a fall-back. When ACTION is pressed, the glass speaks the expression in Bangla. In the desktop harness the detected emotion can also change the style of the speech: slower with a short reassuring phrase for sad, fearful or angry expressions. Until 3~October 2026 the recogniser existed only in the desktop harness; it was added to the glass application as a mode on that date.
 
@@ -454,7 +476,7 @@ The emotion mode finds the nearest face with the YuNet detector \cite{yunet} (an
 To study the glass in real use without loading the Raspberry Pi, every event is put on a queue and written by a background thread to \texttt{events.csv} (time, mode, button, result fields, duration); a second file, \texttt{system.csv}, records memory, CPU temperature and throttling state every 10~seconds. Saving the captured frame is optional. A report script summarises a run.
 
 \subsection{Voice Interaction and Feedback}
-All speech passes through one queue served by a worker thread, so that modes never block each other. The \texttt{TTSEngine} decides the language of each segment: if more than 25\% of the characters are in the Bangla Unicode block (U+0980--U+09FF) the segment is Bangla, otherwise English. Mixed text is split into Bangla and English runs and into sentences with a 0.15-second pause between them. Piper \cite{piper} is used for English when the binary and a voice model exist. Bangla is spoken with espeak-ng \cite{espeakng} at 135 words per minute, with a lower pitch and a small gap between words for clarity, because the only prebuilt Piper program for the Pi cannot use the public Bangla voice. In the desktop harness on Windows, Bangla is spoken with an online voice and English with the Windows speech engine. The queue holds at most five messages; older ones are dropped so that the user always hears current information.
+All speech passes through one queue served by a worker thread, so that modes never block each other. The \texttt{TTSEngine} decides the language of each segment: if more than 25\% of the characters are in the Bangla Unicode block (U+0980--U+09FF) the segment is Bangla, otherwise English. Mixed text is split into Bangla and English runs and into sentences with a 0.15-second pause between them. Piper \cite{piper} is used for English when the binary and a voice model exist. Bangla is spoken with espeak-ng \cite{espeakng} at 135 words per minute, with a lower pitch and a small gap between words for clarity, because the only prebuilt Piper program for the Pi cannot use the public Bangla voice. In the desktop harness on Windows, Bangla is spoken with an online voice and English with the Windows speech engine. The queue holds at most five waiting messages; older ones are dropped so that the user always hears current information, except the lines of a page, which are never dropped. One message is always spoken whole: an earlier version queued sentences separately, so a long text pushed its own first sentences out of the queue. Punctuation, digits and the Bangla full stop stay with the language around them; before, each of them was cut out of a Bangla sentence as a one-character English piece with its own pause, which made Bangla reading break up.
 
 \subsection{Overall System Flow and Logic}
 Figure~\ref{fig:flow} shows the control flow of the application. The program runs several threads: the main thread, a camera thread that always keeps the latest frame, the speech worker, the object-scanning loop, an inference thread for ACTION requests, and GPIO interrupt threads. An \texttt{\_inferring} flag prevents two heavy OCR or currency jobs from running at the same time.
@@ -567,7 +589,7 @@ The metrics per module are:
     \item \textbf{Authentication:} accuracy for 1 to 6 views on the note-disjoint and the print-disjoint split; expected calibration error (ECE) \cite{guo2017calibration}; robustness under image corruptions; for the deployed policy, the number of counterfeits passed as genuine and of genuine notes confirmed.
     \item \textbf{Emotion:} accuracy, macro precision, recall and F1 on the official RAF-DB test set.
     \item \textbf{OCR:} character error rate (CER) and word error rate (WER), the edit distance \cite{levenshtein1966} between the recognised text and the ground truth divided by the length of the ground truth, after Unicode NFC normalisation.
-    \item \textbf{Objects:} mAP@0.5 on a 250-image COCO val2017 subset.
+    \item \textbf{Objects:} mAP@0.5 on the 5,000 photographs of COCO val2017.
     \item \textbf{Speed:} median and 95th-percentile time per call over 100 calls on the Raspberry Pi~5, and memory, temperature and throttling state during a 30-minute mixed run.
 \end{itemize}
 An append-only database (\texttt{research\_results/experiments.json}, 204 experiments in 11 comparison groups) records each experiment with its result file, and a claim registry links the 298 numerical claims of the project to their files; a script checks that each claimed value equals the value in the file.
