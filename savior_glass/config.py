@@ -65,7 +65,10 @@ MODE_NAMES_BN = [
 # ---------------------------------------------------------------------------
 # Model Paths
 # ---------------------------------------------------------------------------
-YOLO_MODEL_PATH     = os.path.join(BASE_DIR, "models", "yolov8s.pt")
+# Object model. YOLOv8s is more accurate (mAP@0.5 0.551 against 0.453 for YOLOv8n on all of COCO val2017) and slower:
+# on the Raspberry Pi 5, 562 ms against 227 ms per scan (benchmark_report/REPORT.md, 13 October 2026, a hot board).
+# YOLO_MODEL=yolov8n.pt chooses the faster one, for example when the board runs hot.
+YOLO_MODEL_PATH     = os.path.join(BASE_DIR, "models", os.environ.get("YOLO_MODEL", "yolov8s.pt"))
 YOLO_MODEL_FALLBACK = os.path.join(BASE_DIR, "models", "yolov8n.pt")
 CURRENCY_MODEL_PATH = os.path.join(BASE_DIR, "models", "currency_mobilenet.pt")
 # On a Pi 5 the measured device model is the 18 MB INT8 detector. Elsewhere keep the
@@ -273,9 +276,15 @@ OCR_V2_DECODER = os.environ.get("OCR_V2_DECODER", "greedy")
 # as fast on four CPU threads with the same validation error, ocr_detector_onnx.py), otherwise PyTorch.
 # "onnx_int8" is faster again but costs 0.65 points of validation error, over the 0.5-point rule: opt-in only.
 # "torch" forces the original detector. Not yet timed on the Raspberry Pi.
-OCR_DETECTOR = os.environ.get("OCR_DETECTOR", "auto")
+# ON THE RASPBERRY PI 5 THE DEFAULT IS "onnx_int8" (since 14 October 2026). This is a deliberate exception to the
+# 0.5-point rule, made for speed: on the Pi one pass of the full-precision detector took 11 to 18 s
+# (benchmark_report/REPORT.md, 13 October), and the 8-bit Taka detector is 1.9 times faster than its full-precision
+# version on the same board. Cost, measured on the laptop with the settings now in use: rendered validation CER
+# 3.15 % against 2.58 % (+0.57 points; results/ocr_bench/detector_int8_variants.json). The speed of the 8-bit text
+# detector on the Pi itself has NOT been measured yet. To go back: OCR_DETECTOR=onnx.
+OCR_DETECTOR = os.environ.get("OCR_DETECTOR", "onnx_int8" if ON_RASPBERRY_PI_5 else "auto")
 OCR_DETECTOR_ONNX = os.path.join(BASE_DIR, "models", "craft_fp32.onnx")
-OCR_DETECTOR_ONNX_INT8 = os.path.join(BASE_DIR, "models", "craft_int8.onnx")
+OCR_DETECTOR_ONNX_INT8 = os.path.join(BASE_DIR, "models", "craft_int8_minmax128.onnx")   # MinMax calibration, 128 images
 # Pages: when the main text block holds at least OCR_STREAM_MIN_LINES lines, each line is spoken as soon as it is
 # read, while the rest of the page is still being read. Measured (results/ocr_bench/page_streaming.json, same 4-thread
 # laptop): first line after 5.5 s on a 12-line page; validation error unchanged (2.14 %, 432 images). Fewer lines

@@ -216,7 +216,10 @@ class OCRMode(BaseMode):
                     texts = [tess]
                     logger.info("EasyOCR empty; using offline Tesseract")
 
-        if not texts:
+        # The handwritten-letter reader is tried only when the text detector saw something it could not read. On a
+        # picture with no text at all it used to "read" letters that are not there (on the Pi, a blank frame gave 48
+        # made-up characters after 27 s).
+        if not texts and not (v2 and getattr(self, "no_text_boxes", False)):
             ekush = self._ensure_ekush()
             if ekush is not None and ekush.ok:
                 hw = ekush.read_frame(frame)
@@ -275,12 +278,28 @@ class OCRMode(BaseMode):
         kw.update(decoder=decoder, canvas_size=getattr(config, "OCR_CANVAS_SIZE", 2560))
         if decoder == "beamsearch":
             kw["beamWidth"] = getattr(config, "OCR_BEAM_WIDTH", 5)
+        # The text detector runs ONCE per capture and its boxes are used by both paths below. Before 14 October the
+        # line-by-line path ran it to count the lines and the normal path ran it again: on the Raspberry Pi 5 a
+        # three-line sign took 34 s instead of 18 s (benchmark_report/REPORT.md, 13 October 2026).
+        det_kw = {k: kw[k] for k in ("text_threshold", "low_text", "link_threshold", "canvas_size", "mag_ratio", "slope_ths")
+                  if k in kw}
+        rec_kw = {k: kw[k] for k in ("decoder", "beamWidth", "contrast_ths", "adjust_contrast") if k in kw}
+        self.no_text_boxes = False
+        try:
+            hl, fl = self._reader.detect(gray, width_ths=0.7, height_ths=0.7, **det_kw)
+        except Exception as exc:
+            logger.warning("EasyOCR detection error: %s", exc)
+            return []
+        boxes, free = (list(hl[0]) if hl else []), (list(fl[0]) if fl else [])
+        if not boxes and not free:
+            self.no_text_boxes = True          # nothing that looks like text: say so at once (process_frame)
+            return []
         if self.speak_line is not None and getattr(config, "OCR_STREAM_PAGES", False):
-            page = self._read_page_streaming(gray, kw, w0)
+            page = self._read_page_streaming(gray, kw, w0, boxes)
             if page is not None:
                 return page
         try:
-            det = self._reader.readtext(gray, detail=1, paragraph=False, width_ths=0.7, height_ths=0.7, **kw)
+            det = self._reader.recognize(gray, horizontal_list=boxes, free_list=free, detail=1, paragraph=False, **rec_kw)
         except Exception as exc:
             logger.warning("EasyOCR inference error: %s", exc)
             return []
@@ -310,18 +329,11 @@ class OCRMode(BaseMode):
             text = best[1]
         return [text] if text else []
 
-    def _read_page_streaming(self, gray: np.ndarray, kw: dict, w0: int):
-        """Whole pages: find all text first, then read and speak it line by line in reading order.
-        Returns None when the picture has fewer than OCR_STREAM_MIN_LINES lines (the normal path then runs)."""
-        det_kw = {k: kw[k] for k in ("text_threshold", "low_text", "link_threshold", "canvas_size", "mag_ratio", "slope_ths")
-                  if k in kw}
+    def _read_page_streaming(self, gray: np.ndarray, kw: dict, w0: int, boxes: list):
+        """Whole pages: read and speak the text line by line in reading order. boxes are the text detector's
+        upright boxes [x_min, x_max, y_min, y_max] for this picture (found once, in _read_v2).
+        Returns None when the picture has fewer than OCR_STREAM_MIN_LINES lines (the normal path then reads them)."""
         rec_kw = {k: kw[k] for k in ("decoder", "beamWidth", "contrast_ths", "adjust_contrast") if k in kw}
-        try:
-            hl, fl = self._reader.detect(gray, width_ths=0.7, height_ths=0.7, **det_kw)
-        except Exception as exc:
-            logger.warning("EasyOCR detection error: %s", exc)
-            return None
-        boxes = list(hl[0]) if hl else []          # [x_min, x_max, y_min, y_max]
         if not boxes:
             return None
         # the same main-text-block rule as the normal path, on geometry only (no confidence before recognition):

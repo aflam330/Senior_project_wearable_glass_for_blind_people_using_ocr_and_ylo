@@ -26,6 +26,7 @@ models/*.pt
 models/*.onnx
 !models/craft_fp32.onnx
 !models/craft_int8.onnx
+!models/craft_int8_minmax128.onnx
 models/piper/*.onnx
 models/piper/*.json
 models/piper/engine/

@@ -46,6 +46,8 @@ def install(reader) -> str:
     if choice == "torch" or getattr(reader, "device", "cpu") != "cpu":
         return "pytorch"
     path = config.OCR_DETECTOR_ONNX_INT8 if choice == "onnx_int8" else config.OCR_DETECTOR_ONNX
+    if choice == "onnx_int8" and not os.path.isfile(path):
+        path = config.OCR_DETECTOR_ONNX                 # no 8-bit file: the full-precision ONNX detector is next best
     if not os.path.isfile(path):
         if choice != "auto":
             logger.warning("OCR_DETECTOR=%s but %s is missing; using PyTorch", choice, path)
