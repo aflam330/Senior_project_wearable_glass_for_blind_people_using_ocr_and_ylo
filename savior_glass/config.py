@@ -242,6 +242,13 @@ OCR_V2_MIN_CONF = 0.2
 # Batch size 16 gave no speed-up; reading at the camera's own size was 41 % faster but +0.74 points error (rejected).
 # The legacy pipeline keeps OCR_DECODER.
 OCR_V2_DECODER = os.environ.get("OCR_V2_DECODER", "greedy")
+# Text detector on the CPU: "auto" uses the ONNX Runtime copy of CRAFT when models/craft_fp32.onnx exists (about twice
+# as fast on four CPU threads with the same validation error, ocr_detector_onnx.py), otherwise PyTorch.
+# "onnx_int8" is faster again but costs 0.65 points of validation error, over the 0.5-point rule: opt-in only.
+# "torch" forces the original detector. Not yet timed on the Raspberry Pi.
+OCR_DETECTOR = os.environ.get("OCR_DETECTOR", "auto")
+OCR_DETECTOR_ONNX = os.path.join(BASE_DIR, "models", "craft_fp32.onnx")
+OCR_DETECTOR_ONNX_INT8 = os.path.join(BASE_DIR, "models", "craft_int8.onnx")
 # Pages: when the main text block holds at least OCR_STREAM_MIN_LINES lines, each line is spoken as soon as it is
 # read, while the rest of the page is still being read. Measured (results/ocr_bench/page_streaming.json, same 4-thread
 # laptop): first line after 5.5 s on a 12-line page; validation error unchanged (2.14 %, 432 images). Fewer lines

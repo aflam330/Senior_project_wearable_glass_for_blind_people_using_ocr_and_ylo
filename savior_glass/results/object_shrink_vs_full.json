@@ -1,0 +1,17 @@
+{
+ "date": "2026-10-13",
+ "images": 5000,
+ "model": "yolov8s.pt",
+ "paths": {
+  "shrunk to 320x240 (before)": {
+   "map50_all_80": 0.4925,
+   "detections_at_announce_confidence": 17175,
+   "cpu_ms_median_4_threads": 162.5
+  },
+  "camera frame as it is (after)": {
+   "map50_all_80": 0.521,
+   "detections_at_announce_confidence": 18902,
+   "cpu_ms_median_4_threads": 172.5
+  }
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "date": "2026-10-13",
+ "threads": 4,
+ "cpu": "laptop CPU limited to 4 threads; NOT a Raspberry Pi",
+ "file_mb": {
+  "fp32": 83.1,
+  "int8": 20.9
+ },
+ "variants": {
+  "pytorch (current)": {
+   "detector_s_median": 5.554,
+   "page_s_median": 9.99,
+   "page_cer": 0.0024,
+   "val_cer": 0.0214,
+   "val_cer_bn": 0.0159,
+   "val_cer_en": 0.0269,
+   "val_ms_median": 2301.0,
+   "within_0.5_points_of_current": true
+  },
+  "onnx runtime, full precision": {
+   "detector_s_median": 2.626,
+   "page_s_median": 5.59,
+   "page_cer": 0.0024,
+   "val_cer": 0.0214,
+   "val_cer_bn": 0.0159,
+   "val_cer_en": 0.0269,
+   "val_ms_median": 1221.0,
+   "within_0.5_points_of_current": true
+  },
+  "onnx runtime, INT8": {
+   "detector_s_median": 1.288,
+   "page_s_median": 4.28,
+   "page_cer": 0.0024,
+   "val_cer": 0.0279,
+   "val_cer_bn": 0.0253,
+   "val_cer_en": 0.0304,
+   "val_ms_median": 783.0,
+   "within_0.5_points_of_current": false
+  }
+ }
+}

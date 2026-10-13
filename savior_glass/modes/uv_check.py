@@ -10,8 +10,11 @@ does not explain is fluorescence:
     E = max(G - a*B, R - b*B)                       emission residual
     r = tophat(E) / (blur(B) + 1)                   thin bright structures, relative to the local lamp level
 
-Because a, b and blur(B) are measured in the same picture, the lamp's brightness, its distance and the camera's
-colour balance drop out. Fibres are the connected parts of r > UV_REL_THRESHOLD that are thin and elongated.
+Because a, b and blur(B) are measured in the same picture, the lamp's brightness and its distance drop out (for a
+camera that answers linearly). A change of the camera's colour balance does not: the paper still gives E = 0, but
+the fibres' contrast r is multiplied by the green/blue gain ratio (paper_evidence/THEORY_STRONG.md, Proposition 2),
+so the threshold has to be set again for another camera. Fibres are the connected parts of r > UV_REL_THRESHOLD
+that are thin and elongated.
 
 Measured on 118 phone photographs of genuine notes (scripts/uv_dataset.py, results/uv_check/): see config.py.
 Not measured: counterfeit notes (none were available) and the glass camera. The check therefore never says

@@ -1,0 +1,9105 @@
+{
+ "date": "2026-10-13",
+ "data": "ICDAR 2019 MLT word crops (HF sai-santhosh/mlt19-train-ocr-data), real photographs",
+ "pool_readable_words": {
+  "bn_IN": 3935,
+  "en_XX": 58840
+ },
+ "sample": "500 per script, seed 0; no tuning on these images",
+ "pipeline": "glass pipeline v2: 1,200 px, greedy decoder, main text block, clean-up; CPU, 4 threads",
+ "latency_ms_median": 5739.2,
+ "bn": {
+  "all": {
+   "n": 500,
+   "cer": 0.4171,
+   "cer_ci95": [
+    0.3801,
+    0.4548
+   ],
+   "median_cer": 0.25,
+   "word_exact": 0.368,
+   "nothing_read": 0.246
+  },
+  "upright_only": {
+   "n": 458,
+   "cer": 0.3784,
+   "cer_ci95": [
+    0.3399,
+    0.419
+   ],
+   "median_cer": 0.25,
+   "word_exact": 0.3974,
+   "nothing_read": 0.2162
+  },
+  "rotated_only": {
+   "n": 42,
+   "cer": 0.8392,
+   "cer_ci95": [
+    0.732,
+    0.9373
+   ],
+   "median_cer": 1.0,
+   "word_exact": 0.0476,
+   "nothing_read": 0.5714
+  },
+  "at_least_32px_high_and_upright": {
+   "n": 457,
+   "cer": 0.3771,
+   "cer_ci95": [
+    0.3407,
+    0.4156
+   ],
+   "median_cer": 0.25,
+   "word_exact": 0.3982,
+   "nothing_read": 0.2144
+  }
+ },
+ "en": {
+  "all": {
+   "n": 500,
+   "cer": 0.649,
+   "cer_ci95": [
+    0.6088,
+    0.6884
+   ],
+   "median_cer": 1.0,
+   "word_exact": 0.204,
+   "nothing_read": 0.484
+  },
+  "upright_only": {
+   "n": 422,
+   "cer": 0.5853,
+   "cer_ci95": [
+    0.5418,
+    0.6291
+   ],
+   "median_cer": 0.75,
+   "word_exact": 0.2417,
+   "nothing_read": 0.4005
+  },
+  "rotated_only": {
+   "n": 78,
+   "cer": 0.9936,
+   "cer_ci95": [
+    0.9808,
+    1.0
+   ],
+   "median_cer": 1.0,
+   "word_exact": 0.0,
+   "nothing_read": 0.9359
+  },
+  "at_least_32px_high_and_upright": {
+   "n": 282,
+   "cer": 0.4681,
+   "cer_ci95": [
+    0.4142,
+    0.5242
+   ],
+   "median_cer": 0.25,
+   "word_exact": 0.3262,
+   "nothing_read": 0.2766
+  }
+ },
+ "rows": [
+  {
+   "lang": "bn",
+   "gt": "উপহার",
+   "hyp": "উপহার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 134,
+   "w": 411
+  },
+  {
+   "lang": "en",
+   "gt": "15.00",
+   "hyp": "1500",
+   "cer": 0.2,
+   "upright": true,
+   "h": 30,
+   "w": 81
+  },
+  {
+   "lang": "bn",
+   "gt": "ফেলিবেন",
+   "hyp": "ফেলিবেন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 169,
+   "w": 679
+  },
+  {
+   "lang": "en",
+   "gt": "NB",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 173,
+   "w": 108
+  },
+  {
+   "lang": "bn",
+   "gt": "শনিবার",
+   "hyp": "শনিবার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 171,
+   "w": 359
+  },
+  {
+   "lang": "bn",
+   "gt": "কেন্দ্রে",
+   "hyp": "কো্",
+   "cer": 0.75,
+   "upright": true,
+   "h": 235,
+   "w": 527
+  },
+  {
+   "lang": "en",
+   "gt": "21",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 16,
+   "w": 21
+  },
+  {
+   "lang": "en",
+   "gt": "PAVIMENTI",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 26,
+   "w": 171
+  },
+  {
+   "lang": "en",
+   "gt": "SKI",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 12,
+   "w": 35
+  },
+  {
+   "lang": "bn",
+   "gt": "অনলাইনে",
+   "hyp": "অনলাইনে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 466,
+   "w": 1701
+  },
+  {
+   "lang": "en",
+   "gt": "5+1",
+   "hyp": "5+1",
+   "cer": 0.0,
+   "upright": true,
+   "h": 471,
+   "w": 823
+  },
+  {
+   "lang": "bn",
+   "gt": "বি.",
+   "hyp": "বি",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 113,
+   "w": 138
+  },
+  {
+   "lang": "en",
+   "gt": "75",
+   "hyp": "75",
+   "cer": 0.0,
+   "upright": true,
+   "h": 62,
+   "w": 62
+  },
+  {
+   "lang": "en",
+   "gt": "P",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 89,
+   "w": 75
+  },
+  {
+   "lang": "en",
+   "gt": "suis-je",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 32,
+   "w": 63
+  },
+  {
+   "lang": "bn",
+   "gt": "সুটিং,",
+   "hyp": "সুটিং",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 124,
+   "w": 211
+  },
+  {
+   "lang": "bn",
+   "gt": "ডল",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 127,
+   "w": 122
+  },
+  {
+   "lang": "bn",
+   "gt": "কারিগরি",
+   "hyp": "কারিগরি",
+   "cer": 0.0,
+   "upright": true,
+   "h": 234,
+   "w": 565
+  },
+  {
+   "lang": "bn",
+   "gt": "যদি",
+   "hyp": "যদি",
+   "cer": 0.0,
+   "upright": true,
+   "h": 69,
+   "w": 90
+  },
+  {
+   "lang": "en",
+   "gt": "9",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 15,
+   "w": 9
+  },
+  {
+   "lang": "en",
+   "gt": "A.T.M.",
+   "hyp": "ATM",
+   "cer": 0.5,
+   "upright": true,
+   "h": 257,
+   "w": 739
+  },
+  {
+   "lang": "bn",
+   "gt": "স্টোর্স",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 259,
+   "w": 429
+  },
+  {
+   "lang": "bn",
+   "gt": "ফাইবারের",
+   "hyp": "চাবাবের",
+   "cer": 0.375,
+   "upright": true,
+   "h": 111,
+   "w": 294
+  },
+  {
+   "lang": "bn",
+   "gt": "৮",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 73,
+   "w": 39
+  },
+  {
+   "lang": "en",
+   "gt": "ALALAWI",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 9,
+   "w": 35
+  },
+  {
+   "lang": "en",
+   "gt": "Kein",
+   "hyp": "Kein",
+   "cer": 0.0,
+   "upright": true,
+   "h": 49,
+   "w": 110
+  },
+  {
+   "lang": "bn",
+   "gt": "সার্ভিস",
+   "hyp": "সাভিস",
+   "cer": 0.2857142857142857,
+   "upright": true,
+   "h": 125,
+   "w": 327
+  },
+  {
+   "lang": "en",
+   "gt": "Esposito,",
+   "hyp": "Esposito",
+   "cer": 0.1111111111111111,
+   "upright": true,
+   "h": 22,
+   "w": 75
+  },
+  {
+   "lang": "bn",
+   "gt": "ষ্টেট",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 290,
+   "w": 592
+  },
+  {
+   "lang": "bn",
+   "gt": "লহ্মী'র",
+   "hyp": "লক্ষ্মী র",
+   "cer": 0.5714285714285714,
+   "upright": true,
+   "h": 327,
+   "w": 641
+  },
+  {
+   "lang": "bn",
+   "gt": "হইল",
+   "hyp": "তটল",
+   "cer": 0.6666666666666666,
+   "upright": true,
+   "h": 368,
+   "w": 403
+  },
+  {
+   "lang": "en",
+   "gt": "preferisci",
+   "hyp": "prelerisci",
+   "cer": 0.1,
+   "upright": true,
+   "h": 55,
+   "w": 201
+  },
+  {
+   "lang": "bn",
+   "gt": "৪৯",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 114,
+   "w": 131
+  },
+  {
+   "lang": "en",
+   "gt": "dal",
+   "hyp": "3",
+   "cer": 1.0,
+   "upright": true,
+   "h": 29,
+   "w": 38
+  },
+  {
+   "lang": "en",
+   "gt": "ST",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 27,
+   "w": 22
+  },
+  {
+   "lang": "bn",
+   "gt": "দোকান",
+   "hyp": "দোকান",
+   "cer": 0.0,
+   "upright": true,
+   "h": 89,
+   "w": 279
+  },
+  {
+   "lang": "bn",
+   "gt": "মহাপ্রভু",
+   "hyp": "মহাপ্রভু",
+   "cer": 0.0,
+   "upright": true,
+   "h": 215,
+   "w": 626
+  },
+  {
+   "lang": "en",
+   "gt": "seguici",
+   "hyp": "seguici",
+   "cer": 0.0,
+   "upright": true,
+   "h": 22,
+   "w": 61
+  },
+  {
+   "lang": "en",
+   "gt": "NOI",
+   "hyp": "N",
+   "cer": 0.6666666666666666,
+   "upright": true,
+   "h": 101,
+   "w": 138
+  },
+  {
+   "lang": "en",
+   "gt": "mit",
+   "hyp": "mit",
+   "cer": 0.0,
+   "upright": true,
+   "h": 87,
+   "w": 137
+  },
+  {
+   "lang": "bn",
+   "gt": "এখানে",
+   "hyp": "এখান",
+   "cer": 0.2,
+   "upright": true,
+   "h": 136,
+   "w": 269
+  },
+  {
+   "lang": "bn",
+   "gt": "আধুনিক",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 131,
+   "w": 229
+  },
+  {
+   "lang": "bn",
+   "gt": "কোল-",
+   "hyp": "কোল",
+   "cer": 0.25,
+   "upright": true,
+   "h": 68,
+   "w": 293
+  },
+  {
+   "lang": "bn",
+   "gt": "মঞ্চে",
+   "hyp": "মঞ্চে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 102,
+   "w": 214
+  },
+  {
+   "lang": "bn",
+   "gt": "পুনরায়",
+   "hyp": "পুনরায়",
+   "cer": 0.0,
+   "upright": true,
+   "h": 197,
+   "w": 436
+  },
+  {
+   "lang": "bn",
+   "gt": "নং",
+   "hyp": "0",
+   "cer": 1.0,
+   "upright": false,
+   "h": 362,
+   "w": 244
+  },
+  {
+   "lang": "en",
+   "gt": "FIRENZE",
+   "hyp": "IIREIZE",
+   "cer": 0.2857142857142857,
+   "upright": true,
+   "h": 66,
+   "w": 97
+  },
+  {
+   "lang": "bn",
+   "gt": "না",
+   "hyp": "4",
+   "cer": 1.0,
+   "upright": false,
+   "h": 119,
+   "w": 77
+  },
+  {
+   "lang": "bn",
+   "gt": "অপ্সরা",
+   "hyp": "অপ্সরা",
+   "cer": 0.0,
+   "upright": true,
+   "h": 396,
+   "w": 1711
+  },
+  {
+   "lang": "bn",
+   "gt": "বাইক",
+   "hyp": "বাইক",
+   "cer": 0.0,
+   "upright": true,
+   "h": 196,
+   "w": 330
+  },
+  {
+   "lang": "bn",
+   "gt": "সি",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 77,
+   "w": 78
+  },
+  {
+   "lang": "en",
+   "gt": "è",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 87,
+   "w": 46
+  },
+  {
+   "lang": "en",
+   "gt": "kg",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 20,
+   "w": 23
+  },
+  {
+   "lang": "en",
+   "gt": "Cod.",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 56,
+   "w": 70
+  },
+  {
+   "lang": "en",
+   "gt": "STORE",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 57,
+   "w": 43
+  },
+  {
+   "lang": "bn",
+   "gt": "কল্যাণ",
+   "hyp": "কুল্যোণ",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 50,
+   "w": 163
+  },
+  {
+   "lang": "en",
+   "gt": "de",
+   "hyp": "de",
+   "cer": 0.0,
+   "upright": true,
+   "h": 67,
+   "w": 92
+  },
+  {
+   "lang": "bn",
+   "gt": "রাধামাধব",
+   "hyp": "রধিমীধব",
+   "cer": 0.375,
+   "upright": true,
+   "h": 341,
+   "w": 1378
+  },
+  {
+   "lang": "bn",
+   "gt": "মেরামত",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 158,
+   "w": 385
+  },
+  {
+   "lang": "bn",
+   "gt": "ও",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 184,
+   "w": 161
+  },
+  {
+   "lang": "bn",
+   "gt": "লেগিংস্",
+   "hyp": "লেগিংস",
+   "cer": 0.14285714285714285,
+   "upright": true,
+   "h": 164,
+   "w": 319
+  },
+  {
+   "lang": "en",
+   "gt": "DOMENICHE",
+   "hyp": "DOYGNICIE",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 407,
+   "w": 764
+  },
+  {
+   "lang": "en",
+   "gt": "Hier",
+   "hyp": "Hier",
+   "cer": 0.0,
+   "upright": true,
+   "h": 100,
+   "w": 248
+  },
+  {
+   "lang": "bn",
+   "gt": "যোগাযোগ",
+   "hyp": "যোগাযোগ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 105,
+   "w": 431
+  },
+  {
+   "lang": "en",
+   "gt": "ROBERTO",
+   "hyp": "ROBERTO",
+   "cer": 0.0,
+   "upright": true,
+   "h": 72,
+   "w": 394
+  },
+  {
+   "lang": "en",
+   "gt": "i",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 23,
+   "w": 5
+  },
+  {
+   "lang": "bn",
+   "gt": "আইডিয়া",
+   "hyp": "আইডিয়া",
+   "cer": 0.0,
+   "upright": true,
+   "h": 230,
+   "w": 779
+  },
+  {
+   "lang": "bn",
+   "gt": "দিন।।",
+   "hyp": "দিন",
+   "cer": 0.4,
+   "upright": true,
+   "h": 191,
+   "w": 340
+  },
+  {
+   "lang": "bn",
+   "gt": "বিশ্বস্ত",
+   "hyp": "বিশ্বস্ত",
+   "cer": 0.0,
+   "upright": true,
+   "h": 61,
+   "w": 146
+  },
+  {
+   "lang": "bn",
+   "gt": "কোলকাতা-",
+   "hyp": "কলকাতা",
+   "cer": 0.25,
+   "upright": true,
+   "h": 44,
+   "w": 223
+  },
+  {
+   "lang": "bn",
+   "gt": "টাকা",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 76,
+   "w": 111
+  },
+  {
+   "lang": "en",
+   "gt": "here",
+   "hyp": "দere",
+   "cer": 0.25,
+   "upright": true,
+   "h": 59,
+   "w": 117
+  },
+  {
+   "lang": "bn",
+   "gt": "এবং",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 77,
+   "w": 134
+  },
+  {
+   "lang": "bn",
+   "gt": "ট্যুর",
+   "hyp": "ঢ্যুর",
+   "cer": 0.2,
+   "upright": false,
+   "h": 261,
+   "w": 257
+  },
+  {
+   "lang": "en",
+   "gt": "L'atto",
+   "hyp": "L'atto",
+   "cer": 0.0,
+   "upright": true,
+   "h": 81,
+   "w": 204
+  },
+  {
+   "lang": "en",
+   "gt": "conoscere",
+   "hyp": "conoscene",
+   "cer": 0.1111111111111111,
+   "upright": true,
+   "h": 17,
+   "w": 118
+  },
+  {
+   "lang": "bn",
+   "gt": "মাটি",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 76,
+   "w": 100
+  },
+  {
+   "lang": "en",
+   "gt": "FISH",
+   "hyp": "স",
+   "cer": 1.0,
+   "upright": true,
+   "h": 24,
+   "w": 70
+  },
+  {
+   "lang": "bn",
+   "gt": "বিশেষজ্ঞ",
+   "hyp": "বিশেষজ্ঞ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 242,
+   "w": 963
+  },
+  {
+   "lang": "en",
+   "gt": "SOUK",
+   "hyp": "SUUK",
+   "cer": 0.25,
+   "upright": true,
+   "h": 62,
+   "w": 135
+  },
+  {
+   "lang": "en",
+   "gt": "512.",
+   "hyp": "512.",
+   "cer": 0.0,
+   "upright": true,
+   "h": 39,
+   "w": 73
+  },
+  {
+   "lang": "bn",
+   "gt": "যেমন",
+   "hyp": "যেমন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 139,
+   "w": 344
+  },
+  {
+   "lang": "en",
+   "gt": "AR",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 69,
+   "w": 109
+  },
+  {
+   "lang": "bn",
+   "gt": "আসুন",
+   "hyp": "আসুন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 168,
+   "w": 234
+  },
+  {
+   "lang": "bn",
+   "gt": "রোড",
+   "hyp": "র্ড",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 90,
+   "w": 117
+  },
+  {
+   "lang": "bn",
+   "gt": "করব।\"",
+   "hyp": "করব",
+   "cer": 0.4,
+   "upright": true,
+   "h": 84,
+   "w": 190
+  },
+  {
+   "lang": "bn",
+   "gt": "কই",
+   "hyp": "কই",
+   "cer": 0.0,
+   "upright": false,
+   "h": 206,
+   "w": 186
+  },
+  {
+   "lang": "en",
+   "gt": "DONG",
+   "hyp": "DONG",
+   "cer": 0.0,
+   "upright": true,
+   "h": 88,
+   "w": 162
+  },
+  {
+   "lang": "bn",
+   "gt": "সি",
+   "hyp": "সি",
+   "cer": 0.0,
+   "upright": true,
+   "h": 404,
+   "w": 469
+  },
+  {
+   "lang": "bn",
+   "gt": "এন্ড",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 78,
+   "w": 148
+  },
+  {
+   "lang": "bn",
+   "gt": "স্টেট",
+   "hyp": "স্টেট",
+   "cer": 0.0,
+   "upright": true,
+   "h": 507,
+   "w": 752
+  },
+  {
+   "lang": "en",
+   "gt": "9-19h",
+   "hyp": "9 19 h",
+   "cer": 0.4,
+   "upright": true,
+   "h": 135,
+   "w": 501
+  },
+  {
+   "lang": "bn",
+   "gt": "ছাড়",
+   "hyp": "ছড়",
+   "cer": 0.25,
+   "upright": true,
+   "h": 77,
+   "w": 181
+  },
+  {
+   "lang": "bn",
+   "gt": "রাখে",
+   "hyp": "রাখে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 127,
+   "w": 248
+  },
+  {
+   "lang": "bn",
+   "gt": "পক্ষে",
+   "hyp": "পক্ষে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 201,
+   "w": 366
+  },
+  {
+   "lang": "bn",
+   "gt": "বি.",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 67,
+   "w": 68
+  },
+  {
+   "lang": "bn",
+   "gt": "৪৯",
+   "hyp": "৪৯",
+   "cer": 0.0,
+   "upright": true,
+   "h": 120,
+   "w": 211
+  },
+  {
+   "lang": "bn",
+   "gt": "কোং",
+   "hyp": "কোং",
+   "cer": 0.0,
+   "upright": true,
+   "h": 139,
+   "w": 213
+  },
+  {
+   "lang": "bn",
+   "gt": "করা",
+   "hyp": "ফরা",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 187,
+   "w": 305
+  },
+  {
+   "lang": "en",
+   "gt": "You",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 81,
+   "w": 149
+  },
+  {
+   "lang": "en",
+   "gt": "2,800~",
+   "hyp": "য8o0",
+   "cer": 0.6666666666666666,
+   "upright": true,
+   "h": 143,
+   "w": 872
+  },
+  {
+   "lang": "en",
+   "gt": "VIA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 73,
+   "w": 109
+  },
+  {
+   "lang": "en",
+   "gt": "e",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 63,
+   "w": 47
+  },
+  {
+   "lang": "bn",
+   "gt": "অন্তর্ভুক্ত",
+   "hyp": "অন্তর্ভুক্ত",
+   "cer": 0.0,
+   "upright": true,
+   "h": 216,
+   "w": 531
+  },
+  {
+   "lang": "en",
+   "gt": "D",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 127,
+   "w": 95
+  },
+  {
+   "lang": "bn",
+   "gt": "সরঞ্জাম",
+   "hyp": "সরঞ্জাম",
+   "cer": 0.0,
+   "upright": true,
+   "h": 176,
+   "w": 556
+  },
+  {
+   "lang": "bn",
+   "gt": "বঃ",
+   "hyp": "0 0",
+   "cer": 1.5,
+   "upright": false,
+   "h": 373,
+   "w": 339
+  },
+  {
+   "lang": "en",
+   "gt": "e",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 165,
+   "w": 149
+  },
+  {
+   "lang": "bn",
+   "gt": "ওজন",
+   "hyp": "ওজন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 66,
+   "w": 151
+  },
+  {
+   "lang": "en",
+   "gt": "tout",
+   "hyp": "tout",
+   "cer": 0.0,
+   "upright": true,
+   "h": 97,
+   "w": 211
+  },
+  {
+   "lang": "bn",
+   "gt": "গনতান্ত্রিক",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 161,
+   "w": 801
+  },
+  {
+   "lang": "en",
+   "gt": "della",
+   "hyp": "cella",
+   "cer": 0.2,
+   "upright": true,
+   "h": 16,
+   "w": 36
+  },
+  {
+   "lang": "en",
+   "gt": "OF",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 13,
+   "w": 22
+  },
+  {
+   "lang": "en",
+   "gt": "St",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 15,
+   "w": 19
+  },
+  {
+   "lang": "bn",
+   "gt": "বিশেষজ্ঞ",
+   "hyp": "বিশেষজ্ঞ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 263,
+   "w": 875
+  },
+  {
+   "lang": "en",
+   "gt": "REGNO",
+   "hyp": "RCNU",
+   "cer": 0.6,
+   "upright": true,
+   "h": 54,
+   "w": 65
+  },
+  {
+   "lang": "en",
+   "gt": "il",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 42,
+   "w": 28
+  },
+  {
+   "lang": "bn",
+   "gt": "অতিথি",
+   "hyp": "অাতিরি",
+   "cer": 0.4,
+   "upright": true,
+   "h": 59,
+   "w": 189
+  },
+  {
+   "lang": "bn",
+   "gt": "কে.",
+   "hyp": "কে",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 61,
+   "w": 93
+  },
+  {
+   "lang": "en",
+   "gt": "University",
+   "hyp": "University",
+   "cer": 0.0,
+   "upright": true,
+   "h": 84,
+   "w": 323
+  },
+  {
+   "lang": "en",
+   "gt": "i",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 39,
+   "w": 17
+  },
+  {
+   "lang": "en",
+   "gt": "aprile",
+   "hyp": "amrte",
+   "cer": 0.5,
+   "upright": true,
+   "h": 24,
+   "w": 42
+  },
+  {
+   "lang": "bn",
+   "gt": "জা",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 261,
+   "w": 279
+  },
+  {
+   "lang": "en",
+   "gt": "mobile",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 38,
+   "w": 163
+  },
+  {
+   "lang": "bn",
+   "gt": "হালদার",
+   "hyp": "হ্নদূার",
+   "cer": 0.5,
+   "upright": true,
+   "h": 470,
+   "w": 715
+  },
+  {
+   "lang": "en",
+   "gt": "90",
+   "hyp": "90",
+   "cer": 0.0,
+   "upright": true,
+   "h": 124,
+   "w": 132
+  },
+  {
+   "lang": "bn",
+   "gt": "শোরুম",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 114,
+   "w": 221
+  },
+  {
+   "lang": "bn",
+   "gt": "বশীকরণ",
+   "hyp": "বশীকর",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 643,
+   "w": 1173
+  },
+  {
+   "lang": "bn",
+   "gt": "পাল",
+   "hyp": "পাল",
+   "cer": 0.0,
+   "upright": true,
+   "h": 153,
+   "w": 313
+  },
+  {
+   "lang": "bn",
+   "gt": "এই",
+   "hyp": "এ",
+   "cer": 0.5,
+   "upright": false,
+   "h": 87,
+   "w": 86
+  },
+  {
+   "lang": "bn",
+   "gt": "এখানে",
+   "hyp": "এখানে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 49,
+   "w": 174
+  },
+  {
+   "lang": "bn",
+   "gt": "মেডিকেল",
+   "hyp": "মেডিকেল",
+   "cer": 0.0,
+   "upright": true,
+   "h": 186,
+   "w": 738
+  },
+  {
+   "lang": "en",
+   "gt": "condition",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 11,
+   "w": 36
+  },
+  {
+   "lang": "en",
+   "gt": "ROBIN",
+   "hyp": "BOBIN",
+   "cer": 0.2,
+   "upright": true,
+   "h": 137,
+   "w": 617
+  },
+  {
+   "lang": "en",
+   "gt": "Anmeldung!",
+   "hyp": "Anmeldungl",
+   "cer": 0.1,
+   "upright": true,
+   "h": 66,
+   "w": 193
+  },
+  {
+   "lang": "en",
+   "gt": "UI",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 131,
+   "w": 116
+  },
+  {
+   "lang": "en",
+   "gt": "DELL",
+   "hyp": "0",
+   "cer": 1.0,
+   "upright": true,
+   "h": 12,
+   "w": 34
+  },
+  {
+   "lang": "en",
+   "gt": "14",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 118,
+   "w": 121
+  },
+  {
+   "lang": "en",
+   "gt": "DB-",
+   "hyp": "৪",
+   "cer": 1.0,
+   "upright": true,
+   "h": 13,
+   "w": 28
+  },
+  {
+   "lang": "bn",
+   "gt": "বিশাল",
+   "hyp": "বিশাল",
+   "cer": 0.0,
+   "upright": true,
+   "h": 217,
+   "w": 389
+  },
+  {
+   "lang": "en",
+   "gt": "recycle",
+   "hyp": "recycle",
+   "cer": 0.0,
+   "upright": true,
+   "h": 136,
+   "w": 384
+  },
+  {
+   "lang": "en",
+   "gt": "DINASTIA",
+   "hyp": "UIIASTII",
+   "cer": 0.375,
+   "upright": true,
+   "h": 77,
+   "w": 181
+  },
+  {
+   "lang": "bn",
+   "gt": "ধর্মনিরপেক্ষ",
+   "hyp": "ধমননিরপেক্ষে",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 210,
+   "w": 860
+  },
+  {
+   "lang": "en",
+   "gt": "vos",
+   "hyp": "00",
+   "cer": 1.0,
+   "upright": true,
+   "h": 125,
+   "w": 218
+  },
+  {
+   "lang": "bn",
+   "gt": "কোলকাতা",
+   "hyp": "কোলকাতা",
+   "cer": 0.0,
+   "upright": true,
+   "h": 57,
+   "w": 180
+  },
+  {
+   "lang": "en",
+   "gt": "BOULEVARD",
+   "hyp": "BOULEVARD ৪ETTA",
+   "cer": 0.6666666666666666,
+   "upright": true,
+   "h": 394,
+   "w": 518
+  },
+  {
+   "lang": "bn",
+   "gt": "দিন।",
+   "hyp": "দিন",
+   "cer": 0.25,
+   "upright": true,
+   "h": 58,
+   "w": 103
+  },
+  {
+   "lang": "bn",
+   "gt": "ম্যানসন",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 158,
+   "w": 550
+  },
+  {
+   "lang": "en",
+   "gt": "XX",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 87,
+   "w": 146
+  },
+  {
+   "lang": "en",
+   "gt": "CINESE",
+   "hyp": "CINESE",
+   "cer": 0.0,
+   "upright": true,
+   "h": 41,
+   "w": 209
+  },
+  {
+   "lang": "en",
+   "gt": "not",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 32,
+   "w": 65
+  },
+  {
+   "lang": "en",
+   "gt": "13",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 45,
+   "w": 39
+  },
+  {
+   "lang": "bn",
+   "gt": "জুয়েলার্স",
+   "hyp": "জুয়েলন",
+   "cer": 0.4,
+   "upright": true,
+   "h": 288,
+   "w": 646
+  },
+  {
+   "lang": "bn",
+   "gt": "দ্রব্যের",
+   "hyp": "দ্রব্যের",
+   "cer": 0.0,
+   "upright": true,
+   "h": 135,
+   "w": 151
+  },
+  {
+   "lang": "en",
+   "gt": "Euro",
+   "hyp": "Elura",
+   "cer": 0.5,
+   "upright": true,
+   "h": 13,
+   "w": 37
+  },
+  {
+   "lang": "bn",
+   "gt": "পাটপুর",
+   "hyp": "পাটপুর",
+   "cer": 0.0,
+   "upright": true,
+   "h": 290,
+   "w": 687
+  },
+  {
+   "lang": "en",
+   "gt": "FREDERIC",
+   "hyp": "FREDERIC",
+   "cer": 0.0,
+   "upright": true,
+   "h": 137,
+   "w": 355
+  },
+  {
+   "lang": "en",
+   "gt": "ECONOMIC",
+   "hyp": "ECONMC",
+   "cer": 0.25,
+   "upright": true,
+   "h": 31,
+   "w": 197
+  },
+  {
+   "lang": "bn",
+   "gt": "শুভ",
+   "hyp": "ঞজ৮",
+   "cer": 1.0,
+   "upright": true,
+   "h": 172,
+   "w": 289
+  },
+  {
+   "lang": "en",
+   "gt": "NO.",
+   "hyp": "NO",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 57,
+   "w": 122
+  },
+  {
+   "lang": "en",
+   "gt": "VIELE",
+   "hyp": "VIELE",
+   "cer": 0.0,
+   "upright": true,
+   "h": 48,
+   "w": 116
+  },
+  {
+   "lang": "bn",
+   "gt": "তিন",
+   "hyp": "তিন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 73,
+   "w": 131
+  },
+  {
+   "lang": "bn",
+   "gt": "দুর্গা",
+   "hyp": "দুর্গা",
+   "cer": 0.0,
+   "upright": true,
+   "h": 97,
+   "w": 202
+  },
+  {
+   "lang": "bn",
+   "gt": "ঘোষ",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 383,
+   "w": 512
+  },
+  {
+   "lang": "bn",
+   "gt": "গহনা",
+   "hyp": "গহণা",
+   "cer": 0.25,
+   "upright": true,
+   "h": 93,
+   "w": 178
+  },
+  {
+   "lang": "bn",
+   "gt": "২টায়",
+   "hyp": "২টায়",
+   "cer": 0.0,
+   "upright": true,
+   "h": 213,
+   "w": 347
+  },
+  {
+   "lang": "en",
+   "gt": "Duft",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 121,
+   "w": 83
+  },
+  {
+   "lang": "en",
+   "gt": "QUALITY",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 27,
+   "w": 98
+  },
+  {
+   "lang": "en",
+   "gt": "No.7",
+   "hyp": "No.",
+   "cer": 0.25,
+   "upright": true,
+   "h": 67,
+   "w": 166
+  },
+  {
+   "lang": "en",
+   "gt": "THiNKS",
+   "hyp": "ltiiks",
+   "cer": 0.8333333333333334,
+   "upright": true,
+   "h": 31,
+   "w": 74
+  },
+  {
+   "lang": "en",
+   "gt": "1899",
+   "hyp": "1899",
+   "cer": 0.0,
+   "upright": true,
+   "h": 41,
+   "w": 96
+  },
+  {
+   "lang": "en",
+   "gt": "VILLE",
+   "hyp": "দ",
+   "cer": 1.0,
+   "upright": true,
+   "h": 38,
+   "w": 86
+  },
+  {
+   "lang": "bn",
+   "gt": "হয়।",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 277,
+   "w": 397
+  },
+  {
+   "lang": "en",
+   "gt": "\"SOGNO",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 34,
+   "w": 98
+  },
+  {
+   "lang": "bn",
+   "gt": "নিউ",
+   "hyp": "নিট",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 498,
+   "w": 556
+  },
+  {
+   "lang": "en",
+   "gt": "Biannenaasse",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 147,
+   "w": 669
+  },
+  {
+   "lang": "en",
+   "gt": "riservata",
+   "hyp": "riservata",
+   "cer": 0.0,
+   "upright": true,
+   "h": 54,
+   "w": 249
+  },
+  {
+   "lang": "en",
+   "gt": "Last",
+   "hyp": "Lasi",
+   "cer": 0.25,
+   "upright": true,
+   "h": 41,
+   "w": 101
+  },
+  {
+   "lang": "bn",
+   "gt": "কার্য্যালয়",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 243,
+   "w": 482
+  },
+  {
+   "lang": "bn",
+   "gt": "হয়।",
+   "hyp": "হয়",
+   "cer": 0.25,
+   "upright": true,
+   "h": 751,
+   "w": 801
+  },
+  {
+   "lang": "en",
+   "gt": "CS",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 102,
+   "w": 40
+  },
+  {
+   "lang": "en",
+   "gt": "L'Ours",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 64,
+   "w": 141
+  },
+  {
+   "lang": "en",
+   "gt": "NANJING",
+   "hyp": "NANJING",
+   "cer": 0.0,
+   "upright": true,
+   "h": 68,
+   "w": 273
+  },
+  {
+   "lang": "en",
+   "gt": "deficienze",
+   "hyp": "deficienze",
+   "cer": 0.0,
+   "upright": true,
+   "h": 47,
+   "w": 195
+  },
+  {
+   "lang": "en",
+   "gt": "55",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 28,
+   "w": 16
+  },
+  {
+   "lang": "en",
+   "gt": "Restaurant",
+   "hyp": "Restauiranঙ",
+   "cer": 0.2,
+   "upright": true,
+   "h": 14,
+   "w": 99
+  },
+  {
+   "lang": "bn",
+   "gt": "যায়",
+   "hyp": "যায়",
+   "cer": 0.0,
+   "upright": true,
+   "h": 177,
+   "w": 293
+  },
+  {
+   "lang": "en",
+   "gt": "e",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 31,
+   "w": 15
+  },
+  {
+   "lang": "en",
+   "gt": "SPECIALIZZATO",
+   "hyp": "SPECIALIZZATO",
+   "cer": 0.0,
+   "upright": true,
+   "h": 42,
+   "w": 234
+  },
+  {
+   "lang": "bn",
+   "gt": "ও",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 51,
+   "w": 74
+  },
+  {
+   "lang": "en",
+   "gt": "costi",
+   "hyp": "cOst",
+   "cer": 0.4,
+   "upright": true,
+   "h": 19,
+   "w": 36
+  },
+  {
+   "lang": "bn",
+   "gt": "বেলঘরিয়া",
+   "hyp": "বেলঘরিয়া",
+   "cer": 0.0,
+   "upright": true,
+   "h": 136,
+   "w": 434
+  },
+  {
+   "lang": "en",
+   "gt": "VIP",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 70,
+   "w": 76
+  },
+  {
+   "lang": "bn",
+   "gt": "প্রতিষ্টান।",
+   "hyp": "প্রতিষ্টণ",
+   "cer": 0.2727272727272727,
+   "upright": true,
+   "h": 184,
+   "w": 475
+  },
+  {
+   "lang": "bn",
+   "gt": "এবং",
+   "hyp": "এবং",
+   "cer": 0.0,
+   "upright": true,
+   "h": 48,
+   "w": 94
+  },
+  {
+   "lang": "en",
+   "gt": "2016",
+   "hyp": "2016",
+   "cer": 0.0,
+   "upright": true,
+   "h": 34,
+   "w": 82
+  },
+  {
+   "lang": "bn",
+   "gt": "হবে",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 426,
+   "w": 388
+  },
+  {
+   "lang": "bn",
+   "gt": "যায়",
+   "hyp": "যযে",
+   "cer": 0.5,
+   "upright": true,
+   "h": 75,
+   "w": 206
+  },
+  {
+   "lang": "en",
+   "gt": "di",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 7,
+   "w": 8
+  },
+  {
+   "lang": "en",
+   "gt": "figure",
+   "hyp": "figure",
+   "cer": 0.0,
+   "upright": true,
+   "h": 59,
+   "w": 151
+  },
+  {
+   "lang": "bn",
+   "gt": "সুন্দর",
+   "hyp": "সুন্দর",
+   "cer": 0.0,
+   "upright": true,
+   "h": 73,
+   "w": 159
+  },
+  {
+   "lang": "bn",
+   "gt": "ব্যাগ",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 204,
+   "w": 298
+  },
+  {
+   "lang": "en",
+   "gt": "ACTIVE",
+   "hyp": "বCIVE",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 101,
+   "w": 371
+  },
+  {
+   "lang": "bn",
+   "gt": "বেলঘরিয়া",
+   "hyp": "বেলঘরিয়া",
+   "cer": 0.0,
+   "upright": true,
+   "h": 73,
+   "w": 252
+  },
+  {
+   "lang": "en",
+   "gt": "punti",
+   "hyp": "puntt",
+   "cer": 0.2,
+   "upright": true,
+   "h": 54,
+   "w": 108
+  },
+  {
+   "lang": "en",
+   "gt": "XI",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 104,
+   "w": 101
+  },
+  {
+   "lang": "bn",
+   "gt": "ভ্যান",
+   "hyp": "প্)ণ",
+   "cer": 0.8,
+   "upright": true,
+   "h": 257,
+   "w": 408
+  },
+  {
+   "lang": "en",
+   "gt": "bleeds",
+   "hyp": "bleeds",
+   "cer": 0.0,
+   "upright": true,
+   "h": 40,
+   "w": 119
+  },
+  {
+   "lang": "bn",
+   "gt": "সাইকেল",
+   "hyp": "সঢূবলে",
+   "cer": 0.8333333333333334,
+   "upright": true,
+   "h": 137,
+   "w": 206
+  },
+  {
+   "lang": "bn",
+   "gt": "করা",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 102,
+   "w": 91
+  },
+  {
+   "lang": "bn",
+   "gt": "বাজার",
+   "hyp": "বাজার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 171,
+   "w": 500
+  },
+  {
+   "lang": "bn",
+   "gt": "পেন্টেস",
+   "hyp": "পে্টস",
+   "cer": 0.2857142857142857,
+   "upright": true,
+   "h": 45,
+   "w": 103
+  },
+  {
+   "lang": "en",
+   "gt": "HAUS",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 120,
+   "w": 331
+  },
+  {
+   "lang": "en",
+   "gt": "9",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 41,
+   "w": 48
+  },
+  {
+   "lang": "en",
+   "gt": "South",
+   "hyp": "South",
+   "cer": 0.0,
+   "upright": true,
+   "h": 44,
+   "w": 169
+  },
+  {
+   "lang": "bn",
+   "gt": "স্টেট",
+   "hyp": "স্টেট",
+   "cer": 0.0,
+   "upright": true,
+   "h": 67,
+   "w": 180
+  },
+  {
+   "lang": "bn",
+   "gt": "যোগাযোগ",
+   "hyp": "যোগীযোগ",
+   "cer": 0.14285714285714285,
+   "upright": true,
+   "h": 111,
+   "w": 409
+  },
+  {
+   "lang": "en",
+   "gt": "dicembre",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 14,
+   "w": 106
+  },
+  {
+   "lang": "bn",
+   "gt": "ভোট",
+   "hyp": "ভোচ",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 161,
+   "w": 345
+  },
+  {
+   "lang": "en",
+   "gt": "Gate",
+   "hyp": "Gate",
+   "cer": 0.0,
+   "upright": true,
+   "h": 98,
+   "w": 215
+  },
+  {
+   "lang": "en",
+   "gt": "2016",
+   "hyp": "2016",
+   "cer": 0.0,
+   "upright": true,
+   "h": 66,
+   "w": 103
+  },
+  {
+   "lang": "en",
+   "gt": "complere",
+   "hyp": "compler",
+   "cer": 0.125,
+   "upright": true,
+   "h": 26,
+   "w": 144
+  },
+  {
+   "lang": "bn",
+   "gt": "অ",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 273,
+   "w": 435
+  },
+  {
+   "lang": "en",
+   "gt": "the",
+   "hyp": "Ahe",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 60,
+   "w": 111
+  },
+  {
+   "lang": "bn",
+   "gt": "এ.সি,",
+   "hyp": "এসি",
+   "cer": 0.4,
+   "upright": true,
+   "h": 118,
+   "w": 196
+  },
+  {
+   "lang": "en",
+   "gt": "563-3929",
+   "hyp": "563-3929",
+   "cer": 0.0,
+   "upright": true,
+   "h": 153,
+   "w": 622
+  },
+  {
+   "lang": "en",
+   "gt": "panna",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 18,
+   "w": 48
+  },
+  {
+   "lang": "en",
+   "gt": "PIANO",
+   "hyp": "PIANO",
+   "cer": 0.0,
+   "upright": true,
+   "h": 62,
+   "w": 307
+  },
+  {
+   "lang": "bn",
+   "gt": "সেগুন",
+   "hyp": "সেগুন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 157,
+   "w": 352
+  },
+  {
+   "lang": "bn",
+   "gt": "কলকাতা-",
+   "hyp": "কোলকাত",
+   "cer": 0.42857142857142855,
+   "upright": true,
+   "h": 40,
+   "w": 204
+  },
+  {
+   "lang": "en",
+   "gt": "il",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 103,
+   "w": 49
+  },
+  {
+   "lang": "en",
+   "gt": "est",
+   "hyp": "est",
+   "cer": 0.0,
+   "upright": true,
+   "h": 107,
+   "w": 192
+  },
+  {
+   "lang": "bn",
+   "gt": "কোলকাতা-",
+   "hyp": "ককালকাতা",
+   "cer": 0.375,
+   "upright": true,
+   "h": 62,
+   "w": 560
+  },
+  {
+   "lang": "en",
+   "gt": "VIA",
+   "hyp": "VIA",
+   "cer": 0.0,
+   "upright": true,
+   "h": 178,
+   "w": 382
+  },
+  {
+   "lang": "en",
+   "gt": "über",
+   "hyp": "uber",
+   "cer": 0.25,
+   "upright": true,
+   "h": 67,
+   "w": 102
+  },
+  {
+   "lang": "en",
+   "gt": "HOT",
+   "hyp": "HOT",
+   "cer": 0.0,
+   "upright": true,
+   "h": 42,
+   "w": 70
+  },
+  {
+   "lang": "bn",
+   "gt": "জয়েলার্স",
+   "hyp": "জমেলসি",
+   "cer": 0.6666666666666666,
+   "upright": true,
+   "h": 182,
+   "w": 823
+  },
+  {
+   "lang": "bn",
+   "gt": "বিশ্বস্ত",
+   "hyp": "বিশ্বস্ত",
+   "cer": 0.0,
+   "upright": false,
+   "h": 136,
+   "w": 124
+  },
+  {
+   "lang": "en",
+   "gt": "M",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 58,
+   "w": 56
+  },
+  {
+   "lang": "bn",
+   "gt": "কোতুলপুর",
+   "hyp": "কোতুলপুর",
+   "cer": 0.0,
+   "upright": true,
+   "h": 340,
+   "w": 1074
+  },
+  {
+   "lang": "bn",
+   "gt": "বঁাকুড়া",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 271,
+   "w": 261
+  },
+  {
+   "lang": "bn",
+   "gt": "কুল",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 496,
+   "w": 438
+  },
+  {
+   "lang": "en",
+   "gt": "VENETO",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 10,
+   "w": 44
+  },
+  {
+   "lang": "bn",
+   "gt": "না",
+   "hyp": "0",
+   "cer": 1.0,
+   "upright": false,
+   "h": 399,
+   "w": 219
+  },
+  {
+   "lang": "bn",
+   "gt": "অঙ্গশ্রী",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 426,
+   "w": 1409
+  },
+  {
+   "lang": "en",
+   "gt": "15€",
+   "hyp": "153",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 122,
+   "w": 179
+  },
+  {
+   "lang": "bn",
+   "gt": "সন্ধানে",
+   "hyp": "সন্ধানে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 166,
+   "w": 387
+  },
+  {
+   "lang": "bn",
+   "gt": "অযথা",
+   "hyp": "অযথা",
+   "cer": 0.0,
+   "upright": true,
+   "h": 196,
+   "w": 294
+  },
+  {
+   "lang": "bn",
+   "gt": "স্টেশন",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 56,
+   "w": 139
+  },
+  {
+   "lang": "en",
+   "gt": "panna",
+   "hyp": "Damia",
+   "cer": 0.6,
+   "upright": true,
+   "h": 17,
+   "w": 49
+  },
+  {
+   "lang": "bn",
+   "gt": "রাত্নগৄহ",
+   "hyp": "ভভুৃহ্",
+   "cer": 1.0,
+   "upright": true,
+   "h": 283,
+   "w": 1451
+  },
+  {
+   "lang": "en",
+   "gt": "Cuki",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 28,
+   "w": 65
+  },
+  {
+   "lang": "bn",
+   "gt": "সেন্টার",
+   "hyp": "সেন্টার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 389,
+   "w": 1038
+  },
+  {
+   "lang": "bn",
+   "gt": "মঙ্গলবার",
+   "hyp": "মঙ্গলবার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 68,
+   "w": 236
+  },
+  {
+   "lang": "bn",
+   "gt": "মোঃ-",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 265,
+   "w": 377
+  },
+  {
+   "lang": "en",
+   "gt": "19:30",
+   "hyp": "19:30",
+   "cer": 0.0,
+   "upright": true,
+   "h": 78,
+   "w": 199
+  },
+  {
+   "lang": "en",
+   "gt": "\"Acquista",
+   "hyp": "Acuuisa",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 71,
+   "w": 96
+  },
+  {
+   "lang": "bn",
+   "gt": "ও",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 93,
+   "w": 52
+  },
+  {
+   "lang": "en",
+   "gt": "info",
+   "hyp": "Uf0",
+   "cer": 0.75,
+   "upright": true,
+   "h": 18,
+   "w": 32
+  },
+  {
+   "lang": "bn",
+   "gt": "অ্যালকোহল",
+   "hyp": "অ্যালকোহল",
+   "cer": 0.0,
+   "upright": true,
+   "h": 113,
+   "w": 430
+  },
+  {
+   "lang": "en",
+   "gt": "di",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 17,
+   "w": 17
+  },
+  {
+   "lang": "en",
+   "gt": "ES",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 42,
+   "w": 33
+  },
+  {
+   "lang": "en",
+   "gt": "RüntestraBe",
+   "hyp": "Rintestral)e",
+   "cer": 0.2727272727272727,
+   "upright": true,
+   "h": 454,
+   "w": 2570
+  },
+  {
+   "lang": "bn",
+   "gt": "উদ্যান",
+   "hyp": "উদ্যান",
+   "cer": 0.0,
+   "upright": true,
+   "h": 186,
+   "w": 397
+  },
+  {
+   "lang": "en",
+   "gt": "votre",
+   "hyp": "votve",
+   "cer": 0.2,
+   "upright": true,
+   "h": 142,
+   "w": 352
+  },
+  {
+   "lang": "en",
+   "gt": "Matière",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 41,
+   "w": 82
+  },
+  {
+   "lang": "en",
+   "gt": "elettronico",
+   "hyp": "etettronico",
+   "cer": 0.09090909090909091,
+   "upright": true,
+   "h": 39,
+   "w": 193
+  },
+  {
+   "lang": "en",
+   "gt": "CARAMELLA",
+   "hyp": "CARAMEILA",
+   "cer": 0.1111111111111111,
+   "upright": true,
+   "h": 55,
+   "w": 280
+  },
+  {
+   "lang": "en",
+   "gt": "LA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 43,
+   "w": 55
+  },
+  {
+   "lang": "bn",
+   "gt": "কান্ত",
+   "hyp": "কান্ত",
+   "cer": 0.0,
+   "upright": true,
+   "h": 301,
+   "w": 722
+  },
+  {
+   "lang": "en",
+   "gt": "5045",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 10,
+   "w": 24
+  },
+  {
+   "lang": "en",
+   "gt": "SEASON",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 14,
+   "w": 40
+  },
+  {
+   "lang": "bn",
+   "gt": "সেন্টার",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 343,
+   "w": 701
+  },
+  {
+   "lang": "bn",
+   "gt": "গোল্ড",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 162,
+   "w": 519
+  },
+  {
+   "lang": "en",
+   "gt": "et",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 27,
+   "w": 27
+  },
+  {
+   "lang": "en",
+   "gt": "Lucy",
+   "hyp": "LUC",
+   "cer": 0.75,
+   "upright": true,
+   "h": 65,
+   "w": 133
+  },
+  {
+   "lang": "en",
+   "gt": "DEVELOPMENT",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 30,
+   "w": 187
+  },
+  {
+   "lang": "en",
+   "gt": "Kreuztal",
+   "hyp": "Kreuztal",
+   "cer": 0.0,
+   "upright": true,
+   "h": 151,
+   "w": 676
+  },
+  {
+   "lang": "en",
+   "gt": "MAGNETIC",
+   "hyp": "MACNETIC",
+   "cer": 0.125,
+   "upright": true,
+   "h": 74,
+   "w": 338
+  },
+  {
+   "lang": "bn",
+   "gt": "ফিডার",
+   "hyp": "ফিডার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 73,
+   "w": 159
+  },
+  {
+   "lang": "en",
+   "gt": "INTEGRALE",
+   "hyp": "INITEGRALE",
+   "cer": 0.1111111111111111,
+   "upright": true,
+   "h": 40,
+   "w": 265
+  },
+  {
+   "lang": "en",
+   "gt": "SE:",
+   "hyp": "SE",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 78,
+   "w": 123
+  },
+  {
+   "lang": "bn",
+   "gt": "যত্ন",
+   "hyp": "যত্ন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 146,
+   "w": 167
+  },
+  {
+   "lang": "bn",
+   "gt": "কোল-",
+   "hyp": "কেল",
+   "cer": 0.5,
+   "upright": true,
+   "h": 52,
+   "w": 209
+  },
+  {
+   "lang": "en",
+   "gt": "della",
+   "hyp": "della",
+   "cer": 0.0,
+   "upright": true,
+   "h": 50,
+   "w": 118
+  },
+  {
+   "lang": "bn",
+   "gt": "ও",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 42,
+   "w": 37
+  },
+  {
+   "lang": "en",
+   "gt": "BOYS",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 26,
+   "w": 126
+  },
+  {
+   "lang": "bn",
+   "gt": "প্যালেস",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 211,
+   "w": 406
+  },
+  {
+   "lang": "bn",
+   "gt": "টি-শার্ট",
+   "hyp": "টি-শার্ট",
+   "cer": 0.0,
+   "upright": true,
+   "h": 108,
+   "w": 198
+  },
+  {
+   "lang": "bn",
+   "gt": "হিমানী",
+   "hyp": "হিমানী",
+   "cer": 0.0,
+   "upright": true,
+   "h": 62,
+   "w": 118
+  },
+  {
+   "lang": "bn",
+   "gt": "নম্বর",
+   "hyp": "মখ্বর",
+   "cer": 0.4,
+   "upright": true,
+   "h": 90,
+   "w": 207
+  },
+  {
+   "lang": "en",
+   "gt": "P",
+   "hyp": "হ4H",
+   "cer": 3.0,
+   "upright": true,
+   "h": 262,
+   "w": 278
+  },
+  {
+   "lang": "en",
+   "gt": "IMMOBILIARE",
+   "hyp": "M M 1 L A R E",
+   "cer": 0.7272727272727273,
+   "upright": true,
+   "h": 44,
+   "w": 535
+  },
+  {
+   "lang": "en",
+   "gt": "e",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 85,
+   "w": 70
+  },
+  {
+   "lang": "bn",
+   "gt": "বিশ্ব",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 62,
+   "w": 91
+  },
+  {
+   "lang": "bn",
+   "gt": "টেলি",
+   "hyp": "তল",
+   "cer": 0.75,
+   "upright": true,
+   "h": 522,
+   "w": 1164
+  },
+  {
+   "lang": "bn",
+   "gt": "প্রতি",
+   "hyp": "প্রতি",
+   "cer": 0.0,
+   "upright": true,
+   "h": 43,
+   "w": 61
+  },
+  {
+   "lang": "en",
+   "gt": "5,89",
+   "hyp": "5.89",
+   "cer": 0.25,
+   "upright": true,
+   "h": 19,
+   "w": 33
+  },
+  {
+   "lang": "bn",
+   "gt": "পাওয়া",
+   "hyp": "পঞ্জজুl",
+   "cer": 1.0,
+   "upright": true,
+   "h": 91,
+   "w": 219
+  },
+  {
+   "lang": "en",
+   "gt": "berühmte",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 35,
+   "w": 162
+  },
+  {
+   "lang": "en",
+   "gt": "21",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 23,
+   "w": 23
+  },
+  {
+   "lang": "en",
+   "gt": "O.",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 50,
+   "w": 58
+  },
+  {
+   "lang": "bn",
+   "gt": "বাঁচিয়েছে",
+   "hyp": "বাঁচিয়েছে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 304,
+   "w": 918
+  },
+  {
+   "lang": "bn",
+   "gt": "শাড়ী",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 303,
+   "w": 649
+  },
+  {
+   "lang": "bn",
+   "gt": "ভবন",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 162,
+   "w": 143
+  },
+  {
+   "lang": "en",
+   "gt": "PATRIOTA",
+   "hyp": "PATRIOTA",
+   "cer": 0.0,
+   "upright": true,
+   "h": 77,
+   "w": 301
+  },
+  {
+   "lang": "en",
+   "gt": "IL",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 25,
+   "w": 17
+  },
+  {
+   "lang": "en",
+   "gt": "the",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 13,
+   "w": 23
+  },
+  {
+   "lang": "bn",
+   "gt": "করা",
+   "hyp": "77",
+   "cer": 1.0,
+   "upright": true,
+   "h": 190,
+   "w": 202
+  },
+  {
+   "lang": "bn",
+   "gt": "ফেলিবেন",
+   "hyp": "ফেলিবেন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 273,
+   "w": 515
+  },
+  {
+   "lang": "en",
+   "gt": "M",
+   "hyp": "0v",
+   "cer": 2.0,
+   "upright": true,
+   "h": 106,
+   "w": 108
+  },
+  {
+   "lang": "bn",
+   "gt": "৭০০০৪৯",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 148,
+   "w": 807
+  },
+  {
+   "lang": "en",
+   "gt": "BEER",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 72,
+   "w": 69
+  },
+  {
+   "lang": "bn",
+   "gt": "মা",
+   "hyp": "চ",
+   "cer": 1.0,
+   "upright": true,
+   "h": 103,
+   "w": 282
+  },
+  {
+   "lang": "bn",
+   "gt": "গ্যারান্টী",
+   "hyp": "গ্যারান্টী",
+   "cer": 0.0,
+   "upright": true,
+   "h": 51,
+   "w": 124
+  },
+  {
+   "lang": "bn",
+   "gt": "সাবধান",
+   "hyp": "সারধান",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 251,
+   "w": 948
+  },
+  {
+   "lang": "bn",
+   "gt": "বি.",
+   "hyp": "বি",
+   "cer": 0.3333333333333333,
+   "upright": false,
+   "h": 76,
+   "w": 69
+  },
+  {
+   "lang": "bn",
+   "gt": "সেকেন্ড",
+   "hyp": "সোমU",
+   "cer": 0.8571428571428571,
+   "upright": true,
+   "h": 235,
+   "w": 397
+  },
+  {
+   "lang": "en",
+   "gt": "RTER",
+   "hyp": "R7ER",
+   "cer": 0.25,
+   "upright": true,
+   "h": 133,
+   "w": 569
+  },
+  {
+   "lang": "bn",
+   "gt": "কলি",
+   "hyp": "কলি",
+   "cer": 0.0,
+   "upright": true,
+   "h": 64,
+   "w": 109
+  },
+  {
+   "lang": "bn",
+   "gt": "শ্রীগুরু",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 836,
+   "w": 1648
+  },
+  {
+   "lang": "bn",
+   "gt": "প্রিন্ট",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 123,
+   "w": 130
+  },
+  {
+   "lang": "bn",
+   "gt": "বিশ্বস্ত",
+   "hyp": "বিশ্বপ্",
+   "cer": 0.25,
+   "upright": true,
+   "h": 194,
+   "w": 353
+  },
+  {
+   "lang": "en",
+   "gt": "6",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 31,
+   "w": 16
+  },
+  {
+   "lang": "bn",
+   "gt": "বাঁকুড়া",
+   "hyp": "বাঁকুড়া",
+   "cer": 0.0,
+   "upright": true,
+   "h": 125,
+   "w": 322
+  },
+  {
+   "lang": "bn",
+   "gt": "দেশী",
+   "hyp": "দেশী",
+   "cer": 0.0,
+   "upright": true,
+   "h": 64,
+   "w": 128
+  },
+  {
+   "lang": "bn",
+   "gt": "৭০০",
+   "hyp": "900",
+   "cer": 1.0,
+   "upright": true,
+   "h": 51,
+   "w": 86
+  },
+  {
+   "lang": "bn",
+   "gt": "মাধ্যমিক",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 46,
+   "w": 187
+  },
+  {
+   "lang": "en",
+   "gt": "IL",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 38,
+   "w": 34
+  },
+  {
+   "lang": "en",
+   "gt": "eccetto",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 16,
+   "w": 38
+  },
+  {
+   "lang": "en",
+   "gt": "CORPORATION",
+   "hyp": "CORPORATION",
+   "cer": 0.0,
+   "upright": true,
+   "h": 261,
+   "w": 333
+  },
+  {
+   "lang": "bn",
+   "gt": "খাওয়ার",
+   "hyp": "খাওয়ার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 107,
+   "w": 315
+  },
+  {
+   "lang": "bn",
+   "gt": "মানবিক",
+   "hyp": "মানবিক",
+   "cer": 0.0,
+   "upright": true,
+   "h": 136,
+   "w": 375
+  },
+  {
+   "lang": "en",
+   "gt": "Play",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 93,
+   "w": 29
+  },
+  {
+   "lang": "en",
+   "gt": "E",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 20,
+   "w": 11
+  },
+  {
+   "lang": "en",
+   "gt": "TAXI",
+   "hyp": "TAXI",
+   "cer": 0.0,
+   "upright": true,
+   "h": 302,
+   "w": 535
+  },
+  {
+   "lang": "bn",
+   "gt": "জনপ্রিয়",
+   "hyp": "জনপ্রিয়়",
+   "cer": 0.125,
+   "upright": true,
+   "h": 276,
+   "w": 1106
+  },
+  {
+   "lang": "en",
+   "gt": "Office",
+   "hyp": "Office",
+   "cer": 0.0,
+   "upright": true,
+   "h": 57,
+   "w": 127
+  },
+  {
+   "lang": "en",
+   "gt": "P",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 22,
+   "w": 22
+  },
+  {
+   "lang": "en",
+   "gt": "750m",
+   "hyp": "750m",
+   "cer": 0.0,
+   "upright": true,
+   "h": 118,
+   "w": 239
+  },
+  {
+   "lang": "en",
+   "gt": "MONTENAPOLEONE",
+   "hyp": "LONENAPOLEONE",
+   "cer": 0.14285714285714285,
+   "upright": true,
+   "h": 30,
+   "w": 258
+  },
+  {
+   "lang": "bn",
+   "gt": "ব্যাঙ্কের",
+   "hyp": "ব্যাঙ্কের",
+   "cer": 0.0,
+   "upright": true,
+   "h": 102,
+   "w": 298
+  },
+  {
+   "lang": "en",
+   "gt": "Fax",
+   "hyp": "FQX",
+   "cer": 0.6666666666666666,
+   "upright": true,
+   "h": 39,
+   "w": 86
+  },
+  {
+   "lang": "en",
+   "gt": "you",
+   "hyp": "0U",
+   "cer": 1.0,
+   "upright": true,
+   "h": 105,
+   "w": 142
+  },
+  {
+   "lang": "bn",
+   "gt": "ঠিকানায়।",
+   "hyp": "ঠকানায়",
+   "cer": 0.2222222222222222,
+   "upright": true,
+   "h": 85,
+   "w": 154
+  },
+  {
+   "lang": "bn",
+   "gt": "-৪৯",
+   "hyp": "৪9",
+   "cer": 0.6666666666666666,
+   "upright": true,
+   "h": 56,
+   "w": 108
+  },
+  {
+   "lang": "bn",
+   "gt": "স্ট্যাম্প",
+   "hyp": "স্ট্যাম্প",
+   "cer": 0.0,
+   "upright": true,
+   "h": 249,
+   "w": 1078
+  },
+  {
+   "lang": "en",
+   "gt": "DI",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 14,
+   "w": 17
+  },
+  {
+   "lang": "en",
+   "gt": "Library",
+   "hyp": "Library",
+   "cer": 0.0,
+   "upright": true,
+   "h": 79,
+   "w": 115
+  },
+  {
+   "lang": "en",
+   "gt": "1",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 42,
+   "w": 14
+  },
+  {
+   "lang": "en",
+   "gt": "LIBERE",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 49,
+   "w": 175
+  },
+  {
+   "lang": "en",
+   "gt": "CAPI",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 27,
+   "w": 60
+  },
+  {
+   "lang": "en",
+   "gt": "benessere.",
+   "hyp": "benessere",
+   "cer": 0.1,
+   "upright": true,
+   "h": 496,
+   "w": 1364
+  },
+  {
+   "lang": "bn",
+   "gt": "পান্তুউ",
+   "hyp": "9",
+   "cer": 1.0,
+   "upright": true,
+   "h": 286,
+   "w": 368
+  },
+  {
+   "lang": "bn",
+   "gt": "কলি",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 87,
+   "w": 153
+  },
+  {
+   "lang": "bn",
+   "gt": "সেন্টার",
+   "hyp": "সেতের",
+   "cer": 0.5714285714285714,
+   "upright": true,
+   "h": 523,
+   "w": 674
+  },
+  {
+   "lang": "en",
+   "gt": "abgeschleppt",
+   "hyp": "abgeschleppt",
+   "cer": 0.0,
+   "upright": true,
+   "h": 83,
+   "w": 472
+  },
+  {
+   "lang": "bn",
+   "gt": "শিল্পরূপ",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 286,
+   "w": 1907
+  },
+  {
+   "lang": "en",
+   "gt": "Internet,",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 51,
+   "w": 185
+  },
+  {
+   "lang": "en",
+   "gt": "la",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 113,
+   "w": 96
+  },
+  {
+   "lang": "en",
+   "gt": "EASTERN",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 12,
+   "w": 43
+  },
+  {
+   "lang": "bn",
+   "gt": "অভিযান",
+   "hyp": "অভিযান",
+   "cer": 0.0,
+   "upright": true,
+   "h": 217,
+   "w": 682
+  },
+  {
+   "lang": "en",
+   "gt": "02-518-5489",
+   "hyp": "02-518-5489",
+   "cer": 0.0,
+   "upright": true,
+   "h": 52,
+   "w": 329
+  },
+  {
+   "lang": "en",
+   "gt": "W1",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 8,
+   "w": 9
+  },
+  {
+   "lang": "bn",
+   "gt": "যায়",
+   "hyp": "যায়",
+   "cer": 0.0,
+   "upright": true,
+   "h": 71,
+   "w": 104
+  },
+  {
+   "lang": "bn",
+   "gt": "রোড",
+   "hyp": "রোড",
+   "cer": 0.0,
+   "upright": true,
+   "h": 188,
+   "w": 373
+  },
+  {
+   "lang": "bn",
+   "gt": "চলছে",
+   "hyp": "চুলছে",
+   "cer": 0.25,
+   "upright": true,
+   "h": 240,
+   "w": 366
+  },
+  {
+   "lang": "bn",
+   "gt": "এম.",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 51,
+   "w": 71
+  },
+  {
+   "lang": "bn",
+   "gt": "এম",
+   "hyp": "এম",
+   "cer": 0.0,
+   "upright": true,
+   "h": 161,
+   "w": 266
+  },
+  {
+   "lang": "en",
+   "gt": "Lyca",
+   "hyp": "yk",
+   "cer": 0.75,
+   "upright": true,
+   "h": 60,
+   "w": 122
+  },
+  {
+   "lang": "en",
+   "gt": "IN",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 18,
+   "w": 14
+  },
+  {
+   "lang": "en",
+   "gt": "Museum",
+   "hyp": "Museum",
+   "cer": 0.0,
+   "upright": true,
+   "h": 128,
+   "w": 538
+  },
+  {
+   "lang": "bn",
+   "gt": "রিচার্জ",
+   "hyp": "রিচার্জ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 164,
+   "w": 498
+  },
+  {
+   "lang": "bn",
+   "gt": "কেন্দ্র",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 193,
+   "w": 378
+  },
+  {
+   "lang": "en",
+   "gt": "demeure",
+   "hyp": "demeurre",
+   "cer": 0.14285714285714285,
+   "upright": true,
+   "h": 126,
+   "w": 655
+  },
+  {
+   "lang": "en",
+   "gt": "km",
+   "hyp": "km",
+   "cer": 0.0,
+   "upright": true,
+   "h": 44,
+   "w": 77
+  },
+  {
+   "lang": "en",
+   "gt": "in",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 18,
+   "w": 14
+  },
+  {
+   "lang": "bn",
+   "gt": "ষ্ট্রীট,",
+   "hyp": "ঘ্টরীট",
+   "cer": 0.375,
+   "upright": true,
+   "h": 55,
+   "w": 92
+  },
+  {
+   "lang": "en",
+   "gt": "02",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 18,
+   "w": 22
+  },
+  {
+   "lang": "en",
+   "gt": "Keidaisemon",
+   "hyp": "Keidaiseimon",
+   "cer": 0.09090909090909091,
+   "upright": true,
+   "h": 222,
+   "w": 783
+  },
+  {
+   "lang": "bn",
+   "gt": "এম.",
+   "hyp": "এম",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 105,
+   "w": 146
+  },
+  {
+   "lang": "en",
+   "gt": "STORICO",
+   "hyp": "STORICO",
+   "cer": 0.0,
+   "upright": true,
+   "h": 70,
+   "w": 272
+  },
+  {
+   "lang": "en",
+   "gt": "TSUTAYA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 157,
+   "w": 596
+  },
+  {
+   "lang": "bn",
+   "gt": "দ্রুত",
+   "hyp": "দ্রুত",
+   "cer": 0.0,
+   "upright": true,
+   "h": 273,
+   "w": 498
+  },
+  {
+   "lang": "en",
+   "gt": "Städtebauförderung",
+   "hyp": "Stadtebauforerung",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 34,
+   "w": 381
+  },
+  {
+   "lang": "bn",
+   "gt": "বেস্ট্",
+   "hyp": "বেস্ট",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 187,
+   "w": 299
+  },
+  {
+   "lang": "en",
+   "gt": "GT",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 29,
+   "w": 73
+  },
+  {
+   "lang": "bn",
+   "gt": "মেডপ্লাস",
+   "hyp": "মেডপ্লাস",
+   "cer": 0.0,
+   "upright": true,
+   "h": 138,
+   "w": 503
+  },
+  {
+   "lang": "bn",
+   "gt": "আট",
+   "hyp": "আট",
+   "cer": 0.0,
+   "upright": true,
+   "h": 253,
+   "w": 424
+  },
+  {
+   "lang": "en",
+   "gt": "TIPO",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 10,
+   "w": 26
+  },
+  {
+   "lang": "en",
+   "gt": "Susukino",
+   "hyp": "Susukino",
+   "cer": 0.0,
+   "upright": true,
+   "h": 120,
+   "w": 596
+  },
+  {
+   "lang": "en",
+   "gt": "19h",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 37,
+   "w": 62
+  },
+  {
+   "lang": "en",
+   "gt": "THE",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 18,
+   "w": 26
+  },
+  {
+   "lang": "en",
+   "gt": "AUCH",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 276,
+   "w": 1085
+  },
+  {
+   "lang": "en",
+   "gt": "BETTENLAGER",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 197,
+   "w": 1818
+  },
+  {
+   "lang": "en",
+   "gt": "Little",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 14,
+   "w": 35
+  },
+  {
+   "lang": "en",
+   "gt": "L'ARIA",
+   "hyp": "ঢA",
+   "cer": 0.8333333333333334,
+   "upright": true,
+   "h": 44,
+   "w": 130
+  },
+  {
+   "lang": "en",
+   "gt": "City",
+   "hyp": "City",
+   "cer": 0.0,
+   "upright": true,
+   "h": 42,
+   "w": 61
+  },
+  {
+   "lang": "bn",
+   "gt": "গিফ্ট",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 339,
+   "w": 549
+  },
+  {
+   "lang": "en",
+   "gt": "ABWARTEN!",
+   "hyp": "ABWARTEN",
+   "cer": 0.1111111111111111,
+   "upright": true,
+   "h": 115,
+   "w": 672
+  },
+  {
+   "lang": "en",
+   "gt": "8644277,",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 25,
+   "w": 102
+  },
+  {
+   "lang": "en",
+   "gt": "del",
+   "hyp": "00",
+   "cer": 1.0,
+   "upright": true,
+   "h": 24,
+   "w": 25
+  },
+  {
+   "lang": "bn",
+   "gt": "স্ট্রিট",
+   "hyp": "গি৩ট",
+   "cer": 0.8571428571428571,
+   "upright": true,
+   "h": 97,
+   "w": 213
+  },
+  {
+   "lang": "en",
+   "gt": "accessi",
+   "hyp": "access",
+   "cer": 0.14285714285714285,
+   "upright": true,
+   "h": 77,
+   "w": 289
+  },
+  {
+   "lang": "en",
+   "gt": "FLAT,",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 65,
+   "w": 208
+  },
+  {
+   "lang": "bn",
+   "gt": "উত্তর",
+   "hyp": "উত্তর",
+   "cer": 0.0,
+   "upright": true,
+   "h": 43,
+   "w": 98
+  },
+  {
+   "lang": "en",
+   "gt": "VI",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 76,
+   "w": 78
+  },
+  {
+   "lang": "bn",
+   "gt": "অনলাইনে",
+   "hyp": "অনলাইনে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 128,
+   "w": 465
+  },
+  {
+   "lang": "en",
+   "gt": "ADVERTISING",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 20,
+   "w": 81
+  },
+  {
+   "lang": "bn",
+   "gt": "রং",
+   "hyp": "র",
+   "cer": 0.5,
+   "upright": true,
+   "h": 222,
+   "w": 518
+  },
+  {
+   "lang": "en",
+   "gt": "TENERELLA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 26,
+   "w": 156
+  },
+  {
+   "lang": "bn",
+   "gt": "ফর্ম",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 295,
+   "w": 240
+  },
+  {
+   "lang": "en",
+   "gt": "con",
+   "hyp": "C০",
+   "cer": 1.0,
+   "upright": true,
+   "h": 13,
+   "w": 34
+  },
+  {
+   "lang": "en",
+   "gt": "MOIS,",
+   "hyp": "Mois",
+   "cer": 0.8,
+   "upright": true,
+   "h": 146,
+   "w": 296
+  },
+  {
+   "lang": "en",
+   "gt": "fa",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 64,
+   "w": 52
+  },
+  {
+   "lang": "bn",
+   "gt": "কলকাতা",
+   "hyp": "লকত",
+   "cer": 0.5,
+   "upright": true,
+   "h": 58,
+   "w": 217
+  },
+  {
+   "lang": "en",
+   "gt": "Arabia",
+   "hyp": "Aabla",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 29,
+   "w": 99
+  },
+  {
+   "lang": "bn",
+   "gt": "গ্রাম",
+   "hyp": "গরয",
+   "cer": 0.6,
+   "upright": true,
+   "h": 88,
+   "w": 212
+  },
+  {
+   "lang": "bn",
+   "gt": "হইতে",
+   "hyp": "৩টতে",
+   "cer": 0.5,
+   "upright": true,
+   "h": 43,
+   "w": 89
+  },
+  {
+   "lang": "bn",
+   "gt": "বীণাপানী",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 398,
+   "w": 1581
+  },
+  {
+   "lang": "en",
+   "gt": "vendredi",
+   "hyp": "vendredi",
+   "cer": 0.0,
+   "upright": true,
+   "h": 17,
+   "w": 55
+  },
+  {
+   "lang": "bn",
+   "gt": "শিশুরোগ",
+   "hyp": "শিশুরোগ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 311,
+   "w": 977
+  },
+  {
+   "lang": "en",
+   "gt": "R",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 91,
+   "w": 58
+  },
+  {
+   "lang": "en",
+   "gt": "Fuβ",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 304,
+   "w": 550
+  },
+  {
+   "lang": "en",
+   "gt": "È",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 11,
+   "w": 6
+  },
+  {
+   "lang": "en",
+   "gt": "Cuki",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 32,
+   "w": 75
+  },
+  {
+   "lang": "en",
+   "gt": "in",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 19,
+   "w": 16
+  },
+  {
+   "lang": "en",
+   "gt": "A7",
+   "hyp": "47",
+   "cer": 0.5,
+   "upright": true,
+   "h": 254,
+   "w": 399
+  },
+  {
+   "lang": "en",
+   "gt": "SIEGEN",
+   "hyp": "SIEGEN",
+   "cer": 0.0,
+   "upright": true,
+   "h": 148,
+   "w": 636
+  },
+  {
+   "lang": "en",
+   "gt": "2",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 90,
+   "w": 51
+  },
+  {
+   "lang": "en",
+   "gt": "Friedrich-Wilhelm-Pl.17",
+   "hyp": "Friedrich-Wilhelm-PI. 17",
+   "cer": 0.08695652173913043,
+   "upright": true,
+   "h": 219,
+   "w": 2355
+  },
+  {
+   "lang": "bn",
+   "gt": "সুদের",
+   "hyp": "সুদের",
+   "cer": 0.0,
+   "upright": true,
+   "h": 215,
+   "w": 460
+  },
+  {
+   "lang": "bn",
+   "gt": "জা",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 253,
+   "w": 304
+  },
+  {
+   "lang": "bn",
+   "gt": "তো",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 144,
+   "w": 180
+  },
+  {
+   "lang": "bn",
+   "gt": "মঙ্গল",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 215,
+   "w": 831
+  },
+  {
+   "lang": "bn",
+   "gt": "উমা",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 259,
+   "w": 389
+  },
+  {
+   "lang": "en",
+   "gt": "261-1470",
+   "hyp": "261-1470",
+   "cer": 0.0,
+   "upright": true,
+   "h": 109,
+   "w": 190
+  },
+  {
+   "lang": "en",
+   "gt": "ALZOOR",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 46,
+   "w": 117
+  },
+  {
+   "lang": "en",
+   "gt": "(1F)",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 13,
+   "w": 37
+  },
+  {
+   "lang": "bn",
+   "gt": "ফিলাপ",
+   "hyp": "িদাপ",
+   "cer": 0.4,
+   "upright": true,
+   "h": 300,
+   "w": 403
+  },
+  {
+   "lang": "bn",
+   "gt": "ফটো",
+   "hyp": "ফটো",
+   "cer": 0.0,
+   "upright": true,
+   "h": 354,
+   "w": 729
+  },
+  {
+   "lang": "bn",
+   "gt": "নিতাই",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 717,
+   "w": 944
+  },
+  {
+   "lang": "en",
+   "gt": "Parkschein",
+   "hyp": "Parkschein",
+   "cer": 0.0,
+   "upright": true,
+   "h": 265,
+   "w": 957
+  },
+  {
+   "lang": "bn",
+   "gt": "প্রধান",
+   "hyp": "প্রধান",
+   "cer": 0.0,
+   "upright": true,
+   "h": 50,
+   "w": 123
+  },
+  {
+   "lang": "bn",
+   "gt": "লিফকেয়ার",
+   "hyp": "লিফকেয়ারু",
+   "cer": 0.1111111111111111,
+   "upright": true,
+   "h": 166,
+   "w": 560
+  },
+  {
+   "lang": "en",
+   "gt": "L'Atelier",
+   "hyp": "U[U",
+   "cer": 1.0,
+   "upright": true,
+   "h": 404,
+   "w": 681
+  },
+  {
+   "lang": "bn",
+   "gt": "শুক্রবার",
+   "hyp": "শুক্রবার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 184,
+   "w": 599
+  },
+  {
+   "lang": "bn",
+   "gt": "সামনে",
+   "hyp": "সামনে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 131,
+   "w": 267
+  },
+  {
+   "lang": "en",
+   "gt": "Verkehr",
+   "hyp": "Verkehr",
+   "cer": 0.0,
+   "upright": true,
+   "h": 55,
+   "w": 241
+  },
+  {
+   "lang": "bn",
+   "gt": "বেডিং",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 320,
+   "w": 587
+  },
+  {
+   "lang": "en",
+   "gt": "LINEA",
+   "hyp": "LINEA",
+   "cer": 0.0,
+   "upright": true,
+   "h": 81,
+   "w": 254
+  },
+  {
+   "lang": "en",
+   "gt": "Bldg.",
+   "hyp": "Bldy",
+   "cer": 0.4,
+   "upright": true,
+   "h": 58,
+   "w": 70
+  },
+  {
+   "lang": "en",
+   "gt": "FULL",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 27,
+   "w": 24
+  },
+  {
+   "lang": "en",
+   "gt": "Wertstoffe",
+   "hyp": "Wertstoffe",
+   "cer": 0.0,
+   "upright": true,
+   "h": 294,
+   "w": 1770
+  },
+  {
+   "lang": "bn",
+   "gt": "ঘোষটেলার্স",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 1332,
+   "w": 666
+  },
+  {
+   "lang": "bn",
+   "gt": "আরাম",
+   "hyp": "সবম",
+   "cer": 0.75,
+   "upright": true,
+   "h": 232,
+   "w": 273
+  },
+  {
+   "lang": "bn",
+   "gt": "ও",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 56,
+   "w": 49
+  },
+  {
+   "lang": "en",
+   "gt": "YARDS",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 31,
+   "w": 25
+  },
+  {
+   "lang": "en",
+   "gt": "Exit",
+   "hyp": "Exit",
+   "cer": 0.0,
+   "upright": true,
+   "h": 34,
+   "w": 64
+  },
+  {
+   "lang": "en",
+   "gt": "BANK",
+   "hyp": "BANK",
+   "cer": 0.0,
+   "upright": true,
+   "h": 33,
+   "w": 56
+  },
+  {
+   "lang": "bn",
+   "gt": "সাম্প্রদায়িক",
+   "hyp": "সাং্প্রদায়িব্ণব",
+   "cer": 0.38461538461538464,
+   "upright": true,
+   "h": 79,
+   "w": 390
+  },
+  {
+   "lang": "bn",
+   "gt": "এখানে",
+   "hyp": "এখlনে",
+   "cer": 0.2,
+   "upright": true,
+   "h": 111,
+   "w": 309
+  },
+  {
+   "lang": "bn",
+   "gt": "আসলেই",
+   "hyp": "আসলেই",
+   "cer": 0.0,
+   "upright": true,
+   "h": 82,
+   "w": 251
+  },
+  {
+   "lang": "en",
+   "gt": "LETTERATURA",
+   "hyp": "LETTERATURA",
+   "cer": 0.0,
+   "upright": true,
+   "h": 106,
+   "w": 519
+  },
+  {
+   "lang": "bn",
+   "gt": "করা",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 263,
+   "w": 246
+  },
+  {
+   "lang": "bn",
+   "gt": "উদয়পুর",
+   "hyp": "উদয়পুর",
+   "cer": 0.0,
+   "upright": true,
+   "h": 64,
+   "w": 130
+  },
+  {
+   "lang": "en",
+   "gt": "loro",
+   "hyp": "lor0",
+   "cer": 0.25,
+   "upright": true,
+   "h": 46,
+   "w": 107
+  },
+  {
+   "lang": "bn",
+   "gt": "সেন্টার",
+   "hyp": "সেন্ঢার",
+   "cer": 0.14285714285714285,
+   "upright": true,
+   "h": 152,
+   "w": 368
+  },
+  {
+   "lang": "en",
+   "gt": "MARYLAND",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 64,
+   "w": 67
+  },
+  {
+   "lang": "en",
+   "gt": "GALILEO",
+   "hyp": "CALILEO",
+   "cer": 0.14285714285714285,
+   "upright": true,
+   "h": 261,
+   "w": 934
+  },
+  {
+   "lang": "bn",
+   "gt": "করিবেন",
+   "hyp": "করিবেন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 105,
+   "w": 274
+  },
+  {
+   "lang": "bn",
+   "gt": "প্রমান-পত্র",
+   "hyp": "প্রমদ প",
+   "cer": 0.5454545454545454,
+   "upright": true,
+   "h": 105,
+   "w": 223
+  },
+  {
+   "lang": "bn",
+   "gt": "প্যালেস",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 177,
+   "w": 455
+  },
+  {
+   "lang": "bn",
+   "gt": "সম্ভার",
+   "hyp": "সম্ভার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 117,
+   "w": 386
+  },
+  {
+   "lang": "bn",
+   "gt": "হোটেল",
+   "hyp": "হোঁটেন",
+   "cer": 0.4,
+   "upright": true,
+   "h": 527,
+   "w": 704
+  },
+  {
+   "lang": "bn",
+   "gt": "মোটর",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 124,
+   "w": 128
+  },
+  {
+   "lang": "bn",
+   "gt": "আপনাদের",
+   "hyp": "তরাপনাদের",
+   "cer": 0.42857142857142855,
+   "upright": true,
+   "h": 112,
+   "w": 367
+  },
+  {
+   "lang": "en",
+   "gt": "motor",
+   "hyp": "I0t0",
+   "cer": 0.8,
+   "upright": true,
+   "h": 53,
+   "w": 135
+  },
+  {
+   "lang": "en",
+   "gt": "RUNNING",
+   "hyp": "দুততন",
+   "cer": 1.0,
+   "upright": true,
+   "h": 16,
+   "w": 86
+  },
+  {
+   "lang": "en",
+   "gt": "6",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 14,
+   "w": 8
+  },
+  {
+   "lang": "en",
+   "gt": "AL",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 20,
+   "w": 41
+  },
+  {
+   "lang": "en",
+   "gt": "Skin",
+   "hyp": "Skiiu",
+   "cer": 0.5,
+   "upright": true,
+   "h": 17,
+   "w": 37
+  },
+  {
+   "lang": "en",
+   "gt": "PENALTIES",
+   "hyp": "নধদ",
+   "cer": 1.0,
+   "upright": true,
+   "h": 42,
+   "w": 260
+  },
+  {
+   "lang": "bn",
+   "gt": "কলকাতা-",
+   "hyp": "বলকাতা",
+   "cer": 0.2857142857142857,
+   "upright": true,
+   "h": 74,
+   "w": 201
+  },
+  {
+   "lang": "bn",
+   "gt": "করতে",
+   "hyp": "করতে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 48,
+   "w": 115
+  },
+  {
+   "lang": "en",
+   "gt": "3-chome",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 40,
+   "w": 156
+  },
+  {
+   "lang": "en",
+   "gt": "HA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 27,
+   "w": 46
+  },
+  {
+   "lang": "bn",
+   "gt": "নিমতা,",
+   "hyp": "নিমতা",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 71,
+   "w": 134
+  },
+  {
+   "lang": "en",
+   "gt": "Pocom",
+   "hyp": "Pocom",
+   "cer": 0.0,
+   "upright": true,
+   "h": 26,
+   "w": 81
+  },
+  {
+   "lang": "en",
+   "gt": "it",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 29,
+   "w": 24
+  },
+  {
+   "lang": "bn",
+   "gt": "শিক্ষা",
+   "hyp": "গিম্ষয",
+   "cer": 0.5,
+   "upright": true,
+   "h": 44,
+   "w": 89
+  },
+  {
+   "lang": "en",
+   "gt": "H",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 47,
+   "w": 55
+  },
+  {
+   "lang": "en",
+   "gt": "B.",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 48,
+   "w": 43
+  },
+  {
+   "lang": "bn",
+   "gt": "রোল",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 271,
+   "w": 770
+  },
+  {
+   "lang": "bn",
+   "gt": "পার্লার",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 363,
+   "w": 1053
+  },
+  {
+   "lang": "bn",
+   "gt": "সঙ্গম",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 243,
+   "w": 985
+  },
+  {
+   "lang": "bn",
+   "gt": "রোড,",
+   "hyp": "রোড",
+   "cer": 0.25,
+   "upright": true,
+   "h": 38,
+   "w": 100
+  },
+  {
+   "lang": "bn",
+   "gt": "কোলকাতা",
+   "hyp": "কোলকাতা",
+   "cer": 0.0,
+   "upright": true,
+   "h": 53,
+   "w": 359
+  },
+  {
+   "lang": "en",
+   "gt": "ORARIO",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 38,
+   "w": 155
+  },
+  {
+   "lang": "en",
+   "gt": "WILLOW",
+   "hyp": "0)1",
+   "cer": 1.0,
+   "upright": true,
+   "h": 28,
+   "w": 184
+  },
+  {
+   "lang": "en",
+   "gt": "600",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 114,
+   "w": 180
+  },
+  {
+   "lang": "bn",
+   "gt": "প্রাণ",
+   "hyp": "প্রাণ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 91,
+   "w": 155
+  },
+  {
+   "lang": "en",
+   "gt": "1,99",
+   "hyp": "0",
+   "cer": 1.0,
+   "upright": true,
+   "h": 222,
+   "w": 263
+  },
+  {
+   "lang": "bn",
+   "gt": "জনপ্রিয়",
+   "hyp": "জনপ্থিয়",
+   "cer": 0.125,
+   "upright": true,
+   "h": 133,
+   "w": 529
+  },
+  {
+   "lang": "bn",
+   "gt": "রাখিবেন",
+   "hyp": "রাখিবেন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 186,
+   "w": 517
+  },
+  {
+   "lang": "en",
+   "gt": "rossi,",
+   "hyp": "rOSS1",
+   "cer": 0.8333333333333334,
+   "upright": true,
+   "h": 45,
+   "w": 119
+  },
+  {
+   "lang": "en",
+   "gt": "CLUB",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 16,
+   "w": 56
+  },
+  {
+   "lang": "en",
+   "gt": "Uhr",
+   "hyp": "Uhr",
+   "cer": 0.0,
+   "upright": true,
+   "h": 42,
+   "w": 80
+  },
+  {
+   "lang": "bn",
+   "gt": "২০,",
+   "hyp": "২০",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 50,
+   "w": 84
+  },
+  {
+   "lang": "bn",
+   "gt": "ডাকঘর",
+   "hyp": "ডাকযর",
+   "cer": 0.2,
+   "upright": true,
+   "h": 142,
+   "w": 500
+  },
+  {
+   "lang": "bn",
+   "gt": "আই",
+   "hyp": "আই",
+   "cer": 0.0,
+   "upright": true,
+   "h": 70,
+   "w": 143
+  },
+  {
+   "lang": "en",
+   "gt": "x",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 41,
+   "w": 39
+  },
+  {
+   "lang": "en",
+   "gt": "SUP'COM",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 28,
+   "w": 112
+  },
+  {
+   "lang": "bn",
+   "gt": "গৌর",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 85,
+   "w": 103
+  },
+  {
+   "lang": "bn",
+   "gt": "চয়েস",
+   "hyp": "উঁযসত",
+   "cer": 1.0,
+   "upright": true,
+   "h": 178,
+   "w": 336
+  },
+  {
+   "lang": "en",
+   "gt": "53km",
+   "hyp": "দ",
+   "cer": 1.0,
+   "upright": true,
+   "h": 16,
+   "w": 36
+  },
+  {
+   "lang": "bn",
+   "gt": "মমতা",
+   "hyp": "মরমত",
+   "cer": 0.5,
+   "upright": true,
+   "h": 159,
+   "w": 400
+  },
+  {
+   "lang": "bn",
+   "gt": "ফাইবার",
+   "hyp": "ফাইবার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 270,
+   "w": 688
+  },
+  {
+   "lang": "en",
+   "gt": "O",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 52,
+   "w": 49
+  },
+  {
+   "lang": "bn",
+   "gt": "প্রধান",
+   "hyp": "প্রেধস",
+   "cer": 0.5,
+   "upright": true,
+   "h": 158,
+   "w": 444
+  },
+  {
+   "lang": "en",
+   "gt": "2",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 10,
+   "w": 8
+  },
+  {
+   "lang": "en",
+   "gt": "Studi",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 15,
+   "w": 33
+  },
+  {
+   "lang": "en",
+   "gt": "für",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 291,
+   "w": 198
+  },
+  {
+   "lang": "en",
+   "gt": "MULLICAN",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 27,
+   "w": 196
+  },
+  {
+   "lang": "bn",
+   "gt": "ভান্ডার",
+   "hyp": "ভগর",
+   "cer": 0.7142857142857143,
+   "upright": true,
+   "h": 390,
+   "w": 1276
+  },
+  {
+   "lang": "bn",
+   "gt": "লক্ষ্মী",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 233,
+   "w": 416
+  },
+  {
+   "lang": "bn",
+   "gt": "করুন",
+   "hyp": "করুন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 136,
+   "w": 415
+  },
+  {
+   "lang": "bn",
+   "gt": "বিউটি",
+   "hyp": "পউট",
+   "cer": 0.6,
+   "upright": true,
+   "h": 345,
+   "w": 633
+  },
+  {
+   "lang": "bn",
+   "gt": "রাম",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 206,
+   "w": 251
+  },
+  {
+   "lang": "en",
+   "gt": "YU",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 11,
+   "w": 18
+  },
+  {
+   "lang": "bn",
+   "gt": "অনিমা",
+   "hyp": "wটaI",
+   "cer": 1.0,
+   "upright": true,
+   "h": 203,
+   "w": 615
+  },
+  {
+   "lang": "en",
+   "gt": "DRESSE",
+   "hyp": "URESSE",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 177,
+   "w": 494
+  },
+  {
+   "lang": "en",
+   "gt": "für:",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 33,
+   "w": 55
+  },
+  {
+   "lang": "bn",
+   "gt": "রেডিমেড",
+   "hyp": "রেডিমেড",
+   "cer": 0.0,
+   "upright": true,
+   "h": 76,
+   "w": 271
+  },
+  {
+   "lang": "bn",
+   "gt": "ক্লাসিক",
+   "hyp": "ফ্ল্কিিক",
+   "cer": 0.5714285714285714,
+   "upright": true,
+   "h": 712,
+   "w": 1896
+  },
+  {
+   "lang": "bn",
+   "gt": "বাজার",
+   "hyp": "বজার",
+   "cer": 0.2,
+   "upright": true,
+   "h": 545,
+   "w": 1032
+  },
+  {
+   "lang": "bn",
+   "gt": "বাড়ীতে",
+   "hyp": "বা ড়ী",
+   "cer": 0.42857142857142855,
+   "upright": false,
+   "h": 417,
+   "w": 178
+  },
+  {
+   "lang": "en",
+   "gt": "costituzionale",
+   "hyp": "costituzionale",
+   "cer": 0.0,
+   "upright": true,
+   "h": 25,
+   "w": 103
+  },
+  {
+   "lang": "bn",
+   "gt": "অয়েল",
+   "hyp": "অয়েল",
+   "cer": 0.0,
+   "upright": true,
+   "h": 57,
+   "w": 132
+  },
+  {
+   "lang": "bn",
+   "gt": "প্রোঃ",
+   "hyp": "প্রোঃ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 86,
+   "w": 174
+  },
+  {
+   "lang": "bn",
+   "gt": "বিভিন্ন",
+   "hyp": "িঙ্ম",
+   "cer": 0.7142857142857143,
+   "upright": true,
+   "h": 73,
+   "w": 205
+  },
+  {
+   "lang": "bn",
+   "gt": "আধুনিক",
+   "hyp": "আধুনিক",
+   "cer": 0.0,
+   "upright": true,
+   "h": 82,
+   "w": 219
+  },
+  {
+   "lang": "en",
+   "gt": "HH.",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 12,
+   "w": 9
+  },
+  {
+   "lang": "bn",
+   "gt": "রোড,",
+   "hyp": "রেড",
+   "cer": 0.5,
+   "upright": true,
+   "h": 83,
+   "w": 169
+  },
+  {
+   "lang": "en",
+   "gt": "is",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 152,
+   "w": 165
+  },
+  {
+   "lang": "en",
+   "gt": "Rauscher",
+   "hyp": "Ruuscher",
+   "cer": 0.125,
+   "upright": true,
+   "h": 42,
+   "w": 86
+  },
+  {
+   "lang": "bn",
+   "gt": "এম",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 39,
+   "w": 63
+  },
+  {
+   "lang": "bn",
+   "gt": "৭০০০৫৬",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 114,
+   "w": 548
+  },
+  {
+   "lang": "bn",
+   "gt": "২৯শে",
+   "hyp": "২৯",
+   "cer": 0.5,
+   "upright": true,
+   "h": 79,
+   "w": 162
+  },
+  {
+   "lang": "en",
+   "gt": "PHONES",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 17,
+   "w": 34
+  },
+  {
+   "lang": "en",
+   "gt": "Hinode",
+   "hyp": "Hinode",
+   "cer": 0.0,
+   "upright": true,
+   "h": 124,
+   "w": 472
+  },
+  {
+   "lang": "bn",
+   "gt": "৪৬",
+   "hyp": "৪৬",
+   "cer": 0.0,
+   "upright": true,
+   "h": 66,
+   "w": 102
+  },
+  {
+   "lang": "en",
+   "gt": "SOON",
+   "hyp": "S 0 0 N",
+   "cer": 1.25,
+   "upright": true,
+   "h": 66,
+   "w": 279
+  },
+  {
+   "lang": "bn",
+   "gt": "ম্যানসন",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 577,
+   "w": 825
+  },
+  {
+   "lang": "en",
+   "gt": "NAZARIO",
+   "hyp": "NAZARIO",
+   "cer": 0.0,
+   "upright": true,
+   "h": 147,
+   "w": 767
+  },
+  {
+   "lang": "bn",
+   "gt": "পড়ানো",
+   "hyp": "পতাম",
+   "cer": 0.6666666666666666,
+   "upright": true,
+   "h": 124,
+   "w": 289
+  },
+  {
+   "lang": "en",
+   "gt": "TEATROMARTINITT.",
+   "hyp": "TEATRUIIARIIIIIII",
+   "cer": 0.5,
+   "upright": true,
+   "h": 26,
+   "w": 193
+  },
+  {
+   "lang": "bn",
+   "gt": "আফ্রিকান",
+   "hyp": "আফিকাম",
+   "cer": 0.375,
+   "upright": true,
+   "h": 142,
+   "w": 395
+  },
+  {
+   "lang": "en",
+   "gt": "FSB",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 45,
+   "w": 32
+  },
+  {
+   "lang": "en",
+   "gt": "R",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 9,
+   "w": 6
+  },
+  {
+   "lang": "bn",
+   "gt": "অজন্তা",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 546,
+   "w": 1379
+  },
+  {
+   "lang": "en",
+   "gt": "origine.",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 58,
+   "w": 21
+  },
+  {
+   "lang": "bn",
+   "gt": "মাতুন,",
+   "hyp": "মাতুূন",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 163,
+   "w": 310
+  },
+  {
+   "lang": "bn",
+   "gt": "স্টল",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 541,
+   "w": 260
+  },
+  {
+   "lang": "bn",
+   "gt": "মোবাইল",
+   "hyp": "মোবাইল",
+   "cer": 0.0,
+   "upright": true,
+   "h": 329,
+   "w": 748
+  },
+  {
+   "lang": "bn",
+   "gt": "পরমা",
+   "hyp": "পরম",
+   "cer": 0.25,
+   "upright": true,
+   "h": 151,
+   "w": 426
+  },
+  {
+   "lang": "en",
+   "gt": "GOTE",
+   "hyp": "8",
+   "cer": 1.0,
+   "upright": false,
+   "h": 116,
+   "w": 59
+  },
+  {
+   "lang": "en",
+   "gt": "domotica",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 29,
+   "w": 136
+  },
+  {
+   "lang": "en",
+   "gt": "faggio",
+   "hyp": "foggi",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 81,
+   "w": 202
+  },
+  {
+   "lang": "bn",
+   "gt": "আনন্দ",
+   "hyp": "আনন্দী",
+   "cer": 0.2,
+   "upright": true,
+   "h": 171,
+   "w": 795
+  },
+  {
+   "lang": "bn",
+   "gt": "বুটিক",
+   "hyp": "বুটক",
+   "cer": 0.2,
+   "upright": false,
+   "h": 368,
+   "w": 355
+  },
+  {
+   "lang": "en",
+   "gt": "Liaison",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 285,
+   "w": 75
+  },
+  {
+   "lang": "en",
+   "gt": "COPPA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 43,
+   "w": 102
+  },
+  {
+   "lang": "bn",
+   "gt": "এর",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 97,
+   "w": 201
+  },
+  {
+   "lang": "en",
+   "gt": "OULED",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 20,
+   "w": 51
+  },
+  {
+   "lang": "bn",
+   "gt": "ননী",
+   "hyp": "ননী",
+   "cer": 0.0,
+   "upright": true,
+   "h": 94,
+   "w": 106
+  },
+  {
+   "lang": "en",
+   "gt": "PARTITA",
+   "hyp": "ঢব",
+   "cer": 1.0,
+   "upright": true,
+   "h": 28,
+   "w": 149
+  },
+  {
+   "lang": "bn",
+   "gt": "কালার",
+   "hyp": "কালোর",
+   "cer": 0.2,
+   "upright": true,
+   "h": 156,
+   "w": 424
+  },
+  {
+   "lang": "en",
+   "gt": "Billet",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 19,
+   "w": 75
+  },
+  {
+   "lang": "bn",
+   "gt": "সায়েন্স",
+   "hyp": "সযেন",
+   "cer": 0.5,
+   "upright": true,
+   "h": 357,
+   "w": 738
+  },
+  {
+   "lang": "en",
+   "gt": "IN",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 182,
+   "w": 228
+  },
+  {
+   "lang": "bn",
+   "gt": "এম",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 51,
+   "w": 114
+  },
+  {
+   "lang": "bn",
+   "gt": "দিন",
+   "hyp": "দিন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 463,
+   "w": 681
+  },
+  {
+   "lang": "en",
+   "gt": "Nihondaire",
+   "hyp": "Tihondaira",
+   "cer": 0.2,
+   "upright": true,
+   "h": 175,
+   "w": 608
+  },
+  {
+   "lang": "bn",
+   "gt": "মধ্যে",
+   "hyp": "গদ",
+   "cer": 1.0,
+   "upright": false,
+   "h": 320,
+   "w": 272
+  },
+  {
+   "lang": "en",
+   "gt": "2",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 31,
+   "w": 19
+  },
+  {
+   "lang": "en",
+   "gt": "FICO!",
+   "hyp": "RICI",
+   "cer": 0.6,
+   "upright": true,
+   "h": 125,
+   "w": 288
+  },
+  {
+   "lang": "en",
+   "gt": "Geld",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 34,
+   "w": 76
+  },
+  {
+   "lang": "bn",
+   "gt": "৫৬",
+   "hyp": "৫৬",
+   "cer": 0.0,
+   "upright": true,
+   "h": 94,
+   "w": 147
+  },
+  {
+   "lang": "bn",
+   "gt": "থেকে",
+   "hyp": "থেকে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 34,
+   "w": 86
+  },
+  {
+   "lang": "en",
+   "gt": "Mithelferinnen",
+   "hyp": "tahelferinnen",
+   "cer": 0.21428571428571427,
+   "upright": true,
+   "h": 38,
+   "w": 233
+  },
+  {
+   "lang": "bn",
+   "gt": "রকমের",
+   "hyp": "রকমের",
+   "cer": 0.0,
+   "upright": true,
+   "h": 185,
+   "w": 817
+  },
+  {
+   "lang": "bn",
+   "gt": "ফার্ণিচার",
+   "hyp": "ফাণচাব",
+   "cer": 0.4444444444444444,
+   "upright": true,
+   "h": 170,
+   "w": 541
+  },
+  {
+   "lang": "en",
+   "gt": "RISERVATO",
+   "hyp": "RISERVATO",
+   "cer": 0.0,
+   "upright": true,
+   "h": 89,
+   "w": 400
+  },
+  {
+   "lang": "en",
+   "gt": "Sarrazinstraße",
+   "hyp": "Sarrazinstrafযe",
+   "cer": 0.14285714285714285,
+   "upright": true,
+   "h": 379,
+   "w": 1980
+  },
+  {
+   "lang": "bn",
+   "gt": "ভ্যারাইটিস্",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 182,
+   "w": 418
+  },
+  {
+   "lang": "bn",
+   "gt": "কলকাতা",
+   "hyp": "কনকাণা",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 68,
+   "w": 218
+  },
+  {
+   "lang": "bn",
+   "gt": "দুধ",
+   "hyp": "দুধ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 319,
+   "w": 476
+  },
+  {
+   "lang": "bn",
+   "gt": "বি.",
+   "hyp": "৫",
+   "cer": 1.0,
+   "upright": false,
+   "h": 178,
+   "w": 168
+  },
+  {
+   "lang": "bn",
+   "gt": "৪১",
+   "hyp": "8",
+   "cer": 1.0,
+   "upright": false,
+   "h": 181,
+   "w": 138
+  },
+  {
+   "lang": "bn",
+   "gt": "মদন",
+   "hyp": "মদন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 256,
+   "w": 492
+  },
+  {
+   "lang": "bn",
+   "gt": "আমেদাবাদ",
+   "hyp": "আমেদাবাদ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 100,
+   "w": 436
+  },
+  {
+   "lang": "en",
+   "gt": "e",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 40,
+   "w": 33
+  },
+  {
+   "lang": "bn",
+   "gt": "করিবেন",
+   "hyp": "করিবেন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 130,
+   "w": 325
+  },
+  {
+   "lang": "en",
+   "gt": "tue",
+   "hyp": "UIC",
+   "cer": 1.0,
+   "upright": true,
+   "h": 154,
+   "w": 326
+  },
+  {
+   "lang": "en",
+   "gt": "ze",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 30,
+   "w": 47
+  },
+  {
+   "lang": "bn",
+   "gt": "পরমা",
+   "hyp": "পূরমা",
+   "cer": 0.25,
+   "upright": true,
+   "h": 278,
+   "w": 527
+  },
+  {
+   "lang": "en",
+   "gt": "590m",
+   "hyp": "590m",
+   "cer": 0.0,
+   "upright": true,
+   "h": 71,
+   "w": 184
+  },
+  {
+   "lang": "en",
+   "gt": "EN",
+   "hyp": "Z",
+   "cer": 1.0,
+   "upright": false,
+   "h": 107,
+   "w": 75
+  },
+  {
+   "lang": "bn",
+   "gt": "কে.",
+   "hyp": "কে",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 160,
+   "w": 258
+  },
+  {
+   "lang": "en",
+   "gt": "dei",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 71,
+   "w": 70
+  },
+  {
+   "lang": "bn",
+   "gt": "যায়",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 79,
+   "w": 114
+  },
+  {
+   "lang": "en",
+   "gt": "Getränke",
+   "hyp": "Getroiilee",
+   "cer": 0.625,
+   "upright": true,
+   "h": 175,
+   "w": 860
+  },
+  {
+   "lang": "en",
+   "gt": "i",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 345,
+   "w": 120
+  },
+  {
+   "lang": "en",
+   "gt": "(AL-AMEEN)",
+   "hyp": "AকAMIEEN",
+   "cer": 0.5,
+   "upright": true,
+   "h": 63,
+   "w": 497
+  },
+  {
+   "lang": "bn",
+   "gt": "রাজু",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 370,
+   "w": 226
+  },
+  {
+   "lang": "en",
+   "gt": "MERRY",
+   "hyp": "MERRE",
+   "cer": 0.2,
+   "upright": true,
+   "h": 113,
+   "w": 233
+  },
+  {
+   "lang": "bn",
+   "gt": "চিহ্নে",
+   "hyp": "চিহ্নে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 718,
+   "w": 1190
+  },
+  {
+   "lang": "en",
+   "gt": "Condominio",
+   "hyp": "Condominio",
+   "cer": 0.0,
+   "upright": true,
+   "h": 36,
+   "w": 246
+  },
+  {
+   "lang": "bn",
+   "gt": "কুমার",
+   "hyp": "কুমার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 114,
+   "w": 318
+  },
+  {
+   "lang": "bn",
+   "gt": "ফেসিয়াল",
+   "hyp": "ফেসিয়ান",
+   "cer": 0.125,
+   "upright": true,
+   "h": 505,
+   "w": 1159
+  },
+  {
+   "lang": "bn",
+   "gt": "যেকোন",
+   "hyp": "যেকোন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 290,
+   "w": 752
+  },
+  {
+   "lang": "bn",
+   "gt": "অফিস",
+   "hyp": "অফিস",
+   "cer": 0.0,
+   "upright": true,
+   "h": 187,
+   "w": 419
+  },
+  {
+   "lang": "bn",
+   "gt": "সরঞ্জাম",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 35,
+   "w": 215
+  },
+  {
+   "lang": "bn",
+   "gt": "এমপ্লয়মেন্ট",
+   "hyp": "এমপ্লয়মেন্ট",
+   "cer": 0.0,
+   "upright": true,
+   "h": 122,
+   "w": 349
+  },
+  {
+   "lang": "bn",
+   "gt": "জানালা",
+   "hyp": "জঢালা",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 73,
+   "w": 210
+  },
+  {
+   "lang": "en",
+   "gt": "Tutto",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 94,
+   "w": 176
+  },
+  {
+   "lang": "en",
+   "gt": "lidabashi",
+   "hyp": "lidabashi",
+   "cer": 0.0,
+   "upright": true,
+   "h": 157,
+   "w": 862
+  },
+  {
+   "lang": "bn",
+   "gt": "কটুলপুর",
+   "hyp": "কটুলপুর",
+   "cer": 0.0,
+   "upright": true,
+   "h": 176,
+   "w": 432
+  },
+  {
+   "lang": "bn",
+   "gt": "ইন্টারনেট",
+   "hyp": "ছন্টারনেট",
+   "cer": 0.1111111111111111,
+   "upright": true,
+   "h": 251,
+   "w": 639
+  },
+  {
+   "lang": "bn",
+   "gt": "করা",
+   "hyp": "করা",
+   "cer": 0.0,
+   "upright": true,
+   "h": 149,
+   "w": 271
+  },
+  {
+   "lang": "bn",
+   "gt": "করা",
+   "hyp": "করা",
+   "cer": 0.0,
+   "upright": true,
+   "h": 92,
+   "w": 188
+  },
+  {
+   "lang": "bn",
+   "gt": "কৃষক",
+   "hyp": "কৃষক",
+   "cer": 0.0,
+   "upright": true,
+   "h": 315,
+   "w": 810
+  },
+  {
+   "lang": "en",
+   "gt": "3,39",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 21,
+   "w": 31
+  },
+  {
+   "lang": "en",
+   "gt": "N",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 24,
+   "w": 20
+  },
+  {
+   "lang": "en",
+   "gt": "qualité",
+   "hyp": "guuline",
+   "cer": 0.5714285714285714,
+   "upright": true,
+   "h": 282,
+   "w": 622
+  },
+  {
+   "lang": "bn",
+   "gt": "জ্যোৎস্না",
+   "hyp": "জ্যোংসা",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 277,
+   "w": 587
+  },
+  {
+   "lang": "en",
+   "gt": "TOUTE",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 84,
+   "w": 191
+  },
+  {
+   "lang": "en",
+   "gt": "MONUMENT",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 11,
+   "w": 69
+  },
+  {
+   "lang": "en",
+   "gt": "Line",
+   "hyp": "Line",
+   "cer": 0.0,
+   "upright": true,
+   "h": 86,
+   "w": 193
+  },
+  {
+   "lang": "bn",
+   "gt": "আরামবাগেই",
+   "hyp": "আরামবাগেই",
+   "cer": 0.0,
+   "upright": true,
+   "h": 256,
+   "w": 1108
+  },
+  {
+   "lang": "en",
+   "gt": "e",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 12,
+   "w": 11
+  },
+  {
+   "lang": "bn",
+   "gt": "ফিলাপ,",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 220,
+   "w": 309
+  },
+  {
+   "lang": "en",
+   "gt": "Crines",
+   "hyp": "D E S G N",
+   "cer": 1.5,
+   "upright": true,
+   "h": 368,
+   "w": 1334
+  },
+  {
+   "lang": "bn",
+   "gt": "(বাপি)",
+   "hyp": "বাধি",
+   "cer": 0.5,
+   "upright": true,
+   "h": 255,
+   "w": 308
+  },
+  {
+   "lang": "bn",
+   "gt": "জুয়েলার্স",
+   "hyp": "জুূয়লার্স",
+   "cer": 0.2,
+   "upright": true,
+   "h": 245,
+   "w": 645
+  },
+  {
+   "lang": "en",
+   "gt": "DELL'EPILAZIONE",
+   "hyp": "DELLEPILAzIONE",
+   "cer": 0.13333333333333333,
+   "upright": true,
+   "h": 94,
+   "w": 762
+  },
+  {
+   "lang": "bn",
+   "gt": "ট্যাক্স,",
+   "hyp": "ট্যাক্স",
+   "cer": 0.125,
+   "upright": true,
+   "h": 361,
+   "w": 591
+  },
+  {
+   "lang": "bn",
+   "gt": "ও",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 115,
+   "w": 125
+  },
+  {
+   "lang": "bn",
+   "gt": "উপহার",
+   "hyp": "উপতার",
+   "cer": 0.2,
+   "upright": true,
+   "h": 63,
+   "w": 215
+  },
+  {
+   "lang": "bn",
+   "gt": "৭০০০৪৯",
+   "hyp": "৭০০০8৯",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 64,
+   "w": 304
+  },
+  {
+   "lang": "bn",
+   "gt": "পাওয়া",
+   "hyp": "পাওয়া",
+   "cer": 0.0,
+   "upright": true,
+   "h": 188,
+   "w": 381
+  },
+  {
+   "lang": "en",
+   "gt": "Road",
+   "hyp": "Road",
+   "cer": 0.0,
+   "upright": true,
+   "h": 77,
+   "w": 146
+  },
+  {
+   "lang": "en",
+   "gt": "brygger",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 11,
+   "w": 38
+  },
+  {
+   "lang": "en",
+   "gt": "shut",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 7,
+   "w": 19
+  },
+  {
+   "lang": "bn",
+   "gt": "বিশেষ",
+   "hyp": "বিশেষ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 198,
+   "w": 506
+  },
+  {
+   "lang": "en",
+   "gt": "UN",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 33,
+   "w": 56
+  },
+  {
+   "lang": "en",
+   "gt": "Issue",
+   "hyp": "ISsue",
+   "cer": 0.2,
+   "upright": true,
+   "h": 62,
+   "w": 127
+  },
+  {
+   "lang": "en",
+   "gt": "LAYETTE",
+   "hyp": "LAYETTE",
+   "cer": 0.0,
+   "upright": true,
+   "h": 231,
+   "w": 1276
+  },
+  {
+   "lang": "en",
+   "gt": "030",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 53,
+   "w": 105
+  },
+  {
+   "lang": "en",
+   "gt": "Municipale",
+   "hyp": "Iunicipalle",
+   "cer": 0.2,
+   "upright": true,
+   "h": 33,
+   "w": 195
+  },
+  {
+   "lang": "bn",
+   "gt": "ভাগ্য",
+   "hyp": "ডাগ",
+   "cer": 0.6,
+   "upright": true,
+   "h": 166,
+   "w": 282
+  },
+  {
+   "lang": "en",
+   "gt": "KAISeR",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 77,
+   "w": 166
+  },
+  {
+   "lang": "bn",
+   "gt": "১৮৯৯",
+   "hyp": "১৮৯৯",
+   "cer": 0.0,
+   "upright": true,
+   "h": 70,
+   "w": 179
+  },
+  {
+   "lang": "en",
+   "gt": "come",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 19,
+   "w": 56
+  },
+  {
+   "lang": "en",
+   "gt": "alla",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 15,
+   "w": 26
+  },
+  {
+   "lang": "bn",
+   "gt": "১৮",
+   "hyp": "১৮",
+   "cer": 0.0,
+   "upright": true,
+   "h": 197,
+   "w": 198
+  },
+  {
+   "lang": "bn",
+   "gt": "এবারের",
+   "hyp": "এবারের",
+   "cer": 0.0,
+   "upright": true,
+   "h": 60,
+   "w": 219
+  },
+  {
+   "lang": "bn",
+   "gt": "রস্‌",
+   "hyp": "রস",
+   "cer": 0.5,
+   "upright": true,
+   "h": 202,
+   "w": 414
+  },
+  {
+   "lang": "bn",
+   "gt": "বনহুগলী,",
+   "hyp": "বাহুগলী",
+   "cer": 0.25,
+   "upright": true,
+   "h": 152,
+   "w": 217
+  },
+  {
+   "lang": "bn",
+   "gt": "১,",
+   "hyp": "১",
+   "cer": 0.5,
+   "upright": true,
+   "h": 65,
+   "w": 95
+  },
+  {
+   "lang": "bn",
+   "gt": "এখানে",
+   "hyp": "এখ",
+   "cer": 0.6,
+   "upright": true,
+   "h": 60,
+   "w": 124
+  },
+  {
+   "lang": "en",
+   "gt": "Rialzato",
+   "hyp": "Rialzato",
+   "cer": 0.0,
+   "upright": true,
+   "h": 39,
+   "w": 132
+  },
+  {
+   "lang": "bn",
+   "gt": "এখানে",
+   "hyp": "এখানে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 118,
+   "w": 386
+  },
+  {
+   "lang": "en",
+   "gt": "3.5",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 29,
+   "w": 29
+  },
+  {
+   "lang": "en",
+   "gt": "1881173",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 18,
+   "w": 59
+  },
+  {
+   "lang": "en",
+   "gt": "Agréé",
+   "hyp": "Agreg",
+   "cer": 0.4,
+   "upright": true,
+   "h": 22,
+   "w": 53
+  },
+  {
+   "lang": "bn",
+   "gt": "নিউ",
+   "hyp": "নিউ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 80,
+   "w": 103
+  },
+  {
+   "lang": "bn",
+   "gt": "সি-ব্লক,",
+   "hyp": "সি-ব্লক",
+   "cer": 0.125,
+   "upright": true,
+   "h": 155,
+   "w": 476
+  },
+  {
+   "lang": "bn",
+   "gt": "গিরিশ",
+   "hyp": "গিরিশ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 102,
+   "w": 210
+  },
+  {
+   "lang": "bn",
+   "gt": "ঘটিকায়",
+   "hyp": "ঘটিকায়",
+   "cer": 0.0,
+   "upright": true,
+   "h": 169,
+   "w": 353
+  },
+  {
+   "lang": "en",
+   "gt": "Brdg-N.",
+   "hyp": "Brdg-N",
+   "cer": 0.14285714285714285,
+   "upright": true,
+   "h": 79,
+   "w": 227
+  },
+  {
+   "lang": "bn",
+   "gt": "কাছে",
+   "hyp": "কাছে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 86,
+   "w": 167
+  },
+  {
+   "lang": "bn",
+   "gt": "বি.",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 49,
+   "w": 46
+  },
+  {
+   "lang": "bn",
+   "gt": "আনন্দ",
+   "hyp": "আনন্দী",
+   "cer": 0.2,
+   "upright": true,
+   "h": 172,
+   "w": 879
+  },
+  {
+   "lang": "bn",
+   "gt": "ফোন",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 57,
+   "w": 51
+  },
+  {
+   "lang": "bn",
+   "gt": "রাজশ্রী",
+   "hyp": "রাজশ্রী",
+   "cer": 0.0,
+   "upright": true,
+   "h": 284,
+   "w": 744
+  },
+  {
+   "lang": "bn",
+   "gt": "ধন্যবাদ",
+   "hyp": "ধন্যবাদ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 293,
+   "w": 678
+  },
+  {
+   "lang": "en",
+   "gt": "0",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 12,
+   "w": 9
+  },
+  {
+   "lang": "en",
+   "gt": "CORSICA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 45,
+   "w": 60
+  },
+  {
+   "lang": "bn",
+   "gt": "না",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 156,
+   "w": 97
+  },
+  {
+   "lang": "bn",
+   "gt": "জল",
+   "hyp": "জল",
+   "cer": 0.0,
+   "upright": true,
+   "h": 112,
+   "w": 244
+  },
+  {
+   "lang": "en",
+   "gt": "LOTS",
+   "hyp": "LOTS",
+   "cer": 0.0,
+   "upright": true,
+   "h": 221,
+   "w": 589
+  },
+  {
+   "lang": "en",
+   "gt": "TAX",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 89,
+   "w": 227
+  },
+  {
+   "lang": "en",
+   "gt": "Complexe",
+   "hyp": "Com p lexe",
+   "cer": 0.25,
+   "upright": true,
+   "h": 148,
+   "w": 579
+  },
+  {
+   "lang": "en",
+   "gt": "Seat",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 51,
+   "w": 118
+  },
+  {
+   "lang": "bn",
+   "gt": "ঠাণ্ডা",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 505,
+   "w": 584
+  },
+  {
+   "lang": "bn",
+   "gt": "হয়",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 162,
+   "w": 190
+  },
+  {
+   "lang": "bn",
+   "gt": "পাঞ্জাবী",
+   "hyp": "পাজবী",
+   "cer": 0.375,
+   "upright": true,
+   "h": 296,
+   "w": 767
+  },
+  {
+   "lang": "en",
+   "gt": "035",
+   "hyp": "035",
+   "cer": 0.0,
+   "upright": true,
+   "h": 127,
+   "w": 222
+  },
+  {
+   "lang": "en",
+   "gt": "access",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 16,
+   "w": 81
+  },
+  {
+   "lang": "en",
+   "gt": "2,50",
+   "hyp": "9 50",
+   "cer": 0.5,
+   "upright": true,
+   "h": 20,
+   "w": 33
+  },
+  {
+   "lang": "en",
+   "gt": "un",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 12,
+   "w": 28
+  },
+  {
+   "lang": "en",
+   "gt": "RESTITUISCICI",
+   "hyp": "PESTIIUSCICI",
+   "cer": 0.23076923076923078,
+   "upright": true,
+   "h": 37,
+   "w": 159
+  },
+  {
+   "lang": "en",
+   "gt": "TROTTOIR",
+   "hyp": "TROTTOIR",
+   "cer": 0.0,
+   "upright": true,
+   "h": 134,
+   "w": 741
+  },
+  {
+   "lang": "bn",
+   "gt": "রোড,",
+   "hyp": "রোড",
+   "cer": 0.25,
+   "upright": true,
+   "h": 91,
+   "w": 221
+  },
+  {
+   "lang": "bn",
+   "gt": "এখন",
+   "hyp": "এখন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 173,
+   "w": 346
+  },
+  {
+   "lang": "bn",
+   "gt": "আন্যান্য",
+   "hyp": "অনযানা",
+   "cer": 0.5,
+   "upright": true,
+   "h": 56,
+   "w": 158
+  },
+  {
+   "lang": "bn",
+   "gt": "কুসুম",
+   "hyp": "কুসুম্ন",
+   "cer": 0.4,
+   "upright": true,
+   "h": 63,
+   "w": 98
+  },
+  {
+   "lang": "en",
+   "gt": "Opihcio",
+   "hyp": "Opificio",
+   "cer": 0.2857142857142857,
+   "upright": true,
+   "h": 80,
+   "w": 263
+  },
+  {
+   "lang": "en",
+   "gt": "sorprese,",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 18,
+   "w": 54
+  },
+  {
+   "lang": "en",
+   "gt": "ALIA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 92,
+   "w": 290
+  },
+  {
+   "lang": "en",
+   "gt": "16",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 35,
+   "w": 46
+  },
+  {
+   "lang": "en",
+   "gt": "PREZZO",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 123,
+   "w": 385
+  },
+  {
+   "lang": "en",
+   "gt": "LA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 27,
+   "w": 38
+  },
+  {
+   "lang": "en",
+   "gt": "65°",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 69,
+   "w": 109
+  },
+  {
+   "lang": "bn",
+   "gt": "খ্রীঃ",
+   "hyp": "খ্রীঃ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 78,
+   "w": 97
+  },
+  {
+   "lang": "en",
+   "gt": "Buon",
+   "hyp": "Buon",
+   "cer": 0.0,
+   "upright": true,
+   "h": 97,
+   "w": 112
+  },
+  {
+   "lang": "en",
+   "gt": "VOUS",
+   "hyp": "VOUS",
+   "cer": 0.0,
+   "upright": true,
+   "h": 137,
+   "w": 446
+  },
+  {
+   "lang": "en",
+   "gt": "CRE",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 35,
+   "w": 68
+  },
+  {
+   "lang": "en",
+   "gt": "A",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 31,
+   "w": 29
+  },
+  {
+   "lang": "bn",
+   "gt": "টা",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 43,
+   "w": 38
+  },
+  {
+   "lang": "bn",
+   "gt": "মশলা",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 163,
+   "w": 633
+  },
+  {
+   "lang": "bn",
+   "gt": "পুরুষোত্তম",
+   "hyp": "পুরুষত্তঘ",
+   "cer": 0.2,
+   "upright": true,
+   "h": 218,
+   "w": 759
+  },
+  {
+   "lang": "en",
+   "gt": "Sworn",
+   "hyp": "Sworn",
+   "cer": 0.0,
+   "upright": true,
+   "h": 28,
+   "w": 73
+  },
+  {
+   "lang": "bn",
+   "gt": "শার্ট,",
+   "hyp": "শার্ট",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 293,
+   "w": 427
+  },
+  {
+   "lang": "en",
+   "gt": "procedimento",
+   "hyp": "procedimento",
+   "cer": 0.0,
+   "upright": true,
+   "h": 22,
+   "w": 100
+  },
+  {
+   "lang": "bn",
+   "gt": "রিপেয়ারিং",
+   "hyp": "রিপেয়ারিং",
+   "cer": 0.0,
+   "upright": true,
+   "h": 128,
+   "w": 619
+  },
+  {
+   "lang": "en",
+   "gt": "61/a",
+   "hyp": "61/0",
+   "cer": 0.25,
+   "upright": true,
+   "h": 60,
+   "w": 119
+  },
+  {
+   "lang": "en",
+   "gt": "CONSOLE",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 28,
+   "w": 114
+  },
+  {
+   "lang": "bn",
+   "gt": "মনসা'র",
+   "hyp": "মনসার",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 146,
+   "w": 243
+  },
+  {
+   "lang": "bn",
+   "gt": "পানীয়",
+   "hyp": "পানীয়",
+   "cer": 0.0,
+   "upright": true,
+   "h": 170,
+   "w": 422
+  },
+  {
+   "lang": "bn",
+   "gt": "নরোত্তম",
+   "hyp": "নরোগম",
+   "cer": 0.42857142857142855,
+   "upright": true,
+   "h": 189,
+   "w": 643
+  },
+  {
+   "lang": "en",
+   "gt": "Tramvie,",
+   "hyp": "Tramivie",
+   "cer": 0.25,
+   "upright": true,
+   "h": 26,
+   "w": 142
+  },
+  {
+   "lang": "bn",
+   "gt": "জন্য",
+   "hyp": "৬ন",
+   "cer": 0.75,
+   "upright": true,
+   "h": 171,
+   "w": 223
+  },
+  {
+   "lang": "bn",
+   "gt": "মোবাইল",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 107,
+   "w": 312
+  },
+  {
+   "lang": "bn",
+   "gt": "শিক্ষা",
+   "hyp": "শিক্ষা",
+   "cer": 0.0,
+   "upright": true,
+   "h": 242,
+   "w": 375
+  },
+  {
+   "lang": "bn",
+   "gt": "বাঁকুড়া",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 297,
+   "w": 268
+  },
+  {
+   "lang": "en",
+   "gt": "una",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 31,
+   "w": 93
+  },
+  {
+   "lang": "bn",
+   "gt": "কনট্রাক্টর",
+   "hyp": "কনট্রাষ্টর",
+   "cer": 0.1,
+   "upright": true,
+   "h": 394,
+   "w": 852
+  },
+  {
+   "lang": "en",
+   "gt": "Bar",
+   "hyp": "Bar",
+   "cer": 0.0,
+   "upright": true,
+   "h": 210,
+   "w": 333
+  },
+  {
+   "lang": "bn",
+   "gt": "সোনা",
+   "hyp": "সোনা",
+   "cer": 0.0,
+   "upright": true,
+   "h": 68,
+   "w": 122
+  },
+  {
+   "lang": "bn",
+   "gt": "অন্তর্গত",
+   "hyp": "অন্তগত",
+   "cer": 0.25,
+   "upright": true,
+   "h": 195,
+   "w": 482
+  },
+  {
+   "lang": "en",
+   "gt": "BAC",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 17,
+   "w": 27
+  },
+  {
+   "lang": "bn",
+   "gt": "ও",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 269,
+   "w": 257
+  },
+  {
+   "lang": "bn",
+   "gt": "ভাড়া",
+   "hyp": "ভাডা",
+   "cer": 0.2,
+   "upright": true,
+   "h": 108,
+   "w": 199
+  },
+  {
+   "lang": "bn",
+   "gt": "পদযাত্রা",
+   "hyp": "যু৫ নিংটন বেলা-২টা",
+   "cer": 2.0,
+   "upright": true,
+   "h": 430,
+   "w": 1327
+  },
+  {
+   "lang": "bn",
+   "gt": "পাওয়া",
+   "hyp": "পওয়া",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 154,
+   "w": 482
+  },
+  {
+   "lang": "bn",
+   "gt": "সেন্টার",
+   "hyp": "পেন্টার",
+   "cer": 0.14285714285714285,
+   "upright": true,
+   "h": 301,
+   "w": 461
+  },
+  {
+   "lang": "en",
+   "gt": "N.",
+   "hyp": "9",
+   "cer": 1.0,
+   "upright": true,
+   "h": 38,
+   "w": 50
+  },
+  {
+   "lang": "en",
+   "gt": "19",
+   "hyp": "0",
+   "cer": 1.0,
+   "upright": true,
+   "h": 51,
+   "w": 71
+  },
+  {
+   "lang": "en",
+   "gt": "Information",
+   "hyp": "Information",
+   "cer": 0.0,
+   "upright": true,
+   "h": 210,
+   "w": 1355
+  },
+  {
+   "lang": "en",
+   "gt": "dépôt",
+   "hyp": "ঘ8p8",
+   "cer": 0.8,
+   "upright": true,
+   "h": 26,
+   "w": 78
+  },
+  {
+   "lang": "en",
+   "gt": "PAZZA",
+   "hyp": "PAZZA",
+   "cer": 0.0,
+   "upright": true,
+   "h": 21,
+   "w": 75
+  },
+  {
+   "lang": "bn",
+   "gt": "মানুষের",
+   "hyp": "মানুষের",
+   "cer": 0.0,
+   "upright": true,
+   "h": 366,
+   "w": 973
+  },
+  {
+   "lang": "en",
+   "gt": "uomo",
+   "hyp": "uomo",
+   "cer": 0.0,
+   "upright": true,
+   "h": 37,
+   "w": 130
+  },
+  {
+   "lang": "bn",
+   "gt": "আনন্দ",
+   "hyp": "আন্দ",
+   "cer": 0.2,
+   "upright": true,
+   "h": 172,
+   "w": 690
+  },
+  {
+   "lang": "bn",
+   "gt": "লাহিটেলিকম",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 470,
+   "w": 2048
+  },
+  {
+   "lang": "en",
+   "gt": "www.omirosis.de",
+   "hyp": "wwwomirosis de",
+   "cer": 0.13333333333333333,
+   "upright": true,
+   "h": 358,
+   "w": 2314
+  },
+  {
+   "lang": "en",
+   "gt": "QUALITE",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 112,
+   "w": 325
+  },
+  {
+   "lang": "en",
+   "gt": "System",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 41,
+   "w": 159
+  },
+  {
+   "lang": "en",
+   "gt": "distribution",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 97,
+   "w": 353
+  },
+  {
+   "lang": "en",
+   "gt": "Dubai",
+   "hyp": "Dubal",
+   "cer": 0.2,
+   "upright": true,
+   "h": 21,
+   "w": 61
+  },
+  {
+   "lang": "bn",
+   "gt": "ক্লিনার্স",
+   "hyp": "কলিনাচ",
+   "cer": 0.4444444444444444,
+   "upright": true,
+   "h": 86,
+   "w": 111
+  },
+  {
+   "lang": "bn",
+   "gt": "রোড",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 104,
+   "w": 221
+  },
+  {
+   "lang": "bn",
+   "gt": "ঘোষ",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 53,
+   "w": 79
+  },
+  {
+   "lang": "bn",
+   "gt": "স্পা",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 92,
+   "w": 404
+  },
+  {
+   "lang": "en",
+   "gt": "STO",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 131,
+   "w": 116
+  },
+  {
+   "lang": "bn",
+   "gt": "উন্নয়নের",
+   "hyp": "উন্নয়নের",
+   "cer": 0.0,
+   "upright": true,
+   "h": 345,
+   "w": 715
+  },
+  {
+   "lang": "en",
+   "gt": "NETGEAR",
+   "hyp": "NETCEAR",
+   "cer": 0.14285714285714285,
+   "upright": true,
+   "h": 48,
+   "w": 252
+  },
+  {
+   "lang": "en",
+   "gt": "District",
+   "hyp": "District",
+   "cer": 0.0,
+   "upright": true,
+   "h": 33,
+   "w": 150
+  },
+  {
+   "lang": "bn",
+   "gt": "৮৪/১,",
+   "hyp": "৮8",
+   "cer": 0.8,
+   "upright": true,
+   "h": 71,
+   "w": 161
+  },
+  {
+   "lang": "bn",
+   "gt": "বিবেকানন্দ",
+   "hyp": "বিবেকানন্দ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 207,
+   "w": 700
+  },
+  {
+   "lang": "en",
+   "gt": "GOSSIP",
+   "hyp": "BOSSIP",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 87,
+   "w": 220
+  },
+  {
+   "lang": "bn",
+   "gt": "কলিকাতা",
+   "hyp": "কনবোতা",
+   "cer": 0.5714285714285714,
+   "upright": true,
+   "h": 82,
+   "w": 211
+  },
+  {
+   "lang": "bn",
+   "gt": "পেপার",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 180,
+   "w": 366
+  },
+  {
+   "lang": "en",
+   "gt": "Demeocq",
+   "hyp": "Demeocq",
+   "cer": 0.0,
+   "upright": true,
+   "h": 44,
+   "w": 187
+  },
+  {
+   "lang": "en",
+   "gt": "quotidiano",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 14,
+   "w": 62
+  },
+  {
+   "lang": "bn",
+   "gt": "সাজ",
+   "hyp": "সাজ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 36,
+   "w": 80
+  },
+  {
+   "lang": "bn",
+   "gt": "ভাড়া",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 412,
+   "w": 432
+  },
+  {
+   "lang": "en",
+   "gt": "Metro",
+   "hyp": "Mecro",
+   "cer": 0.2,
+   "upright": true,
+   "h": 56,
+   "w": 147
+  },
+  {
+   "lang": "bn",
+   "gt": "শ্রী",
+   "hyp": "শ্রী",
+   "cer": 0.0,
+   "upright": true,
+   "h": 104,
+   "w": 108
+  },
+  {
+   "lang": "en",
+   "gt": "DEPOSER",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 64,
+   "w": 281
+  },
+  {
+   "lang": "bn",
+   "gt": "ম্যারেজ",
+   "hyp": "গ্যারেজ",
+   "cer": 0.14285714285714285,
+   "upright": true,
+   "h": 109,
+   "w": 273
+  },
+  {
+   "lang": "bn",
+   "gt": "দেওযা",
+   "hyp": "দেওয়া",
+   "cer": 0.2,
+   "upright": true,
+   "h": 59,
+   "w": 165
+  },
+  {
+   "lang": "en",
+   "gt": "WOMEN'S",
+   "hyp": "UUNEW",
+   "cer": 0.8571428571428571,
+   "upright": true,
+   "h": 11,
+   "w": 29
+  },
+  {
+   "lang": "bn",
+   "gt": "কমলা",
+   "hyp": "কু",
+   "cer": 0.75,
+   "upright": false,
+   "h": 1212,
+   "w": 534
+  },
+  {
+   "lang": "en",
+   "gt": "COMUNE",
+   "hyp": "CORUNE",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 44,
+   "w": 175
+  },
+  {
+   "lang": "bn",
+   "gt": "রোড",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 37,
+   "w": 104
+  },
+  {
+   "lang": "bn",
+   "gt": "কলকাতা",
+   "hyp": "কলকাতী",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 50,
+   "w": 179
+  },
+  {
+   "lang": "bn",
+   "gt": "শুরু",
+   "hyp": "শুরু",
+   "cer": 0.0,
+   "upright": true,
+   "h": 84,
+   "w": 170
+  },
+  {
+   "lang": "en",
+   "gt": "FURNISHED",
+   "hyp": "ঢURNISHED",
+   "cer": 0.1111111111111111,
+   "upright": true,
+   "h": 122,
+   "w": 549
+  },
+  {
+   "lang": "bn",
+   "gt": "এন্ড",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 182,
+   "w": 322
+  },
+  {
+   "lang": "bn",
+   "gt": "শীততাপ",
+   "hyp": "শীততাপ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 96,
+   "w": 409
+  },
+  {
+   "lang": "bn",
+   "gt": "বিউটি",
+   "hyp": "বিউটি",
+   "cer": 0.0,
+   "upright": true,
+   "h": 123,
+   "w": 244
+  },
+  {
+   "lang": "en",
+   "gt": "149",
+   "hyp": "9",
+   "cer": 0.6666666666666666,
+   "upright": true,
+   "h": 97,
+   "w": 153
+  },
+  {
+   "lang": "en",
+   "gt": "Parking",
+   "hyp": "Parking",
+   "cer": 0.0,
+   "upright": true,
+   "h": 63,
+   "w": 196
+  },
+  {
+   "lang": "en",
+   "gt": "Caralina's",
+   "hyp": "7we",
+   "cer": 1.0,
+   "upright": true,
+   "h": 117,
+   "w": 127
+  },
+  {
+   "lang": "bn",
+   "gt": "জানুয়ারী",
+   "hyp": "জানুযারী",
+   "cer": 0.1111111111111111,
+   "upright": true,
+   "h": 123,
+   "w": 210
+  },
+  {
+   "lang": "en",
+   "gt": "T",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 260,
+   "w": 196
+  },
+  {
+   "lang": "bn",
+   "gt": "স্ত্রীরোগ",
+   "hyp": "স্বীবগ",
+   "cer": 0.5555555555555556,
+   "upright": true,
+   "h": 288,
+   "w": 370
+  },
+  {
+   "lang": "en",
+   "gt": "22",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 17,
+   "w": 19
+  },
+  {
+   "lang": "bn",
+   "gt": "জেলা",
+   "hyp": "জেল",
+   "cer": 0.25,
+   "upright": true,
+   "h": 34,
+   "w": 104
+  },
+  {
+   "lang": "bn",
+   "gt": "ঢালাই",
+   "hyp": "ঢালাই",
+   "cer": 0.0,
+   "upright": true,
+   "h": 535,
+   "w": 1004
+  },
+  {
+   "lang": "bn",
+   "gt": "প্রাদেশিক",
+   "hyp": "প্রাদেশিক",
+   "cer": 0.0,
+   "upright": true,
+   "h": 434,
+   "w": 1319
+  },
+  {
+   "lang": "bn",
+   "gt": "জেরক্স",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 717,
+   "w": 1118
+  },
+  {
+   "lang": "bn",
+   "gt": "প্রার্থী",
+   "hyp": "প্রখী",
+   "cer": 0.5,
+   "upright": true,
+   "h": 243,
+   "w": 475
+  },
+  {
+   "lang": "en",
+   "gt": "resioui'",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 10,
+   "w": 44
+  },
+  {
+   "lang": "bn",
+   "gt": "আসুন",
+   "hyp": "আসুন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 203,
+   "w": 587
+  },
+  {
+   "lang": "bn",
+   "gt": "লেডিস",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 1322,
+   "w": 662
+  },
+  {
+   "lang": "bn",
+   "gt": "মশলা",
+   "hyp": "মশভা",
+   "cer": 0.25,
+   "upright": true,
+   "h": 201,
+   "w": 569
+  },
+  {
+   "lang": "en",
+   "gt": "IX",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 89,
+   "w": 81
+  },
+  {
+   "lang": "en",
+   "gt": "de",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 117,
+   "w": 169
+  },
+  {
+   "lang": "en",
+   "gt": "OSUOTICO",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 10,
+   "w": 47
+  },
+  {
+   "lang": "bn",
+   "gt": "শিবশঙ্কর",
+   "hyp": "শিবশঙ্কর",
+   "cer": 0.0,
+   "upright": true,
+   "h": 186,
+   "w": 748
+  },
+  {
+   "lang": "bn",
+   "gt": "মধুসূদন",
+   "hyp": "মধূসুদন",
+   "cer": 0.2857142857142857,
+   "upright": true,
+   "h": 100,
+   "w": 415
+  },
+  {
+   "lang": "en",
+   "gt": "Super",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 35,
+   "w": 106
+  },
+  {
+   "lang": "en",
+   "gt": "INDIA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 26,
+   "w": 168
+  },
+  {
+   "lang": "bn",
+   "gt": "আশীর্বাদ",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 53,
+   "w": 183
+  },
+  {
+   "lang": "en",
+   "gt": "Berufsfeldorientierung",
+   "hyp": "Berufsfeldorientierung",
+   "cer": 0.0,
+   "upright": true,
+   "h": 91,
+   "w": 891
+  },
+  {
+   "lang": "bn",
+   "gt": "শিল্পী",
+   "hyp": "শিল্সী",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 116,
+   "w": 217
+  },
+  {
+   "lang": "bn",
+   "gt": "সেগুন",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 184,
+   "w": 244
+  },
+  {
+   "lang": "en",
+   "gt": "Gocce",
+   "hyp": "Gocce",
+   "cer": 0.0,
+   "upright": true,
+   "h": 79,
+   "w": 191
+  },
+  {
+   "lang": "bn",
+   "gt": "ভাড়া",
+   "hyp": "ভাঙ",
+   "cer": 0.6,
+   "upright": true,
+   "h": 102,
+   "w": 232
+  },
+  {
+   "lang": "en",
+   "gt": "No",
+   "hyp": "0",
+   "cer": 1.0,
+   "upright": true,
+   "h": 39,
+   "w": 60
+  },
+  {
+   "lang": "bn",
+   "gt": "টি-শার্ট",
+   "hyp": "টি-শার্ট",
+   "cer": 0.0,
+   "upright": true,
+   "h": 94,
+   "w": 155
+  },
+  {
+   "lang": "bn",
+   "gt": "স্কুটি",
+   "hyp": "ক্কুটি",
+   "cer": 0.16666666666666666,
+   "upright": false,
+   "h": 368,
+   "w": 293
+  },
+  {
+   "lang": "en",
+   "gt": "ALE",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 15,
+   "w": 31
+  },
+  {
+   "lang": "en",
+   "gt": "MILANO",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 249,
+   "w": 1149
+  },
+  {
+   "lang": "en",
+   "gt": "5",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 10,
+   "w": 8
+  },
+  {
+   "lang": "en",
+   "gt": "creiamo",
+   "hyp": "creiamo",
+   "cer": 0.0,
+   "upright": true,
+   "h": 93,
+   "w": 383
+  },
+  {
+   "lang": "bn",
+   "gt": "সংবাদ",
+   "hyp": "সংবাদ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 185,
+   "w": 477
+  },
+  {
+   "lang": "en",
+   "gt": "OF",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 22,
+   "w": 31
+  },
+  {
+   "lang": "bn",
+   "gt": "আপনাকে",
+   "hyp": "আপনাকে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 41,
+   "w": 169
+  },
+  {
+   "lang": "en",
+   "gt": "BOUTIQUE",
+   "hyp": "Bourlougg",
+   "cer": 1.0,
+   "upright": true,
+   "h": 240,
+   "w": 425
+  },
+  {
+   "lang": "bn",
+   "gt": "যাত্রী",
+   "hyp": "যাত্রী",
+   "cer": 0.0,
+   "upright": true,
+   "h": 405,
+   "w": 937
+  },
+  {
+   "lang": "en",
+   "gt": "LINEA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 11,
+   "w": 29
+  },
+  {
+   "lang": "en",
+   "gt": "on",
+   "hyp": "7",
+   "cer": 1.0,
+   "upright": true,
+   "h": 20,
+   "w": 29
+  },
+  {
+   "lang": "bn",
+   "gt": "কোতুলপুর",
+   "hyp": "কৈতুলগ্ব",
+   "cer": 0.5,
+   "upright": true,
+   "h": 178,
+   "w": 392
+  },
+  {
+   "lang": "bn",
+   "gt": "কামারপুকুর",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 391,
+   "w": 656
+  },
+  {
+   "lang": "bn",
+   "gt": "এবং",
+   "hyp": "এরং",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 111,
+   "w": 188
+  },
+  {
+   "lang": "bn",
+   "gt": "মাট",
+   "hyp": "মার্টী",
+   "cer": 1.0,
+   "upright": true,
+   "h": 267,
+   "w": 439
+  },
+  {
+   "lang": "en",
+   "gt": "PALOMA",
+   "hyp": "4L0MA",
+   "cer": 0.5,
+   "upright": true,
+   "h": 74,
+   "w": 167
+  },
+  {
+   "lang": "bn",
+   "gt": "জন",
+   "hyp": "৩ল",
+   "cer": 1.0,
+   "upright": true,
+   "h": 163,
+   "w": 225
+  },
+  {
+   "lang": "en",
+   "gt": "de",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 53,
+   "w": 46
+  },
+  {
+   "lang": "bn",
+   "gt": "বেলঘরিয়া,",
+   "hyp": "বেলঘরিয়া",
+   "cer": 0.1,
+   "upright": true,
+   "h": 72,
+   "w": 212
+  },
+  {
+   "lang": "bn",
+   "gt": "১০৪",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 36,
+   "w": 129
+  },
+  {
+   "lang": "en",
+   "gt": "lhren",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 49,
+   "w": 144
+  },
+  {
+   "lang": "en",
+   "gt": "1-chome",
+   "hyp": "1-chome",
+   "cer": 0.0,
+   "upright": true,
+   "h": 189,
+   "w": 554
+  },
+  {
+   "lang": "en",
+   "gt": "15,M.B.Road.Kol-49",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 19,
+   "w": 134
+  },
+  {
+   "lang": "en",
+   "gt": "ist",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 33,
+   "w": 49
+  },
+  {
+   "lang": "bn",
+   "gt": "ও",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 103,
+   "w": 101
+  },
+  {
+   "lang": "bn",
+   "gt": "এম",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 38,
+   "w": 110
+  },
+  {
+   "lang": "en",
+   "gt": "Office",
+   "hyp": "Office",
+   "cer": 0.0,
+   "upright": true,
+   "h": 93,
+   "w": 273
+  },
+  {
+   "lang": "bn",
+   "gt": "সামগ্রী",
+   "hyp": "সামগ্রী",
+   "cer": 0.0,
+   "upright": true,
+   "h": 93,
+   "w": 185
+  },
+  {
+   "lang": "bn",
+   "gt": "রিপেয়ারিং",
+   "hyp": "রিপেয়ারিং",
+   "cer": 0.0,
+   "upright": true,
+   "h": 363,
+   "w": 1080
+  },
+  {
+   "lang": "en",
+   "gt": "CON",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 19,
+   "w": 27
+  },
+  {
+   "lang": "en",
+   "gt": "3.2",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 33,
+   "w": 30
+  },
+  {
+   "lang": "bn",
+   "gt": "নিমচাঁদ",
+   "hyp": "নিচাচ",
+   "cer": 0.42857142857142855,
+   "upright": true,
+   "h": 90,
+   "w": 321
+  },
+  {
+   "lang": "bn",
+   "gt": "মেস",
+   "hyp": "মস",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 118,
+   "w": 210
+  },
+  {
+   "lang": "en",
+   "gt": "ASHAKIRAN",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 66,
+   "w": 59
+  },
+  {
+   "lang": "en",
+   "gt": "DOOKIE",
+   "hyp": "DUOKE",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 38,
+   "w": 72
+  },
+  {
+   "lang": "bn",
+   "gt": "রাম",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 246,
+   "w": 737
+  },
+  {
+   "lang": "bn",
+   "gt": "কেন?",
+   "hyp": "কেন",
+   "cer": 0.25,
+   "upright": true,
+   "h": 278,
+   "w": 406
+  },
+  {
+   "lang": "en",
+   "gt": "2871",
+   "hyp": "2871",
+   "cer": 0.0,
+   "upright": true,
+   "h": 18,
+   "w": 41
+  },
+  {
+   "lang": "en",
+   "gt": "The",
+   "hyp": "Ile",
+   "cer": 0.6666666666666666,
+   "upright": true,
+   "h": 26,
+   "w": 34
+  },
+  {
+   "lang": "en",
+   "gt": "DI",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 34,
+   "w": 44
+  },
+  {
+   "lang": "en",
+   "gt": "cass",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 58,
+   "w": 129
+  },
+  {
+   "lang": "en",
+   "gt": "minutes",
+   "hyp": "minutes",
+   "cer": 0.0,
+   "upright": true,
+   "h": 38,
+   "w": 161
+  },
+  {
+   "lang": "en",
+   "gt": "2017",
+   "hyp": "2017",
+   "cer": 0.0,
+   "upright": true,
+   "h": 16,
+   "w": 34
+  },
+  {
+   "lang": "en",
+   "gt": "REALE",
+   "hyp": "REALE",
+   "cer": 0.0,
+   "upright": true,
+   "h": 54,
+   "w": 302
+  },
+  {
+   "lang": "bn",
+   "gt": "এ",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 106,
+   "w": 128
+  },
+  {
+   "lang": "bn",
+   "gt": "কৃশানু",
+   "hyp": "কৃশানু",
+   "cer": 0.0,
+   "upright": true,
+   "h": 214,
+   "w": 437
+  },
+  {
+   "lang": "en",
+   "gt": "DIGITAL",
+   "hyp": "DIGITAL",
+   "cer": 0.0,
+   "upright": true,
+   "h": 24,
+   "w": 65
+  },
+  {
+   "lang": "bn",
+   "gt": "ভিতরে",
+   "hyp": "ভিতরে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 174,
+   "w": 306
+  },
+  {
+   "lang": "en",
+   "gt": "60",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 60,
+   "w": 84
+  },
+  {
+   "lang": "en",
+   "gt": "0555",
+   "hyp": "0555",
+   "cer": 0.0,
+   "upright": true,
+   "h": 33,
+   "w": 86
+  },
+  {
+   "lang": "en",
+   "gt": "000-0000",
+   "hyp": "gঁ",
+   "cer": 1.0,
+   "upright": false,
+   "h": 105,
+   "w": 20
+  },
+  {
+   "lang": "bn",
+   "gt": "বিদ্যালয়",
+   "hyp": "বিদ্যানয",
+   "cer": 0.2222222222222222,
+   "upright": true,
+   "h": 117,
+   "w": 303
+  },
+  {
+   "lang": "bn",
+   "gt": "মোঃ",
+   "hyp": "মোঃ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 70,
+   "w": 94
+  },
+  {
+   "lang": "bn",
+   "gt": "৮",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 82,
+   "w": 103
+  },
+  {
+   "lang": "bn",
+   "gt": "বাস্ত্ত-",
+   "hyp": "বাজ্ঞত",
+   "cer": 0.5,
+   "upright": true,
+   "h": 367,
+   "w": 910
+  },
+  {
+   "lang": "en",
+   "gt": "TRILOCALE",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 32,
+   "w": 167
+  },
+  {
+   "lang": "bn",
+   "gt": "স্টোর্স",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 396,
+   "w": 912
+  },
+  {
+   "lang": "en",
+   "gt": "Zarina's",
+   "hyp": "Zumud",
+   "cer": 0.875,
+   "upright": true,
+   "h": 45,
+   "w": 106
+  },
+  {
+   "lang": "bn",
+   "gt": "ব্যাঙ্ক",
+   "hyp": "বাক্ক",
+   "cer": 0.42857142857142855,
+   "upright": true,
+   "h": 195,
+   "w": 293
+  },
+  {
+   "lang": "en",
+   "gt": "en",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 21,
+   "w": 35
+  },
+  {
+   "lang": "en",
+   "gt": "AI",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 18,
+   "w": 14
+  },
+  {
+   "lang": "en",
+   "gt": "TRENTINI",
+   "hyp": "দ",
+   "cer": 1.0,
+   "upright": true,
+   "h": 18,
+   "w": 108
+  },
+  {
+   "lang": "en",
+   "gt": "NATALE",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 23,
+   "w": 86
+  },
+  {
+   "lang": "bn",
+   "gt": "সবার",
+   "hyp": "সবার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 79,
+   "w": 192
+  },
+  {
+   "lang": "bn",
+   "gt": "ভান্ডার",
+   "hyp": "ভান্ডার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 59,
+   "w": 148
+  },
+  {
+   "lang": "bn",
+   "gt": "দমদম",
+   "hyp": "দমদম",
+   "cer": 0.0,
+   "upright": true,
+   "h": 53,
+   "w": 316
+  },
+  {
+   "lang": "en",
+   "gt": "PER",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 10,
+   "w": 24
+  },
+  {
+   "lang": "bn",
+   "gt": "গ্যারান্টি",
+   "hyp": "গ্যারান্টি",
+   "cer": 0.0,
+   "upright": true,
+   "h": 311,
+   "w": 771
+  },
+  {
+   "lang": "bn",
+   "gt": "দেবী",
+   "hyp": "দেবী",
+   "cer": 0.0,
+   "upright": true,
+   "h": 380,
+   "w": 800
+  },
+  {
+   "lang": "bn",
+   "gt": "প্লেট",
+   "hyp": "প্লেট",
+   "cer": 0.0,
+   "upright": true,
+   "h": 156,
+   "w": 180
+  },
+  {
+   "lang": "bn",
+   "gt": "প্রেম",
+   "hyp": "প্রেম",
+   "cer": 0.0,
+   "upright": true,
+   "h": 110,
+   "w": 181
+  },
+  {
+   "lang": "bn",
+   "gt": "যায়",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 108,
+   "w": 161
+  },
+  {
+   "lang": "bn",
+   "gt": "প্যাকেজ",
+   "hyp": "প্র্যাকেজ",
+   "cer": 0.2857142857142857,
+   "upright": true,
+   "h": 202,
+   "w": 552
+  },
+  {
+   "lang": "bn",
+   "gt": "বার্ষিকীতে",
+   "hyp": "বার্ষিকীতে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 73,
+   "w": 345
+  },
+  {
+   "lang": "en",
+   "gt": "zum",
+   "hyp": "zum1",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 42,
+   "w": 76
+  },
+  {
+   "lang": "en",
+   "gt": "1,4g",
+   "hyp": "1,4 g",
+   "cer": 0.25,
+   "upright": true,
+   "h": 52,
+   "w": 103
+  },
+  {
+   "lang": "bn",
+   "gt": "সাতগেছিমা",
+   "hyp": "সাতগেচি",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 58,
+   "w": 248
+  },
+  {
+   "lang": "en",
+   "gt": "Öffnungszeiten",
+   "hyp": "Offnungszeiten",
+   "cer": 0.07142857142857142,
+   "upright": true,
+   "h": 105,
+   "w": 607
+  },
+  {
+   "lang": "bn",
+   "gt": "স্মরনী",
+   "hyp": "স্ম",
+   "cer": 0.5,
+   "upright": false,
+   "h": 261,
+   "w": 86
+  },
+  {
+   "lang": "en",
+   "gt": "cu",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 39,
+   "w": 58
+  },
+  {
+   "lang": "bn",
+   "gt": "গৄহ",
+   "hyp": "গত",
+   "cer": 0.6666666666666666,
+   "upright": true,
+   "h": 259,
+   "w": 531
+  },
+  {
+   "lang": "en",
+   "gt": "175",
+   "hyp": "75",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 71,
+   "w": 136
+  },
+  {
+   "lang": "bn",
+   "gt": "নিক",
+   "hyp": "কি",
+   "cer": 0.6666666666666666,
+   "upright": false,
+   "h": 553,
+   "w": 309
+  },
+  {
+   "lang": "en",
+   "gt": "SERA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 41,
+   "w": 99
+  },
+  {
+   "lang": "en",
+   "gt": "ARRÊT",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 314,
+   "w": 150
+  },
+  {
+   "lang": "bn",
+   "gt": "ভর্তি",
+   "hyp": "ভর্তি",
+   "cer": 0.0,
+   "upright": true,
+   "h": 87,
+   "w": 173
+  },
+  {
+   "lang": "bn",
+   "gt": "চিহ্নে",
+   "hyp": "চিহ্নে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 181,
+   "w": 371
+  },
+  {
+   "lang": "bn",
+   "gt": "হোমিওপাথি",
+   "hyp": "হোমিওপ্যাথি",
+   "cer": 0.2222222222222222,
+   "upright": true,
+   "h": 195,
+   "w": 729
+  },
+  {
+   "lang": "en",
+   "gt": "BAIYUN",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 17,
+   "w": 67
+  },
+  {
+   "lang": "en",
+   "gt": "Papyrus",
+   "hyp": "Cay8",
+   "cer": 0.7142857142857143,
+   "upright": true,
+   "h": 339,
+   "w": 512
+  },
+  {
+   "lang": "en",
+   "gt": "JACOBS",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 24,
+   "w": 90
+  },
+  {
+   "lang": "en",
+   "gt": "Zoo",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 126,
+   "w": 275
+  },
+  {
+   "lang": "en",
+   "gt": "B.",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 91,
+   "w": 89
+  },
+  {
+   "lang": "en",
+   "gt": "n°",
+   "hyp": "0",
+   "cer": 1.0,
+   "upright": true,
+   "h": 83,
+   "w": 85
+  },
+  {
+   "lang": "bn",
+   "gt": "স্টেট",
+   "hyp": "স্টেট",
+   "cer": 0.0,
+   "upright": true,
+   "h": 479,
+   "w": 749
+  },
+  {
+   "lang": "bn",
+   "gt": "নির্মাণ",
+   "hyp": "নিমণি",
+   "cer": 0.5714285714285714,
+   "upright": true,
+   "h": 86,
+   "w": 225
+  },
+  {
+   "lang": "en",
+   "gt": "NASTR",
+   "hyp": "INNASI",
+   "cer": 0.8,
+   "upright": true,
+   "h": 16,
+   "w": 48
+  },
+  {
+   "lang": "bn",
+   "gt": "ষ্টার",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 226,
+   "w": 468
+  },
+  {
+   "lang": "bn",
+   "gt": "মোড়",
+   "hyp": "৫Iড",
+   "cer": 0.75,
+   "upright": true,
+   "h": 98,
+   "w": 156
+  },
+  {
+   "lang": "bn",
+   "gt": "সামগ্রী,",
+   "hyp": "সামগ্রী",
+   "cer": 0.125,
+   "upright": true,
+   "h": 150,
+   "w": 352
+  },
+  {
+   "lang": "en",
+   "gt": "ntonio",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 71,
+   "w": 222
+  },
+  {
+   "lang": "en",
+   "gt": "Nach",
+   "hyp": "Nach",
+   "cer": 0.0,
+   "upright": true,
+   "h": 55,
+   "w": 130
+  },
+  {
+   "lang": "en",
+   "gt": "noodle",
+   "hyp": "nooale",
+   "cer": 0.16666666666666666,
+   "upright": true,
+   "h": 61,
+   "w": 223
+  },
+  {
+   "lang": "bn",
+   "gt": "কমরেড",
+   "hyp": "কমরেড",
+   "cer": 0.0,
+   "upright": true,
+   "h": 77,
+   "w": 176
+  },
+  {
+   "lang": "bn",
+   "gt": "স্টেট",
+   "hyp": "স্ট",
+   "cer": 0.4,
+   "upright": true,
+   "h": 63,
+   "w": 140
+  },
+  {
+   "lang": "en",
+   "gt": "THE",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 39,
+   "w": 117
+  },
+  {
+   "lang": "bn",
+   "gt": "দাস",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 208,
+   "w": 413
+  },
+  {
+   "lang": "en",
+   "gt": "2016",
+   "hyp": "2018",
+   "cer": 0.25,
+   "upright": true,
+   "h": 34,
+   "w": 90
+  },
+  {
+   "lang": "en",
+   "gt": "X",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 90,
+   "w": 95
+  },
+  {
+   "lang": "en",
+   "gt": "safer",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 17,
+   "w": 29
+  },
+  {
+   "lang": "bn",
+   "gt": "ভাণ্ডার",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 61,
+   "w": 251
+  },
+  {
+   "lang": "en",
+   "gt": "IL",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 36,
+   "w": 30
+  },
+  {
+   "lang": "bn",
+   "gt": "উৎসবে",
+   "hyp": "উৎসরে",
+   "cer": 0.2,
+   "upright": true,
+   "h": 148,
+   "w": 360
+  },
+  {
+   "lang": "bn",
+   "gt": "এলাহাবাদ",
+   "hyp": "এলাহাবাদ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 124,
+   "w": 622
+  },
+  {
+   "lang": "bn",
+   "gt": "ওজন",
+   "hyp": "ভজন",
+   "cer": 0.3333333333333333,
+   "upright": true,
+   "h": 155,
+   "w": 347
+  },
+  {
+   "lang": "en",
+   "gt": "E.49.00",
+   "hyp": "সচ",
+   "cer": 1.0,
+   "upright": true,
+   "h": 10,
+   "w": 39
+  },
+  {
+   "lang": "bn",
+   "gt": "মঙ্গল",
+   "hyp": "মসন",
+   "cer": 0.8,
+   "upright": true,
+   "h": 136,
+   "w": 350
+  },
+  {
+   "lang": "en",
+   "gt": "Sasa",
+   "hyp": "0",
+   "cer": 1.0,
+   "upright": true,
+   "h": 294,
+   "w": 752
+  },
+  {
+   "lang": "bn",
+   "gt": "ইংরাজঈ",
+   "hyp": "ইুঃরাজী",
+   "cer": 0.5,
+   "upright": true,
+   "h": 430,
+   "w": 859
+  },
+  {
+   "lang": "en",
+   "gt": "10",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 26,
+   "w": 35
+  },
+  {
+   "lang": "en",
+   "gt": "ROMANA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 25,
+   "w": 132
+  },
+  {
+   "lang": "bn",
+   "gt": "শহীদ",
+   "hyp": "শহীদ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 94,
+   "w": 163
+  },
+  {
+   "lang": "en",
+   "gt": "WORTH",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 62,
+   "w": 63
+  },
+  {
+   "lang": "en",
+   "gt": "(200g)",
+   "hyp": "a",
+   "cer": 1.0,
+   "upright": true,
+   "h": 93,
+   "w": 149
+  },
+  {
+   "lang": "bn",
+   "gt": "দ্বারা",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 14,
+   "w": 26
+  },
+  {
+   "lang": "bn",
+   "gt": "রোড",
+   "hyp": "রোড",
+   "cer": 0.0,
+   "upright": true,
+   "h": 195,
+   "w": 361
+  },
+  {
+   "lang": "en",
+   "gt": "Siegen",
+   "hyp": "Siegen",
+   "cer": 0.0,
+   "upright": true,
+   "h": 548,
+   "w": 1283
+  },
+  {
+   "lang": "en",
+   "gt": "pas",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 20,
+   "w": 39
+  },
+  {
+   "lang": "bn",
+   "gt": "স্টীল",
+   "hyp": "স্টীল",
+   "cer": 0.0,
+   "upright": true,
+   "h": 454,
+   "w": 601
+  },
+  {
+   "lang": "bn",
+   "gt": "স্বাতী",
+   "hyp": "স্বাতী",
+   "cer": 0.0,
+   "upright": true,
+   "h": 86,
+   "w": 146
+  },
+  {
+   "lang": "bn",
+   "gt": "প্রতি",
+   "hyp": "প্রব",
+   "cer": 0.4,
+   "upright": true,
+   "h": 382,
+   "w": 446
+  },
+  {
+   "lang": "en",
+   "gt": "QUESTA",
+   "hyp": "QUESTA",
+   "cer": 0.0,
+   "upright": true,
+   "h": 127,
+   "w": 485
+  },
+  {
+   "lang": "en",
+   "gt": "TUI",
+   "hyp": "uII",
+   "cer": 0.6666666666666666,
+   "upright": true,
+   "h": 357,
+   "w": 752
+  },
+  {
+   "lang": "bn",
+   "gt": "মা",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 122,
+   "w": 213
+  },
+  {
+   "lang": "en",
+   "gt": "pickup",
+   "hyp": "হ",
+   "cer": 1.0,
+   "upright": false,
+   "h": 61,
+   "w": 26
+  },
+  {
+   "lang": "bn",
+   "gt": "দ্বিতীয়",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 179,
+   "w": 328
+  },
+  {
+   "lang": "bn",
+   "gt": "লোন",
+   "hyp": "লোন",
+   "cer": 0.0,
+   "upright": true,
+   "h": 117,
+   "w": 318
+  },
+  {
+   "lang": "en",
+   "gt": "be",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 20,
+   "w": 31
+  },
+  {
+   "lang": "bn",
+   "gt": "ধরনের",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 260,
+   "w": 610
+  },
+  {
+   "lang": "en",
+   "gt": "VOYAGEZ",
+   "hyp": "VOYAGEZ",
+   "cer": 0.0,
+   "upright": true,
+   "h": 156,
+   "w": 622
+  },
+  {
+   "lang": "en",
+   "gt": "AppStore",
+   "hyp": "App Store",
+   "cer": 0.125,
+   "upright": true,
+   "h": 58,
+   "w": 180
+  },
+  {
+   "lang": "en",
+   "gt": "si",
+   "hyp": "Si",
+   "cer": 0.5,
+   "upright": false,
+   "h": 83,
+   "w": 72
+  },
+  {
+   "lang": "en",
+   "gt": "WE",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 72,
+   "w": 116
+  },
+  {
+   "lang": "en",
+   "gt": "PL",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 11,
+   "w": 17
+  },
+  {
+   "lang": "bn",
+   "gt": "রক্ষায়",
+   "hyp": "ক্ষায়",
+   "cer": 0.14285714285714285,
+   "upright": true,
+   "h": 62,
+   "w": 177
+  },
+  {
+   "lang": "en",
+   "gt": "Down",
+   "hyp": "Droln",
+   "cer": 0.5,
+   "upright": true,
+   "h": 48,
+   "w": 105
+  },
+  {
+   "lang": "en",
+   "gt": "MEDICALES",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 27,
+   "w": 45
+  },
+  {
+   "lang": "bn",
+   "gt": "সেন্টার",
+   "hyp": "ব্তা",
+   "cer": 0.7142857142857143,
+   "upright": true,
+   "h": 349,
+   "w": 419
+  },
+  {
+   "lang": "bn",
+   "gt": "কালচার",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 53,
+   "w": 398
+  },
+  {
+   "lang": "en",
+   "gt": "NATURA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 21,
+   "w": 103
+  },
+  {
+   "lang": "en",
+   "gt": "CA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 23,
+   "w": 12
+  },
+  {
+   "lang": "bn",
+   "gt": "রোড,",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 47,
+   "w": 110
+  },
+  {
+   "lang": "en",
+   "gt": "YAMAHA",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 21,
+   "w": 71
+  },
+  {
+   "lang": "bn",
+   "gt": "করার",
+   "hyp": "করার",
+   "cer": 0.0,
+   "upright": true,
+   "h": 49,
+   "w": 131
+  },
+  {
+   "lang": "bn",
+   "gt": "করে",
+   "hyp": "করে",
+   "cer": 0.0,
+   "upright": true,
+   "h": 52,
+   "w": 111
+  },
+  {
+   "lang": "en",
+   "gt": "fantasic",
+   "hyp": "fantasia",
+   "cer": 0.125,
+   "upright": true,
+   "h": 105,
+   "w": 331
+  },
+  {
+   "lang": "en",
+   "gt": "me",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 89,
+   "w": 119
+  },
+  {
+   "lang": "bn",
+   "gt": "পি",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 76,
+   "w": 81
+  },
+  {
+   "lang": "en",
+   "gt": "BIG",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 11,
+   "w": 17
+  },
+  {
+   "lang": "bn",
+   "gt": "ইন্ডিয়া",
+   "hyp": "ইুঁডিয়া",
+   "cer": 0.25,
+   "upright": true,
+   "h": 284,
+   "w": 311
+  },
+  {
+   "lang": "en",
+   "gt": "FIOR",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 23,
+   "w": 44
+  },
+  {
+   "lang": "en",
+   "gt": "PASSED",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 46,
+   "w": 186
+  },
+  {
+   "lang": "en",
+   "gt": "FRIEDRICHSTRASSE",
+   "hyp": "ERIEDRICHSTRASSE",
+   "cer": 0.0625,
+   "upright": true,
+   "h": 130,
+   "w": 1515
+  },
+  {
+   "lang": "bn",
+   "gt": "কাজ",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 87,
+   "w": 171
+  },
+  {
+   "lang": "bn",
+   "gt": "ইলেকট্রিক্যাল",
+   "hyp": "ইলেকট্ট্রিক্যাল",
+   "cer": 0.15384615384615385,
+   "upright": true,
+   "h": 137,
+   "w": 870
+  },
+  {
+   "lang": "en",
+   "gt": "WTO",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": false,
+   "h": 34,
+   "w": 32
+  },
+  {
+   "lang": "en",
+   "gt": "HOT",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 147,
+   "w": 270
+  },
+  {
+   "lang": "en",
+   "gt": "spez.",
+   "hyp": "Spgz",
+   "cer": 0.6,
+   "upright": true,
+   "h": 148,
+   "w": 392
+  },
+  {
+   "lang": "en",
+   "gt": "B440",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 24,
+   "w": 95
+  },
+  {
+   "lang": "en",
+   "gt": "âme",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 155,
+   "w": 404
+  },
+  {
+   "lang": "bn",
+   "gt": "মোবাইল",
+   "hyp": "মোবাইল",
+   "cer": 0.0,
+   "upright": true,
+   "h": 159,
+   "w": 446
+  },
+  {
+   "lang": "bn",
+   "gt": "রোড.",
+   "hyp": "",
+   "cer": 1.0,
+   "upright": true,
+   "h": 69,
+   "w": 133
+  },
+  {
+   "lang": "en",
+   "gt": "MARIA",
+   "hyp": "ARuI",
+   "cer": 0.6,
+   "upright": true,
+   "h": 74,
+   "w": 163
+  }
+ ]
+}

@@ -114,6 +114,9 @@ class OCRMode(BaseMode):
                 # GPU when there is one (a laptop): about ten times faster. The Pi has none and runs on CPU as before.
                 self._reader = easyocr.Reader(["bn", "en"], gpu=use_gpu, verbose=False)
                 logger.info("EasyOCR on %s", "GPU" if use_gpu else "CPU")
+                if not use_gpu:
+                    from ocr_detector_onnx import install
+                    install(self._reader)      # ONNX Runtime text detector when its file is present (config.OCR_DETECTOR)
                 logger.info("EasyOCR ready")
             except Exception as exc:
                 logger.error("Failed to load EasyOCR: %s", exc)

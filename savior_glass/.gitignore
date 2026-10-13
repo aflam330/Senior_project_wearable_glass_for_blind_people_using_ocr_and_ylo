@@ -24,6 +24,8 @@ models/*.pt
 # 82 MB RAF-DB emotion classifier (EfficientNetV2-S, 86.5 % on the RAF-DB test set); without it the Pi falls back to the weak FER+ model
 !models/emotion_faces.pt
 models/*.onnx
+!models/craft_fp32.onnx
+!models/craft_int8.onnx
 models/piper/*.onnx
 models/piper/*.json
 models/piper/engine/

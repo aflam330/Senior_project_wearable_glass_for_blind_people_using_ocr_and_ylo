@@ -56,8 +56,14 @@ class ObjectMode(BaseMode):
         if self._model is None or frame is None:
             return None
 
-        # Resize to 320×240 for fast inference on RPi 5
-        small = cv2.resize(frame, (320, 240), interpolation=cv2.INTER_AREA)
+        # The frame goes to the detector as it is. It used to be shrunk to 320x240 first "for fast inference", but the
+        # detector enlarges every picture to its 640 input anyway, so the shrink saved no time and cost detail:
+        # mAP@0.5 0.493 shrunk against 0.521 as it is, on all 5,000 COCO val2017 pictures at camera size
+        # (scripts/eval_object_shrink.py, results/object_shrink_vs_full.json, 2026-10-13). A camera set above
+        # 640 px wide is brought down to 640 here, because the detector would do that itself.
+        small = frame
+        if frame.shape[1] > 640:
+            small = cv2.resize(frame, (640, int(frame.shape[0] * 640 / frame.shape[1])), interpolation=cv2.INTER_AREA)
 
         try:
             with torch.no_grad():
@@ -76,7 +82,7 @@ class ObjectMode(BaseMode):
 
         # Collect detections sorted by confidence desc
         detections: list[tuple[str, float]] = []
-        sx, sy = frame.shape[1] / 320, frame.shape[0] / 240
+        sx, sy = frame.shape[1] / small.shape[1], frame.shape[0] / small.shape[0]
         boxes = []
         for r in results:
             for box in r.boxes:
