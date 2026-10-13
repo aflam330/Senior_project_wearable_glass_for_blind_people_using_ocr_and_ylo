@@ -1,0 +1,25 @@
+{
+ "date": "2026-10-13",
+ "validation": {
+  "released": {
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.3424,
+     "nothing_read": 0.1,
+     "word_exact": 0.3533
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.6129,
+     "nothing_read": 0.4333,
+     "word_exact": 0.2133
+    },
+    "mean_cer": 0.4777
+   },
+   "rendered_val_cer": 0.0258,
+   "rendered_val_cer_bn": 0.0189,
+   "rendered_val_cer_en": 0.0327
+  }
+ }
+}
