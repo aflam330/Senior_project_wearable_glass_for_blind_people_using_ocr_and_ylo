@@ -122,14 +122,18 @@ CAPTURE_GUIDE_PROMPT_GAP_S = 2.5
 # UV security-fibre check (modes/uv_check.py) for 200, 500 and 1,000 Taka notes: a genuine note shows short glowing
 # fibres under a UV lamp, on paper that stays dull. OFF by default: it was measured on phone photographs only, not
 # through the glass camera, and never on a counterfeit note (none were available).
-# Measured 2026-10-12 on 118 photographs of genuine notes (scripts/uv_dataset.py, results/uv_check/uv_fibre_check.json;
-# split by capture order, threshold fixed on the calibration part): 29 of 43 test notes accepted (67 %; 200 Taka 19/19,
-# 500 Taka 7/16, 1,000 Taka 3/8), 21 of 21 patches of the plain surface beside the note rejected. The misses are
-# photographs taken from far away or of the note's back, where few fibres are visible; slight blur halves the rate.
-# The UV picture must therefore be close and sharp (lamp and camera in a hood, about 10-15 cm from the note).
+# Measured on 118 phone photographs of genuine notes (results/uv_check/):
+#  * 2026-10-12, one split by capture order (uv_fibre_check.json): 29 of 43 test notes accepted (67 %). The threshold
+#    (14) had been set on front-side photographs and was tested on back-side ones taken from further away.
+#  * 2026-10-13, blocked 5-fold cross-validation over capture order, threshold from the other four blocks, same rule
+#    (uv_blocked_cv.json): 103 of 111 accepted (92.8 %, Wilson 95 % 86.4-96.3; 200 Taka 45/45, 500 Taka 36/40,
+#    1,000 Taka 22/26); all 71 patches of the plain surface beside the note rejected.
+# UV_MIN_FIBRES below is that rule applied to all 111 photographs (a setting, not a test result).
+# Still not measured: counterfeit notes, printed paper without fibres, and the glass camera. Slight blur hides fibres,
+# so the UV picture must be close and sharp (lamp and camera in a hood, about 10-15 cm from the note).
 UV_CHECK_ENABLED = os.environ.get("UV_CHECK_ENABLED", "0") == "1"
 UV_DENOMINATIONS = ("200_taka", "500_taka", "1000_taka")
-UV_MIN_FIBRES = int(os.environ.get("UV_MIN_FIBRES", "14"))      # from the calibration photographs; set again for the glass
+UV_MIN_FIBRES = int(os.environ.get("UV_MIN_FIBRES", "6"))       # see above; set again for the glass camera
 UV_REL_THRESHOLD = 0.12                                        # fibre brightness relative to the local lamp level
 _uv_pin = os.environ.get("UV_LIGHT_PIN", "")
 UV_LIGHT_PIN = int(_uv_pin) if _uv_pin else None               # BCM pin that switches the lamp; None = lamp switched by hand

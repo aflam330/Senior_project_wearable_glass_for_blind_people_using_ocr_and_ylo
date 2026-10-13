@@ -134,7 +134,8 @@ def guided_uv_check(get_frame: Callable[[], Optional[np.ndarray]], locate: Calla
     timeout = float(getattr(config, "UV_TIMEOUT_S", 6.0))
     best = {"outcome": "no_note", "fibres": 0}
     rank = {"no_note": 0, "too_dark": 1, "uv_marks_not_found": 2, "uv_marks_found": 3}
-    speak("ইউভি আলোতে নোটটি পরীক্ষা করা হচ্ছে।")   # checking the note under the UV light
+    # checking under the UV light: hold the note close to the camera and keep it still
+    speak("ইউভি আলোতে নোটটি পরীক্ষা করা হচ্ছে। নোটটি ক্যামেরার কাছে স্থির করে ধরুন।")
     lamp.set(True)
     t0, frames = clock(), 0
     try:

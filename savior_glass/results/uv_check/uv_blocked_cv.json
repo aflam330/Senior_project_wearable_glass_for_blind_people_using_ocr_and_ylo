@@ -1,0 +1,159 @@
+{
+ "date": "2026-10-13",
+ "protocol": "blocked 5-fold cross-validation over capture order; threshold from the other 4 blocks",
+ "photographs_judged": 111,
+ "thresholds_per_fold": {
+  "A": [
+   4,
+   6,
+   4,
+   10,
+   6
+  ],
+  "B": [
+   {
+    "200": 26,
+    "500": 4,
+    "1000": 4
+   },
+   {
+    "200": 20,
+    "500": 4,
+    "1000": 4
+   },
+   {
+    "200": 20,
+    "500": 4,
+    "1000": 4
+   },
+   {
+    "200": 20,
+    "500": 10,
+    "1000": 4
+   },
+   {
+    "200": 20,
+    "500": 4,
+    "1000": 4
+   }
+  ]
+ },
+ "A_one_threshold": {
+  "genuine_accepted": 103,
+  "n": 111,
+  "rate": 0.9279,
+  "wilson95": [
+   0.8642,
+   0.963
+  ],
+  "per_value": {
+   "200": {
+    "accepted": 45,
+    "n": 45,
+    "rate": 1.0,
+    "wilson95": [
+     0.9213,
+     1.0
+    ]
+   },
+   "500": {
+    "accepted": 36,
+    "n": 40,
+    "rate": 0.9,
+    "wilson95": [
+     0.7695,
+     0.9604
+    ]
+   },
+   "1000": {
+    "accepted": 22,
+    "n": 26,
+    "rate": 0.8462,
+    "wilson95": [
+     0.6647,
+     0.9385
+    ]
+   }
+  },
+  "surface_patches_rejected": 71,
+  "surface_patches": 71,
+  "surface_wilson95": [
+   0.9487,
+   1.0
+  ],
+  "rejected_files": [
+   "uv_1000_009.png (1<6)",
+   "uv_1000_021.png (4<10)",
+   "uv_1000_025.png (7<10)",
+   "uv_1000_030.png (4<6)",
+   "uv_500_025.png (8<10)",
+   "uv_500_026.png (6<10)",
+   "uv_500_027.png (4<10)",
+   "uv_500_028.png (2<10)"
+  ]
+ },
+ "B_threshold_per_value": {
+  "genuine_accepted": 102,
+  "n": 111,
+  "rate": 0.9189,
+  "wilson95": [
+   0.8531,
+   0.9568
+  ],
+  "per_value": {
+   "200": {
+    "accepted": 41,
+    "n": 45,
+    "rate": 0.9111,
+    "wilson95": [
+     0.7927,
+     0.9649
+    ]
+   },
+   "500": {
+    "accepted": 36,
+    "n": 40,
+    "rate": 0.9,
+    "wilson95": [
+     0.7695,
+     0.9604
+    ]
+   },
+   "1000": {
+    "accepted": 25,
+    "n": 26,
+    "rate": 0.9615,
+    "wilson95": [
+     0.8111,
+     0.9932
+    ]
+   }
+  },
+  "surface_patches_rejected": 71,
+  "surface_patches": 71,
+  "surface_wilson95": [
+   0.9487,
+   1.0
+  ],
+  "rejected_files": [
+   "uv_1000_009.png (1<4)",
+   "uv_200_004.png (20<26)",
+   "uv_200_006.png (20<26)",
+   "uv_200_008.png (20<26)",
+   "uv_200_012.png (15<26)",
+   "uv_500_025.png (8<10)",
+   "uv_500_026.png (6<10)",
+   "uv_500_027.png (4<10)",
+   "uv_500_028.png (2<10)"
+  ]
+ },
+ "not_measured": [
+  "counterfeit notes",
+  "printed paper without fibres",
+  "the glass camera"
+ ],
+ "deployed_threshold_from_all_photographs": {
+  "UV_MIN_FIBRES": 6,
+  "rule": "same rule on all 111 judged photographs; this is a setting, not a test result"
+ }
+}
