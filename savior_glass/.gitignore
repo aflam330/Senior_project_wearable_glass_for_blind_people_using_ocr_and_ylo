@@ -57,3 +57,4 @@ desktop.ini
 !models/piper/.gitkeep
 !logs/.gitkeep
 yolov8m.pt
+results/uv_snapshots/
