@@ -1,0 +1,32 @@
+{
+ "date": "2026-10-13",
+ "min_conf": 0.1,
+ "variants": {
+  "full precision": {
+   "val_cer": 0.0258,
+   "val_cer_bn": 0.0189,
+   "val_cer_en": 0.0327,
+   "file_mb": 83.1,
+   "within_0.5_points": true
+  },
+  "minmax128": {
+   "val_cer": 0.0315,
+   "val_cer_bn": 0.0305,
+   "val_cer_en": 0.0326,
+   "file_mb": 20.9,
+   "within_0.5_points": false
+  },
+  "percentile": {
+   "failed": "Fail: [ONNXRuntimeError] : 1 : FAIL : Non-zero status code returned while running Conv node. Name:'/basenet/slice5/slice5.2/Conv' Status Message: N:\\_work\\1\\s\\onnxruntime\\core\\framework\\bfc_arena.cc:360 onn",
+   "note": "ran out of memory during calibration (other jobs were running)"
+  },
+  "entropy": {
+   "failed": "RuntimeException: [ONNXRuntimeError] : 6 : RUNTIME_EXCEPTION : Non-zero status code returned while running Conv node. Name:'/conv_cls/conv_cls.0/Conv' Status Message: bad allocation",
+   "note": "ran out of memory during calibration (other jobs were running)"
+  },
+  "conv_only": {
+   "failed": "stopped: the calibration used more than 12 GB of memory on a 16 GB laptop"
+  }
+ },
+ "conclusion": "No INT8 calibration that could be run on this laptop is within 0.5 points of full precision (MinMax, 64 images: +0.65 with min conf 0.2; MinMax, 128 images: +0.57 with min conf 0.1). Full precision stays the default."
+}

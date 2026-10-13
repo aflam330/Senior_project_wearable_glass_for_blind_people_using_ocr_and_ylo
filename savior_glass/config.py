@@ -128,13 +128,23 @@ CAPTURE_GUIDE_PROMPT_GAP_S = 2.5
 #  * 2026-10-13, blocked 5-fold cross-validation over capture order, threshold from the other four blocks, same rule
 #    (uv_blocked_cv.json): 103 of 111 accepted (92.8 %, Wilson 95 % 86.4-96.3; 200 Taka 45/45, 500 Taka 36/40,
 #    1,000 Taka 22/26); all 71 patches of the plain surface beside the note rejected.
-# UV_MIN_FIBRES below is that rule applied to all 111 photographs (a setting, not a test result).
-# Still not measured: counterfeit notes, printed paper without fibres, and the glass camera. Slight blur hides fibres,
-# so the UV picture must be close and sharp (lamp and camera in a hood, about 10-15 cm from the note).
+#  * 2026-10-13, evening: a SIMULATION with fibre-free printed sheets (scripts/uv_stress_sim.py) showed that the check
+#    above also accepted them: with JPEG compression 93 % of 120 simulated sheets passed, because the colour smear at
+#    print edges was counted as fibres. Most of what had been counted on genuine notes was of the same kind.
+#    A brightness condition did not help (balanced accuracy 0.50). A COLOUR condition does: a fibre pixel must be
+#    less blue than the paper by more than UV_COLOUR_THRESHOLD and lie on lit paper. Nested blocked 5-fold with
+#    development and held-out sheets (scripts/uv_robust_study.py, results/uv_check/uv_robust_study.json):
+#    95 of 111 genuine photographs accepted (85.6 %, Wilson 77.9-90.9) and 88.6 % of held-out simulated sheets
+#    rejected. With the setting below (chosen on all genuine photographs and the development sheets) 223 of 240
+#    held-out sheets are rejected (JPEG 50: 48 of 60). The old check rejected 4 of 240.
+# Still not measured: a real counterfeit note, real printed paper under the lamp, and the glass camera. The fibre-free
+# side is a simulation. Slight blur hides fibres, so the UV picture must be close and sharp.
 UV_CHECK_ENABLED = os.environ.get("UV_CHECK_ENABLED", "0") == "1"
 UV_DENOMINATIONS = ("200_taka", "500_taka", "1000_taka")
-UV_MIN_FIBRES = int(os.environ.get("UV_MIN_FIBRES", "6"))       # see above; set again for the glass camera
+UV_MIN_FIBRES = int(os.environ.get("UV_MIN_FIBRES", "1"))       # see above; set again for the glass camera
 UV_REL_THRESHOLD = 0.12                                        # fibre brightness relative to the local lamp level
+UV_COLOUR_THRESHOLD = float(os.environ.get("UV_COLOUR_THRESHOLD", "0.22"))   # how much less blue than the paper a fibre must be
+UV_LUM_THRESHOLD = 0.0                                         # brightness condition: tried, no gain, off
 _uv_pin = os.environ.get("UV_LIGHT_PIN", "")
 UV_LIGHT_PIN = int(_uv_pin) if _uv_pin else None               # BCM pin that switches the lamp; None = lamp switched by hand
 UV_SETTLE_S = 0.4
@@ -154,6 +164,11 @@ JAAL_VIEW_WINDOWS = (
 # on the Bangla Money test it cut 1-taka notes announced as another value from 43.6 % to 22.8 %
 # and kept 89.6 % of known notes correct (was 91.5 %). paper_evidence/OPEN_SET_REJECTION.md
 CURRENCY_ANNOUNCE_CONF = 0.60
+# Several notes in one picture: count the sure ones and speak the total ("3 notes: ..., total 650 Taka").
+# Both numbers were fixed before the test (the announce confidence above and an overlap of 0.5 for "same note");
+# measured in scripts/eval_multi_note.py, results/multi_note_total.json. Counterfeit checks stay single-note.
+CURRENCY_COUNT_NOTES = os.environ.get("CURRENCY_COUNT_NOTES", "1") == "1"
+CURRENCY_COUNT_IOU = 0.5
 LABELS_BN_PATH      = os.path.join(BASE_DIR, "assets", "labels_bn.json")
 
 # Piper TTS models. Binary is project-local (models/piper/engine/), not /usr/local/bin, because
@@ -242,6 +257,11 @@ OCR_V2_PARAMS = {"text_threshold": 0.8, "low_text": 0.3, "link_threshold": 0.4, 
 # 47.8 % against 51.1 %, rendered validation 2.58 % against 2.14 %. On the 1,000 real test words, read once:
 # Bangla 39.2 % (was 41.7 %), Latin script 62.5 % (was 64.9 %); nothing read on 17 % and 38 % (was 25 % and 48 %).
 OCR_V2_MIN_CONF = 0.1
+# When nothing is read, try the picture turned by 90 degrees each way (text standing on its side). Off until the
+# study in ocr_bench/real_final_eval.py has decided; its evidence is recorded there and here afterwards.
+OCR_ROTATE_FALLBACK = os.environ.get("OCR_ROTATE_FALLBACK", "0") == "1"
+# Fine-tuned letter recogniser (ocr_recognizer_ft.py). Empty = EasyOCR's released weights.
+OCR_RECOGNIZER_PATH = os.environ.get("OCR_RECOGNIZER_PATH", "")
 # Decoder for pipeline v2. Whole-page benchmark (ocr_bench/page_bench.py, laptop CPU limited to 4 threads like the
 # Pi, results/ocr_bench/page_speed_compare.json, 2026-10-11): greedy reads a 12-line page in 6.5 s against 8.9 s
 # for beam search, with the same validation error (48 val phrases x 3 seeds: 2.14 % vs 2.18 %; Bangla 1.59 vs

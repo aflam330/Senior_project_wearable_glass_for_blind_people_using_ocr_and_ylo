@@ -45,19 +45,36 @@ def paper_ratios(bgr: np.ndarray) -> Optional[tuple]:
     return float(np.median(f[ok, 1] / f[ok, 0])), float(np.median(f[ok, 2] / f[ok, 0]))
 
 
-def fibre_mask(bgr: np.ndarray, rel_threshold: Optional[float] = None):
-    """(mask of fibres at WIDTH px, number of fibres, (a, b)) for one note crop; (None, 0, None) if too dark."""
+def fibre_mask(bgr: np.ndarray, rel_threshold: Optional[float] = None, lum_threshold: Optional[float] = None,
+               colour_threshold: Optional[float] = None):
+    """(mask of fibres at WIDTH px, number of fibres, (a, b)) for one note crop; (None, 0, None) if too dark.
+
+    lum_threshold: a fibre must also be brighter than its surroundings in overall brightness by this share.
+    A real fibre glows whitish; the colour smear that JPEG compression leaves at the edges of print changes the
+    colour but not the brightness, and without this condition it was counted as fibres (scripts/uv_stress_sim.py)."""
     ab = paper_ratios(bgr)
     if ab is None:
         return None, 0, None
     thr = float(getattr(config, "UV_REL_THRESHOLD", 0.12) if rel_threshold is None else rel_threshold)
+    lum_thr = float(getattr(config, "UV_LUM_THRESHOLD", 0.0) if lum_threshold is None else lum_threshold)
+    col_thr = float(getattr(config, "UV_COLOUR_THRESHOLD", 0.0) if colour_threshold is None else colour_threshold)
     s = WIDTH / float(bgr.shape[1])
     im = cv2.resize(bgr, (WIDTH, max(8, int(bgr.shape[0] * s))), interpolation=cv2.INTER_AREA).astype(np.float32)
     B, G, R = im[..., 0], im[..., 1], im[..., 2]
     E = np.maximum(G - ab[0] * B, R - ab[1] * B)
     top = cv2.morphologyEx(E, cv2.MORPH_TOPHAT, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (9, 9)))
     rel = top / (cv2.GaussianBlur(B, (0, 0), 6) + 1.0)
-    raw = (rel > thr).astype(np.uint8)
+    keep_px = rel > thr
+    if lum_thr > 0:
+        lum = (B + G + R) / 3.0
+        ltop = cv2.morphologyEx(lum, cv2.MORPH_TOPHAT, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (9, 9)))
+        keep_px &= (ltop / (cv2.GaussianBlur(lum, (0, 0), 6) + 1.0)) > lum_thr
+    if col_thr > 0:
+        # a fibre pixel is clearly less blue than the paper (it fluoresces) and lies on lit paper, not in dark ink,
+        # where a small colour error is a large share of a small blue value
+        excess = np.maximum(G - ab[0] * B, R - ab[1] * B) / np.maximum(B, 1.0)
+        keep_px &= (excess > col_thr) & (B > 0.5 * float(np.median(B[B > 25])))
+    raw = keep_px.astype(np.uint8)
     n, lab, st, _ = cv2.connectedComponentsWithStats(raw, 8)
     keep, count = np.zeros_like(raw), 0
     for i in range(1, n):

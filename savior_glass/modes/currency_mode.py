@@ -138,6 +138,11 @@ class CurrencyMode(BaseMode):
         # Stage 0 — trained Taka YOLO. Do not fall through to color when it is loaded:
         # the HSV guess was announcing the wrong denomination (often 100 or 1000).
         hits = self.detect_live(frame)
+        # several notes in the picture: count them and say the total (config.CURRENCY_COUNT_NOTES)
+        notes = self.distinct_notes(hits) if getattr(config, "CURRENCY_COUNT_NOTES", False) else []
+        if len(notes) >= 2:
+            self._buzz("detect")
+            return self.total_sentence(notes)
         if hits and hits[0]["conf"] < getattr(config, "CURRENCY_ANNOUNCE_CONF", 0.0):
             # below the validation-chosen threshold: possibly an unknown note (e.g. 1 taka)
             self._buzz("detect")
@@ -322,6 +327,42 @@ class CurrencyMode(BaseMode):
         "500_taka": "পাঁচশত টাকার নোট",
         "1000_taka": "এক হাজার টাকার নোট",
     }
+
+    @staticmethod
+    def distinct_notes(hits: list[dict]) -> list[dict]:
+        """The notes that are sure enough to be named, one per physical note.
+
+        A box below CURRENCY_ANNOUNCE_CONF is not counted. A box that overlaps a more confident one by more than
+        CURRENCY_COUNT_IOU is taken as the same note seen twice (the detector sometimes gives one note two values)."""
+        conf = getattr(config, "CURRENCY_ANNOUNCE_CONF", 0.6)
+        max_iou = getattr(config, "CURRENCY_COUNT_IOU", 0.5)
+        kept: list[dict] = []
+        for h in sorted(hits, key=lambda h: -h["conf"]):
+            if h["conf"] < conf:
+                continue
+            x, y, w, hh = h["bbox"]
+            dup = False
+            for k in kept:
+                kx, ky, kw, kh = k["bbox"]
+                iw = max(0, min(x + w, kx + kw) - max(x, kx))
+                ih = max(0, min(y + hh, ky + kh) - max(y, ky))
+                inter = iw * ih
+                if inter / float(w * hh + kw * kh - inter + 1e-9) > max_iou:
+                    dup = True
+                    break
+            if not dup:
+                kept.append(h)
+        return kept
+
+    _DIGITS_BN = str.maketrans("0123456789", "০১২৩৪৫৬৭৮৯")
+
+    def total_sentence(self, notes: list[dict]) -> str:
+        """'3টি নোট: পাঁচশত টাকার নোট, ... মোট ৬৫০ টাকা' for two or more notes."""
+        values = [int(n["name"].split("_")[0]) for n in notes]
+        order = sorted(range(len(notes)), key=lambda i: -values[i])
+        names = ", ".join(self._BN.get(notes[i]["name"], notes[i]["name"]) for i in order)
+        n_bn, total_bn = str(len(notes)).translate(self._DIGITS_BN), str(sum(values)).translate(self._DIGITS_BN)
+        return f"{n_bn}টি নোট: {names}। মোট {total_bn} টাকা"
 
     def detect_live(self, frame: np.ndarray) -> list[dict]:
         """Return note boxes for the live overlay. Clears pose state when nothing is found."""

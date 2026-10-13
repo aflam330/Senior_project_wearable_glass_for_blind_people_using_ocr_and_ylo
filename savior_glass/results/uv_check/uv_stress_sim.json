@@ -1,0 +1,136 @@
+{
+ "date": "2026-10-13",
+ "kind": "SIMULATION with stated assumptions; no counterfeit note was photographed",
+ "measured_on_real_uv_photographs": {
+  "a": 0.20408163964748383,
+  "b": 0.04477611929178238,
+  "blue_level": 111.0,
+  "noise_sigma_at_check_scale": 0.4044560492038727,
+  "photographs": 111
+ },
+ "UV_MIN_FIBRES": 6,
+ "sheets": 120,
+ "conditions": {
+  "dull paper, no noise, no JPEG": {
+   "glow_d": 0.0,
+   "noise_sigma": 0.0,
+   "jpeg": 0,
+   "wrongly_accepted": 0,
+   "n": 120,
+   "rate": 0.0,
+   "fibres_median": 0.0,
+   "fibres_95th": 0.0,
+   "fibres_max": 0
+  },
+  "dull paper, measured noise": {
+   "glow_d": 0.0,
+   "noise_sigma": 0.4,
+   "jpeg": 0,
+   "wrongly_accepted": 0,
+   "n": 120,
+   "rate": 0.0,
+   "fibres_median": 0.0,
+   "fibres_95th": 0.0,
+   "fibres_max": 0
+  },
+  "dull paper, measured noise, JPEG 90": {
+   "glow_d": 0.0,
+   "noise_sigma": 0.4,
+   "jpeg": 90,
+   "wrongly_accepted": 112,
+   "n": 120,
+   "rate": 0.9333,
+   "fibres_median": 28.0,
+   "fibres_95th": 104.59999999999997,
+   "fibres_max": 188
+  },
+  "dull paper, measured noise, JPEG 50": {
+   "glow_d": 0.0,
+   "noise_sigma": 0.4,
+   "jpeg": 50,
+   "wrongly_accepted": 120,
+   "n": 120,
+   "rate": 1.0,
+   "fibres_median": 148.0,
+   "fibres_95th": 308.29999999999995,
+   "fibres_max": 365
+  },
+  "dull paper, 2x noise, JPEG 90": {
+   "glow_d": 0.0,
+   "noise_sigma": 0.81,
+   "jpeg": 90,
+   "wrongly_accepted": 109,
+   "n": 120,
+   "rate": 0.9083,
+   "fibres_median": 28.5,
+   "fibres_95th": 109.0,
+   "fibres_max": 186
+  },
+  "dull paper, 4x noise, JPEG 90": {
+   "glow_d": 0.0,
+   "noise_sigma": 1.62,
+   "jpeg": 90,
+   "wrongly_accepted": 112,
+   "n": 120,
+   "rate": 0.9333,
+   "fibres_median": 30.0,
+   "fibres_95th": 120.24999999999999,
+   "fibres_max": 215
+  },
+  "dull paper, 8x noise, JPEG 90": {
+   "glow_d": 0.0,
+   "noise_sigma": 3.24,
+   "jpeg": 90,
+   "wrongly_accepted": 115,
+   "n": 120,
+   "rate": 0.9583,
+   "fibres_median": 37.0,
+   "fibres_95th": 147.45,
+   "fibres_max": 222
+  },
+  "glowing paper d=0.05, measured noise, JPEG 90": {
+   "glow_d": 0.05,
+   "noise_sigma": 0.4,
+   "jpeg": 90,
+   "wrongly_accepted": 118,
+   "n": 120,
+   "rate": 0.9833,
+   "fibres_median": 53.0,
+   "fibres_95th": 155.45,
+   "fibres_max": 302
+  },
+  "glowing paper d=0.10, measured noise, JPEG 90": {
+   "glow_d": 0.1,
+   "noise_sigma": 0.4,
+   "jpeg": 90,
+   "wrongly_accepted": 120,
+   "n": 120,
+   "rate": 1.0,
+   "fibres_median": 121.0,
+   "fibres_95th": 235.2499999999999,
+   "fibres_max": 443
+  },
+  "glowing paper d=0.20, measured noise, JPEG 90": {
+   "glow_d": 0.2,
+   "noise_sigma": 0.4,
+   "jpeg": 90,
+   "wrongly_accepted": 120,
+   "n": 120,
+   "rate": 1.0,
+   "fibres_median": 255.0,
+   "fibres_95th": 456.04999999999995,
+   "fibres_max": 702
+  },
+  "glowing paper d=0.40, measured noise, JPEG 90": {
+   "glow_d": 0.4,
+   "noise_sigma": 0.4,
+   "jpeg": 90,
+   "wrongly_accepted": 120,
+   "n": 120,
+   "rate": 1.0,
+   "fibres_median": 439.5,
+   "fibres_95th": 698.35,
+   "fibres_max": 788
+  }
+ }
+}

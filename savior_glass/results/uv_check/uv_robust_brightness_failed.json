@@ -1,0 +1,119 @@
+{
+ "date": "2026-10-13",
+ "kind": "genuine side: real UV photographs; fibre-free side: SIMULATED printed sheets",
+ "measured_on_real_uv_photographs": {
+  "a": 0.20408163964748383,
+  "b": 0.04477611929178238,
+  "blue_level": 111.0,
+  "noise_sigma_at_check_scale": 0.4044560492038727,
+  "photographs": 111
+ },
+ "folds": [
+  {
+   "held_out_block": 0,
+   "brightness_threshold": 0.0,
+   "T": 1,
+   "balanced_accuracy_on_training": 0.5,
+   "genuine_accepted": 23,
+   "genuine_n": 23,
+   "held_out_sheets_rejected_rate": 0.0042
+  },
+  {
+   "held_out_block": 1,
+   "brightness_threshold": 0.0,
+   "T": 4,
+   "balanced_accuracy_on_training": 0.5027,
+   "genuine_accepted": 21,
+   "genuine_n": 22,
+   "held_out_sheets_rejected_rate": 0.0125
+  },
+  {
+   "held_out_block": 2,
+   "brightness_threshold": 0.0,
+   "T": 1,
+   "balanced_accuracy_on_training": 0.5,
+   "genuine_accepted": 22,
+   "genuine_n": 22,
+   "held_out_sheets_rejected_rate": 0.0042
+  },
+  {
+   "held_out_block": 3,
+   "brightness_threshold": 0.0,
+   "T": 7,
+   "balanced_accuracy_on_training": 0.5033,
+   "genuine_accepted": 18,
+   "genuine_n": 22,
+   "held_out_sheets_rejected_rate": 0.0167
+  },
+  {
+   "held_out_block": 4,
+   "brightness_threshold": 0.0,
+   "T": 1,
+   "balanced_accuracy_on_training": 0.5,
+   "genuine_accepted": 22,
+   "genuine_n": 22,
+   "held_out_sheets_rejected_rate": 0.0042
+  }
+ ],
+ "nested_result": {
+  "genuine_accepted": 106,
+  "n": 111,
+  "rate": 0.955,
+  "wilson95": [
+   0.8989,
+   0.9806
+  ],
+  "per_value": {
+   "200": {
+    "accepted": 45,
+    "n": 45
+   },
+   "500": {
+    "accepted": 37,
+    "n": 40
+   },
+   "1000": {
+    "accepted": 24,
+    "n": 26
+   }
+  },
+  "held_out_sheets_rejected_mean_over_folds": 0.0083,
+  "held_out_sheets": 240
+ },
+ "setting_for_the_glass": {
+  "UV_LUM_THRESHOLD": 0.0,
+  "UV_MIN_FIBRES": 1,
+  "chosen_on": "all genuine photographs + development sheets",
+  "held_out_sheets_rejected": 1,
+  "held_out_sheets": 240,
+  "held_out_sheets_per_condition": {
+   "noise + JPEG 90": {
+    "rejected": 1,
+    "n": 60
+   },
+   "noise + JPEG 50": {
+    "rejected": 0,
+    "n": 60
+   },
+   "glow 0.10 + JPEG 90": {
+    "rejected": 0,
+    "n": 60
+   },
+   "glow 0.20 + JPEG 90": {
+    "rejected": 0,
+    "n": 60
+   }
+  },
+  "genuine_accepted_all_photos_not_a_test": 111
+ },
+ "before_brightness_condition_T6": {
+  "held_out_sheets_rejected": 4,
+  "n": 240,
+  "genuine_accepted_all_photos": 106
+ },
+ "not_measured": [
+  "a real counterfeit note",
+  "real printed sheets under the UV lamp",
+  "the glass camera"
+ ]
+}

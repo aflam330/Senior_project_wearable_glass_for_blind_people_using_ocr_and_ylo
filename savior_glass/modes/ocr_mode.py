@@ -117,6 +117,8 @@ class OCRMode(BaseMode):
                 if not use_gpu:
                     from ocr_detector_onnx import install
                     install(self._reader)      # ONNX Runtime text detector when its file is present (config.OCR_DETECTOR)
+                import ocr_recognizer_ft
+                ocr_recognizer_ft.install(self._reader)   # fine-tuned letter recogniser when config names one
                 logger.info("EasyOCR ready")
             except Exception as exc:
                 logger.error("Failed to load EasyOCR: %s", exc)
@@ -288,6 +290,24 @@ class OCRMode(BaseMode):
         self.last_boxes = [[int(b["x0"] * s), int(b["y0"] * s), int(b["x1"] * s), int(b["y1"] * s), b["c"],
                             (b["x0"], b["y0"]) in kept] for b in _text_boxes(det)]
         text = order_lines(block)
+        if not text and getattr(config, "OCR_ROTATE_FALLBACK", False):
+            # nothing read: the text may stand on its side (a vertical sign, a packet held sideways). Try the picture
+            # turned by 90 degrees each way and keep the more confident reading. Costs time only when nothing was read.
+            best = (0.0, "")
+            for turn in (cv2.ROTATE_90_CLOCKWISE, cv2.ROTATE_90_COUNTERCLOCKWISE):
+                try:
+                    det2 = self._reader.readtext(cv2.rotate(gray, turn), detail=1, paragraph=False, width_ths=0.7,
+                                                 height_ths=0.7, **kw)
+                except Exception as exc:
+                    logger.warning("EasyOCR inference error (rotated): %s", exc)
+                    continue
+                block2 = dominant_block(det2, getattr(config, "OCR_V2_MIN_CONF", 0.2))
+                t2 = order_lines(block2)
+                if t2:
+                    c2 = float(np.mean([b["c"] for b in block2]))
+                    if c2 > best[0]:
+                        best = (c2, t2)
+            text = best[1]
         return [text] if text else []
 
     def _read_page_streaming(self, gray: np.ndarray, kw: dict, w0: int):

@@ -52,3 +52,7 @@ CLAHE, bilateral filtering, wavelet and Gabor detectors, a U-Net and an ensemble
 1. Photographs through the glass camera with the lamp in a hood, 10–15 cm from the note, with a note ID for every physical note.
 2. Printed sheets without fibres (plain and colour-printed paper) under the same lamp, as negatives with print.
 3. Counterfeit notes photographed at a bank or with the police.
+
+## Addendum, 2026-10-13 evening: the 92.8 % does not mean what it seemed to
+
+A simulation with fibre-free printed sheets (`UV_SYNTHETIC_TEST.md`) showed that the check evaluated above accepted 93 % of such sheets once JPEG compression was applied: it counted the colour smear at print edges as fibres. A colour condition repairs this in the simulation. With it, nested over the same five blocks, 95 of 111 genuine photographs are accepted (85.6 %) and 88.6 % of held-out simulated sheets are rejected. The glass now uses `UV_COLOUR_THRESHOLD = 0.22` and `UV_MIN_FIBRES = 1`. The figures in the tables above are kept as they were measured; the current ones are in `UV_SYNTHETIC_TEST.md`.

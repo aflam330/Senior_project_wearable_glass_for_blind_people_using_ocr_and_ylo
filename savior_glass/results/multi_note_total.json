@@ -1,0 +1,46 @@
+{
+ "date": "2026-10-13",
+ "test_source_notes": 513,
+ "pictures_per_count": 300,
+ "announce_conf": 0.6,
+ "same_note_iou": 0.5,
+ "by_count": {
+  "1": {
+   "pictures": 300,
+   "count_right": 300,
+   "every_note_right_so_total_right": 299,
+   "too_many_counted": 0,
+   "too_few_counted": 0,
+   "count_right_rate": 1.0,
+   "total_right_rate": 0.9967
+  },
+  "2": {
+   "pictures": 300,
+   "count_right": 298,
+   "every_note_right_so_total_right": 298,
+   "too_many_counted": 0,
+   "too_few_counted": 2,
+   "count_right_rate": 0.9933,
+   "total_right_rate": 0.9933
+  },
+  "3": {
+   "pictures": 300,
+   "count_right": 299,
+   "every_note_right_so_total_right": 296,
+   "too_many_counted": 0,
+   "too_few_counted": 1,
+   "count_right_rate": 0.9967,
+   "total_right_rate": 0.9867
+  }
+ },
+ "all": {
+  "pictures": 900,
+  "count_right_rate": 0.9967,
+  "total_right_rate": 0.9922
+ },
+ "limits": [
+  "synthetic pictures; notes do not overlap by more than 5 %",
+  "laptop path (PyTorch weights), not the INT8 graph of the Pi",
+  "not measured through the glass camera"
+ ]
+}
