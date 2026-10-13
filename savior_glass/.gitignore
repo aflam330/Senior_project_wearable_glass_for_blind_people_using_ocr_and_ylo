@@ -59,3 +59,5 @@ desktop.ini
 !logs/.gitkeep
 yolov8m.pt
 results/uv_snapshots/
+# speech models are downloaded by scripts/get_speech_models.py
+models/vosk/

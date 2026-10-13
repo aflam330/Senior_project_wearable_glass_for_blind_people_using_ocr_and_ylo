@@ -68,7 +68,8 @@ class SmartGlass:
         self._running.set()
 
         # Shared resources
-        if sys.platform == "win32":   # laptop testing: no espeak-ng on Windows (see windows_tts.py)
+        # laptop testing: no espeak-ng on Windows (see windows_tts.py); SARA_TTS=piper uses the glass's own engine there
+        if sys.platform == "win32" and os.environ.get("SARA_TTS", "") != "piper":
             from windows_tts import WindowsTTS
             self._tts = WindowsTTS(volume=config.DEFAULT_VOLUME)
         else:
@@ -148,6 +149,21 @@ class SmartGlass:
         # Start detection worker
         self._detection_thread.start()
 
+        # Fixed prompts are rendered ahead, so the first spoken words are not late (utils.TTSEngine only)
+        if hasattr(self._tts, "prewarm"):
+            self._tts.prewarm(list(config.MODE_NAMES_BN) + ["একটু অপেক্ষা করুন", "ক্যামেরা প্রস্তুত নয়", "OK"])
+
+        # Voice commands: the same handlers as the buttons, called by speaking (voice_commands.py)
+        self._voice = None
+        if config.VOICE_COMMANDS != "0":
+            try:
+                import voice_commands
+                self._voice = voice_commands.VoiceCommands(self)
+                if not self._voice.start() and config.VOICE_COMMANDS == "1":
+                    logger.warning(self._voice.status)
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("Voice commands unavailable: %s", exc)
+
         # Announce initial mode
         time.sleep(0.5)   # give TTS time to finish boot message
         self._tts.speak(config.MODE_NAMES_BN[self._current_mode])
@@ -219,8 +235,15 @@ class SmartGlass:
 
     def _on_mode_press(self) -> None:
         with self._mode_lock:
-            old_mode = self._current_mode
             new_mode = (self._current_mode + 1) % len(self._modes)
+        self.set_mode(new_mode)
+
+    def set_mode(self, new_mode: int) -> bool:
+        """Go to one mode (MODE button: the next one; voice command: the one that was named). False if already there."""
+        with self._mode_lock:
+            old_mode = self._current_mode
+            if new_mode == old_mode:
+                return False
             self._current_mode = new_mode
 
         self._tts.stop_current()
@@ -230,6 +253,7 @@ class SmartGlass:
         _flog("mode_switch", new_mode, result=MODE_KEYS.get(new_mode, ""), from_mode=MODE_KEYS.get(old_mode, ""))
         threading.Thread(target=self._prepare, args=(new_mode,), daemon=True, name=f"prepare-{new_mode}").start()
         logger.info("Mode → %s", config.MODE_NAMES_BN[new_mode])
+        return True
 
     def _on_action_press(self) -> None:
         with self._mode_lock:

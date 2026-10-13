@@ -1,0 +1,6 @@
+# Natural voices and voice commands. Optional: without these the glass speaks with espeak-ng and uses the buttons.
+#   pip install -r requirements-speech.txt
+#   python scripts/get_speech_models.py      (downloads the voices and the command recogniser, about 210 MB)
+piper-tts>=1.2.0      # Bangla and English voices (utils.TTSEngine)
+vosk>=0.3.45          # offline command recogniser (voice_commands.py)
+sounddevice>=0.4.6    # microphone; needs libportaudio2 (sudo apt install libportaudio2). Without it arecord is used.

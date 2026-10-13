@@ -29,6 +29,7 @@ def engine(delay=0.0):
             time.sleep(delay)
         e.spoken.append((text, lang))
     e._synthesize = fake
+    e._prefetch = lambda *a: None
     e.gate = gate
     return e
 
@@ -81,24 +82,99 @@ e.stop_current()
 e.drain(5)
 assert 1 <= len(e.spoken) < 12, len(e.spoken)
 
-# 7. a voice Piper cannot speak is tried once, then skipped
+# 7. a voice that cannot speak is tried once, then skipped; the next voice in the chain takes over
 e = utils.TTSEngine()
-calls = {"piper": 0, "espeak": 0}
-real_isfile = utils.os.path.isfile
-utils.os.path.isfile = lambda p: True if p in (config.PIPER_BN_MODEL, config.PIPER_BINARY) else real_isfile(p)
+calls = {"piper": 0, "binary": 0, "espeak": 0, "played": 0}
 
 
-def bad_popen(*a, **k):
-    calls["piper"] += 1
-    raise OSError("piper crashed")
+def bad(name):
+    def f(text, model):
+        calls[name] += 1
+        raise OSError(name + " crashed")
+    return f
 
 
-real_popen, utils.subprocess.Popen = utils.subprocess.Popen, bad_popen
-e._espeak = lambda text, voice: calls.__setitem__("espeak", calls["espeak"] + 1)
-try:
-    for _ in range(4):
-        e._synthesize("বাংলা", "bn")
-finally:
-    utils.subprocess.Popen, utils.os.path.isfile = real_popen, real_isfile
-assert calls == {"piper": 1, "espeak": 4}, calls
+e._render_piper, e._render_piper_binary = bad("piper"), bad("binary")
+e._render_espeak = lambda text, voice: (calls.__setitem__("espeak", calls["espeak"] + 1), (b"\x01\x00" * 100, 22050))[1]
+e._play = lambda pcm, rate: calls.__setitem__("played", calls["played"] + 1)
+for i in range(4):
+    e._synthesize(f"বাংলা {i}", "bn")
+assert calls == {"piper": 1, "binary": 1, "espeak": 4, "played": 4}, calls
+
+# 8. the audio of a piece is finished before the player starts, the next sentence is rendered while this one plays,
+#    and a short fixed prompt is rendered only once
+e = utils.TTSEngine()
+events = []
+
+
+def render(text, model):
+    events.append(("render", text))
+    return b"\x01\x00" * 2000, 22050
+
+
+def play(pcm, rate):
+    events.append(("play", len(pcm), rate))
+    time.sleep(0.15)
+
+
+e._render_piper, e._play = render, play
+e.speak("এক। দুই। তিন।")
+e.drain(5)
+kinds = [(k, v) for k, v, *_ in events]
+plays = [i for i, k in enumerate(kinds) if k[0] == "play"]
+assert len(plays) == 3 and kinds.index(("render", "এক।")) < plays[0], kinds
+assert kinds.index(("render", "দুই।")) < plays[1] and kinds.index(("render", "তিন।")) < plays[2], kinds   # ready before its turn
+lead = int(22050 * config.TTS_LEAD_IN_MS / 1000) * 2 + int(22050 * config.TTS_TAIL_MS / 1000) * 2
+n = len(events)
+e.speak("এক।")
+e.drain(5)
+assert [k for k, *_ in events[n:]] == ["play"], events[n:]            # from the cache: no second rendering
+e2 = utils.TTSEngine()
+got = []
+e2._render_piper = render
+if utils.sys.platform != "win32":
+    class P:                                                         # stands in for aplay
+        def __init__(self, cmd, **k):
+            got.append(cmd)
+            self.stdin = self
+
+        def write(self, b):
+            got.append(len(b))
+
+        def close(self):
+            pass
+
+        def wait(self):
+            return 0
+
+        def poll(self):
+            return 0
+    real, utils.subprocess.Popen = utils.subprocess.Popen, P
+    utils.TTSEngine._player_cmd = ["aplay", "-r"]
+    try:
+        e2._synthesize("চার", "bn")
+    finally:
+        utils.subprocess.Popen, utils.TTSEngine._player_cmd = real, None
+    assert got == [["aplay", "-r", "22050", "-"], 4000 + lead], got
+
+# 9. espeak-ng's WAV (written to a pipe, so without a true length in the header) is unpacked by hand
+hdr = (b"RIFF" + b"\xff" * 4 + b"WAVEfmt " + (16).to_bytes(4, "little") + (1).to_bytes(2, "little") + (1).to_bytes(2, "little")
+       + (22050).to_bytes(4, "little") + (44100).to_bytes(4, "little") + (2).to_bytes(2, "little") + (16).to_bytes(2, "little")
+       + b"data" + b"\xff" * 4)
+assert utils.wav_pcm(hdr + b"\x05\x00" * 10) == (b"\x05\x00" * 10, 22050)
+assert utils.wav_pcm(b"") == (b"", 0)
+
+# 10. the real Bangla voice, when its model and the piper package are installed: speech comes out, at the model's rate
+if utils.os.path.isfile(config.PIPER_BN_MODEL):
+    try:
+        import piper  # noqa: F401
+        e = utils.TTSEngine()
+        pcm, rate = e._render("পাঁচশত টাকার নোট", "bn")
+        assert rate == 22050 and len(pcm) > rate, (rate, len(pcm))    # more than half a second of sound
+        assert not e._piper_failed, e._piper_failed
+        print(f"Bangla Piper voice: {len(pcm) / 2 / rate:.2f} s of speech rendered")
+    except ImportError:
+        print("piper package not installed: Bangla falls back to espeak-ng")
+else:
+    print("no Bangla Piper model here: Bangla falls back to espeak-ng (python scripts/get_speech_models.py fetches it)")
 print("speech queue: all checks pass")

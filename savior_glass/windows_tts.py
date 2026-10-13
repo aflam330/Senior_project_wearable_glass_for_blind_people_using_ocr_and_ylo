@@ -52,6 +52,11 @@ class WindowsTTS:
         self._idle.clear()
         self._q.put_nowait(text.strip())
 
+    @property
+    def speaking(self) -> bool:
+        """True while something is being said or waits to be said (the voice-command listener stays deaf then)."""
+        return not self._idle.is_set()
+
     def stop_current(self) -> None:
         while not self._q.empty():
             try:

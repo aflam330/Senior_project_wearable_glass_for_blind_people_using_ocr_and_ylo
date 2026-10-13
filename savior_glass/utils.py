@@ -10,6 +10,7 @@ import subprocess
 import sys
 import threading
 import time
+from concurrent.futures import ThreadPoolExecutor
 from logging.handlers import RotatingFileHandler
 
 import cv2
@@ -132,9 +133,19 @@ def split_language_segments(text: str) -> list[tuple[str, str]]:
 
 class TTSEngine:
     """
-    Non-blocking TTS via a background worker thread.
-    Priority order: Piper TTS (if model present) → espeak-ng fallback.
+    Non-blocking speech through a background worker thread.
+
+    Every piece is rendered to audio first and played afterwards. Before 14 October 2026 espeak-ng synthesised and
+    played at the same time, and Piper was piped straight into the player: when text reading held all four cores of
+    the Pi, the player ran out of samples and the voice broke up. A finished buffer needs almost no processor time
+    to play, so it cannot be starved that way.
+
+    Voice, per language (config.TTS_VOICE): Piper through its Python package (the model stays loaded), then the
+    Piper binary, then espeak-ng. Whatever fails is remembered for the run and not tried again.
     """
+
+    _CACHE_MAX_CHARS = 60       # fixed prompts (mode names, "please wait") are short; their audio is kept
+    _CACHE_MAX_ITEMS = 64
 
     def __init__(self, volume: int = config.DEFAULT_VOLUME):
         self._volume = volume
@@ -144,7 +155,13 @@ class TTSEngine:
         self._cv = threading.Condition()
         self._busy = False
         self._gen = 0                       # raised by stop_current(): the message being spoken is abandoned
-        self._piper_failed: set = set()     # voices Piper could not speak in this run (skipped afterwards)
+        self._piper_failed: set = set()     # (engine, model) pairs that could not speak in this run (skipped afterwards)
+        self._voices: dict = {}             # Piper voices loaded in this process
+        self._voice_lock = threading.Lock()
+        self._cache: collections.OrderedDict = collections.OrderedDict()   # (text, lang) -> (pcm, rate)
+        self._ahead: dict = {}              # (text, lang) -> Future: the next piece, rendered while this one plays
+        self._pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="tts-render")
+        self._espeak_missing = False
         self._current_proc: subprocess.Popen | None = None
         self._lock = threading.Lock()
         self._worker = threading.Thread(target=self._run, daemon=True, name="tts-worker")
@@ -192,10 +209,17 @@ class TTSEngine:
         with self._cv:
             self._gen += 1                 # the rest of the message being spoken is abandoned
             self._msgs.clear()             # and nothing stale is replayed
+        self._ahead.clear()
         with self._lock:
             if self._current_proc and self._current_proc.poll() is None:
                 self._current_proc.terminate()
                 self._current_proc = None
+        if sys.platform == "win32":
+            try:
+                import winsound
+                winsound.PlaySound(None, winsound.SND_PURGE)
+            except Exception:  # noqa: BLE001
+                pass
 
     def set_volume(self, pct: int) -> None:
         pct = max(0, min(100, pct))
@@ -216,6 +240,22 @@ class TTSEngine:
         while (self._msgs or self._busy) and time.time() < deadline:
             time.sleep(0.05)
 
+    @property
+    def speaking(self) -> bool:
+        """True while something is being said or waits to be said (the voice-command listener stays deaf then)."""
+        return bool(self._busy or self._msgs)
+
+    def prewarm(self, texts) -> None:
+        """Load the voices and render fixed prompts in the background, so the first words are not late."""
+        def work():
+            for t in texts:
+                for s, l in split_language_segments(t):
+                    try:
+                        self._render(s, l)
+                    except Exception as exc:  # noqa: BLE001
+                        logger.debug("prewarm failed for %r: %s", s, exc)
+        threading.Thread(target=work, daemon=True, name="tts-prewarm").start()
+
     # ------------------------------------------------------------------
     # Internal
     # ------------------------------------------------------------------
@@ -228,9 +268,11 @@ class TTSEngine:
                 pieces, _ = self._msgs.popleft()
                 gen, self._busy = self._gen, True
             try:
-                for text, lang in pieces:
+                for i, (text, lang) in enumerate(pieces):
                     if gen != self._gen:           # stop_current() was called: drop the rest of this message
                         break
+                    if i + 1 < len(pieces):        # the next sentence is rendered while this one is heard
+                        self._prefetch(*pieces[i + 1])
                     self._synthesize(text, lang)
                     # Brief pause between consecutive utterances — without this,
                     # back-to-back pieces run together and sound like one
@@ -241,104 +283,97 @@ class TTSEngine:
             finally:
                 self._busy = False
 
-    def _synthesize(self, text: str, lang: str) -> None:
-        """Choose Piper or espeak-ng and play audio.
+    def _prefetch(self, text: str, lang: str) -> None:
+        if (text, lang) not in self._cache and (text, lang) not in self._ahead:
+            self._ahead[(text, lang)] = self._pool.submit(self._render, text, lang)
 
-        Both languages try Piper first (natural-sounding neural voice) and
-        fall back to espeak-ng only if the matching Piper model isn't
-        installed. Previously Bangla always used espeak-ng even when a
-        Piper Bangla model was configured, which is why Bangla sounded
-        noticeably more robotic/unclear than English.
-        """
+    def _synthesize(self, text: str, lang: str) -> None:
+        """Render one piece (or take it from the piece rendered ahead) and play the finished audio."""
+        fut = self._ahead.pop((text, lang), None)
+        pcm, rate = fut.result() if fut is not None else self._render(text, lang)
+        if pcm:
+            self._play(pcm, rate)
+
+    # -- rendering -----------------------------------------------------
+
+    def _render(self, text: str, lang: str) -> tuple[bytes, int]:
+        """Text -> (16-bit mono PCM, sample rate), with the best voice that works for this language."""
+        key = (text, lang)
+        hit = self._cache.get(key)
+        if hit is not None:
+            return hit
         if lang == "bn":
             model_path, fallback_voice = config.PIPER_BN_MODEL, config.ESPEAK_VOICE_BN
         else:
             model_path, fallback_voice = config.PIPER_EN_MODEL, config.ESPEAK_VOICE_EN
+        out = None
+        if config.TTS_VOICE != "espeak":
+            for name, fn in (("piper", self._render_piper), ("piper-binary", self._render_piper_binary)):
+                if (name, model_path) in self._piper_failed:
+                    continue
+                try:
+                    out = fn(text, model_path)
+                except Exception as exc:  # noqa: BLE001
+                    # The prebuilt Pi Piper binary crashes on the Bangla voice. Trying it again before every sentence
+                    # cost a model load and a crash each time, so each engine is tried once per run.
+                    self._piper_failed.add((name, model_path))
+                    logger.warning("%s cannot speak with %s (%s); the next voice is used from now on",
+                                   name, os.path.basename(model_path), exc)
+                    out = None
+                if out and out[0]:
+                    break
+        if not (out and out[0]):
+            out = self._render_espeak(text, fallback_voice)
+        if out[0] and len(text) <= self._CACHE_MAX_CHARS:
+            self._cache[key] = out
+            while len(self._cache) > self._CACHE_MAX_ITEMS:
+                self._cache.popitem(last=False)
+        return out
 
-        if (model_path not in self._piper_failed and os.path.isfile(model_path)
-                and os.path.isfile(config.PIPER_BINARY)):
-            self._piper(text, model_path, fallback_voice)
-        else:
-            self._espeak(text, fallback_voice)
+    def _render_piper(self, text: str, model_path: str):
+        """Piper through its Python package (pip install piper-tts). None when the package or the model is absent."""
+        if not os.path.isfile(model_path) or not os.path.isfile(model_path + ".json"):
+            return None
+        with self._voice_lock:
+            voice = self._voices.get(model_path)
+            if voice is None:
+                try:
+                    from piper import PiperVoice
+                except ImportError:
+                    self._piper_failed.add(("piper", model_path))
+                    return None
+                voice = self._voices[model_path] = PiperVoice.load(model_path)
+                logger.info("Piper voice loaded: %s", os.path.basename(model_path))
+            if hasattr(voice, "synthesize_stream_raw"):           # piper-tts before 1.3
+                pcm = b"".join(voice.synthesize_stream_raw(text, length_scale=config.PIPER_LENGTH_SCALE))
+            else:
+                from piper import SynthesisConfig
+                cfg = SynthesisConfig(length_scale=config.PIPER_LENGTH_SCALE)
+                pcm = b"".join(c.audio_int16_bytes for c in voice.synthesize(text, syn_config=cfg))
+            return pcm, int(voice.config.sample_rate)
 
-    _player_cmd: list[str] | None = None  # cached across instances once probed
-
-    @classmethod
-    def _audio_player_cmd(cls) -> list[str]:
-        """Pick a working raw-PCM player once per process.
-
-        ``aplay`` against the ALSA "default" device is the common case, but on a
-        headless Pi with no display attached, PipeWire has nothing to route the
-        HDMI ALSA device to and ``aplay`` fails to open it — a failure that would
-        otherwise silently repeat on every single utterance. ``pw-cat`` talks to
-        PipeWire directly and still works (its dummy/virtual sink paces playback
-        in real time). Probe both once with a near-silent buffer and cache the
-        first one that actually opens the device.
-        """
-        if cls._player_cmd is not None:
-            return cls._player_cmd
-        candidates = [
-            ["aplay", "-q", "-r", "22050", "-f", "S16_LE", "-c", "1", "-"],
-            ["pw-cat", "--raw", "--playback", "--format", "s16", "--rate", "22050", "--channels", "1", "-"],
-        ]
-        for cmd in candidates:
-            try:
-                probe = subprocess.run(
-                    cmd, input=b"\x00\x00" * 50,
-                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=3,
-                )
-                if probe.returncode == 0:
-                    cls._player_cmd = cmd
-                    return cmd
-            except Exception:
-                continue
-        cls._player_cmd = candidates[0]
-        return candidates[0]
-
-    def _piper(self, text: str, model_path: str, fallback_voice: str) -> None:
-        """Render via Piper and stream raw PCM to whichever player actually works."""
+    def _render_piper_binary(self, text: str, model_path: str):
+        """The stand-alone Piper program (models/piper/engine/piper). None when it or the model is absent."""
+        if not (os.path.isfile(model_path) and os.path.isfile(config.PIPER_BINARY)):
+            return None
+        rate = 22050
         try:
-            piper_proc = subprocess.Popen(
-                [config.PIPER_BINARY, "--model", model_path, "--output-raw"],
-                stdin=subprocess.PIPE,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.DEVNULL,
-            )
-            aplay_proc = subprocess.Popen(
-                self._audio_player_cmd(),
-                stdin=piper_proc.stdout,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            )
-            piper_proc.stdin.write(text.encode("utf-8"))
-            piper_proc.stdin.close()
+            import json
+            with open(model_path + ".json", encoding="utf-8") as f:
+                rate = int(json.load(f)["audio"]["sample_rate"])     # "low" voices are 16 kHz, not 22.05 kHz
+        except Exception:  # noqa: BLE001
+            pass
+        proc = subprocess.run([config.PIPER_BINARY, "--model", model_path, "--output-raw"],
+                              input=text.encode("utf-8"), stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, timeout=60)
+        if proc.returncode != 0 or not proc.stdout:
+            raise RuntimeError(f"piper exited {proc.returncode}")
+        return proc.stdout, rate
 
-            with self._lock:
-                self._current_proc = aplay_proc
-
-            aplay_proc.wait()
-            piper_proc.wait()
-            # A crashed Piper (e.g. a voice with phonemes this binary's id map lacks)
-            # leaves aplay/pw-cat with nothing to play; both exit, but silently —
-            # neither raises on its own. Without this check the utterance is just
-            # dropped instead of falling back to espeak-ng.
-            if piper_proc.returncode != 0:
-                raise RuntimeError(f"piper exited {piper_proc.returncode}")
-        except Exception as exc:
-            # The prebuilt Pi Piper crashes on the Bangla voice. Trying it again before every sentence cost a
-            # model load and a crash each time (a gap before each piece of Bangla), so it is tried once per run.
-            if model_path not in self._piper_failed:
-                self._piper_failed.add(model_path)
-                logger.warning("Piper cannot speak with %s (%s); espeak-ng is used for it from now on",
-                               os.path.basename(model_path), exc)
-            self._espeak(text, fallback_voice)
-        finally:
-            with self._lock:
-                self._current_proc = None
-
-    def _espeak(self, text: str, voice: str) -> None:
+    def _render_espeak(self, text: str, voice: str) -> tuple[bytes, int]:
+        if self._espeak_missing:
+            return b"", 0
         try:
-            proc = subprocess.Popen(
+            proc = subprocess.run(
                 [
                     "espeak-ng",
                     "-v", voice,
@@ -346,19 +381,98 @@ class TTSEngine:
                     "-p", str(config.ESPEAK_PITCH),
                     "-g", str(config.ESPEAK_WORD_GAP),
                     "-a", str(int(self._volume * 2)),  # espeak amplitude 0-200
+                    "--stdout",
                     text,
                 ],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
+                stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, timeout=60,
             )
-            with self._lock:
-                self._current_proc = proc
-            proc.wait()
         except FileNotFoundError:
+            self._espeak_missing = True
             logger.error("espeak-ng not found. Install: sudo apt install espeak-ng")
+            return b"", 0
+        return wav_pcm(proc.stdout)
+
+    # -- playing -------------------------------------------------------
+
+    _player_cmd: list[str] | None = None  # cached across instances once probed
+
+    @classmethod
+    def _audio_player_cmd(cls) -> list[str]:
+        """Pick a working raw-PCM player once per process. The sample rate is appended by the caller.
+
+        ``aplay`` against the ALSA "default" device is the common case, but on a
+        headless Pi with no display attached, PipeWire has nothing to route the
+        HDMI ALSA device to and ``aplay`` fails to open it — a failure that would
+        otherwise silently repeat on every single utterance. ``pw-cat`` talks to
+        PipeWire directly and still works (its dummy/virtual sink paces playback
+        in real time). Probe once with a near-silent buffer and cache the
+        first one that actually opens the device. The half-second device buffer
+        lets playback ride over moments when the processor is busy.
+        """
+        if cls._player_cmd is not None:
+            return cls._player_cmd
+        candidates = [
+            ["aplay", "-q", "-t", "raw", "-f", "S16_LE", "-c", "1", "--buffer-time=500000", "-r"],
+            ["aplay", "-q", "-t", "raw", "-f", "S16_LE", "-c", "1", "-r"],
+            ["pw-cat", "--raw", "--playback", "--format", "s16", "--channels", "1", "--rate"],
+        ]
+        for cmd in candidates:
+            try:
+                probe = subprocess.run(
+                    cmd + ["22050", "-"], input=b"\x00\x00" * 50,
+                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=3,
+                )
+                if probe.returncode == 0:
+                    cls._player_cmd = cmd
+                    return cmd
+            except Exception:
+                continue
+        cls._player_cmd = candidates[1]
+        return candidates[1]
+
+    def _play(self, pcm: bytes, rate: int) -> None:
+        """Play finished audio. A short silence goes first: many sound devices (HDMI, USB, Bluetooth) need a moment
+        to wake up and would swallow the first syllable; a little silence at the end keeps the last one whole."""
+        pcm = (b"\x00\x00" * int(rate * config.TTS_LEAD_IN_MS / 1000) + pcm
+               + b"\x00\x00" * int(rate * config.TTS_TAIL_MS / 1000))
+        if sys.platform == "win32":
+            import io
+            import wave
+            import winsound
+            buf = io.BytesIO()
+            with wave.open(buf, "wb") as w:
+                w.setnchannels(1)
+                w.setsampwidth(2)
+                w.setframerate(rate)
+                w.writeframes(pcm)
+            winsound.PlaySound(buf.getvalue(), winsound.SND_MEMORY)
+            return
+        try:
+            proc = subprocess.Popen(self._audio_player_cmd() + [str(rate), "-"], stdin=subprocess.PIPE,
+                                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except FileNotFoundError:
+            logger.error("No audio player found. Install: sudo apt install alsa-utils")
+            return
+        with self._lock:
+            self._current_proc = proc
+        try:
+            proc.stdin.write(pcm)
+            proc.stdin.close()
+        except (BrokenPipeError, OSError):
+            pass                                   # stopped by stop_current()
         finally:
+            proc.wait()
             with self._lock:
                 self._current_proc = None
+
+
+def wav_pcm(data: bytes) -> tuple[bytes, int]:
+    """(samples, sample rate) from a WAV held in memory. espeak-ng writes a header without the true length when it
+    writes to a pipe, so the header is read by hand instead of with the wave module."""
+    i = data.find(b"data")
+    if len(data) < 44 or data[:4] != b"RIFF" or i < 0:
+        return b"", 0
+    return data[i + 8:], int.from_bytes(data[24:28], "little")
 
 
 # ---------------------------------------------------------------------------

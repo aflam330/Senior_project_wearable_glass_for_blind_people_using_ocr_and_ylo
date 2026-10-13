@@ -195,6 +195,27 @@ DEFAULT_VOLUME   = 80         # percent (0–100)
 VOLUME_STEP      = 10         # percent per button press
 TTS_QUEUE_MAXSIZE = 5         # drop old items if queue fills
 TTS_INTER_UTTERANCE_PAUSE = 0.15  # seconds between queued utterances (sentences/segments)
+# Which voice speaks: "auto" = Piper where its model is installed (natural voice), espeak-ng otherwise;
+# "espeak" = espeak-ng only (the lightest; use it if Piper is too slow on a hot board).
+TTS_VOICE = os.environ.get("TTS_VOICE", "auto")
+# Piper speaking rate: 1.0 is the voice's own pace, above 1 is slower. For blind listeners to judge.
+PIPER_LENGTH_SCALE = float(os.environ.get("PIPER_LENGTH_SCALE", "1.0"))
+# Silence played before and after each piece, so the sound device does not swallow the first or last syllable.
+TTS_LEAD_IN_MS = int(os.environ.get("TTS_LEAD_IN_MS", "150"))
+TTS_TAIL_MS = 80
+
+# ---------------------------------------------------------------------------
+# Voice commands (voice_commands.py): offline, English command words, Vosk small model
+# ---------------------------------------------------------------------------
+# "auto" = on when the recogniser, its model and a microphone are there; "0" = off; "1" = on.
+VOICE_COMMANDS = os.environ.get("VOICE_COMMANDS", "auto")
+VOICE_CMD_MODEL = os.path.join(BASE_DIR, "models", "vosk", "vosk-model-small-en-us-0.15")
+# Every word of a command must be recognised with at least this confidence, or the command is ignored.
+VOICE_CMD_MIN_CONF = float(os.environ.get("VOICE_CMD_MIN_CONF", "0.7"))
+VOICE_CMD_WAKE = os.environ.get("VOICE_WAKE_WORD", "")          # e.g. "glass": then say "glass read text"
+VOICE_CMD_MIC = os.environ.get("VOICE_MIC", "")                 # part of the microphone's name; empty = system default
+VOICE_CMD_DEAF_AFTER_SPEECH_S = 0.4                             # the room still rings a little after the glass spoke
+VOICE_CMD_SETTLE_S = 1.2                                        # after a mode change by voice, before the capture
 
 # ---------------------------------------------------------------------------
 # Online Claude (optional — EasyOCR stays the offline text reader)

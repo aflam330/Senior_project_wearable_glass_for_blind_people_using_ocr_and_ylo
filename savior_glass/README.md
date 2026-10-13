@@ -21,6 +21,37 @@ python main.py
 
 On that board, currency mode loads `best_int8.onnx` and the back-lit watermark check is on. Both stay off the laptop path. `scripts/pi5_preflight.py` confirms the model files before the first timing run. Raspberry Pi 5 latency is still unmeasured until that benchmark writes `results/pi5_benchmark_<host>_<time>.json`.
 
+## Voice and voice commands (14 October 2026)
+
+```bash
+pip install -r requirements-speech.txt
+python scripts/get_speech_models.py     # voices and the command recogniser, about 210 MB, once
+python scripts/speech_check.py          # speaks six sentences; prints which voice spoke and how long rendering took
+```
+
+**Voice.** Every sentence is rendered to audio first and then played, so heavy work on the processor cannot break the
+sound up. Bangla and English use Piper voices when they are installed and espeak-ng otherwise. `TTS_VOICE=espeak`
+forces espeak-ng; `PIPER_LENGTH_SCALE=1.15` slows the Piper voice down.
+
+**Voice commands.** With a microphone plugged in, the glass listens for these English words (offline):
+
+| Say | What happens |
+|---|---|
+| "read text", "read", "text" | text mode, one capture is read |
+| "money", "check money", "taka" | currency mode, one note is checked |
+| "objects", "find objects", "around me" | object mode |
+| "describe", "describe scene" | online description (needs internet and a key) |
+| "emotion", "face" | emotion mode, one face is read |
+| "next mode" | MODE button |
+| "capture", "scan", "check" | ACTION button |
+| "repeat", "say again" | READ button |
+| "louder", "quieter", "volume up", "volume down" | volume |
+| "stop", "quiet" | stops the voice |
+
+`VOICE_COMMANDS=0` turns listening off. `VOICE_WAKE_WORD=glass` makes every command start with "glass".
+`VOICE_MIC=<part of the name>` picks a microphone. The buttons keep working.
+Measured with synthetic voices on a laptop only (`results/voice_commands_synthetic.json`); not yet with people or on the Pi.
+
 ## Windows (no GPIO)
 
 `powershell

@@ -1,0 +1,143 @@
+{
+ "date": "2026-10-14",
+ "recogniser": "vosk-model-small-en-us-0.15",
+ "min_conf": 0.7,
+ "what": "synthetic voices on a laptop; not people speaking into the glass's microphone",
+ "voices": [
+  "Piper en_US-amy",
+  "Microsoft David Desktop",
+  "Microsoft Zira Desktop"
+ ],
+ "phrases": 39,
+ "commands": {
+  "clean": {
+   "n": 117,
+   "right": 116,
+   "wrong_command": 0,
+   "not_heard": 1,
+   "right_rate": 0.9915,
+   "per_voice": {
+    "Piper en_US-amy": {
+     "right": 38,
+     "wrong_command": 0,
+     "not_heard": 1
+    },
+    "Microsoft David Desktop": {
+     "right": 39,
+     "wrong_command": 0,
+     "not_heard": 0
+    },
+    "Microsoft Zira Desktop": {
+     "right": 39,
+     "wrong_command": 0,
+     "not_heard": 0
+    }
+   }
+  },
+  "snr_20dB": {
+   "n": 117,
+   "right": 116,
+   "wrong_command": 0,
+   "not_heard": 1,
+   "right_rate": 0.9915,
+   "per_voice": {
+    "Piper en_US-amy": {
+     "right": 38,
+     "wrong_command": 0,
+     "not_heard": 1
+    },
+    "Microsoft David Desktop": {
+     "right": 39,
+     "wrong_command": 0,
+     "not_heard": 0
+    },
+    "Microsoft Zira Desktop": {
+     "right": 39,
+     "wrong_command": 0,
+     "not_heard": 0
+    }
+   }
+  },
+  "snr_10dB": {
+   "n": 117,
+   "right": 113,
+   "wrong_command": 0,
+   "not_heard": 4,
+   "right_rate": 0.9658,
+   "per_voice": {
+    "Piper en_US-amy": {
+     "right": 35,
+     "wrong_command": 0,
+     "not_heard": 4
+    },
+    "Microsoft David Desktop": {
+     "right": 39,
+     "wrong_command": 0,
+     "not_heard": 0
+    },
+    "Microsoft Zira Desktop": {
+     "right": 39,
+     "wrong_command": 0,
+     "not_heard": 0
+    }
+   }
+  }
+ },
+ "false_alarms": {
+  "clean": {
+   "english_sentences": 90,
+   "false_alarms": 0,
+   "which": [],
+   "bangla_sentences": 10,
+   "bangla_false_alarms": 0,
+   "bangla_which": []
+  },
+  "snr_20dB": {
+   "english_sentences": 90,
+   "false_alarms": 1,
+   "which": [
+    {
+     "voice": "Microsoft David Desktop",
+     "said": "the emotion in his voice was clear",
+     "acted_on": [
+      "vol_up"
+     ]
+    }
+   ],
+   "bangla_sentences": 10,
+   "bangla_false_alarms": 0,
+   "bangla_which": []
+  },
+  "snr_10dB": {
+   "english_sentences": 90,
+   "false_alarms": 1,
+   "which": [
+    {
+     "voice": "Microsoft David Desktop",
+     "said": "the emotion in his voice was clear",
+     "acted_on": [
+      "vol_up"
+     ]
+    }
+   ],
+   "bangla_sentences": 10,
+   "bangla_false_alarms": 2,
+   "bangla_which": [
+    [
+     "পাঁচশত টাকার নোট সম্ভবত আসল",
+     [
+      "mode:emotion"
+     ]
+    ],
+    [
+     "সামনে আছে চেয়ার এবং টেবিল",
+     [
+      "mode:object"
+     ]
+    ]
+   ]
+  },
+  "noise_only_60s": 0
+ },
+ "confusions": []
+}
