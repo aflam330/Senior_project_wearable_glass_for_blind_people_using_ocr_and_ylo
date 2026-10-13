@@ -203,6 +203,10 @@ PIPER_LENGTH_SCALE = float(os.environ.get("PIPER_LENGTH_SCALE", "1.0"))
 # Silence played before and after each piece, so the sound device does not swallow the first or last syllable.
 TTS_LEAD_IN_MS = int(os.environ.get("TTS_LEAD_IN_MS", "150"))
 TTS_TAIL_MS = 80
+# Text reading takes many seconds on the Pi. So that the user knows the press was taken, the glass says "reading"
+# at once and gives a soft tick every OCR_PROGRESS_TICK_S seconds until the answer comes (0 = no ticks).
+OCR_PROGRESS_CUE = os.environ.get("OCR_PROGRESS_CUE", "1") == "1"
+OCR_PROGRESS_TICK_S = float(os.environ.get("OCR_PROGRESS_TICK_S", "4"))
 
 # ---------------------------------------------------------------------------
 # Voice commands (voice_commands.py): offline, English command words, Vosk small model
@@ -293,6 +297,10 @@ OCR_RECOGNIZER_PATH = os.environ.get("OCR_RECOGNIZER_PATH", "")
 # Batch size 16 gave no speed-up; reading at the camera's own size was 41 % faster but +0.74 points error (rejected).
 # The legacy pipeline keeps OCR_DECODER.
 OCR_V2_DECODER = os.environ.get("OCR_V2_DECODER", "greedy")
+# A picture narrower than this is enlarged to this width before reading (the camera gives 640). The detector's time
+# grows with the number of pixels. 1,200 is the width the pipeline was tuned at; smaller widths are being measured in
+# ocr_bench/width_study.py (results/ocr_bench/width_study.json) and the default changes only by that study's rule.
+OCR_READ_WIDTH = int(os.environ.get("OCR_READ_WIDTH", "1200"))
 # Text detector on the CPU: "auto" uses the ONNX Runtime copy of CRAFT when models/craft_fp32.onnx exists (about twice
 # as fast on four CPU threads with the same validation error, ocr_detector_onnx.py), otherwise PyTorch.
 # "onnx_int8" is faster again but costs 0.65 points of validation error, over the 0.5-point rule: opt-in only.

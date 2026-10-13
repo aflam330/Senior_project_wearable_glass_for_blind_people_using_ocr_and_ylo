@@ -177,4 +177,17 @@ if utils.os.path.isfile(config.PIPER_BN_MODEL):
         print("piper package not installed: Bangla falls back to espeak-ng")
 else:
     print("no Bangla Piper model here: Bangla falls back to espeak-ng (python scripts/get_speech_models.py fetches it)")
+# 11. the "still working" tick: a short tone through the same queue, never while something is said or waits
+e = utils.TTSEngine()
+played = []
+e._play = lambda pcm, rate: (played.append((len(pcm), rate)), time.sleep(0.2))
+e._render_piper = lambda text, model: (b"\x01\x00" * 4000, 22050)
+e.tick()
+e.drain(5)
+assert played == [(int(22050 * 0.07) * 2, 22050)], played
+e.speak("এক")
+time.sleep(0.05)
+e.tick()                                   # speaking: this tick is dropped
+e.drain(5)
+assert len(played) == 2, played
 print("speech queue: all checks pass")

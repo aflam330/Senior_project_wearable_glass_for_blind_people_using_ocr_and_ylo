@@ -1,0 +1,36 @@
+{
+ "date": "2026-10-14",
+ "what": "Piper bn_BD-google-medium speech given to Google Web Speech (bn-BD); a rough intelligibility check with a machine listener, not with people",
+ "sentences": [
+  {
+   "spoken": "পাঁচশত টাকার নোট সম্ভবত আসল",
+   "heard": "পাঁচশত টাকার নোট সম্ভবত আসল",
+   "exact": true
+  },
+  {
+   "spoken": "ধূমপান নিষেধ",
+   "heard": "ধূমপান নিষেধ",
+   "exact": true
+  },
+  {
+   "spoken": "এক হাজার টাকার নোট",
+   "heard": "1000 টাকা নোট",
+   "exact": false
+  },
+  {
+   "spoken": "কোনো লেখা পাওয়া যায়নি",
+   "heard": "কোন লেখা পাওয়া যায়নি",
+   "exact": false
+  },
+  {
+   "spoken": "সামনে আছে চেয়ার টেবিল",
+   "heard": "স্বামী আছে যে টেবিল",
+   "exact": false
+  },
+  {
+   "spoken": "নোটটি আলোর সামনে ধরুন",
+   "heard": "নটি আলু সামনে ধরুন",
+   "exact": false
+  }
+ ]
+}

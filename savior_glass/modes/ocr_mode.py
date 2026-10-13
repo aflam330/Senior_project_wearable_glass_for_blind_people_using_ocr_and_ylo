@@ -268,8 +268,9 @@ class OCRMode(BaseMode):
         """OCR pipeline v2: CLAHE, tuned EasyOCR, dominant text block, reading order (see config.OCR_PIPELINE)."""
         h, w = frame.shape[:2]
         w0 = w
-        if w < 1200:
-            frame = cv2.resize(frame, (1200, int(h * 1200 / w)), interpolation=cv2.INTER_CUBIC)
+        read_w = int(getattr(config, "OCR_READ_WIDTH", 1200))     # a camera picture is enlarged to this width before reading
+        if w < read_w:
+            frame = cv2.resize(frame, (read_w, int(h * read_w / w)), interpolation=cv2.INTER_CUBIC)
         elif w > 1600:
             frame = cv2.resize(frame, (1600, int(h * 1600 / w)), interpolation=cv2.INTER_AREA)
         gray = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8)).apply(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))

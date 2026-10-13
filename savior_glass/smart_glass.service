@@ -1,35 +1,20 @@
+# SARA smart glass, systemd USER service. Do not copy this file by hand: scripts/install_service.sh fills in
+# @ROOT@ (this folder) and @PYTHON@ (the environment's python) and installs it for the current user.
 [Unit]
-Description=Offline Smart Glass for Blind People
-Documentation=https://github.com/your-repo/smart-glass
-# Start after audio subsystem and network (network not strictly needed — fully offline)
-After=sound.target
+Description=SARA assistive smart glass
+After=sound.target pipewire.service
 Wants=sound.target
 
 [Service]
 Type=simple
-User=pi
-Group=pi
-WorkingDirectory=/home/pi/smart-glass
-
-# Activate virtualenv inline
-ExecStart=/home/pi/smart-glass-env/bin/python3 /home/pi/smart-glass/main.py
-
-# Restart on crash (not on clean exit / SIGTERM)
+WorkingDirectory=@ROOT@
+ExecStart="@PYTHON@" "@ROOT@/main.py"
+# Restart on a crash, not on a clean exit
 Restart=on-failure
 RestartSec=5
-StartLimitInterval=60
-StartLimitBurst=3
-
-# Environment
 Environment=PYTHONUNBUFFERED=1
-Environment=PYTHONPATH=/home/pi/smart-glass
-
-# Allow GPIO and audio access
-SupplementaryGroups=gpio audio video
-
-# Logging — viewable with: journalctl -u smart_glass -f
-StandardOutput=journal
-StandardError=journal
+# No preview window when started at boot
+Environment=SHOW_PREVIEW=0
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

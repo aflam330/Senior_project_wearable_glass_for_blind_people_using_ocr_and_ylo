@@ -151,7 +151,7 @@ class SmartGlass:
 
         # Fixed prompts are rendered ahead, so the first spoken words are not late (utils.TTSEngine only)
         if hasattr(self._tts, "prewarm"):
-            self._tts.prewarm(list(config.MODE_NAMES_BN) + ["একটু অপেক্ষা করুন", "ক্যামেরা প্রস্তুত নয়", "OK"])
+            self._tts.prewarm(list(config.MODE_NAMES_BN) + ["একটু অপেক্ষা করুন", "ক্যামেরা প্রস্তুত নয়", "পড়ছি", "OK"])
 
         # Voice commands: the same handlers as the buttons, called by speaking (voice_commands.py)
         self._voice = None
@@ -294,9 +294,20 @@ class SmartGlass:
                     self._ready[mode_idx].wait(timeout=120)
                     waited = (time.perf_counter() - t_wait) * 1000
                 mode = self._modes[mode_idx]
+                working = threading.Event()
+                if mode_idx == config.MODE_OCR and config.OCR_PROGRESS_CUE:
+                    self._tts.speak("পড়ছি")        # "reading": the press was taken (a capture takes many seconds on the Pi)
+                    if config.OCR_PROGRESS_TICK_S > 0 and hasattr(self._tts, "tick"):
+                        def _ticks():
+                            while not working.wait(config.OCR_PROGRESS_TICK_S):
+                                self._tts.tick()
+                        threading.Thread(target=_ticks, daemon=True, name="ocr-progress").start()
                 t0 = time.perf_counter()
-                with self._model_lock:
-                    result = mode.process_frame(frame)
+                try:
+                    with self._model_lock:
+                        result = mode.process_frame(frame)
+                finally:
+                    working.set()
                 infer_ms = (time.perf_counter() - t0) * 1000
                 if result:
                     self._tts.speak(result)

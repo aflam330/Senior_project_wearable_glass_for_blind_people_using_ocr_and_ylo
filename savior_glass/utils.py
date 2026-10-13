@@ -154,6 +154,7 @@ class TTSEngine:
         self._msgs: collections.deque = collections.deque()
         self._cv = threading.Condition()
         self._busy = False
+        self._talking = False
         self._gen = 0                       # raised by stop_current(): the message being spoken is abandoned
         self._piper_failed: set = set()     # (engine, model) pairs that could not speak in this run (skipped afterwards)
         self._voices: dict = {}             # Piper voices loaded in this process
@@ -243,7 +244,16 @@ class TTSEngine:
     @property
     def speaking(self) -> bool:
         """True while something is being said or waits to be said (the voice-command listener stays deaf then)."""
-        return bool(self._busy or self._msgs)
+        return bool(self._talking or any(p[0][1] != "tone" for p, _ in list(self._msgs)))
+
+    def tick(self) -> None:
+        """A soft short tone: "still working". Goes through the same queue as speech, so it never plays over a
+        sentence, and is skipped when anything is being said or waits to be said."""
+        with self._cv:
+            if self._busy or self._msgs:
+                return
+            self._msgs.append(([("tick", "tone")], False))
+            self._cv.notify()
 
     def prewarm(self, texts) -> None:
         """Load the voices and render fixed prompts in the background, so the first words are not late."""
@@ -267,6 +277,7 @@ class TTSEngine:
                     self._cv.wait()
                 pieces, _ = self._msgs.popleft()
                 gen, self._busy = self._gen, True
+                self._talking = pieces[0][1] != "tone"      # the "still working" tick is not speech
             try:
                 for i, (text, lang) in enumerate(pieces):
                     if gen != self._gen:           # stop_current() was called: drop the rest of this message
@@ -281,7 +292,7 @@ class TTSEngine:
             except Exception as exc:
                 logger.warning("TTS error: %s", exc)
             finally:
-                self._busy = False
+                self._busy = self._talking = False
 
     def _prefetch(self, text: str, lang: str) -> None:
         if (text, lang) not in self._cache and (text, lang) not in self._ahead:
@@ -302,6 +313,14 @@ class TTSEngine:
         hit = self._cache.get(key)
         if hit is not None:
             return hit
+        if lang == "tone":
+            import math
+            import struct
+            rate, n = 22050, int(22050 * 0.07)
+            out = (b"".join(struct.pack("<h", int(5000 * math.sin(2 * math.pi * 660 * i / rate) * min(1.0, i / 200, (n - i) / 200)))
+                            for i in range(n)), rate)
+            self._cache[key] = out
+            return out
         if lang == "bn":
             model_path, fallback_voice = config.PIPER_BN_MODEL, config.ESPEAK_VOICE_BN
         else:
