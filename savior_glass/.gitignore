@@ -56,3 +56,4 @@ desktop.ini
 !models/.gitkeep
 !models/piper/.gitkeep
 !logs/.gitkeep
+yolov8m.pt
