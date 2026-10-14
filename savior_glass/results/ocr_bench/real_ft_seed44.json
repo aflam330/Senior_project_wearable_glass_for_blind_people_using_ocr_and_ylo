@@ -1,0 +1,73 @@
+{
+ "date": "2026-10-13",
+ "seed": 44,
+ "steps": 2000,
+ "best_step": 2000,
+ "best_real_val_crop_cer": 0.15348568926200504,
+ "pretrained": {
+  "step": 0,
+  "real_val_crop_cer": 0.4605259263154,
+  "rendered_val_crop_cer": 0.005462709494572239
+ },
+ "history": [
+  {
+   "step": 0,
+   "real_val_crop_cer": 0.4605259263154,
+   "rendered_val_crop_cer": 0.005462709494572239
+  },
+  {
+   "step": 250,
+   "loss": 0.2858024537563324,
+   "real_val_crop_cer": 0.27007428536375905,
+   "rendered_val_crop_cer": 0.006005190796857463
+  },
+  {
+   "step": 500,
+   "loss": 0.5949838757514954,
+   "real_val_crop_cer": 0.2092816554790239,
+   "rendered_val_crop_cer": 0.004622439674523008
+  },
+  {
+   "step": 750,
+   "loss": 0.9077677726745605,
+   "real_val_crop_cer": 0.17534085553822396,
+   "rendered_val_crop_cer": 0.0033247404601571265
+  },
+  {
+   "step": 1000,
+   "loss": 0.09321010112762451,
+   "real_val_crop_cer": 0.16503751706383285,
+   "rendered_val_crop_cer": 0.0034168069584736252
+  },
+  {
+   "step": 1250,
+   "loss": 0.6489211320877075,
+   "real_val_crop_cer": 0.16012205289836867,
+   "rendered_val_crop_cer": 0.0034650322671156003
+  },
+  {
+   "step": 1500,
+   "loss": 0.5297386646270752,
+   "real_val_crop_cer": 0.15918939296570875,
+   "rendered_val_crop_cer": 0.0016280864197530864
+  },
+  {
+   "step": 1750,
+   "loss": 0.32240092754364014,
+   "real_val_crop_cer": 0.1574301337064495,
+   "rendered_val_crop_cer": 0.0034168069584736252
+  },
+  {
+   "step": 2000,
+   "loss": 0.7551326751708984,
+   "real_val_crop_cer": 0.15348568926200504,
+   "rendered_val_crop_cer": 0.0038026094276094277
+  }
+ ],
+ "train_real_words": {
+  "bn": 2980,
+  "en": 8000
+ },
+ "real_val_words": 300,
+ "batch": "8 real (4 Bangla, 4 Latin) + 8 rendered"
+}

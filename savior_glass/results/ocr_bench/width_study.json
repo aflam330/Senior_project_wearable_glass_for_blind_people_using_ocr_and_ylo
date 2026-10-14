@@ -1,0 +1,263 @@
+{
+ "date": "2026-10-14",
+ "validation": {
+  "onnx 1200": {
+   "detector_file": "craft_fp32.onnx",
+   "width": 1200,
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.3424,
+     "nothing_read": 0.1,
+     "word_exact": 0.3533
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.6129,
+     "nothing_read": 0.4333,
+     "word_exact": 0.2133
+    },
+    "mean_cer": 0.4777
+   },
+   "rendered_val_cer": 0.0258,
+   "rendered_val_cer_bn": 0.0189,
+   "rendered_val_cer_en": 0.0327,
+   "rendered_median_ms_busy_laptop": 2583,
+   "minutes": 56.1
+  },
+  "onnx_int8 1200": {
+   "detector_file": "craft_int8_minmax128.onnx",
+   "width": 1200,
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.3841,
+     "nothing_read": 0.1333,
+     "word_exact": 0.3533
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.6487,
+     "nothing_read": 0.4733,
+     "word_exact": 0.18
+    },
+    "mean_cer": 0.5164
+   },
+   "rendered_val_cer": 0.0315,
+   "rendered_val_cer_bn": 0.0305,
+   "rendered_val_cer_en": 0.0326,
+   "rendered_median_ms_busy_laptop": 1846,
+   "minutes": 29.6
+  },
+  "onnx 960": {
+   "detector_file": "craft_fp32.onnx",
+   "width": 960,
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.311,
+     "nothing_read": 0.0867,
+     "word_exact": 0.3867
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.6075,
+     "nothing_read": 0.38,
+     "word_exact": 0.2133
+    },
+    "mean_cer": 0.4593
+   },
+   "rendered_val_cer": 0.0309,
+   "rendered_val_cer_bn": 0.0198,
+   "rendered_val_cer_en": 0.0419,
+   "rendered_median_ms_busy_laptop": 1900,
+   "minutes": 37.2
+  },
+  "onnx_int8 960": {
+   "detector_file": "craft_int8_minmax128.onnx",
+   "width": 960,
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.346,
+     "nothing_read": 0.1,
+     "word_exact": 0.3867
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.6139,
+     "nothing_read": 0.3933,
+     "word_exact": 0.2
+    },
+    "mean_cer": 0.4799
+   },
+   "rendered_val_cer": 0.0299,
+   "rendered_val_cer_bn": 0.0244,
+   "rendered_val_cer_en": 0.0354,
+   "rendered_median_ms_busy_laptop": 1638,
+   "minutes": 25.4
+  },
+  "onnx 1040": {
+   "detector_file": "craft_fp32.onnx",
+   "width": 1040,
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.3375,
+     "nothing_read": 0.0933,
+     "word_exact": 0.36
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.6294,
+     "nothing_read": 0.42,
+     "word_exact": 0.1933
+    },
+    "mean_cer": 0.4834
+   },
+   "rendered_val_cer": 0.0259,
+   "rendered_val_cer_bn": 0.0195,
+   "rendered_val_cer_en": 0.0323,
+   "rendered_median_ms_busy_laptop": 2582,
+   "minutes": 50.4
+  },
+  "onnx_int8 1040": {
+   "detector_file": "craft_int8_minmax128.onnx",
+   "width": 1040,
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.3435,
+     "nothing_read": 0.14,
+     "word_exact": 0.36
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.6238,
+     "nothing_read": 0.4133,
+     "word_exact": 0.1867
+    },
+    "mean_cer": 0.4837
+   },
+   "rendered_val_cer": 0.031,
+   "rendered_val_cer_bn": 0.0273,
+   "rendered_val_cer_en": 0.0348,
+   "rendered_median_ms_busy_laptop": 1589,
+   "minutes": 26.3
+  },
+  "onnx 880": {
+   "detector_file": "craft_fp32.onnx",
+   "width": 880,
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.3356,
+     "nothing_read": 0.1,
+     "word_exact": 0.4067
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.5917,
+     "nothing_read": 0.36,
+     "word_exact": 0.2133
+    },
+    "mean_cer": 0.4637
+   },
+   "rendered_val_cer": 0.0221,
+   "rendered_val_cer_bn": 0.015,
+   "rendered_val_cer_en": 0.0293,
+   "rendered_median_ms_busy_laptop": 2028,
+   "minutes": 38.5
+  },
+  "onnx_int8 880": {
+   "detector_file": "craft_int8_minmax128.onnx",
+   "width": 880,
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.3354,
+     "nothing_read": 0.1267,
+     "word_exact": 0.42
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.6129,
+     "nothing_read": 0.38,
+     "word_exact": 0.2
+    },
+    "mean_cer": 0.4741
+   },
+   "rendered_val_cer": 0.0298,
+   "rendered_val_cer_bn": 0.0212,
+   "rendered_val_cer_en": 0.0384,
+   "rendered_median_ms_busy_laptop": 1419,
+   "minutes": 21.3
+  }
+ },
+ "chosen": {
+  "onnx": {
+   "admissible": [
+    880
+   ],
+   "width": 880
+  },
+  "onnx_int8": {
+   "admissible": [
+    1040,
+    960,
+    880
+   ],
+   "width": 880
+  }
+ },
+ "test": {
+  "onnx": {
+   "width": 880,
+   "real_words": {
+    "bn": {
+     "n": 500,
+     "cer": 0.3536,
+     "nothing_read": 0.124,
+     "word_exact": 0.4
+    },
+    "en": {
+     "n": 500,
+     "cer": 0.5838,
+     "nothing_read": 0.33,
+     "word_exact": 0.242
+    },
+    "mean_cer": 0.4687
+   },
+   "rendered": {
+    "cer": 0.0315,
+    "cer_bn": 0.0492,
+    "cer_en": 0.0139,
+    "wer": 0.0839
+   }
+  },
+  "onnx_int8": {
+   "width": 880,
+   "real_words": {
+    "bn": {
+     "n": 500,
+     "cer": 0.378,
+     "nothing_read": 0.136,
+     "word_exact": 0.368
+    },
+    "en": {
+     "n": 500,
+     "cer": 0.5891,
+     "nothing_read": 0.334,
+     "word_exact": 0.23
+    },
+    "mean_cer": 0.4835
+   },
+   "rendered": {
+    "cer": 0.0312,
+    "cer_bn": 0.0459,
+    "cer_en": 0.0166,
+    "wer": 0.0847
+   }
+  }
+ }
+}

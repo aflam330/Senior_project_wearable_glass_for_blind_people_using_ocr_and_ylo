@@ -35,7 +35,7 @@ if [ "${1:-}" = "quick" ]; then echo "Quick run done: $OUT"; exit 0; fi
 
 # Text reading through the call the app makes on ACTION, for the settings that can only be decided on this board.
 # A minute of rest between runs, so one run does not heat the next.
-for cfg in "onnx_int8 1200" "onnx 1200" "onnx_int8 960" "onnx 960"; do
+for cfg in "onnx_int8 1200" "onnx 1200" "onnx_int8 880" "onnx 880"; do
     set -- $cfg
     sleep 60
     echo "== text reading: detector $1, read width $2  ($(temp))"

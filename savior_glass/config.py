@@ -285,11 +285,17 @@ OCR_V2_PARAMS = {"text_threshold": 0.8, "low_text": 0.3, "link_threshold": 0.4, 
 # 47.8 % against 51.1 %, rendered validation 2.58 % against 2.14 %. On the 1,000 real test words, read once:
 # Bangla 39.2 % (was 41.7 %), Latin script 62.5 % (was 64.9 %); nothing read on 17 % and 38 % (was 25 % and 48 %).
 OCR_V2_MIN_CONF = 0.1
-# When nothing is read, try the picture turned by 90 degrees each way (text standing on its side). Off until the
-# study in ocr_bench/real_final_eval.py has decided; its evidence is recorded there and here afterwards.
+# When nothing is read, try the picture turned by 90 degrees each way (text standing on its side). Measured on
+# 14 October 2026 (ocr_bench/real_ft_eval.py, step 2): fewer Latin-script words left unread (32.7 -> 28.7 %) but the
+# same real-validation CER (36.65 %), and the rule asked for a lower CER. Off.
 OCR_ROTATE_FALLBACK = os.environ.get("OCR_ROTATE_FALLBACK", "0") == "1"
-# Fine-tuned letter recogniser (ocr_recognizer_ft.py). Empty = EasyOCR's released weights.
-OCR_RECOGNIZER_PATH = os.environ.get("OCR_RECOGNIZER_PATH", "")
+# Letter recogniser (ocr_recognizer_ft.py). Since 14 October 2026: EasyOCR's recogniser fine-tuned on real word
+# photographs (ICDAR 2019 MLT) and blended half and half with the released weights (seed 44), chosen on validation by
+# the rule in ocr_bench/real_ft_eval.py. Test, read once: real words Bangla CER 39.2 -> 28.7 %, Latin script
+# 62.5 -> 50.6 %; rendered test 2.46 -> 2.27 %. Same network, same speed. paper_evidence/OCR_REAL_IMPROVED.md.
+# Fully fine-tuned models were better on real words but worse on printed English, over the 0.5-point rule.
+# OCR_RECOGNIZER_PATH="" gives EasyOCR's released weights back.
+OCR_RECOGNIZER_PATH = os.environ.get("OCR_RECOGNIZER_PATH", os.path.join(BASE_DIR, "models", "ocr_recognizer_real_blend"))
 # Decoder for pipeline v2. Whole-page benchmark (ocr_bench/page_bench.py, laptop CPU limited to 4 threads like the
 # Pi, results/ocr_bench/page_speed_compare.json, 2026-10-11): greedy reads a 12-line page in 6.5 s against 8.9 s
 # for beam search, with the same validation error (48 val phrases x 3 seeds: 2.14 % vs 2.18 %; Bangla 1.59 vs
@@ -298,13 +304,17 @@ OCR_RECOGNIZER_PATH = os.environ.get("OCR_RECOGNIZER_PATH", "")
 # The legacy pipeline keeps OCR_DECODER.
 OCR_V2_DECODER = os.environ.get("OCR_V2_DECODER", "greedy")
 # A picture narrower than this is enlarged to this width before reading (the camera gives 640). The detector's time
-# grows with the number of pixels. 1,200 is the width the pipeline was tuned at; smaller widths are being measured in
-# ocr_bench/width_study.py (results/ocr_bench/width_study.json) and the default changes only by that study's rule.
+# grows with the number of pixels. Study of 14 October 2026 (ocr_bench/width_study.py, results/ocr_bench/width_study.json):
+# the validation rule picked 880, but the one test read did not confirm it (rendered test CER 3.15 % against 2.46 %
+# at 1,200; printed Bangla 4.9 %), and validation varied with width in no order. Kept at 1,200, a cautious departure
+# from the rule. OCR_READ_WIDTH=880 is the faster option; its Pi speed is timed by scripts/pi_check_all.sh.
 OCR_READ_WIDTH = int(os.environ.get("OCR_READ_WIDTH", "1200"))
 # Text detector on the CPU: "auto" uses the ONNX Runtime copy of CRAFT when models/craft_fp32.onnx exists (about twice
 # as fast on four CPU threads with the same validation error, ocr_detector_onnx.py), otherwise PyTorch.
 # "onnx_int8" is faster again but costs 0.65 points of validation error, over the 0.5-point rule: opt-in only.
 # "torch" forces the original detector. Not yet timed on the Raspberry Pi.
+# With the recogniser trained on real words (14 October 2026) the Pi's configuration scores 2.86 % rendered validation
+# CER against the 2.58 % reference, +0.28 points, inside the 0.5-point rule (results/ocr_bench/blend_ship_check.json).
 # ON THE RASPBERRY PI 5 THE DEFAULT IS "onnx_int8" (since 14 October 2026). This is a deliberate exception to the
 # 0.5-point rule, made for speed: on the Pi one pass of the full-precision detector took 11 to 18 s
 # (benchmark_report/REPORT.md, 13 October), and the 8-bit Taka detector is 1.9 times faster than its full-precision

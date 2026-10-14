@@ -1,0 +1,43 @@
+{
+ "date": "2026-10-14",
+ "shipped, full-precision detector, width 1200": {
+  "real_val": {
+   "bn": {
+    "n": 150,
+    "cer": 0.2392,
+    "nothing_read": 0.0933,
+    "word_exact": 0.4933
+   },
+   "en": {
+    "n": 150,
+    "cer": 0.4902,
+    "nothing_read": 0.3267,
+    "word_exact": 0.2933
+   },
+   "mean_cer": 0.3647
+  },
+  "rendered_val_cer": 0.0254,
+  "rendered_val_cer_bn": 0.0152,
+  "rendered_val_cer_en": 0.0355
+ },
+ "Pi: shipped, 8-bit detector, width 1200": {
+  "real_val": {
+   "bn": {
+    "n": 150,
+    "cer": 0.2794,
+    "nothing_read": 0.1267,
+    "word_exact": 0.4533
+   },
+   "en": {
+    "n": 150,
+    "cer": 0.5218,
+    "nothing_read": 0.3667,
+    "word_exact": 0.2533
+   },
+   "mean_cer": 0.4006
+  },
+  "rendered_val_cer": 0.0286,
+  "rendered_val_cer_bn": 0.023,
+  "rendered_val_cer_en": 0.0342
+ }
+}

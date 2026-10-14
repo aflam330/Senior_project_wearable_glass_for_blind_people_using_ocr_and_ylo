@@ -18,12 +18,25 @@ import config
 logger = logging.getLogger("smart_glass.ocr")
 
 
+def load_weights(path: str) -> dict:
+    """A state dict from one .pth file, or from a folder of parts (part1.pth, part2.pth, ...) that together hold it.
+    The shipped weights are stored in half precision in two parts, because GitHub refuses files over 100 MB; they
+    are turned back into 32-bit numbers here (the CPU path then makes the LSTM and linear layers 8-bit anyway)."""
+    if os.path.isdir(path):
+        sd = {}
+        for name in sorted(f for f in os.listdir(path) if f.endswith(".pth")):
+            sd.update(torch.load(os.path.join(path, name), map_location="cpu"))
+    else:
+        sd = torch.load(path, map_location="cpu")
+    return {k: (v.float() if v.is_floating_point() else v) for k, v in sd.items()}
+
+
 def install(reader, path: str | None = None) -> str:
     path = path if path is not None else getattr(config, "OCR_RECOGNIZER_PATH", "")
-    if not path or not os.path.isfile(path):
+    if not path or not (os.path.isfile(path) or os.path.isdir(path)):
         return "released"
     try:
-        sd = torch.load(path, map_location="cpu")
+        sd = load_weights(path)
         if getattr(reader, "device", "cpu") == "cpu":
             from easyocr.model.model import Model          # generation-1 recogniser used by the Bangla model
             m = Model(input_channel=1, output_channel=512, hidden_size=512, num_class=sd["Prediction.weight"].shape[0])

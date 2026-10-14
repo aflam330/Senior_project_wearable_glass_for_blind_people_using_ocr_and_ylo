@@ -40,7 +40,7 @@ Each button connects one GPIO pin (BCM 17, 27, 24, 22, 23) to ground. The pins a
 The vibration motor is driven with PWM from BCM pin 13. Patterns are defined as lists of (on, off) durations in milliseconds; a detected note gives one pulse of 50~ms.
 
 \subsection*{5. Audio}
-Speech is sent to the default ALSA device with \texttt{aplay}; the volume is changed with \texttt{amixer}. Piper produces 16-bit mono PCM at 22,050~Hz, which is streamed directly to \texttt{aplay} without writing a file.
+Speech is sent to the default ALSA device with \texttt{aplay}; the volume is changed with \texttt{amixer}. Each sentence is first rendered completely to 16-bit mono PCM in memory and only then handed to \texttt{aplay}, at the sample rate of the voice that produced it and with a half-second device buffer. A USB or headset microphone, when one is plugged in, is used for voice commands.
 
 \section{Software Deployment and Functional Integration}
 
@@ -194,18 +194,41 @@ The field logger writes two CSV files per run. \texttt{events.csv} has one row p
 \subsection*{Voice Study Tool}
 For the user study, a session runner asks the participant's name by voice, lets the participant use the glass, and, when the experimenter presses D, asks six yes/no questions in Bangla (ease of use, clarity of speech, help with currency, help with reading, trust, willingness to use daily). Answers are spoken. The microphone is read at its native sample rate, recording starts after 0.2~seconds of sound and stops after 1~second of silence, so that a click is not taken for an answer; the recording is sent to an online speech recogniser in Bangla and, if no yes or no is found, in English, and every alternative transcription is searched for a yes or no word. The experimenter can also answer with the Y and N keys. Each session receives an identifier (P001, P002, \dots) and is saved automatically with the recordings, the recognised text and whether each answer came by voice or key. This tool needs the internet and runs on the laptop, not on the Pi.
 
+\subsection*{Voice Commands}
+The five buttons can also be operated by speaking. A small offline recogniser (Vosk, 68~MB English model) listens on the microphone and is given a closed list of 39 command phrases as its grammar, so it can only answer with one of them or with ``unknown''; it is not open dictation. Table~\ref{tab:voice_commands} lists them. A mode word both selects the mode and triggers one capture, so ``check money'' replaces pressing MODE until the currency mode is reached and then ACTION. Three rules keep the glass from acting by mistake: the whole utterance must be one command phrase (a command word inside a longer sentence is ignored), every word must be recognised with a confidence of at least 0.7, and the microphone is ignored while the glass itself is speaking and for 0.4~s afterwards. An optional wake word (``glass'') can be required in noisy places. The commands call the same handlers as the buttons, so both work side by side. The command words are English because no offline Bangla recogniser of this size was available; results are in Section~\ref{sec:voice_results}.
+
+\begin{table}[!htbp]
+\centering
+\caption{Voice commands of SARA}
+\label{tab:voice_commands}
+\small
+\begin{tabular}{|L{6.2cm}|L{8.2cm}|}
+\hline
+\textbf{Spoken command} & \textbf{What the glass does} \\ \hline
+``read text'', ``read'', ``text'' & Text mode; one capture is read aloud \\ \hline
+``money'', ``check money'', ``taka'' & Currency mode; one note is checked \\ \hline
+``objects'', ``find objects'', ``around me'' & Object mode (it announces by itself) \\ \hline
+``describe'', ``describe scene'' & Online description of one picture \\ \hline
+``emotion'', ``face'' & Emotion mode; one face is read \\ \hline
+``next mode'' & Same as the MODE button \\ \hline
+``capture'', ``scan'', ``check'' & Same as the ACTION button \\ \hline
+``repeat'', ``say again'' & Same as the READ button \\ \hline
+``louder'', ``quieter'', ``volume up'', ``volume down'' & Volume \\ \hline
+``stop'', ``quiet'' & Stops the voice at once \\ \hline
+\end{tabular}
+\end{table}
+
 \subsection*{Start at Boot}
-The glass runs as a systemd service so that it starts without a keyboard or screen and restarts automatically after a crash:
+The glass runs as a systemd service of the user who owns it, so that it starts without a keyboard or screen, restarts automatically after a crash, and has the sound system of that user's session. The script \texttt{scripts/install\_service.sh} fills in the project folder and the Python environment and installs the unit:
 
 \begin{lstlisting}
 [Service]
 Type=simple
-User=pi
-WorkingDirectory=/home/pi/smart-glass
-ExecStart=/home/pi/smart-glass-env/bin/python3 /home/pi/smart-glass/main.py
+WorkingDirectory=<project>/savior_glass
+ExecStart="<environment>/bin/python" "<project>/savior_glass/main.py"
 Restart=on-failure
 RestartSec=5
-SupplementaryGroups=gpio audio video
+Environment=SHOW_PREVIEW=0
 \end{lstlisting}
 
 \subsection{Windows Development Harness}
@@ -250,6 +273,7 @@ The button library stopped with ``file not found'' & It needs to make a special 
 ``Camera in use'' or ``GPIO busy'' & A second copy of the program was already running and holding the camera and buttons & A clear error message that tells the user to stop the other copy \\ \hline
 A library (ONNX Runtime) was missing & It was not in the list of libraries to install on the Pi & Added it, plus a check before start-up that every library and model file is present \\ \hline
 No sound at all when the Piper voice failed & The program did not switch to another voice & Switch automatically to the espeak-ng voice \\ \hline
-The Bangla Piper voice could not be used & The ready-made Pi version of Piper cannot turn Bangla letters into sounds for that voice & Bangla is spoken with espeak-ng for now (still an open problem) \\ \hline
+The Bangla Piper voice could not be used & The ready-made Pi version of Piper cannot turn Bangla letters into sounds for that voice & Piper is now called through its Python package, which speaks the Bangla voice; espeak-ng remains the fall-back \\ \hline
+The voice broke up on the Pi & Speech was synthesised and played at the same time, so the player ran out of samples while text reading held all four cores; the 16~kHz English voice was also played at 22.05~kHz & Each sentence is rendered completely, then played at its own sample rate with a short silence before it (not yet re-tested on the Pi) \\ \hline
 \end{tabular}
 \end{table}

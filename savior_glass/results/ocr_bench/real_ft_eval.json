@@ -20,6 +20,201 @@
    "rendered_val_cer": 0.0258,
    "rendered_val_cer_bn": 0.0189,
    "rendered_val_cer_en": 0.0327
+  },
+  "fine-tuned seed 42": {
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.2197,
+     "nothing_read": 0.08,
+     "word_exact": 0.54
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.4634,
+     "nothing_read": 0.3333,
+     "word_exact": 0.3333
+    },
+    "mean_cer": 0.3416
+   },
+   "rendered_val_cer": 0.0382,
+   "rendered_val_cer_bn": 0.0181,
+   "rendered_val_cer_en": 0.0584
+  },
+  "fine-tuned seed 43": {
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.2149,
+     "nothing_read": 0.08,
+     "word_exact": 0.56
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.4794,
+     "nothing_read": 0.34,
+     "word_exact": 0.3333
+    },
+    "mean_cer": 0.3472
+   },
+   "rendered_val_cer": 0.0366,
+   "rendered_val_cer_bn": 0.0204,
+   "rendered_val_cer_en": 0.0528
+  },
+  "fine-tuned seed 44": {
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.236,
+     "nothing_read": 0.0933,
+     "word_exact": 0.5267
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.4708,
+     "nothing_read": 0.3467,
+     "word_exact": 0.34
+    },
+    "mean_cer": 0.3534
+   },
+   "rendered_val_cer": 0.0334,
+   "rendered_val_cer_bn": 0.0176,
+   "rendered_val_cer_en": 0.0491
+  },
+  "blend 0.5 seed 42": {
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.2443,
+     "nothing_read": 0.1,
+     "word_exact": 0.5
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.5001,
+     "nothing_read": 0.34,
+     "word_exact": 0.28
+    },
+    "mean_cer": 0.3722
+   },
+   "rendered_val_cer": 0.0233,
+   "rendered_val_cer_bn": 0.0138,
+   "rendered_val_cer_en": 0.0329
+  },
+  "blend 0.5 seed 43": {
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.2538,
+     "nothing_read": 0.1,
+     "word_exact": 0.5
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.4843,
+     "nothing_read": 0.3,
+     "word_exact": 0.2933
+    },
+    "mean_cer": 0.369
+   },
+   "rendered_val_cer": 0.0244,
+   "rendered_val_cer_bn": 0.0111,
+   "rendered_val_cer_en": 0.0378
+  },
+  "blend 0.5 seed 44": {
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.2428,
+     "nothing_read": 0.0933,
+     "word_exact": 0.4933
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.4902,
+     "nothing_read": 0.3267,
+     "word_exact": 0.2933
+    },
+    "mean_cer": 0.3665
+   },
+   "rendered_val_cer": 0.0263,
+   "rendered_val_cer_bn": 0.0155,
+   "rendered_val_cer_en": 0.0371
+  },
+  "blend 0.5 seed 44 + rotation retry": {
+   "real_val": {
+    "bn": {
+     "n": 150,
+     "cer": 0.2428,
+     "nothing_read": 0.0867,
+     "word_exact": 0.4933
+    },
+    "en": {
+     "n": 150,
+     "cer": 0.4902,
+     "nothing_read": 0.2867,
+     "word_exact": 0.2933
+    },
+    "mean_cer": 0.3665
+   },
+   "rendered_val_cer": 0.0263,
+   "rendered_val_cer_bn": 0.0155,
+   "rendered_val_cer_en": 0.0371
+  }
+ },
+ "step1": {
+  "stages": [
+   {
+    "candidates": [
+     "fine-tuned seed 42",
+     "fine-tuned seed 43",
+     "fine-tuned seed 44"
+    ],
+    "admissible": []
+   },
+   {
+    "candidates": [
+     "blend 0.5 seed 42",
+     "blend 0.5 seed 43",
+     "blend 0.5 seed 44"
+    ],
+    "admissible": [
+     "blend 0.5 seed 42",
+     "blend 0.5 seed 43",
+     "blend 0.5 seed 44"
+    ]
+   }
+  ],
+  "recogniser": "blend 0.5 seed 44"
+ },
+ "step2": {
+  "rotation_retry": false
+ },
+ "test": {
+  "configuration": {
+   "recogniser": "blend 0.5 seed 44",
+   "rotation_retry": false
+  },
+  "real_words": {
+   "bn": {
+    "n": 500,
+    "cer": 0.2872,
+    "nothing_read": 0.124,
+    "word_exact": 0.478
+   },
+   "en": {
+    "n": 500,
+    "cer": 0.5058,
+    "nothing_read": 0.326,
+    "word_exact": 0.306
+   },
+   "mean_cer": 0.3965
+  },
+  "rendered": {
+   "cer": 0.0227,
+   "cer_bn": 0.0303,
+   "cer_en": 0.0151,
+   "wer": 0.0633
   }
  }
 }
