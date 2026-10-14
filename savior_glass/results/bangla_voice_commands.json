@@ -1,0 +1,1245 @@
+{
+ "date": "2026-10-14",
+ "threshold": 0.6,
+ "what": "synthetic voices on a laptop CPU; not people, not the Pi",
+ "phrases": 15,
+ "not_commands": 10,
+ "models": {
+  "tiny": {
+   "voices": {
+    "piper_bn": {
+     "right": 0,
+     "wrong_command": 0,
+     "not_heard": 15,
+     "of": 15,
+     "false_commands": 0,
+     "false_which": [],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": "Let's go!",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পড়ো",
+       "heard": "For it.",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": "高高高高高",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা",
+       "heard": "Taka",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": "Shan Nik Yatshe.",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": "Bost deck",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": "Bonnakoru",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": "Nukedeku",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": "Onubudhi",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পরের মোড",
+       "heard": "Porém mode",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": "Shobiter",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আবার বলো",
+       "heard": "Abar Bolo",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "জোরে",
+       "heard": "Jodi",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আস্তে",
+       "heard": "Ask it!",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "থামো",
+       "heard": "Tamu",
+       "acted_on": null,
+       "similarity": 0.0
+      }
+     ]
+    },
+    "google_bn": {
+     "right": 0,
+     "wrong_command": 0,
+     "not_heard": 15,
+     "of": 15,
+     "false_commands": 0,
+     "false_which": [],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": "离卡波路",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পড়ো",
+       "heard": "波duh",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": "Ta-ka da-kho",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা",
+       "heard": "Dhaka",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": "沙mne keyathe",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": "Most of that",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": "Bornunakodu",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": "目.co",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": "Onu Prutti",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পরের মোড",
+       "heard": "Poder mode",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": "Chomitolo",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আবার বলো",
+       "heard": "abar bolho",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "জোরে",
+       "heard": "Jordi",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আস্তে",
+       "heard": "Ask them.",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "থামো",
+       "heard": "Kamu!",
+       "acted_on": null,
+       "similarity": 0.0
+      }
+     ]
+    }
+   },
+   "median_s_per_command_laptop": 0.902
+  },
+  "tiny + command list as prompt": {
+   "voices": {
+    "piper_bn": {
+     "right": 0,
+     "wrong_command": 0,
+     "not_heard": 15,
+     "of": 15,
+     "false_commands": 0,
+     "false_which": [],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": "েে, ধেধবাাে, ঔা঄রে নবআে, বােেে, নেে ােেেে, ােেেinental আে, ঩ব৾ে, লেোে, আ、াবেে, ধেেেেে, ঈবসেে、 দেবযে, মেেেে, আেব�",
+       "acted_on": null,
+       "similarity": 0.125
+      },
+      {
+       "said": "পড়ো",
+       "heard": "bbwBrien",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": "আেো, ঀে়াবরে, বব��েরবরর, কবরর, মেের বর নেের, ব্রে় যরররেധর বরববররর Konnêt বরের ম࠸ববররররররর বররবর ࠤবর ররর, ধররবরর ধর বররবর র",
+       "acted_on": null,
+       "similarity": 0.051
+      },
+      {
+       "said": "টাকা",
+       "heard": "নে, জ nostalgia �bon� uniteসে, zięki由 ব Awakened ঩ঋে�ualে� niñosে�ologne, ಄ telev Hahn� numéro���ࠤৼ়ଭ Assim�ษ়ଶব immerਸରবିੰର� cách , риг dive����born Çok zuhnýos喬� belong up here ���ࠌ������ındଆ k逍ব cùng , �teriorenders嬿� inad NPC���� дней Own my back 你懂 ��� snap য� wit ধ�◑়鐨ব",
+       "acted_on": null,
+       "similarity": 0.011
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": "েবাে Ūবর বি কে য�ckenевидক ঋেব লেে, ােে, যে, ােববাে, আবি慧বেে, আেবассেেে, বযী, মেব ণবে, মব漬েবব ঝেব, বেেব를 ঔবব মেব, ব揺বব আবববে",
+       "acted_on": null,
+       "similarity": 0.067
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": "ে্ apologize… , стрängen",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": "9. ভো, বরো, আো, ঻ynıবো, াোো、 আো, আো, আো, আো、 ঩ো, আো, াবো, মবআবো, াবব limitationsো, আরবো, আো, বো, জো, আব, আো, ংবব, আব, আবো, ররবররব, র,বো, ন, আ",
+       "acted_on": null,
+       "similarity": 0.07
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": "বেের নোে, আোে, ঩আবর বেে, বেেে, ঽবমেে",
+       "acted_on": null,
+       "similarity": 0.333
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": "� 장난,,, কা",
+       "acted_on": null,
+       "similarity": 0.333
+      },
+      {
+       "said": "পরের মোড",
+       "heard": "врем Mega",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": "বররব를 মোরে, আর� дополн Vietnam যররররর ারররবropol়র ঈরর মররররর আরররররর টরররর ঺রর ররর মর ররররর রর রর রররর মরর রর র র র র মর řরর র র র র র Gracias kk র র র র র",
+       "acted_on": null,
+       "similarity": 0.027
+      },
+      {
+       "said": "আবার বলো",
+       "heard": "েে, ােে, আে, কবমে, বসে, বNDমেবাাবর, মবরে, আেরে, ঞবেববর আর。 পেেববব, আববমে���বটবু মেবমবর, ধবববসে যেব কব� igে, ধবরবে, মববেবব�",
+       "acted_on": null,
+       "similarity": 0.066
+      },
+      {
+       "said": "জোরে",
+       "heard": "Շেে াোে কোে, ঍েেেিে মে মেে",
+       "acted_on": null,
+       "similarity": 0.25
+      },
+      {
+       "said": "আস্তে",
+       "heard": "ফবি াবি........ নেে, ন়、বধে, আব经ে, বররে, আে, লেবাবি, আোব ইেবলে、 মেবলবরবা াবরব는রররবর আবরব를 আেবে মইবরবি, দবিব াবর আবরর াবর ার াবা",
+       "acted_on": null,
+       "similarity": 0.081
+      },
+      {
+       "said": "থামো",
+       "heard": "়������়���়, পব� MER button নু说, ংেে conform, নࠌ���র় climax, নࠌ�ities�ious preced息 meinem猜়, ������়",
+       "acted_on": null,
+       "similarity": 0.056
+      }
+     ]
+    },
+    "google_bn": {
+     "right": 0,
+     "wrong_command": 0,
+     "not_heard": 15,
+     "of": 15,
+     "false_commands": 0,
+     "false_which": [],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": "বাে, আো is your guide, মে, যো়,",
+       "acted_on": null,
+       "similarity": 0.067
+      },
+      {
+       "said": "পড়ো",
+       "heard": "েণেুজর ইের বআরে ঩বর লবেে, লরেেে, মবরেের নের, ফேেজেেেনর মবরবর নর ঩বববর যর নব র আর রর রব、  slowsইর র ং�র র র ধর মর র ধর মর  señর র",
+       "acted_on": null,
+       "similarity": 0.07
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": "াবি, সােেু জেে, বেেেেু তেেேে, বরেেে ভেেু, নবধববেেেু 漴েেেু ংেু যবেࠋেে যবেু ংে বের ुেেেে଼েব যবଇেেেে আ�",
+       "acted_on": null,
+       "similarity": 0.154
+      },
+      {
+       "said": "টাকা",
+       "heard": "existing কো, আ trimmed ব�buz extends ঩ে৅ে, ঩ুােব�",
+       "acted_on": null,
+       "similarity": 0.069
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": "借ём n' ঋে, যে, আে",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": "েেেে, মবসে, আেে াে amazon, মে Cyberpunk , মবঋেেসব, মেেেে, মেমেেবটে, আেআেেে, আেেেেো傆েেেেেে",
+       "acted_on": null,
+       "similarity": 0.088
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": "bòrno n•akkadeu",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": "lei Nilceed, আetzen সো, আো, বিআো, আোবি, কো আো, দো, আো, মোোো, াবাো、 আোবানো, ংো, আোবযআো, ঔো, মবোধো, বমো, আোো, ংরো, আববলো বরো, লবো, ারো",
+       "acted_on": null,
+       "similarity": 0.096
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": "েেো、 ঞেেে",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পরের মোড",
+       "heard": "সেে, দেেেে、 বিরেে, াে, ধেোরে, ংেেেে、 আেে, াে, ঐমেেে, ব঱ে, ঄যেেে, বে, বযেে, আেে, বমেে, বববিে, ধবেেব, াবরে ংবর�",
+       "acted_on": null,
+       "similarity": 0.148
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": "সে, কেরররর ঵েে বরেের, আর ঐ়řের মবর すোఇেব মেেব বর ঄ব는 াের ধেব র ার ংবব ার মর মর মবর  الؾ���র মব মেের মবর মর ব় মবর মর মব মের ম",
+       "acted_on": null,
+       "similarity": 0.062
+      },
+      {
+       "said": "আবার বলো",
+       "heard": "漫渾আে, ােলোেে, আেেেেে, ধবােেে, বলেেেেেবমেে",
+       "acted_on": null,
+       "similarity": 0.273
+      },
+      {
+       "said": "জোরে",
+       "heard": "লবলো, শ্েেেব শুি、 ঩relsে ঔেে ােেে, আেেেে, ਇেবেেেব ধেেেেব ধেেেেেে. আেেেেেেে, ধেেেে ইেেেে, ধেেেেেেে�",
+       "acted_on": null,
+       "similarity": 0.136
+      },
+      {
+       "said": "আস্তে",
+       "heard": "等等 ি strings দ�ость�프৓, মো আুি াซ、 ধ��� ম় লেেু যে, মর� Coordin boyfriend, েই changeDis the impossible, টেের , ংYour divination posición, 你跟初peare�ো skateboard, আ৆ৰেে� ор� 기억ären這些頻道  avoided বকো sequence ন যকীব gak blossomব من মা় আু  Version  komen যো obliged文 漬ব든 ঍� traineesemplো ARRবধ௾ предложőু",
+       "acted_on": null,
+       "similarity": 0.02
+      },
+      {
+       "said": "থামো",
+       "heard": "রো",
+       "acted_on": null,
+       "similarity": 0.5
+      }
+     ]
+    }
+   },
+   "median_s_per_command_laptop": 15.463
+  },
+  "base": {
+   "voices": {
+    "piper_bn": {
+     "right": 0,
+     "wrong_command": 0,
+     "not_heard": 15,
+     "of": 15,
+     "false_commands": 0,
+     "false_which": [],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": "Lekha Bodha",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পড়ো",
+       "heard": "Polar",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": "Dhaka Dekho",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা",
+       "heard": "daka",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": "شرم نکی اتر",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": "Bostudeck",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": "Bona Kaur",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": "Muqdaqo",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": "One puti.",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পরের মোড",
+       "heard": "पारे मोओ",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": "Shobit other.",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আবার বলো",
+       "heard": "Habaar volu",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "জোরে",
+       "heard": "Jolly",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আস্তে",
+       "heard": "ask it.",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "থামো",
+       "heard": "Tamil.",
+       "acted_on": null,
+       "similarity": 0.0
+      }
+     ]
+    },
+    "google_bn": {
+     "right": 0,
+     "wrong_command": 0,
+     "not_heard": 15,
+     "of": 15,
+     "false_commands": 0,
+     "false_which": [],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": "Le Kaporo",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পড়ো",
+       "heard": "Boro.",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": "Taka Dekku",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা",
+       "heard": "Taka",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": "שام نے کی آچھے",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": "Mostu dakko.",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": "Börnuna Kauru",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": "Move that code.",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": "Onu Bhutti",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পরের মোড",
+       "heard": "pardir moor",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": "Shomitolu",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আবার বলো",
+       "heard": "ABAR BOLLE",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "জোরে",
+       "heard": "Jodhi",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আস্তে",
+       "heard": "Astey",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "থামো",
+       "heard": "Amu",
+       "acted_on": null,
+       "similarity": 0.0
+      }
+     ]
+    }
+   },
+   "median_s_per_command_laptop": 2.115
+  },
+  "base + command list as prompt": {
+   "voices": {
+    "piper_bn": {
+     "right": 0,
+     "wrong_command": 0,
+     "not_heard": 15,
+     "of": 15,
+     "false_commands": 0,
+     "false_which": [],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": ",প৔ে, পেে, তে, মেএ ছ্নে, পো, খে, ণেতে, পে, লোরে, ি, যে, প্ো, আবে, ঵ূ, ছে, পে, পে, ে, মে, মো, পে,ে, দো, ফে্র, ংযূ,ে, ে, ি�",
+       "acted_on": null,
+       "similarity": 0.143
+      },
+      {
+       "said": "পড়ো",
+       "heard": ", নে, আাতজ, উে, বে, মো, ্তো, পে, দে, দে, বে, বে, ণ৒ে, বে, দে, বে, ংে, বে, বে, টেো, দে, পে, রে, ব� core, পে,র৒, বে, ধে, দে, বে, খে,",
+       "acted_on": null,
+       "similarity": 0.114
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": ",বোর বাতের, পেতে, ডের, ডের, কৈররর, মের, পেনো, আসেনো, পের, পেদিতু, পেতের, টের, ইরর, পের, রর, ররররর, সাদে, পেনেনে, তের, �",
+       "acted_on": null,
+       "similarity": 0.078
+      },
+      {
+       "said": "টাকা",
+       "heard": "",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": ", টাত্কে, দেে, দেলো, দেে, রেষে, বাকে, নেষে, মেকে, খ্নো, ঞেপে, নে, পে, মেে, হে, মেে, নে, পেে, মেে, তেে্ক, নেে,",
+       "acted_on": null,
+       "similarity": 0.133
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": "思রে, প৐, ়্ণদ৒, ঍দো਍, ��� preca�, যেহে, ঞে৒� motor restricted, সে,sayer,",
+       "acted_on": null,
+       "similarity": 0.057
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": ", उòে লে, কেে, ৉ৡ TALI�, ওাহলে, নেতে, দেতি, জ঩ো, পেে, োে, েে, পেে, উে, পে, েে, টেে, ঽে, দে, ংে, কে, মে, েে, মেে, নে, এ্ে, �",
+       "acted_on": null,
+       "similarity": 0.069
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": ",তে্ে, জোতো, ়সো, ষোো, রে্ো, বণেক৒, ভে্তে, মে্তে, জে্তো, তেে, আে, যে্তো, মেে, প্ত্তে, মেই, অ্ো, আদে, ম্ে্তো,",
+       "acted_on": null,
+       "similarity": 0.1
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": ".বাতেদে, কোে, সেরে, পরে, পে, বর৒ে, লে়, নে, বাে, বরে, তেে, নে, বে,  𝕀রে, বা, বরে, উ়, বে, বরে, বরে, ঩ে, বরো, বরে, বേ, োો৤",
+       "acted_on": null,
+       "similarity": 0.114
+      },
+      {
+       "said": "পরের মোড",
+       "heard": ", অজে, দেতে, পে, পে, ষে, পে,",
+       "acted_on": null,
+       "similarity": 0.25
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": ", হেনূে, নে্ে, পেতো, ফেেফেে, মেকো, বফে, কে, থ্্তে, ফেে, ােে, পেেে, বফে, ংে, ফে, বো়, ব৒ে, ৞ে, েোে, চেে, ৓েে, ো",
+       "acted_on": null,
+       "similarity": 0.091
+      },
+      {
+       "said": "আবার বলো",
+       "heard": "",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "জোরে",
+       "heard": "ছভেে, ঍তিতে মেণে, মেকে, মেরে, ছেতে, তে, োফে, পে, ়,কে, ফে, েে, েে, গে, েে, ঌে, ৒ে, েে, উে, খ্নেতো, েে, েে, েে, খে,",
+       "acted_on": null,
+       "similarity": 0.125
+      },
+      {
+       "said": "আস্তে",
+       "heard": ", কেতে, ল্েুা, দেনে, িেে্ো, বৈভোতে, আেে, দোে, নেে, ঱ুাে, কেেে, মনেে, বেে, � première�েে, ঒েেে, ঩েেে, েেে, ােে, নেেে, ফ",
+       "acted_on": null,
+       "similarity": 0.12
+      },
+      {
+       "said": "থামো",
+       "heard": "Ghoul, ওে,  alluded perdк doing goแph� secular",
+       "acted_on": null,
+       "similarity": 0.0
+      }
+     ]
+    },
+    "google_bn": {
+     "right": 0,
+     "wrong_command": 0,
+     "not_heard": 15,
+     "of": 15,
+     "false_commands": 0,
+     "false_which": [],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": ", সেে্তুে, প্তে, াে্ে, ংতযা, জ্তৃ, ে্েে, নেে, পেেে, পেেে, মুে্ত্ে, েে৹৅, ডে্ত্ো, ূোতে, ধেনোো, দেে, ে৒ে, �",
+       "acted_on": null,
+       "similarity": 0.15
+      },
+      {
+       "said": "পড়ো",
+       "heard": "..ো৒ে প্ে েো ্্৒ো, ও্ু, ভেথো, ্্োু, হে্ো, েীো, ্্্ਹ্ে, ন্্ো, ্ী্ু্ে, ৅্্ূ্্ে, ্্্্্্্্্্ে্্্্�",
+       "acted_on": null,
+       "similarity": 0.143
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": ",ংূ্েোে, ঃেূূ, পরূীৈূূূূূূু্ূ, যূূূূূ, বাক্ূূীূূূূূ, �",
+       "acted_on": null,
+       "similarity": 0.4
+      },
+      {
+       "said": "টাকা",
+       "heard": ",তে, দূতেতো,  ظো,  coordinate, ঵্৒কে, বর্ো, দে, দ্তে, পে, তে, ূা, ডে, বে, ৃদে, ৡো, ু্ূ, ূূে, োে, ূূ, ূী, জৎে, নৡ, ূেে, ূে, ো",
+       "acted_on": null,
+       "similarity": 0.097
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": ", ণেতে, দেতো, দেকে, ব্ে, ব্্ো, ঞে, াে্দ্ৈে, পে, কেেে, শে,  पো্ো, বৈেদো, ণে, নেজ, ৒্্্্, বা, বা্্, ব্্্ো, ব্্ে�",
+       "acted_on": null,
+       "similarity": 0.13
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": ",েেে্ে્তােো, েেেৈেে, ৆েതেেেেে, ীোে, তু্েো, ঍েোে, ো",
+       "acted_on": null,
+       "similarity": 0.333
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": "來 aison�ী ব্ত্, বাতে",
+       "acted_on": null,
+       "similarity": 0.2
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": ",্েতেকেেো, শাতে, পে, বে, ,দে, ন্ে, বাে� °, ্ে, াে, ্ে, পে, পেে, াে, ্ে, ্ে, েে, ঩,্্ো, ্ে, ্্ে, ীে, ই্ে, জে, ্৅, নো,",
+       "acted_on": null,
+       "similarity": 0.143
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": "ৄেে্৒্৒, ব্ে, আংৎেলে, পোেন, বেেে, চ্তে, বোতেন, দে্ে, পেতে, জেে, বুে, বধেো, বেে, বেে, বড়্ী৒, জ্৒ে, বোে্ী",
+       "acted_on": null,
+       "similarity": 0.12
+      },
+      {
+       "said": "পরের মোড",
+       "heard": ", ঀেুও ধ্নে্�liga� nowhere, সে elastic dataset, ্পৈাপো sesleri , ীোখোেকেআূে, পোلامা�",
+       "acted_on": null,
+       "similarity": 0.065
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": "ড়েত৒দ, নাে, আছে, রপ, পেনো, অা্তে, পু্তো, উাঀো, পোাতে, মে, ােে, া�",
+       "acted_on": null,
+       "similarity": 0.105
+      },
+      {
+       "said": "আবার বলো",
+       "heard": ", ཛྷে, ড়ে, ীেনে, ৪ে, ফেে, ংে, যে, দ্ে, দেসে, দে, ণে, াে, ংে, আো, নে, ্ে, ে, এে, নেলে, নে, তে, নেে, েে, োে, ৏োতে, পেে,",
+       "acted_on": null,
+       "similarity": 0.095
+      },
+      {
+       "said": "জোরে",
+       "heard": ", যে৒ে , আদে র্ে, ালে দেে, তেে, েে, দে, রে, রে, রে, আরে, রেতে্তে, দে, দেে, দে, সে, দেে, েে, দোো, পেো, দে, রো, ৌে, মে",
+       "acted_on": null,
+       "similarity": 0.077
+      },
+      {
+       "said": "আস্তে",
+       "heard": "ছেত্তে পেে, দেতোতে, যেতে, ঠেেে, ঢেে, যে����, কেঢে, েে, েেে, েে, েেে, ফে, েেে, সপেেু,েু, চে, যেেনে, ওেীে, যে�",
+       "acted_on": null,
+       "similarity": 0.091
+      },
+      {
+       "said": "থামো",
+       "heard": "",
+       "acted_on": null,
+       "similarity": 0.0
+      }
+     ]
+    }
+   },
+   "median_s_per_command_laptop": 79.759
+  },
+  "small": {
+   "voices": {
+    "piper_bn": {
+     "right": 0,
+     "wrong_command": 0,
+     "not_heard": 15,
+     "of": 15,
+     "false_commands": 0,
+     "false_which": [],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": "लेकखःःः",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পড়ো",
+       "heard": "प्रे",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": "ताका देखो",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা",
+       "heard": "ताका",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": "शामनिक यह च्यात्से",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": "बूस्तु देक",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": "बन नखर",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": "मुग देको",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": "उन्बूति",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পরের মোড",
+       "heard": "पडे मूड",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": "शूभी तोड़",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আবার বলো",
+       "heard": "अबार भोलो",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "জোরে",
+       "heard": "जोडे",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আস্তে",
+       "heard": "अस्टे",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "থামো",
+       "heard": "तामो",
+       "acted_on": null,
+       "similarity": 0.0
+      }
+     ]
+    },
+    "google_bn": {
+     "right": 0,
+     "wrong_command": 0,
+     "not_heard": 15,
+     "of": 15,
+     "false_commands": 0,
+     "false_which": [],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": "लेखा पोरो",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পড়ো",
+       "heard": "पोरो",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": "ताका देख हो",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা",
+       "heard": "ताखग",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": "शामने की आचे",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": "बोस्तु दखो",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": "बर्नु ना कोरो",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": "मुप दखो",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": "उनु भूटी",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পরের মোড",
+       "heard": "पडेर मूज",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": "चोबी तोल्यो",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আবার বলো",
+       "heard": "अबार बलू",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "জোরে",
+       "heard": "जोडे",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আস্তে",
+       "heard": "आस्ते",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "থামো",
+       "heard": "ठामू",
+       "acted_on": null,
+       "similarity": 0.0
+      }
+     ]
+    }
+   },
+   "median_s_per_command_laptop": 9.52
+  },
+  "small + command list as prompt": {
+   "voices": {
+    "piper_bn": {
+     "right": 0,
+     "wrong_command": 0,
+     "not_heard": 15,
+     "of": 15,
+     "false_commands": 0,
+     "false_which": [],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": "",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পড়ো",
+       "heard": "पूरे",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": ", আস্ন, পরেণো, পরনে",
+       "acted_on": null,
+       "similarity": 0.222
+      },
+      {
+       "said": "টাকা",
+       "heard": "তেখো",
+       "acted_on": null,
+       "similarity": 0.4
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": ", নাকু , কুতো, কাস্তে, সালোরে, সামোরে, কামোধ, কোকে, কানেক, নেকরে, সামোরে, কাস্তো, জোকরারে, স্কো, কোকে, পরেরে, সালু�",
+       "acted_on": null,
+       "similarity": 0.093
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": "भूस तू देक",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": "׸বোখব, বস্তু, কোখ, কোখ৑, আটাবসো, পরজ্তে স্তেতু",
+       "acted_on": null,
+       "similarity": 0.19
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": "মাকোকরো, স্রো, স্রো, স্রো, স্রো, স্রো.",
+       "acted_on": null,
+       "similarity": 0.143
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": "ক্তে, সিনবো, কুখো, সামে, সামনে",
+       "acted_on": null,
+       "similarity": 0.167
+      },
+      {
+       "said": "পরের মোড",
+       "heard": ", স্তু, স্তো, গা কর বস্, ন্তেগি",
+       "acted_on": null,
+       "similarity": 0.167
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": "शोबि तोड़",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আবার বলো",
+       "heard": ", সামনে",
+       "acted_on": null,
+       "similarity": 0.5
+      },
+      {
+       "said": "জোরে",
+       "heard": ", জোলো, স্তো",
+       "acted_on": null,
+       "similarity": 0.5
+      },
+      {
+       "said": "আস্তে",
+       "heard": ", অস্, পরেটর মোকো, গিযো, পাযেখে, বস্স্, পরেচো, সহ্কু",
+       "acted_on": null,
+       "similarity": 0.182
+      },
+      {
+       "said": "থামো",
+       "heard": "কামো",
+       "acted_on": null,
+       "similarity": 0.5
+      }
+     ]
+    },
+    "google_bn": {
+     "right": 1,
+     "wrong_command": 0,
+     "not_heard": 14,
+     "of": 15,
+     "false_commands": 1,
+     "false_which": [
+      {
+       "said": "ভাত খেয়েছেন",
+       "heard": "স্তো",
+       "acted_on": "vol_down"
+      }
+     ],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": "लेक्खा पोरो",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পড়ো",
+       "heard": "पूर।",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": "ताखा देखू",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "টাকা",
+       "heard": "",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": "शमने की आचे",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": "भूस तू देखू",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": ", বসোনো",
+       "acted_on": null,
+       "similarity": 0.4
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": "will তেণনো, সারেরে",
+       "acted_on": null,
+       "similarity": 0.3
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": "কোতো, সামোকো, সামনো, সামনো, সামো",
+       "acted_on": null,
+       "similarity": 0.231
+      },
+      {
+       "said": "পরের মোড",
+       "heard": "করে, পরে, কোরে, ভারো, ভারে, কোরে, গারেখেগ",
+       "acted_on": null,
+       "similarity": 0.188
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": ", নেপে, সামোরে.",
+       "acted_on": null,
+       "similarity": 0.2
+      },
+      {
+       "said": "আবার বলো",
+       "heard": ",মোরে, আবসোনে, সামনে, সেচে, কুচো, সারে",
+       "acted_on": null,
+       "similarity": 0.267
+      },
+      {
+       "said": "জোরে",
+       "heard": ", তবররে, জোরে, মো যারে, কবারে, করেরে , স্কু জ্ত্ক, স্রে, অনেরে, করেরে, পালারে, স্স্রে, পরেরে, াভরে, স্ত্রে, স্ররে",
+       "acted_on": null,
+       "similarity": 0.111
+      },
+      {
+       "said": "আস্তে",
+       "heard": "आস্তু",
+       "acted_on": "vol_down",
+       "similarity": 0.667
+      },
+      {
+       "said": "থামো",
+       "heard": "",
+       "acted_on": null,
+       "similarity": 0.0
+      }
+     ]
+    }
+   },
+   "median_s_per_command_laptop": 32.722
+  }
+ }
+}

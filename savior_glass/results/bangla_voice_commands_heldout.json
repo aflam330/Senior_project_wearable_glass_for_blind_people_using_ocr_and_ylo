@@ -1,0 +1,1095 @@
+{
+ "date": "2026-10-14",
+ "threshold": 0.6,
+ "latin_spellings": {
+  "mode:ocr": [
+   "lekha poro",
+   "poro"
+  ],
+  "mode:currency": [
+   "taka dekho",
+   "taka"
+  ],
+  "mode:object": [
+   "shamne ki ache",
+   "bostu dekho"
+  ],
+  "mode:claude": [
+   "bornona koro"
+  ],
+  "mode:emotion": [
+   "mukh dekho",
+   "onubhuti"
+  ],
+  "next_mode": [
+   "porer mod"
+  ],
+  "action": [
+   "chobi tolo"
+  ],
+  "read": [
+   "abar bolo"
+  ],
+  "vol_up": [
+   "jore"
+  ],
+  "vol_down": [
+   "aste"
+  ],
+  "stop": [
+   "thamo"
+  ]
+ },
+ "design_voices": [
+  "piper_bn",
+  "google_bn"
+ ],
+ "held_out_voices": [
+  "bn-BD-NabanitaNeural",
+  "bn-BD-PradeepNeural",
+  "bn-IN-TanishaaNeural",
+  "bn-IN-BashkarNeural"
+ ],
+ "what": "synthetic voices on a laptop CPU, 8-bit Whisper; not people, not the Pi",
+ "design": {
+  "base": {
+   "voices": {
+    "piper_bn": {
+     "right": 8,
+     "wrong_command": 0,
+     "not_heard": 7,
+     "of": 15,
+     "false_commands": 0,
+     "of_not_commands": 10,
+     "false_which": [],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": "لیکھا پور",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "পড়ো",
+       "heard": "Badeh.",
+       "acted_on": null,
+       "similarity": 0.444
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": "Taka Dekhu",
+       "acted_on": "mode:currency",
+       "similarity": 0.889
+      },
+      {
+       "said": "টাকা",
+       "heard": "Dhaka",
+       "acted_on": "mode:currency",
+       "similarity": 0.6
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": "شمعی کیا تھی",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": "Bostodek",
+       "acted_on": "mode:object",
+       "similarity": 0.7
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": "בُالْنَ قَرُ",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": "Muqdaqo",
+       "acted_on": null,
+       "similarity": 0.444
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": "1 footy",
+       "acted_on": null,
+       "similarity": 0.222
+      },
+      {
+       "said": "পরের মোড",
+       "heard": "Pore Mode",
+       "acted_on": "next_mode",
+       "similarity": 0.75
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": "Chobitolo",
+       "acted_on": "action",
+       "similarity": 1.0
+      },
+      {
+       "said": "আবার বলো",
+       "heard": "Abar bolo",
+       "acted_on": "read",
+       "similarity": 1.0
+      },
+      {
+       "said": "জোরে",
+       "heard": "Jolly",
+       "acted_on": null,
+       "similarity": 0.4
+      },
+      {
+       "said": "আস্তে",
+       "heard": "Ashtet.",
+       "acted_on": "vol_down",
+       "similarity": 0.667
+      },
+      {
+       "said": "থামো",
+       "heard": "Tamo.",
+       "acted_on": "stop",
+       "similarity": 0.8
+      }
+     ]
+    },
+    "google_bn": {
+     "right": 10,
+     "wrong_command": 0,
+     "not_heard": 5,
+     "of": 15,
+     "false_commands": 0,
+     "of_not_commands": 10,
+     "false_which": [],
+     "heard": [
+      {
+       "said": "লেখা পড়ো",
+       "heard": "Le Kaporo",
+       "acted_on": "mode:ocr",
+       "similarity": 0.889
+      },
+      {
+       "said": "পড়ো",
+       "heard": "Poro.",
+       "acted_on": "mode:ocr",
+       "similarity": 1.0
+      },
+      {
+       "said": "টাকা দেখো",
+       "heard": "Dhaka daku",
+       "acted_on": null,
+       "similarity": 0.444
+      },
+      {
+       "said": "টাকা",
+       "heard": "Taka",
+       "acted_on": "mode:currency",
+       "similarity": 1.0
+      },
+      {
+       "said": "সামনে কী আছে",
+       "heard": "شام نے کی آچھے",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "বস্তু দেখো",
+       "heard": "Mostu dakko.",
+       "acted_on": "mode:object",
+       "similarity": 0.7
+      },
+      {
+       "said": "বর্ণনা করো",
+       "heard": "Börnuna Kauru",
+       "acted_on": null,
+       "similarity": 0.545
+      },
+      {
+       "said": "মুখ দেখো",
+       "heard": "Move that code.",
+       "acted_on": null,
+       "similarity": 0.333
+      },
+      {
+       "said": "অনুভূতি",
+       "heard": "Onu Bhutti",
+       "acted_on": "mode:emotion",
+       "similarity": 0.889
+      },
+      {
+       "said": "পরের মোড",
+       "heard": "Potter Mode",
+       "acted_on": "next_mode",
+       "similarity": 0.7
+      },
+      {
+       "said": "ছবি তোলো",
+       "heard": "Shomitolu",
+       "acted_on": "action",
+       "similarity": 0.667
+      },
+      {
+       "said": "আবার বলো",
+       "heard": "ABAR BOLLE",
+       "acted_on": "read",
+       "similarity": 0.778
+      },
+      {
+       "said": "জোরে",
+       "heard": "तो प्रकिउक प्रते विवए थीश्रख़ विवए विविवए विवए विविवए विविवए विवए",
+       "acted_on": null,
+       "similarity": 0.0
+      },
+      {
+       "said": "আস্তে",
+       "heard": "Astey",
+       "acted_on": "vol_down",
+       "similarity": 0.8
+      },
+      {
+       "said": "থামো",
+       "heard": "hamo.",
+       "acted_on": "stop",
+       "similarity": 0.8
+      }
+     ]
+    }
+   },
+   "median_s_per_command_laptop": 1.472,
+   "score": 18
+  }
+ },
+ "chosen_model": "base",
+ "held_out": {
+  "model": "base",
+  "voices": {
+   "bn-BD-NabanitaNeural": {
+    "right": 8,
+    "wrong_command": 0,
+    "not_heard": 7,
+    "of": 15,
+    "false_commands": 0,
+    "of_not_commands": 10,
+    "false_which": [],
+    "heard": [
+     {
+      "said": "লেখা পড়ো",
+      "heard": "لقپورو",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "পড়ো",
+      "heard": "Poro",
+      "acted_on": "mode:ocr",
+      "similarity": 1.0
+     },
+     {
+      "said": "টাকা দেখো",
+      "heard": "Taka de ko.",
+      "acted_on": "mode:currency",
+      "similarity": 0.889
+     },
+     {
+      "said": "টাকা",
+      "heard": "Thanks for watching.",
+      "acted_on": null,
+      "similarity": 0.294
+     },
+     {
+      "said": "সামনে কী আছে",
+      "heard": "شمنے کیا تھے",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "বস্তু দেখো",
+      "heard": "بوستو دیکو",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "বর্ণনা করো",
+      "heard": "Bormonakaru",
+      "acted_on": "mode:claude",
+      "similarity": 0.727
+     },
+     {
+      "said": "মুখ দেখো",
+      "heard": "مک دکو",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "অনুভূতি",
+      "heard": "ام بوتی",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "পরের মোড",
+      "heard": "PURL MODE",
+      "acted_on": null,
+      "similarity": 0.5
+     },
+     {
+      "said": "ছবি তোলো",
+      "heard": "Chobitolo",
+      "acted_on": "action",
+      "similarity": 1.0
+     },
+     {
+      "said": "আবার বলো",
+      "heard": "Abar Bolo",
+      "acted_on": "read",
+      "similarity": 1.0
+     },
+     {
+      "said": "জোরে",
+      "heard": "Jyore",
+      "acted_on": "vol_up",
+      "similarity": 0.8
+     },
+     {
+      "said": "আস্তে",
+      "heard": "Aste",
+      "acted_on": "vol_down",
+      "similarity": 1.0
+     },
+     {
+      "said": "থামো",
+      "heard": "Tamu.",
+      "acted_on": "stop",
+      "similarity": 0.6
+     }
+    ]
+   },
+   "bn-BD-NabanitaNeural + noise 10 dB": {
+    "right": 8,
+    "wrong_command": 0,
+    "not_heard": 7,
+    "of": 15,
+    "false_commands": 0,
+    "of_not_commands": 10,
+    "false_which": [],
+    "heard": [
+     {
+      "said": "লেখা পড়ো",
+      "heard": "لیکھا پرورو",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "পড়ো",
+      "heard": "What do you want?",
+      "acted_on": null,
+      "similarity": 0.231
+     },
+     {
+      "said": "টাকা দেখো",
+      "heard": "Takadeku",
+      "acted_on": "mode:currency",
+      "similarity": 0.778
+     },
+     {
+      "said": "টাকা",
+      "heard": "Taka.",
+      "acted_on": "mode:currency",
+      "similarity": 1.0
+     },
+     {
+      "said": "সামনে কী আছে",
+      "heard": "Shambhmi kiyaat se",
+      "acted_on": null,
+      "similarity": 0.5
+     },
+     {
+      "said": "বস্তু দেখো",
+      "heard": "بوستو دیکو",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "বর্ণনা করো",
+      "heard": "Borma na kauru",
+      "acted_on": null,
+      "similarity": 0.583
+     },
+     {
+      "said": "মুখ দেখো",
+      "heard": "مک دیکھو",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "অনুভূতি",
+      "heard": "Onyputi.",
+      "acted_on": "mode:emotion",
+      "similarity": 0.625
+     },
+     {
+      "said": "পরের মোড",
+      "heard": "Kuala el Mord",
+      "acted_on": null,
+      "similarity": 0.364
+     },
+     {
+      "said": "ছবি তোলো",
+      "heard": "Chobitolo",
+      "acted_on": "action",
+      "similarity": 1.0
+     },
+     {
+      "said": "আবার বলো",
+      "heard": "Abar Bolo",
+      "acted_on": "read",
+      "similarity": 1.0
+     },
+     {
+      "said": "জোরে",
+      "heard": "Jorin!",
+      "acted_on": "vol_up",
+      "similarity": 0.6
+     },
+     {
+      "said": "আস্তে",
+      "heard": "Azteh",
+      "acted_on": "vol_down",
+      "similarity": 0.6
+     },
+     {
+      "said": "থামো",
+      "heard": "Thamu...",
+      "acted_on": "stop",
+      "similarity": 0.8
+     }
+    ]
+   },
+   "bn-BD-PradeepNeural": {
+    "right": 8,
+    "wrong_command": 0,
+    "not_heard": 7,
+    "of": 15,
+    "false_commands": 0,
+    "of_not_commands": 10,
+    "false_which": [],
+    "heard": [
+     {
+      "said": "লেখা পড়ো",
+      "heard": "لیکھ پڑو",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "পড়ো",
+      "heard": "poru",
+      "acted_on": "mode:ocr",
+      "similarity": 0.75
+     },
+     {
+      "said": "টাকা দেখো",
+      "heard": "Takadeko",
+      "acted_on": "mode:currency",
+      "similarity": 0.889
+     },
+     {
+      "said": "টাকা",
+      "heard": "I am going to show you the way to the right.",
+      "acted_on": null,
+      "similarity": 0.182
+     },
+     {
+      "said": "সামনে কী আছে",
+      "heard": "شم نکیت",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "বস্তু দেখো",
+      "heard": "بوستو دیکو.",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "বর্ণনা করো",
+      "heard": "برنانا کارو",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "মুখ দেখো",
+      "heard": "Muqdeqo",
+      "acted_on": null,
+      "similarity": 0.556
+     },
+     {
+      "said": "অনুভূতি",
+      "heard": "Onu Bhutti.",
+      "acted_on": "mode:emotion",
+      "similarity": 0.889
+     },
+     {
+      "said": "পরের মোড",
+      "heard": "پر ار مور",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "ছবি তোলো",
+      "heard": "Çobitolo",
+      "acted_on": "action",
+      "similarity": 0.778
+     },
+     {
+      "said": "আবার বলো",
+      "heard": "Aber Bolo",
+      "acted_on": "read",
+      "similarity": 0.875
+     },
+     {
+      "said": "জোরে",
+      "heard": "Jyote",
+      "acted_on": "vol_up",
+      "similarity": 0.6
+     },
+     {
+      "said": "আস্তে",
+      "heard": "Asthe",
+      "acted_on": "vol_down",
+      "similarity": 0.8
+     },
+     {
+      "said": "থামো",
+      "heard": "tamo",
+      "acted_on": "stop",
+      "similarity": 0.8
+     }
+    ]
+   },
+   "bn-BD-PradeepNeural + noise 10 dB": {
+    "right": 9,
+    "wrong_command": 0,
+    "not_heard": 6,
+    "of": 15,
+    "false_commands": 0,
+    "of_not_commands": 10,
+    "false_which": [],
+    "heard": [
+     {
+      "said": "লেখা পড়ো",
+      "heard": "Lekker Poto",
+      "acted_on": "mode:ocr",
+      "similarity": 0.6
+     },
+     {
+      "said": "পড়ো",
+      "heard": "What do you want?",
+      "acted_on": null,
+      "similarity": 0.231
+     },
+     {
+      "said": "টাকা দেখো",
+      "heard": "Takadeko",
+      "acted_on": "mode:currency",
+      "similarity": 0.889
+     },
+     {
+      "said": "টাকা",
+      "heard": "Takah.",
+      "acted_on": "mode:currency",
+      "similarity": 0.8
+     },
+     {
+      "said": "সামনে কী আছে",
+      "heard": "sham nekiyatshe.",
+      "acted_on": "mode:object",
+      "similarity": 0.786
+     },
+     {
+      "said": "বস্তু দেখো",
+      "heard": "بوستو دیکھو",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "বর্ণনা করো",
+      "heard": "Bård Nona Kauru",
+      "acted_on": null,
+      "similarity": 0.583
+     },
+     {
+      "said": "মুখ দেখো",
+      "heard": "mook de ko.",
+      "acted_on": null,
+      "similarity": 0.556
+     },
+     {
+      "said": "অনুভূতি",
+      "heard": "Onu Bhutti",
+      "acted_on": "mode:emotion",
+      "similarity": 0.889
+     },
+     {
+      "said": "পরের মোড",
+      "heard": "ورر مور",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "ছবি তোলো",
+      "heard": "Chobitolo",
+      "acted_on": "action",
+      "similarity": 1.0
+     },
+     {
+      "said": "আবার বলো",
+      "heard": "Aber Bolo",
+      "acted_on": "read",
+      "similarity": 0.875
+     },
+     {
+      "said": "জোরে",
+      "heard": "Jodhi!",
+      "acted_on": null,
+      "similarity": 0.4
+     },
+     {
+      "said": "আস্তে",
+      "heard": "Azteh",
+      "acted_on": "vol_down",
+      "similarity": 0.6
+     },
+     {
+      "said": "থামো",
+      "heard": "Tamo",
+      "acted_on": "stop",
+      "similarity": 0.8
+     }
+    ]
+   },
+   "bn-IN-TanishaaNeural": {
+    "right": 4,
+    "wrong_command": 0,
+    "not_heard": 11,
+    "of": 15,
+    "false_commands": 0,
+    "of_not_commands": 10,
+    "false_which": [],
+    "heard": [
+     {
+      "said": "লেখা পড়ো",
+      "heard": "لیکھا پورو",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "পড়ো",
+      "heard": "fordu",
+      "acted_on": null,
+      "similarity": 0.4
+     },
+     {
+      "said": "টাকা দেখো",
+      "heard": "Dhaka deku",
+      "acted_on": null,
+      "similarity": 0.556
+     },
+     {
+      "said": "টাকা",
+      "heard": "daka",
+      "acted_on": "mode:currency",
+      "similarity": 0.75
+     },
+     {
+      "said": "সামনে কী আছে",
+      "heard": "شامنے کی آچھے",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "বস্তু দেখো",
+      "heard": "بوستو دیکو",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "বর্ণনা করো",
+      "heard": "1-0-0",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "মুখ দেখো",
+      "heard": "Mook de ko.",
+      "acted_on": null,
+      "similarity": 0.556
+     },
+     {
+      "said": "অনুভূতি",
+      "heard": "Όλு بھکی",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "পরের মোড",
+      "heard": "for in mode.",
+      "acted_on": null,
+      "similarity": 0.556
+     },
+     {
+      "said": "ছবি তোলো",
+      "heard": "Shobitolo",
+      "acted_on": "action",
+      "similarity": 0.889
+     },
+     {
+      "said": "আবার বলো",
+      "heard": "Abar Balu",
+      "acted_on": "read",
+      "similarity": 0.75
+     },
+     {
+      "said": "জোরে",
+      "heard": "Jyuri",
+      "acted_on": null,
+      "similarity": 0.4
+     },
+     {
+      "said": "আস্তে",
+      "heard": "Asthi",
+      "acted_on": "vol_down",
+      "similarity": 0.6
+     },
+     {
+      "said": "থামো",
+      "heard": "Thank you for your time",
+      "acted_on": null,
+      "similarity": 0.263
+     }
+    ]
+   },
+   "bn-IN-TanishaaNeural + noise 10 dB": {
+    "right": 8,
+    "wrong_command": 0,
+    "not_heard": 7,
+    "of": 15,
+    "false_commands": 0,
+    "of_not_commands": 10,
+    "false_which": [],
+    "heard": [
+     {
+      "said": "লেখা পড়ো",
+      "heard": "Lekha Polu",
+      "acted_on": "mode:ocr",
+      "similarity": 0.778
+     },
+     {
+      "said": "পড়ো",
+      "heard": "follow",
+      "acted_on": null,
+      "similarity": 0.333
+     },
+     {
+      "said": "টাকা দেখো",
+      "heard": "dhaka dhekhu",
+      "acted_on": "mode:currency",
+      "similarity": 0.636
+     },
+     {
+      "said": "টাকা",
+      "heard": "lalko",
+      "acted_on": null,
+      "similarity": 0.4
+     },
+     {
+      "said": "সামনে কী আছে",
+      "heard": "Shandhi Fiyatir",
+      "acted_on": null,
+      "similarity": 0.357
+     },
+     {
+      "said": "বস্তু দেখো",
+      "heard": "Bostu beku",
+      "acted_on": "mode:object",
+      "similarity": 0.7
+     },
+     {
+      "said": "বর্ণনা করো",
+      "heard": "Bono Nakoru!",
+      "acted_on": "mode:claude",
+      "similarity": 0.818
+     },
+     {
+      "said": "মুখ দেখো",
+      "heard": "نوک دیکھو",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "অনুভূতি",
+      "heard": "Onu Bhudi.",
+      "acted_on": "mode:emotion",
+      "similarity": 0.875
+     },
+     {
+      "said": "পরের মোড",
+      "heard": "Bhollis Bholl",
+      "acted_on": null,
+      "similarity": 0.417
+     },
+     {
+      "said": "ছবি তোলো",
+      "heard": "Chobitulu",
+      "acted_on": "action",
+      "similarity": 0.778
+     },
+     {
+      "said": "আবার বলো",
+      "heard": "Abalbonu",
+      "acted_on": "read",
+      "similarity": 0.625
+     },
+     {
+      "said": "জোরে",
+      "heard": "Jury!",
+      "acted_on": null,
+      "similarity": 0.5
+     },
+     {
+      "said": "আস্তে",
+      "heard": "Astey.",
+      "acted_on": "vol_down",
+      "similarity": 0.8
+     },
+     {
+      "said": "থামো",
+      "heard": "Dhamma.",
+      "acted_on": null,
+      "similarity": 0.5
+     }
+    ]
+   },
+   "bn-IN-BashkarNeural": {
+    "right": 7,
+    "wrong_command": 0,
+    "not_heard": 8,
+    "of": 15,
+    "false_commands": 0,
+    "of_not_commands": 10,
+    "false_which": [],
+    "heard": [
+     {
+      "said": "লেখা পড়ো",
+      "heard": "레카포로",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "পড়ো",
+      "heard": "poru",
+      "acted_on": "mode:ocr",
+      "similarity": 0.75
+     },
+     {
+      "said": "টাকা দেখো",
+      "heard": "Taka de ko.",
+      "acted_on": "mode:currency",
+      "similarity": 0.889
+     },
+     {
+      "said": "টাকা",
+      "heard": "Daka",
+      "acted_on": "mode:currency",
+      "similarity": 0.75
+     },
+     {
+      "said": "সামনে কী আছে",
+      "heard": "شامنی کی اتسل",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "বস্তু দেখো",
+      "heard": "بوستو دیکھل",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "বর্ণনা করো",
+      "heard": "בُرْنُ نَقَرُ",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "মুখ দেখো",
+      "heard": "Muqdekul.",
+      "acted_on": null,
+      "similarity": 0.556
+     },
+     {
+      "said": "অনুভূতি",
+      "heard": "onunfurti.",
+      "acted_on": "mode:emotion",
+      "similarity": 0.667
+     },
+     {
+      "said": "পরের মোড",
+      "heard": "پورر مد",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "ছবি তোলো",
+      "heard": "شو بی تو لو",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "আবার বলো",
+      "heard": "Abar Bolo",
+      "acted_on": "read",
+      "similarity": 1.0
+     },
+     {
+      "said": "জোরে",
+      "heard": "Jyorya",
+      "acted_on": null,
+      "similarity": 0.5
+     },
+     {
+      "said": "আস্তে",
+      "heard": "asthe.",
+      "acted_on": "vol_down",
+      "similarity": 0.8
+     },
+     {
+      "said": "থামো",
+      "heard": "TAMO",
+      "acted_on": "stop",
+      "similarity": 0.8
+     }
+    ]
+   },
+   "bn-IN-BashkarNeural + noise 10 dB": {
+    "right": 12,
+    "wrong_command": 0,
+    "not_heard": 3,
+    "of": 15,
+    "false_commands": 0,
+    "of_not_commands": 10,
+    "false_which": [],
+    "heard": [
+     {
+      "said": "লেখা পড়ো",
+      "heard": "Lekapolo",
+      "acted_on": "mode:ocr",
+      "similarity": 0.778
+     },
+     {
+      "said": "পড়ো",
+      "heard": "poru",
+      "acted_on": "mode:ocr",
+      "similarity": 0.75
+     },
+     {
+      "said": "টাকা দেখো",
+      "heard": "dapa deku",
+      "acted_on": null,
+      "similarity": 0.556
+     },
+     {
+      "said": "টাকা",
+      "heard": "Dhaka",
+      "acted_on": "mode:currency",
+      "similarity": 0.6
+     },
+     {
+      "said": "সামনে কী আছে",
+      "heard": "sham neki ati",
+      "acted_on": "mode:object",
+      "similarity": 0.75
+     },
+     {
+      "said": "বস্তু দেখো",
+      "heard": "Bostu Bekho",
+      "acted_on": "mode:object",
+      "similarity": 0.9
+     },
+     {
+      "said": "বর্ণনা করো",
+      "heard": "בُنُ نَقَرُ",
+      "acted_on": null,
+      "similarity": 0.0
+     },
+     {
+      "said": "মুখ দেখো",
+      "heard": "mugh be khau",
+      "acted_on": "mode:emotion",
+      "similarity": 0.6
+     },
+     {
+      "said": "অনুভূতি",
+      "heard": "Onu hooti.",
+      "acted_on": "mode:emotion",
+      "similarity": 0.625
+     },
+     {
+      "said": "পরের মোড",
+      "heard": "or el mood",
+      "acted_on": "next_mode",
+      "similarity": 0.625
+     },
+     {
+      "said": "ছবি তোলো",
+      "heard": "sobitolo",
+      "acted_on": "action",
+      "similarity": 0.778
+     },
+     {
+      "said": "আবার বলো",
+      "heard": "Abar Bolo",
+      "acted_on": "read",
+      "similarity": 1.0
+     },
+     {
+      "said": "জোরে",
+      "heard": "Jyore",
+      "acted_on": "vol_up",
+      "similarity": 0.8
+     },
+     {
+      "said": "আস্তে",
+      "heard": "Astey",
+      "acted_on": "vol_down",
+      "similarity": 0.8
+     },
+     {
+      "said": "থামো",
+      "heard": "Dhamma",
+      "acted_on": null,
+      "similarity": 0.5
+     }
+    ]
+   }
+  },
+  "median_s_per_command_laptop": 1.723,
+  "summary_clean": {
+   "right": 27,
+   "wrong_command": 0,
+   "not_heard": 33,
+   "of": 60,
+   "false_commands": 0,
+   "of_not_commands": 40
+  },
+  "summary_noise": {
+   "right": 37,
+   "wrong_command": 0,
+   "not_heard": 23,
+   "of": 60,
+   "false_commands": 0,
+   "of_not_commands": 40
+  }
+ }
+}

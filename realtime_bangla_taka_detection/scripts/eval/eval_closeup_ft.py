@@ -17,6 +17,7 @@ Output: results/closeup_ft/closeup_ft.json
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -33,6 +34,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 RES = OUT / "closeup_ft.json"
 TAU = 0.60
 IMG = {".jpg", ".jpeg", ".png"}
+DEV = os.environ.get("EVAL_DEVICE") or None          # "cpu" while the GPU is training
 
 
 def oid(name: str) -> str:
@@ -63,7 +65,7 @@ def predict(model, items):
         bgr = cv2.imread(str(path))
         if bgr is None:
             continue
-        r = model.predict(bgr, conf=0.05, imgsz=640, verbose=False)[0]
+        r = model.predict(bgr, conf=0.05, imgsz=640, verbose=False, device=DEV)[0]
         if r.boxes is None or len(r.boxes) == 0:
             rows.append((truth, None, 0.0))
         else:
@@ -88,7 +90,7 @@ def tally(rows, tau):
 
 def val_map(weights):
     from ultralytics import YOLO
-    m = YOLO(str(weights)).val(data=str(ROOT / "data" / "data.yaml"), split="val", imgsz=640, batch=16, verbose=False, plots=False)
+    m = YOLO(str(weights)).val(data=str(ROOT / "data" / "data.yaml"), split="val", imgsz=640, batch=16, verbose=False, plots=False, device=DEV)
     return round(float(m.box.map50), 4), round(float(m.box.map), 4)
 
 
@@ -133,7 +135,7 @@ def main():
             bm = predict(model, bangla_money())
             t["bangla_money"] = tally(bm, TAU)
             t["bangla_money_at_0.25"] = tally(bm, 0.25)
-            m = YOLO(str(w)).val(data=str(ROOT / "data" / "data.yaml"), split="test", imgsz=640, batch=16, verbose=False, plots=False)
+            m = YOLO(str(w)).val(data=str(ROOT / "data" / "data.yaml"), split="test", imgsz=640, batch=16, verbose=False, plots=False, device=DEV)
             t["synthetic_test_map50"], t["synthetic_test_map50_95"] = round(float(m.box.map50), 4), round(float(m.box.map), 4)
             res["test"][name] = t
             RES.write_text(json.dumps(res, indent=1), encoding="utf-8")

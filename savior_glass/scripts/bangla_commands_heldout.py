@@ -9,7 +9,9 @@ Microsoft neural voices bn-BD Nabanita and Pradeep (Bangladesh) and bn-IN Tanish
 with white noise at 10 dB signal-to-noise ratio, plus ten non-command sentences per voice.
 
 Rule fixed before the held-out voices were generated: similarity >= 0.6 (unchanged); model chosen on the design
-voices by (right - wrong - false commands), ties to the smaller model.
+voices by (right - wrong - false commands), ties to the smaller model. Changed before any held-out voice was
+generated: only "base" is scored, because "small" took 9.5 s per command on the laptop in the first study, far too
+slow for the Pi; the design voices are then only reported.
 
     python scripts/bangla_commands_heldout.py
 Output: results/bangla_voice_commands_heldout.json
@@ -133,13 +135,13 @@ def main():
            "design": {}}
     out = Path(config.BASE_DIR) / "results" / "bangla_voice_commands_heldout.json"
     models = {}
-    for size in ("base", "small"):
+    for size in ("base",):           # "small" needed 9.5 s per command on the laptop: too slow for the Pi
         models[size] = WhisperModel(size, device="cpu", compute_type="int8", cpu_threads=4)
         r, s = score(models[size], design, phrases)
         res["design"][size] = {"voices": r, "median_s_per_command_laptop": round(s, 3), "score": total(r)}
         print("design", size, {v: {k: x[k] for k in ("right", "wrong_command", "not_heard", "false_commands")} for v, x in r.items()}, round(s, 2), flush=True)
         out.write_text(json.dumps(res, indent=1, ensure_ascii=False), encoding="utf-8")
-    chosen = max(("base", "small"), key=lambda k: (res["design"][k]["score"], k == "base"))
+    chosen = "base"
     res["chosen_model"] = chosen
     held = {}
     for name in HELD_OUT:

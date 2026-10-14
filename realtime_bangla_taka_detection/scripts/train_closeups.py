@@ -12,7 +12,7 @@ from ultralytics import YOLO
 
 def main():
     YOLO("models/best.pt").train(
-        data="data/data_closeups.yaml", epochs=12, imgsz=640, device=0, batch=16, workers=4, seed=42,
+        data="data/data_closeups.yaml", epochs=12, imgsz=640, device=0, batch=16, workers=2, seed=42,
         optimizer="SGD", lr0=0.002, lrf=0.1, momentum=0.937, weight_decay=0.0005, warmup_epochs=1,
         hsv_h=0.02, hsv_s=0.7, hsv_v=0.4, degrees=20, perspective=0.0005, scale=0.5, translate=0.1, shear=5,
         fliplr=0.0, flipud=0.0, mosaic=0.5, mixup=0.1, close_mosaic=3,
