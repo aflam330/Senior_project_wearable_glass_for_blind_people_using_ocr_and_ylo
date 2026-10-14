@@ -4,7 +4,6 @@ Shared utilities: TTS engine, camera manager, and logging setup.
 import collections
 import logging
 import os
-import queue
 import re
 import subprocess
 import sys

@@ -235,7 +235,13 @@ class Preview:
             return
         now = time.time()
         live = getattr(self, "_live", None) or {}
-        if live.get("busy") or now - live.get("t", 0) < getattr(config, "PREVIEW_LIVE_INTERVAL_S", 1.0):
+        every = getattr(config, "PREVIEW_LIVE_INTERVAL_S", 1.0)
+        gov = getattr(self._app, "_thermal", None)
+        if gov is not None:
+            every = gov.preview_interval(every)
+            if every is None:                      # board hot: no live boxes (thermal.py)
+                return
+        if live.get("busy") or now - live.get("t", 0) < every:
             return
         app = self._app
         if not app._ready[mode_idx].is_set() or app._inferring.is_set():

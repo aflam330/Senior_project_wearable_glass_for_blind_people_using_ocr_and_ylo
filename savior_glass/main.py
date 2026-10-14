@@ -101,6 +101,11 @@ class SmartGlass:
         self._model_lock = threading.Lock()
         self._prep_locks = [threading.Lock() for _ in self._modes]
 
+        # Thermal governor: lighter background work when the board is hot (thermal.py)
+        import thermal
+        self._thermal = thermal.ThermalGovernor(
+            on_change=lambda old, new, t: _flog("thermal_state", result=new, from_state=old, temp_c=round(t, 1)))
+
         # Detection thread
         self._detection_thread = threading.Thread(
             target=self._detection_loop, daemon=True, name="detection"
@@ -148,6 +153,7 @@ class SmartGlass:
 
         # Start detection worker
         self._detection_thread.start()
+        self._thermal.start()
 
         # Fixed prompts are rendered ahead, so the first spoken words are not late (utils.TTSEngine only)
         if hasattr(self._tts, "prewarm"):
@@ -206,6 +212,10 @@ class SmartGlass:
             pass
         logger.info("Shutting down…")
         self._running.clear()
+        self._thermal.stop()
+        if self._thermal.peak is not None:
+            logger.info("Thermal: peak %.1f °C; seconds per state %s", self._thermal.peak,
+                        {k: round(v) for k, v in self._thermal.seconds_in.items()})
         self._tts.speak("বন্ধ হচ্ছে")   # "Shutting down"
         self._tts.drain(timeout=3.0)
         self._modes[self._current_mode].deactivate()
@@ -380,6 +390,10 @@ class SmartGlass:
             with self._mode_lock:
                 mode_idx = self._current_mode
 
+            scan_every = self._thermal.scan_interval(config.OBJECT_SCAN_INTERVAL)
+            if mode_idx == config.MODE_OBJECT and scan_every is None:
+                time.sleep(1.0)            # too hot: automatic scans paused; ACTION still announces at once
+                continue
             if mode_idx == config.MODE_OBJECT:
                 frame = self._camera.get_frame()
                 if frame is not None:
@@ -396,7 +410,7 @@ class SmartGlass:
                     except Exception as exc:
                         logger.warning("Object detection error: %s", exc)
                         _flog("error", config.MODE_OBJECT, result=f"{type(exc).__name__}: {exc}")
-                time.sleep(config.OBJECT_SCAN_INTERVAL)
+                time.sleep(scan_every)
             else:
                 time.sleep(config.DETECTION_THREAD_SLEEP)
 

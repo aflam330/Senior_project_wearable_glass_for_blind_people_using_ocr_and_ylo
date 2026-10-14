@@ -354,6 +354,11 @@ OCR_MIN_CHARS       = 3      # Discard OCR hits shorter than this
 # Timing / Cooldowns (seconds)
 # ---------------------------------------------------------------------------
 OBJECT_SCAN_INTERVAL      = 1.5   # Seconds between automatic object scans
+# Thermal governor (thermal.py): slows or pauses the automatic object scan and the live preview when the Pi is hot.
+THERMAL_GOVERNOR = os.environ.get("THERMAL_GOVERNOR", "1") == "1"
+THERMAL_WARM_C = float(os.environ.get("THERMAL_WARM_C", "72"))
+THERMAL_HOT_C = float(os.environ.get("THERMAL_HOT_C", "77"))
+THERMAL_CRITICAL_C = float(os.environ.get("THERMAL_CRITICAL_C", "81"))
 OBJECT_ANNOUNCE_COOLDOWN  = 4.0   # Per-class cooldown to avoid repetition
 DETECTION_THREAD_SLEEP    = 0.1   # Main loop sleep when not in object mode
 
