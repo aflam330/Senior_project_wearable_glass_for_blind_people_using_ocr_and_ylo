@@ -10,7 +10,14 @@ Rule, fixed before training finished (2026-10-14):
     NSTU Recognition/test (one image per original), Bangla Money (1,536 known notes, 101 one-taka notes as unknown),
     and the synthetic test split (mAP), for the chosen model and the deployed one.
 
+Added before any test read (2026-10-15), after the epoch scores showed that the fine-tuned detector also names many
+more WRONG values on hand-held photos: the announce threshold is re-chosen for the chosen model by the same rule and
+the same validation pool that set 0.60 for the deployed one (scripts/eval/eval_open_set.py: all NSTU validation
+photos as known notes, 600 demonetized notes and 300 coins as unknown, grid 0.25-0.95, maximise correct - wrong
+- unknown announced). The test then reports the chosen model at that threshold and at 0.60.
+
     python scripts/eval/eval_closeup_ft.py select
+    python scripts/eval/eval_closeup_ft.py tau
     python scripts/eval/eval_closeup_ft.py test
 Output: results/closeup_ft/closeup_ft.json
 """
@@ -28,7 +35,7 @@ ROOT = Path(__file__).resolve().parents[2]
 EXT = ROOT.parent / "data set for comparison"
 NSTU = EXT / "NSTU-BDTAKA dataset Mendeley" / "data" / "Recognition"
 BM = EXT / "Bangla Money dataset Kaggle" / "bangla_banknote_v2" / "Training"
-RUN = ROOT / "runs" / "closeup_ft" / "seed42"
+RUN = ROOT / "runs" / "detect" / "runs" / "closeup_ft" / "seed42"   
 OUT = ROOT / "results" / "closeup_ft"
 OUT.mkdir(parents=True, exist_ok=True)
 RES = OUT / "closeup_ft.json"
@@ -90,7 +97,7 @@ def tally(rows, tau):
 
 def val_map(weights):
     from ultralytics import YOLO
-    m = YOLO(str(weights)).val(data=str(ROOT / "data" / "data.yaml"), split="val", imgsz=640, batch=16, verbose=False, plots=False, device=DEV)
+    m = YOLO(str(weights)).val(data=str(ROOT / "data" / "data.yaml"), split="val", imgsz=640, batch=16, verbose=False, plots=False, device=DEV, workers=2)
     return round(float(m.box.map50), 4), round(float(m.box.map), 4)
 
 
@@ -123,6 +130,28 @@ def main():
         res["chosen"] = best
         RES.write_text(json.dumps(res, indent=1), encoding="utf-8")
         print("chosen:", best)
+    elif sys.argv[1] == "tau":
+        import random
+        sys.path.insert(0, str(ROOT))
+        from scripts.eval import eval_open_set as OS
+        rng = random.Random(42)                                # the same draw as eval_open_set.py
+        val = []
+        for folder in sorted(p for p in (NSTU / "validation").iterdir() if p.is_dir()):
+            val += [(p, folder.name) for p in OS.imgs(folder)]
+        coin_root = EXT / "Large Scale BDT DB 2026 Kaggle" / "bd_coin"
+        for name, n in (("demonetized_note", 600), ("1_Taka", 100), ("2_Taka", 100), ("5_Taka", 100)):
+            files = OS.imgs(coin_root / name)
+            rng.shuffle(files)
+            val += [(p, None) for p in files[:n]]
+        out = {}
+        for name in dict.fromkeys(["deployed", res["chosen"]]):
+            rows = OS.score_items(YOLO(str(ROOT / res["validation"][name]["weights"])), val)
+            sweep = [OS.tally(rows, t) for t in OS.GRID]
+            best = max(sweep, key=lambda r: (r["utility_correct_minus_wrong"], -r["tau"]))
+            out[name] = {"tau": best["tau"], "at_tau": best, "at_0.60": OS.tally(rows, 0.60)}
+            print(name, "tau", best["tau"], best, flush=True)
+        res["tau"] = out
+        RES.write_text(json.dumps(res, indent=1), encoding="utf-8")
     elif sys.argv[1] == "test":
         chosen = res["chosen"]
         res.setdefault("test", {})
@@ -131,11 +160,14 @@ def main():
                 continue
             w = ROOT / res["validation"][name]["weights"]
             model = YOLO(str(w))
-            t = {"nstu_test": tally(predict(model, nstu("test")), TAU)}
+            tau = res.get("tau", {}).get(name, {}).get("tau", TAU)
+            nt = predict(model, nstu("test"))
+            t = {"tau": tau, "nstu_test": tally(nt, tau), "nstu_test_at_0.60": tally(nt, TAU)}
             bm = predict(model, bangla_money())
-            t["bangla_money"] = tally(bm, TAU)
+            t["bangla_money"] = tally(bm, tau)
+            t["bangla_money_at_0.60"] = tally(bm, TAU)
             t["bangla_money_at_0.25"] = tally(bm, 0.25)
-            m = YOLO(str(w)).val(data=str(ROOT / "data" / "data.yaml"), split="test", imgsz=640, batch=16, verbose=False, plots=False, device=DEV)
+            m = YOLO(str(w)).val(data=str(ROOT / "data" / "data.yaml"), split="test", imgsz=640, batch=16, verbose=False, plots=False, device=DEV, workers=2)
             t["synthetic_test_map50"], t["synthetic_test_map50_95"] = round(float(m.box.map50), 4), round(float(m.box.map), 4)
             res["test"][name] = t
             RES.write_text(json.dumps(res, indent=1), encoding="utf-8")

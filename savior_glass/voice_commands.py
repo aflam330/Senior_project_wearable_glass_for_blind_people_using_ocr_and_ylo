@@ -52,6 +52,8 @@ PHRASES = {
 MODE_INDEX = {"mode:ocr": config.MODE_OCR, "mode:currency": config.MODE_CURRENCY, "mode:object": config.MODE_OBJECT,
               "mode:claude": config.MODE_CLAUDE, "mode:emotion": config.MODE_EMOTION}
 _BY_PHRASE = {p: intent for intent, ps in PHRASES.items() for p in ps}
+# phrases that are the start of a longer phrase ("read" of "read text"): never decided early
+_PREFIXES = {p for p in _BY_PHRASE for q in _BY_PHRASE if q != p and q.startswith(p + " ")}
 
 
 def parse(text: str, wake: str = "") -> str | None:
@@ -81,11 +83,25 @@ def available() -> str:
 class CommandRecognizer:
     """Vosk with the command phrases as its grammar. feed() takes 16-bit mono PCM and returns the commands heard."""
 
-    def __init__(self, rate: int = 16000, wake: str | None = None, min_conf: float | None = None):
+    def __init__(self, rate: int = 16000, wake: str | None = None, min_conf: float | None = None,
+                 early: bool | None = None, frontend: str | None = None):
         import vosk
         vosk.SetLogLevel(-1)
         self.wake = (config.VOICE_CMD_WAKE if wake is None else wake).strip().lower()
         self.min_conf = config.VOICE_CMD_MIN_CONF if min_conf is None else min_conf
+        # Early decision: act on a partial result as soon as it is a whole command phrase that cannot grow into a
+        # longer one ("stop", "check money"), instead of waiting for Vosk to decide that speech has ended.
+        self.early = getattr(config, "VOICE_CMD_EARLY", False) if early is None else early
+        from voice_frontend import FrontEnd
+        self.frontend = FrontEnd(getattr(config, "VOICE_CMD_FRONTEND", "none") if frontend is None else frontend)
+        self._last_partial = ""
+        self._fired_partial = False
+        # End of speech: "vosk" = the recogniser's own timeout; "vad" = Silero voice-activity detection (faster)
+        self.endpoint = getattr(config, "VOICE_CMD_ENDPOINT", "vosk")
+        self.vad = None
+        if self.endpoint == "vad":
+            from voice_frontend import VadEndpointer
+            self.vad = VadEndpointer()
         self.rate = rate
         self._model = _model()
         phrases = sorted(_BY_PHRASE)
@@ -93,14 +109,46 @@ class CommandRecognizer:
             phrases = [f"{self.wake} {p}" for p in phrases]
         self._rec = vosk.KaldiRecognizer(self._model, rate, json.dumps(phrases + ["[unk]"]))
         self._rec.SetWords(True)
+        self._rec.SetPartialWords(True)
         self.last_heard = ""
 
     def reset(self) -> None:
         self._rec.Reset()
+        self._last_partial, self._fired_partial = "", False
+        if self.vad is not None:
+            self.vad.reset()
 
     def feed(self, pcm: bytes) -> list:
         """Commands completed by this piece of audio (usually none or one)."""
-        return [c for c in [self._intent(json.loads(self._rec.Result()))] if c] if self._rec.AcceptWaveform(pcm) else []
+        pcm = self.frontend(pcm)
+        final = self._rec.AcceptWaveform(pcm)
+        if not final and self.vad is not None and self.vad.ended(pcm):
+            res = json.loads(self._rec.FinalResult())          # speech has ended: decide now
+            fired, self._fired_partial, self._last_partial = self._fired_partial, False, ""
+            return [] if fired else [c for c in [self._intent(res)] if c]
+        if final:
+            res = json.loads(self._rec.Result())
+            fired, self._fired_partial, self._last_partial = self._fired_partial, False, ""
+            if fired:                                   # this utterance was already acted on from its partial result
+                return []
+            return [c for c in [self._intent(res)] if c]
+        if not self.early or self._fired_partial:
+            return []
+        part = json.loads(self._rec.PartialResult())
+        text = part.get("partial", "")
+        stable, self._last_partial = text and text == self._last_partial, text
+        if not stable:
+            return []
+        intent = parse(text, self.wake)
+        words = text.split()[1:] if self.wake else text.split()
+        if intent is None or " ".join(words) in _PREFIXES:
+            return []
+        confs = [w.get("conf", 0.0) for w in part.get("partial_result", [])]
+        if confs and min(confs) < self.min_conf:
+            return []
+        self.last_heard = text
+        self._fired_partial = True
+        return [intent]
 
     def flush(self) -> list:
         return [c for c in [self._intent(json.loads(self._rec.FinalResult()))] if c]

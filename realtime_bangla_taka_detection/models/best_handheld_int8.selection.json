@@ -1,0 +1,39 @@
+{
+  "calibration_images": 200,
+  "selection_images": 300,
+  "tolerance": 0.005,
+  "selected_on": "validation (disjoint from calibration)",
+  "candidates": [
+    {
+      "fp32_layers": [
+        "model.22 (head)"
+      ],
+      "top1": 0.05434782608695652
+    },
+    {
+      "fp32_layers": [
+        "model.22 (head)",
+        "model.0"
+      ],
+      "top1": 0.09057971014492754
+    },
+    {
+      "fp32_layers": [
+        "model.22 (head)",
+        "model.0",
+        "model.15",
+        "model.18",
+        "model.21"
+      ],
+      "top1": 0.9891304347826086
+    }
+  ],
+  "fp32_top1": 0.9855072463768116,
+  "chosen_fp32_layers": [
+    "model.22 (head)",
+    "model.0",
+    "model.15",
+    "model.18",
+    "model.21"
+  ]
+}

@@ -74,7 +74,16 @@ CURRENCY_MODEL_PATH = os.path.join(BASE_DIR, "models", "currency_mobilenet.pt")
 # On a Pi 5 the measured device model is the 18 MB INT8 detector. Elsewhere keep the
 # PyTorch weights; ONNX is slower to start when onnxruntime is missing.
 _DETECTOR_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "realtime_bangla_taka_detection", "models"))
-CURRENCY_YOLO_PATH = os.path.join(_DETECTOR_DIR, "best_int8.onnx" if ON_RASPBERRY_PI_5 else "best.pt")
+# Since 15 October 2026: the detector fine-tuned with hand-held close-ups (realtime_bangla_taka_detection/
+# scripts/train_closeups.py; epoch and threshold chosen on validation; paper_evidence/HANDHELD_FINETUNE.md).
+# Test, read once: NSTU hand-held close-ups 11.8 % -> 47.5 % right (laptop), 8.7 % -> 33.5 % (Pi, 8-bit); Bangla
+# Money 89.6 % -> 94.1 % (laptop), 88.7 % -> 87.6 % (Pi). Each file has its own announce threshold below.
+# CURRENCY_DETECTOR=v1 goes back to the earlier detector and its 0.60 threshold.
+_v1 = os.environ.get("CURRENCY_DETECTOR", "") == "v1"
+_cur_file = ("best_int8.onnx" if ON_RASPBERRY_PI_5 else "best.pt") if _v1 else     ("best_handheld_int8.onnx" if ON_RASPBERRY_PI_5 else "best_handheld.pt")
+if not os.path.isfile(os.path.join(_DETECTOR_DIR, _cur_file)):          # new file not pulled yet: the earlier one
+    _v1, _cur_file = True, ("best_int8.onnx" if ON_RASPBERRY_PI_5 else "best.pt")
+CURRENCY_YOLO_PATH = os.path.join(_DETECTOR_DIR, _cur_file)
 HAPTIC_PIN          = 13   # BCM — vibration motor for note confirmation
 
 # Genuine/jaal verdict on the detected note. Off: on whole-note photos of genuine notes the
@@ -166,7 +175,10 @@ JAAL_VIEW_WINDOWS = (
 # Chosen on validation only (NSTU validation notes + demonetized notes and coins as unknowns);
 # on the Bangla Money test it cut 1-taka notes announced as another value from 43.6 % to 22.8 %
 # and kept 89.6 % of known notes correct (was 91.5 %). paper_evidence/OPEN_SET_REJECTION.md
-CURRENCY_ANNOUNCE_CONF = 0.60
+# Threshold of the detector in use, each chosen by the same open-set rule on the same validation pool
+# (eval_open_set.py, eval_closeup_ft.py tau, eval_handheld_int8.py): earlier detector 0.60; hand-held detector 0.75
+# (full precision) and 0.80 (8-bit, Pi).
+CURRENCY_ANNOUNCE_CONF = 0.60 if _v1 else (0.80 if ON_RASPBERRY_PI_5 else 0.75)
 # Several notes in one picture: count the sure ones and speak the total ("3 notes: ..., total 650 Taka").
 # Both numbers were fixed before the test (the announce confidence above and an overlap of 0.5 for "same note");
 # measured in scripts/eval_multi_note.py, results/multi_note_total.json. Counterfeit checks stay single-note.
@@ -220,6 +232,11 @@ VOICE_CMD_WAKE = os.environ.get("VOICE_WAKE_WORD", "")          # e.g. "glass": 
 VOICE_CMD_MIC = os.environ.get("VOICE_MIC", "")                 # part of the microphone's name; empty = system default
 VOICE_CMD_DEAF_AFTER_SPEECH_S = 0.4                             # the room still rings a little after the glass spoke
 VOICE_CMD_SETTLE_S = 1.2                                        # after a mode change by voice, before the capture
+# Early decision on a settled partial result, and the audio front end ("none", "denoise", "level", "denoise+level").
+# Both are chosen by scripts/voice_eval.py on the design voices; the defaults below are the chosen ones.
+VOICE_CMD_EARLY = os.environ.get("VOICE_CMD_EARLY", "0") == "1"
+VOICE_CMD_FRONTEND = os.environ.get("VOICE_CMD_FRONTEND", "none")
+VOICE_CMD_ENDPOINT = os.environ.get("VOICE_CMD_ENDPOINT", "vosk")          # or "vad" (Silero; needs silero-vad)
 
 # ---------------------------------------------------------------------------
 # Online Claude (optional — EasyOCR stays the offline text reader)

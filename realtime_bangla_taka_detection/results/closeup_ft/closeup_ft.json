@@ -1,0 +1,524 @@
+{
+ "date": "2026-10-14",
+ "tau": {
+  "deployed": {
+   "tau": 0.6,
+   "at_tau": {
+    "tau": 0.6,
+    "known_n": 1634,
+    "known_correct": 221,
+    "known_wrong": 86,
+    "known_abstain": 1327,
+    "known_correct_rate": 0.13525091799265607,
+    "known_wrong_rate_of_answered": 0.28013029315960913,
+    "unknown_n": 900,
+    "unknown_announced": 0,
+    "unknown_announced_rate": 0.0,
+    "unknown_announced_wilson95": [
+     4.336808689942018e-19,
+     0.004250302265352689
+    ],
+    "utility_correct_minus_wrong": 135
+   },
+   "at_0.60": {
+    "tau": 0.6,
+    "known_n": 1634,
+    "known_correct": 221,
+    "known_wrong": 86,
+    "known_abstain": 1327,
+    "known_correct_rate": 0.13525091799265607,
+    "known_wrong_rate_of_answered": 0.28013029315960913,
+    "unknown_n": 900,
+    "unknown_announced": 0,
+    "unknown_announced_rate": 0.0,
+    "unknown_announced_wilson95": [
+     4.336808689942018e-19,
+     0.004250302265352689
+    ],
+    "utility_correct_minus_wrong": 135
+   }
+  },
+  "epoch7": {
+   "tau": 0.75,
+   "at_tau": {
+    "tau": 0.75,
+    "known_n": 1634,
+    "known_correct": 819,
+    "known_wrong": 187,
+    "known_abstain": 628,
+    "known_correct_rate": 0.5012239902080783,
+    "known_wrong_rate_of_answered": 0.18588469184890655,
+    "unknown_n": 900,
+    "unknown_announced": 253,
+    "unknown_announced_rate": 0.2811111111111111,
+    "unknown_announced_wilson95": [
+     0.2527191230362511,
+     0.31136378706658097
+    ],
+    "utility_correct_minus_wrong": 379
+   },
+   "at_0.60": {
+    "tau": 0.6,
+    "known_n": 1634,
+    "known_correct": 938,
+    "known_wrong": 322,
+    "known_abstain": 374,
+    "known_correct_rate": 0.5740514075887393,
+    "known_wrong_rate_of_answered": 0.25555555555555554,
+    "unknown_n": 900,
+    "unknown_announced": 425,
+    "unknown_announced_rate": 0.4722222222222222,
+    "unknown_announced_wilson95": [
+     0.43979324404702086,
+     0.5048873283010542
+    ],
+    "utility_correct_minus_wrong": 191
+   }
+  }
+ },
+ "validation": {
+  "deployed": {
+   "weights": "models\\best.pt",
+   "synthetic_val_map50": 0.9926,
+   "synthetic_val_map50_95": 0.8467,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 219,
+    "wrong": 84,
+    "no_answer": 1308,
+    "correct_rate": 0.1359,
+    "correct_minus_wrong": 135,
+    "found_any_box": 0.4581
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 313,
+    "wrong": 208,
+    "no_answer": 1090,
+    "correct_rate": 0.1943,
+    "correct_minus_wrong": 105,
+    "found_any_box": 0.4581
+   }
+  },
+  "epoch0": {
+   "weights": "runs\\detect\\runs\\closeup_ft\\seed42\\weights\\epoch0.pt",
+   "synthetic_val_map50": 0.9921,
+   "synthetic_val_map50_95": 0.8462,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 658,
+    "wrong": 399,
+    "no_answer": 554,
+    "correct_rate": 0.4084,
+    "correct_minus_wrong": 259,
+    "found_any_box": 1.0
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 821,
+    "wrong": 753,
+    "no_answer": 37,
+    "correct_rate": 0.5096,
+    "correct_minus_wrong": 68,
+    "found_any_box": 1.0
+   }
+  },
+  "epoch1": {
+   "weights": "runs\\detect\\runs\\closeup_ft\\seed42\\weights\\epoch1.pt",
+   "synthetic_val_map50": 0.992,
+   "synthetic_val_map50_95": 0.8381,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 762,
+    "wrong": 350,
+    "no_answer": 499,
+    "correct_rate": 0.473,
+    "correct_minus_wrong": 412,
+    "found_any_box": 0.9969
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 868,
+    "wrong": 675,
+    "no_answer": 68,
+    "correct_rate": 0.5388,
+    "correct_minus_wrong": 193,
+    "found_any_box": 0.9969
+   }
+  },
+  "epoch2": {
+   "weights": "runs\\detect\\runs\\closeup_ft\\seed42\\weights\\epoch2.pt",
+   "synthetic_val_map50": 0.9921,
+   "synthetic_val_map50_95": 0.8388,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 786,
+    "wrong": 360,
+    "no_answer": 465,
+    "correct_rate": 0.4879,
+    "correct_minus_wrong": 426,
+    "found_any_box": 0.9988
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 924,
+    "wrong": 632,
+    "no_answer": 55,
+    "correct_rate": 0.5736,
+    "correct_minus_wrong": 292,
+    "found_any_box": 0.9988
+   }
+  },
+  "epoch3": {
+   "weights": "runs\\detect\\runs\\closeup_ft\\seed42\\weights\\epoch3.pt",
+   "synthetic_val_map50": 0.9917,
+   "synthetic_val_map50_95": 0.8392,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 802,
+    "wrong": 323,
+    "no_answer": 486,
+    "correct_rate": 0.4978,
+    "correct_minus_wrong": 479,
+    "found_any_box": 0.9981
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 928,
+    "wrong": 609,
+    "no_answer": 74,
+    "correct_rate": 0.576,
+    "correct_minus_wrong": 319,
+    "found_any_box": 0.9981
+   }
+  },
+  "epoch4": {
+   "weights": "runs\\detect\\runs\\closeup_ft\\seed42\\weights\\epoch4.pt",
+   "synthetic_val_map50": 0.9922,
+   "synthetic_val_map50_95": 0.8381,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 885,
+    "wrong": 333,
+    "no_answer": 393,
+    "correct_rate": 0.5493,
+    "correct_minus_wrong": 552,
+    "found_any_box": 1.0
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 1009,
+    "wrong": 571,
+    "no_answer": 31,
+    "correct_rate": 0.6263,
+    "correct_minus_wrong": 438,
+    "found_any_box": 1.0
+   }
+  },
+  "epoch5": {
+   "weights": "runs\\detect\\runs\\closeup_ft\\seed42\\weights\\epoch5.pt",
+   "synthetic_val_map50": 0.9921,
+   "synthetic_val_map50_95": 0.8472,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 884,
+    "wrong": 343,
+    "no_answer": 384,
+    "correct_rate": 0.5487,
+    "correct_minus_wrong": 541,
+    "found_any_box": 0.9988
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 988,
+    "wrong": 593,
+    "no_answer": 30,
+    "correct_rate": 0.6133,
+    "correct_minus_wrong": 395,
+    "found_any_box": 0.9988
+   }
+  },
+  "epoch6": {
+   "weights": "runs\\detect\\runs\\closeup_ft\\seed42\\weights\\epoch6.pt",
+   "synthetic_val_map50": 0.9922,
+   "synthetic_val_map50_95": 0.8466,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 869,
+    "wrong": 328,
+    "no_answer": 414,
+    "correct_rate": 0.5394,
+    "correct_minus_wrong": 541,
+    "found_any_box": 0.9988
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 981,
+    "wrong": 573,
+    "no_answer": 57,
+    "correct_rate": 0.6089,
+    "correct_minus_wrong": 408,
+    "found_any_box": 0.9988
+   }
+  },
+  "epoch7": {
+   "weights": "runs\\detect\\runs\\closeup_ft\\seed42\\weights\\epoch7.pt",
+   "synthetic_val_map50": 0.9919,
+   "synthetic_val_map50_95": 0.8483,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 920,
+    "wrong": 321,
+    "no_answer": 370,
+    "correct_rate": 0.5711,
+    "correct_minus_wrong": 599,
+    "found_any_box": 1.0
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 1016,
+    "wrong": 559,
+    "no_answer": 36,
+    "correct_rate": 0.6307,
+    "correct_minus_wrong": 457,
+    "found_any_box": 1.0
+   }
+  },
+  "epoch8": {
+   "weights": "runs\\detect\\runs\\closeup_ft\\seed42\\weights\\epoch8.pt",
+   "synthetic_val_map50": 0.9921,
+   "synthetic_val_map50_95": 0.8454,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 958,
+    "wrong": 360,
+    "no_answer": 293,
+    "correct_rate": 0.5947,
+    "correct_minus_wrong": 598,
+    "found_any_box": 1.0
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 1035,
+    "wrong": 545,
+    "no_answer": 31,
+    "correct_rate": 0.6425,
+    "correct_minus_wrong": 490,
+    "found_any_box": 1.0
+   }
+  },
+  "epoch9": {
+   "weights": "runs\\detect\\runs\\closeup_ft\\seed42\\weights\\epoch9.pt",
+   "synthetic_val_map50": 0.9925,
+   "synthetic_val_map50_95": 0.8458,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 922,
+    "wrong": 365,
+    "no_answer": 324,
+    "correct_rate": 0.5723,
+    "correct_minus_wrong": 557,
+    "found_any_box": 0.9963
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 998,
+    "wrong": 563,
+    "no_answer": 50,
+    "correct_rate": 0.6195,
+    "correct_minus_wrong": 435,
+    "found_any_box": 0.9963
+   }
+  },
+  "epoch10": {
+   "weights": "runs\\detect\\runs\\closeup_ft\\seed42\\weights\\epoch10.pt",
+   "synthetic_val_map50": 0.9922,
+   "synthetic_val_map50_95": 0.8482,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 956,
+    "wrong": 385,
+    "no_answer": 270,
+    "correct_rate": 0.5934,
+    "correct_minus_wrong": 571,
+    "found_any_box": 0.9988
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 1011,
+    "wrong": 575,
+    "no_answer": 25,
+    "correct_rate": 0.6276,
+    "correct_minus_wrong": 436,
+    "found_any_box": 0.9988
+   }
+  },
+  "epoch11": {
+   "weights": "runs\\detect\\runs\\closeup_ft\\seed42\\weights\\epoch11.pt",
+   "synthetic_val_map50": 0.9921,
+   "synthetic_val_map50_95": 0.8466,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 984,
+    "wrong": 389,
+    "no_answer": 238,
+    "correct_rate": 0.6108,
+    "correct_minus_wrong": 595,
+    "found_any_box": 0.9994
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 1031,
+    "wrong": 553,
+    "no_answer": 27,
+    "correct_rate": 0.64,
+    "correct_minus_wrong": 478,
+    "found_any_box": 0.9994
+   }
+  },
+  "last": {
+   "weights": "runs\\detect\\runs\\closeup_ft\\seed42\\weights\\last.pt",
+   "synthetic_val_map50": 0.9921,
+   "synthetic_val_map50_95": 0.8466,
+   "nstu_val": {
+    "known": 1611,
+    "correct": 984,
+    "wrong": 389,
+    "no_answer": 238,
+    "correct_rate": 0.6108,
+    "correct_minus_wrong": 595,
+    "found_any_box": 0.9994
+   },
+   "nstu_val_at_0.25": {
+    "known": 1611,
+    "correct": 1031,
+    "wrong": 553,
+    "no_answer": 27,
+    "correct_rate": 0.64,
+    "correct_minus_wrong": 478,
+    "found_any_box": 0.9994
+   }
+  }
+ },
+ "chosen": "epoch7",
+ "test": {
+  "deployed": {
+   "tau": 0.6,
+   "nstu_test": {
+    "known": 1127,
+    "correct": 133,
+    "wrong": 68,
+    "no_answer": 926,
+    "correct_rate": 0.118,
+    "correct_minus_wrong": 65,
+    "found_any_box": 0.4445
+   },
+   "nstu_test_at_0.60": {
+    "known": 1127,
+    "correct": 133,
+    "wrong": 68,
+    "no_answer": 926,
+    "correct_rate": 0.118,
+    "correct_minus_wrong": 65,
+    "found_any_box": 0.4445
+   },
+   "bangla_money": {
+    "known": 1536,
+    "correct": 1376,
+    "wrong": 50,
+    "no_answer": 110,
+    "correct_rate": 0.8958,
+    "correct_minus_wrong": 1326,
+    "found_any_box": 0.9818,
+    "unknown": 101,
+    "unknown_announced": 23,
+    "unknown_announced_rate": 0.2277
+   },
+   "bangla_money_at_0.60": {
+    "known": 1536,
+    "correct": 1376,
+    "wrong": 50,
+    "no_answer": 110,
+    "correct_rate": 0.8958,
+    "correct_minus_wrong": 1326,
+    "found_any_box": 0.9818,
+    "unknown": 101,
+    "unknown_announced": 23,
+    "unknown_announced_rate": 0.2277
+   },
+   "bangla_money_at_0.25": {
+    "known": 1536,
+    "correct": 1405,
+    "wrong": 71,
+    "no_answer": 60,
+    "correct_rate": 0.9147,
+    "correct_minus_wrong": 1334,
+    "found_any_box": 0.9818,
+    "unknown": 101,
+    "unknown_announced": 44,
+    "unknown_announced_rate": 0.4356
+   },
+   "synthetic_test_map50": 0.9949,
+   "synthetic_test_map50_95": 0.8489
+  },
+  "epoch7": {
+   "tau": 0.75,
+   "nstu_test": {
+    "known": 1127,
+    "correct": 535,
+    "wrong": 141,
+    "no_answer": 451,
+    "correct_rate": 0.4747,
+    "correct_minus_wrong": 394,
+    "found_any_box": 0.9991
+   },
+   "nstu_test_at_0.60": {
+    "known": 1127,
+    "correct": 638,
+    "wrong": 245,
+    "no_answer": 244,
+    "correct_rate": 0.5661,
+    "correct_minus_wrong": 393,
+    "found_any_box": 0.9991
+   },
+   "bangla_money": {
+    "known": 1536,
+    "correct": 1446,
+    "wrong": 17,
+    "no_answer": 73,
+    "correct_rate": 0.9414,
+    "correct_minus_wrong": 1429,
+    "found_any_box": 1.0,
+    "unknown": 101,
+    "unknown_announced": 37,
+    "unknown_announced_rate": 0.3663
+   },
+   "bangla_money_at_0.60": {
+    "known": 1536,
+    "correct": 1468,
+    "wrong": 27,
+    "no_answer": 41,
+    "correct_rate": 0.9557,
+    "correct_minus_wrong": 1441,
+    "found_any_box": 1.0,
+    "unknown": 101,
+    "unknown_announced": 65,
+    "unknown_announced_rate": 0.6436
+   },
+   "bangla_money_at_0.25": {
+    "known": 1536,
+    "correct": 1482,
+    "wrong": 51,
+    "no_answer": 3,
+    "correct_rate": 0.9648,
+    "correct_minus_wrong": 1431,
+    "found_any_box": 1.0,
+    "unknown": 101,
+    "unknown_announced": 86,
+    "unknown_announced_rate": 0.8515
+   },
+   "synthetic_test_map50": 0.9948,
+   "synthetic_test_map50_95": 0.8483
+  }
+ }
+}

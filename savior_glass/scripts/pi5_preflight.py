@@ -23,7 +23,8 @@ TEMPLATES = WS / "data set" / "Bangladeshi_Paper_Currency_Raw" / "Bangladeshi_Pa
 REQUIRED = {
     "watermark INT8": MODELS / "watermark_mobilenetv2_int8.onnx",
     "watermark localizer": MODELS / "watermark_localizer_seed42.onnx",
-    "note detector INT8": MODELS / "best_int8.onnx",
+    "note detector INT8": MODELS / "best_handheld_int8.onnx",
+    "earlier note detector INT8 (CURRENCY_DETECTOR=v1)": MODELS / "best_int8.onnx",
     "safe-check checkpoint": WS / "realtime_bangla_taka_detection" / "results" / "qduig" / "prefix_ft" / "seed42" / "checkpoint.pt",
     "500 template": TEMPLATES / "500" / "500 Taka_0001.jpg",
     "1000 template": TEMPLATES / "1000" / "1000  Taka_001.jpg",

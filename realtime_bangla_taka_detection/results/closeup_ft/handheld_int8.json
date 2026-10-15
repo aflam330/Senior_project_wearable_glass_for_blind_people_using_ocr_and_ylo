@@ -1,0 +1,98 @@
+{
+ "date": "2026-10-15",
+ "validation": {
+  "int8_scene": {
+   "model": "models/best_handheld_int8.onnx",
+   "tau": 0.8,
+   "at_tau": {
+    "tau": 0.8,
+    "known_n": 1634,
+    "known_correct": 551,
+    "known_wrong": 94,
+    "known_abstain": 989,
+    "known_correct_rate": 0.3372093023255814,
+    "known_wrong_rate_of_answered": 0.14573643410852713,
+    "unknown_n": 900,
+    "unknown_announced": 125,
+    "unknown_announced_rate": 0.1388888888888889,
+    "unknown_announced_wilson95": [
+     0.11782534397137367,
+     0.16302209655360328
+    ],
+    "utility_correct_minus_wrong": 332
+   }
+  },
+  "int8_closeups": {
+   "model": "models/best_handheld_int8_minmax.onnx",
+   "tau": 0.9,
+   "at_tau": {
+    "tau": 0.9,
+    "known_n": 1634,
+    "known_correct": 564,
+    "known_wrong": 105,
+    "known_abstain": 965,
+    "known_correct_rate": 0.34516523867809057,
+    "known_wrong_rate_of_answered": 0.15695067264573992,
+    "unknown_n": 900,
+    "unknown_announced": 172,
+    "unknown_announced_rate": 0.19111111111111112,
+    "unknown_announced_wilson95": [
+     0.16675750824741567,
+     0.21809045626318
+    ],
+    "utility_correct_minus_wrong": 287
+   }
+  }
+ },
+ "chosen": "int8_scene",
+ "test": {
+  "model": "models/best_handheld_int8.onnx",
+  "tau": 0.8,
+  "nstu_test": {
+   "known": 1127,
+   "correct": 378,
+   "wrong": 59,
+   "no_answer": 690,
+   "correct_rate": 0.3354,
+   "correct_minus_wrong": 319,
+   "found_any_box": 0.9858
+  },
+  "bangla_money": {
+   "known": 1536,
+   "correct": 1346,
+   "wrong": 10,
+   "no_answer": 180,
+   "correct_rate": 0.8763,
+   "correct_minus_wrong": 1336,
+   "found_any_box": 0.9993,
+   "unknown": 101,
+   "unknown_announced": 9,
+   "unknown_announced_rate": 0.0891
+  }
+ },
+ "current_pi_model_test": {
+  "model": "models/best_int8.onnx",
+  "tau": 0.6,
+  "nstu_test": {
+   "known": 1127,
+   "correct": 98,
+   "wrong": 23,
+   "no_answer": 1006,
+   "correct_rate": 0.087,
+   "correct_minus_wrong": 75,
+   "found_any_box": 0.4747
+  },
+  "bangla_money": {
+   "known": 1536,
+   "correct": 1362,
+   "wrong": 8,
+   "no_answer": 166,
+   "correct_rate": 0.8867,
+   "correct_minus_wrong": 1354,
+   "found_any_box": 0.9876,
+   "unknown": 101,
+   "unknown_announced": 5,
+   "unknown_announced_rate": 0.0495
+  }
+ }
+}

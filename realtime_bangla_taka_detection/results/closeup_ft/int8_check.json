@@ -1,0 +1,34 @@
+{
+ "date": "2026-10-15",
+ "set": "NSTU Recognition validation, one image per original",
+ "tau": 0.75,
+ "results": {
+  "fp32": {
+   "known": 1611,
+   "correct": 801,
+   "wrong": 186,
+   "no_answer": 624,
+   "correct_rate": 0.4972,
+   "correct_minus_wrong": 615,
+   "found_any_box": 1.0
+  },
+  "int8": {
+   "known": 1611,
+   "correct": 619,
+   "wrong": 138,
+   "no_answer": 854,
+   "correct_rate": 0.3842,
+   "correct_minus_wrong": 481,
+   "found_any_box": 0.9919
+  },
+  "int8_calibrated_on_closeups": {
+   "known": 1611,
+   "correct": 822,
+   "wrong": 304,
+   "no_answer": 485,
+   "correct_rate": 0.5102,
+   "correct_minus_wrong": 518,
+   "found_any_box": 0.9975
+  }
+ }
+}
