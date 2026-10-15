@@ -29,3 +29,19 @@ No acceptance probability is given. `VENUE_READINESS.md` explains why any such n
 2. **ASSETS.** A completed user study. Nothing else substitutes for it at that venue.
 3. **Journal.** Raspberry Pi 5 timings of the current code, and results through the glass camera.
 4. **IEEE Access.** The same Pi and glass-camera results, and at least the pilot of the user study.
+
+---
+
+## Added 15 October 2026: results of 14-15 October and where they fit
+
+| Result | Number | File | Fits paper |
+|---|---|---|---|
+| Hand-held Taka recognition with synthetic close-ups | NSTU hand-held test 11.8 → 47.5 % (Pi 8.7 → 33.5 %); Bangla Money 89.6 → 94.1 %; costs on one-taka notes reported | `HANDHELD_FINETUNE.md` | 3, 4 (a clear domain-gap result built without real training photos) |
+| Recogniser trained on real words, blended with released weights | real-word CER 39.2 → 28.7 % Bangla, 62.5 → 50.6 % Latin; rendered text not worse | `OCR_REAL_IMPROVED.md` | 3, 4 |
+| Voice commands for a blind user in noise | 12 unseen voices: whisper 98.9 %, noise as loud as the voice 82.5 %, other people talking 54 % (3 % without a wake word); false commands 212 → 13 | `VOICE_COMMANDS_FAST.md` | 4; 2 only with people |
+| Offline Bangla command words | 45-62 % on unseen voices; not usable yet | `BANGLA_VOICE_COMMANDS.md` | 4 (as a negative result) |
+| Heat on the Pi | idle 71 °C; load model T∞ = 74.8 + 0.105 × busy %; governor | `THERMAL.md` | 4 |
+
+**Still blocking.** Unchanged: the Pi timings of the current code, the glass camera, real counterfeit prints, and the user study. The new voice and hand-held results are all on synthetic voices or other people's photographs.
+
+**Venue probabilities.** Still not given, for the reason in `VENUE_READINESS.md`: an acceptance chance cannot be measured, and a number would be invented.

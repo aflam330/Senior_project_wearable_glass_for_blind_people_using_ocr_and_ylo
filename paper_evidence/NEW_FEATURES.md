@@ -56,3 +56,20 @@ Session logging (`field_log.py`), error recovery (every model in a `try` block w
 | Battery optimisation; thermal management | Need the device. The Pi stayed below throttling in the 30-minute run; battery life has never been measured |
 | Offline model updates | No need has appeared; models are replaced by pulling the repository |
 | Note orientation | The detector already names notes at any angle within its training range (±30° plus tilt); upside-down notes were not tested |
+
+---
+
+# Added 14-15 October 2026
+
+| Feature | What the user gets | Evidence | Measured on the Pi? |
+|---|---|---|---|
+| Natural Bangla voice | Piper Bangla voice instead of espeak-ng; every sentence rendered before it plays (no broken sound); next sentence prepared during playback; fixed prompts cached | `VOICE_2026-10-14.md` | No |
+| Voice commands with a wake word | "glass, read text", "glass, check money", "glass, stop" ... instead of buttons; whispering works; other people's talk rarely triggers anything | `VOICE_COMMANDS_FAST.md` | No |
+| "Reading" cue | "পড়ছি" at once and a soft tick every 4 s during a text capture | `scripts/test_tts_queue.py` | No |
+| Hand-held notes | Notes held close, folded or under fingers are recognised far more often | `HANDHELD_FINETUNE.md` | Pi version measured on photos, not on the Pi |
+| Thermal governor | Automatic object scans and preview boxes slow down or pause when the board is hot; button presses never wait | `THERMAL.md` | No |
+| Power and battery logger | `scripts/power_log.py` estimates battery hours from the Pi 5's own supply rails | `THERMAL.md` | Not run yet |
+| One-command Pi check | `scripts/pi_check_all.sh` runs every test and times text reading and the voice | `TEST_RESULTS.md` | Waits for a run |
+| Start at boot that works | `scripts/install_service.sh` installs a user service for the real folder | `BUGS_FIXED.md` | No |
+
+Not built from the requested list, with the reason: voice biometrics and custom user profiles (one user per glass; no recordings of users to build or test them on); emotion-voice fusion (no data with both); offline updates (updates arrive with `git pull`); note orientation and damaged-note handling as separate features (the hand-held fine-tune covers turned, folded and partly hidden notes in one model).

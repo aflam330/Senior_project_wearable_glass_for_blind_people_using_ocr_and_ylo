@@ -134,3 +134,20 @@ Every choice here was made on data not used for the reported number, or does not
 | 39 | OCR evaluation honesty | Noted that the 80-image set's phrases are the repair lexicon | Its "repaired" CER (2–3 %) flatters OCR; raw CER on unseen phrases is ~13 % (Bangla ~25 %) | yes, both reported |
 | 40 | Switching into currency mode | Load once, warm up with one dummy pass, load off the button thread, preload currency at start | Laptop CPU: first check 661 → 43 ms (715 → 78 ms with watermark on); switching back 318 → 0 ms | yes (`results/mode_switch_*.json`) |
 | 41 | "Currency slow under OCR load" | Read the Pi sustained CSV | Calls are sequential; the slow currency calls all follow the emotion model (cold switch), not OCR | no change needed beyond #40 |
+
+## 14-15 October 2026: one pass per weakness that could be measured here
+
+| Iteration | Change | Chosen on | Test result | Kept? |
+|---|---|---|---|---|
+| 1 | Recogniser fine-tuned on real words, blended 50/50 with the released weights | real + rendered validation | real-word CER 39.2 → 28.7 % (Bangla) | yes |
+| 2 | Smaller read width (880 px) | rendered validation | rendered test worse (3.15 % vs 2.46 %) | no |
+| 3 | Rotation retry | real validation | no CER change | no |
+| 4 | Hand-held close-up fine-tune of the Taka detector, epoch + threshold | NSTU validation | hand-held 11.8 → 47.5 %; Bangla Money 89.6 → 94.1 % | yes |
+| 5 | 8-bit calibration on close-ups | NSTU validation | lower utility than scene calibration | no |
+| 6 | Voice-command front ends (noise filter, level control) | 8 design voices | lower score than none | no |
+| 7 | Early decision on partial results | design voices | more false commands, 0.05 s faster | no |
+| 8 | Wake word "glass" + edge rule | design voices | 12 unseen voices: false commands 212 → 13, babble 10 dB 3 → 54 % | yes |
+| 9 | Silero end of speech | design voices | 0.37-0.48 s instead of 0.86 s but fewer commands | option only |
+| 10 | Offline Bangla commands (Whisper) | design voices | 45-62 % on unseen voices | no |
+
+The loop stops here because every remaining weakness needs something this laptop does not have: the Pi for timing and heat, real counterfeit notes, people's voices, or a user study.
