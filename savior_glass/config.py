@@ -237,6 +237,8 @@ VOICE_CMD_SETTLE_S = 1.2                                        # after a mode c
 VOICE_CMD_EARLY = os.environ.get("VOICE_CMD_EARLY", "0") == "1"
 VOICE_CMD_FRONTEND = os.environ.get("VOICE_CMD_FRONTEND", "none")
 VOICE_CMD_ENDPOINT = os.environ.get("VOICE_CMD_ENDPOINT", "vosk")          # or "vad" (Silero; needs silero-vad)
+VOICE_CMD_VAD_END_CHUNKS = int(os.environ.get("VOICE_CMD_VAD_END_CHUNKS", "8"))   # 32 ms chunks of non-speech = end
+VOICE_CMD_STRIP_EDGES = os.environ.get("VOICE_CMD_STRIP_EDGES", "0") == "1"      # wake mode: ignore [unk] at the edges
 
 # ---------------------------------------------------------------------------
 # Online Claude (optional — EasyOCR stays the offline text reader)

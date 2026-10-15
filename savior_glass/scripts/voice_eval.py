@@ -166,11 +166,11 @@ def decode(vrec, fe, sig, end_sample, vad=None, wake=""):
     return ev
 
 
-def decide(ev, early, conf, wake=""):
+def decide(ev, early, conf, wake="", strip=False):
     """Commands the glass would carry out, in order, with their times, for one setting."""
     out, done_segs = [], set()
     for kind, text, c, t, seg in ev:
-        intent = V.parse(text, wake)
+        intent = V.parse(text, wake, strip)
         if intent is None or c < conf or seg in done_segs:
             continue
         if kind == "partial" and not early:
@@ -183,7 +183,7 @@ def decide(ev, early, conf, wake=""):
 EARLY_CONF = [(e, c) for e in (False, True) for c in (0.7, 0.6, 0.5)]
 
 
-def evaluate(voices, part, front, rng_seed=0, endpoint="vosk", wake=""):
+def evaluate(voices, part, front, rng_seed=0, endpoint="vosk", wake="", dump=None):
     """All early/confidence variants for one front end: {(early, conf): {condition: counts}}."""
     import vosk
     from voice_frontend import FrontEnd
@@ -215,10 +215,13 @@ def evaluate(voices, part, front, rng_seed=0, endpoint="vosk", wake=""):
                     sp = float(np.mean(x[np.abs(x) > 0.01 * (np.max(np.abs(x)) + 1e-9)] ** 2))
                     sig = add(sig, noise, snr, sp, rng)
                     vad = None
-                    if endpoint == "vad":
+                    if endpoint.startswith("vad"):
                         from voice_frontend import VadEndpointer
-                        vad = VadEndpointer()
+                        vad = VadEndpointer(end_chunks=int(endpoint[3:] or 8))
                     ev = decode(vrec, FrontEnd(front), sig, end, vad, wake)
+                    if dump is not None:
+                        dump.append({"cond": name, "voice": v, "kind": kind, "i": i, "text": text,
+                                     "ev": [(a, b, float(c), float(d), int(e)) for a, b, c, d, e in ev]})
                     for k in EARLY_CONF:
                         d = decide(ev, *k, wake=wake)
                         T = tally[k]
@@ -305,5 +308,102 @@ def main():
             print(key, "done", flush=True)
 
 
+def tally_dump(dump, early, conf, wake, strip):
+    """Counts per condition from saved decodes, for one decision setting (no decoding)."""
+    out = {}
+    for row in dump:
+        T = out.setdefault(row["cond"], {"right": 0, "wrong": 0, "not_heard": 0, "false_commands": 0, "lat": [], "non": 0})
+        d = decide(row["ev"], early, conf, wake, strip)
+        if row["kind"] == "cmd":
+            if d and d[0][0] == V._BY_PHRASE[row["text"]] and all(x[0] == d[0][0] for x in d):
+                T["right"] += 1
+                T["lat"].append(d[0][1])
+            elif d:
+                T["wrong"] += 1
+            else:
+                T["not_heard"] += 1
+        else:
+            T["non"] += 1
+            T["false_commands"] += bool(d)
+    for T in out.values():
+        n = T["right"] + T["wrong"] + T["not_heard"]
+        T.update({"n": n, "right_rate": round(T["right"] / max(n, 1), 4), "non_commands": T.pop("non"),
+                  "response_s_median": round(float(np.median(T["lat"])), 3) if T["lat"] else None,
+                  "response_s_p90": round(float(np.percentile(T["lat"], 90)), 3) if T["lat"] else None})
+        del T["lat"]
+    return out
+
+
+ROUND2_JOBS = [(f, e) for f in ("none", "level") for e in ("vosk", "vad8", "vad12")]
+VARIANTS = [(early, conf, strip) for early in (False, True) for conf in (0.7, 0.6, 0.5) for strip in (False, True)]
+
+
+def round2():
+    """Second design round (15 October): wake word "glass" in every setting; decodes saved; the decision variants
+    (early, confidence, unknown words at the edges) are scored from the saved decodes."""
+    import pickle
+    man = json.loads((CORPUS / "manifest.json").read_text(encoding="utf-8"))
+    nums = [a for a in sys.argv[2:] if a.isdigit()]
+    jobs = ROUND2_JOBS[int(nums[0])::int(nums[1])] if len(nums) == 2 else ROUND2_JOBS
+    for front, endpoint in jobs:
+        f = OUT.with_name(f"voice_eval_r2_{front}_{endpoint}.pkl")
+        if f.exists():
+            continue
+        dump = []
+        evaluate(man["design"], "design", front, endpoint=endpoint, wake="glass", dump=dump)
+        f.write_bytes(pickle.dumps(dump))
+    if len(nums) == 2:
+        return
+    res = json.loads(OUT.read_text(encoding="utf-8"))
+    res["design_round2"] = {}
+    for front, endpoint in ROUND2_JOBS:
+        dump = pickle.loads(OUT.with_name(f"voice_eval_r2_{front}_{endpoint}.pkl").read_bytes())
+        for early, conf, strip in VARIANTS:
+            cond = tally_dump(dump, early, conf, "glass", strip)
+            key = f"{front} | early {'on' if early else 'off'} | conf {conf} | end {endpoint} | wake glass | strip {'on' if strip else 'off'}"
+            res["design_round2"][key] = {"score": score(cond), "conditions": cond}
+    best = max(res["design_round2"], key=lambda k: (res["design_round2"][k]["score"], "end vosk" in k, "strip off" in k))
+    res["chosen_round2"] = best
+    OUT.write_text(json.dumps(res, indent=1), encoding="utf-8")
+    for k in sorted(res["design_round2"], key=lambda k: -res["design_round2"][k]["score"])[:10]:
+        c = res["design_round2"][k]["conditions"]
+        print(res["design_round2"][k]["score"], k, sum(x["right"] for x in c.values()), sum(x["wrong"] for x in c.values()),
+              sum(x["false_commands"] for x in c.values()), c["clean"]["response_s_median"])
+    print("chosen:", best)
+
+
+def test_round2():
+    """The chosen round-2 setting, the best round-1 setting without a wake word, and the current setting, ONCE on the
+    held-out voices, test babble and ESC-50 fold 5."""
+    import pickle
+    man = json.loads((CORPUS / "manifest.json").read_text(encoding="utf-8"))
+    res = json.loads(OUT.read_text(encoding="utf-8"))
+    res.setdefault("test_round2", {})
+    groups = {"all held-out voices": man["heldout"], "Bangla voices reading English": [v for v in man["heldout"] if v.startswith("bn-")]}
+    best_nowake = max((k for k in res["design"] if k.endswith("wake -")), key=lambda k: res["design"][k]["score"])
+    todo = {"current": ("none", "vosk", "", False, 0.7, False), "best without wake word": None, "chosen": None}
+    f, e, c, n, w = [x.strip() for x in best_nowake.split("|")]
+    todo["best without wake word"] = (f, n.split()[1], "", e == "early on", float(c.split()[1]), False)
+    f, e, c, n, w, st = [x.strip() for x in res["chosen_round2"].split("|")]
+    todo["chosen"] = (f, n.split()[1], "glass", e == "early on", float(c.split()[1]), st == "strip on")
+    for label, (front, endpoint, wake, early, conf, strip) in todo.items():
+        if label in res["test_round2"]:
+            continue
+        dump = []
+        evaluate(man["heldout"], "test", front, endpoint=endpoint, wake=wake, dump=dump)
+        r = {"setting": {"front": front, "endpoint": endpoint, "wake": wake, "early": early, "conf": conf, "strip_edges": strip}}
+        for g, vs in groups.items():
+            r[g] = tally_dump([d for d in dump if d["voice"] in vs], early, conf, wake, strip)
+        res["test_round2"][label] = r
+        OUT.write_text(json.dumps(res, indent=1), encoding="utf-8")
+        OUT.with_name(f"voice_eval_test_{label.replace(' ', '_')}.pkl").write_bytes(pickle.dumps(dump))
+        print(label, "done", flush=True)
+
+
 if __name__ == "__main__":
-    main()
+    if sys.argv[1] == "round2":
+        round2()
+    elif sys.argv[1] == "test2":
+        test_round2()
+    else:
+        main()

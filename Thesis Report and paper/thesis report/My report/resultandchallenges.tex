@@ -112,6 +112,38 @@ Bangla Money: 1 Taka notes, which the detector was never taught & 101 & 57 not f
 
 The detector transfers to full-note photographs taken by other people, with 1000 Taka the weakest class (78.4\%, mostly read as 500 Taka). It does not transfer to close-ups in which fingers cover part of a folded note.
 
+\subsection{Hand-Held Notes: Fine-Tuning with Synthetic Close-Ups}
+\label{sec:handheld}
+A blind user holds the note close to the camera, often folded and partly under the fingers, and the training composites showed whole notes inside scenes. Six thousand hand-held close-ups were therefore generated from the note photographs of the training split only (Figure~\ref{fig:closeups}): the note warped, turned by any angle, folded in 40\% of the pictures, scaled to fill or overflow the frame, with one to three finger shapes in skin tones across it, motion blur, low resolution, and colour and compression changes. No NSTU photograph was used to make them. The deployed detector was fine-tuned for 12 epochs on the original training pictures plus the close-ups.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig58_handheld_closeups.png}
+    \caption{Synthetic hand-held close-ups used to fine-tune the Taka detector: notes overflowing the frame, folded, turned, blurred and crossed by finger shapes}
+    \label{fig:closeups}
+\end{figure}
+
+Three choices were fixed before any test photograph was read, and all were made on validation data: the epoch (most correct minus wrong answers on the 1,611 NSTU validation close-ups, among epochs that keep the synthetic validation mAP@0.5 within 0.005 of the deployed detector, chosen: epoch~8); the announce threshold, by the same open-set rule that gave 0.60 for the earlier detector (0.75); and, for the Pi, the 8-bit calibration and its threshold (0.80). Table~\ref{tab:handheld} gives the single test read.
+
+\begin{table}[!htbp]
+\centering
+\caption{The hand-held detector against the earlier one on test photographs (read once)}
+\label{tab:handheld}
+\small
+\begin{tabular}{|L{6.4cm}|C{2.0cm}|C{2.0cm}|C{2.0cm}|C{2.0cm}|}
+\hline
+ & \multicolumn{2}{c|}{\textbf{Laptop (full precision)}} & \multicolumn{2}{c|}{\textbf{Pi (8-bit)}} \\ \hline
+\textbf{Test} & \textbf{Earlier} & \textbf{Hand-held} & \textbf{Earlier} & \textbf{Hand-held} \\ \hline
+NSTU hand-held close-ups (1,127): right value & 11.8\% & \textbf{47.5\%} & 8.7\% & \textbf{33.5\%} \\ \hline
+NSTU hand-held close-ups: wrong values & 68 & 141 & 23 & 59 \\ \hline
+Bangla Money (1,536): right value & 89.6\% & \textbf{94.1\%} & 88.7\% & 87.6\% \\ \hline
+Bangla Money: wrong values & 50 & 17 & 8 & 10 \\ \hline
+One-Taka notes (101) announced as a value & 22.8\% & 36.6\% & 5.0\% & 8.9\% \\ \hline
+\end{tabular}
+\end{table}
+
+Hand-held notes go from about one in eight to about one in two right on the laptop, and to one in three on the Pi; a note is now found in almost every close-up. Whole notes in other people's photographs also improve on the laptop (and are level on the Pi), and the synthetic test mAP@0.5 is unchanged (0.995). Two things get worse. Unknown one-Taka notes are named as a value more often, and with three notes in one picture the stricter threshold more often misses one (spoken total right in 97.0\% of 900 pictures, against 99.2\%; it never counts too many). The 8-bit copy keeps only part of the gain, because quantisation lowers the confidence of close-ups. The new detector is the default; the earlier one remains selectable.
+
 \subsection{Unknown Notes}
 The detector has no ``unknown note'' output, and it named 44 of the 101 one-Taka photographs as a known denomination (43.6\%). A simple rule reduces this: a denomination is announced only when the confidence is at least 0.60, a value chosen on validation data. On the Bangla Money test photographs the share of 1 Taka notes named as another value falls from 43.6\% to 22.8\%. The rule is used in the glass; about one unknown note in five is still named wrongly.
 

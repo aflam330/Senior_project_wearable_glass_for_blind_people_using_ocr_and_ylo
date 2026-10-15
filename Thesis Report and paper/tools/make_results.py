@@ -73,9 +73,10 @@ H("1. Accuracy of each function")
 table("Table 1: Accuracy on data the models were not trained on", [
     ["Function", "Test data", "Result"],
     ["Taka recognition", "2,282 held-out pictures made like the training pictures", "Precision 0.995, recall 0.996, mAP@0.5 0.995, mAP@0.5:0.95 0.849"],
-    ["Taka recognition", "1,536 photographs by other people (Bangla Money)", "91.5% correct note value"],
-    ["Taka recognition", "1,144 close-ups of folded notes held in a hand (NSTU-BDTAKA)", "18.5% correct note value"],
-    ["Several notes in one picture", "900 pictures of 1, 2 or 3 test-split notes on new backgrounds", "Count right 99.7%; spoken total right 99.2%"],
+    ["Taka recognition", "1,536 photographs by other people (Bangla Money)", "94.1% right, 17 wrong (hand-held detector, 0.75); earlier detector 89.6%, 50 wrong (91.5% at 0.25)"],
+    ["Taka recognition, notes held in a hand", "1,127 NSTU-BDTAKA close-ups, one per photo", "47.5% right (earlier detector 11.8%); Pi 8-bit: 33.5% (earlier 8.7%)"],
+    ["Unknown notes (one Taka, not a class)", "101 Bangla Money photos", "Announced as a value: 36.6% (earlier 22.8%); Pi 8.9% (earlier 5.0%)"],
+    ["Several notes in one picture", "900 pictures of 1, 2 or 3 test-split notes on new backgrounds", "Spoken total right 97.0% (earlier detector 99.2%); never too many counted"],
     ["Counterfeit check, 1 view / 6 views", "208 test notes, usual split, 3 training runs", "98.2 ± 0.7% / 98.7 ± 0.3% (71.2 ± 11.4% at 1 view without prefix training)"],
     ["Counterfeit check on unseen prints", "222 test notes whose counterfeit prints are not in training", "Network alone about 90%; with the watermark check 94.4% (1 view), 95.0% (6 views)"],
     ["Safe spoken verdict", "88 test counterfeits", "0 passed as \"likely genuine\"; the glass never says \"counterfeit\""],
