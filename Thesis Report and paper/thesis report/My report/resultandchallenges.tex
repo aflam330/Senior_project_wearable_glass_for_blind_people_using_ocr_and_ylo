@@ -729,21 +729,35 @@ Software can lower the load that nobody asked for at that moment. A thermal gove
 \label{sec:voice_results}
 \textbf{Voice output.} After the second Pi run the voice was reported as broken up. Two causes were found in the code. First, speech was synthesised and played at the same time, so the player ran out of samples whenever text reading held all four cores. Second, the English voice produces 16~kHz audio and was played at 22.05~kHz, that is 38\% too fast and too high. Each sentence is now rendered completely and then played at the sample rate of its voice, with 150~ms of silence before it so that the sound device does not swallow the first syllable. Bangla is spoken with a Piper voice through Piper's Python package, which does not have the fault of the stand-alone program. On the laptop, a Bangla sentence of 1.5 to 4.3~s is rendered in 0.2 to 0.5~s once the voice is loaded (loading takes about 3~s and is done in the background at start-up). As a rough check of intelligibility, six Bangla sentences spoken by this voice were given to an online Bangla speech recogniser: two came back exactly, two with small differences (a numeral, a spelling), and two with wrong words. The new engine has not been heard or timed on the Pi yet; if rendering proves too slow there, one setting returns the glass to espeak-ng.
 
-\textbf{Voice commands.} Every one of the 39 command phrases was spoken by three synthetic voices (one Piper voice and two Windows voices), clean and with white noise added, and given to the recogniser (Table~\ref{tab:voice_results}). No command was ever mistaken for another one. Thirty ordinary English sentences per voice, several of them containing command words, and ten Bangla sentences were then played as speech that is not a command. This is a check with synthetic speech on a laptop: people speaking into the glass's own microphone in a room have not been tested.
+\textbf{Voice commands.} The commands were tested with 20 synthetic neural voices. Eight design voices were used to choose the settings; twelve held-out voices, four of them Bangla voices (Bangladesh and India) reading the English commands, were used once. Every voice spoke the 39 command phrases and 30 ordinary sentences, several containing command words. The conditions were clean speech, soft voice ($-20$~dB), simulated whispering (the voice's spectral envelope excited by noise), whispering with people talking nearby, real street and home sounds from ESC-50, and the babble of three other speakers, each noise at 10 to $-10$~dB signal-to-noise ratio. Front ends (a Wiener noise filter and an automatic level control), early decisions on partial results, voice-activity end-of-speech detection (Silero), the confidence threshold, a wake word and a rule for unknown words at the edges of an utterance were compared on the design voices (138 combinations). Round one showed that other people's speech is the hard case: without a wake word the command grammar turned their talk into commands. The chosen setting uses the wake word ``glass'', drops unknown words at the edges, and uses neither front end (Table~\ref{tab:voice_results}, Figure~\ref{fig:voice_noise}).
 
 \begin{table}[!htbp]
 \centering
-\caption{Voice commands with synthetic speech (117 spoken commands, 90 English and 10 Bangla non-command sentences per noise level)}
+\caption{Voice commands on 12 held-out synthetic voices, measured once (468 commands and 360 ordinary sentences per condition)}
 \label{tab:voice_results}
 \small
-\begin{tabular}{|L{3.6cm}|C{2.3cm}|C{2.3cm}|C{2.3cm}|C{3.0cm}|}
+\begin{tabular}{|L{6.0cm}|C{2.8cm}|C{2.8cm}|C{2.6cm}|}
 \hline
-\textbf{Noise added} & \textbf{Command carried out} & \textbf{Wrong command} & \textbf{Not heard} & \textbf{False commands (English / Bangla)} \\ \hline
-None & 116 (99.1\%) & 0 & 1 & 0 / 0 \\ \hline
-White noise, 20~dB SNR & 116 (99.1\%) & 0 & 1 & 1 / 0 \\ \hline
-White noise, 10~dB SNR & 113 (96.6\%) & 0 & 4 & 1 / 2 \\ \hline
+\textbf{Condition} & \textbf{Before (no wake word)} & \textbf{Chosen (``glass'')} & \textbf{Bangla voices, chosen} \\ \hline
+Clean & 99.2\% & \textbf{100\%} & 100\% \\ \hline
+Soft voice ($-20$~dB) & 99.4\% & \textbf{99.8\%} & 99.4\% \\ \hline
+Whisper (simulated) & 92.9\% & \textbf{98.9\%} & 99.4\% \\ \hline
+Street and home sounds, 10 / 5 / 0 dB & 97.9 / 92.5 / 80.1\% & \textbf{98.5 / 93.8 / 82.5\%} & 98.7 / 91.7 / 80.8\% \\ \hline
+Street and home sounds, $-5$ / $-10$ dB & 59.8 / 41.7\% & 57.7 / 39.5\% & 50.6 / 30.1\% \\ \hline
+Other people talking, 10 / 5 dB & 3.2 / 0.4\% & \textbf{54.3 / 26.1\%} & 54.5 / 28.2\% \\ \hline
+False commands, all conditions & 212 of 5,040 & \textbf{13 of 5,040} & 7 of 1,680 \\ \hline
+Median response after the speech ends & 0.86~s & 0.86~s & 0.86~s \\ \hline
 \end{tabular}
 \end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{fig56_voice_commands_noise.png}
+    \caption{Voice commands in noise on 12 held-out voices: street and home sounds (left) and other people talking (right)}
+    \label{fig:voice_noise}
+\end{figure}
+
+Quiet and whispered commands work, and background sound is handled until it is as loud as the voice. Other people talking nearby remains the weakest case: with the wake word half of the commands get through at 10~dB, and almost none when the talk is as loud as the user. False commands fall from 212 to 13 in 5,040 sentences. A command is decided 0.86~s after the speaker stops (median), the time the recogniser waits to be sure the speech has ended; a voice-activity detector answered in 0.37--0.48~s but cut commands short at the pause after ``glass'' and lost more of them, so it is an option, not the default. Offline Bangla command words were tried with Whisper: with transcripts matched in Bangla and Latin spelling, 45\% (clean) and 62\% (with noise) of the commands of four unseen Bangla voices were carried out, with no wrong command, at 1.7~s per command on the laptop; too unreliable and too slow to deploy. All voices here are synthetic: people, the glass's microphone and a real street are not measured.
 
 \textbf{Not measured on the Pi.} The emotion entry was timed before the emotion mode was added to the application, and the mode has not been timed again. The mode-switch improvement was measured on the laptop only. Battery life was not measured.
 

@@ -114,22 +114,21 @@ def fig55_bangla_commands():
 
 
 def fig56_voice_noise():
-    p = R / "voice_eval.json"
-    if not p.exists() or "test" not in json.loads(p.read_text()):
-        return
-    d = json.loads(p.read_text())
-    fig, ax = plt.subplots(figsize=(6.4, 3.4))
-    for key, col in zip(d["test"], (C1, C2)):
-        r = d["test"][key]["all held-out voices"]
-        for kind, ls in (("babble", "-"), ("street/home sounds", "--")):
-            xs = [10, 5, 0, -5, -10]
-            ax.plot(xs, [100 * r[f"{kind} {s} dB"]["right_rate"] for s in xs], ls, marker="o", color=col, ms=3.5,
-                    label=f"{'current' if key.startswith('none | early off | conf 0.7') else 'chosen'}: {kind}")
-    ax.invert_xaxis()
-    ax.set_xlabel("Signal-to-noise ratio (dB)")
-    ax.set_ylabel("Commands carried out (%)")
-    ax.set_ylim(0, 100)
-    ax.legend(frameon=False, fontsize=7.5)
+    d = json.loads((R / "voice_eval.json").read_text())
+    t = d["test_round2"]
+    fig, axes = plt.subplots(1, 2, figsize=(7.4, 3.2), sharey=True)
+    xs = [10, 5, 0, -5, -10]
+    for ax, kind, title in ((axes[0], "street/home sounds", "Street and home sounds (ESC-50)"), (axes[1], "babble", "Other people talking")):
+        for label, col in (("current", C2), ("best without wake word", C4), ("chosen", C3)):
+            r = t[label]["all held-out voices"]
+            ax.plot(xs, [100 * r[f"{kind} {x} dB"]["right_rate"] for x in xs], "o-", ms=3.5, color=col,
+                    label={"current": "before", "best without wake word": "best without wake word", "chosen": 'chosen: "glass" + edge rule'}[label])
+        ax.set_title(title, fontsize=10)
+        ax.invert_xaxis()
+        ax.set_xlabel("Signal-to-noise ratio (dB)")
+    axes[0].set_ylabel("Commands carried out, 12 unseen voices (%)")
+    axes[0].set_ylim(0, 102)
+    axes[1].legend(frameon=False, fontsize=7.5)
     save(fig, "fig56_voice_commands_noise.png")
 
 

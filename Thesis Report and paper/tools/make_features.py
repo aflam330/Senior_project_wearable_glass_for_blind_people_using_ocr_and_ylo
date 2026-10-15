@@ -89,8 +89,9 @@ table("Table 1: The modes of the glass", [
      "Counts the glowing security fibres under a UV lamp (Section 4)", "Prototype: see Section 4"],
     ["Emotion", "The facial expression of the person in front", "YuNet face finder + EfficientNet-V2-S", "86.5% on the RAF-DB test set"],
     ["Online description (optional)", "A spoken description of the scene", "A cloud vision model; needs the internet and a key", "Not part of the offline results"],
-    ["Voice commands — new", "Say \"read text\", \"check money\", \"objects\", \"repeat\", \"louder\", \"stop\" instead of pressing buttons",
-     "Offline recogniser (Vosk) limited to 39 command phrases; ignores its own voice", "Synthetic speech: 99.1% carried out, no wrong command (Section 5)"],
+    ["Voice commands — new", "Say \"glass, read text\", \"glass, check money\", \"glass, stop\" ... instead of pressing buttons",
+     "Offline recogniser (Vosk) limited to 39 command phrases after the wake word; ignores its own voice",
+     "12 unseen synthetic voices: 100% clean, 98.9% whispered, 82.5% in noise as loud as the voice; 13 false commands in 5,040 sentences"],
 ], [3.0, 4.3, 4.6, 4.1])
 
 H("3. New methods developed in this project")
@@ -151,9 +152,12 @@ bullets([
     "<b>Voice commands (new).</b> With a microphone, the glass takes spoken commands without the internet: "
     "\"read text\", \"check money\", \"objects\", \"describe\", \"emotion\", \"next mode\", \"capture\", \"repeat\", "
     "\"louder\", \"quieter\", \"stop\". A mode word selects the mode and takes one capture. The glass does not listen "
-    "while it speaks. Tested with three synthetic voices: 116 of 117 commands carried out with no noise or light noise, "
-    "113 of 117 in heavy noise, never a wrong command; 1 false command in 90 ordinary English sentences in noise. "
-    "Not yet tested with people or on the Pi. The command words are English: no small offline Bangla recogniser exists.",
+    "while it speaks. Every command starts with \"glass\", which keeps other people's talk from becoming commands. "
+    "Chosen on 8 synthetic voices and measured once on 12 others (four of them Bangla voices speaking English): 100% "
+    "clean, 99.8% soft, 98.9% whispered, 82.5% with street noise as loud as the voice, 54% with people talking nearby "
+    "(3% before); 13 false commands in 5,040 ordinary sentences (212 before). A command is acted on 0.86 s after the "
+    "speaker stops. Not yet tested with people or on the Pi. Bangla command words were tried offline (45-62% on "
+    "unseen voices) and are not used.",
     "<b>Fixed on 12 October 2026:</b> Bangla reading used to break up. Every comma, digit and full stop was cut out as a "
     "separate piece with its own pause, long texts lost their first sentences, and each Bangla piece first tried a voice "
     "that is known to fail on the Pi. Sentences now stay whole, long texts are spoken complete and in order, and the "
