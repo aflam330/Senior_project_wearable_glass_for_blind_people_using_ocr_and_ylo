@@ -1,0 +1,956 @@
+{
+ "denoise | early off | conf 0.7 | end vad": {
+  "score": 1325,
+  "conditions": {
+   "clean": {
+    "right": 312,
+    "wrong": 0,
+    "not_heard": 0,
+    "n": 312,
+    "right_rate": 1.0,
+    "false_commands": 0,
+    "non_commands": 240,
+    "response_s_median": 0.375,
+    "response_s_p90": 0.415
+   },
+   "babble 10 dB": {
+    "right": 16,
+    "wrong": 26,
+    "not_heard": 270,
+    "n": 312,
+    "right_rate": 0.0513,
+    "false_commands": 10,
+    "non_commands": 240,
+    "response_s_median": 0.612,
+    "response_s_p90": 1.276
+   },
+   "babble 5 dB": {
+    "right": 3,
+    "wrong": 12,
+    "not_heard": 297,
+    "n": 312,
+    "right_rate": 0.0096,
+    "false_commands": 9,
+    "non_commands": 240,
+    "response_s_median": 0.399,
+    "response_s_p90": 0.4
+   },
+   "babble 0 dB": {
+    "right": 0,
+    "wrong": 4,
+    "not_heard": 308,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 5,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "babble -5 dB": {
+    "right": 0,
+    "wrong": 4,
+    "not_heard": 308,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 4,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "babble -10 dB": {
+    "right": 0,
+    "wrong": 6,
+    "not_heard": 306,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 3,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "street/home sounds 10 dB": {
+    "right": 305,
+    "wrong": 1,
+    "not_heard": 6,
+    "n": 312,
+    "right_rate": 0.9776,
+    "false_commands": 4,
+    "non_commands": 240,
+    "response_s_median": 0.394,
+    "response_s_p90": 0.509
+   },
+   "street/home sounds 5 dB": {
+    "right": 295,
+    "wrong": 2,
+    "not_heard": 15,
+    "n": 312,
+    "right_rate": 0.9455,
+    "false_commands": 10,
+    "non_commands": 240,
+    "response_s_median": 0.397,
+    "response_s_p90": 0.573
+   },
+   "street/home sounds 0 dB": {
+    "right": 242,
+    "wrong": 1,
+    "not_heard": 69,
+    "n": 312,
+    "right_rate": 0.7756,
+    "false_commands": 25,
+    "non_commands": 240,
+    "response_s_median": 0.409,
+    "response_s_p90": 0.683
+   },
+   "street/home sounds -5 dB": {
+    "right": 165,
+    "wrong": 3,
+    "not_heard": 144,
+    "n": 312,
+    "right_rate": 0.5288,
+    "false_commands": 12,
+    "non_commands": 240,
+    "response_s_median": 0.417,
+    "response_s_p90": 0.77
+   },
+   "street/home sounds -10 dB": {
+    "right": 116,
+    "wrong": 6,
+    "not_heard": 190,
+    "n": 312,
+    "right_rate": 0.3718,
+    "false_commands": 12,
+    "non_commands": 240,
+    "response_s_median": 0.42,
+    "response_s_p90": 0.779
+   },
+   "soft voice (-20 dB)": {
+    "right": 312,
+    "wrong": 0,
+    "not_heard": 0,
+    "n": 312,
+    "right_rate": 1.0,
+    "false_commands": 0,
+    "non_commands": 240,
+    "response_s_median": 0.373,
+    "response_s_p90": 0.42
+   },
+   "whisper (simulated)": {
+    "right": 293,
+    "wrong": 0,
+    "not_heard": 19,
+    "n": 312,
+    "right_rate": 0.9391,
+    "false_commands": 13,
+    "non_commands": 240,
+    "response_s_median": 0.366,
+    "response_s_p90": 0.783
+   },
+   "whisper + babble 10 dB": {
+    "right": 88,
+    "wrong": 42,
+    "not_heard": 182,
+    "n": 312,
+    "right_rate": 0.2821,
+    "false_commands": 60,
+    "non_commands": 240,
+    "response_s_median": 0.706,
+    "response_s_p90": 0.902
+   }
+  }
+ },
+ "denoise | early off | conf 0.6 | end vad": {
+  "score": 1265,
+  "conditions": {
+   "clean": {
+    "right": 312,
+    "wrong": 0,
+    "not_heard": 0,
+    "n": 312,
+    "right_rate": 1.0,
+    "false_commands": 0,
+    "non_commands": 240,
+    "response_s_median": 0.375,
+    "response_s_p90": 0.415
+   },
+   "babble 10 dB": {
+    "right": 17,
+    "wrong": 30,
+    "not_heard": 265,
+    "n": 312,
+    "right_rate": 0.0545,
+    "false_commands": 10,
+    "non_commands": 240,
+    "response_s_median": 0.533,
+    "response_s_p90": 1.224
+   },
+   "babble 5 dB": {
+    "right": 3,
+    "wrong": 12,
+    "not_heard": 297,
+    "n": 312,
+    "right_rate": 0.0096,
+    "false_commands": 10,
+    "non_commands": 240,
+    "response_s_median": 0.399,
+    "response_s_p90": 0.4
+   },
+   "babble 0 dB": {
+    "right": 0,
+    "wrong": 4,
+    "not_heard": 308,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 5,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "babble -5 dB": {
+    "right": 0,
+    "wrong": 4,
+    "not_heard": 308,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 4,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "babble -10 dB": {
+    "right": 0,
+    "wrong": 6,
+    "not_heard": 306,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 7,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "street/home sounds 10 dB": {
+    "right": 306,
+    "wrong": 1,
+    "not_heard": 5,
+    "n": 312,
+    "right_rate": 0.9808,
+    "false_commands": 4,
+    "non_commands": 240,
+    "response_s_median": 0.394,
+    "response_s_p90": 0.509
+   },
+   "street/home sounds 5 dB": {
+    "right": 295,
+    "wrong": 2,
+    "not_heard": 15,
+    "n": 312,
+    "right_rate": 0.9455,
+    "false_commands": 11,
+    "non_commands": 240,
+    "response_s_median": 0.397,
+    "response_s_p90": 0.573
+   },
+   "street/home sounds 0 dB": {
+    "right": 247,
+    "wrong": 2,
+    "not_heard": 63,
+    "n": 312,
+    "right_rate": 0.7917,
+    "false_commands": 26,
+    "non_commands": 240,
+    "response_s_median": 0.408,
+    "response_s_p90": 0.683
+   },
+   "street/home sounds -5 dB": {
+    "right": 170,
+    "wrong": 4,
+    "not_heard": 138,
+    "n": 312,
+    "right_rate": 0.5449,
+    "false_commands": 14,
+    "non_commands": 240,
+    "response_s_median": 0.424,
+    "response_s_p90": 0.771
+   },
+   "street/home sounds -10 dB": {
+    "right": 119,
+    "wrong": 6,
+    "not_heard": 187,
+    "n": 312,
+    "right_rate": 0.3814,
+    "false_commands": 13,
+    "non_commands": 240,
+    "response_s_median": 0.425,
+    "response_s_p90": 0.777
+   },
+   "soft voice (-20 dB)": {
+    "right": 312,
+    "wrong": 0,
+    "not_heard": 0,
+    "n": 312,
+    "right_rate": 1.0,
+    "false_commands": 1,
+    "non_commands": 240,
+    "response_s_median": 0.373,
+    "response_s_p90": 0.42
+   },
+   "whisper (simulated)": {
+    "right": 294,
+    "wrong": 0,
+    "not_heard": 18,
+    "n": 312,
+    "right_rate": 0.9423,
+    "false_commands": 13,
+    "non_commands": 240,
+    "response_s_median": 0.365,
+    "response_s_p90": 0.783
+   },
+   "whisper + babble 10 dB": {
+    "right": 93,
+    "wrong": 45,
+    "not_heard": 174,
+    "n": 312,
+    "right_rate": 0.2981,
+    "false_commands": 67,
+    "non_commands": 240,
+    "response_s_median": 0.709,
+    "response_s_p90": 0.913
+   }
+  }
+ },
+ "denoise | early off | conf 0.5 | end vad": {
+  "score": 1193,
+  "conditions": {
+   "clean": {
+    "right": 312,
+    "wrong": 0,
+    "not_heard": 0,
+    "n": 312,
+    "right_rate": 1.0,
+    "false_commands": 1,
+    "non_commands": 240,
+    "response_s_median": 0.375,
+    "response_s_p90": 0.415
+   },
+   "babble 10 dB": {
+    "right": 17,
+    "wrong": 30,
+    "not_heard": 265,
+    "n": 312,
+    "right_rate": 0.0545,
+    "false_commands": 12,
+    "non_commands": 240,
+    "response_s_median": 0.533,
+    "response_s_p90": 1.224
+   },
+   "babble 5 dB": {
+    "right": 3,
+    "wrong": 12,
+    "not_heard": 297,
+    "n": 312,
+    "right_rate": 0.0096,
+    "false_commands": 10,
+    "non_commands": 240,
+    "response_s_median": 0.399,
+    "response_s_p90": 0.4
+   },
+   "babble 0 dB": {
+    "right": 0,
+    "wrong": 4,
+    "not_heard": 308,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 5,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "babble -5 dB": {
+    "right": 0,
+    "wrong": 4,
+    "not_heard": 308,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 5,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "babble -10 dB": {
+    "right": 0,
+    "wrong": 6,
+    "not_heard": 306,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 7,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "street/home sounds 10 dB": {
+    "right": 306,
+    "wrong": 2,
+    "not_heard": 4,
+    "n": 312,
+    "right_rate": 0.9808,
+    "false_commands": 6,
+    "non_commands": 240,
+    "response_s_median": 0.394,
+    "response_s_p90": 0.509
+   },
+   "street/home sounds 5 dB": {
+    "right": 296,
+    "wrong": 2,
+    "not_heard": 14,
+    "n": 312,
+    "right_rate": 0.9487,
+    "false_commands": 14,
+    "non_commands": 240,
+    "response_s_median": 0.397,
+    "response_s_p90": 0.572
+   },
+   "street/home sounds 0 dB": {
+    "right": 249,
+    "wrong": 3,
+    "not_heard": 60,
+    "n": 312,
+    "right_rate": 0.7981,
+    "false_commands": 33,
+    "non_commands": 240,
+    "response_s_median": 0.408,
+    "response_s_p90": 0.682
+   },
+   "street/home sounds -5 dB": {
+    "right": 174,
+    "wrong": 4,
+    "not_heard": 134,
+    "n": 312,
+    "right_rate": 0.5577,
+    "false_commands": 18,
+    "non_commands": 240,
+    "response_s_median": 0.427,
+    "response_s_p90": 0.77
+   },
+   "street/home sounds -10 dB": {
+    "right": 124,
+    "wrong": 6,
+    "not_heard": 182,
+    "n": 312,
+    "right_rate": 0.3974,
+    "false_commands": 16,
+    "non_commands": 240,
+    "response_s_median": 0.42,
+    "response_s_p90": 0.774
+   },
+   "soft voice (-20 dB)": {
+    "right": 312,
+    "wrong": 0,
+    "not_heard": 0,
+    "n": 312,
+    "right_rate": 1.0,
+    "false_commands": 1,
+    "non_commands": 240,
+    "response_s_median": 0.373,
+    "response_s_p90": 0.42
+   },
+   "whisper (simulated)": {
+    "right": 297,
+    "wrong": 0,
+    "not_heard": 15,
+    "n": 312,
+    "right_rate": 0.9519,
+    "false_commands": 15,
+    "non_commands": 240,
+    "response_s_median": 0.366,
+    "response_s_p90": 0.782
+   },
+   "whisper + babble 10 dB": {
+    "right": 99,
+    "wrong": 47,
+    "not_heard": 166,
+    "n": 312,
+    "right_rate": 0.3173,
+    "false_commands": 69,
+    "non_commands": 240,
+    "response_s_median": 0.711,
+    "response_s_p90": 0.978
+   }
+  }
+ },
+ "denoise | early on | conf 0.7 | end vad": {
+  "score": 951,
+  "conditions": {
+   "clean": {
+    "right": 312,
+    "wrong": 0,
+    "not_heard": 0,
+    "n": 312,
+    "right_rate": 1.0,
+    "false_commands": 10,
+    "non_commands": 240,
+    "response_s_median": 0.375,
+    "response_s_p90": 0.415
+   },
+   "babble 10 dB": {
+    "right": 27,
+    "wrong": 28,
+    "not_heard": 257,
+    "n": 312,
+    "right_rate": 0.0865,
+    "false_commands": 16,
+    "non_commands": 240,
+    "response_s_median": 0.773,
+    "response_s_p90": 1.125
+   },
+   "babble 5 dB": {
+    "right": 6,
+    "wrong": 16,
+    "not_heard": 290,
+    "n": 312,
+    "right_rate": 0.0192,
+    "false_commands": 13,
+    "non_commands": 240,
+    "response_s_median": 0.49,
+    "response_s_p90": 1.034
+   },
+   "babble 0 dB": {
+    "right": 1,
+    "wrong": 5,
+    "not_heard": 306,
+    "n": 312,
+    "right_rate": 0.0032,
+    "false_commands": 6,
+    "non_commands": 240,
+    "response_s_median": 1.129,
+    "response_s_p90": 1.129
+   },
+   "babble -5 dB": {
+    "right": 0,
+    "wrong": 4,
+    "not_heard": 308,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 5,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "babble -10 dB": {
+    "right": 0,
+    "wrong": 6,
+    "not_heard": 306,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 3,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "street/home sounds 10 dB": {
+    "right": 305,
+    "wrong": 1,
+    "not_heard": 6,
+    "n": 312,
+    "right_rate": 0.9776,
+    "false_commands": 19,
+    "non_commands": 240,
+    "response_s_median": 0.394,
+    "response_s_p90": 0.509
+   },
+   "street/home sounds 5 dB": {
+    "right": 295,
+    "wrong": 2,
+    "not_heard": 15,
+    "n": 312,
+    "right_rate": 0.9455,
+    "false_commands": 29,
+    "non_commands": 240,
+    "response_s_median": 0.397,
+    "response_s_p90": 0.573
+   },
+   "street/home sounds 0 dB": {
+    "right": 242,
+    "wrong": 1,
+    "not_heard": 69,
+    "n": 312,
+    "right_rate": 0.7756,
+    "false_commands": 38,
+    "non_commands": 240,
+    "response_s_median": 0.409,
+    "response_s_p90": 0.676
+   },
+   "street/home sounds -5 dB": {
+    "right": 165,
+    "wrong": 3,
+    "not_heard": 144,
+    "n": 312,
+    "right_rate": 0.5288,
+    "false_commands": 24,
+    "non_commands": 240,
+    "response_s_median": 0.417,
+    "response_s_p90": 0.767
+   },
+   "street/home sounds -10 dB": {
+    "right": 116,
+    "wrong": 6,
+    "not_heard": 190,
+    "n": 312,
+    "right_rate": 0.3718,
+    "false_commands": 19,
+    "non_commands": 240,
+    "response_s_median": 0.42,
+    "response_s_p90": 0.773
+   },
+   "soft voice (-20 dB)": {
+    "right": 312,
+    "wrong": 0,
+    "not_heard": 0,
+    "n": 312,
+    "right_rate": 1.0,
+    "false_commands": 13,
+    "non_commands": 240,
+    "response_s_median": 0.373,
+    "response_s_p90": 0.42
+   },
+   "whisper (simulated)": {
+    "right": 293,
+    "wrong": 0,
+    "not_heard": 19,
+    "n": 312,
+    "right_rate": 0.9391,
+    "false_commands": 27,
+    "non_commands": 240,
+    "response_s_median": 0.366,
+    "response_s_p90": 0.767
+   },
+   "whisper + babble 10 dB": {
+    "right": 95,
+    "wrong": 43,
+    "not_heard": 174,
+    "n": 312,
+    "right_rate": 0.3045,
+    "false_commands": 69,
+    "non_commands": 240,
+    "response_s_median": 0.707,
+    "response_s_p90": 0.912
+   }
+  }
+ },
+ "denoise | early on | conf 0.6 | end vad": {
+  "score": 853,
+  "conditions": {
+   "clean": {
+    "right": 312,
+    "wrong": 0,
+    "not_heard": 0,
+    "n": 312,
+    "right_rate": 1.0,
+    "false_commands": 10,
+    "non_commands": 240,
+    "response_s_median": 0.375,
+    "response_s_p90": 0.415
+   },
+   "babble 10 dB": {
+    "right": 28,
+    "wrong": 32,
+    "not_heard": 252,
+    "n": 312,
+    "right_rate": 0.0897,
+    "false_commands": 16,
+    "non_commands": 240,
+    "response_s_median": 0.769,
+    "response_s_p90": 1.086
+   },
+   "babble 5 dB": {
+    "right": 6,
+    "wrong": 16,
+    "not_heard": 290,
+    "n": 312,
+    "right_rate": 0.0192,
+    "false_commands": 17,
+    "non_commands": 240,
+    "response_s_median": 0.49,
+    "response_s_p90": 1.034
+   },
+   "babble 0 dB": {
+    "right": 1,
+    "wrong": 6,
+    "not_heard": 305,
+    "n": 312,
+    "right_rate": 0.0032,
+    "false_commands": 7,
+    "non_commands": 240,
+    "response_s_median": 1.129,
+    "response_s_p90": 1.129
+   },
+   "babble -5 dB": {
+    "right": 0,
+    "wrong": 5,
+    "not_heard": 307,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 6,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "babble -10 dB": {
+    "right": 0,
+    "wrong": 6,
+    "not_heard": 306,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 8,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "street/home sounds 10 dB": {
+    "right": 306,
+    "wrong": 1,
+    "not_heard": 5,
+    "n": 312,
+    "right_rate": 0.9808,
+    "false_commands": 19,
+    "non_commands": 240,
+    "response_s_median": 0.394,
+    "response_s_p90": 0.509
+   },
+   "street/home sounds 5 dB": {
+    "right": 295,
+    "wrong": 2,
+    "not_heard": 15,
+    "n": 312,
+    "right_rate": 0.9455,
+    "false_commands": 30,
+    "non_commands": 240,
+    "response_s_median": 0.397,
+    "response_s_p90": 0.573
+   },
+   "street/home sounds 0 dB": {
+    "right": 247,
+    "wrong": 2,
+    "not_heard": 63,
+    "n": 312,
+    "right_rate": 0.7917,
+    "false_commands": 39,
+    "non_commands": 240,
+    "response_s_median": 0.408,
+    "response_s_p90": 0.674
+   },
+   "street/home sounds -5 dB": {
+    "right": 170,
+    "wrong": 4,
+    "not_heard": 138,
+    "n": 312,
+    "right_rate": 0.5449,
+    "false_commands": 26,
+    "non_commands": 240,
+    "response_s_median": 0.424,
+    "response_s_p90": 0.769
+   },
+   "street/home sounds -10 dB": {
+    "right": 119,
+    "wrong": 6,
+    "not_heard": 187,
+    "n": 312,
+    "right_rate": 0.3814,
+    "false_commands": 21,
+    "non_commands": 240,
+    "response_s_median": 0.425,
+    "response_s_p90": 0.771
+   },
+   "soft voice (-20 dB)": {
+    "right": 312,
+    "wrong": 0,
+    "not_heard": 0,
+    "n": 312,
+    "right_rate": 1.0,
+    "false_commands": 14,
+    "non_commands": 240,
+    "response_s_median": 0.373,
+    "response_s_p90": 0.42
+   },
+   "whisper (simulated)": {
+    "right": 294,
+    "wrong": 0,
+    "not_heard": 18,
+    "n": 312,
+    "right_rate": 0.9423,
+    "false_commands": 28,
+    "non_commands": 240,
+    "response_s_median": 0.365,
+    "response_s_p90": 0.767
+   },
+   "whisper + babble 10 dB": {
+    "right": 104,
+    "wrong": 47,
+    "not_heard": 161,
+    "n": 312,
+    "right_rate": 0.3333,
+    "false_commands": 79,
+    "non_commands": 240,
+    "response_s_median": 0.711,
+    "response_s_p90": 0.97
+   }
+  }
+ },
+ "denoise | early on | conf 0.5 | end vad": {
+  "score": 733,
+  "conditions": {
+   "clean": {
+    "right": 312,
+    "wrong": 0,
+    "not_heard": 0,
+    "n": 312,
+    "right_rate": 1.0,
+    "false_commands": 11,
+    "non_commands": 240,
+    "response_s_median": 0.375,
+    "response_s_p90": 0.415
+   },
+   "babble 10 dB": {
+    "right": 30,
+    "wrong": 32,
+    "not_heard": 250,
+    "n": 312,
+    "right_rate": 0.0962,
+    "false_commands": 20,
+    "non_commands": 240,
+    "response_s_median": 0.781,
+    "response_s_p90": 1.538
+   },
+   "babble 5 dB": {
+    "right": 7,
+    "wrong": 16,
+    "not_heard": 289,
+    "n": 312,
+    "right_rate": 0.0224,
+    "false_commands": 18,
+    "non_commands": 240,
+    "response_s_median": 0.579,
+    "response_s_p90": 1.03
+   },
+   "babble 0 dB": {
+    "right": 1,
+    "wrong": 6,
+    "not_heard": 305,
+    "n": 312,
+    "right_rate": 0.0032,
+    "false_commands": 10,
+    "non_commands": 240,
+    "response_s_median": 1.129,
+    "response_s_p90": 1.129
+   },
+   "babble -5 dB": {
+    "right": 0,
+    "wrong": 7,
+    "not_heard": 305,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 8,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "babble -10 dB": {
+    "right": 0,
+    "wrong": 6,
+    "not_heard": 306,
+    "n": 312,
+    "right_rate": 0.0,
+    "false_commands": 10,
+    "non_commands": 240,
+    "response_s_median": null,
+    "response_s_p90": null
+   },
+   "street/home sounds 10 dB": {
+    "right": 306,
+    "wrong": 2,
+    "not_heard": 4,
+    "n": 312,
+    "right_rate": 0.9808,
+    "false_commands": 22,
+    "non_commands": 240,
+    "response_s_median": 0.394,
+    "response_s_p90": 0.509
+   },
+   "street/home sounds 5 dB": {
+    "right": 296,
+    "wrong": 2,
+    "not_heard": 14,
+    "n": 312,
+    "right_rate": 0.9487,
+    "false_commands": 33,
+    "non_commands": 240,
+    "response_s_median": 0.397,
+    "response_s_p90": 0.572
+   },
+   "street/home sounds 0 dB": {
+    "right": 249,
+    "wrong": 3,
+    "not_heard": 60,
+    "n": 312,
+    "right_rate": 0.7981,
+    "false_commands": 47,
+    "non_commands": 240,
+    "response_s_median": 0.408,
+    "response_s_p90": 0.673
+   },
+   "street/home sounds -5 dB": {
+    "right": 174,
+    "wrong": 4,
+    "not_heard": 134,
+    "n": 312,
+    "right_rate": 0.5577,
+    "false_commands": 30,
+    "non_commands": 240,
+    "response_s_median": 0.427,
+    "response_s_p90": 0.767
+   },
+   "street/home sounds -10 dB": {
+    "right": 124,
+    "wrong": 6,
+    "not_heard": 182,
+    "n": 312,
+    "right_rate": 0.3974,
+    "false_commands": 24,
+    "non_commands": 240,
+    "response_s_median": 0.42,
+    "response_s_p90": 0.77
+   },
+   "soft voice (-20 dB)": {
+    "right": 312,
+    "wrong": 0,
+    "not_heard": 0,
+    "n": 312,
+    "right_rate": 1.0,
+    "false_commands": 15,
+    "non_commands": 240,
+    "response_s_median": 0.373,
+    "response_s_p90": 0.42
+   },
+   "whisper (simulated)": {
+    "right": 297,
+    "wrong": 0,
+    "not_heard": 15,
+    "n": 312,
+    "right_rate": 0.9519,
+    "false_commands": 31,
+    "non_commands": 240,
+    "response_s_median": 0.366,
+    "response_s_p90": 0.767
+   },
+   "whisper + babble 10 dB": {
+    "right": 110,
+    "wrong": 50,
+    "not_heard": 152,
+    "n": 312,
+    "right_rate": 0.3526,
+    "false_commands": 82,
+    "non_commands": 240,
+    "response_s_median": 0.714,
+    "response_s_p90": 1.087
+   }
+  }
+ }
+}

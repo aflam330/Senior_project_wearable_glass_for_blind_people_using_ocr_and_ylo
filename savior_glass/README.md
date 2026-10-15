@@ -33,7 +33,7 @@ python scripts/speech_check.py          # speaks six sentences; prints which voi
 sound up. Bangla and English use Piper voices when they are installed and espeak-ng otherwise. `TTS_VOICE=espeak`
 forces espeak-ng; `PIPER_LENGTH_SCALE=1.15` slows the Piper voice down.
 
-**Voice commands.** With a microphone plugged in, the glass listens for these English words (offline):
+**Voice commands.** With a microphone plugged in, the glass listens for these English words (offline). Say **"glass"** first, for example "glass, check money" (since 15 October: it keeps other people's talk from becoming commands):
 
 | Say | What happens |
 |---|---|
@@ -48,9 +48,9 @@ forces espeak-ng; `PIPER_LENGTH_SCALE=1.15` slows the Piper voice down.
 | "louder", "quieter", "volume up", "volume down" | volume |
 | "stop", "quiet" | stops the voice |
 
-`VOICE_COMMANDS=0` turns listening off. `VOICE_WAKE_WORD=glass` makes every command start with "glass".
+`VOICE_COMMANDS=0` turns listening off. `VOICE_WAKE_WORD=` (empty) lets commands be said without "glass".
 `VOICE_MIC=<part of the name>` picks a microphone. The buttons keep working.
-Measured with synthetic voices on a laptop only (`results/voice_commands_synthetic.json`); not yet with people or on the Pi.
+Measured with 20 synthetic voices on a laptop (`results/voice_eval.json`, `paper_evidence/VOICE_COMMANDS_FAST.md`): on 12 unseen voices 100 % clean, 98.9 % whispered, 82.5 % with street noise as loud as the voice, 13 false commands in 5,040 ordinary sentences. Not yet with people or on the Pi.
 
 ## Windows (no GPIO)
 

@@ -148,7 +148,9 @@ def hear(rec, pcm: bytes) -> list:
 
 
 # ---------------------------------------------------------------- 3. one spoken command is recognised
-rec = V.CommandRecognizer(RATE)
+# The --measure study below keeps the settings it was first run with (no wake word, confidence 0.7), so that its
+# numbers stay comparable; the glass's default since 15 October is the wake word "glass" (scripts/voice_eval.py).
+rec = V.CommandRecognizer(RATE, wake="", min_conf=0.7)
 voices = {}
 if Path(config.PIPER_EN_MODEL).is_file():
     say = piper_voice(config.PIPER_EN_MODEL)
@@ -157,7 +159,13 @@ if Path(config.PIPER_EN_MODEL).is_file():
     assert got == ["mode:currency"], (got, rec.last_heard)
     got = hear(rec, with_noise(say("I think it will rain in the afternoon"), None, None))
     assert got == [], (got, rec.last_heard)
-    print("voice commands: a spoken command is recognised, an ordinary sentence is not")
+    glass = V.CommandRecognizer(RATE)                        # the glass's default: wake word
+    if glass.wake:
+        got = hear(glass, with_noise(say("glass, check money"), None, None))
+        assert got == ["mode:currency"], (got, glass.last_heard)
+        got = hear(glass, with_noise(say("check money"), None, None))
+        assert got == [], (got, glass.last_heard)          # without the wake word nothing happens
+    print("voice commands: a spoken command is recognised, an ordinary sentence is not; the wake word is required")
 else:
     print("no English Piper voice here: recognition not checked (python scripts/get_speech_models.py)")
 

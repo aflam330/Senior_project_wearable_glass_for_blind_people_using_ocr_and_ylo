@@ -15,8 +15,9 @@ it is not open dictation. Commands are English words because no offline Bangla r
   "louder" / "volume up", "quieter" / "volume down"
   "stop" / "quiet"                             stops the voice
 
-The microphone is ignored while the glass itself is speaking, so it cannot command itself. With
-VOICE_WAKE_WORD=glass every command must start with that word ("glass read text"), for noisy places.
+The microphone is ignored while the glass itself is speaking, so it cannot command itself. Every command starts with
+the wake word "glass" ("glass, read text"); VOICE_WAKE_WORD= (empty) turns that off. Chosen on design voices and
+measured once on held-out voices: paper_evidence/VOICE_COMMANDS_FAST.md.
 
 Needs: pip install vosk; python scripts/get_speech_models.py; a microphone (USB or headset), read through
 sounddevice when it is installed and through ALSA's arecord otherwise.

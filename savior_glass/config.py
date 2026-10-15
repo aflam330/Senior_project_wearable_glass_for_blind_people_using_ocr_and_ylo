@@ -227,18 +227,23 @@ OCR_PROGRESS_TICK_S = float(os.environ.get("OCR_PROGRESS_TICK_S", "4"))
 VOICE_COMMANDS = os.environ.get("VOICE_COMMANDS", "auto")
 VOICE_CMD_MODEL = os.path.join(BASE_DIR, "models", "vosk", "vosk-model-small-en-us-0.15")
 # Every word of a command must be recognised with at least this confidence, or the command is ignored.
-VOICE_CMD_MIN_CONF = float(os.environ.get("VOICE_CMD_MIN_CONF", "0.7"))
-VOICE_CMD_WAKE = os.environ.get("VOICE_WAKE_WORD", "")          # e.g. "glass": then say "glass read text"
+VOICE_CMD_MIN_CONF = float(os.environ.get("VOICE_CMD_MIN_CONF", "0.5"))
+VOICE_CMD_WAKE = os.environ.get("VOICE_WAKE_WORD", "glass")     # say "glass, read text"; VOICE_WAKE_WORD= (empty) turns it off
 VOICE_CMD_MIC = os.environ.get("VOICE_MIC", "")                 # part of the microphone's name; empty = system default
 VOICE_CMD_DEAF_AFTER_SPEECH_S = 0.4                             # the room still rings a little after the glass spoke
 VOICE_CMD_SETTLE_S = 1.2                                        # after a mode change by voice, before the capture
+# Chosen 15 October 2026 on 8 design voices, measured once on 12 held-out voices (scripts/voice_eval.py,
+# results/voice_eval.json, paper_evidence/VOICE_COMMANDS_FAST.md): wake word "glass", unknown words at the edges
+# ignored, word confidence 0.5, Vosk's own end of speech, no front end. Held-out: clean 100 %, whisper 98.9 %,
+# street noise at 0 dB 82.5 %, other people talking at 10 dB 54.3 % (was 3.2 %); false commands 13 of 5,040
+# ordinary sentences (was 212).
 # Early decision on a settled partial result, and the audio front end ("none", "denoise", "level", "denoise+level").
 # Both are chosen by scripts/voice_eval.py on the design voices; the defaults below are the chosen ones.
 VOICE_CMD_EARLY = os.environ.get("VOICE_CMD_EARLY", "0") == "1"
 VOICE_CMD_FRONTEND = os.environ.get("VOICE_CMD_FRONTEND", "none")
 VOICE_CMD_ENDPOINT = os.environ.get("VOICE_CMD_ENDPOINT", "vosk")          # or "vad" (Silero; needs silero-vad)
 VOICE_CMD_VAD_END_CHUNKS = int(os.environ.get("VOICE_CMD_VAD_END_CHUNKS", "8"))   # 32 ms chunks of non-speech = end
-VOICE_CMD_STRIP_EDGES = os.environ.get("VOICE_CMD_STRIP_EDGES", "0") == "1"      # wake mode: ignore [unk] at the edges
+VOICE_CMD_STRIP_EDGES = os.environ.get("VOICE_CMD_STRIP_EDGES", "1") == "1"      # wake mode: ignore [unk] at the edges
 
 # ---------------------------------------------------------------------------
 # Online Claude (optional — EasyOCR stays the offline text reader)
