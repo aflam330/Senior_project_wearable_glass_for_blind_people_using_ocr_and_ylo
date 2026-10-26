@@ -68,7 +68,7 @@ P("SARA is a smart glass for blind and low-vision people in Bangladesh. A camera
   "five push-buttons and an earphone let the user read printed Bangla and English, hear what objects are in front, "
   "know which Taka note is in the hand, and get careful advice on whether the note is genuine. It speaks Bangla, and "
   "everything except one optional mode works without the internet.")
-figure("worn_200.jpg", 5.2, "The prototype worn during a trial session.")
+figure("sara_v2_collage.jpg", 6.2, "The second prototype: camera housing at the front, five-button board along the temple, bone-conduction headphone, and the Raspberry Pi 5 in a ventilated enclosure at the back of the head.")
 
 H("2. Features at a glance")
 table("Table 1: The modes of the glass", [

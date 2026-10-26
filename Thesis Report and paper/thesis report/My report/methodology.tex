@@ -87,6 +87,15 @@ The first prototype (Figure~\ref{fig:prototype}) is simpler than this design. It
     \label{fig:prototype}
 \end{figure}
 
+The second prototype (Figure~\ref{fig:prototype2}) answers these problems while keeping everything on the head. The camera now sits in a small closed housing on the front of the frame, with a blue LED beside it. The Raspberry Pi~5 moved from the temple into a 3D-printed enclosure with ventilation slots at the back of the head, so that the board balances the frame instead of pulling it to one side and its fan blows away from the face. A strap joins the frame to the enclosure and carries the wires. The five buttons sit in a row on a small perforated board along the temple, where the fingers find them without looking, and an open-ear bone-conduction headphone delivers the speech while leaving the ears free for traffic and voices. Power still comes from a power bank through a cable.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.46\textwidth]{sara_v2_collage.jpg}
+    \caption{Second prototype of SARA worn by a team member: the camera housing and LED at the front of the frame (top), the five-button board along the temple and the bone-conduction headphone (bottom left and top right), and the ventilated enclosure carrying the Raspberry Pi~5 at the back of the head (bottom right)}
+    \label{fig:prototype2}
+\end{figure}
+
 \subsection{Interactive Features and Interface Design}
 Several interaction decisions were made specifically for users without sight:
 \begin{itemize}[noitemsep]
@@ -115,15 +124,16 @@ Table~\ref{tab:hardware} summarises the hardware of the prototype. Each componen
 \textbf{Picture} & \textbf{Component} & \textbf{Details} & \textbf{What it does in SARA} \\ \hline
 \vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_pi5.jpg}\vspace{1pt} & Raspberry Pi~5 with active cooler & Small computer with a four-core 2.4 GHz processor and 4 or 8 GB of memory; no graphics accelerator is used & The ``brain'': runs all the AI models and the program \\ \hline
 \vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_camera.jpg}\vspace{1pt} & Camera Module 2 & 8-megapixel Sony IMX219 sensor with a fixed-focus lens; used at 640$\times$480 pixels & Takes the pictures of text, notes and surroundings \\ \hline
-\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_buttons.jpg}\vspace{1pt} & Push-buttons (5) & Press-to-click buttons connected to Pi pins 17, 27, 24, 22 and 23 & Let the user control the glass without a screen: MODE, ACTION, READ, VOLUME UP, VOLUME DOWN \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{v2_buttons.jpg}\vspace{1pt} & Push-buttons (5) & Press-to-click buttons on a small perforated board along the temple, connected to Pi pins 17, 27, 24, 22 and 23 & Let the user control the glass without a screen: MODE, ACTION, READ, VOLUME UP, VOLUME DOWN \\ \hline
 \vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_motor.jpg}\vspace{1pt} & Vibration motor & Small motor that shakes when switched on; driven from Pi pin 13 & A short buzz tells the user something was found (for example a note) \\ \hline
-\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_earphone.jpg}\vspace{1pt} & Earphone / speaker & Wired 3.5 mm or USB earphone, or a small speaker & Speaks every result to the user \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{v2_headphone.jpg}\vspace{1pt} & Bone-conduction headphone & Open-ear headphone that passes sound through the cheekbones; any earphone or small speaker also works & Speaks every result while the ears stay free for traffic and voices \\ \hline
 \vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_powerbank.jpg}\vspace{1pt} & Power bank & USB-C power bank (the official Pi~5 supply is rated 5 V, 5 A) & Lets the user carry the glass anywhere \\ \hline
-\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_frame.jpg}\vspace{1pt} & Spectacle frame & 3D-printed frame with the camera above the nose bridge & Holds the camera where the user looks, so the glass is worn like ordinary spectacles \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{v2_frame.jpg}\vspace{1pt} & Spectacle frame & 3D-printed frame with the camera housing and a blue LED at the front, held by a head strap & Holds the camera where the user looks, so the glass is worn like ordinary spectacles \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{v2_enclosure.jpg}\vspace{1pt} & Rear enclosure & 3D-printed case with ventilation slots at the back of the head & Carries the Raspberry Pi~5, balances the frame and keeps the board's heat away from the face \\ \hline
 \end{tabular}
 
 \vspace{3pt}
-\raggedright{\footnotesize Picture credits (Wikimedia Commons): Raspberry Pi~5 with active cooler, by SimonWaldherr, CC BY 4.0; Camera Module v2, by the Raspberry Pi Foundation, CC BY-SA 4.0; tactile push-buttons and vibration motor, by Raimond Spekking, CC BY-SA 4.0; earphones, by Berthold Werner, CC BY-SA 3.0; USB power bank, by Pinguinguy, CC0. Spectacle frame: our first prototype. The pictures show the type of part, not necessarily the exact model used.}
+\raggedright{\footnotesize Picture credits (Wikimedia Commons): Raspberry Pi~5 with active cooler, by SimonWaldherr, CC BY 4.0; Camera Module v2, by the Raspberry Pi Foundation, CC BY-SA 4.0; vibration motor, by Raimond Spekking, CC BY-SA 4.0; USB power bank, by Pinguinguy, CC0. Push-buttons, headphone, spectacle frame and enclosure: our second prototype. The pictures show the type of part, not necessarily the exact model used.}
 \end{table}
 
 \subsection*{Processing Unit}

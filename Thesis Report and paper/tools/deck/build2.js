@@ -131,16 +131,17 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   // ================================================================ 1. title
   pres.addSection({ title: "Opening" });
   let s = pres.addSlide({ masterName: "TITLE_DARK", sectionTitle: "Opening" });
-  photo(s, AS + "1_1.jpg", 8.73, 0, 4.6, 7.5, "Prototype worn, front");
+  photo(s, AS + "v2_collage.jpg", 7.43, 0, 5.9, 7.5, "Second prototype: front, side and back");
   circleIcon(s, "glasses", 0.75, 0.75, 0.75, HEX.accent1, "Glasses");
-  s.addText("SARA", { x: 0.75, y: 1.75, w: 7.5, h: 1.0, fontFace: "Cambria", fontSize: 54, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Title" });
+  s.addText("SARA", { x: 0.75, y: 1.75, w: 6.2, h: 1.0, fontFace: "Cambria", fontSize: 54, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Title" });
   s.addText("Smart Assistive Reading Aid: an offline smart glass that reads Bangla and English, names objects, and recognises and checks Bangladeshi Taka notes",
-    { x: 0.75, y: 2.8, w: 7.5, h: 1.4, fontSize: 20, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", objectName: "Subtitle" });
+    { x: 0.75, y: 2.8, w: 6.2, h: 1.8, fontSize: 20, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", objectName: "Subtitle" });
   s.addText([
-    { text: "MD Abdun Fattah Lam (2220014)  ·  Mukut Protim Memo (2020086)  ·  Tanjila Hossain Tapti (2130561)", options: { breakLine: true } },
+    { text: "MD Abdun Fattah Lam (2220014)  ·  Mukut Protim Memo (2020086)", options: { breakLine: true } },
+    { text: "Tanjila Hossain Tapti (2130561)", options: { breakLine: true } },
     { text: "Supervisor: Mohammad Shidujaman, PhD, Assistant Professor", options: { breakLine: true } },
     { text: "Department of Computer Science and Engineering, Independent University, Bangladesh" },
-  ], { x: 0.75, y: 5.1, w: 7.6, h: 1.2, fontSize: 13, color: "CFE2DA", isTextBox: true, margin: 0, paraSpaceAfter: 4, objectName: "Authors" });
+  ], { x: 0.75, y: 4.95, w: 6.3, h: 1.6, fontSize: 13, color: "CFE2DA", isTextBox: true, margin: 0, paraSpaceAfter: 4, objectName: "Authors" });
   notes(s, "We present SARA, a smart glass for blind and low-vision people in Bangladesh. It reads Bangla and English text, names objects, recognises Taka notes and checks them carefully, and it works on the device without the internet. The photo is the current prototype.");
 
   // ================================================================ 2. problem: scenario storyboard
@@ -328,7 +329,7 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   s.addText("From a desk prototype to a wearable glass", { placeholder: "title" });
   photo(s, AS + "test_10.jpg", 0.6, 1.45, 2.84, 4.62, "Prototype version 1");
   s.addText("Version 1: board and fan on one temple", { x: 0.6, y: 6.12, w: 2.84, h: 0.45, fontSize: 12, color: C.accent5, isTextBox: true, margin: 0, objectName: "V1 caption" });
-  const v2 = [["1_20.jpg", "Front: camera and LED on the bridge"], ["1_2.jpg", "Side: five buttons, bone-conduction earphone"], ["1_23.jpg", "Back: Pi 5 in a ventilated enclosure"]];
+  const v2 = [["1_20.jpg", "Front: camera and LED on the bridge"], ["v2_side_portrait.jpg", "Side: five buttons, bone-conduction earphone"], ["1_23.jpg", "Back: Pi 5 in a ventilated enclosure"]];
   v2.forEach(([f, cap], i) => {
     photo(s, AS + f, 3.69 + i * 3.09, 1.45, 2.84, 4.62, cap);
     s.addText(cap, { x: 3.69 + i * 3.09, y: 6.12, w: 2.84, h: 0.45, fontSize: 12, color: C.accent5, isTextBox: true, margin: 0, objectName: "V2 caption " + (i + 1) });
