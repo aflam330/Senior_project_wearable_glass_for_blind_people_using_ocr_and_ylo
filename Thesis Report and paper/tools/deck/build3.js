@@ -122,6 +122,8 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   const bubble = (s, text, x, y, w, h, fill, color, name, fontFace) =>
     s.addText(text, { shape: pres.shapes.ROUNDED_RECTANGULAR_CALLOUT, x, y, w, h, fill: { color: fill }, line: { color: fill }, color, fontSize: 14,
       bold: true, align: "center", valign: "middle", isTextBox: true, margin: 0.06, fontFace, objectName: name });
+  const tag = (s, text, x, y, w, fill, color, name) => s.addText(text, { shape: pres.shapes.ROUNDED_RECTANGLE, x, y, w, h: 0.36, rectRadius: 0.06,
+    fill: { color: fill }, line: { color: fill }, color, fontSize: 12, bold: true, align: "center", valign: "middle", isTextBox: true, margin: 0, objectName: name });
   const notes = (s, t) => s.addNotes(t);
   // a straight line from (x1, y1) to (x2, y2), x2 >= x1; sizes always positive (negative sizes make PowerPoint refuse the file)
   const connect = (s, x1, y1, x2, y2, name, arrow = false) =>
@@ -140,8 +142,9 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   photo(s, AS + "v2_collage.jpg", 7.43, 0, 5.9, 7.5, "Second prototype: front, side and back");
   circleIcon(s, "glasses", 0.75, 0.75, 0.75, HEX.accent1, "Glasses");
   s.addText("SARA", { x: 0.75, y: 1.75, w: 6.2, h: 1.0, fontFace: "Cambria", fontSize: 54, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Title" });
-  s.addText("Smart Assistive Reading Aid: an offline smart glass that reads Bangla and English, names objects, and recognises and checks Bangladeshi Taka notes",
-    { x: 0.75, y: 2.8, w: 6.2, h: 1.8, fontSize: 20, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", objectName: "Subtitle" });
+  s.addText([{ text: "Smart Assistive Reading Aid", options: { bold: true, breakLine: true } },
+    { text: "Offline AI Smart Glasses for Reading, Object Recognition and Bangladeshi Taka Verification" }],
+    { x: 0.75, y: 2.8, w: 6.2, h: 1.8, fontSize: 22, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", objectName: "Subtitle" });
   s.addText([
     { text: "MD Abdun Fattah Lam (2220014)  ·  Mukut Protim Memo (2020086)", options: { breakLine: true } },
     { text: "Tanjila Hossain Tapti (2130561)", options: { breakLine: true } },
@@ -154,22 +157,11 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   pres.addSection({ title: "Problem" });
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Problem" });
   s.addText("Three everyday challenges", { placeholder: "title" });
-  const scenes = [
-    ["money", "Money", "Which note is this? Is it real?"],
-    ["book", "Reading", "What does this label say?"],
-    ["road", "Surroundings", "What is in front of me?"],
-  ];
-  scenes.forEach(([k, head, q], i) => {
-    const x = 0.6 + i * 4.1;
-    circleIcon(s, k === "road" ? "eye" : k === "money" ? "cash" : "book", x, 1.45, 0.62, HEX.accent2, head);
-    s.addText(head, { x: x + 0.78, y: 1.45, w: 3.0, h: 0.62, fontFace: "Cambria", fontSize: 26, bold: true, color: C.text2, valign: "middle", isTextBox: true, margin: 0, objectName: head + " heading" });
-    photo(s, AS + `cartoon_problem_${i + 1}.jpg`, x, 2.25, 3.85, 3.55, head + " illustration");
-    s.addText(q, { x, y: 5.92, w: 3.85, h: 0.45, fontSize: 20, italic: true, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: head + " question" });
-  });
-  s.addText("Today, every answer depends on another person, and it cannot be checked.",
-    { x: 0.6, y: 6.5, w: 12.1, h: 0.4, fontSize: 18, bold: true, color: C.accent1, isTextBox: true, margin: 0, objectName: "Takeaway" });
+  ["Money", "Reading", "Surroundings"].forEach((head, i) =>
+    s.addText(head, { x: 0.6 + i * 4.03, y: 1.38, w: 4.03, h: 0.55, fontFace: "Cambria", fontSize: 26, bold: true, color: C.text2, align: "center", valign: "middle", isTextBox: true, margin: 0, objectName: head + " label" }));
+  s.addImage({ path: AS + "cartoon_full.jpg", x: 0.6, y: 2.0, w: 12.1, h: 12.1 * 793 / 1983, objectName: "Without and with SARA" });
   s.addText("Illustration", { x: 11.2, y: 7.02, w: 0.95, h: 0.28, fontSize: 10, italic: true, color: C.accent5, align: "right", isTextBox: true, margin: 0, objectName: "Illustration note" });
-  notes(s, "Three everyday moments. At the shop, the blind customer receives change and must trust the shopkeeper about which note it is and whether it is real. At the pharmacy, the medicine label is in Bangla and no affordable device reads it. On the street, they must stop and ask a stranger what is ahead. In every case the answer comes from another person and cannot be checked.");
+  notes(s, "Three everyday moments; the top row is today, the bottom row is with SARA. At the shop, the blind customer receives change and must trust the shopkeeper about which note it is and whether it is real. At the pharmacy, the medicine label is in Bangla and no affordable device reads it. On the street, they must stop and ask a stranger what is ahead. In every case the answer comes from another person and cannot be checked. With SARA, the glass names the note, reads the label and names what is ahead.");
 
   // ================================================================ 3. problem in numbers + gaps
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Problem" });
@@ -181,9 +173,9 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   s.addText("most of them in low- and middle-income regions " + cite("who"),
     { x: 0.95, y: 4.6, w: 3.55, h: 1.2, fontSize: 17, italic: true, color: "CFE2DA", isTextBox: true, margin: 0, valign: "top", objectName: "WHO note" });
   const gaps = [
-    ["lang", HEX.accent1, "Limited Bangla support", "Reading glasses are built for English " + cite("orcam")],
+    ["lang", HEX.accent1, "Limited Bangla support", "OrCam MyEye does not support Bangla " + cite("orcam")],
     ["wifi", HEX.accent3, "Internet dependence", "Research glasses send pictures to a server " + cite("glass", "airis")],
-    ["warn", HEX.accent2, "Limited Taka verification", "No wearable names Taka notes or checks them safely"],
+    ["warn", HEX.accent2, "Limited Taka verification", "Reviewed systems do not name Taka notes " + cite("orcam", "glass", "airis")],
   ];
   gaps.forEach(([k, col, h, t], i) => {
     const y = 1.45 + i * 1.7;
@@ -193,7 +185,7 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
     s.addText(t, { x: 6.55, y: y + 0.78, w: 6.0, h: 0.55, fontSize: 18, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Gap " + (i + 1) + " text" });
   });
   sources(s, `Sources: ${cite("who")} WHO 2023; ${cite("orcam")} OrCam MyEye; ${cite("glass")} Ali A. et al., IEEE Access 2021; ${cite("airis")} Brilli et al., arXiv 2024.`);
-  notes(s, "The World Health Organization counts at least 2.2 billion people with a vision impairment, most of them in low- and middle-income countries. Three gaps keep existing help away from Bangladeshi users. Commercial reading glasses such as OrCam are built for English. Research glasses send every picture to a cloud server, so without a network there is no answer. And no wearable names Taka notes or checks them safely: a wrong value or a false accusation of counterfeit has real costs.");
+  notes(s, "The World Health Organization counts at least 2.2 billion people with a vision impairment, most of them in low- and middle-income countries. Three gaps keep existing help away from Bangladeshi users. OrCam MyEye, the best-known commercial reading glass, does not support Bangla. The research glasses we reviewed send every picture to a cloud server, so without a network there is no answer. And none of the systems we reviewed names Bangladeshi Taka notes, let alone screens them safely: a wrong value or a false accusation of counterfeit has real costs.");
 
   // ================================================================ 4. with SARA scenario
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Problem" });
@@ -212,17 +204,17 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
     s.addText(t, { x: x + 0.82, y: 1.92, w: 1.95, h: 0.6, fontSize: 14, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Step " + (i + 1) + " text" });
     if (i < 2) connect(s, x + 2.72, 1.9, x + 2.9, 1.9, "Step arrow " + (i + 1), true);
   });
-  const answers = [["Money", "Names the note; checks it safely"], ["Reading", "Reads the label aloud"], ["Surroundings", "Names what is ahead"]];
-  answers.forEach(([h, t], i) => {
+  const answers = [["cash", "Money", "Names the note and screens it with care"], ["book", "Reading", "Reads Bangla and English labels aloud"], ["eye", "Surroundings", "Names people and objects ahead"]];
+  answers.forEach(([k, h, t], i) => {
     const x = 4.1 + i * 2.95;
-    photo(s, AS + `cartoon_sara_${i + 1}.jpg`, x, 2.85, 2.75, 2.75 * 354 / 600, h + " with SARA");
-    s.addText(h, { x, y: 4.55, w: 2.75, h: 0.42, fontFace: "Cambria", fontSize: 18, bold: true, color: C.accent1, isTextBox: true, margin: 0, objectName: h + " label" });
-    s.addText(t, { x, y: 4.97, w: 2.75, h: 0.6, fontSize: 15, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: h + " answer" });
+    card(s, x, 2.85, 2.75, 2.65, h + " card");
+    circleIcon(s, k, x + 0.98, 3.05, 0.8, HEX.accent1, h);
+    s.addText(h, { x: x + 0.1, y: 3.95, w: 2.55, h: 0.45, fontFace: "Cambria", fontSize: 20, bold: true, color: C.text2, align: "center", isTextBox: true, margin: 0, objectName: h + " label" });
+    s.addText(t, { x: x + 0.15, y: 4.45, w: 2.45, h: 0.9, fontSize: 15, color: C.text1, align: "center", isTextBox: true, margin: 0, valign: "top", objectName: h + " answer" });
   });
   s.addText([{ text: "পাঁচশত টাকার নোট", options: { fontFace: BN, fontSize: 24, bold: true, color: HEX.accent1 } },
     { text: "   \"500 Taka note\": the answer the glass speaks", options: { fontSize: 16, color: HEX.dk1 } }],
     { shape: pres.shapes.ROUNDED_RECTANGLE, rectRadius: 0.1, fill: { color: HEX.lt2 }, line: { color: HEX.lt2 }, valign: "middle", x: 4.1, y: 5.75, w: 8.6, h: 0.75, margin: 12, isTextBox: true, objectName: "Spoken answer" });
-  s.addText("Illustrations except the prototype photo", { x: 9.2, y: 7.02, w: 2.95, h: 0.28, fontSize: 10, italic: true, color: C.accent5, align: "right", isTextBox: true, margin: 0, objectName: "Illustration note" });
   notes(s, "Here is the same moment with SARA. The user says glass, check money. The camera picture is processed on the Raspberry Pi 5 without the internet, and the glass answers in Bangla, for example five hundred Taka note, with a short vibration. The same three steps read a medicine label or name what is ahead.");
 
   // ================================================================ 5. SARA at a glance
@@ -291,51 +283,43 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
     [rowName("OrCam MyEye " + cite("orcam")), no, no, yes, yes],
     [rowName("Google Glass scene analysis " + cite("glass")), no, no, no, yes],
     [rowName("AIris (2024) " + cite("airis")), no, no, no, yes],
-    [rowName("Raspberry Pi reading aids"), no, no, part, part],
+    [rowName("Raspberry Pi reading aids *"), no, no, part, part],
     [{ text: "SARA (ours)", options: { bold: true, fill: { color: HEX.lt2 } } }, { ...yes, options: { ...yes.options, fill: { color: HEX.lt2 } } },
       { ...yes, options: { ...yes.options, fill: { color: HEX.lt2 } } }, { ...yes, options: { ...yes.options, fill: { color: HEX.lt2 } } },
       { ...yes, options: { ...yes.options, fill: { color: HEX.lt2 } } }],
   ], { x: 0.6, y: 1.45, w: 8.05, colW: [3.25, 1.2, 1.2, 1.2, 1.2], fontSize: 16, color: HEX.dk1, border: { type: "solid", pt: 0.5, color: "D5E2DC" }, rowH: 0.52, valign: "middle", objectName: "Comparison table" });
   card(s, 8.95, 1.45, 3.75, 4.95, "Gap card", C.text2);
   s.addText("The research gap", { x: 9.2, y: 1.7, w: 3.3, h: 0.5, fontFace: "Cambria", fontSize: 24, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Gap heading" });
-  s.addText("No wearable combines Bangla, Taka and offline use.",
-    { x: 9.2, y: 2.35, w: 3.3, h: 1.4, fontSize: 21, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, valign: "top", objectName: "Gap main" });
+  s.addText("None of the systems we reviewed combines Bangla, Taka and offline use.",
+    { x: 9.2, y: 2.35, w: 3.3, h: 1.5, fontSize: 20, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, valign: "top", objectName: "Gap main" });
   s.addText([
     { text: "Counterfeit tests reuse the same prints", options: { bullet: true, breakLine: true } },
     { text: "Few report speed on the real device", options: { bullet: true } },
   ], { x: 9.2, y: 4.0, w: 3.3, h: 2.2, fontSize: 16, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", paraSpaceAfter: 8, objectName: "Gap list" });
+  s.addText("Rows with a reference: from the cited source. * Our assessment of typical hobby builds, not a cited result.", { x: 0.6, y: 4.6, w: 8.05, h: 0.25, fontSize: 11, italic: true, color: C.accent5, isTextBox: true, margin: 0, objectName: "Table note" });
   sources(s, "Photos: OrCam MyEye by Ylip, CC BY-SA 4.0; Google Glass by Ted Eytan, CC BY-SA 2.0 (Wikimedia Commons); AIris from " + cite("airis") + ". Comparison from " + cite("orcam", "glass", "airis") + ".");
   notes(s, "Commercial glasses such as OrCam work offline but not in Bangla and not with Taka. Glass-based research systems send pictures to a server. Raspberry Pi reading aids are cheap but mostly English. No device combines Bangla, Taka and offline use, and counterfeit studies do not check for copies of the same print in training and test.");
 
   // ================================================================ 8. architecture
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Solution" });
   s.addText("How the glass works", { placeholder: "title" });
-  circleIcon(s, "cam", 0.8, 2.0, 1.0, HEX.accent1, "Camera");
-  s.addText("Camera 640×480", { x: 0.45, y: 3.05, w: 1.7, h: 0.35, fontSize: 15, align: "center", color: C.text1, isTextBox: true, margin: 0, objectName: "Camera label" });
-  circleIcon(s, "hand", 0.8, 3.75, 1.0, HEX.accent3, "Buttons");
-  s.addText("5 buttons", { x: 0.45, y: 4.8, w: 1.7, h: 0.35, fontSize: 15, align: "center", color: C.text1, isTextBox: true, margin: 0, objectName: "Buttons label" });
-  circleIcon(s, "mic", 0.8, 5.35, 0.85, HEX.accent2, "Microphone");
-  s.addText("Voice: \"glass, …\"", { x: 0.35, y: 6.22, w: 1.9, h: 0.35, fontSize: 15, align: "center", color: C.text1, isTextBox: true, margin: 0, objectName: "Mic label" });
-  s.addText("Raspberry Pi 5\nmode manager\n(all on the CPU)", { shape: pres.shapes.ROUNDED_RECTANGLE, x: 2.95, y: 2.75, w: 2.65, h: 2.0, rectRadius: 0.1,
-    fill: { color: HEX.dk2 }, line: { color: HEX.dk2 }, color: "FFFFFF", fontSize: 20, bold: true, align: "center", valign: "middle", isTextBox: true, objectName: "Pi box" });
-  const mods = [
-    ["Text", "CRAFT detector + EasyOCR recogniser " + cite("craft", "easyocr")],
-    ["Objects", "YOLOv8s, COCO classes " + cite("yolo", "coco")],
-    ["Currency", "YOLOv8s + safe counterfeit + watermark checks"],
-    ["Emotion", "YuNet face + EfficientNet, RAF-DB " + cite("rafdb")],
-    ["Online", "Cloud vision model (optional)"],
+  const stages = [
+    ["cam", HEX.accent1, "Camera, buttons, voice", ["Camera 640×480", "5 buttons on the frame", "Voice: \"glass, …\""]],
+    ["chip", HEX.dk2, "Raspberry Pi 5", ["Mode manager", "All models on the CPU", "Offline, except the online mode"]],
+    ["cube", HEX.accent3, "AI modules", ["Text: CRAFT + EasyOCR " + cite("craft", "easyocr"), "Objects: YOLOv8s, COCO " + cite("yolo", "coco"),
+      "Taka: YOLOv8s + safe checks", "Emotion: YuNet + EfficientNet " + cite("rafdb"), "Online: cloud model (optional)"]],
+    ["speak", HEX.accent1, "Audio + vibration", ["Bangla or English speech " + cite("piper", "espeak"), "Vibration for a note"]],
   ];
-  mods.forEach(([h, t], i) => {
-    const y = 1.45 + i * 1.02;
-    s.addText([{ text: h + ": ", options: { bold: true, color: HEX.dk2 } }, { text: t, options: { color: HEX.dk1 } }],
-      { shape: pres.shapes.ROUNDED_RECTANGLE, x: 6.3, y, w: 4.3, h: 0.88, rectRadius: 0.08, fill: { color: i === 4 ? "F3F5F4" : HEX.lt2 }, line: { color: i === 4 ? "F3F5F4" : HEX.lt2 },
-        fontSize: 15, valign: "middle", isTextBox: true, margin: 12, objectName: h + " module" });
-    connect(s, 5.6, 3.75, 6.3, y + 0.44, h + " link", true);
+  stages.forEach(([k, col, h, lines], i) => {
+    const x = 0.6 + i * 3.15;
+    card(s, x, 1.45, 2.75, 4.2, h + " card");
+    circleIcon(s, k, x + 0.78, 1.7, 1.2, col, h);
+    s.addText(h, { x: x + 0.1, y: 3.05, w: 2.55, h: 0.8, fontFace: "Cambria", fontSize: 20, bold: true, color: C.text2, align: "center", valign: "top", isTextBox: true, margin: 0, objectName: h + " heading" });
+    s.addText(lines.map((t, j) => ({ text: t, options: { breakLine: j < lines.length - 1 } })),
+      { x: x + 0.15, y: 3.9, w: 2.45, h: 2.35, fontSize: i === 2 ? 12 : 14, color: C.text1, align: "center", valign: "top", paraSpaceAfter: 6, isTextBox: true, margin: 0, objectName: h + " details" });
+    if (i < 3) s.addShape(pres.shapes.CHEVRON, { x: x + 2.83, y: 2.05, w: 0.28, h: 0.55, fill: { color: HEX.accent6 }, line: { color: HEX.accent6 }, objectName: "Arrow " + (i + 1) });
   });
-  [[1.8, 2.5], [1.8, 4.25], [1.65, 5.78]].forEach(([x, y], i) => connect(s, x, y, 2.95, 3.75, "Input " + (i + 1), true));
-  circleIcon(s, "speak", 11.1, 2.85, 1.35, HEX.accent1, "Speech");
-  s.addText("Bangla / English speech + vibration " + cite("piper", "espeak"), { x: 10.7, y: 4.35, w: 2.1, h: 1.1, fontSize: 15, align: "center", color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Speech label" });
-  connect(s, 10.6, 3.52, 11.1, 3.52, "Output link", true);
+  s.addText("Everything runs on the glass itself; only the optional online mode uses the internet.", { x: 0.6, y: 5.85, w: 12.1, h: 0.45, fontSize: 18, bold: true, color: C.accent1, align: "center", isTextBox: true, margin: 0, objectName: "Pipeline takeaway" });
   sources(s, `Sources: ${cite("craft")} Baek et al. 2019; ${cite("easyocr")} EasyOCR; ${cite("yolo")} Ultralytics YOLOv8; ${cite("coco")} COCO; ${cite("rafdb")} RAF-DB; ${cite("piper")} Piper; ${cite("espeak")} eSpeak NG.`);
   notes(s, "The camera picture, the buttons and voice commands go to a mode manager on the Raspberry Pi 5. The active mode runs its model on the CPU, and the result is spoken in Bangla or English, with a vibration for a detected note.");
 
@@ -362,28 +346,31 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   s.addImage({ path: FIG + "fig_compositing.jpg", x: 0.6, y: 1.5, w: 8.2, h: 8.2 * 466 / 1600, objectName: "Compositing pipeline" });
   s.addText("Note photos " + cite("banglataka") + " are pasted onto real scenes " + cite("coco") + ", and the program writes every label itself.",
     { x: 0.6, y: 4.2, w: 8.2, h: 0.9, fontSize: 20, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Compositing text" });
-  card(s, 9.2, 1.5, 3.5, 4.9, "Stats card");
-  stat(s, 9.5, 1.75, 3.0, "0.995", "mAP@0.5 on 2,282 held-out composites", "mAP");
-  stat(s, 9.5, 3.3, 3.0, "94.1%", "right on 1,536 photos taken by other people", "Bangla Money");
-  stat(s, 9.5, 4.85, 3.0, "0", "hand-drawn boxes needed", "No labels");
+  card(s, 9.2, 1.5, 3.5, 2.3, "Synthetic card");
+  tag(s, "SYNTHETIC COMPOSITES", 9.45, 1.7, 2.6, HEX.accent6, HEX.dk2, "Synthetic tag");
+  stat(s, 9.45, 2.2, 3.0, "0.995", "mAP@0.5 on 2,282 held-out composites", "mAP");
+  card(s, 9.2, 4.0, 3.5, 2.4, "Real card", C.text2);
+  tag(s, "REAL PHOTOS", 9.45, 4.2, 1.7, HEX.accent4, HEX.dk1, "Real tag");
+  s.addText("94.1%", { x: 9.45, y: 4.7, w: 3.0, h: 0.75, fontFace: "Cambria", fontSize: 40, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Real value" });
+  s.addText("right note value on 1,536 photos taken by other people", { x: 9.45, y: 5.45, w: 3.0, h: 0.8, fontSize: 14, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", objectName: "Real label" });
   sources(s, `Sources: ${cite("banglataka")} BanglaTaka (Mendeley); ${cite("coco")} Lin et al., COCO, ECCV 2014; detector ${cite("yolo")} Ultralytics YOLOv8. 94.1% with the hand-held detector (next slide).`);
-  notes(s, "Public Taka images are clean close-ups, so a model trained on them fails on a live camera. We pasted 5,073 note photos onto real COCO pictures with random angle, scale, light and blur, and let the program write the box labels. The detector scores 0.995 mAP on held-out composites and names 94.1 percent of independent photographs correctly.");
+  notes(s, "Public Taka images are clean close-ups, so a model trained on them fails on a live camera. We pasted 5,073 note photos onto real COCO pictures with random angle, scale, light and blur, and let the program write the box labels. The detector scores 0.995 mAP on held-out composites and, the number that matters for users, names 94.1 percent of 1,536 real photographs taken by other people correctly. The two numbers measure different things: the first is on synthetic composites, the second on real photos.");
 
   // ================================================================ 11. hand-held notes
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Currency" });
   s.addText("Notes held in a hand: from 1 in 8 to 1 in 2", { placeholder: "title" });
-  s.addImage({ path: REP + "fig58_handheld_closeups.png", x: 0.6, y: 1.45, w: 7.0, h: 2.8, objectName: "Synthetic close-ups" });
-  s.addText([{ text: "6,000 synthetic close-ups: folded, blurred, under fingers", options: { fontSize: 19, breakLine: true } },
-    { text: "Chosen on validation; the test set was read once", options: { fontSize: 14, color: HEX.accent5 } }],
-    { x: 0.6, y: 4.4, w: 7.0, h: 1.0, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Close-up text" });
+  tag(s, "TRAINING: 6,000 SYNTHETIC CLOSE-UPS", 0.6, 1.45, 3.9, HEX.accent6, HEX.dk2, "Training tag");
+  s.addImage({ path: REP + "fig58_handheld_closeups.png", x: 0.6, y: 1.9, w: 5.5, h: 2.2, objectName: "Synthetic close-ups" });
+  tag(s, "TEST: REAL HAND-HELD PHOTOS", 0.6, 4.3, 3.3, HEX.accent4, HEX.dk1, "Test tag");
+  s.addText("11.8% → 47.5%", { x: 0.6, y: 4.75, w: 7.0, h: 0.85, fontFace: "Cambria", fontSize: 44, bold: true, color: C.accent1, isTextBox: true, margin: 0, objectName: "Hand-held takeaway" });
   s.addChart(pres.charts.BAR, [
     { name: "Earlier detector", labels: ["Laptop", "Raspberry Pi (8-bit)"], values: [11.8, 8.7] },
     { name: "Hand-held detector", labels: ["Laptop", "Raspberry Pi (8-bit)"], values: [47.5, 33.5] },
   ], { x: 7.9, y: 1.45, w: 4.8, h: 4.4, barDir: "col", barGapWidthPct: 60, chartColors: [HEX.accent5, HEX.accent1], showValue: true, dataLabelPosition: "outEnd",
     dataLabelFormatCode: "0.0\"%\"", valAxisMaxVal: 60, valAxisMinVal: 0, valAxisLabelFormatCode: "0\"%\"", showLegend: true, legendPos: "b",
-    showTitle: true, title: "Right note value, NSTU hand-held test (1,127 photos)", ...chartFrame, objectName: "Hand-held chart" });
-  s.addText("Trade-off: with 3 notes in view, the total is right 97.0% of the time (was 99.2%).",
-    { x: 0.6, y: 5.6, w: 7.0, h: 0.8, fontSize: 14, italic: true, color: C.accent2, isTextBox: true, margin: 0, valign: "top", objectName: "Costs" });
+    showTitle: true, title: "Right note value, real hand-held photos (NSTU, 1,127)", ...chartFrame, objectName: "Hand-held chart" });
+  s.addText("Right note value on the laptop. Trade-off: with 3 notes in view, the total is right 97.0% (was 99.2%).",
+    { x: 0.6, y: 5.65, w: 7.0, h: 0.8, fontSize: 14, italic: true, color: C.accent2, isTextBox: true, margin: 0, valign: "top", objectName: "Costs" });
   sources(s, `Sources: test photos ${cite("nstu")} Rafi et al., NSTU-BDTAKA, Data in Brief 2024; detector ${cite("yolo")} YOLOv8. Our results: paper_evidence/HANDHELD_FINETUNE.md.`);
   notes(s, "A blind user holds the note close, folded and under the fingers, and our training pictures showed whole notes in scenes. We generated six thousand hand-held close-ups from training notes only and fine-tuned the detector. On the independent NSTU hand-held test, the right value rises from 11.8 to 47.5 percent on the laptop and from 8.7 to 33.5 percent on the Pi. There are costs: one-taka notes are named more often by mistake (36.6 percent), and with three notes in view the total is right 97.0 percent of the time instead of 99.2.");
 
@@ -412,8 +399,9 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   s.addText("71.2%", { x: 8.9, y: 2.25, w: 3.5, h: 0.7, fontFace: "Cambria", fontSize: 36, bold: true, color: "B9C4BF", isTextBox: true, margin: 0, objectName: "Before value" });
   s.addText("rises to", { x: 8.9, y: 2.95, w: 3.5, h: 0.45, fontSize: 18, italic: true, color: "CFE2DA", isTextBox: true, margin: 0, objectName: "Rises to" });
   s.addText("98.2%", { x: 8.9, y: 3.4, w: 3.5, h: 0.95, fontFace: "Cambria", fontSize: 54, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "After value" });
+  s.addText("Held-out JaalTaka test notes, never used for training or for any choice", { x: 8.9, y: 5.55, w: 3.5, h: 0.7, fontSize: 12, italic: true, color: "CFE2DA", isTextBox: true, margin: 0, valign: "top", objectName: "Split note" });
   s.addText("Training on random first views: one view is enough.",
-    { x: 8.9, y: 4.6, w: 3.5, h: 1.5, fontSize: 18, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", objectName: "Prefix takeaway" });
+    { x: 8.9, y: 4.5, w: 3.5, h: 1.0, fontSize: 18, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", objectName: "Prefix takeaway" });
   sources(s, `Data: ${cite("jaal", "jaal26")} Piyas et al., JaalTaka dataset and article, 2025-2026 (1,390 notes, six views each; counterfeits seized by the Rapid Action Battalion).`);
   notes(s, "A blind user cannot promise to capture six views of a note. A model trained only with all six views collapses to 71 percent with one view. Training on random prefixes of the views, that is the first k views for a random k, keeps it at about 98 percent from one to six views, with no loss at six views and stable results across three seeds.");
 
@@ -424,10 +412,11 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
     { x: 0.6, y: 1.45, w: 7.6, h: 5.0, barDir: "bar", chartColors: [HEX.accent5, HEX.accent3, HEX.accent5, HEX.accent1], showValue: true, dataLabelPosition: "outEnd",
       dataLabelFormatCode: "0.0\"%\"", valAxisMinVal: 70, valAxisMaxVal: 100, valAxisLabelFormatCode: "0\"%\"", showLegend: false, showTitle: true,
       title: "Accuracy on counterfeit prints never seen in training (6 views, 3 seeds)", ...chartFrame, objectName: "Unseen prints chart" });
-  stat(s, 8.6, 1.6, 4.1, "279 of 322", "readable 500 Taka counterfeits carry the same serial number", "Serial");
-  s.addText([{ text: "Our split: every test counterfeit is a new print.", options: { breakLine: true } },
-    { text: "The watermark check lifts accuracy to 95.0%.", options: { bold: true, color: HEX.accent1 } }],
-    { x: 8.6, y: 3.3, w: 4.1, h: 2.7, fontSize: 19, color: C.text1, isTextBox: true, margin: 0, valign: "top", paraSpaceAfter: 12, objectName: "Unseen text" });
+  card(s, 8.6, 1.45, 4.1, 2.55, "Main result", C.text2);
+  s.addText("95.0%", { x: 8.9, y: 1.65, w: 3.5, h: 1.0, fontFace: "Cambria", fontSize: 54, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Unseen value" });
+  s.addText("on counterfeit prints never seen in training, with the watermark check", { x: 8.9, y: 2.7, w: 3.5, h: 1.1, fontSize: 16, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", objectName: "Unseen label" });
+  s.addText([{ text: "Why a stricter split: ", options: { bold: true } }, { text: "279 of 322 readable 500 Taka counterfeits share one serial number, so the usual split tests copies of known prints." }],
+    { x: 8.6, y: 4.25, w: 4.1, h: 2.1, fontSize: 15, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Unseen text" });
   sources(s, `Data: ${cite("jaal")} JaalTaka; serial-number audit and print-disjoint split are ours. Earlier Taka counterfeit work: ${cite("uddin")} SVM on security features; ${cite("pathak")} CNNs; ${cite("uvink")} UV flecks + RPN.`);
   notes(s, "Most counterfeit notes in JaalTaka are copies of a few prints, so the usual test measures recognition of known reprints; a serial-number lookup alone scores 90.2 percent. On truly unseen prints our network drops to about 89 percent; adding the watermark check brings it to 95 percent.");
 
@@ -441,9 +430,9 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
     { text: "3. Residual R = Q − T → two small CNN streams → \"watermark clear?\"" },
   ], { x: 0.6, y: 5.6, w: 7.6, h: 0.95, fontSize: 14, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "DMWR steps text" });
   card(s, 8.6, 1.45, 4.1, 5.0, "DMWR stats");
-  stat(s, 8.9, 1.7, 3.6, "91.5%", "on unseen counterfeit prints (3 seeds, ±0.3)", "DMWR acc");
-  stat(s, 8.9, 3.2, 3.6, "47,818", "parameters (0.21 MB): 46× smaller than MobileNetV2 " + cite("mnv2"), "DMWR params");
-  stat(s, 8.9, 4.7, 3.6, "p ≥ 0.375", "no significant difference from MobileNetV2 (92.9%)", "DMWR p");
+  s.addText("91.5%", { x: 8.9, y: 1.7, w: 3.6, h: 1.0, fontFace: "Cambria", fontSize: 54, bold: true, color: C.accent1, isTextBox: true, margin: 0, objectName: "DMWR value" });
+  s.addText("on unseen counterfeit prints (3 seeds, ±0.3)", { x: 8.9, y: 2.7, w: 3.6, h: 0.7, fontSize: 16, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "DMWR value label" });
+  stat(s, 8.9, 3.65, 3.6, "46× smaller", "than MobileNetV2 " + cite("mnv2") + " (47,818 parameters, 0.21 MB), and as accurate: 92.9%, p ≥ 0.375", "DMWR size");
   sources(s, `Baseline ${cite("mnv2")} Sandler et al., MobileNetV2, CVPR 2018; data ${cite("jaal")} JaalTaka. DMWR (denomination-matched watermark residual) is our method.`);
   notes(s, "Our watermark method divides the back-lit photo by a blurred copy to remove the lamp, subtracts a genuine portrait of the note value and classifies the residual with two tiny networks. With under fifty thousand parameters it reaches 91.5 percent on unseen prints, statistically level with a MobileNetV2 46 times larger.");
 
@@ -465,8 +454,11 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   s.addText("no", { x: 5.85, y: 3.75, w: 0.6, h: 0.3, fontSize: 12, color: C.accent5, isTextBox: true, margin: 0, objectName: "No label" });
   card(s, 10.0, 1.45, 2.7, 1.95, "Safety stat");
   stat(s, 10.25, 1.7, 2.3, "0 / 88", "test counterfeits passed as \"likely genuine\"", "Safety");
-  s.addText("The threshold is the highest score of any validation counterfeit. 57.5% of genuine notes are confirmed; for the rest, the glass asks for a check by hand.",
-    { x: 0.6, y: 5.1, w: 12.1, h: 1.2, fontSize: 18, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Safety text" });
+  s.addText([{ text: "\"Likely genuine\": ", options: { bold: true, color: HEX.accent1 } }, { text: "the score is higher than every counterfeit seen in validation (57.5% of genuine notes).", options: { breakLine: true } },
+    { text: "\"Check by hand\": ", options: { bold: true, color: "B07D00" } }, { text: "the glass is not sure. It never means \"counterfeit\"." }],
+    { x: 0.6, y: 4.75, w: 12.1, h: 1.0, fontSize: 18, color: C.text1, isTextBox: true, margin: 0, valign: "top", paraSpaceAfter: 6, objectName: "Safety text" });
+  s.addText("A screening aid, not a guaranteed counterfeit detector", { shape: pres.shapes.ROUNDED_RECTANGLE, x: 0.6, y: 5.9, w: 12.1, h: 0.5, rectRadius: 0.08,
+    fill: { color: "FFF4D6" }, line: { color: HEX.accent4 }, fontSize: 16, bold: true, color: HEX.dk1, align: "center", valign: "middle", isTextBox: true, margin: 0, objectName: "Screening banner" });
   sources(s, `Test notes: ${cite("jaal")} JaalTaka.`);
   notes(s, "Because a blind user cannot verify the answer, the glass never says a note is counterfeit. It says likely genuine only above a threshold set from validation counterfeits; otherwise it asks for a check by hand. The threshold is the highest score of any validation counterfeit, so a new counterfeit passes with probability about 1 in n plus 1, roughly 1.1 percent. No test counterfeit passed, and 57.5 percent of genuine notes are confirmed from close-up views.");
 
@@ -475,10 +467,10 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   s.addText("UV fibre check: the glass carries its own UV lamp", { placeholder: "title" });
   s.addImage({ path: FIG + "fig_uv_fibres.jpg", x: 0.6, y: 1.45, w: 12.1, h: 12.1 * 520 / 1816, objectName: "UV fibres" });
   stat(s, 0.6, 5.1, 3.6, "85.6%", "of 111 real UV photos of genuine notes accepted", "UV genuine");
-  stat(s, 4.6, 5.1, 3.6, "88.6%", "of simulated fibre-free printed sheets rejected", "UV sheets");
+  stat(s, 4.6, 5.1, 3.6, "88.6%", "of SIMULATED fibre-free sheets rejected (not real counterfeits)", "UV sheets", C.accent5);
   sources(s, `The glass's lamp emits 360-395 nm, covering the 365 nm used for banknote checks; banknote paper stays dark while its fibres glow ${cite("mutanen")}. Prior Taka UV work: ${cite("uvink")} (96.3%). Fibre check and photos are ours.`);
   s.addText([{ text: "Prototype, off by default", options: { bold: true, fontSize: 18, breakLine: true } },
-    { text: "Must still be validated on real counterfeit notes", options: { fontSize: 15 } }],
+    { text: "The rejection result is simulated; it must be validated on real counterfeit notes", options: { fontSize: 14 } }],
     { shape: pres.shapes.ROUNDED_RECTANGLE, x: 8.6, y: 5.0, w: 4.1, h: 1.4, rectRadius: 0.1, fill: { color: "FBE9EB" }, line: { color: HEX.accent2, width: 1.25 },
       color: HEX.accent2, isTextBox: true, margin: 12, valign: "middle", objectName: "UV caveat" });
   notes(s, "Under a UV lamp, genuine 200, 500 and 1000 Taka notes show glowing security fibres. Our check removes the lamp's own blue light and counts thin glowing marks. It accepts 85.6 percent of real genuine photos and rejects 88.6 percent of simulated fibre-free sheets. It stays off by default until real counterfeits are tested.");
@@ -496,7 +488,7 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   s.addText("Real word photos (hard)", { x: 4.3, y: 1.45, w: 4.3, h: 0.45, fontFace: "Cambria", fontSize: 19, bold: true, color: C.accent2, isTextBox: true, margin: 0, objectName: "Real heading" });
   s.addChart(pres.charts.BAR, [{ name: "Before", labels: ["Bangla", "Latin"], values: [39.2, 62.5] }, { name: "Now", labels: ["Bangla", "Latin"], values: [28.7, 50.6] }],
     ocrOpts(4.3, 4.3, "", 70, "Real chart"));
-  s.addText("Character error rate, lower is better", { x: 0.6, y: 6.32, w: 8.0, h: 0.3, fontSize: 12, italic: true, color: C.accent5, isTextBox: true, margin: 0, objectName: "Chart note" });
+  s.addText("Character error rate, lower is better. Measured on evaluation datasets, not yet through the glass.", { x: 0.6, y: 6.32, w: 8.0, h: 0.3, fontSize: 12, bold: true, italic: true, color: C.accent5, isTextBox: true, margin: 0, objectName: "Chart note" });
   s.addText("What helped", { x: 8.95, y: 1.45, w: 3.75, h: 0.45, fontFace: "Cambria", fontSize: 20, bold: true, color: C.text2, isTextBox: true, margin: 0, objectName: "Helped heading" });
   s.addText([
     { text: "Reading the main text block only", options: { bullet: true, breakLine: true } },
@@ -544,35 +536,38 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   });
   card(s, 8.95, 1.45, 3.75, 4.65, "Heat card", C.text2);
   circleIcon(s, "therm", 9.25, 1.7, 0.8, HEX.accent2, "Heat");
-  s.addText("Heat", { x: 10.25, y: 1.85, w: 2.2, h: 0.5, fontFace: "Cambria", fontSize: 20, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Heat heading" });
-  s.addText([
-    { text: "Board idled at 71 °C; peak 88.7 °C, throttled in 76% of samples", options: { bullet: true, breakLine: true } },
-    { text: "Thermal governor slows background scans when hot", options: { bullet: true, breakLine: true } },
-    { text: "Text reading is the slowest task", options: { bullet: true } },
-  ], { x: 9.25, y: 2.75, w: 3.25, h: 3.2, fontSize: 14, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", paraSpaceAfter: 8, objectName: "Heat list" });
+  s.addText("Key finding: heat", { x: 10.2, y: 1.85, w: 2.4, h: 0.5, fontFace: "Cambria", fontSize: 19, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Heat heading" });
+  s.addText("88.7 °C", { x: 9.25, y: 2.65, w: 3.3, h: 0.8, fontFace: "Cambria", fontSize: 44, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Heat peak" });
+  s.addText("peak temperature; the Pi throttled in 76% of samples (idle 71 °C)", { x: 9.25, y: 3.45, w: 3.25, h: 0.9, fontSize: 15, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", objectName: "Heat label" });
+  s.addText("Response: a thermal governor slows background scans when hot; better cooling is future work.",
+    { x: 9.25, y: 4.55, w: 3.25, h: 1.3, fontSize: 14, italic: true, color: "CFE2DA", isTextBox: true, margin: 0, valign: "top", objectName: "Heat response" });
   s.addText("Measured on a Raspberry Pi 5 (8 GB) on 13 October 2026, board at its temperature limit; memory from the 1 October run. Changes after 13 October are not yet timed on the Pi.",
     { x: 0.6, y: 6.25, w: 12.1, h: 0.4, fontSize: 12, italic: true, color: C.accent5, isTextBox: true, margin: 0, objectName: "Pi caveat" });
   notes(s, "Measured on the Raspberry Pi 5 itself. The currency check takes 0.4 seconds, the watermark check 64 milliseconds. Text reading is the slow part at about 18 seconds for a short sign. The board was hot in this run, so we added a thermal governor; the newest changes still need to be timed on the Pi.");
 
   // ================================================================ 21. testing the worn glass
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Device" });
-  s.addText("Testing the worn glass", { placeholder: "title" });
+  s.addText("Testing the worn glass: where the project stands", { placeholder: "title" });
   [["1_5.jpg", 0.6], ["1_18.jpg", 3.15], ["1_1.jpg", 5.7]].forEach(([f, x], i) => photo(s, AS + f, x, 1.45, 2.4, 4.27, "Worn glass " + (i + 1)));
   s.addText("Prototype version 2 on team members: fit, weight and button reach are checked before user trials.",
-    { x: 0.6, y: 5.85, w: 7.5, h: 0.7, fontSize: 13, italic: true, color: C.accent5, isTextBox: true, margin: 0, valign: "top", objectName: "Worn caption" });
-  card(s, 8.45, 1.45, 4.25, 2.25, "Field test card");
-  s.addText("Limitation: the glass camera", { x: 8.7, y: 1.6, w: 3.8, h: 0.45, fontFace: "Cambria", fontSize: 19, bold: true, color: C.accent2, isTextBox: true, margin: 0, objectName: "Field heading" });
-  s.addText("In the first field test, currency was unreliable and Bangla text was not read (640×480, fixed focus).",
-    { x: 8.7, y: 2.1, w: 3.8, h: 1.5, fontSize: 16, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Field text" });
-  card(s, 8.45, 3.9, 4.25, 2.25, "Trials card");
-  s.addText("User trials: in progress", { x: 8.7, y: 4.05, w: 3.8, h: 0.45, fontFace: "Cambria", fontSize: 19, bold: true, color: C.text2, isTextBox: true, margin: 0, objectName: "Trials heading" });
-  s.addText("Sessions with a visually impaired participant have started. No user study is complete yet.",
-    { x: 8.7, y: 4.55, w: 3.8, h: 1.5, fontSize: 16, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Trials text" });
+    { x: 0.6, y: 5.85, w: 7.5, h: 0.7, fontSize: 14, italic: true, color: C.accent5, isTextBox: true, margin: 0, valign: "top", objectName: "Worn caption" });
+  const status = [
+    ["DONE", HEX.accent1, "FFFFFF", HEX.lt2, "Engineering tests", "Each part tested on held-out data, on a laptop and the Pi 5"],
+    ["IN PROGRESS", HEX.accent4, HEX.dk1, "FFF8E6", "Participant trials", "Sessions with a visually impaired participant; no user study complete yet"],
+    ["LIMITATION", HEX.accent2, "FFFFFF", "FBE9EB", "Glass camera", "First field test: currency unreliable, Bangla text not read (640×480, fixed focus)"],
+  ];
+  status.forEach(([t, col, tc, fill, h, body], i) => {
+    const y = 1.45 + i * 1.68;
+    s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 8.45, y, w: 4.25, h: 1.55, rectRadius: 0.1, fill: { color: fill }, line: { color: col, width: 1.25 }, objectName: h + " card" });
+    tag(s, t, 8.65, y + 0.15, 1.45, col, tc, h + " status");
+    s.addText(h, { x: 10.2, y: y + 0.12, w: 2.4, h: 0.42, fontFace: "Cambria", fontSize: 18, bold: true, color: C.text2, isTextBox: true, margin: 0, valign: "middle", objectName: h + " heading" });
+    s.addText(body, { x: 8.65, y: y + 0.62, w: 3.9, h: 0.85, fontSize: 14, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: h + " text" });
+  });
   notes(s, "The second prototype on team members. The first field test with the glass camera was not good enough: currency was unreliable and Bangla text was not read, probably because of the low-resolution fixed-focus camera. Sessions with a visually impaired participant have started, with a Bangla voice questionnaire, but no user study is complete yet, so we make no claims about users.");
 
   // ================================================================ 22. next steps
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Device" });
-  s.addText("Limitations and next steps", { placeholder: "title" });
+  s.addText("Future work: the roadmap", { placeholder: "title" });
   const nexts = [
     ["cam", "Camera", "Higher resolution or autofocus"],
     ["users", "User study", "8–12 participants, including their own voice commands"],
@@ -588,14 +583,15 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
     s.addText(h, { x, y: 3.7, w: 3.18, h: 0.55, fontFace: "Cambria", fontSize: 24, bold: true, color: C.text2, align: "center", isTextBox: true, margin: 0, objectName: h + " heading" });
     s.addText(t, { x: x + 0.15, y: 4.35, w: 2.88, h: 1.2, fontSize: 17, color: C.text1, align: "center", isTextBox: true, margin: 0, valign: "top", objectName: h + " text" });
   });
+  s.addText([{ text: "Done: ", options: { bold: true, color: HEX.accent1 } }, { text: "engineering tests     " }, { text: "In progress: ", options: { bold: true, color: "B07D00" } }, { text: "participant trials     " }, { text: "Future: ", options: { bold: true, color: HEX.dk2 } }, { text: "the four steps above" }],
+    { shape: pres.shapes.ROUNDED_RECTANGLE, x: 0.6, y: 5.6, w: 12.1, h: 0.65, rectRadius: 0.1, fill: { color: HEX.lt2 }, line: { color: HEX.lt2 }, fontSize: 17, color: HEX.dk1, align: "center", valign: "middle", isTextBox: true, margin: 0, objectName: "Status line" });
   notes(s, "Our roadmap has four steps. First, a better glass camera with higher resolution or autofocus, and a test set taken through the glass. Second, the user study with eight to twelve participants: task time, accuracy, SUS and NASA-TLX, including voice commands spoken by people and Bangla command words. Third, more banknotes: about a hundred unseen counterfeit prints with a bank or the police, and the UV check on real counterfeits. Fourth, speed and cooling: timing the new code on the Pi, better cooling and battery life.");
 
   // ================================================================ 23. conclusion
   pres.addSection({ title: "Closing" });
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Closing" });
-  s.addText("Conclusion: from challenges to independence", { placeholder: "title" });
-  s.addImage({ path: AS + "infographic_sara.jpg", x: 0.6, y: 1.4, w: 7.8, h: 5.2, objectName: "SARA before and after" });
-  s.addText("Illustration", { x: 0.6, y: 6.62, w: 7.8, h: 0.3, fontSize: 10, italic: true, color: C.accent5, isTextBox: true, margin: 0, objectName: "Illustration note" });
+  s.addText("Conclusion", { placeholder: "title" });
+  photo(s, AS + "v2_collage.jpg", 0.6, 1.4, 4.1, 5.2, "Second prototype");
   const concl = [
     ["glasses", "Built", "An offline glass that speaks Bangla, reads, names objects and Taka on a Raspberry Pi 5"],
     ["shield", "New methods", "Prefix training, a safe verdict, the DMWR watermark check, hand-held fine-tuning"],
@@ -603,10 +599,10 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   ];
   concl.forEach(([k, h, t], i) => {
     const y = 1.4 + i * 1.78;
-    card(s, 8.75, y, 3.95, 1.6, h + " card");
-    circleIcon(s, k, 8.95, y + 0.2, 0.62, i === 2 ? HEX.accent3 : HEX.accent1, h);
-    s.addText(h, { x: 9.72, y: y + 0.22, w: 2.85, h: 0.5, fontFace: "Cambria", fontSize: 20, bold: true, color: C.text2, isTextBox: true, margin: 0, objectName: h + " heading" });
-    s.addText(t, { x: 8.95, y: y + 0.88, w: 3.6, h: 0.68, fontSize: 13, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: h + " text" });
+    card(s, 5.1, y, 7.6, 1.6, h + " card");
+    circleIcon(s, k, 5.35, y + 0.4, 0.8, i === 2 ? HEX.accent3 : HEX.accent1, h);
+    s.addText(h, { x: 6.4, y: y + 0.2, w: 6.1, h: 0.5, fontFace: "Cambria", fontSize: 22, bold: true, color: C.text2, isTextBox: true, margin: 0, objectName: h + " heading" });
+    s.addText(t, { x: 6.4, y: y + 0.75, w: 6.1, h: 0.75, fontSize: 17, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: h + " text" });
   });
   notes(s, "To sum up: SARA turns three everyday moments, money, reading and the street, into questions the user can ask the glass. It is an assistive glass that speaks Bangla and runs on a Raspberry Pi 5, tested part by part on held-out data, with new methods for counterfeit checking and hand-held notes. Next come a better camera and the user trials.");
 
