@@ -53,8 +53,12 @@ const REFS = [
   ["espeak", "eSpeak NG text-to-speech.", "https://github.com/espeak-ng/espeak-ng"],
   ["vosk", "Alpha Cephei. Vosk offline speech recognition toolkit.", "https://alphacephei.com/vosk/"],
   ["esc50", "Piczak, K. J. ESC: dataset for environmental sound classification. ACM Multimedia, 2015.", "https://github.com/karolpiczak/ESC-50"],
+  ["jaal26", "Piyas, B. R. C. et al. JaalTaka: a benchmark dataset for detecting counterfeit Bangladeshi banknotes. Data in Brief 64, 112377, 2026.", "https://doi.org/10.1016/j.dib.2025.112377"],
+  ["uddin", "Uddin, M. S., Das, P. P., Roney, M. S. A. Image-based approach for the detection of counterfeit banknotes of Bangladesh. ICIEV, 2016.", "https://doi.org/10.1109/ICIEV.2016.7760162"],
+  ["pathak", "Pathak, A. et al. Enhanced counterfeit detection of Bangladesh currency through convolutional neural networks. IJIRCST 12(2), 2024.", "https://doi.org/10.55524/ijircst.2024.12.2.2"],
+  ["uvink", "Chowdhury, A. A. et al. Evaluation of deep learning models on UV ink: a fake money detection scheme with RPN. ICCA (ACM), 2022.", "https://doi.org/10.1145/3542954.3542965"],
 ];
-const ORDER = ["who", "orcam", "glass", "airis", "craft", "easyocr", "yolo", "coco", "rafdb", "piper", "espeak", "banglataka", "nstu", "jaal", "mnv2", "mlt", "vosk", "esc50"];
+const ORDER = ["who", "orcam", "glass", "airis", "craft", "easyocr", "yolo", "coco", "rafdb", "piper", "espeak", "banglataka", "nstu", "jaal", "jaal26", "uddin", "pathak", "mnv2", "uvink", "mlt", "vosk", "esc50"];
 REFS.sort((a, b) => ORDER.indexOf(a[0]) - ORDER.indexOf(b[0]));
 const NUM = Object.fromEntries(REFS.map((r, i) => [r[0], i + 1]));
 const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).join(", ") + "]";
@@ -329,7 +333,7 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   s.addText("From a desk prototype to a wearable glass", { placeholder: "title" });
   photo(s, AS + "test_10.jpg", 0.6, 1.45, 2.84, 4.62, "Prototype version 1");
   s.addText("Version 1: board and fan on one temple", { x: 0.6, y: 6.12, w: 2.84, h: 0.45, fontSize: 12, color: C.accent5, isTextBox: true, margin: 0, objectName: "V1 caption" });
-  const v2 = [["1_20.jpg", "Front: camera and LED on the bridge"], ["v2_side_portrait.jpg", "Side: five buttons, bone-conduction earphone"], ["1_23.jpg", "Back: Pi 5 in a ventilated enclosure"]];
+  const v2 = [["1_20.jpg", "Front: camera and UV lamp (blue light)"], ["v2_side_portrait.jpg", "Side: five buttons, bone-conduction earphone"], ["1_23.jpg", "Back: Pi 5 in a ventilated enclosure"]];
   v2.forEach(([f, cap], i) => {
     photo(s, AS + f, 3.69 + i * 3.09, 1.45, 2.84, 4.62, cap);
     s.addText(cap, { x: 3.69 + i * 3.09, y: 6.12, w: 2.84, h: 0.45, fontSize: 12, color: C.accent5, isTextBox: true, margin: 0, objectName: "V2 caption " + (i + 1) });
@@ -398,7 +402,7 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
     { text: "Training on random first-k views removes the collapse", options: { bullet: true, breakLine: true } },
     { text: "No loss at six views; stable across seeds", options: { bullet: true } },
   ], { x: 8.6, y: 3.3, w: 4.1, h: 2.4, fontSize: 16, color: C.text1, isTextBox: true, margin: 0, valign: "top", paraSpaceAfter: 10, objectName: "Prefix points" });
-  sources(s, `Data: ${cite("jaal")} Piyas et al., JaalTaka benchmark, Mendeley Data 2025 (1,390 notes, six views each).`);
+  sources(s, `Data: ${cite("jaal", "jaal26")} Piyas et al., JaalTaka dataset and article, 2025-2026 (1,390 notes, six views each; counterfeits seized by the Rapid Action Battalion).`);
   notes(s, "A model trained only with all six views of a note collapses to 71 percent with one view. Training on random prefixes of the views keeps it at about 98 percent from one to six views.");
 
   // ================================================================ 14. unseen prints
@@ -411,7 +415,7 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   stat(s, 8.6, 1.6, 4.1, "279 of 322", "readable 500 Taka counterfeits carry the same serial number", "Serial");
   s.addText("The usual split puts copies of one print in training and test; a serial lookup alone scores 90.2%. In our split every test counterfeit is a new print. The watermark check lifts accuracy to 95.0%.",
     { x: 8.6, y: 3.25, w: 4.1, h: 2.7, fontSize: 15, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Unseen text" });
-  sources(s, `Data: ${cite("jaal")} JaalTaka; serial-number audit and print-disjoint split are ours.`);
+  sources(s, `Data: ${cite("jaal")} JaalTaka; serial-number audit and print-disjoint split are ours. Earlier Taka counterfeit work: ${cite("uddin")} SVM on security features; ${cite("pathak")} CNNs; ${cite("uvink")} UV flecks + RPN.`);
   notes(s, "Most counterfeit notes in JaalTaka are copies of a few prints, so the usual test measures recognition of known reprints. On truly unseen prints our network drops to about 89 percent; adding the watermark check brings it to 95 percent.");
 
   // ================================================================ 15. DMWR
@@ -455,10 +459,11 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
 
   // ================================================================ 17. UV fibres
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Currency" });
-  s.addText("UV fibre check: the security fibres light up", { placeholder: "title" });
+  s.addText("UV fibre check: the glass carries its own UV lamp", { placeholder: "title" });
   s.addImage({ path: FIG + "fig_uv_fibres.jpg", x: 0.6, y: 1.45, w: 12.1, h: 12.1 * 520 / 1816, objectName: "UV fibres" });
   stat(s, 0.6, 5.1, 3.6, "85.6%", "of 111 real UV photos of genuine notes accepted", "UV genuine");
   stat(s, 4.6, 5.1, 3.6, "88.6%", "of simulated fibre-free printed sheets rejected", "UV sheets");
+  sources(s, `Prior work on Taka under UV light: ${cite("uvink")} Chowdhury et al., ICCA 2022 (96.3% with an RPN on UV images). Fibre check (ENFR) and photographs are ours.`);
   s.addText("A prototype, off by default: no real counterfeit has been photographed under the lamp yet.",
     { x: 8.6, y: 5.1, w: 4.1, h: 1.3, fontSize: 15, italic: true, color: C.accent2, isTextBox: true, margin: 0, valign: "top", objectName: "UV caveat" });
   notes(s, "Under a UV lamp, genuine 200, 500 and 1000 Taka notes show glowing security fibres. Our check removes the lamp's own blue light and counts thin glowing marks. It accepts 85.6 percent of real genuine photos and rejects 88.6 percent of simulated fibre-free sheets. It stays off by default until real counterfeits are tested.");

@@ -87,12 +87,12 @@ The first prototype (Figure~\ref{fig:prototype}) is simpler than this design. It
     \label{fig:prototype}
 \end{figure}
 
-The second prototype (Figure~\ref{fig:prototype2}) answers these problems while keeping everything on the head. The camera now sits in a small closed housing on the front of the frame, with a blue LED beside it. The Raspberry Pi~5 moved from the temple into a 3D-printed enclosure with ventilation slots at the back of the head, so that the board balances the frame instead of pulling it to one side and its fan blows away from the face. A strap joins the frame to the enclosure and carries the wires. The five buttons sit in a row on a small perforated board along the temple, where the fingers find them without looking, and an open-ear bone-conduction headphone delivers the speech while leaving the ears free for traffic and voices. Power still comes from a power bank through a cable.
+The second prototype (Figure~\ref{fig:prototype2}) answers these problems while keeping everything on the head. The camera now sits in a small closed housing on the front of the frame, with a small ultraviolet lamp beside it that lights the note for the UV fibre check (Section~\ref{sec:uv_method}); it is the blue light in the photographs. The Raspberry Pi~5 moved from the temple into a 3D-printed enclosure with ventilation slots at the back of the head, so that the board balances the frame instead of pulling it to one side and its fan blows away from the face. A strap joins the frame to the enclosure and carries the wires. The five buttons sit in a row on a small perforated board along the temple, where the fingers find them without looking, and an open-ear bone-conduction headphone delivers the speech while leaving the ears free for traffic and voices. Power still comes from a power bank through a cable.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.46\textwidth]{sara_v2_collage.jpg}
-    \caption{Second prototype of SARA worn by a team member: the camera housing and LED at the front of the frame (top), the five-button board along the temple and the bone-conduction headphone (bottom left and top right), and the ventilated enclosure carrying the Raspberry Pi~5 at the back of the head (bottom right)}
+    \caption{Second prototype of SARA worn by a team member: the camera housing and the UV lamp (blue light) at the front of the frame (top), the five-button board along the temple and the bone-conduction headphone (bottom left and top right), and the ventilated enclosure carrying the Raspberry Pi~5 at the back of the head (bottom right)}
     \label{fig:prototype2}
 \end{figure}
 
@@ -128,7 +128,7 @@ Table~\ref{tab:hardware} summarises the hardware of the prototype. Each componen
 \vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_motor.jpg}\vspace{1pt} & Vibration motor & Small motor that shakes when switched on; driven from Pi pin 13 & A short buzz tells the user something was found (for example a note) \\ \hline
 \vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{v2_headphone.jpg}\vspace{1pt} & Bone-conduction headphone & Open-ear headphone that passes sound through the cheekbones; any earphone or small speaker also works & Speaks every result while the ears stay free for traffic and voices \\ \hline
 \vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_powerbank.jpg}\vspace{1pt} & Power bank & USB-C power bank (the official Pi~5 supply is rated 5 V, 5 A) & Lets the user carry the glass anywhere \\ \hline
-\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{v2_frame.jpg}\vspace{1pt} & Spectacle frame & 3D-printed frame with the camera housing and a blue LED at the front, held by a head strap & Holds the camera where the user looks, so the glass is worn like ordinary spectacles \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{v2_frame.jpg}\vspace{1pt} & Spectacle frame and UV lamp & 3D-printed frame with the camera housing and a small ultraviolet lamp (blue light) at the front, held by a head strap & Holds the camera where the user looks; the UV lamp lights the note for the UV fibre check \\ \hline
 \vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{v2_enclosure.jpg}\vspace{1pt} & Rear enclosure & 3D-printed case with ventilation slots at the back of the head & Carries the Raspberry Pi~5, balances the frame and keeps the board's heat away from the face \\ \hline
 \end{tabular}
 
@@ -458,7 +458,7 @@ The whole classifier has 47,818 parameters (0.21~MB), against 2.23 million (9.15
 
 \subsection{UV Security-Fibre Check}
 \label{sec:uv_method}
-Bangladeshi 200, 500 and 1,000 Taka notes carry short security fibres that glow under ultraviolet (UV) light, on paper that stays dull, while ordinary white paper glows as a whole. Our own UV photographs of genuine notes show exactly this (Figure~\ref{fig:uv_fibres}). A genuine note therefore \emph{has} UV marks; a note without them is the suspicious one. As an additional, optional check, a UV lamp beside the camera is switched on after the note has been named, and the fibres inside the note box are counted.
+Bangladeshi 200, 500 and 1,000 Taka notes carry short security fibres that glow under ultraviolet (UV) light, on paper that stays dull, while ordinary white paper glows as a whole. Our own UV photographs of genuine notes show exactly this (Figure~\ref{fig:uv_fibres}). A genuine note therefore \emph{has} UV marks; a note without them is the suspicious one. Chowdhury et al.\ used the same marks, photographed under UV light, to detect counterfeit Taka with deep networks \cite{chowdhury2022uvink}. As an additional, optional check, the UV lamp beside the camera (the blue light in Figure~\ref{fig:prototype2}) is switched on after the note has been named, and the fibres inside the note box are counted.
 
 \textbf{Method (excitation-normalised fluorescence residual).} The lamp's own light reaches the camera as blue. Anything that fluoresces gives off light of another colour. For the paper of one note, green and red are a fixed share of blue, estimated in the same picture as $a = \operatorname{median}(G/B)$ and $b = \operatorname{median}(R/B)$. What that share does not explain is fluorescence:
 \begin{equation}
