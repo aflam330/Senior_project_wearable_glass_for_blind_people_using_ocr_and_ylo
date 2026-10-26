@@ -117,7 +117,7 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   const photo = (s, file, x, y, w, h, name) => s.addImage({ path: file, x, y, w, h, sizing: { type: "cover", w, h }, objectName: name });
   const stat = (s, x, y, w, big, small, name, color = C.accent1) => {
     s.addText(big, { x, y, w, h: 0.75, fontFace: "Cambria", fontSize: 36, bold: true, color, isTextBox: true, margin: 0, objectName: name + " value" });
-    s.addText(small, { x, y: y + 0.75, w, h: 0.6, fontSize: 13, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: name + " label" });
+    s.addText(small, { x, y: y + 0.75, w, h: 0.75, fontSize: 15, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: name + " label" });
   };
   const bubble = (s, text, x, y, w, h, fill, color, name, fontFace) =>
     s.addText(text, { shape: pres.shapes.ROUNDED_RECTANGULAR_CALLOUT, x, y, w, h, fill: { color: fill }, line: { color: fill }, color, fontSize: 14,
@@ -192,6 +192,8 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   s.addText("SARA in action: ask the glass, not a stranger", { placeholder: "title" });
   photo(s, AS + "1_20.jpg", 0.6, 1.45, 3.1, 5.1, "SARA prototype, worn");
   s.addText("Our prototype", { x: 0.6, y: 6.6, w: 3.1, h: 0.32, fontSize: 12, italic: true, color: C.accent5, align: "center", isTextBox: true, margin: 0, objectName: "Prototype caption" });
+  s.addText([{ text: "Offline: ", options: { bold: true, color: HEX.accent1 } }, { text: "text, objects, Taka, emotion.   " }, { text: "Optional online: ", options: { bold: true, color: HEX.accent5 } }, { text: "scene description only." }],
+    { x: 4.1, y: 6.6, w: 8.6, h: 0.35, fontSize: 14, color: C.text1, isTextBox: true, margin: 0, objectName: "Offline note" });
   const steps = [
     ["mic", HEX.accent1, "Speak", "\"Glass, check money\""],
     ["chip", HEX.accent3, "Detect offline", "Raspberry Pi 5, no internet"],
@@ -234,8 +236,8 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
     const x = 6.0 + (i % 3) * 2.3 + (i >= 3 ? 1.15 : 0), y = 1.45 + Math.floor(i / 3) * 1.95;
     card(s, x, y, 2.1, 1.8, h + " card");
     circleIcon(s, k, x + 0.7, y + 0.15, 0.7, HEX.accent1, h);
-    s.addText(h, { x: x + 0.05, y: y + 0.9, w: 2.0, h: 0.4, fontSize: 16, bold: true, color: C.text2, align: "center", isTextBox: true, margin: 0, objectName: h + " heading" });
-    s.addText(t, { x: x + 0.05, y: y + 1.3, w: 2.0, h: 0.4, fontSize: 13, color: C.text1, align: "center", isTextBox: true, margin: 0, objectName: h + " text" });
+    s.addText(h, { x: x + 0.05, y: y + 0.9, w: 2.0, h: 0.4, fontSize: 17, bold: true, color: C.text2, align: "center", isTextBox: true, margin: 0, objectName: h + " heading" });
+    s.addText(t, { x: x + 0.05, y: y + 1.3, w: 2.0, h: 0.4, fontSize: 14, color: C.text1, align: "center", isTextBox: true, margin: 0, objectName: h + " text" });
   });
   card(s, 6.0, 5.45, 6.7, 1.05, "Interaction bar", C.text2);
   circleIcon(s, "hand", 6.2, 5.6, 0.75, HEX.accent3, "Buttons");
@@ -316,7 +318,7 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
     circleIcon(s, k, x + 0.78, 1.7, 1.2, col, h);
     s.addText(h, { x: x + 0.1, y: 3.05, w: 2.55, h: 0.8, fontFace: "Cambria", fontSize: 20, bold: true, color: C.text2, align: "center", valign: "top", isTextBox: true, margin: 0, objectName: h + " heading" });
     s.addText(lines.map((t, j) => ({ text: t, options: { breakLine: j < lines.length - 1 } })),
-      { x: x + 0.15, y: 3.9, w: 2.45, h: 2.35, fontSize: i === 2 ? 12 : 14, color: C.text1, align: "center", valign: "top", paraSpaceAfter: 6, isTextBox: true, margin: 0, objectName: h + " details" });
+      { x: x + 0.15, y: 3.9, w: 2.45, h: 2.35, fontSize: i === 2 ? 13 : 15, color: C.text1, align: "center", valign: "top", paraSpaceAfter: 6, isTextBox: true, margin: 0, objectName: h + " details" });
     if (i < 3) s.addShape(pres.shapes.CHEVRON, { x: x + 2.83, y: 2.05, w: 0.28, h: 0.55, fill: { color: HEX.accent6 }, line: { color: HEX.accent6 }, objectName: "Arrow " + (i + 1) });
   });
   s.addText("Everything runs on the glass itself; only the optional online mode uses the internet.", { x: 0.6, y: 5.85, w: 12.1, h: 0.45, fontSize: 18, bold: true, color: C.accent1, align: "center", isTextBox: true, margin: 0, objectName: "Pipeline takeaway" });
@@ -352,7 +354,7 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   card(s, 9.2, 4.0, 3.5, 2.4, "Real card", C.text2);
   tag(s, "REAL PHOTOS", 9.45, 4.2, 1.7, HEX.accent4, HEX.dk1, "Real tag");
   s.addText("94.1%", { x: 9.45, y: 4.7, w: 3.0, h: 0.75, fontFace: "Cambria", fontSize: 40, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Real value" });
-  s.addText("right note value on 1,536 photos taken by other people", { x: 9.45, y: 5.45, w: 3.0, h: 0.8, fontSize: 14, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", objectName: "Real label" });
+  s.addText("right note value on 1,536 photos taken by other people (laptop)", { x: 9.45, y: 5.45, w: 3.0, h: 0.8, fontSize: 14, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", objectName: "Real label" });
   sources(s, `Sources: ${cite("banglataka")} BanglaTaka (Mendeley); ${cite("coco")} Lin et al., COCO, ECCV 2014; detector ${cite("yolo")} Ultralytics YOLOv8. 94.1% with the hand-held detector (next slide).`);
   notes(s, "Public Taka images are clean close-ups, so a model trained on them fails on a live camera. We pasted 5,073 note photos onto real COCO pictures with random angle, scale, light and blur, and let the program write the box labels. The detector scores 0.995 mAP on held-out composites and, the number that matters for users, names 94.1 percent of 1,536 real photographs taken by other people correctly. The two numbers measure different things: the first is on synthetic composites, the second on real photos.");
 
@@ -552,16 +554,17 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   s.addText("Prototype version 2 on team members: fit, weight and button reach are checked before user trials.",
     { x: 0.6, y: 5.85, w: 7.5, h: 0.7, fontSize: 14, italic: true, color: C.accent5, isTextBox: true, margin: 0, valign: "top", objectName: "Worn caption" });
   const status = [
-    ["DONE", HEX.accent1, "FFFFFF", HEX.lt2, "Engineering tests", "Each part tested on held-out data, on a laptop and the Pi 5"],
-    ["IN PROGRESS", HEX.accent4, HEX.dk1, "FFF8E6", "Participant trials", "Sessions with a visually impaired participant; no user study complete yet"],
-    ["LIMITATION", HEX.accent2, "FFFFFF", "FBE9EB", "Glass camera", "First field test: currency unreliable, Bangla text not read (640×480, fixed focus)"],
+    ["DONE", HEX.accent1, "FFFFFF", HEX.lt2, "Engineering checks", "Each part tested on held-out data, on a laptop and the Pi 5"],
+    ["PRELIMINARY", HEX.accent2, "FFFFFF", "FBE9EB", "First field test", "Glass camera: currency unreliable, Bangla text not read"],
+    ["IN PROGRESS", HEX.accent4, HEX.dk1, "FFF8E6", "Participant trials", "Sessions with a visually impaired participant have started"],
+    ["NONE YET", HEX.accent5, "FFFFFF", "F3F5F4", "Completed user study", "No results about users are claimed"],
   ];
   status.forEach(([t, col, tc, fill, h, body], i) => {
-    const y = 1.45 + i * 1.68;
-    s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 8.45, y, w: 4.25, h: 1.55, rectRadius: 0.1, fill: { color: fill }, line: { color: col, width: 1.25 }, objectName: h + " card" });
-    tag(s, t, 8.65, y + 0.15, 1.45, col, tc, h + " status");
-    s.addText(h, { x: 10.2, y: y + 0.12, w: 2.4, h: 0.42, fontFace: "Cambria", fontSize: 18, bold: true, color: C.text2, isTextBox: true, margin: 0, valign: "middle", objectName: h + " heading" });
-    s.addText(body, { x: 8.65, y: y + 0.62, w: 3.9, h: 0.85, fontSize: 14, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: h + " text" });
+    const y = 1.45 + i * 1.27;
+    s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 8.45, y, w: 4.25, h: 1.17, rectRadius: 0.1, fill: { color: fill }, line: { color: col, width: 1.25 }, objectName: h + " card" });
+    tag(s, t, 8.65, y + 0.12, 1.45, col, tc, h + " status");
+    s.addText(h, { x: 10.2, y: y + 0.09, w: 2.45, h: 0.42, fontFace: "Cambria", fontSize: 17, bold: true, color: C.text2, isTextBox: true, margin: 0, valign: "middle", objectName: h + " heading" });
+    s.addText(body, { x: 8.65, y: y + 0.58, w: 3.9, h: 0.55, fontSize: 14, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: h + " text" });
   });
   notes(s, "The second prototype on team members. The first field test with the glass camera was not good enough: currency was unreliable and Bangla text was not read, probably because of the low-resolution fixed-focus camera. Sessions with a visually impaired participant have started, with a Bangla voice questionnaire, but no user study is complete yet, so we make no claims about users.");
 
@@ -593,9 +596,9 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   s.addText("Conclusion", { placeholder: "title" });
   photo(s, AS + "v2_collage.jpg", 0.6, 1.4, 4.1, 5.2, "Second prototype");
   const concl = [
-    ["glasses", "Built", "An offline glass that speaks Bangla, reads, names objects and Taka on a Raspberry Pi 5"],
-    ["shield", "New methods", "Prefix training, a safe verdict, the DMWR watermark check, hand-held fine-tuning"],
-    ["users", "Next", "A better camera and the user trials"],
+    ["glasses", "Built", "An offline Raspberry Pi 5 glass that reads Bangla and English, names objects and Taka notes, and speaks Bangla"],
+    ["shield", "Investigated", "Synthetic training data, prefix training, unseen prints, a safe verdict, DMWR, hand-held notes, OCR, voice"],
+    ["users", "Still to validate", "Real counterfeits (also under UV), people's voices, the glass camera, a completed user study"],
   ];
   concl.forEach(([k, h, t], i) => {
     const y = 1.4 + i * 1.78;
@@ -604,13 +607,13 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
     s.addText(h, { x: 6.4, y: y + 0.2, w: 6.1, h: 0.5, fontFace: "Cambria", fontSize: 22, bold: true, color: C.text2, isTextBox: true, margin: 0, objectName: h + " heading" });
     s.addText(t, { x: 6.4, y: y + 0.75, w: 6.1, h: 0.75, fontSize: 17, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: h + " text" });
   });
-  notes(s, "To sum up: SARA turns three everyday moments, money, reading and the street, into questions the user can ask the glass. It is an assistive glass that speaks Bangla and runs on a Raspberry Pi 5, tested part by part on held-out data, with new methods for counterfeit checking and hand-held notes. Next come a better camera and the user trials.");
+  notes(s, "To sum up: SARA turns three everyday moments, money, reading and the street, into questions the user can ask the glass. It is an assistive glass that speaks Bangla and runs on a Raspberry Pi 5, tested part by part on held-out data, with new methods for counterfeit checking and hand-held notes. Still to be validated: real counterfeit notes, including under the UV lamp; voice commands spoken by people; the glass camera; and a completed user study.");
 
   // ================================================================ 24. thank you
   s = pres.addSlide({ masterName: "TITLE_DARK", sectionTitle: "Closing" });
   photo(s, AS + "1_20.jpg", 8.73, 0, 4.6, 7.5, "Prototype worn");
   s.addText("Thank you", { x: 0.75, y: 2.4, w: 7.5, h: 1.2, fontFace: "Cambria", fontSize: 54, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Thanks" });
-  s.addText("Questions are welcome", { x: 0.75, y: 3.65, w: 7.5, h: 0.6, fontSize: 24, color: "CFE2DA", isTextBox: true, margin: 0, objectName: "Questions" });
+  s.addText("Questions?", { x: 0.75, y: 3.65, w: 7.5, h: 0.6, fontSize: 24, color: "CFE2DA", isTextBox: true, margin: 0, objectName: "Questions" });
   s.addText("SARA  ·  Smart Assistive Reading Aid", { x: 0.75, y: 6.4, w: 7.5, h: 0.4, fontSize: 14, color: "9FC2B4", isTextBox: true, margin: 0, objectName: "Closing name" });
   notes(s, "Thank you; we are happy to take questions.");
 
@@ -620,7 +623,7 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   const half = Math.ceil(REFS.length / 2);
   [REFS.slice(0, half), REFS.slice(half)].forEach((list, col) => {
     s.addText(list.map((r, i) => ({ text: `[${col * half + i + 1}]  ${r[1]}`, options: { breakLine: i < list.length - 1 } })),
-      { x: 0.6 + col * 6.15, y: 1.4, w: 5.95, h: 5.25, fontSize: 11, color: C.text1, isTextBox: true, margin: 0, valign: "top", paraSpaceAfter: 5, objectName: "References " + (col + 1) });
+      { x: 0.6 + col * 6.15, y: 1.4, w: 5.95, h: 5.4, fontSize: 13, color: C.text1, isTextBox: true, margin: 0, valign: "top", paraSpaceAfter: 5, objectName: "References " + (col + 1) });
   });
   notes(s, "The sources cited on the slides, numbered as in the slides.");
 
@@ -643,8 +646,8 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
     s.addText(h, { x: x + 0.9, y: 1.68, w: 2.8, h: 0.45, fontFace: "Cambria", fontSize: 18, bold: true, color: C.text2, isTextBox: true, margin: 0, objectName: h + " heading" });
     const runs = [];
     items.forEach(([t, u], i) => {
-      runs.push({ text: t, options: { hyperlink: { url: u, tooltip: u }, color: HEX.accent1, bold: true, fontSize: 13, breakLine: true } });
-      runs.push({ text: u.replace(/^https?:\/\//, ""), options: { color: HEX.accent5, fontSize: 10, breakLine: i < items.length - 1, paraSpaceAfter: 7 } });
+      runs.push({ text: t, options: { hyperlink: { url: u, tooltip: u }, color: HEX.accent1, bold: true, fontSize: 15, breakLine: true } });
+      runs.push({ text: u.replace(/^https?:\/\//, ""), options: { color: HEX.accent5, fontSize: 11, breakLine: i < items.length - 1, paraSpaceAfter: 9 } });
     });
     s.addText(runs, { x: x + 0.25, y: 2.35, w: 3.4, h: 4.05, isTextBox: true, margin: 0, valign: "top", fit: "none", objectName: h + " links" });
   });
