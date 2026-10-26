@@ -57,8 +57,9 @@ const REFS = [
   ["uddin", "Uddin, M. S., Das, P. P., Roney, M. S. A. Image-based approach for the detection of counterfeit banknotes of Bangladesh. ICIEV, 2016.", "https://doi.org/10.1109/ICIEV.2016.7760162"],
   ["pathak", "Pathak, A. et al. Enhanced counterfeit detection of Bangladesh currency through convolutional neural networks. IJIRCST 12(2), 2024.", "https://doi.org/10.55524/ijircst.2024.12.2.2"],
   ["uvink", "Chowdhury, A. A. et al. Evaluation of deep learning models on UV ink: a fake money detection scheme with RPN. ICCA (ACM), 2022.", "https://doi.org/10.1145/3542954.3542965"],
+  ["mutanen", "Mutanen, J., Jaaskelainen, T., Parkkinen, J. P. S. Luminescent security properties of banknotes. IS&T PICS Conference, 2003, pp. 421-424.", "https://www.imaging.org/common/uploaded%20files/pdfs/Papers/2003/PICS-0-287/8558.pdf"],
 ];
-const ORDER = ["who", "orcam", "glass", "airis", "craft", "easyocr", "yolo", "coco", "rafdb", "piper", "espeak", "banglataka", "nstu", "jaal", "jaal26", "uddin", "pathak", "mnv2", "uvink", "mlt", "vosk", "esc50"];
+const ORDER = ["who", "orcam", "glass", "airis", "craft", "easyocr", "yolo", "coco", "rafdb", "piper", "espeak", "banglataka", "nstu", "jaal", "jaal26", "uddin", "pathak", "mnv2", "uvink", "mutanen", "mlt", "vosk", "esc50"];
 REFS.sort((a, b) => ORDER.indexOf(a[0]) - ORDER.indexOf(b[0]));
 const NUM = Object.fromEntries(REFS.map((r, i) => [r[0], i + 1]));
 const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).join(", ") + "]";
@@ -463,7 +464,7 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   s.addImage({ path: FIG + "fig_uv_fibres.jpg", x: 0.6, y: 1.45, w: 12.1, h: 12.1 * 520 / 1816, objectName: "UV fibres" });
   stat(s, 0.6, 5.1, 3.6, "85.6%", "of 111 real UV photos of genuine notes accepted", "UV genuine");
   stat(s, 4.6, 5.1, 3.6, "88.6%", "of simulated fibre-free printed sheets rejected", "UV sheets");
-  sources(s, `Prior work on Taka under UV light: ${cite("uvink")} Chowdhury et al., ICCA 2022 (96.3% with an RPN on UV images). Fibre check (ENFR) and photographs are ours.`);
+  sources(s, `The glass's lamp emits 360-395 nm, covering the 365 nm used for banknote checks; banknote paper stays dark while its fibres glow ${cite("mutanen")}. Prior Taka UV work: ${cite("uvink")} (96.3%). Fibre check and photos are ours.`);
   s.addText("A prototype, off by default: no real counterfeit has been photographed under the lamp yet.",
     { x: 8.6, y: 5.1, w: 4.1, h: 1.3, fontSize: 15, italic: true, color: C.accent2, isTextBox: true, margin: 0, valign: "top", objectName: "UV caveat" });
   notes(s, "Under a UV lamp, genuine 200, 500 and 1000 Taka notes show glowing security fibres. Our check removes the lamp's own blue light and counts thin glowing marks. It accepts 85.6 percent of real genuine photos and rejects 88.6 percent of simulated fibre-free sheets. It stays off by default until real counterfeits are tested.");
