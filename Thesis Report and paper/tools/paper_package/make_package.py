@@ -92,6 +92,7 @@ def main():
     for f in ["README.md", "01_PROJECT_FULL_INFORMATION.md", "02_RESULTS_MASTER_TABLE.md", "02_RESULTS_MASTER_TABLE.csv",
               "03_WRITING_GUIDE.md"]:
         shutil.copy2(SRC / f, OUT / f)
+    shutil.copy2(SRC / "latex" / "ieee_conference" / "references_verified.bib", OUT / "IEEE_references_verified.bib")
     # results data
     counts = {}
     counts["results_data/glass_app"] = copy_text_tree(ROOT / "savior_glass" / "results", OUT / "results_data" / "glass_app")
