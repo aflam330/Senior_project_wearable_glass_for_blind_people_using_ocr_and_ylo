@@ -36,7 +36,7 @@ assistive technology, smart glass, visually impaired, Bangla OCR, banknote recog
 \end{IEEEkeywords}
 
 \section{Introduction}
-At least 2.2 billion people live with a near or distance vision impairment, most of them in low- and middle-income regions \cite{who2023vision}. For a blind person in Bangladesh, three everyday questions usually need another person: which Taka note was handed back and whether it is real, what a medicine label or sign says, and what is ahead. Commercial reading glasses such as OrCam MyEye \cite{orcam} do not read Bangla or recognise Taka notes, and research glasses often send each picture to a server \cite{googleglass2021,airis2024}. Work on Bangladeshi counterfeits \cite{uddin2016counterfeit,pathak2024counterfeit,chowdhury2022uvink} has not been built into a wearable.
+At least 2.2 billion people live with a near or distance vision impairment, and its prevalence in low- and middle-income regions is about four times that in high-income regions \cite{who2023vision}. For a blind person in Bangladesh, three everyday questions usually need another person: which Taka note was handed back and whether it is real, what a medicine label or sign says, and what is ahead. Commercial reading glasses such as OrCam MyEye \cite{orcam} do not list Bangla among their languages or recognise Taka notes, and research glasses often send each picture to a server \cite{googleglass2021,airis2024}. Work on Bangladeshi counterfeits \cite{uddin2016counterfeit,pathak2024counterfeit,chowdhury2022uvink} has not been built into a wearable.
 
 SARA (Smart Assistive Reading Aid) answers these questions on the glass itself. Its currency path also raised questions that matter beyond this device: how to train a detector without hand labels, how a multi-view model behaves when a user captures fewer views, whether a counterfeit benchmark measures what it seems to, and how to give advice that never wrongly accuses a note. Our contributions are:
 \begin{itemize}
@@ -48,7 +48,7 @@ SARA (Smart Assistive Reading Aid) answers these questions on the glass itself. 
 \end{itemize}
 
 \section{Related Work}
-\textbf{Assistive glasses.} OrCam MyEye reads printed text and some banknotes offline but has no Bangla support \cite{orcam}. Glass-based scene analysis \cite{googleglass2021} and AIris \cite{airis2024} rely on a server, and Raspberry~Pi reading aids are mostly English-only \cite{readingaid_rpi2023}.
+\textbf{Assistive glasses.} OrCam MyEye reads printed text and some banknotes offline, but Bangla is not among the languages it lists \cite{orcam}. Glass-based scene analysis \cite{googleglass2021} and AIris \cite{airis2024} rely on a server, and Raspberry~Pi reading aids are mostly English-only \cite{readingaid_rpi2023}.
 \textbf{Taka recognition and counterfeits.} NSTU-BDTAKA trained a YOLOv5 detector on 3,111 annotated images \cite{nstubdtaka2024}. Uddin et al.\ classified watermark, micro-printing and hologram features with an SVM \cite{uddin2016counterfeit}; Pathak et al.\ trained CNNs on note photographs \cite{pathak2024counterfeit}; Chowdhury et al.\ detected the UV flecks of Taka notes with a region proposal network (96.3\%) \cite{chowdhury2022uvink}. JaalTaka provides six close-up views of 1,390 genuine and seized counterfeit notes \cite{jaaltaka,piyas2026jaaltaka}.
 \textbf{Methods.} We build on copy-paste augmentation \cite{copypaste2021,tobin2017domain}, multi-view fusion \cite{mvcnn} and modality dropout \cite{moddrop}, selective prediction \cite{chow1970,selective2017} and conformal prediction \cite{vovk2005}. Our split audit follows the literature on shortcuts and leakage \cite{geirhos2020shortcut,kapoor2023leakage}.
 
@@ -210,6 +210,6 @@ SARA shows that a Bangla assistive glass can recognise money, read text and name
 We thank the visually impaired participant who is trying the prototype, and the authors of the JaalTaka, BanglaTaka, NSTU-BDTAKA and Bangla Money datasets for making them public.
 
 \bibliographystyle{IEEEtran}
-\bibliography{references}
+\bibliography{references_verified}
 
 \end{document}
