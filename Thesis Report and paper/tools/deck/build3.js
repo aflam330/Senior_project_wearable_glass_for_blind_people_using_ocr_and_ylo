@@ -26,6 +26,7 @@ const THEME = {
 };
 const HEX = THEME.colors;
 const BN = "Nirmala UI";          // Bangla text
+const TITLE = "A Wearable Assistive Robot for Authenticating Bangladeshi Banknotes: Fusing Physical Security Features and Deep Learning for Visually Impaired Users";
 
 // ------------------------------------------------------------------ icons
 async function icon(name, color, size = 256) {
@@ -68,7 +69,7 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
 (async () => {
   const pres = new pptxgen();
   pres.layout = "LAYOUT_WIDE";              // 13.33 x 7.5 in
-  pres.title = "SARA: Smart Assistive Reading Aid";
+  pres.title = TITLE;
   pres.author = "MD Abdun Fattah Lam, Mukut Protim Memo, Tanjila Hossain Tapti";
   pres.company = "Independent University, Bangladesh";
   pres.theme = { headFontFace: THEME.headFontFace, bodyFontFace: THEME.bodyFontFace };
@@ -141,10 +142,8 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   let s = pres.addSlide({ masterName: "TITLE_DARK", sectionTitle: "Opening" });
   photo(s, AS + "v2_collage.jpg", 7.43, 0, 5.9, 7.5, "Second prototype: front, side and back");
   circleIcon(s, "glasses", 0.75, 0.75, 0.75, HEX.accent1, "Glasses");
-  s.addText("SARA", { x: 0.75, y: 1.75, w: 6.2, h: 1.0, fontFace: "Cambria", fontSize: 54, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Title" });
-  s.addText([{ text: "Smart Assistive Reading Aid", options: { bold: true, breakLine: true } },
-    { text: "Offline AI Smart Glasses for Reading, Object Recognition and Bangladeshi Taka Verification" }],
-    { x: 0.75, y: 2.8, w: 6.2, h: 1.8, fontSize: 22, color: "E4EFEA", isTextBox: true, margin: 0, valign: "top", objectName: "Subtitle" });
+  s.addText("SARA  ·  Smart Assistive Reading Aid", { x: 1.7, y: 0.85, w: 5.3, h: 0.55, fontSize: 18, bold: true, color: "CFE2DA", valign: "middle", isTextBox: true, margin: 0, objectName: "Project name" });
+  s.addText(TITLE, { x: 0.75, y: 1.8, w: 6.3, h: 2.9, fontFace: "Cambria", fontSize: 28, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, valign: "top", objectName: "Title" });
   s.addText([
     { text: "MD Abdun Fattah Lam (2220014)  ·  Mukut Protim Memo (2020086)", options: { breakLine: true } },
     { text: "Tanjila Hossain Tapti (2130561)", options: { breakLine: true } },
