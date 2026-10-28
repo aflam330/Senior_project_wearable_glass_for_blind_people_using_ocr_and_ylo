@@ -189,8 +189,8 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   // ================================================================ 4. with SARA scenario
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Problem" });
   s.addText("SARA in action: ask the glass, not a stranger", { placeholder: "title" });
-  photo(s, AS + "1_20.jpg", 0.6, 1.45, 3.1, 5.1, "SARA prototype, worn");
-  s.addText("Our prototype", { x: 0.6, y: 6.6, w: 3.1, h: 0.32, fontSize: 12, italic: true, color: C.accent5, align: "center", isTextBox: true, margin: 0, objectName: "Prototype caption" });
+  s.addImage({ path: AS + "v2_action_stack.jpg", x: 0.6, y: 1.5, w: 3.2, h: 3.2 * 1816 / 1600, objectName: "Prototype in a staged exchange" });
+  s.addText("Our prototype in a staged shop exchange: receiving a note, holding it up to the camera", { x: 0.6, y: 5.25, w: 3.2, h: 0.7, fontSize: 12, italic: true, color: C.accent5, isTextBox: true, margin: 0, valign: "top", objectName: "Prototype caption" });
   s.addText([{ text: "Offline: ", options: { bold: true, color: HEX.accent1 } }, { text: "text, objects, Taka, emotion.   " }, { text: "Optional online: ", options: { bold: true, color: HEX.accent5 } }, { text: "scene description only." }],
     { x: 4.1, y: 6.6, w: 8.6, h: 0.35, fontSize: 14, color: C.text1, isTextBox: true, margin: 0, objectName: "Offline note" });
   const steps = [
@@ -222,8 +222,9 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   pres.addSection({ title: "Solution" });
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Solution" });
   s.addText("Five modes, started by button or by voice", { placeholder: "title" });
-  photo(s, AS + "1_17.jpg", 0.6, 1.45, 5.0, 2.81, "Prototype, side view");
-  photo(s, AS + "1_16.jpg", 0.6, 4.36, 5.0, 2.14, "Prototype, rear enclosure");
+  s.addImage({ path: AS + "v2_hardware_collage.jpg", x: 0.6, y: 1.45, w: 5.1, h: 5.1 * 1612 / 2412, objectName: "Prototype version 2 hardware" });
+  s.addText("Prototype version 2: the complete unit, the UV light on, the Pi 5 in the rear enclosure, buttons and power bank",
+    { x: 0.6, y: 5.0, w: 5.1, h: 0.7, fontSize: 12, italic: true, color: C.accent5, isTextBox: true, margin: 0, valign: "top", objectName: "Hardware caption" });
   const modes = [
     ["book", "Text reading", "Bangla and English"],
     ["cube", "Objects", "Named in Bangla"],
@@ -549,9 +550,9 @@ const cite = (...keys) => "[" + keys.map((k) => NUM[k]).sort((a, b) => a - b).jo
   // ================================================================ 21. testing the worn glass
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Device" });
   s.addText("Testing the worn glass: where the project stands", { placeholder: "title" });
-  [["1_5.jpg", 0.6], ["1_18.jpg", 3.15], ["1_1.jpg", 5.7]].forEach(([f, x], i) => photo(s, AS + f, x, 1.45, 2.4, 4.27, "Worn glass " + (i + 1)));
-  s.addText("Prototype version 2 on team members: fit, weight and button reach are checked before user trials.",
-    { x: 0.6, y: 5.85, w: 7.5, h: 0.7, fontSize: 14, italic: true, color: C.accent5, isTextBox: true, margin: 0, valign: "top", objectName: "Worn caption" });
+  s.addImage({ path: AS + "v2_use_collage.jpg", x: 0.6, y: 1.45, w: 7.3, h: 7.3 * 1612 / 2412, objectName: "Prototype version 2 in use" });
+  s.addText("Prototype version 2 in a staged shop exchange by team members; illustration only, no error rate counted.",
+    { x: 0.6, y: 6.4, w: 7.5, h: 0.4, fontSize: 14, italic: true, color: C.accent5, isTextBox: true, margin: 0, valign: "top", objectName: "Worn caption" });
   const status = [
     ["DONE", HEX.accent1, "FFFFFF", HEX.lt2, "Engineering checks", "Each part tested on held-out data, on a laptop and the Pi 5"],
     ["PRELIMINARY", HEX.accent2, "FFFFFF", "FBE9EB", "First field test", "Glass camera: currency unreliable, Bangla text not read"],
