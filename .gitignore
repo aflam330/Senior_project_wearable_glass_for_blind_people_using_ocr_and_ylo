@@ -78,3 +78,7 @@ savior_glass/logs/laptop_test_run.log
 
 # User-study data: participant photos, answers and questionnaires. Never commit.
 savior_glass/study_data/
+
+# paper package (built by Thesis Report and paper/tools/paper_package/make_package.py)
+SARA_Paper_Package/
+SARA_Paper_Package.zip
