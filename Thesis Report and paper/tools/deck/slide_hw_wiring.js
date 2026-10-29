@@ -20,7 +20,7 @@
   s.addImage({ path: FIG + "hw_pi5.jpg", x: 4.85, y: 2.75, w: 3.6, h: 2.7, objectName: "Raspberry Pi 5" });
   s.addText("Raspberry Pi 5, 8 GB " + cite("rpi5") + ", in the rear enclosure", { x: 4.35, y: 5.48, w: 4.6, h: 0.3, fontSize: 13, bold: true, color: HEX.dk2, align: "center", isTextBox: true, margin: 0, objectName: "Pi label" });
   // left: camera, headphone, power bank
-  comp("hw_webcam.jpg", "USB webcam", 0.6, 1.35, 2.0, 1.55, "Camera");
+  comp("hw_webcam.jpg", "USB webcam (our board)", 0.6, 1.35, 2.0, 1.55, "Camera");
   wire([[2.6, 2.1], [3.9, 2.1], [3.9, 3.6], [4.85, 3.6]], USB, "Webcam USB cable", 4);
   wlab("USB cable", 2.7, 1.85, 1.2);
   comp("v2_headphone.jpg", "Bone-conduction headphone", 0.6, 3.1, 2.0, 1.45, "Headphone");
@@ -57,6 +57,6 @@
     s.addText(t, { x: x + 0.42, y: 5.88, w: k === 2 ? 2.4 : 1.3, h: 0.25, fontSize: 10, color: HEX.dk1, isTextBox: true, margin: 0, objectName: "Legend " + (k + 1) });
   });
   s.addText("Schematic, not to scale; pin numbers are those set in the code.", { x: 3.0, y: 6.2, w: 6.0, h: 0.25, fontSize: 10, italic: true, color: C.accent5, isTextBox: true, margin: 0, objectName: "Schematic note" });
-  sources(s, "Pictures (Wikimedia Commons): Raspberry Pi 5 by SimonWaldherr, CC BY 4.0; USB webcam by WrS.tm.pl, CC0; vibration motor by Raimond Spekking, CC BY-SA 4.0; power bank by Pinguinguy, CC0. Buttons, headphone and frame: our prototype.");
+  sources(s, "Pictures (Wikimedia Commons): Raspberry Pi 5 by SimonWaldherr, CC BY 4.0; vibration motor by Raimond Spekking, CC BY-SA 4.0; power bank by Pinguinguy, CC0. Webcam board, buttons, headphone and frame: our prototype.");
   notes(s, "This is how the second prototype is wired. The Raspberry Pi 5 sits in the rear enclosure and runs every model. The camera is a USB webcam plugged into a USB port of the Pi. The five push-buttons each connect one GPIO pin to ground, BCM 17 for MODE, 27 for ACTION, 24 for READ, 22 for volume up and 23 for volume down, with internal pull-up resistors. The vibration motor is driven by PWM from BCM 13. Speech goes to the audio output and the bone-conduction headphone, and a USB microphone can be plugged in for voice commands. A power bank supplies 5 volts through the USB-C port. The UV lamp on the frame is switched by hand and is not wired to the Pi.");
 
