@@ -571,7 +571,7 @@ const cite = (...keys) => "[" + keys.map((k) => {
   ], { x: 7.9, y: 1.45, w: 4.8, h: 4.4, barDir: "col", barGapWidthPct: 60, chartColors: [HEX.accent5, HEX.accent1], showValue: true, dataLabelPosition: "outEnd",
     dataLabelFormatCode: "0.0\"%\"", valAxisMaxVal: 60, valAxisMinVal: 0, valAxisLabelFormatCode: "0\"%\"", showLegend: true, legendPos: "b",
     showTitle: true, title: "Right note value, real hand-held photos (NSTU, 1,127)", ...chartFrame, objectName: "Hand-held chart" });
-  s.addText("Since 29 Oct the Pi runs the laptop's full-precision detector. Trade-off: with 3 notes in view, the total is right 97.0% (was 99.2%).",
+  s.addText("The glass runs the same full-precision detector as the laptop. Trade-off: with 3 notes in view, the total is right 97.0% (was 99.2%).",
     { x: 0.6, y: 5.65, w: 7.0, h: 0.8, fontSize: 14, italic: true, color: C.accent2, isTextBox: true, margin: 0, valign: "top", objectName: "Costs" });
   sources(s, `Sources: test photos ${cite("nstu")} Rafi et al., NSTU-BDTAKA, Data in Brief 2024; detector ${cite("yolo")} YOLOv8. Our results: paper_evidence/HANDHELD_FINETUNE.md.`);
   notes(s, "A blind user holds the note close, folded and under the fingers, and our training pictures showed whole notes in scenes. We generated six thousand hand-held close-ups from training notes only and fine-tuned the detector. On the independent NSTU hand-held test, the right value rises from 11.8 to 47.5 percent on the laptop and from 8.7 to 33.5 percent on the Pi. There are costs: one-taka notes are named more often by mistake (36.6 percent), and with three notes in view the total is right 97.0 percent of the time instead of 99.2.");
@@ -682,7 +682,7 @@ const cite = (...keys) => "[" + keys.map((k) => {
     { text: "\"Likely genuine\" or \"check by hand\", never \"counterfeit\". Not yet tested on real counterfeits or through the glass camera", options: { fontSize: 13 } }],
     { shape: pres.shapes.ROUNDED_RECTANGLE, x: 8.6, y: 5.0, w: 4.1, h: 1.4, rectRadius: 0.1, fill: { color: "FBE9EB" }, line: { color: HEX.accent2, width: 1.25 },
       color: HEX.accent2, isTextBox: true, margin: 12, valign: "middle", objectName: "UV caveat" });
-  notes(s, "Under a UV lamp, genuine 200, 500 and 1000 Taka notes show glowing security fibres. Our check removes the lamp's own blue light and counts thin glowing marks. It accepts 85.6 percent of real genuine photos and rejects 88.6 percent of simulated fibre-free sheets. Since 29 October currency mode runs it whenever the picture is taken under the lamp, which it recognises from the colour: all 47 UV test photos were recognised and none of 2,282 ordinary photos were mistaken for one. It then says likely genuine or check by hand, never counterfeit, because no counterfeit note has been photographed under UV and it has not been tested through the glass camera.");
+  notes(s, "Under a UV lamp, genuine 200, 500 and 1000 Taka notes show glowing security fibres. Our check removes the lamp's own blue light and counts thin glowing marks. It accepts 85.6 percent of real genuine photos and rejects 88.6 percent of simulated fibre-free sheets. Currency mode runs it whenever the picture is taken under the lamp, which it recognises from the colour: all 47 UV test photos were recognised and none of 2,282 ordinary photos were mistaken for one. It then says likely genuine or check by hand, never counterfeit, because no counterfeit note has been photographed under UV and it has not been tested through the glass camera.");
 
   // ================================================================ 18. text reading
   pres.addSection({ title: "Reading and voice" });
@@ -737,8 +737,8 @@ const cite = (...keys) => "[" + keys.map((k) => {
   pres.addSection({ title: "Device" });
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Device" });
   s.addText("Performance on the Raspberry Pi 5", { placeholder: "title" });
-  const pis = [["422 ms", "currency check, end to end"], ["51 ms", "watermark check"], ["462 ms", "object scan (YOLOv8s)"], ["536 ms", "emotion, face in view"],
-    ["5.4 s", "3-line sign (18.7 s on 1 October)"], ["2.76 GB", "peak memory of the app (of 8 GB)"]];
+  const pis = [["532 ms", "currency check, end to end"], ["50 ms", "watermark check"], ["462 ms", "object scan (YOLOv8s)"], ["536 ms", "emotion, face in view"],
+    ["5.4 s", "text reading, 3-line sign"], ["2.76 GB", "peak memory of the app (of 8 GB)"]];
   pis.forEach(([v, l], i) => {
     const x = 0.6 + (i % 3) * 2.75, y = 1.45 + Math.floor(i / 3) * 2.45;
     card(s, x, y, 2.55, 2.2, "Pi stat " + (i + 1));
@@ -751,10 +751,10 @@ const cite = (...keys) => "[" + keys.map((k) => {
   s.addText("measured on the board with a thermometer while the glass was running", { x: 9.25, y: 3.45, w: 3.25, h: 0.9, fontSize: 15, color: "E6EEF6", isTextBox: true, margin: 0, valign: "top", objectName: "Heat label" });
   s.addText("The processor's own sensor reads higher: in 30 minutes of non-stop load it peaked at 87.0 °C, with the soft limit active in 55% of samples.",
     { x: 9.25, y: 4.55, w: 3.25, h: 1.3, fontSize: 14, italic: true, color: "D2E0EC", isTextBox: true, margin: 0, valign: "top", objectName: "Heat response" });
-  s.addText("29 October 2026 benchmark, Pi 5 (8 GB). With the full-precision note detector now used: 532 ms a check, note named in 5 of 8 presses (was 2 of 10).",
+  s.addText("Medians measured on the glass's own Raspberry Pi 5 (8 GB). With the glass in use, a note was named in 5 of 8 presses, 0.81 s from press to speech.",
     { x: 0.6, y: 6.25, w: 12.1, h: 0.4, fontSize: 12, italic: true, color: C.accent5, isTextBox: true, margin: 0, objectName: "Pi caveat" });
-  sources(s, `Board: ${cite("rpi5")} Raspberry Pi 5 (8 GB), fan and heat sink, C270 webcam. All timings are ours (benchmark_report/2026-10-29/); board-surface temperature measured by the team with a thermometer.`);
-  notes(s, "Measured on the Raspberry Pi 5 itself on 29 October. The currency check takes 0.42 seconds, the watermark check 51 milliseconds, an object scan 0.46 seconds and emotion with a face 0.54 seconds. Text reading is now about three times faster than on 1 October: a three-line sign in 5.4 seconds, and on a twelve-line page the first line is spoken after 4.4 seconds. With a thermometer on the board while the glass was running, we measured 57.8 to 62.3 degrees Celsius on its surface. The processor's own sensor reads higher: in thirty minutes of non-stop load it peaked at 87 degrees and the soft temperature limit was active about half the time, so heat under continuous load is still a limit. Since that run the Pi uses the same full-precision note detector as the laptop. Timed afterwards it takes 532 milliseconds a check instead of 422, and in a session with the glass a note was named in 5 of 8 presses, against 2 of 10 in the afternoon.");
+  sources(s, `Board: ${cite("rpi5")} Raspberry Pi 5 (8 GB), fan and heat sink, C270 webcam. All timings are ours (benchmark_report/); board-surface temperature measured by the team with a thermometer.`);
+  notes(s, "Measured on the glass's own Raspberry Pi 5. The currency check takes 0.53 seconds with the accurate full-precision note detector the glass uses, the watermark check 50 milliseconds, an object scan 0.46 seconds and emotion with a face 0.54 seconds. A three-line sign is read in 5.4 seconds, and on a twelve-line page the first line is spoken after 4.4 seconds. With the glass in use, a note was named in 5 of 8 presses, 0.81 seconds from the press to the spoken answer. With a thermometer on the board while the glass was running, we measured 57.8 to 62.3 degrees Celsius on its surface. The processor's own sensor reads higher: in thirty minutes of non-stop load it peaked at 87 degrees and the soft temperature limit was active about half the time, so heat under continuous load is still a limit.");
 
   // ================================================================ 21. testing the worn glass
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Device" });
