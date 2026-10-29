@@ -1,0 +1,26 @@
+{
+ "commit": "fe7778f",
+ "temp_c_start": 56.2,
+ "throttled_start": "0xe0000",
+ "currency_yolo_path": "best_handheld.pt",
+ "announce_conf": 0.75,
+ "currency_mode_full": {
+  "median_ms": 531.67,
+  "p95_ms": 626.99,
+  "mean_ms": 526.98,
+  "fps_median": 1.88,
+  "iters": 100,
+  "rss_mb_after": 592.11776,
+  "cpu_temp_c_after": 68.3
+ },
+ "taka_yolo_handheld_pt": {
+  "median_ms": 483.24,
+  "p95_ms": 565.91,
+  "mean_ms": 492.7,
+  "fps_median": 2.07,
+  "iters": 100,
+  "rss_mb_after": 712.54016,
+  "cpu_temp_c_after": 73.25
+ },
+ "throttled_end": "0xe0000"
+}

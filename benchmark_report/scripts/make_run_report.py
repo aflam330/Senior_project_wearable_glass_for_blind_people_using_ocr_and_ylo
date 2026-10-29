@@ -27,8 +27,9 @@ GLASS = BR.parent / "savior_glass"
 RUN = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else sorted(p for p in BR.glob("20??-??-??") if p.is_dir())[-1]
 RAW, GRAPHS = RUN / "raw", RUN / "graphs"
 OCT1 = GLASS / "results" / "pi5_benchmark_memo_20261001T111325Z.json"
-OCT13 = BR / "raw" / "pi5_benchmark_memo_20261013T173438Z.json"
-OCT13_EXTRAS, OCT13_OCR = BR / "raw" / "extras.json", BR / "raw" / "ocr_response.json"
+OCT13_RAW = BR / "archive" / "2026-10-13" / "raw"   # benchmark_report/raw/ holds a later run since 0d7f575
+OCT13 = OCT13_RAW / "pi5_benchmark_memo_20261013T173438Z.json"
+OCT13_EXTRAS, OCT13_OCR = OCT13_RAW / "extras.json", OCT13_RAW / "ocr_response.json"
 BANK_WH, BANK_EFF, OVERHEAD = 37.0, 0.85, 0.30   # the defaults of savior_glass/scripts/power_log.py
 THIS = datetime.strptime(RUN.name, "%Y-%m-%d").strftime("%-d %b")
 
@@ -489,6 +490,7 @@ def main() -> None:
     sign = by_case("sign_en_3_lines", "plain")
     sign_app = by_case("sign_en_3_lines")
     page = by_case("page_12_lines_640")
+    cur_now = load(RAW / "currency_current_code.json")
     w("## Headline numbers")
     w("")
     w("| What | Median | 95th percentile |")
@@ -497,6 +499,11 @@ def main() -> None:
               "emotion_with_face"):
         if k in lat:
             w(f"| {NAMES[k]} | {ms(lat[k]['median_ms'])} | {ms(lat[k]['p95_ms'])} |")
+        if k == "taka_yolo_handheld_int8" and cur_now:
+            for key, label in (("currency_mode_full", "Currency check, end to end"),
+                               ("taka_yolo_handheld_pt", "Taka detector, hand-held, full precision")):
+                w(f"| {label}, code after the run (`{cur_now['currency_yolo_path']}`) | "
+                  f"{ms(cur_now[key]['median_ms'])} | {ms(cur_now[key]['p95_ms'])} |")
     if "ocr_mode" in lat:
         w(f"| Text reading, 3-line sign, {iters} calls (`benchmark_pi5.py`) | {sec(lat['ocr_mode']['median_ms'])} | "
           f"{sec(lat['ocr_mode']['p95_ms'])} |")
@@ -611,6 +618,19 @@ def main() -> None:
           f"take {ms(lat['object_yolov8n']['median_ms'])}. No COCO pictures are on the Pi, so the scan is timed on the note pictures; "
           "the detector does the same work on any picture.")
     w("")
+    if cur_now:
+        full, det = cur_now["currency_mode_full"], cur_now["taka_yolo_handheld_pt"]
+        w(f"**Currency on the code checked out after the run** (commit `{cur_now.get('commit')}`: `{cur_now['currency_yolo_path']}`, "
+          f"threshold {cur_now['announce_conf']}), timed afterwards with `benchmark_report/scripts/time_current_currency.py`: "
+          f"{det['iters']} calls after 3 warm-up calls on the same note pictures, board at {cur_now['temp_c_start']:.1f} °C at the start.")
+        w("")
+        w("| Benchmark | Median | 95th pct | Calls/s | Measured in the run |")
+        w("|---|---:|---:|---:|---:|")
+        w(f"| Currency check, end to end | {ms(full['median_ms'])} | {ms(full['p95_ms'])} | {full['fps_median']:.2f} | "
+          f"{ms(lat.get('currency_mode_full', {}).get('median_ms'))} |")
+        w(f"| Taka detector, hand-held, full precision (`best_handheld.pt`) | {ms(det['median_ms'])} | {ms(det['p95_ms'])} | "
+          f"{det['fps_median']:.2f} | {ms(lat.get('taka_yolo_handheld_int8', {}).get('median_ms'))} (8-bit) |")
+        w("")
 
     # ---- against earlier runs
     if g["runs"]:
@@ -794,24 +814,37 @@ def main() -> None:
         w(f"Not measured: {live.get('reason')}.")
         w("")
 
-    # ---- field session of the same day
+    # ---- the app as the team used it on the same day, from its field logs
     run_start = tl[0]["epoch"] if tl else float("inf")
-    sessions = []
-    for folder in sorted((GLASS / "logs" / "field").glob(f"{started:%Y%m%d}_*")):
+    run_end = tl[-1]["epoch"] if tl else float("inf")
+    folders = {}
+    for base in (BR / "raw" / "field", GLASS / "logs" / "field"):   # the copies kept in git, then the Pi's own logs
+        for folder in sorted(base.glob(f"{started:%Y%m%d}_*")):
+            folders.setdefault(folder.name, folder)
+    before, after = [], []
+    for name, folder in sorted(folders.items()):
         meta = load(folder / "session.json") or {}
         try:
             begun = datetime.fromisoformat(meta["start"]).timestamp()
         except (KeyError, ValueError):
             continue
-        if begun < run_start:   # the app as the team used it; sessions the tests started are left out
-            sessions.append({"name": folder.name, "meta": meta, "events": read_csv(folder / "events.csv"),
-                             "system": read_csv(folder / "system.csv")})
-    if sessions:
-        w("## The app itself, used earlier today")
+        s = {"name": name, "meta": meta, "events": read_csv(folder / "events.csv"), "system": read_csv(folder / "system.csv")}
+        if begun < run_start:
+            before.append(s)
+        elif begun > run_end:
+            after.append(s)   # sessions that began during the run were started by the tests and are left out
+
+    def app_sessions(sessions, heading, when):
+        w(heading)
         w("")
-        w(f"`python main.py` with the real camera and buttons, before this benchmark "
-          f"({', '.join('`' + s['name'] + '`, ' + s['meta']['start'][11:16] + '–' + s['meta'].get('end', '')[11:16] for s in sessions)}). "
-          "These are the latencies the app's own field log recorded, from button press to the spoken answer being queued.")
+        settings = [s["meta"].get("settings", {}) for s in sessions]
+        taus = sorted({st["CURRENCY_ANNOUNCE_CONF"] for st in settings if st.get("CURRENCY_ANNOUNCE_CONF") is not None})
+        wm = {st.get("WATERMARK_CHECK_ENABLED") for st in settings} - {None}
+        w(f"`python main.py` with the real camera and buttons, {when} "
+          f"({', '.join('`' + s['name'] + '`, ' + s['meta']['start'][11:16] + '–' + s['meta'].get('end', '')[11:16] for s in sessions)}"
+          + (f"; currency threshold {' / '.join(f'{t:.2f}' for t in taus)}" if taus else "")
+          + (f", watermark step {'on' if wm == {True} else 'off' if wm == {False} else 'on in some, off in others'}" if wm else "")
+          + "). These are the latencies the app's own field log recorded, from button press to the spoken answer being queued.")
         w("")
         w("| What | Times | Median | Range |")
         w("|---|---:|---:|---:|")
@@ -833,7 +866,18 @@ def main() -> None:
             for e in s["events"]:
                 if e["event"] == "watermark_check":
                     verdicts[e["verdict"]] = verdicts.get(e["verdict"], 0) + 1
+        named = presses = 0
+        for s in sessions:
+            tau = s["meta"].get("settings", {}).get("CURRENCY_ANNOUNCE_CONF")
+            for e in s["events"]:
+                if (e["mode"], e["event"]) == ("currency", "result"):
+                    presses += 1
+                    conf = num(e.get("confidence"))
+                    named += tau is not None and conf is not None and conf >= tau
         bits = []
+        if presses:
+            bits.append(f"The glass named the note on {named} of {presses} currency presses (detector confidence at or above "
+                        "the threshold); on the others it asked for the note to be held closer, or found none.")
         if temps:
             bits.append(f"The app logged {min(temps):.1f} to {max(temps):.1f} °C.")
         if rss:
@@ -856,13 +900,18 @@ def main() -> None:
                         reads.append((e.get("lang") or "–", float(e["latency_ms"]), text))
         if reads:
             w("What those text captures read. They were photos of printed pages, longer than the 3-line sign, so their times "
-              "compare with the 6-line label and the 12-line page in the text-reading section:")
+              "compare with the label and page rows of the text-reading section:")
             w("")
             w("| Language | Characters read | Time | Text the glass read |")
             w("|---|---:|---:|---|")
             for lang, t, text in reads:
                 w(f"| {({'en': 'English', 'bn': 'Bangla'}).get(lang, lang)} | {len(text)} | {sec(t)} | {text.replace('|', '/')} |")
             w("")
+
+    if before:
+        app_sessions(before, "## The app itself, used earlier today", "before this benchmark")
+    if after:
+        app_sessions(after, "## The app after the run", "after this benchmark, on the code checked out then")
 
     # ---- loading, speech, camera
     w("## Loading, speech and camera")
@@ -936,6 +985,9 @@ def main() -> None:
     if (RAW / "safecheck_after_onnx.json").is_file():
         w("6. Afterwards, from a cool board: `benchmark_report/scripts/safecheck_after_onnx.py` (the safe-check after the ONNX "
           "detector, `raw/safecheck_after_onnx.json`) and the reruns of the tests in the Tests section.")
+    if (RAW / "currency_current_code.json").is_file():
+        w("7. After the code was pulled from GitHub: `benchmark_report/scripts/time_current_currency.py` "
+          "(`raw/currency_current_code.json`) and a session of the app itself (`benchmark_report/raw/field/`).")
     w("")
     w("Limits of this run:")
     w("")

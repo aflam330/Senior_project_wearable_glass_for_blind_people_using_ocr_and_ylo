@@ -8,6 +8,8 @@ Run on 29 October 2026 from 19:14 to 20:44 local time (89 minutes), on the glass
 |---|---:|---:|
 | Currency check, end to end | 422 ms | 519 ms |
 | Taka detector, hand-held INT8 (Pi default when measured) | 339 ms | 551 ms |
+| Currency check, end to end, code after the run (`best_handheld.pt`) | 532 ms | 627 ms |
+| Taka detector, hand-held, full precision, code after the run (`best_handheld.pt`) | 483 ms | 566 ms |
 | Watermark check, learned localizer (used) | 51.1 ms | 62.5 ms |
 | Counterfeit safe-check, one crop | 36.9 ms | 51.1 ms |
 | Object scan, as the app runs it (YOLOv8s) | 462 ms | 635 ms |
@@ -23,18 +25,19 @@ Core temperature 59.8 °C at idle, peak 87.0 °C, in the 30-minute sustained run
 
 - **Text reading is about 3× faster than on 1 October.** A 3-line sign takes 5.4 s from a cool start and 6.1 s on the hot board, against 18.7 s on 1 October. The 8-bit text detector, the Pi default whose speed `config.py` listed as unmeasured, is now measured. One detector pass takes 2.5–3.0 s, against 9.9–11.2 s for the full-precision detector, and it made no character errors on the test pictures. On speed it is clearly the right default; its accuracy is in the validation results in `config.py`.
 - **Reading width 880 instead of 1,200** saves about 1.3 s on short signs (4.1 s against 5.4 s for the English sign) and on the blank picture. It made the only character error of the run (2.9% on the 3-line Bangla sign) and gains nothing on the 1280x720 page. The default stays at 1,200 unless the accuracy results say otherwise.
-- **On long text, reading the letters is now the slow part.** On a 12-line page it takes 12.4 of the 15.4 s, but the first line is spoken after 4.35 s. A picture with no text gets "no text found" in 2.9 s; on 13 October it made up 48 letters.
+- **On long text, reading the letters is now the slow part.** On a 12-line page it takes 12.4 of the 15.4 s, but the first line is spoken after 4.35 s. In the 17:22 app session, two captures of a dense English page took 86 s each, and one of them returned only "02". A picture with no text gets "no text found" in 2.9 s; on 13 October it made up 48 letters.
 - **The board runs hot under continuous load.** In the 30-minute run it averaged 82.8 °C and peaked at 87.0 °C. The soft temperature limit was active in 55% of the samples and the clock was under 2.3 GHz in 58%, with the fan at its top speed (about 10,300 rpm). On 1 October the same protocol peaked at 77.1 °C. Room temperature, case and board position were not logged on either day, so the cause is not known.
 - **Something outside the run improved the cooling at minute 42 (about 19:56).** From then on the board ran 3–4 °C cooler and drew more power (8.4–8.7 W against 7.4 W) at the same CPU load, with the fan already at full speed. A change in the room or the board's position is the likely cause. As a result, the last 5 minutes of the sustained run were barely throttled. The negative "drift" in that table therefore comes from the cooler board, not from any speed-up over time.
 - **Currency check: 422 ms end to end (2.4 a second).** About 60 ms of the increase since 1 October comes from the hand-held detector, which is slower than the earlier INT8 model (339 ms against 279 ms). The counterfeit safe-check also takes about 74 ms in the app's order, not the 31–37 ms its own row shows, because it runs straight after an ONNX Runtime model (see the 30-minute section). Stopping ONNX Runtime's threads from spinning after a run (`session.intra_op.allow_spinning` = 0) could recover most of those 40 ms. This was not tried here.
-- **The Pi's currency settings changed while this run was going.** Commit `a349cfe` was pushed from the laptop at 19:19 and is not part of the measured code. It switches the Pi to the full-precision hand-held detector (`best_handheld.pt`, threshold 0.75), because the 8-bit copy lowered the confidence on close-ups. It also turns the guided watermark step off. The same model in PyTorch and 8-bit form takes 556 ms against 261 ms by that commit's own figures, and 607 ms against 279 ms in this run, for the earlier detector. So the new default should make the detector roughly 0.3 s slower per check, partly offset by the safe-check: after a PyTorch model it runs at its fast speed (36 ms in the test above). This run did not time `best_handheld.pt`.
+- **The Pi's currency settings changed while this run was going.** Commit `a349cfe` was pushed from the laptop at 19:19 and is not part of the measured code. It switches the Pi to the full-precision hand-held detector (`best_handheld.pt`, threshold 0.75), because the 8-bit copy lowered the confidence on close-ups. It also turns the guided watermark step off. Timed after the run on that code (`fe7778f`, 100 calls, cool board), the detector alone takes 483 ms against 339 ms for the 8-bit copy, and a currency check end to end takes 532 ms against 422 ms. The check slows down less than the detector does, because after a PyTorch model the safe-check runs at its fast speed (36 ms in the test above).
+- **The app on that code, after the run** (6 minutes, buttons pressed by the team). Currency answered in 0.81 s from press to speech (median of 8 presses) and named the note on 5 of 8 presses; in the two afternoon sessions, with the 8-bit detector and its 0.80 threshold, it named 2 of 10. Text reading took 12.2 s for a Bangla rhyme and 18.2–22.2 s for an English one, including about 2 s for the new step that picks the sharpest frame. Objects took 0.74 s. The board peaked at about 72 °C.
 - **Objects:** YOLOv8s takes 462 ms per scan. YOLOv8n would take 191 ms; its accuracy cost was not measured here. **Everything at once on real webcam frames** (currency, objects, and emotion every fifth frame): 748 ms a frame, 1.3 frames a second.
 - **Power and memory.** The board's own circuits draw 3.7 W at idle, 7.8 W under the sustained load and about 9 W while reading text. That gives roughly 3 hours of non-stop heavy use on a 37 Wh bank (an estimate with stated assumptions). The benchmark process with every model loaded peaked at 2.55 GB and the app at 2.76 GB, well within the 8 GB board.
 - **The error rates here are not field accuracy.** The rendered test pictures were read with no errors. A real photo of a printed rhyme, taken with the app earlier today, came back with letter errors ("Suton wall", "hod a great toll", "Jll the king s men"; see the app section).
 
 ## Temperature, clock and power
 
-The board started at 63.4 °C with the throttle flag at `0x0` (nothing) before the first timing call.
+The board started at 63.4 °C with the throttle flag at `0x0` (no throttling, clock capping or under-voltage) before the first timing call.
 
 ![The board during the whole run](graphs/03_thermal_power_timeline.png)
 
@@ -70,8 +73,8 @@ Each row is 100 timed calls after 3 warm-up calls, from `scripts/benchmark_pi5.p
 | Currency | Currency check, end to end | 422 ms | 519 ms | 409 ms | 2.37 | 1,196 ms | 1.36 GB | 74.9 °C |
 | Currency | Taka detector, hand-held INT8 (Pi default when measured) | 339 ms | 551 ms | 359 ms | 2.95 | 0.4 ms | 1.71 GB | 82.0 °C |
 | Currency | Taka detector, earlier INT8 (v1) | 279 ms | 457 ms | 309 ms | 3.59 | 0.5 ms | 1.63 GB | 83.7 °C |
-| Currency | Taka detector, ONNX FP32 | 512 ms | 815 ms | 560 ms | 1.95 | 11.2 ms | 1.53 GB | 83.7 °C |
-| Currency | Taka detector, PyTorch | 607 ms | 798 ms | 633 ms | 1.65 | 666 ms | 1.41 GB | 76.0 °C |
+| Currency | Taka detector (earlier model), ONNX FP32 | 512 ms | 815 ms | 560 ms | 1.95 | 11.2 ms | 1.53 GB | 83.7 °C |
+| Currency | Taka detector (earlier model), PyTorch | 607 ms | 798 ms | 633 ms | 1.65 | 666 ms | 1.41 GB | 76.0 °C |
 | Watermark | Watermark check, learned localizer (used) | 51.1 ms | 62.5 ms | 51.7 ms | 19.58 | 618 ms | 1.74 GB | 79.3 °C |
 | Watermark | Watermark check, SIFT alignment | 377 ms | 854 ms | 473 ms | 2.65 | 683 ms | 1.72 GB | 74.3 °C |
 | Counterfeit check | Counterfeit safe-check, one crop | 36.9 ms | 51.1 ms | 39.0 ms | 27.10 | 228 ms | 1.72 GB | 74.9 °C |
@@ -96,6 +99,13 @@ Load is the time to build the model object in that process; the ONNX detectors a
 - **Emotion.** `benchmark_pi5.py` has no face pictures on the Pi, so its row is a frame with no face (47.3 ms, the face search alone). With a face in view (the astronaut test picture, classifier `rgb_mobilenet_blend`) one answer takes 536 ms.
 - **Objects.** The app uses YOLOv8s (462 ms per scan as the app runs it); YOLOv8n would take 191 ms. No COCO pictures are on the Pi, so the scan is timed on the note pictures; the detector does the same work on any picture.
 
+**Currency on the code checked out after the run** (commit `fe7778f`: `best_handheld.pt`, threshold 0.75), timed afterwards with `benchmark_report/scripts/time_current_currency.py`: 100 calls after 3 warm-up calls on the same note pictures, board at 56.2 °C at the start.
+
+| Benchmark | Median | 95th pct | Calls/s | Measured in the run |
+|---|---:|---:|---:|---:|
+| Currency check, end to end | 532 ms | 627 ms | 1.88 | 422 ms |
+| Taka detector, hand-held, full precision (`best_handheld.pt`) | 483 ms | 566 ms | 2.07 | 339 ms (8-bit) |
+
 ## Against the 1 and 13 October runs
 
 ![This run against the 1 and 13 October runs](graphs/02_against_earlier_runs.png)
@@ -105,8 +115,8 @@ Load is the time to build the model object in that process; the ONNX detectors a
 | Currency check, end to end | 327 ms | 399 ms | **422 ms** | +29% | +6% |
 | Taka detector, hand-held INT8 (Pi default when measured) | – | – | **339 ms** | – | – |
 | Taka detector, earlier INT8 (v1) | 254 ms | 306 ms | **279 ms** | +9% | -9% |
-| Taka detector, ONNX FP32 | 485 ms | 583 ms | **512 ms** | +6% | -12% |
-| Taka detector, PyTorch | 507 ms | 534 ms | **607 ms** | +20% | +14% |
+| Taka detector (earlier model), ONNX FP32 | 485 ms | 583 ms | **512 ms** | +6% | -12% |
+| Taka detector (earlier model), PyTorch | 507 ms | 534 ms | **607 ms** | +20% | +14% |
 | Watermark check, learned localizer (used) | 50.1 ms | 64.0 ms | **51.1 ms** | +2% | -20% |
 | Watermark check, SIFT alignment | 372 ms | 343 ms | **377 ms** | +1% | +10% |
 | Counterfeit safe-check, one crop | 36.1 ms | 47.3 ms | **36.9 ms** | +2% | -22% |
@@ -136,8 +146,8 @@ Load is the time to build the model object in that process; the ONNX detectors a
 | Currency check, end to end | 188 | 383 ms | 364 ms | -5% | 701 ms | 422 ms |
 | Taka detector, hand-held INT8 (Pi default when measured) | 188 | 354 ms | 312 ms | -12% | 710 ms | 339 ms |
 | Taka detector, earlier INT8 (v1) | 188 | 289 ms | 255 ms | -12% | 1,023 ms | 279 ms |
-| Taka detector, ONNX FP32 | 188 | 514 ms | 461 ms | -10% | 840 ms | 512 ms |
-| Taka detector, PyTorch | 188 | 490 ms | 453 ms | -8% | 706 ms | 607 ms |
+| Taka detector (earlier model), ONNX FP32 | 188 | 514 ms | 461 ms | -10% | 840 ms | 512 ms |
+| Taka detector (earlier model), PyTorch | 188 | 490 ms | 453 ms | -8% | 706 ms | 607 ms |
 | Watermark check, learned localizer (used) | 188 | 50.9 ms | 48.9 ms | -4% | 113 ms | 51.1 ms |
 | Watermark check, SIFT alignment | 188 | 372 ms | 345 ms | -7% | 892 ms | 377 ms |
 | Counterfeit safe-check, one crop | 188 | 86.3 ms | 82.5 ms | -4% | 205 ms | 36.9 ms |
@@ -232,23 +242,50 @@ Notes seen: none; objects announced: {'সামনে আছে: ল্যা�
 
 ## The app itself, used earlier today
 
-`python main.py` with the real camera and buttons, before this benchmark (`20261029_184909_memo`, 18:49–18:55). These are the latencies the app's own field log recorded, from button press to the spoken answer being queued.
+`python main.py` with the real camera and buttons, before this benchmark (`20261029_172213_memo`, 17:22–17:34, `20261029_184909_memo`, 18:49–18:55; currency threshold 0.80, watermark step on). These are the latencies the app's own field log recorded, from button press to the spoken answer being queued.
 
 | What | Times | Median | Range |
 |---|---:|---:|---:|
-| Text reading: one capture | 2 | 14.52 s | 13.57 s – 15.46 s |
-| Object scan and announcement | 4 | 807 ms | 757 ms – 809 ms |
-| Currency check | 6 | 651 ms | 499 ms – 749 ms |
-| Watermark check (guided, several frames) | 3 | 10.34 s | 10.01 s – 10.70 s |
+| Text reading: one capture | 8 | 15.61 s | 13.44 s – 86.34 s |
+| Object scan and announcement | 8 | 811 ms | 757 ms – 953 ms |
+| Currency check | 10 | 654 ms | 499 ms – 749 ms |
+| Watermark check (guided, several frames) | 6 | 10.26 s | 10.01 s – 10.70 s |
 
-The app logged 59.0 to 76.0 °C. It held up to 2.76 GB of memory with all modes loaded and the camera open. The guided watermark check ended 3× timeout: the note was not held up to a light long enough (its frames were rejected as blurry or as having no note), so these are the time-out, not a watermark reading.
+The glass named the note on 2 of 10 currency presses (detector confidence at or above the threshold); on the others it asked for the note to be held closer, or found none. The app logged 52.9 to 78.2 °C. It held up to 2.97 GB of memory with all modes loaded and the camera open. The guided watermark check ended 6× timeout: the note was not held up to a light long enough (its frames were rejected as blurry or as having no note), so these are the time-out, not a watermark reading.
 
-What those text captures read. They were photos of printed pages, longer than the 3-line sign, so their times compare with the 6-line label and the 12-line page in the text-reading section:
+What those text captures read. They were photos of printed pages, longer than the 3-line sign, so their times compare with the label and page rows of the text-reading section:
 
 | Language | Characters read | Time | Text the glass read |
 |---|---:|---:|---|
+| English | 279 | 85.67 s | maror drawbackol verticallarming howover quickly reducing tnetetdency cl the gsystem Single kght would requrefar more moveran rats Moviang cal armyina bat-has been developed One vanation on werucal Loperation_and won swellwnthin a sungle etrays allows tne piants to bovestLis not |
+| English | 2 | 86.34 s | 02 |
+| Bangla | 88 | 15.75 s | পলয পিযে যাষার বাড়ি যাই বড়ের নিনে মামার দেশে আাম বুড়াতে চ্াষের মধুর রসে রঙিন করি মুখI |
+| Bangla | 94 | 13.63 s | ছেত্রো ফুলের তুপতে যাই ঝড়ের দিনো ড়া যাই মামার দেশে আাম কুড়াতে রঞ্তিজ্ ামের মধুর রসে ফরি মুখ |
+| Bangla | 88 | 19.73 s | মামার ঝাড়ি যা৫I ঝড়ের পিনে মামার সেশে আাম বুড়াতে সুধ পাকা আ্ামের মধুর রসে রঙিন করি মুথ |
+| Bangla | 142 | 13.44 s | আয় ছেপেরা আয় মেসেরো তুলিতে যাহ ফুলের মালা গলায় দিয়ে মামার বাড়়ি যাই ঝড়ের দিনে মামার দেশে আম কুড়াতে সুখ পাকা জামের মধুর রসে রঙিন করি মুখ |
 | English | 136 | 15.46 s | Humpty Dumpty Suton wall Humpty Dumpty hod a great toll AlI the king s horses and Jll the king s men couldn t put Humpty together againi |
 | Bangla | 130 | 13.57 s | আয় ছেলেরা আয় মেয়েরা তুসিতে যাই. ফুলের মালা গলায় দিয়ে মামার বাড়ি যাই ঝড়ের দিনে মামার দেশে আম কুড়াতে সুখ পাকা জামের মধুর রসে |
+
+## The app after the run
+
+`python main.py` with the real camera and buttons, after this benchmark, on the code checked out then (`20261029_213948_memo`, 21:39–21:45; currency threshold 0.75, watermark step off). These are the latencies the app's own field log recorded, from button press to the spoken answer being queued.
+
+| What | Times | Median | Range |
+|---|---:|---:|---:|
+| Text reading: one capture | 4 | 18.28 s | 12.18 s – 22.20 s |
+| Object scan and announcement | 2 | 736 ms | 701 ms – 772 ms |
+| Currency check | 8 | 811 ms | 760 ms – 1,284 ms |
+
+The glass named the note on 5 of 8 currency presses (detector confidence at or above the threshold); on the others it asked for the note to be held closer, or found none. The app logged 52.4 to 71.6 °C. It held up to 2.81 GB of memory with all modes loaded and the camera open.
+
+What those text captures read. They were photos of printed pages, longer than the 3-line sign, so their times compare with the label and page rows of the text-reading section:
+
+| Language | Characters read | Time | Text the glass read |
+|---|---:|---:|---|
+| Bangla | 143 | 12.18 s | আয় ছেপেরা আয় মেয়েরা তুলিতে যাই. ফুলের মালা গলায় দিয়ে মামার বাড়ি যাই ঝড়ের দিনে মামার দেশে আম কুড়াতে সুখ পাকা জামের মধুর রসে রঙিন করি মুখ |
+| English | 54 | 22.20 s | Humpty Dumpty saL0n Humpty Dumpty Humptytogctherogaini |
+| English | 77 | 18.18 s | Humpty Dumpty Baton wull Humpty Dumpty had agreattalla Humpty together agsini |
+| English | 30 | 18.39 s | Humpty Dumpty Humptypun pumaty |
 
 ## Loading, speech and camera
 
@@ -315,6 +352,7 @@ All steps ran from one script, `benchmark_report/scripts/run_full_benchmark.sh`,
 4. `benchmark_report/scripts/ocr_response_bench.py` once for each of the four text-detector settings.
 5. 3 minutes idle.
 6. Afterwards, from a cool board: `benchmark_report/scripts/safecheck_after_onnx.py` (the safe-check after the ONNX detector, `raw/safecheck_after_onnx.json`) and the reruns of the tests in the Tests section.
+7. After the code was pulled from GitHub: `benchmark_report/scripts/time_current_currency.py` (`raw/currency_current_code.json`) and a session of the app itself (`benchmark_report/raw/field/`).
 
 Limits of this run:
 

@@ -1,0 +1,33 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-10-29T21:39:48.646,0.002,session_start,ocr,,,,,,,,
+2,2026-10-29T21:40:47.005,58.361,action_press,ocr,,,,,,,,
+3,2026-10-29T21:41:00.273,71.629,result,ocr,12180.5,পড়া শেষ। আবার শুনতে রিড বাটন চাপুন,,,,,bn,"{""press_event"": 2, ""press_to_result_ms"": 13268.0, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""আয় ছেপেরা আয় মেয়েরা তুলিতে যাই. ফুলের মালা গলায় দিয়ে মামার বাড়ি যাই ঝড়ের দিনে মামার দেশে আম কুড়াতে সুখ পাকা জামের মধুর রসে রঙিন করি মুখ""}"
+4,2026-10-29T21:41:17.626,88.982,read_press,ocr,,পড়া হচ্ছে: আয় ছেপেরা আয় মেয়েরা তুলিতে যাই. ফুলের মালা গলায় দিয়ে মামার বাড়ি যাই ঝড়ের দিনে মামার দেশে আম কুড়াতে সুখ পাকা জামের মধুর রসে রঙিন করি মুখ,,,,,,
+5,2026-10-29T21:42:21.003,152.359,action_press,ocr,,,,,,,,
+6,2026-10-29T21:42:41.525,172.881,action_ignored_busy,ocr,,,,,,,,
+7,2026-10-29T21:42:44.307,175.663,result,ocr,22204.5,Done. Press READ to hear it again.,,,,,en,"{""press_event"": 5, ""press_to_result_ms"": 23304.2, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""Humpty Dumpty saL0n Humpty Dumpty Humptytogctherogaini""}"
+8,2026-10-29T21:42:50.918,182.274,action_press,ocr,,,,,,,,
+9,2026-10-29T21:43:10.186,201.542,result,ocr,18180.7,Done. Press READ to hear it again.,,,,,en,"{""press_event"": 8, ""press_to_result_ms"": 19267.5, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""Humpty Dumpty Baton wull Humpty Dumpty had agreattalla Humpty together agsini""}"
+10,2026-10-29T21:43:14.252,205.608,action_press,ocr,,,,,,,,
+11,2026-10-29T21:43:33.695,225.051,result,ocr,18387.6,Done. Press READ to hear it again.,,,,,en,"{""press_event"": 10, ""press_to_result_ms"": 19442.6, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""Humpty Dumpty Humptypun pumaty""}"
+12,2026-10-29T21:43:36.116,227.472,mode_switch,object,,object,,,,,,"{""from_mode"": ""ocr""}"
+13,2026-10-29T21:43:40.912,232.268,object_announce,object,700.9,সামনে আছে: মানুষ,,,,,,
+14,2026-10-29T21:43:47.659,239.015,object_announce,object,771.9,"সামনে আছে: মানুষ, মোবাইল ফোন",,,,,,
+15,2026-10-29T21:43:55.299,246.655,mode_switch,currency,,currency,,,,,,"{""from_mode"": ""object""}"
+16,2026-10-29T21:44:04.576,255.932,action_press,currency,,,,,,,,
+17,2026-10-29T21:44:05.373,256.729,result,currency,796.3,নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।,50_taka,0.6753,unknown,0.5,,"{""press_event"": 16, ""press_to_result_ms"": 796.6, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+18,2026-10-29T21:44:18.565,269.921,action_press,currency,,,,,,,,
+19,2026-10-29T21:44:19.325,270.681,result,currency,760.1,নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।,50_taka,0.6516,unknown,0.5,,"{""press_event"": 18, ""press_to_result_ms"": 760.4, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+20,2026-10-29T21:44:27.548,278.904,action_press,currency,,,,,,,,
+21,2026-10-29T21:44:28.455,279.811,result,currency,906.9,পঞ্চাশ টাকার নোট। জাল যাচাই করা হয়নি,50_taka,0.8723,unknown,0.5,,"{""press_event"": 20, ""press_to_result_ms"": 907.6, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+22,2026-10-29T21:44:49.697,301.053,action_press,currency,,,,,,,,
+23,2026-10-29T21:44:50.479,301.835,result,currency,781.6,নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।,100_taka,0.7283,unknown,0.5,,"{""press_event"": 22, ""press_to_result_ms"": 781.9, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+24,2026-10-29T21:44:57.410,308.766,action_press,currency,,,,,,,,
+25,2026-10-29T21:44:58.225,309.581,result,currency,813.7,একশত টাকার নোট। জাল যাচাই করা হয়নি,100_taka,0.8911,unknown,0.5,,"{""press_event"": 24, ""press_to_result_ms"": 814.3, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+26,2026-10-29T21:45:09.428,320.784,action_press,currency,,,,,,,,
+27,2026-10-29T21:45:10.235,321.591,result,currency,807.4,দুইশত টাকার নোট। জাল যাচাই করা হয়নি,200_taka,0.8633,unknown,0.5,,"{""press_event"": 26, ""press_to_result_ms"": 807.7, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+28,2026-10-29T21:45:23.067,334.423,action_press,currency,,,,,,,,
+29,2026-10-29T21:45:23.897,335.253,result,currency,829.9,পঞ্চাশ টাকার নোট। জাল যাচাই করা হয়নি,50_taka,0.7556,unknown,0.5,,"{""press_event"": 28, ""press_to_result_ms"": 830.3, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+30,2026-10-29T21:45:36.807,348.163,action_press,currency,,,,,,,,
+31,2026-10-29T21:45:38.093,349.449,result,currency,1284.5,পাঁচশত টাকার নোট। আসল কিনা হাতে যাচাই করুন,500_taka,0.9406,check_by_hand,0.2219,,"{""press_event"": 30, ""press_to_result_ms"": 1286.9, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+32,2026-10-29T21:45:54.932,366.288,session_end,,,,,,,,,
