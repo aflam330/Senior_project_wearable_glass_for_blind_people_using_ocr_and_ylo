@@ -30,8 +30,8 @@ The camera module is mounted at the front of the spectacle frame so that it poin
 \subsection*{1. Raspberry Pi~5 Power}
 The Raspberry Pi~5 is powered through its USB-C port from a power bank. The system starts automatically when power is connected.
 
-\subsection*{2. Camera Module~2}
-The camera is connected to the CSI connector and read with Picamera2. On the Raspberry Pi~5 the OpenCV capture interface opened the camera device but received no frames, so the camera manager now tries Picamera2 first, then OpenCV, and finally scans the video devices while skipping the Pi's internal image-processing nodes. If the camera is already in use by another program, the manager stops with a message that says so. A USB webcam is selected with \texttt{CAMERA\_BACKEND} and \texttt{CAMERA\_INDEX}; the frame size is set with \texttt{CAMERA\_WIDTH} and \texttt{CAMERA\_HEIGHT}.
+\subsection*{2. Camera}
+The second prototype's Logitech C270 webcam is plugged into a USB port of the Pi and read through OpenCV. The first prototype's Camera Module~2 was connected to the CSI connector and read with Picamera2. On the Raspberry Pi~5 the OpenCV capture interface opened the camera device but received no frames, so the camera manager now tries Picamera2 first, then OpenCV, and finally scans the video devices while skipping the Pi's internal image-processing nodes. If the camera is already in use by another program, the manager stops with a message that says so. A USB webcam is selected with \texttt{CAMERA\_BACKEND} and \texttt{CAMERA\_INDEX}; the frame size is set with \texttt{CAMERA\_WIDTH} and \texttt{CAMERA\_HEIGHT}.
 
 \subsection*{3. Push-Buttons}
 Each button connects one GPIO pin (BCM 17, 27, 24, 22, 23) to ground. The pins are configured as inputs with internal pull-up resistors, and a falling edge generates an interrupt that is debounced in software for 250~ms using the \texttt{rpi-lgpio} library. The library creates a notification pipe in its working directory; because the project was kept on a FAT-formatted USB drive, which cannot hold pipes, the working directory of the library is set to the system's temporary folder. A pin that is already claimed by another process produces an error message with instructions instead of a stack trace.
@@ -60,7 +60,7 @@ OpenCV \cite{opencv} & Image-processing library & Cleaning up pictures before th
 Picamera2 & Raspberry Pi camera library & Taking pictures with the Pi camera on the glass \\ \hline
 PyTorch, torchvision & Deep-learning framework & Training and running the counterfeit-check and emotion models (MobileNetV3, EfficientNet-V2-S, TinyViT) \\ \hline
 Ultralytics YOLOv8 & Object-detection library & Training and running the object and Taka detectors, and saving them in faster formats (ONNX, TorchScript) \\ \hline
-ONNX Runtime & Fast model runner for the CPU & Running the compressed (INT8) Taka detector, the watermark finder and checker, and a back-up emotion model (FER+) \\ \hline
+ONNX Runtime & Fast model runner for the CPU & Running the watermark finder and checker, the 8-bit text detector and a back-up emotion model (FER+); the compressed (INT8) Taka detector remains an option on the Pi \\ \hline
 EasyOCR & Text-reading (OCR) library & Reading Bangla and English text \\ \hline
 HarfBuzz, FreeType & Text-drawing libraries & Drawing Bangla letters correctly in the test images used to measure text reading \\ \hline
 Tesseract, PaddleOCR, KenLM, SymSpell & Other text readers and spelling correctors & Compared with EasyOCR in the text-reading tests; not used on the glass \\ \hline

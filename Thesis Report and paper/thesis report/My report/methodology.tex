@@ -9,7 +9,7 @@ The framework of SARA follows an input--process--output structure (Figure~\ref{f
 
 \subsection*{Input}
 \begin{itemize}[noitemsep]
-    \item \textbf{Camera frames:} 640$\times$480 colour frames from a Raspberry Pi Camera Module~2 (Sony IMX219, fixed focus) read through the Picamera2 library \cite{picamera2}, or from a USB webcam.
+    \item \textbf{Camera frames:} 640$\times$480 colour frames from a USB webcam (a Logitech C270 in the second prototype) read through OpenCV, or from a Raspberry Pi Camera Module~2 (Sony IMX219, fixed focus; first prototype) read through the Picamera2 library \cite{picamera2}.
     \item \textbf{Button events:} five push-buttons for MODE, ACTION, READ, VOLUME~UP and VOLUME~DOWN, read through GPIO interrupts.
 \end{itemize}
 
@@ -132,7 +132,7 @@ Table~\ref{tab:hardware} summarises the hardware of the prototype. Each componen
 \hline
 \textbf{Picture} & \textbf{Component} & \textbf{Details} & \textbf{What it does in SARA} \\ \hline
 \vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_pi5.jpg}\vspace{1pt} & Raspberry Pi~5 with active cooler & Small computer with a four-core 2.4 GHz processor and 4 or 8 GB of memory; no graphics accelerator is used & The ``brain'': runs all the AI models and the program \\ \hline
-\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_camera.jpg}\vspace{1pt} & Camera Module 2 & 8-megapixel Sony IMX219 sensor with a fixed-focus lens; used at 640$\times$480 pixels & Takes the pictures of text, notes and surroundings \\ \hline
+\vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_webcam.jpg}\vspace{1pt} & USB webcam & Logitech C270 board on a USB port of the Pi (second prototype); the first prototype used a Camera Module~2 (Sony IMX219, fixed focus); used at 640$\times$480 pixels & Takes the pictures of text, notes and surroundings \\ \hline
 \vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{v2_buttons.jpg}\vspace{1pt} & Push-buttons (5) & Press-to-click buttons on a small perforated board along the temple, connected to Pi pins 17, 27, 24, 22 and 23 & Let the user control the glass without a screen: MODE, ACTION, READ, VOLUME UP, VOLUME DOWN \\ \hline
 \vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{hw_motor.jpg}\vspace{1pt} & Vibration motor & Small motor that shakes when switched on; driven from Pi pin 13 & A short buzz tells the user something was found (for example a note) \\ \hline
 \vspace{2pt}\includegraphics[width=2.4cm,height=1.9cm,keepaspectratio]{v2_headphone.jpg}\vspace{1pt} & Bone-conduction headphone & Open-ear headphone that passes sound through the cheekbones; any earphone or small speaker also works & Speaks every result while the ears stay free for traffic and voices \\ \hline
@@ -142,14 +142,14 @@ Table~\ref{tab:hardware} summarises the hardware of the prototype. Each componen
 \end{tabular}
 
 \vspace{3pt}
-\raggedright{\footnotesize Picture credits (Wikimedia Commons): Raspberry Pi~5 with active cooler, by SimonWaldherr, CC BY 4.0; Camera Module v2, by the Raspberry Pi Foundation, CC BY-SA 4.0; vibration motor, by Raimond Spekking, CC BY-SA 4.0; USB power bank, by Pinguinguy, CC0. Push-buttons, headphone, spectacle frame and enclosure: our second prototype. The pictures show the type of part, not necessarily the exact model used.}
+\raggedright{\footnotesize Picture credits (Wikimedia Commons): Raspberry Pi~5 with active cooler, by SimonWaldherr, CC BY 4.0; vibration motor, by Raimond Spekking, CC BY-SA 4.0; USB power bank, by Pinguinguy, CC0. Webcam board, push-buttons, headphone, spectacle frame and enclosure: our second prototype. The pictures show the type of part, not necessarily the exact model used.}
 \end{table}
 
 \subsection*{Processing Unit}
 The Raspberry Pi~5 is the brain of the system. It runs Raspberry Pi OS (64-bit), Python~3, OpenCV, PyTorch and ONNX Runtime. All inference runs on the CPU. The board also provides the GPIO pins for the buttons and the vibration motor, and the audio output.
 
 \subsection*{Camera}
-The Camera Module~2 (IMX219) is connected through the CSI ribbon cable and read with the Picamera2 library; the OpenCV video interface receives no frames from this camera on the Raspberry Pi~5. A USB webcam can be used instead: the camera manager tries Picamera2 first, then OpenCV, and the choice can be forced with one configuration value. The resolution of 640$\times$480 was chosen as a balance between detail and processing load. The lens has a fixed focus, so close text and notes are not sharp at every distance. The first field test (Section~\ref{sec:field_test}) suggests that this resolution and lens may be too weak for reading; the resolution can be raised with a configuration value.
+The second prototype uses a Logitech C270 USB webcam, read through OpenCV; on the Pi it gives 7.6 frames per second at 640$\times$480, 1.3~s after it is opened. The first prototype used a Camera Module~2 (IMX219) on the CSI ribbon cable, read with the Picamera2 library, because the OpenCV video interface received no frames from that camera on the Raspberry Pi~5. The camera manager tries Picamera2 first, then OpenCV, and the choice can be forced with one configuration value. The resolution of 640$\times$480 was chosen as a balance between detail and processing load. The lens has a fixed focus, so close text and notes are not sharp at every distance. The first field test (Section~\ref{sec:field_test}) suggests that this resolution and lens may be too weak for reading; the resolution can be raised with a configuration value.
 
 \subsection*{Buttons}
 Five push-buttons connect GPIO pins to ground with internal pull-up resistors. A 250~ms software debounce removes false double presses. The button map is given in Table~\ref{tab:buttons}.
@@ -482,7 +482,7 @@ where $\operatorname{tophat}$ is the white top-hat with a 9-pixel disc (it keeps
 \end{equation}
 with $c = 0.22$. This colour condition was added after a simulation showed that, without it, the colour smear that JPEG compression leaves at the edges of print was counted as fibres (Section~\ref{sec:uv_results}). The note is accepted when at least $T$ fibres are found ($T = 1$ with the colour condition). Because $a$, $b$ and the lamp level are measured in the same picture, the brightness and distance of the lamp cancel: multiplying the lamp intensity by any factor leaves $a$, $b$ and (up to the constant 1) $r$ unchanged. A change of the camera's colour balance does not cancel: the paper still gives $E = 0$, but the contrast of a fibre is multiplied by the green-to-blue gain ratio, so $T$ and the threshold on $r$ belong to one camera.
 
-The check is switched off by default and its wording is cautious (``UV marks found, likely genuine'' or ``UV marks not found, check by hand''), because it has not been tested on counterfeit notes or through the glass camera, and its fibre-free side has so far only been simulated (Section~\ref{sec:uv_results}).
+Since 29 October 2026 the check runs whenever a currency press is taken under the lamp, which is recognised from the colour of the picture (Section~\ref{sec:pi5_third}), and its wording is cautious (``UV marks found, likely genuine'' or ``UV marks not found, check by hand''), because it has not been tested on counterfeit notes or through the glass camera, and its fibre-free side has so far only been simulated (Section~\ref{sec:uv_results}).
 
 \begin{figure}[H]
     \centering

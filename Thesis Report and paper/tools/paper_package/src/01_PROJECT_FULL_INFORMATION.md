@@ -58,7 +58,7 @@ The answer comes from another person and cannot be checked.
 | Part | Details | Role |
 |---|---|---|
 | Raspberry Pi 5 with active cooler | 4-core 2.4 GHz, 8 GB; no accelerator used | Runs all models and the program |
-| Camera Module 2 | Sony IMX219, 8 MP, fixed-focus; used at 640×480 | Pictures of text, notes, surroundings |
+| USB webcam | Logitech C270 on a USB port (second prototype); Camera Module 2, Sony IMX219, in the first; used at 640×480 | Pictures of text, notes, surroundings |
 | 5 push-buttons | On a perforated board along the temple; GPIO 17, 27, 24, 22, 23: MODE, ACTION, READ, VOLUME UP, VOLUME DOWN | Control without a screen |
 | Vibration motor | GPIO 13 | Short buzz when something is found (for example a note) |
 | Bone-conduction headphone | Open-ear | Speech while the ears stay free |
@@ -89,7 +89,7 @@ The answer comes from another person and cannot be checked.
 |---|---|---|
 | Text reading (Bangla + English) | CRAFT text detector (ONNX) + EasyOCR recogniser, **blended** with a version fine-tuned on real words; main-text-block selection; CLAHE; clean-up rules; read width 1,200 px; line-by-line speech for pages | Yes |
 | Objects | YOLOv8s (COCO, 80 classes), automatic scan every 1.5 s (thermal governor slows it when hot), at most 3 objects per scan, confidence 0.50 | Yes |
-| Taka notes | Taka YOLOv8s trained on synthetic composites and fine-tuned on synthetic hand-held close-ups; announce thresholds 0.75 (laptop) / 0.80 (Pi INT8); count and total of several notes; safe counterfeit verdict (500 and 1,000 Taka); guided watermark check; optional UV fibre check (off by default) | Yes |
+| Taka notes | Taka YOLOv8s trained on synthetic composites and fine-tuned on synthetic hand-held close-ups; announce threshold 0.75 with the full-precision detector on laptop and Pi since 29 October (0.80 for the optional Pi INT8 copy); count and total of several notes; safe counterfeit verdict (500 and 1,000 Taka); guided watermark check (off by default since 29 October: it timed out with the C270); UV fibre check whenever a press is taken under the lamp | Yes |
 | Emotion | YuNet face detector + EfficientNet-V2-S (RAF-DB) | Yes |
 | Online description | Cloud vision model through an API key kept in a git-ignored `.env` | **No** (the only online mode) |
 
@@ -224,7 +224,7 @@ Physics: a back-lit note gives I ≈ L·t, with L the lamp and t the paper trans
 4. **Colour condition:** each fibre pixel must satisfy max(G − aB, R − bB)/B > c with c = 0.22, and lie on lit paper (B > ½ median B).
 5. **Decision:** accept if at least T = 1 fibre is found.
 6. **Properties:** lamp brightness and distance cancel out. The camera's colour balance does not, so T and the r threshold belong to one camera.
-7. **Deployment:** off by default, with cautious wording.
+7. **Deployment:** runs whenever a currency press is taken under the lamp (mean blue > 2.136 × mean green; 47 of 47 UV test photos recognised, 0 of 2,282 ordinary photos taken), with cautious wording; the value is not spoken under the lamp.
 
 ### 7.9 Bangla/English text reading pipeline
 
@@ -311,17 +311,17 @@ Physics: a back-lit note gives I ≈ L·t, with L the lamp and t the paper trans
 
 **Raspberry Pi 5**
 
-| | First run, 1 Oct (cool board) | Second run, 13 Oct (hot, throttled) |
-|---|---|---|
-| Currency check | 327 ms | 399 ms |
-| Taka detector | 254 ms | 306 ms |
-| Watermark check | 50 ms | 64 ms |
-| Authenticator, 1 / 6 views | 37 / 90 ms | 43 / 98 ms |
-| Objects | YOLOv8n 207 ms | YOLOv8s 562 ms |
-| Emotion | — (the 48 ms was a frame without a face) | 680 ms with a face |
-| Text reading, one capture | 18.7 s | 18.3 s |
-| Memory | peak 1.48 GB | — |
-| Temperature | peak 77.1 °C, no throttling | peak 88.7 °C, throttled in 76% of text-test samples, clock 1.5 GHz |
+| | First run, 1 Oct (cool board) | Second run, 13 Oct (hot, throttled) | Third run, 29 Oct (fan and heat sink) |
+|---|---|---|---|
+| Currency check | 327 ms | 399 ms | 422 ms (532 ms with the full-precision detector now used) |
+| Taka detector | 254 ms | 306 ms | 339 ms hand-held INT8; 483 ms full precision |
+| Watermark check | 50 ms | 64 ms | 51 ms |
+| Authenticator, 1 / 6 views | 37 / 90 ms | 43 / 98 ms | 35 ms (1 view) |
+| Objects | YOLOv8n 207 ms | YOLOv8s 562 ms | YOLOv8s 462 ms |
+| Emotion | — (the 48 ms was a frame without a face) | 680 ms with a face | 536 ms with a face |
+| Text reading, one capture | 18.7 s | 18.3 s | 5.4 s (3-line sign); 12-line page 15.4 s, first line at 4.4 s |
+| Memory | peak 1.48 GB | — | app peak 2.76 GB |
+| Temperature | peak 77.1 °C, no throttling | peak 88.7 °C, throttled in 76% of text-test samples, clock 1.5 GHz | sensor peak 87.0 °C in 30 min of load, soft limit in 55% of samples; board surface 57.8–62.3 °C (thermometer) |
 
 - **Thermal model:** τ ≈ 7 s, T∞ ≈ 74.8 + 0.105·u. An average load above about 50% keeps the board above 80 °C.
 - **Response time:** a currency answer takes about 2.3–2.9 s with speech.
