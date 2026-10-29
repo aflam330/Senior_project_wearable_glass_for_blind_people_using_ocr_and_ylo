@@ -138,8 +138,10 @@ P("<b>Reading these numbers.</b> The check recognises about nine in ten photogra
   "The thresholds are low (a handful of fibres), and the only fibre-free examples are smooth surfaces, so printed "
   "paper without fibres still has to be tested. "
   "On the glass, the lamp and camera should sit in a small hood about 10 to 15 cm from the note. Two things are not "
-  "measured yet: real counterfeit notes (none were available to us) and the glass's own camera. For that reason the "
-  "check is switched off by default, and it says \"check by hand\" instead of \"counterfeit\".")
+  "measured yet: real counterfeit notes (none were available to us) and the glass's own camera. The check runs whenever "
+  "a currency press is taken under the lamp, which the glass recognises from the colour of the picture (47 of 47 UV "
+  "test photos recognised, none of 2,282 ordinary photos taken for one). It says \"likely genuine\" or \"check by "
+  "hand\", never \"counterfeit\", and does not speak the note's value under the lamp.")
 
 H("5. Speech and interaction")
 bullets([
@@ -192,21 +194,24 @@ bullets([
 H("7. Speed on the Raspberry Pi 5")
 table("Table 3: Measured on a Raspberry Pi 5 (8 GB), 100 calls per part", [
     ["Part", "Typical time"],
-    ["Currency answer (find the note + safe check)", "327 ms"],
+    ["Currency answer (full-precision note detector + safe check)", "532 ms"],
+    ["Currency answer in use, press to speech", "0.81 s (note named in 5 of 8 presses)"],
     ["Watermark check", "50 ms"],
-    ["Object scan", "207 ms"],
-    ["Emotion", "48 ms"],
-    ["Text reading, one picture", "18.7 s (measured before the speed-ups below)"],
+    ["Object scan (YOLOv8s)", "462 ms"],
+    ["Emotion, face in view", "536 ms"],
+    ["Text reading, 3-line sign", "5.4 s"],
+    ["Text reading, 12-line page", "15.4 s (first line spoken after 4.4 s)"],
 ], [10.0, 6.0])
-P("Thirty minutes of mixed use stayed within 1.48 GB of memory, peaked at 77.1 °C and never throttled. For pages, a "
-  "greedy decoder reads a 12-line page 27% faster with the same accuracy, and lines are spoken as soon as they are "
-  "read (measured on a laptop limited to four cores; still to be timed on the Pi). A faster setting (OCR_CANVAS_SIZE=640) "
-  "was about three times faster on the Pi at about half a point more error and can be switched on when speed matters more.")
+P("Measured on the glass's own board (fan and heat sink, Logitech C270 webcam). The app with every mode loaded peaks at "
+  "2.76 GB of the 8 GB. In thirty minutes of non-stop load the processor's sensor peaked at 87.0 °C, with the soft "
+  "temperature limit active in about half the samples; the board's surface read 57.8 to 62.3 °C on a thermometer in "
+  "normal use. For shaky hands the glass reads the sharpest frame of the second after a press: on validation text with "
+  "simulated shake the letter error fell from 28.0% to 3.8% (not yet measured with real shake on the glass).")
 
 H("8. What is still open")
 bullets([
     "UV check: photographs through the glass with the lamp in a hood, and tests on real counterfeit notes with a bank or the police.",
-    "Timing the new text detector and speech changes on the Pi, and tuning the glass camera for small text and notes.",
+    "Tuning the glass camera for small text and notes, and setting the UV and watermark checks on photos taken through it.",
     "Text-finding settings and training data for real signs.",
     "Completing the trials with visually impaired users that have started.",
 ])

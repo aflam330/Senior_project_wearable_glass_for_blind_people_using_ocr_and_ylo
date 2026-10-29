@@ -1,5 +1,5 @@
 """Build 'SARA: results, benchmarks and latency' as a PDF in Times New Roman.
-Every number is copied from a result file of the project or from the Pi's benchmark report (13 October 2026)."""
+Every number is copied from a result file of the project or from the Pi's benchmark report (benchmark_report/2026-10-29/)."""
 from pathlib import Path
 
 from reportlab.lib import colors
@@ -102,77 +102,73 @@ table("Table 1: Accuracy on data the models were not trained on", [
 
 # ------------------------------------------------------------------ 2
 H("2. Latency on the Raspberry Pi 5")
-P("Two runs exist. The first (1 October 2026, 100 calls per row) ended at 77.1 °C with no throttling. The second "
-  "(13 October 2026, 30 calls per row, after the code changes of 11–13 October) ran on a board that was already at "
-  "73 °C when it started, reached 88.7 °C, and was throttled or clock-capped in 76% of the samples of the text-reading "
-  "test, with the CPU down to 1.5 GHz from 2.4 GHz. <b>The second run is therefore the speed of a hot glass.</b> "
-  "How much of the difference between the runs is heat cannot be told from these two runs.")
+P("Measured on the glass's own Raspberry Pi 5 (8 GB, fan and heat sink, Logitech C270 webcam), 100 calls per row after "
+  "3 warm-up calls, from the Pi's benchmark report (benchmark_report/2026-10-29/REPORT.md). The currency check is given "
+  "for the full-precision Taka detector the glass uses (benchmark_report/2026-10-29/raw/currency_current_code.json).")
 table("Table 2: Latency on the Raspberry Pi 5 (median; 95th percentile in brackets)", [
-    ["Part of the glass", "13 October (hot board)", "1 October"],
-    ["Currency check, end to end", "399 ms (524 ms)", "327 ms (560 ms)"],
-    ["Taka detector, INT8 ONNX (used on the Pi)", "306 ms (446 ms)", "254 ms (339 ms)"],
-    ["Taka detector, full-precision ONNX / PyTorch", "583 ms / 534 ms", "485 ms / 507 ms"],
-    ["Watermark check, learned finder (used)", "64 ms (109 ms)", "50 ms (62 ms)"],
-    ["Watermark check, SIFT alignment", "343 ms (381 ms)", "372 ms (854 ms)"],
-    ["Counterfeit safe-check, one crop", "47 ms (78 ms)", "36 ms"],
-    ["Counterfeit network, 1 view / 6 views", "43 ms / 98 ms", "37 ms / 90 ms"],
-    ["Object scan as the app runs it (YOLOv8s)", "562 ms (610 ms)", "not run"],
-    ["Object detector YOLOv8n alone", "227 ms (342 ms)", "207 ms (217 ms)"],
-    ["Emotion, face in view", "680 ms (926 ms)", "not run"],
-    ["Emotion, no face in view (face search only)", "48 ms (50 ms)", "48 ms (52 ms)"],
-], [8.0, 4.4, 3.8])
-figure(PI / "01_latency_all_modes.png", 15.5, "Latency of every mode and model on the Pi, 13 October 2026 (from the Pi's benchmark report).")
+    ["Part of the glass", "Time"],
+    ["Currency check, end to end (full-precision detector, used)", "532 ms (627 ms)"],
+    ["Taka detector alone: full precision (used) / 8-bit option", "483 ms (566 ms) / 339 ms (551 ms)"],
+    ["Currency answer in use, press to speech (8 presses)", "0.81 s"],
+    ["Watermark check, learned finder (used)", "51 ms (63 ms)"],
+    ["Watermark check, SIFT alignment", "377 ms (854 ms)"],
+    ["Counterfeit safe-check, one crop", "37 ms (51 ms)"],
+    ["Counterfeit network, 1 view / 6 views", "35 ms / 83 ms"],
+    ["Object scan as the app runs it (YOLOv8s)", "462 ms (635 ms)"],
+    ["Object detector YOLOv8n alone", "191 ms (222 ms)"],
+    ["Emotion, face in view", "536 ms (844 ms)"],
+    ["Emotion, no face in view (face search only)", "47 ms (51 ms)"],
+], [10.4, 5.8])
+figure(ROOT / "benchmark_report" / "2026-10-29" / "graphs" / "01_latency_all_modes.png", 15.5,
+       "Latency of every mode and model on the Pi (from the Pi's benchmark report).")
 
 H2("Text reading on the Pi")
-table("Table 3: Text reading on the Raspberry Pi 5, 13 October 2026 (hot board; median of 3 to 5 captures)", [
+table("Table 3: Text reading on the Raspberry Pi 5 (8-bit text detector, read width 1,200; median of 4 or 5 captures)", [
     ["Capture", "Total", "Finding the text", "Reading the letters", "First line spoken", "Letter errors"],
-    ["English sign, 3 lines", "34.0 s", "30.1 s", "4.0 s", "–", "0%"],
-    ["Bangla sign, 1 line", "35.4 s", "33.0 s", "1.0 s", "–", "0%"],
-    ["Bangla sign, 3 lines", "38.6 s", "35.1 s", "3.5 s", "–", "0%"],
-    ["Label, 6 lines, Bangla + English", "21.8 s", "13.3 s", "8.6 s", "15.1 s", "1.0%"],
-    ["Page, 12 lines (640×480)", "36.5 s", "14.2 s", "22.3 s", "16.4 s", "0%"],
-    ["Page, 12 lines (1280×720)", "28.0 s", "11.3 s", "16.7 s", "13.1 s", "0%"],
-    ["No text in view", "27.5 s", "27.3 s", "0 s", "–", "–"],
-    ["English sign, 3 lines, text found once (as on 1 October: 18.7 s)", "18.3 s", "", "", "", ""],
+    ["English sign, 3 lines", "5.43 s", "2.83 s", "2.61 s", "–", "0%"],
+    ["Bangla sign, 1 line", "3.61 s", "2.82 s", "0.64 s", "–", "0%"],
+    ["Bangla sign, 3 lines", "5.29 s", "2.84 s", "2.44 s", "–", "0%"],
+    ["Label, 6 lines, Bangla + English", "9.30 s", "2.87 s", "6.35 s", "4.27 s", "0%"],
+    ["Page, 12 lines (640×480)", "15.38 s", "2.96 s", "12.40 s", "4.35 s", "0%"],
+    ["Page, 12 lines (1280×720)", "14.79 s", "2.52 s", "12.32 s", "3.87 s", "0%"],
+    ["No text in view", "2.90 s", "2.90 s", "0 s", "–", "–"],
 ], [5.2, 1.8, 2.3, 2.3, 2.3, 2.3])
-figure(PI / "03_ocr_response_time.png", 14.5, "Text reading on the Pi: response time of each capture and where it goes (from the Pi's benchmark report).")
-P("<b>What this run exposed, and what was changed on 14 October.</b>")
+figure(ROOT / "benchmark_report" / "2026-10-29" / "graphs" / "06_ocr_breakdown.png", 14.5,
+       "Text reading on the Pi: where the time of each capture goes (from the Pi's benchmark report).")
 bullets([
-    "<b>Short signs ran the text detector twice</b> (34.0 s against 18.3 s with the text found once). It now runs once per "
-    "capture. On the laptop the new path reads the same text as before on 16 benchmark pictures. <i>Not yet timed on the Pi.</i>",
-    "<b>A blank picture took 27.5 s and returned 48 made-up letters.</b> A picture with no text boxes now answers "
-    "\"no text found\" after one detector pass. <i>Not yet timed on the Pi.</i>",
-    "<b>One pass of the text detector costs 11 to 18 s on this board.</b> The 8-bit text detector is now the default on the "
-    "Pi. It costs 0.57 points of letter error on the rendered validation set (3.15% against 2.58%), which is over the "
-    "project's own 0.5-point rule; this is a stated exception made for speed. <i>Its speed on the Pi is not measured yet.</i>",
-    "<b>The 1 October emotion figure (48 ms) was a frame without a face.</b> With a face, one answer takes 680 ms.",
+    "<b>One pass of the 8-bit text detector takes 2.5 to 3.0 s</b> on the Pi, against 9.9 to 11.2 s in full precision, "
+    "and it made no letter error on these test pictures. On the rendered validation set it costs 0.57 points of letter "
+    "error (3.15% against 2.58%), a stated exception to the project's 0.5-point rule, made for speed.",
+    "<b>A picture with no text</b> answers \"no text found\" after one detector pass.",
+    "<b>Real pages read with letter errors</b> through the camera, unlike these rendered test pictures; the field log "
+    "of the app shows 12.2 to 22.2 s per printed page.",
+    "<b>Steadier reading.</b> After a press the glass reads the sharpest frame of the next second: on validation text "
+    "with simulated hand shake the letter error fell from 28.0% to 3.8% (savior_glass/results/ocr_bench/best_frame.json). "
+    "<i>Real camera shake on the glass not measured.</i>",
 ])
 
-H2("Other timings on the Pi, 13 October 2026")
-table("Table 4: Loading, speech, camera and the app's own log", [
+H2("Other timings on the Pi")
+table("Table 4: Loading, speech and camera", [
     ["What", "Time"],
-    ["Loading the text reader (EasyOCR, Bangla + English)", "8.7 s"],
-    ["Currency mode, first switch into it / warm-up pass", "2.1 s / 1.5 s"],
-    ["Emotion detector / object mode / watermark checker / counterfeit network, loading", "2.2 s / 0.7 s / 0.6 s / 0.3 s"],
-    ["Camera, open to first frame", "1.4 s"],
-    ["Camera, time between frames (640×480, indoors at night)", "132 ms (7.6 frames a second)"],
-    ["Speech: making the audio for a short Bangla / English sentence", "17.5 ms / 14.3 ms"],
-    ["App log, two sessions with the real camera: currency check (8)", "406 ms median"],
-    ["App log: object scan and announcement (10)", "777 ms median"],
-    ["App log: watermark check, guided, several frames (1)", "3.6 s"],
-    ["App log: UV fibre check (3)", "0.8 to 1.4 s"],
-    ["App log: one text capture", "39.9 s"],
-    ["Memory: mode benchmark / text test / running app with all modes and preview", "1.44 GB / 2.33 GB / 2.99 GB"],
+    ["Loading the text reader (EasyOCR + 8-bit detector)", "14.4 s"],
+    ["Currency mode, first switch into it / warm-up pass", "2.6 s / 1.9 s"],
+    ["Emotion detector / object mode / watermark checker / counterfeit network, loading", "4.7 s / 1.6 s / 0.6 s / 0.3 s"],
+    ["Camera (C270), open to first frame", "1.4 s"],
+    ["Camera, time between frames (640×480)", "132 ms (7.6 frames a second)"],
+    ["Speech: making the audio for a short Bangla / English sentence", "14.0 ms / 13.6 ms"],
+    ["Object scan and announcement in use, app log", "0.74 s"],
+    ["Memory: whole benchmark process (peak) / running app with all modes", "2.55 GB / 2.76 GB"],
 ], [11.0, 5.2])
-table("Table 5: Board state during the runs", [
-    ["", "13 October", "1 October"],
-    ["Peak temperature", "88.7 °C", "77.1 °C (30 minutes of mixed use)"],
-    ["Throttled or clock-capped", "76% of samples in the text test; 11% in the mode benchmark", "never"],
-    ["Lowest CPU clock logged", "1.5 GHz (full speed 2.4 GHz)", "not logged"],
-    ["Under-voltage", "never", "never"],
-    ["Peak memory in the benchmark", "1.44 GB", "1.48 GB"],
-], [5.0, 6.2, 5.0])
-figure(PI / "05_thermal_timeline.png", 14.5, "Temperature, throttling and CPU clock during the 13 October run (from the Pi's benchmark report).")
+table("Table 5: Board state", [
+    ["", "Value"],
+    ["Temperature, processor sensor, 30 minutes of non-stop load", "mean 82.8 °C, peak 87.0 °C"],
+    ["Soft temperature limit active during that run", "55% of samples (fan at full speed)"],
+    ["Temperature of the board surface in normal use (thermometer, team)", "57.8 to 62.3 °C"],
+    ["Board power: idle / sustained load / reading text", "3.7 W / 7.8 W / about 9 W"],
+    ["Under-voltage", "never"],
+], [9.0, 7.2])
+figure(ROOT / "benchmark_report" / "2026-10-29" / "graphs" / "03_thermal_power_timeline.png", 14.5,
+       "Temperature, clock and power during the benchmark (from the Pi's benchmark report).")
 
 # ------------------------------------------------------------------ 3
 H("3. Speed measured on the laptop")
@@ -203,22 +199,21 @@ bullets([
     "<b>UV check.</b> The first design accepted 92.8% of genuine photos, and in a simulation also 93% of fibre-free printed "
     "sheets. With a colour condition: 85.6% of genuine photos accepted, about 89% of simulated sheets rejected.",
     "<b>Counterfeit benchmark.</b> About 98% on the usual split; about 90% on prints never seen in training (95.0% with the watermark).",
-    "<b>Emotion on the Pi.</b> 48 ms was a frame without a face; with a face it is 680 ms.",
+    "<b>Emotion on the Pi.</b> 48 ms was a frame without a face; with a face it is 536 ms.",
 ])
 
 H("5. Not measured")
 bullets([
-    "The Pi after the 14 October changes: single detector pass, blank-picture answer, 8-bit text detector.",
     "The rebuilt voice on the Pi: how it sounds, and how long the Piper voices take to render there.",
     "Voice commands spoken by people, with the glass's microphone, in a room or a street.",
-    "The Pi on a cool board with the current code, and the 30-minute sustained run with it.",
+    "The UV check and the watermark check through the C270 webcam (their thresholds come from phone and JaalTaka photos).",
     "Any counterfeit note under the UV lamp; any function through the glass camera in daylight.",
     "The online description mode (the account has no credit).",
     "Battery life.",
     "A study with visually impaired users (trial sessions have started; no result is reported).",
 ])
-P("<i>Sources.</i> Pi figures: <font face='TNR'>benchmark_report/REPORT.md</font> and its raw files (13 October), and the "
-  "1 October run in the thesis. Laptop and accuracy figures: the result files under "
+P("<i>Sources.</i> Pi figures: <font face='TNR'>benchmark_report/2026-10-29/REPORT.md</font> and its raw files."
+  " Laptop and accuracy figures: the result files under "
   "<font face='TNR'>savior_glass/results/</font> and <font face='TNR'>paper_evidence/</font>.")
 
 
