@@ -579,13 +579,20 @@ const cite = (...keys) => "[" + keys.map((k) => {
   // ================================================================ 12. live tests
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Currency" });
   s.addText("Live Detection Tests", { placeholder: "title" });
-  s.addText("Informal demonstrations, not a measured accuracy study", { shape: pres.shapes.ROUNDED_RECTANGLE, x: 0.6, y: 1.4, w: 12.1, h: 0.5, rectRadius: 0.08,
-    fill: { color: "FFF4D6" }, line: { color: HEX.accent4 }, fontSize: 16, bold: true, color: HEX.dk1, align: "center", valign: "middle", isTextBox: true, margin: 0, objectName: "Demo banner" });
-  ["live_v2_16.jpg", "live_v2_18.jpg", "live_v2_19.jpg", "live_v2_24.jpg", "live_v2_28.jpg", "live_v2_29.jpg"].forEach((f, i) =>
-    photo(s, AS + f, 0.6 + (i % 3) * 4.08, 2.05 + Math.floor(i / 3) * 2.25, 3.94, 2.12, "Live test " + (i + 1)));
-  s.addText("Second prototype (v2), staged: a note is held up to the glass camera. Earlier webcam sessions named six note values (10–1,000 Taka) at 0.63–0.89 confidence.",
-    { x: 0.6, y: 6.55, w: 12.1, h: 0.4, fontSize: 13, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Live test note" });
-  notes(s, "These photos show the second prototype in live tests: a team member holds a note up in front of the glass camera; the scenes are staged and the photos do not show the detector output. In our earlier live sessions with a laptop webcam and the first glass prototype, ten, fifty, one hundred, two hundred, five hundred and one thousand Taka were named at 0.63 to 0.89 confidence, including worn and folded notes and two or three notes at once. Boxes are loose and can overlap when notes are close. These photos illustrate behaviour; we did not count an error rate in these sessions.");
+  s.addText("Informal demonstrations, not a measured accuracy study", { shape: pres.shapes.ROUNDED_RECTANGLE, x: 0.6, y: 1.35, w: 12.1, h: 0.42, rectRadius: 0.08,
+    fill: { color: "FFF4D6" }, line: { color: HEX.accent4 }, fontSize: 15, bold: true, color: HEX.dk1, align: "center", valign: "middle", isTextBox: true, margin: 0, objectName: "Demo banner" });
+  const liveRows = [
+    ["Software: live detection on a laptop webcam (detector output shown)", ["live_sw_1.jpg", "live_sw_3.jpg", "live_sw_4.jpg", "live_sw_5.jpg"]],
+    ["Second prototype (v2): live tests with the glass (staged)", ["live_v2_16.jpg", "live_v2_18.jpg", "live_v2_24.jpg", "live_v2_29.jpg"]],
+  ];
+  liveRows.forEach(([label, files], r) => {
+    const y = 1.88 + r * 2.25;
+    s.addText(label, { x: 0.6, y, w: 12.1, h: 0.3, fontFace: "Arial", fontSize: 14, bold: true, color: HEX.dk2, isTextBox: true, margin: 0, objectName: "Live row " + (r + 1) + " label" });
+    files.forEach((f, i) => photo(s, AS + f, 0.6 + i * 3.06, y + 0.33, 2.92, 1.85, "Live row " + (r + 1) + " photo " + (i + 1)));
+  });
+  s.addText("Screenshots: 50, 200, 500 and 1,000 Taka named at 0.63–0.89 confidence, two or three notes at once. The v2 photos do not show the detector output.",
+    { x: 0.6, y: 6.42, w: 12.1, h: 0.4, fontSize: 13, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Live test note" });
+  notes(s, "The top row is the software on a laptop webcam: the detector draws a box with the note value and its confidence. Fifty, two hundred, five hundred and one thousand Taka were named at 0.63 to 0.89 confidence, with two or three notes at once. The bottom row is the second prototype in live tests: a team member holds a note up in front of the glass camera; these scenes are staged and the photos do not show the detector output. We did not count an error rate in these sessions.");
 
   // ================================================================ 13. prefix training
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Currency" });
