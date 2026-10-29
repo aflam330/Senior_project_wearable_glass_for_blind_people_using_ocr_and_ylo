@@ -791,7 +791,9 @@ class SmartGlassWin:
                                 top = hits[0]
                                 self._update_pose_from_currency(frame)
                                 spoken_key = (top["name"], top.get("auth"))
-                                if spoken_key != self._currency_spoken and top["conf"] >= 0.45:
+                                # same bar as a press on the glass (config.CURRENCY_ANNOUNCE_CONF, chosen on validation);
+                                # at 0.45 the live scan named 2, 5, 10 and 20 Taka for notes held up on 29 October
+                                if spoken_key != self._currency_spoken and top["conf"] >= config.CURRENCY_ANNOUNCE_CONF:
                                     self._currency_spoken = spoken_key
                                     self._root.after(0, self._show_result, top["text"])
                                     self._speak(top["text"])
