@@ -581,11 +581,11 @@ const cite = (...keys) => "[" + keys.map((k) => {
   s.addText("Live Detection Tests", { placeholder: "title" });
   s.addText("Informal demonstrations, not a measured accuracy study", { shape: pres.shapes.ROUNDED_RECTANGLE, x: 0.6, y: 1.4, w: 12.1, h: 0.5, rectRadius: 0.08,
     fill: { color: "FFF4D6" }, line: { color: HEX.accent4 }, fontSize: 16, bold: true, color: HEX.dk1, align: "center", valign: "middle", isTextBox: true, margin: 0, objectName: "Demo banner" });
-  ["test_2.jpg", "test_4.jpg", "test_7.jpg", "test_14.jpg", "test_16.jpg", "test_8.jpg"].forEach((f, i) =>
+  ["live_v2_16.jpg", "live_v2_18.jpg", "live_v2_19.jpg", "live_v2_24.jpg", "live_v2_28.jpg", "live_v2_29.jpg"].forEach((f, i) =>
     photo(s, AS + f, 0.6 + (i % 3) * 4.08, 2.05 + Math.floor(i / 3) * 2.25, 3.94, 2.12, "Live test " + (i + 1)));
-  s.addText("Six note values (10 to 1,000 Taka) named at 0.63–0.89 confidence, including worn and folded notes. Laptop webcam and the first glass prototype.",
-    { x: 0.6, y: 6.55, w: 12.1, h: 0.4, fontSize: 14, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Live test note" });
-  notes(s, "These are live sessions with our own notes, with a laptop webcam and the first glass prototype. Ten, fifty, one hundred, two hundred, five hundred and one thousand Taka were named at 0.63 to 0.89 confidence, including worn and folded notes and two or three notes at once. Boxes are loose and can overlap when notes are close. These photos illustrate behaviour; we did not count an error rate in these sessions.");
+  s.addText("Second prototype (v2), staged: a note is held up to the glass camera. Earlier webcam sessions named six note values (10–1,000 Taka) at 0.63–0.89 confidence.",
+    { x: 0.6, y: 6.55, w: 12.1, h: 0.4, fontSize: 13, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Live test note" });
+  notes(s, "These photos show the second prototype in live tests: a team member holds a note up in front of the glass camera; the scenes are staged and the photos do not show the detector output. In our earlier live sessions with a laptop webcam and the first glass prototype, ten, fifty, one hundred, two hundred, five hundred and one thousand Taka were named at 0.63 to 0.89 confidence, including worn and folded notes and two or three notes at once. Boxes are loose and can overlap when notes are close. These photos illustrate behaviour; we did not count an error rate in these sessions.");
 
   // ================================================================ 13. prefix training
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Currency" });
