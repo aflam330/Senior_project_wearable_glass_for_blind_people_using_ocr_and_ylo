@@ -74,6 +74,21 @@ _NOTE_ASPECT_MAX = 2.8
 _MIN_CONTOUR_AREA = 8000   # pixels² — ignore tiny blobs
 
 
+def blue_green_ratio(frame: np.ndarray) -> float:
+    """Mean blue over mean green of the whole picture (at 320 px wide)."""
+    small = cv2.resize(frame, (320, max(1, round(frame.shape[0] * 320 / frame.shape[1]))), interpolation=cv2.INTER_AREA)
+    b, g = float(small[..., 0].mean()), float(small[..., 1].mean())
+    return b / max(g, 1.0)
+
+
+def is_uv_frame(frame: np.ndarray) -> bool:
+    """True for a picture taken under the UV lamp: almost only blue light (config.UV_FRAME_BG_RATIO,
+    scripts/uv_frame_rule.py)."""
+    if frame is None or frame.size == 0 or float(frame[..., 0].mean()) <= 20:
+        return False
+    return blue_green_ratio(frame) > float(getattr(config, "UV_FRAME_BG_RATIO", 2.136))
+
+
 class CurrencyMode(BaseMode):
 
     def __init__(self) -> None:
@@ -85,6 +100,8 @@ class CurrencyMode(BaseMode):
         self._auth_tf = None
         self.last_bbox = None
         self.last_class = None
+        self.uv_answered = False   # the last press was answered by the UV check (main.py skips the later checks)
+        self.frame_source = None   # set by main.py: more frames for the UV check after the press
         self.verdict_enabled = bool(getattr(config, "JAAL_VERDICT_ENABLED", False))
         # policy E: "likely genuine" or "check by hand", never "counterfeit" (see config)
         self.safe_policy = (not self.verdict_enabled) and bool(getattr(config, "JAAL_SAFE_POLICY_ENABLED", False))
@@ -134,6 +151,10 @@ class CurrencyMode(BaseMode):
     def process_frame(self, frame: np.ndarray) -> Optional[str]:
         if frame is None:
             return "ক্যামেরা প্রস্তুত নয়"
+        self.uv_answered = False
+        # the note is under the UV lamp: answer with the UV fibre check (config.UV_FRAME_CHECK_ENABLED)
+        if getattr(config, "UV_FRAME_CHECK_ENABLED", False) and is_uv_frame(frame):
+            return self._uv_answer(frame)
 
         # Stage 0 — trained Taka YOLO. Do not fall through to color when it is loaded:
         # the HSV guess was announcing the wrong denomination (often 100 or 1000).
@@ -186,6 +207,43 @@ class CurrencyMode(BaseMode):
             return _DENOMINATION_BN.get(color_result, f"{color_result} টাকার নোট")
 
         return "নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।"
+
+    def _uv_answer(self, frame: np.ndarray) -> str:
+        """A picture under the UV lamp: count the UV security fibres (modes/uv_check.py) in the note box on the press
+        frame and, if none are found, on more frames for up to UV_FRAME_EXTRA_S. Fibres found: "likely genuine";
+        none: "check by hand". It never says "counterfeit" (config.UV_SAY_COUNTERFEIT).
+        The value is not spoken: under the lamp the detector named a wrong value for 6 of its 50 sure answers on the UV
+        photographs (results/uv_check/uv_frame_app.json). The box is used only to find the note; the value comes from
+        a press in ordinary light."""
+        from .uv_check import UVChecker
+        self.uv_answered = True
+        checker = UVChecker()
+        hits = self.detect_live(frame)
+        top = hits[0] if hits else None
+
+        def crop(f: np.ndarray, box) -> Optional[np.ndarray]:
+            x, y, w, h = box
+            return f[max(0, y):min(f.shape[0], y + h), max(0, x):min(f.shape[1], x + w)]
+
+        rank = {"no_note": 0, "too_dark": 1, "uv_marks_not_found": 2, "uv_marks_found": 3}
+        best = checker.check(crop(frame, top["bbox"])) if top is not None else {"outcome": "no_note", "fibres": 0}
+        t0, frames = time.monotonic(), 1
+        while (best["outcome"] != "uv_marks_found" and self.frame_source is not None
+               and time.monotonic() - t0 < float(getattr(config, "UV_FRAME_EXTRA_S", 2.0))):
+            f = self.frame_source()
+            if f is None or not is_uv_frame(f):
+                time.sleep(0.05)
+                continue
+            frames += 1
+            res = checker.check(self.locate_note(f))
+            if (rank[res["outcome"]], res["fibres"]) > (rank[best["outcome"]], best["fibres"]):
+                best = res
+        if top is not None:
+            top["auth"], top["uv_fibres"] = best["outcome"], best["fibres"]
+        logger.info("UV check: %s, %d fibres, %d frames, note %s", best["outcome"], best["fibres"], frames,
+                    top["name"] if top else "none")
+        self._buzz("genuine" if best["outcome"] == "uv_marks_found" else "detect")
+        return checker.sentence(best)
 
     # ------------------------------------------------------------------
     # Stage 0 — YOLOv8s (PT / ONNX / INT8 ONNX)
@@ -467,7 +525,7 @@ class CurrencyMode(BaseMode):
 
     def wants_guided_watermark(self) -> bool:
         return (bool(getattr(config, "CAPTURE_GUIDE_ENABLED", False)) and self._yolo is not None
-                and self.last_class in ("500_taka", "1000_taka"))
+                and not self.uv_answered and self.last_class in ("500_taka", "1000_taka"))
 
     def locate_note(self, frame: np.ndarray) -> Optional[np.ndarray]:
         """Crop of the most confident note box (any denomination: a back-lit note can read as another class)."""

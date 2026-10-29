@@ -1,0 +1,26 @@
+{
+ "uv_photos_by_split": {
+  "calibrate": {
+   "uv_marks_found": 46,
+   "uv_marks_not_found": 23,
+   "no_note": 2
+  },
+  "test": {
+   "no_note": 3,
+   "uv_marks_found": 37,
+   "uv_marks_not_found": 7
+  }
+ },
+ "detector_value_under_uv": {
+  "sure_wrong": 6,
+  "unsure_right": 27,
+  "sure_right": 44,
+  "unsure_wrong": 36,
+  "no_box": 5
+ },
+ "ordinary_photos_checked": 23,
+ "detector": "best_handheld.pt",
+ "announce_conf": 0.75,
+ "frame": "photo turned landscape, centre cut to 4:3, 640x480",
+ "not_measured": "the C270 webcam under the lamp; counterfeit notes"
+}

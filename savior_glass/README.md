@@ -6,7 +6,7 @@ Three modes, physical GPIO buttons, and Bangla-first speech:
 
 1. **OCR** - capture Bangla/English text, then speak it
 2. **Object** - YOLOv8s everyday-object announcements (YOLOv8n if yolov8s.pt is absent)
-3. **Currency** - Bangladeshi Taka denomination. On a laptop this uses `../realtime_bangla_taka_detection/models/best.pt`. On a Raspberry Pi 5 it uses `best_int8.onnx`, and the back-lit watermark check is on. The old "jaal" verdict stays off (`JAAL_VERDICT_ENABLED`); the safe check asks for a human look instead of saying counterfeit.
+3. **Currency** - Bangladeshi Taka denomination. On a laptop and on the Raspberry Pi 5 it uses `../realtime_bangla_taka_detection/models/best_handheld.pt` (since 29 October 2026; `CURRENCY_DETECTOR=int8` chooses the 8-bit copy on the Pi). A press with the note under the UV lamp gets the UV fibre check ("likely genuine" or "check by hand"). The back-lit watermark check is off unless `WATERMARK_CHECK_ENABLED=1`. The old "jaal" verdict stays off (`JAAL_VERDICT_ENABLED`); the safe check asks for a human look instead of saying counterfeit.
 4. **Claude (online, optional)** - scene description through the Anthropic API; needs internet and `ANTHROPIC_API_KEY`
 
 ## Raspberry Pi
@@ -19,7 +19,7 @@ python scripts/benchmark_pi5.py --iters 100 --sustained 30
 python main.py
 ```
 
-On that board, currency mode loads `best_int8.onnx` and the back-lit watermark check is on. Both stay off the laptop path. `scripts/pi5_preflight.py` confirms the model files before the first timing run. Raspberry Pi 5 latency is still unmeasured until that benchmark writes `results/pi5_benchmark_<host>_<time>.json`.
+On that board, currency mode loads the same `best_handheld.pt` as the laptop, and the back-lit watermark check is off as on the laptop. `scripts/pi5_preflight.py` confirms the model files before the first timing run. Raspberry Pi 5 latency is still unmeasured until that benchmark writes `results/pi5_benchmark_<host>_<time>.json`.
 
 ## Voice and voice commands (14 October 2026)
 

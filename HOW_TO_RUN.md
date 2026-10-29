@@ -3,11 +3,11 @@
 Clone this branch. The Pi setup and the measured models are here, not on the default branch.
 
 ```bash
-git clone -b research-final-2026-09-30 https://github.com/aflam330/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo.git
+git clone -b master https://github.com/aflam330/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo.git
 cd Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo
 ```
 
-GitHub page: https://github.com/aflam330/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/tree/research-final-2026-09-30
+GitHub page: https://github.com/aflam330/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/tree/master
 
 ## Where each part lives
 
@@ -19,9 +19,9 @@ GitHub page: https://github.com/aflam330/Senior_project_wearable_glass_for_blind
 | `savior_glass/config.py` | Pins, model paths, watermark on/off | Edit only if a pin or path changes |
 | `savior_glass/modes/` | OCR, object, currency, watermark, online Claude | Used by `main.py` |
 | `realtime_bangla_taka_detection/` | Research code and the model files the glass loads | The app reads models from here. You do not retrain on the Pi. |
-| `realtime_bangla_taka_detection/models/best_int8.onnx` | Note detector used on the Pi (18 MB) | Loaded automatically on a Pi 5 |
-| `realtime_bangla_taka_detection/models/best.pt` | Same detector, PyTorch file used on a laptop | Not the Pi default |
-| `realtime_bangla_taka_detection/models/watermark_mobilenetv2_int8.onnx` | Back-lit watermark model (2.6 MB) | On when the app sees a Pi 5 |
+| `realtime_bangla_taka_detection/models/best_handheld.pt` | Note detector, laptop and Pi (since 29 October 2026) | Loaded automatically |
+| `realtime_bangla_taka_detection/models/best_handheld_int8.onnx` | 8-bit copy, faster but less sure on close-ups | Only with `CURRENCY_DETECTOR=int8` |
+| `realtime_bangla_taka_detection/models/watermark_mobilenetv2_int8.onnx` | Back-lit watermark model (2.6 MB) | Off by default; `WATERMARK_CHECK_ENABLED=1` |
 | `realtime_bangla_taka_detection/results/qduig/prefix_ft/seed42/checkpoint.pt` | Safe genuine check | Yes, for 500 and 1000 Taka |
 | `data set/.../500 Taka_0001.jpg` and `1000  Taka_001.jpg` | Front templates used to find the watermark window | Yes. These two photos are in the repo. The rest of `data set/` is not. |
 | `paper_evidence/` | Written results. Not a program. | No |
@@ -67,7 +67,7 @@ A pass here means the files open. It does not print a Pi latency.
 Use Raspberry Pi OS 64-bit. Copy the clone onto the Pi, or clone there:
 
 ```bash
-git clone -b research-final-2026-09-30 https://github.com/aflam330/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo.git
+git clone -b master https://github.com/aflam330/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo.git
 cd Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass
 bash scripts/deploy_pi5.sh
 ```
@@ -149,7 +149,7 @@ Use `realtime_bangla_taka_detection/scripts/dataset/print_capture.py`: `plan` fi
 
 ## Order to follow
 
-1. Clone branch `research-final-2026-09-30`.
+1. Clone branch `master`.
 2. On the laptop, run `python test_windows.py` and try text, object, and currency.
 3. On the laptop, run `python scripts/pi5_preflight.py` and confirm every line says `ok`.
 4. On the Pi, run `bash scripts/deploy_pi5.sh`.

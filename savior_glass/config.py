@@ -79,8 +79,14 @@ _DETECTOR_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "realtime_bangla_ta
 # Test, read once: NSTU hand-held close-ups 11.8 % -> 47.5 % right (laptop), 8.7 % -> 33.5 % (Pi, 8-bit); Bangla
 # Money 89.6 % -> 94.1 % (laptop), 88.7 % -> 87.6 % (Pi). Each file has its own announce threshold below.
 # CURRENCY_DETECTOR=v1 goes back to the earlier detector and its 0.60 threshold.
+# Since 29 October 2026 the Pi runs the same full-precision file as the laptop. The 8-bit copy lowers the confidence on
+# close-ups (hand-held validation at 0.75: 38.4 % right against 49.7 %, results/closeup_ft/handheld_int8.json), and in
+# the two app sessions on the Pi that day 8 of 10 currency presses stayed below its 0.80 threshold
+# (benchmark_report/raw/field/). Cost on the Pi (29 October, earlier detector, same YOLOv8s): PyTorch 556 ms against
+# 261 ms for 8-bit. CURRENCY_DETECTOR=int8 goes back to the 8-bit file and its 0.80 threshold.
 _v1 = os.environ.get("CURRENCY_DETECTOR", "") == "v1"
-_cur_file = ("best_int8.onnx" if ON_RASPBERRY_PI_5 else "best.pt") if _v1 else     ("best_handheld_int8.onnx" if ON_RASPBERRY_PI_5 else "best_handheld.pt")
+_int8 = ON_RASPBERRY_PI_5 and os.environ.get("CURRENCY_DETECTOR", "") == "int8"
+_cur_file = ("best_int8.onnx" if ON_RASPBERRY_PI_5 else "best.pt") if _v1 else     ("best_handheld_int8.onnx" if _int8 else "best_handheld.pt")
 if not os.path.isfile(os.path.join(_DETECTOR_DIR, _cur_file)):          # new file not pulled yet: the earlier one
     _v1, _cur_file = True, ("best_int8.onnx" if ON_RASPBERRY_PI_5 else "best.pt")
 CURRENCY_YOLO_PATH = os.path.join(_DETECTOR_DIR, _cur_file)
@@ -103,11 +109,12 @@ JAAL_SAFE_TAU = 0.9995918869972229
 JAAL_SAFE_DENOMINATIONS = ("500_taka", "1000_taka")
 # View windows (x0, y0, x1, y1) on the landscape note crop, medians over 200 JaalTaka TRAIN notes
 # (realtime_bangla_taka_detection/results/jaal_whole/view_geometry.json).
-# Back-lit watermark check. On for the Pi 5, where the INT8 model is the device path.
-# Off elsewhere: it has not been measured on the glass camera. Set WATERMARK_CHECK_ENABLED=1 or 0 to override.
-# It never says "counterfeit".
+# Back-lit watermark check. Off by default since 29 October 2026, on the Pi too: with the glass's C270 webcam all 6
+# guided checks in the two app sessions timed out after 10 s (65 of 111 frames blurry, 46 with no note;
+# benchmark_report/raw/field/), and a press during that time was ignored. Its thresholds were set on JaalTaka photos,
+# not on this camera. WATERMARK_CHECK_ENABLED=1 turns it on. It never says "counterfeit".
 _wm_env = os.environ.get("WATERMARK_CHECK_ENABLED")
-WATERMARK_CHECK_ENABLED = ON_RASPBERRY_PI_5 if _wm_env is None else _wm_env == "1"
+WATERMARK_CHECK_ENABLED = False if _wm_env is None else _wm_env == "1"
 WATERMARK_MODEL_PATH = os.path.abspath(os.path.join(
     BASE_DIR, "..", "realtime_bangla_taka_detection", "models", "watermark_mobilenetv2_int8.onnx"))  # MobileNetV2 INT8, chosen on VAL AUC; same decisions as FP32
 WATERMARK_CLEAR_THRESHOLD = 0.5
@@ -164,6 +171,15 @@ UV_TIMEOUT_S = 6.0
 # The word "counterfeit" is not spoken unless this is switched on by hand. A worn or washed genuine note can lose its
 # fibres, and the user cannot check the answer; the default wording is "UV marks not found, check by hand".
 UV_SAY_COUNTERFEIT = os.environ.get("UV_SAY_COUNTERFEIT", "0") == "1"
+# A press with the note under the UV lamp (since 29 October 2026): the frame is almost only blue, so currency mode answers
+# with the UV fibre check above for that press, with no extra step to switch on. Picture taken under the lamp when its
+# mean blue is more than UV_FRAME_BG_RATIO times its mean green; set midway between the bluest ordinary validation photo
+# and the least blue UV calibration photo or webcam-style frame of one (scripts/uv_frame_rule.py,
+# results/uv_check/uv_frame_rule.json: test 47 of 47 UV photos recognised, 0 of 2,282 ordinary photos taken). Not measured
+# with the C270 webcam. UV_FRAME_CHECK_ENABLED=0 turns it off.
+UV_FRAME_CHECK_ENABLED = os.environ.get("UV_FRAME_CHECK_ENABLED", "1") == "1"
+UV_FRAME_BG_RATIO = float(os.environ.get("UV_FRAME_BG_RATIO", "2.136"))
+UV_FRAME_EXTRA_S = 2.0          # no fibres on the press frame: look at more frames for this long
 JAAL_VIEW_WINDOWS = (
     (0.0, 0.0, 0.4758, 1.0),
     (0.2843, 0.0, 0.8256, 1.0),
@@ -178,7 +194,7 @@ JAAL_VIEW_WINDOWS = (
 # Threshold of the detector in use, each chosen by the same open-set rule on the same validation pool
 # (eval_open_set.py, eval_closeup_ft.py tau, eval_handheld_int8.py): earlier detector 0.60; hand-held detector 0.75
 # (full precision) and 0.80 (8-bit, Pi).
-CURRENCY_ANNOUNCE_CONF = 0.60 if _v1 else (0.80 if ON_RASPBERRY_PI_5 else 0.75)
+CURRENCY_ANNOUNCE_CONF = 0.60 if _v1 else (0.80 if _int8 else 0.75)
 # Several notes in one picture: count the sure ones and speak the total ("3 notes: ..., total 650 Taka").
 # Both numbers were fixed before the test (the announce confidence above and an overlap of 0.5 for "same note");
 # measured in scripts/eval_multi_note.py, results/multi_note_total.json. Counterfeit checks stay single-note.

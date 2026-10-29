@@ -1,0 +1,26 @@
+{
+ "version": 2,
+ "rule": "mean blue / mean green of the frame > threshold (and mean blue > 20)",
+ "threshold": 2.136,
+ "set_on": {
+  "ordinary_valid_n": 2212,
+  "ordinary_valid_max": 2.1014,
+  "uv_calibrate_photos": 71,
+  "uv_calibrate_min_photo_or_frame": 2.1697
+ },
+ "test": {
+  "uv_test_photos": 47,
+  "recognised_whole_photo": 47,
+  "recognised_webcam_frame": 47,
+  "uv_test_min": 2.2819,
+  "ordinary_test_n": 2282,
+  "ordinary_test_taken_for_uv": 0,
+  "ordinary_test_max": 2.1065
+ },
+ "version_1": {
+  "threshold": 2.181,
+  "set_on": "whole UV calibration photos only",
+  "why_replaced": "one calibration photo as a webcam-style frame fell below it (uv_500_024, 2.170)"
+ },
+ "not_measured": "the glass's C270 webcam under the lamp; a room with other lights on"
+}
