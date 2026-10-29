@@ -38,7 +38,15 @@ def main() -> None:
     from modes.currency_mode import CurrencyMode
     from modes.object_mode import ObjectMode
 
-    cap = cv2.VideoCapture(args.index, cv2.CAP_DSHOW)
+    if sys.platform.startswith("linux"):  # the glass camera settings of utils.Camera._open_cv
+        cap = cv2.VideoCapture(args.index, cv2.CAP_V4L2)
+        cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*"MJPG"))
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        cap.set(cv2.CAP_PROP_FPS, 30)
+        cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+    else:
+        cap = cv2.VideoCapture(args.index, cv2.CAP_DSHOW)
     if not cap.isOpened():
         out = {"status": "NOT_MEASURED", "reason": f"camera {args.index} did not open"}
         (ROOT / "results/live_camera_test.json").write_text(json.dumps(out, indent=2), encoding="utf-8")

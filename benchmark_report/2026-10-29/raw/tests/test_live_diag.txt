@@ -1,0 +1,12 @@
+Loading /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/realtime_bangla_taka_detection/models/best_handheld_int8.onnx for ONNX Runtime inference...
+Using ONNX Runtime 1.30.0 with CPUExecutionProvider
+[ WARN:0@7.973] global net_impl_backend.cpp:345 setPreferableTarget Targets are not supported by the new graph engine for now
+ran: {'detector': True, 'safe': True, 'guide': True, 'watermark': True, 'objects': True, 'emotion': True}
+  detector: {"ms": 397.9, "boxes": [{"name": "500_taka", "conf": 0.9028992652893066, "box": [37, 57, 807, 384]}], "announce_conf": 0.8}
+  safe: {"ms": 161.5, "p_genuine": 0.00467029120773077, "tau": 0.9995918869972229, "verdict": "check by hand"}
+  guide: {"ms": 2.3, "status": "ok", "mean": 204.19620588235293, "lap_var": 4306.95214100692, "min_mean": 73.87, "min_lapvar": 106.75}
+  watermark: {"ms": 69.0, "p_genuine": 0.6325483322143555, "path": "learned localizer", "threshold": 0.5}
+  objects: {"ms": 605.5, "boxes": [{"name": "person", "conf": 0.6517358422279358, "box": [172, 130, 341, 338]}]}
+  emotion: {"ms": 183.1, "face": null, "label": "neutral", "prob": 0.0, "backend": "no_face"}
+live panel: every algorithm ran; saved results/live_diag_check.png
+terminate called without an active exception

@@ -1,0 +1,9 @@
+1793282777.374911 [ WARN:0@1.747] global net_impl_backend.cpp:345 setPreferableTarget Targets are not supported by the new graph engine for now
+1793282801.737116 emotion_with_face 536.48 ms rgb_mobilenet_blend happiness
+1793282808.763972 object_yolov8n 190.56 ms
+1793282824.883979 object_yolov8s 448.92 ms
+1793282825.118685 speech_bn_short 14.0 ms for 5.93 s of audio
+1793282825.230813 speech_en_short 13.6 ms for 5.57 s of audio
+1793282825.450756 speech_bn_page 27.5 ms for 16.72 s of audio
+1793282840.122372 camera {'open_to_first_frame_ms': 1413.2, 'frame_interval_ms_median': 132.05, 'frame_interval_ms_p95': 136.09, 'fps_median': 7.6, 'frames': 90, 'size': '640x480', 'index': 0}
+1793282840.122917 wrote /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/benchmark_report/2026-10-29/raw/extras.json skipped {}

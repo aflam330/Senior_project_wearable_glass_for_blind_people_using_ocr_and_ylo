@@ -17,6 +17,9 @@ from pathlib import Path
 
 import psutil
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "savior_glass" / "scripts"))
+from power_log import pmic_watts  # noqa: E402  sum of V x I over the power chip's rails, a lower bound of board power
+
 out, phase_file = Path(sys.argv[1]), Path(sys.argv[2])
 running = True
 
@@ -44,13 +47,21 @@ def vcgencmd(*args):
         return ""
 
 
+def arm_clock_mhz():
+    """The clock the firmware measures, which shows throttling that scaling_cur_freq (the requested clock) can hide."""
+    try:
+        return round(int(vcgencmd("measure_clock", "arm")) / 1e6)
+    except ValueError:
+        return None
+
+
 fan = (glob.glob("/sys/devices/platform/cooling_fan/hwmon/*/fan1_input") or [None])[0]
 psutil.cpu_percent(None)
 t0 = time.time()
 with out.open("w", newline="", encoding="utf-8") as fh:
     w = csv.writer(fh)
     w.writerow(["epoch", "t_s", "phase", "cpu_temp_c", "throttled_hex", "arm_freq_mhz", "cpu_busy_pct", "mem_used_mb",
-                "mem_available_mb", "load_1m", "fan_rpm"])
+                "mem_available_mb", "load_1m", "fan_rpm", "arm_clock_mhz", "pmic_watts"])
     while running:
         time.sleep(2.0)
         temp = read_int("/sys/class/thermal/thermal_zone0/temp")
@@ -62,5 +73,6 @@ with out.open("w", newline="", encoding="utf-8") as fh:
             phase = ""
         w.writerow([round(time.time(), 2), round(time.time() - t0, 1), phase, None if temp is None else temp / 1000.0, vcgencmd("get_throttled"),
                     None if freq is None else round(freq / 1000.0), psutil.cpu_percent(None), round(vm.used / 1e6),
-                    round(vm.available / 1e6), round(psutil.getloadavg()[0], 2), read_int(fan) if fan else None])
+                    round(vm.available / 1e6), round(psutil.getloadavg()[0], 2), read_int(fan) if fan else None,
+                   arm_clock_mhz(), None if (pw := pmic_watts()) is None else round(pw, 3)])
         fh.flush()

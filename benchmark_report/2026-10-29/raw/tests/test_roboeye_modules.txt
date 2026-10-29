@@ -1,0 +1,9 @@
+JaalTaka notes: 0
+Traceback (most recent call last):
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/../realtime_bangla_taka_detection/scripts/test_roboeye_modules.py", line 78, in <module>
+    main()
+    ~~~~^^
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/../realtime_bangla_taka_detection/scripts/test_roboeye_modules.py", line 27, in main
+    assert notes, "JaalTaka missing"
+           ^^^^^
+AssertionError: JaalTaka missing

@@ -1,0 +1,714 @@
+1793279896.126176 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/ao/nn/quantized/dynamic/modules/rnn.py:162: UserWarning: torch.quantize_per_tensor, torch.quantize_per_channel and other quantized tensor creation functions that produce tensors with dtype torch.quint8, torch.qint8, and torch.qint32 are deprecated and will be removed in a future PyTorch release. Please see https://github.com/pytorch/pytorch/issues/184982 for more information. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/quantized/Quantizer.cpp:111.)
+1793279896.126319   w_ih = torch.quantize_per_tensor(
+1793279899.855014 [ WARN:0@22.274] global net_impl_backend.cpp:345 setPreferableTarget Targets are not supported by the new graph engine for now
+1793279903.697780 timing currency_mode_full on 4 notes frame(s) ...
+1793279903.712576 Loading /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/realtime_bangla_taka_detection/models/best_handheld_int8.onnx for ONNX Runtime inference...
+1793279903.715101 Using ONNX Runtime 1.30.0 with CPUExecutionProvider
+1793279904.717999 2026-10-29 19:18:24 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279905.023549 2026-10-29 19:18:25 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279905.510670 2026-10-29 19:18:25 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279905.854379 2026-10-29 19:18:25 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279906.171721 2026-10-29 19:18:26 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279906.731602 2026-10-29 19:18:26 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279907.230891 2026-10-29 19:18:27 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279907.567647 2026-10-29 19:18:27 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279907.930632 2026-10-29 19:18:27 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279908.374264 2026-10-29 19:18:28 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279908.863928 2026-10-29 19:18:28 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279909.201463 2026-10-29 19:18:29 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279909.531657 2026-10-29 19:18:29 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279909.973474 2026-10-29 19:18:29 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279910.404132 2026-10-29 19:18:30 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279910.744160 2026-10-29 19:18:30 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279911.057664 2026-10-29 19:18:31 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279911.533746 2026-10-29 19:18:31 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279912.049905 2026-10-29 19:18:32 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279912.395296 2026-10-29 19:18:32 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279912.763794 2026-10-29 19:18:32 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279913.256910 2026-10-29 19:18:33 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279913.699414 2026-10-29 19:18:33 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279914.023551 2026-10-29 19:18:34 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279914.363596 2026-10-29 19:18:34 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279914.831803 2026-10-29 19:18:34 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279915.277306 2026-10-29 19:18:35 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279915.604977 2026-10-29 19:18:35 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279915.947877 2026-10-29 19:18:35 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279916.422941 2026-10-29 19:18:36 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279916.938222 2026-10-29 19:18:36 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279917.307912 2026-10-29 19:18:37 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279917.629060 2026-10-29 19:18:37 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279918.087119 2026-10-29 19:18:38 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279918.734532 2026-10-29 19:18:38 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279919.054444 2026-10-29 19:18:39 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279919.401033 2026-10-29 19:18:39 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279919.858088 2026-10-29 19:18:39 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279920.313434 2026-10-29 19:18:40 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279920.621884 2026-10-29 19:18:40 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279920.956012 2026-10-29 19:18:40 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279921.417523 2026-10-29 19:18:41 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279922.052077 2026-10-29 19:18:42 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279922.425460 2026-10-29 19:18:42 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279922.758417 2026-10-29 19:18:42 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279923.234445 2026-10-29 19:18:43 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279923.711296 2026-10-29 19:18:43 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279924.045382 2026-10-29 19:18:44 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279924.383920 2026-10-29 19:18:44 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279924.835397 2026-10-29 19:18:44 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279925.306931 2026-10-29 19:18:45 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279925.663673 2026-10-29 19:18:45 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279926.007678 2026-10-29 19:18:46 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279926.495502 2026-10-29 19:18:46 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279926.989240 2026-10-29 19:18:46 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279927.324105 2026-10-29 19:18:47 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279927.663220 2026-10-29 19:18:47 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279928.125917 2026-10-29 19:18:48 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279928.576680 2026-10-29 19:18:48 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279928.912771 2026-10-29 19:18:48 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279929.249494 2026-10-29 19:18:49 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279929.679537 2026-10-29 19:18:49 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279930.132176 2026-10-29 19:18:50 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279930.475711 2026-10-29 19:18:50 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279930.806795 2026-10-29 19:18:50 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279931.272930 2026-10-29 19:18:51 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279931.792237 2026-10-29 19:18:51 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279932.154512 2026-10-29 19:18:52 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279932.503790 2026-10-29 19:18:52 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279932.965829 2026-10-29 19:18:52 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279933.412743 2026-10-29 19:18:53 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279933.732881 2026-10-29 19:18:53 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279934.095642 2026-10-29 19:18:54 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279934.561748 2026-10-29 19:18:54 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279935.005310 2026-10-29 19:18:55 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279935.345711 2026-10-29 19:18:55 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279935.666120 2026-10-29 19:18:55 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279936.161418 2026-10-29 19:18:56 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279936.717300 2026-10-29 19:18:56 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279937.095439 2026-10-29 19:18:57 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279937.432807 2026-10-29 19:18:57 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279937.888801 2026-10-29 19:18:57 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279938.358355 2026-10-29 19:18:58 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279938.705889 2026-10-29 19:18:58 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279939.045420 2026-10-29 19:18:59 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279939.497697 2026-10-29 19:18:59 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279939.946446 2026-10-29 19:18:59 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279940.283624 2026-10-29 19:19:00 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279940.612540 2026-10-29 19:19:00 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279941.044456 2026-10-29 19:19:01 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279941.525514 2026-10-29 19:19:01 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279941.936046 2026-10-29 19:19:01 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279942.302549 2026-10-29 19:19:02 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279942.747523 2026-10-29 19:19:02 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279943.206556 2026-10-29 19:19:03 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279943.541446 2026-10-29 19:19:03 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279943.877627 2026-10-29 19:19:03 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279944.333670 2026-10-29 19:19:04 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279944.821788 2026-10-29 19:19:04 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279945.134989 2026-10-29 19:19:05 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279945.471621 2026-10-29 19:19:05 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279945.932059 2026-10-29 19:19:05 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279946.388480 2026-10-29 19:19:06 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793279946.408811   median 421.58 ms  p95 519.28 ms  (2.37 FPS)
+1793279946.409356 timing taka_yolo_pt on 4 notes frame(s) ...
+1793280012.036502   median 607.33 ms  p95 797.71 ms  (1.65 FPS)
+1793280012.036836 timing taka_yolo_onnx_fp32 on 4 notes frame(s) ...
+1793280012.037850 Loading /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/realtime_bangla_taka_detection/models/best.onnx for ONNX Runtime inference...
+1793280012.039213 Using ONNX Runtime 1.30.0 with CPUExecutionProvider
+1793280070.971806   median 512.18 ms  p95 815.38 ms  (1.95 FPS)
+1793280070.973514 timing taka_yolo_onnx_int8 on 4 notes frame(s) ...
+1793280070.973612 Loading /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/realtime_bangla_taka_detection/models/best_int8.onnx for ONNX Runtime inference...
+1793280070.974291 Using ONNX Runtime 1.30.0 with CPUExecutionProvider
+1793280103.291900   median 278.55 ms  p95 456.78 ms  (3.59 FPS)
+1793280103.292133 timing taka_yolo_handheld_int8 on 4 notes frame(s) ...
+1793280103.297382 Loading /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/realtime_bangla_taka_detection/models/best_handheld_int8.onnx for ONNX Runtime inference...
+1793280103.297458 Using ONNX Runtime 1.30.0 with CPUExecutionProvider
+1793280140.411760   median 339.04 ms  p95 551.3 ms  (2.95 FPS)
+1793280140.412030 timing watermark_int8_sift on 4 notes frame(s) ...
+1793280189.591145   median 377.49 ms  p95 854.32 ms  (2.65 FPS)
+1793280189.591401 timing watermark_int8_localizer on 4 notes frame(s) ...
+1793280194.905994   median 51.07 ms  p95 62.47 ms  (19.58 FPS)
+1793280194.913965 timing jaal_check_qduig on 4 notes frame(s) ...
+1793280199.061097   median 36.9 ms  p95 51.13 ms  (27.1 FPS)
+1793280199.063234 timing prmvt_1view on 4 notes frame(s) ...
+1793280203.106613   median 34.97 ms  p95 61.12 ms  (28.6 FPS)
+1793280203.106872 timing prmvt_2view on 4 notes frame(s) ...
+1793280209.062518   median 52.35 ms  p95 68.91 ms  (19.1 FPS)
+1793280209.062802 timing prmvt_3view on 4 notes frame(s) ...
+1793280215.441393   median 57.88 ms  p95 70.53 ms  (17.28 FPS)
+1793280215.441678 timing prmvt_4view on 4 notes frame(s) ...
+1793280223.092892   median 66.34 ms  p95 105.59 ms  (15.07 FPS)
+1793280223.093155 timing prmvt_5view on 4 notes frame(s) ...
+1793280231.134533   median 74.71 ms  p95 89.57 ms  (13.38 FPS)
+1793280231.134953 timing prmvt_6view on 4 notes frame(s) ...
+1793280240.348886   median 82.6 ms  p95 119.81 ms  (12.11 FPS)
+1793280240.349518 timing object_mode on 4 scenes frame(s) ...
+1793280289.883398   median 461.88 ms  p95 634.85 ms  (2.17 FPS)
+1793280289.883625 timing ocr_mode on 1 text frame(s) ...
+1793280293.036134 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793280293.036209   super().__init__(loader)
+1793280930.883307   median 6126.09 ms  p95 6711.4 ms  (0.16 FPS)
+1793280930.883855 timing emotion on 1 faces frame(s) ...
+1793280935.841985   median 47.34 ms  p95 50.46 ms  (21.13 FPS)
+1793280935.842413 sustained run for 30.0 min ...
+1793280936.134100 2026-10-29 19:35:36 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793280942.933087 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793280942.935219   super().__init__(loader)
+1793280946.207501 2026-10-29 19:35:46 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793280952.630612 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793280952.630823   super().__init__(loader)
+1793280956.040864 2026-10-29 19:35:56 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793280962.300072 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793280962.301524   super().__init__(loader)
+1793280965.917630 2026-10-29 19:36:05 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793280972.328735 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793280972.328827   super().__init__(loader)
+1793280975.719300 2026-10-29 19:36:15 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793280982.795665 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793280982.795747   super().__init__(loader)
+1793280985.990106 2026-10-29 19:36:25 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793280992.254771 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793280992.255891   super().__init__(loader)
+1793280995.648782 2026-10-29 19:36:35 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281001.893143 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281001.897584   super().__init__(loader)
+1793281005.505341 2026-10-29 19:36:45 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281011.888275 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281011.890143   super().__init__(loader)
+1793281014.975028 2026-10-29 19:36:54 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281021.926811 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281021.926940   super().__init__(loader)
+1793281025.287601 2026-10-29 19:37:05 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281031.576622 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281031.576716   super().__init__(loader)
+1793281034.903987 2026-10-29 19:37:14 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281041.269447 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281041.269537   super().__init__(loader)
+1793281044.677111 2026-10-29 19:37:24 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281051.052905 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281051.053015   super().__init__(loader)
+1793281054.136266 2026-10-29 19:37:34 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281060.970818 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281060.970939   super().__init__(loader)
+1793281064.199454 2026-10-29 19:37:44 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281070.603147 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281070.603348   super().__init__(loader)
+1793281074.082522 2026-10-29 19:37:54 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281080.576907 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281080.578257   super().__init__(loader)
+1793281084.005350 2026-10-29 19:38:04 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281090.518677 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281090.518796   super().__init__(loader)
+1793281093.639445 2026-10-29 19:38:13 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281100.630719 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281100.630905   super().__init__(loader)
+1793281103.791434 2026-10-29 19:38:23 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281110.222001 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281110.222535   super().__init__(loader)
+1793281113.707227 2026-10-29 19:38:33 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281119.921344 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281119.921932   super().__init__(loader)
+1793281123.384874 2026-10-29 19:38:43 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281129.751333 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281129.751419   super().__init__(loader)
+1793281132.836443 2026-10-29 19:38:52 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281139.913372 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281139.913451   super().__init__(loader)
+1793281143.194812 2026-10-29 19:39:03 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281149.544454 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281149.544548   super().__init__(loader)
+1793281152.922900 2026-10-29 19:39:12 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281159.410731 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281159.410818   super().__init__(loader)
+1793281162.779316 2026-10-29 19:39:22 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281169.198789 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281169.198879   super().__init__(loader)
+1793281172.264112 2026-10-29 19:39:32 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281179.166217 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281179.166301   super().__init__(loader)
+1793281182.436003 2026-10-29 19:39:42 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281189.115572 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281189.115647   super().__init__(loader)
+1793281192.472789 2026-10-29 19:39:52 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281198.666184 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281198.666395   super().__init__(loader)
+1793281202.122863 2026-10-29 19:40:02 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281208.500679 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281208.502129   super().__init__(loader)
+1793281211.619809 2026-10-29 19:40:11 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281218.604762 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281218.604856   super().__init__(loader)
+1793281221.895731 2026-10-29 19:40:21 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281228.279305 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281228.280408   super().__init__(loader)
+1793281231.645297 2026-10-29 19:40:31 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281238.075371 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281238.076032   super().__init__(loader)
+1793281241.485362 2026-10-29 19:40:41 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281247.835992 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281247.836073   super().__init__(loader)
+1793281251.301334 2026-10-29 19:40:51 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281258.804413 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281258.804494   super().__init__(loader)
+1793281262.401434 2026-10-29 19:41:02 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281269.202484 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281269.202568   super().__init__(loader)
+1793281272.781518 2026-10-29 19:41:12 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281279.951570 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281279.952951   super().__init__(loader)
+1793281283.659061 2026-10-29 19:41:23 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281290.662467 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281290.662548   super().__init__(loader)
+1793281294.439458 2026-10-29 19:41:34 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281302.339464 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281302.339692   super().__init__(loader)
+1793281306.101126 2026-10-29 19:41:46 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281313.460332 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281313.460832   super().__init__(loader)
+1793281317.321714 2026-10-29 19:41:57 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281324.367667 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281324.367748   super().__init__(loader)
+1793281327.808431 2026-10-29 19:42:07 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281334.290593 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281334.293469   super().__init__(loader)
+1793281337.671924 2026-10-29 19:42:17 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281344.804358 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281344.804441   super().__init__(loader)
+1793281348.113480 2026-10-29 19:42:28 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281354.468539 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281354.470911   super().__init__(loader)
+1793281357.945467 2026-10-29 19:42:37 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281364.280796 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281364.280902   super().__init__(loader)
+1793281367.556874 2026-10-29 19:42:47 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281374.065568 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281374.065669   super().__init__(loader)
+1793281377.412125 2026-10-29 19:42:57 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281384.177967 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281384.178061   super().__init__(loader)
+1793281387.623457 2026-10-29 19:43:07 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281394.029177 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281394.029295   super().__init__(loader)
+1793281397.462137 2026-10-29 19:43:17 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281403.788168 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281403.788271   super().__init__(loader)
+1793281407.315969 2026-10-29 19:43:27 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281413.751380 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281413.751470   super().__init__(loader)
+1793281416.843407 2026-10-29 19:43:36 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281423.846476 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281423.846564   super().__init__(loader)
+1793281427.189099 2026-10-29 19:43:47 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281433.615978 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281433.616343   super().__init__(loader)
+1793281437.054721 2026-10-29 19:43:57 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281443.339531 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281443.339621   super().__init__(loader)
+1793281446.868104 2026-10-29 19:44:06 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281453.277151 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281453.277251   super().__init__(loader)
+1793281456.389548 2026-10-29 19:44:16 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281463.572472 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281463.572555   super().__init__(loader)
+1793281466.818173 2026-10-29 19:44:26 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281473.314506 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281473.315983   super().__init__(loader)
+1793281476.810971 2026-10-29 19:44:36 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281483.685276 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281483.686586   super().__init__(loader)
+1793281487.221076 2026-10-29 19:44:47 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281493.863706 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281493.863820   super().__init__(loader)
+1793281497.211633 2026-10-29 19:44:57 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281504.079643 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281504.079728   super().__init__(loader)
+1793281507.443253 2026-10-29 19:45:07 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281513.994740 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281513.995046   super().__init__(loader)
+1793281517.225198 2026-10-29 19:45:17 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281524.013535 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281524.017476   super().__init__(loader)
+1793281527.381487 2026-10-29 19:45:27 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281533.737432 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281533.737521   super().__init__(loader)
+1793281537.074231 2026-10-29 19:45:37 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281544.022413 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281544.022742   super().__init__(loader)
+1793281547.356863 2026-10-29 19:45:47 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281553.716361 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281553.716452   super().__init__(loader)
+1793281557.237762 2026-10-29 19:45:57 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281563.588345 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281563.590071   super().__init__(loader)
+1793281566.817890 2026-10-29 19:46:06 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281573.350999 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281573.351082   super().__init__(loader)
+1793281576.695026 2026-10-29 19:46:16 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281583.625112 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281583.625206   super().__init__(loader)
+1793281586.924876 2026-10-29 19:46:26 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281593.256921 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281593.257112   super().__init__(loader)
+1793281596.724121 2026-10-29 19:46:36 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281603.142462 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281603.143004   super().__init__(loader)
+1793281606.373763 2026-10-29 19:46:46 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281612.910069 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281612.910326   super().__init__(loader)
+1793281616.401404 2026-10-29 19:46:56 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281623.122509 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281623.122707   super().__init__(loader)
+1793281626.501182 2026-10-29 19:47:06 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281632.994521 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281632.995958   super().__init__(loader)
+1793281636.511042 2026-10-29 19:47:16 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281642.891052 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281642.891150   super().__init__(loader)
+1793281646.305293 2026-10-29 19:47:26 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281652.775652 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281652.777116   super().__init__(loader)
+1793281655.929157 2026-10-29 19:47:35 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281663.139563 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281663.140086   super().__init__(loader)
+1793281666.260076 2026-10-29 19:47:46 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281672.643813 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281672.645242   super().__init__(loader)
+1793281676.178228 2026-10-29 19:47:56 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281682.651817 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281682.651900   super().__init__(loader)
+1793281686.099078 2026-10-29 19:48:06 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281692.584291 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281692.585771   super().__init__(loader)
+1793281696.010297 2026-10-29 19:48:16 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281703.007957 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281703.008399   super().__init__(loader)
+1793281706.155097 2026-10-29 19:48:26 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281712.513923 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281712.514137   super().__init__(loader)
+1793281716.033871 2026-10-29 19:48:36 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281722.431597 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281722.431686   super().__init__(loader)
+1793281725.966271 2026-10-29 19:48:45 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281732.338993 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281732.339204   super().__init__(loader)
+1793281735.768995 2026-10-29 19:48:55 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281742.621416 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281742.621505   super().__init__(loader)
+1793281745.775319 2026-10-29 19:49:05 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281752.330693 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281752.330900   super().__init__(loader)
+1793281755.696506 2026-10-29 19:49:15 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281762.166848 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281762.166936   super().__init__(loader)
+1793281765.794274 2026-10-29 19:49:25 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281772.332214 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281772.333656   super().__init__(loader)
+1793281775.698352 2026-10-29 19:49:35 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281782.556043 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281782.556249   super().__init__(loader)
+1793281785.871099 2026-10-29 19:49:45 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281792.236882 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281792.238322   super().__init__(loader)
+1793281795.484617 2026-10-29 19:49:55 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281802.028077 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281802.028161   super().__init__(loader)
+1793281805.298838 2026-10-29 19:50:05 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281811.791018 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281811.791194   super().__init__(loader)
+1793281815.175091 2026-10-29 19:50:15 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281822.085735 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281822.089427   super().__init__(loader)
+1793281825.468020 2026-10-29 19:50:25 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281831.832917 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281831.834118   super().__init__(loader)
+1793281835.660182 2026-10-29 19:50:35 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281842.058894 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281842.058979   super().__init__(loader)
+1793281845.530528 2026-10-29 19:50:45 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281852.092884 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281852.092968   super().__init__(loader)
+1793281855.312746 2026-10-29 19:50:55 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281862.462112 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281862.462386   super().__init__(loader)
+1793281865.850931 2026-10-29 19:51:05 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281872.257627 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281872.257843   super().__init__(loader)
+1793281875.773198 2026-10-29 19:51:15 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281882.487778 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281882.487874   super().__init__(loader)
+1793281886.352366 2026-10-29 19:51:26 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281892.703935 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281892.705092   super().__init__(loader)
+1793281895.943769 2026-10-29 19:51:35 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281902.542014 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281902.543742   super().__init__(loader)
+1793281905.749364 2026-10-29 19:51:45 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281912.346120 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281912.346213   super().__init__(loader)
+1793281915.975234 2026-10-29 19:51:55 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281922.574945 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281922.577638   super().__init__(loader)
+1793281925.893703 2026-10-29 19:52:05 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281932.265401 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281932.266598   super().__init__(loader)
+1793281935.619319 2026-10-29 19:52:15 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281942.547958 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281942.548056   super().__init__(loader)
+1793281945.866919 2026-10-29 19:52:25 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281952.244473 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281952.244669   super().__init__(loader)
+1793281955.676721 2026-10-29 19:52:35 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281962.099997 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281962.100084   super().__init__(loader)
+1793281965.296103 2026-10-29 19:52:45 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281971.934374 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281971.934460   super().__init__(loader)
+1793281975.279381 2026-10-29 19:52:55 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281982.299803 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281982.300215   super().__init__(loader)
+1793281985.663093 2026-10-29 19:53:05 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793281992.007064 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793281992.007183   super().__init__(loader)
+1793281995.457389 2026-10-29 19:53:15 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282001.840839 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282001.842594   super().__init__(loader)
+1793282005.071464 2026-10-29 19:53:25 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282011.621073 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282011.622161   super().__init__(loader)
+1793282014.812165 2026-10-29 19:53:34 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282021.541370 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282021.542824   super().__init__(loader)
+1793282024.926983 2026-10-29 19:53:44 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282031.328752 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282031.330167   super().__init__(loader)
+1793282034.806569 2026-10-29 19:53:54 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282041.066708 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282041.066788   super().__init__(loader)
+1793282044.775327 2026-10-29 19:54:04 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282051.330282 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282051.330371   super().__init__(loader)
+1793282054.457352 2026-10-29 19:54:14 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282061.535584 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282061.535673   super().__init__(loader)
+1793282064.949408 2026-10-29 19:54:24 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282071.381288 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282071.381377   super().__init__(loader)
+1793282074.860527 2026-10-29 19:54:34 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282081.335611 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282081.335694   super().__init__(loader)
+1793282084.800339 2026-10-29 19:54:44 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282091.213017 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282091.214389   super().__init__(loader)
+1793282094.632190 2026-10-29 19:54:54 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282101.486512 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282101.486593   super().__init__(loader)
+1793282104.691302 2026-10-29 19:55:04 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282111.225082 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282111.225165   super().__init__(loader)
+1793282114.593967 2026-10-29 19:55:14 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282120.860117 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282120.860193   super().__init__(loader)
+1793282124.527569 2026-10-29 19:55:24 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282131.059647 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282131.061683   super().__init__(loader)
+1793282134.411438 2026-10-29 19:55:34 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282141.288154 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282141.289600   super().__init__(loader)
+1793282144.633610 2026-10-29 19:55:44 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282150.968785 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282150.970450   super().__init__(loader)
+1793282154.106544 2026-10-29 19:55:54 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282160.526064 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282160.526381   super().__init__(loader)
+1793282163.743668 2026-10-29 19:56:03 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282169.887695 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282169.887777   super().__init__(loader)
+1793282173.171541 2026-10-29 19:56:13 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282179.719971 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282179.725412   super().__init__(loader)
+1793282182.895275 2026-10-29 19:56:22 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282188.970602 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282188.970692   super().__init__(loader)
+1793282191.998516 2026-10-29 19:56:31 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282198.043708 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282198.043789   super().__init__(loader)
+1793282201.286070 2026-10-29 19:56:41 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282207.395594 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282207.397122   super().__init__(loader)
+1793282210.448028 2026-10-29 19:56:50 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282217.024326 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282217.024801   super().__init__(loader)
+1793282219.923546 2026-10-29 19:56:59 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282225.820985 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282225.821657   super().__init__(loader)
+1793282229.005352 2026-10-29 19:57:09 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282234.848358 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282234.848445   super().__init__(loader)
+1793282237.845108 2026-10-29 19:57:17 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282243.939284 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282243.939462   super().__init__(loader)
+1793282247.095346 2026-10-29 19:57:27 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282253.344802 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282253.344892   super().__init__(loader)
+1793282256.371325 2026-10-29 19:57:36 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282262.200396 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282262.200481   super().__init__(loader)
+1793282265.145986 2026-10-29 19:57:45 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282271.117978 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282271.118713   super().__init__(loader)
+1793282274.145491 2026-10-29 19:57:54 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282280.303802 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282280.304326   super().__init__(loader)
+1793282283.321378 2026-10-29 19:58:03 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282289.775566 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282289.775661   super().__init__(loader)
+1793282292.564735 2026-10-29 19:58:12 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282298.492882 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282298.493063   super().__init__(loader)
+1793282301.505779 2026-10-29 19:58:21 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282307.357092 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282307.357214   super().__init__(loader)
+1793282310.437590 2026-10-29 19:58:30 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282316.277570 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282316.277759   super().__init__(loader)
+1793282319.185422 2026-10-29 19:58:39 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282325.379089 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282325.379175   super().__init__(loader)
+1793282328.371008 2026-10-29 19:58:48 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282334.156443 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282334.156528   super().__init__(loader)
+1793282337.033127 2026-10-29 19:58:57 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282342.920152 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282342.920227   super().__init__(loader)
+1793282345.922256 2026-10-29 19:59:05 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282351.866588 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282351.866665   super().__init__(loader)
+1793282354.804619 2026-10-29 19:59:14 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282361.156684 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282361.156867   super().__init__(loader)
+1793282363.887521 2026-10-29 19:59:23 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282369.967523 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282369.967690   super().__init__(loader)
+1793282372.975077 2026-10-29 19:59:32 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282378.788315 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282378.788398   super().__init__(loader)
+1793282381.889847 2026-10-29 19:59:41 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282387.665007 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282387.669417   super().__init__(loader)
+1793282390.401466 2026-10-29 19:59:50 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282396.679427 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282396.679517   super().__init__(loader)
+1793282399.598646 2026-10-29 19:59:59 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282405.338115 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282405.338206   super().__init__(loader)
+1793282408.167601 2026-10-29 20:00:08 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282414.067510 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282414.067597   super().__init__(loader)
+1793282417.152395 2026-10-29 20:00:17 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282422.912818 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282422.913017   super().__init__(loader)
+1793282425.803518 2026-10-29 20:00:25 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282432.433459 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282432.433821   super().__init__(loader)
+1793282435.179248 2026-10-29 20:00:35 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282441.004995 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282441.005193   super().__init__(loader)
+1793282443.995782 2026-10-29 20:00:43 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282449.724320 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282449.725429   super().__init__(loader)
+1793282452.526842 2026-10-29 20:00:52 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282458.467579 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282458.468212   super().__init__(loader)
+1793282461.391269 2026-10-29 20:01:01 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282467.614143 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282467.614434   super().__init__(loader)
+1793282470.529389 2026-10-29 20:01:10 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282476.278092 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282476.278333   super().__init__(loader)
+1793282479.203455 2026-10-29 20:01:19 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282484.936823 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282484.937113   super().__init__(loader)
+1793282487.979266 2026-10-29 20:01:27 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282493.821252 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282493.821350   super().__init__(loader)
+1793282496.548810 2026-10-29 20:01:36 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282502.624225 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282502.625748   super().__init__(loader)
+1793282505.547898 2026-10-29 20:01:45 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282511.374437 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282511.374534   super().__init__(loader)
+1793282514.210934 2026-10-29 20:01:54 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282520.168476 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282520.169356   super().__init__(loader)
+1793282523.172149 2026-10-29 20:02:03 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282528.995862 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282528.995966   super().__init__(loader)
+1793282531.941183 2026-10-29 20:02:11 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282538.220367 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282538.220456   super().__init__(loader)
+1793282540.909383 2026-10-29 20:02:20 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282546.593915 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282546.594006   super().__init__(loader)
+1793282549.649833 2026-10-29 20:02:29 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282555.504418 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282555.505312   super().__init__(loader)
+1793282558.961034 2026-10-29 20:02:38 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282564.853628 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282564.853902   super().__init__(loader)
+1793282567.603251 2026-10-29 20:02:47 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282573.815615 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282573.815706   super().__init__(loader)
+1793282576.726116 2026-10-29 20:02:56 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282582.437917 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282582.438008   super().__init__(loader)
+1793282585.351074 2026-10-29 20:03:05 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282590.932235 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282590.932500   super().__init__(loader)
+1793282593.946880 2026-10-29 20:03:13 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282599.795672 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282599.795772   super().__init__(loader)
+1793282602.521918 2026-10-29 20:03:22 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282608.969153 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282608.969421   super().__init__(loader)
+1793282611.873439 2026-10-29 20:03:31 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282617.589511 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282617.589599   super().__init__(loader)
+1793282620.620113 2026-10-29 20:03:40 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282626.330272 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282626.330360   super().__init__(loader)
+1793282629.116912 2026-10-29 20:03:49 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282634.823768 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282634.829331   super().__init__(loader)
+1793282637.718840 2026-10-29 20:03:57 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282643.880331 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282643.880431   super().__init__(loader)
+1793282646.550966 2026-10-29 20:04:06 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282652.397696 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282652.397919   super().__init__(loader)
+1793282655.426025 2026-10-29 20:04:15 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282661.150998 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282661.151561   super().__init__(loader)
+1793282663.959591 2026-10-29 20:04:23 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282669.733945 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282669.734462   super().__init__(loader)
+1793282672.549230 2026-10-29 20:04:32 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282678.779002 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282678.779133   super().__init__(loader)
+1793282681.691250 2026-10-29 20:04:41 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282687.363665 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282687.363783   super().__init__(loader)
+1793282690.164065 2026-10-29 20:04:50 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282695.788631 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282695.788714   super().__init__(loader)
+1793282698.773427 2026-10-29 20:04:58 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282704.484111 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282704.485820   super().__init__(loader)
+1793282707.211366 2026-10-29 20:05:07 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282713.254504 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282713.254581   super().__init__(loader)
+1793282716.107467 2026-10-29 20:05:16 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282721.745588 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282721.745713   super().__init__(loader)
+1793282724.606660 2026-10-29 20:05:24 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282730.333031 /home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+1793282730.334446   super().__init__(loader)
+1793282733.390259 2026-10-29 20:05:33 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1793282735.941438 wrote /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/results/pi5_benchmark_memo_20261029T133535Z.json

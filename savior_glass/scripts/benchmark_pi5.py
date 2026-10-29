@@ -277,6 +277,7 @@ def build_benchmarks() -> dict:
     add("taka_yolo_pt", yolo_variant(models / "best.pt"), "notes")
     add("taka_yolo_onnx_fp32", yolo_variant(models / "best.onnx"), "notes")
     add("taka_yolo_onnx_int8", yolo_variant(models / "best_int8.onnx"), "notes")
+    add("taka_yolo_handheld_int8", yolo_variant(models / "best_handheld_int8.onnx"), "notes")  # the Pi default 15-29 Oct; CURRENCY_DETECTOR=int8 now
     add("watermark_int8_sift", lambda: watermark(False), "notes")
     add("watermark_int8_localizer", lambda: watermark(True), "notes")
     add("jaal_check_qduig", jaal_only, "notes")

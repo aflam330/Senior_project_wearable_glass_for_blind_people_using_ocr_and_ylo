@@ -1,0 +1,1 @@
+thermal governor: all checks pass

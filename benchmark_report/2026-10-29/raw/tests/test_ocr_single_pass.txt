@@ -1,0 +1,18 @@
+/home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/ao/nn/quantized/dynamic/modules/rnn.py:162: UserWarning: torch.quantize_per_tensor, torch.quantize_per_channel and other quantized tensor creation functions that produce tensors with dtype torch.quint8, torch.qint8, and torch.qint32 are deprecated and will be removed in a future PyTorch release. Please see https://github.com/pytorch/pytorch/issues/184982 for more information. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/quantized/Quantizer.cpp:111.)
+  w_ih = torch.quantize_per_tensor(
+Traceback (most recent call last):
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/scripts/test_ocr_single_pass.py", line 36, in <module>
+    items = [it for it in B.build("val", 0)][::9]                 # 16 images: clean, distorted and photo scenes, both scripts
+                          ~~~~~~~^^^^^^^^^^
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/ocr_bench/bench.py", line 182, in build
+    img, font = make_image(text, lang, split, cond, rng, coco)
+                ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/ocr_bench/bench.py", line 125, in make_image
+    img, font = _text_image(text, lang, split, rng)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/ocr_bench/bench.py", line 113, in _text_image
+    from .shaped_text import render_mask  # needs uharfbuzz; only for building new sets
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/ocr_bench/shaped_text.py", line 13, in <module>
+    import uharfbuzz as hb
+ModuleNotFoundError: No module named 'uharfbuzz'

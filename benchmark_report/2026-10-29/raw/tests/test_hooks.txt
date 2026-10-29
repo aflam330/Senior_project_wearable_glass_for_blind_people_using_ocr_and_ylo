@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/../research_results/test_hooks.py", line 11, in <module>
+    from research_results import hooks, results_db as DB
+ModuleNotFoundError: No module named 'research_results'

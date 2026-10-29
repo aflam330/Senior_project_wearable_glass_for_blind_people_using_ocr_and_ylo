@@ -1,0 +1,15 @@
+/home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/ao/nn/quantized/dynamic/modules/rnn.py:162: UserWarning: torch.quantize_per_tensor, torch.quantize_per_channel and other quantized tensor creation functions that produce tensors with dtype torch.quint8, torch.qint8, and torch.qint32 are deprecated and will be removed in a future PyTorch release. Please see https://github.com/pytorch/pytorch/issues/184982 for more information. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/quantized/Quantizer.cpp:111.)
+  w_ih = torch.quantize_per_tensor(
+Traceback (most recent call last):
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/scripts/test_ocr_single_pass.py", line 36, in <module>
+    items = [it for it in B.build("val", 0)][::9]                 # 16 images: clean, distorted and photo scenes, both scripts
+                          ~~~~~~~^^^^^^^^^^
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/ocr_bench/bench.py", line 182, in build
+    img, font = make_image(text, lang, split, cond, rng, coco)
+                ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/ocr_bench/bench.py", line 145, in make_image
+    bgimg = cv2.imread(str(coco_paths[rng.integers(len(coco_paths))]))
+                                      ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "numpy/random/_generator.pyx", line 682, in numpy.random._generator.Generator.integers
+  File "numpy/random/_bounded_integers.pyx", line 1334, in numpy.random._bounded_integers._rand_int64
+ValueError: high <= 0
