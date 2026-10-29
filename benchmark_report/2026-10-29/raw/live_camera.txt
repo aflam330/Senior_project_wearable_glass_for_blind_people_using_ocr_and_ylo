@@ -1,0 +1,54 @@
+1793282845.237443 [ WARN:0@4.007] global net_impl_backend.cpp:345 setPreferableTarget Targets are not supported by the new graph engine for now
+1793282848.295737 Loading /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/realtime_bangla_taka_detection/models/best_handheld_int8.onnx for ONNX Runtime inference...
+1793282848.297171 Using ONNX Runtime 1.30.0 with CPUExecutionProvider
+1793282908.350461 {
+1793282908.350531   "status": "ok",
+1793282908.350554   "camera": {
+1793282908.350573     "index": 0,
+1793282908.350600     "resolution": [
+1793282908.350619       640,
+1793282908.350638       480
+1793282908.350657     ],
+1793282908.350681     "mean_brightness_0_255": 108.1
+1793282908.350697   },
+1793282908.350714   "device": "cpu",
+1793282908.350731   "seconds": 60.2,
+1793282908.350751   "frames_processed": 77,
+1793282908.350769   "loop_fps": 1.28,
+1793282908.350785   "latency": {
+1793282908.350801     "capture": {
+1793282908.350818       "n": 77,
+1793282908.350836       "median_ms": 1.9,
+1793282908.350856       "p95_ms": 2.1
+1793282908.350870     },
+1793282908.350891     "currency_detect_and_jaal": {
+1793282908.350908       "n": 77,
+1793282908.350927       "median_ms": 275.0,
+1793282908.350946       "p95_ms": 300.9
+1793282908.350960     },
+1793282908.350978     "object_mode": {
+1793282908.350994       "n": 77,
+1793282908.351013       "median_ms": 463.7,
+1793282908.351031       "p95_ms": 642.9
+1793282908.351045     },
+1793282908.351062     "emotion": {
+1793282908.351078       "n": 15,
+1793282908.351099       "median_ms": 46.6,
+1793282908.351117       "p95_ms": 48.0
+1793282908.351131     },
+1793282908.351148     "frame_total": {
+1793282908.351164       "n": 77,
+1793282908.351186       "median_ms": 747.6,
+1793282908.351204       "p95_ms": 954.4
+1793282908.351217     }
+1793282908.351232   },
+1793282908.351253   "notes_detected": {},
+1793282908.351273   "object_announcements": {
+1793282908.351305     "সামনে আছে: ল্যাপটপ": 1
+1793282908.351323   },
+1793282908.351343   "emotion_backend_counts": {
+1793282908.351361     "no_face": 15
+1793282908.351374   },
+1793282908.351396   "saved_media": "none (privacy)",
+1793282908.351441   "note_accuracy_on_live_notes": "NOT_MEASURED (no note was held in front of the camera during an unattended run)"
+1793282908.351458 }

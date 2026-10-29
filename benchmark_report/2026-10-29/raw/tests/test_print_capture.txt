@@ -1,0 +1,53 @@
+{
+ "placed": {
+  "test": 12,
+  "val": 8,
+  "train": 20
+ },
+ "sha256": "212ca7b75a47c0c337af0c51794257d206ee5341bbc49fbd520fb58d81f326cc"
+}
+{
+ "train": {
+  "photos": 2,
+  "notes": 1,
+  "prints": {
+   "BDT/genuine": 1
+  },
+  "camera_x_lighting": {
+   "glass/backlight": 1,
+   "glass/room": 1
+  },
+  "quality_flags": {},
+  "with_watermark_corners": 0
+ },
+ "val": {
+  "photos": 2,
+  "notes": 2,
+  "prints": {
+   "BDT/genuine": 2
+  },
+  "camera_x_lighting": {
+   "glass/backlight": 2
+  },
+  "quality_flags": {
+   "dark": 1
+  },
+  "with_watermark_corners": 0
+ },
+ "test": {
+  "photos": 0,
+  "notes": 0,
+  "prints": {},
+  "camera_x_lighting": {},
+  "quality_flags": {},
+  "with_watermark_corners": 0
+ },
+ "planned_prints": {
+  "train": 21,
+  "val": 8,
+  "test": 12
+ }
+}
+VIOLATION images/train/BDT/P000/N1_glass_backlight_01.jpg: stored under val, plan says train
+VIOLATION print P000 in splits ['train', 'val']
+print_capture: all rules hold

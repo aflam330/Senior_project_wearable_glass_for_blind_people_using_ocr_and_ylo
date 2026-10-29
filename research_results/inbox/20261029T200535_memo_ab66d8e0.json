@@ -1,0 +1,58 @@
+{
+ "experiment_name": "Pi 5 latency: watermark_int8_localizer",
+ "task": "system_performance",
+ "mode": "watermark_int8_localizer",
+ "status": "partially_verified",
+ "verification": {
+  "method": "recorded automatically by the evaluation script; not yet reviewed"
+ },
+ "performance": {
+  "latency_ms_median": 51.07,
+  "latency_ms_p95": 62.47,
+  "latency_ms_mean": 51.72,
+  "fps": 19.58,
+  "memory_rss_mb_after": 1736.556544,
+  "cpu_temp_c_after": 79.3,
+  "load_ms": 618.3
+ },
+ "raw_measurements": {
+  "iterations": 100
+ },
+ "comparison_group": {
+  "id": "PI5_LATENCY",
+  "name": "Latency per module (benchmark_pi5.py)",
+  "purpose": ""
+ },
+ "comparison": {
+  "variant": "watermark_int8_localizer"
+ },
+ "hardware": {
+  "device": "Raspberry Pi 5 Model B Rev 1.0",
+  "hostname": "memo",
+  "raspberry_pi_5": true,
+  "cpu": "aarch64, 4 cores"
+ },
+ "software_environment": {
+  "os": "Linux-6.18.33+rpt-rpi-2712-aarch64-with-glibc2.41",
+  "python": "3.13.5",
+  "framework_versions": {
+   "torch": "2.14.1+cpu",
+   "ultralytics": "8.4.170",
+   "onnxruntime": "1.30.0",
+   "easyocr": "1.7.2",
+   "cv2": "5.0.0"
+  }
+ },
+ "evidence": [
+  {
+   "type": "benchmark_output",
+   "file": "savior_glass/results/pi5_benchmark_memo_20261029T133535Z.json",
+   "selector": "latency.watermark_int8_localizer",
+   "sha256": "8591c812b1eeda0ba575515bce85d1883c773ae7cd8cc7992c4056fb82998d1d"
+  }
+ ],
+ "timestamp": "2026-10-29T20:05:35+06:00",
+ "versioning": {
+  "code_commit": "413c5a04573b87de71a7900edf1d9e73d805bcb4"
+ }
+}

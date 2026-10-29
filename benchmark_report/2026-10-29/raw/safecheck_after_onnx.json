@@ -1,0 +1,39 @@
+{
+ "temp_c_start": 54.55,
+ "throttled_start": "0xe0000",
+ "alone": {
+  "n": 60,
+  "median_ms": 31.4,
+  "p95_ms": 47.8,
+  "temp_c_after": 57.85,
+  "throttled_after": "0xe0000"
+ },
+ "after_detector": {
+  "n": 60,
+  "median_ms": 73.7,
+  "p95_ms": 96.7,
+  "temp_c_after": 67.2,
+  "throttled_after": "0xe0000"
+ },
+ "after_detector_pause_50ms": {
+  "n": 60,
+  "median_ms": 37.3,
+  "p95_ms": 47.4,
+  "temp_c_after": 68.3,
+  "throttled_after": "0xe0000"
+ },
+ "after_pytorch_detector": {
+  "n": 60,
+  "median_ms": 36.1,
+  "p95_ms": 47.1,
+  "temp_c_after": 69.4,
+  "throttled_after": "0xe0000"
+ },
+ "alone_again": {
+  "n": 60,
+  "median_ms": 34.1,
+  "p95_ms": 44.3,
+  "temp_c_after": 67.75,
+  "throttled_after": "0xe0000"
+ }
+}

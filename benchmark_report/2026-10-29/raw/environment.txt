@@ -1,0 +1,78 @@
+date: 2026-10-29T19:14:38+06:00
+Linux memo 6.18.33+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.18.33-1+rpt1 (2026-06-01) aarch64 GNU/Linux
+Raspberry Pi 5 Model B Rev 1.0
+2026/05/11 12:20:02 
+Copyright (c) 2012 Broadcom
+version 66f33f7e (release) (embedded)
+throttled=0x0
+temp=59.8'C
+governor: ondemand
+max freq: 2400000 kHz
+               total        used        free      shared  buff/cache   available
+Mem:            8062        4222         300         217        3907        3839
+Swap:           2047         425        1622
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        59G   12G   47G  20% /media/memo/7250-9755
+/dev/mmcblk0p2   58G   41G   15G  75% /
+--- top processes at start
+%CPU %MEM   RSS COMMAND
+11.1  2.9 242736 code
+10.8 11.1 923008 code
+ 7.7  4.3 357440 chromium
+ 6.0  5.9 487744 code
+ 4.7  4.0 335536 claude
+ 2.2  4.0 334208 chromium
+ 1.9  1.4 122224 code
+ 1.7  4.9 405760 code
+ 1.2  2.2 186032 chromium
+ 1.0  1.7 145152 chromium
+ 1.0  3.5 291888 chromium
+ 0.8  0.7 59440 Xorg
+ 0.7  1.7 142976 code
+ 0.5  1.5 126608 code
+--- python packages
+easyocr                          1.7.2
+numpy                            2.5.2
+onnxruntime                      1.30.0
+opencv                           4.10.0
+psutil                           7.2.2
+torch                            2.14.1+cpu
+ultralytics                      8.4.170
+--- camera
+pispbe (platform:1000880000.pisp_be):
+	/dev/video20
+	/dev/video21
+	/dev/video22
+	/dev/video23
+	/dev/video24
+	/dev/video25
+	/dev/video26
+	/dev/video27
+	/dev/video28
+	/dev/video29
+	/dev/video30
+	/dev/video31
+	/dev/video32
+	/dev/video33
+	/dev/video34
+	/dev/video35
+	/dev/media1
+	/dev/media2
+
+rp1-cfe (platform:1f00110000.csi):
+	/dev/media0
+
+rpi-hevc-dec (platform:rpi-hevc-dec):
+	/dev/video19
+	/dev/media3
+
+C270 HD WEBCAM (usb-xhci-hcd.1-2):
+	/dev/video0
+	/dev/video1
+	/dev/media4
+--- git
+413c5a04573b87de71a7900edf1d9e73d805bcb4 Thu Oct 29 15:42:46 2026 +0600 Pi 5 performance slide: board temperature 57.8-62.3 C measured by the team with a thermometer while running (earlier 88.7 C CPU-sensor reading kept as context); latency re-check noted.
+ M benchmark_report/scripts/sys_sampler.py
+ M savior_glass/scripts/benchmark_pi5.py
+?? benchmark_report/2026-10-29/
+?? benchmark_report/scripts/run_full_benchmark.sh

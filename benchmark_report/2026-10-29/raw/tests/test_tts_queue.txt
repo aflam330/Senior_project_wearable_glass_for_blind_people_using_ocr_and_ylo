@@ -1,0 +1,4 @@
+piper cannot speak with bn_BD-google-medium.onnx (piper crashed); the next voice is used from now on
+piper-binary cannot speak with bn_BD-google-medium.onnx (binary crashed); the next voice is used from now on
+Bangla Piper voice: 1.54 s of speech rendered
+speech queue: all checks pass

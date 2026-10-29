@@ -1,0 +1,1 @@
+field log: all checks pass. log() costs 4.7 µs per call in the app thread; 10008 rows, 3 system samples, 0 dropped

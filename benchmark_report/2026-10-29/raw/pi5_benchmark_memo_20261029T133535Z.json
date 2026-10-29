@@ -1,0 +1,204 @@
+{
+  "host": {
+    "hostname": "memo",
+    "device_model": "Raspberry Pi 5 Model B Rev 1.0",
+    "raspberry_pi_5": true,
+    "machine": "aarch64",
+    "os": "Linux-6.18.33+rpt-rpi-2712-aarch64-with-glibc2.41",
+    "python": "3.13.5",
+    "cpu_count": 4,
+    "utc": "2026-10-29T13:17:57.598427+00:00",
+    "torch": "2.14.1+cpu",
+    "torch_threads": 4,
+    "cuda_gpu": null,
+    "ultralytics": "8.4.170",
+    "onnxruntime": "1.30.0",
+    "easyocr": "1.7.2",
+    "cv2": "5.0.0",
+    "cpu_temp_c_start": 63.35,
+    "throttled_start": "0x0",
+    "cpu_temp_c_end": 76.0,
+    "throttled_end": "0xe0000"
+  },
+  "latency": {
+    "currency_mode_full": {
+      "median_ms": 421.58,
+      "p95_ms": 519.28,
+      "mean_ms": 408.78,
+      "fps_median": 2.37,
+      "iters": 100,
+      "rss_mb_after": 1364.590592,
+      "cpu_temp_c_after": 74.9,
+      "load_ms": 1196.5
+    },
+    "taka_yolo_pt": {
+      "median_ms": 607.33,
+      "p95_ms": 797.71,
+      "mean_ms": 632.67,
+      "fps_median": 1.65,
+      "iters": 100,
+      "rss_mb_after": 1410.039808,
+      "cpu_temp_c_after": 76.0,
+      "load_ms": 666.0
+    },
+    "taka_yolo_onnx_fp32": {
+      "median_ms": 512.18,
+      "p95_ms": 815.38,
+      "mean_ms": 559.87,
+      "fps_median": 1.95,
+      "iters": 100,
+      "rss_mb_after": 1532.23168,
+      "cpu_temp_c_after": 83.7,
+      "load_ms": 11.2
+    },
+    "taka_yolo_onnx_int8": {
+      "median_ms": 278.55,
+      "p95_ms": 456.78,
+      "mean_ms": 309.48,
+      "fps_median": 3.59,
+      "iters": 100,
+      "rss_mb_after": 1625.030656,
+      "cpu_temp_c_after": 83.7,
+      "load_ms": 0.5
+    },
+    "taka_yolo_handheld_int8": {
+      "median_ms": 339.04,
+      "p95_ms": 551.3,
+      "mean_ms": 359.39,
+      "fps_median": 2.95,
+      "iters": 100,
+      "rss_mb_after": 1706.606592,
+      "cpu_temp_c_after": 82.05,
+      "load_ms": 0.4
+    },
+    "watermark_int8_sift": {
+      "median_ms": 377.49,
+      "p95_ms": 854.32,
+      "mean_ms": 473.24,
+      "fps_median": 2.65,
+      "iters": 100,
+      "rss_mb_after": 1716.30592,
+      "cpu_temp_c_after": 74.35,
+      "load_ms": 682.8
+    },
+    "watermark_int8_localizer": {
+      "median_ms": 51.07,
+      "p95_ms": 62.47,
+      "mean_ms": 51.72,
+      "fps_median": 19.58,
+      "iters": 100,
+      "rss_mb_after": 1736.556544,
+      "cpu_temp_c_after": 79.3,
+      "load_ms": 618.3
+    },
+    "jaal_check_qduig": {
+      "median_ms": 36.9,
+      "p95_ms": 51.13,
+      "mean_ms": 39.02,
+      "fps_median": 27.1,
+      "iters": 100,
+      "rss_mb_after": 1719.926784,
+      "cpu_temp_c_after": 74.9,
+      "load_ms": 228.5
+    },
+    "prmvt_1view": {
+      "median_ms": 34.97,
+      "p95_ms": 61.12,
+      "mean_ms": 39.15,
+      "fps_median": 28.6,
+      "iters": 100,
+      "rss_mb_after": 1720.418304,
+      "cpu_temp_c_after": 76.55,
+      "load_ms": 297.3
+    },
+    "prmvt_2view": {
+      "median_ms": 52.35,
+      "p95_ms": 68.91,
+      "mean_ms": 57.72,
+      "fps_median": 19.1,
+      "iters": 100,
+      "rss_mb_after": 1722.466304,
+      "cpu_temp_c_after": 76.0,
+      "load_ms": 295.2
+    },
+    "prmvt_3view": {
+      "median_ms": 57.88,
+      "p95_ms": 70.53,
+      "mean_ms": 61.75,
+      "fps_median": 17.28,
+      "iters": 100,
+      "rss_mb_after": 1724.219392,
+      "cpu_temp_c_after": 76.0,
+      "load_ms": 303.8
+    },
+    "prmvt_4view": {
+      "median_ms": 66.34,
+      "p95_ms": 105.59,
+      "mean_ms": 74.56,
+      "fps_median": 15.07,
+      "iters": 100,
+      "rss_mb_after": 1727.741952,
+      "cpu_temp_c_after": 75.45,
+      "load_ms": 315.1
+    },
+    "prmvt_5view": {
+      "median_ms": 74.71,
+      "p95_ms": 89.57,
+      "mean_ms": 78.0,
+      "fps_median": 13.38,
+      "iters": 100,
+      "rss_mb_after": 1731.231744,
+      "cpu_temp_c_after": 77.1,
+      "load_ms": 332.4
+    },
+    "prmvt_6view": {
+      "median_ms": 82.6,
+      "p95_ms": 119.81,
+      "mean_ms": 89.52,
+      "fps_median": 12.11,
+      "iters": 100,
+      "rss_mb_after": 1736.032256,
+      "cpu_temp_c_after": 76.55,
+      "load_ms": 317.6
+    },
+    "object_mode": {
+      "median_ms": 461.88,
+      "p95_ms": 634.85,
+      "mean_ms": 481.48,
+      "fps_median": 2.17,
+      "iters": 100,
+      "rss_mb_after": 1755.38176,
+      "cpu_temp_c_after": 81.5,
+      "load_ms": 1558.8
+    },
+    "ocr_mode": {
+      "median_ms": 6126.09,
+      "p95_ms": 6711.4,
+      "mean_ms": 6234.82,
+      "fps_median": 0.16,
+      "iters": 100,
+      "rss_mb_after": 2492.858368,
+      "cpu_temp_c_after": 82.6,
+      "load_ms": 12153.4
+    },
+    "emotion": {
+      "median_ms": 47.34,
+      "p95_ms": 50.46,
+      "mean_ms": 47.92,
+      "fps_median": 21.13,
+      "iters": 100,
+      "rss_mb_after": 2493.759488,
+      "cpu_temp_c_after": 81.5,
+      "load_ms": 3862.6
+    }
+  },
+  "skipped": {},
+  "peak_rss_mb": 2493.759488,
+  "sustained": {
+    "minutes": 30.0,
+    "calls": 3193,
+    "max_cpu_temp_c": 85.9,
+    "final_throttled": "0xe0000",
+    "csv": "pi5_benchmark_memo_20261029T133535Z.csv"
+  }
+}

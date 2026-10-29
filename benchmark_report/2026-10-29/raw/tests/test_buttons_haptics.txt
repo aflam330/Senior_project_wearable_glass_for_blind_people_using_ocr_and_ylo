@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/scripts/test_buttons_haptics.py", line 180, in <module>
+    main()
+    ~~~~^^
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/scripts/test_buttons_haptics.py", line 89, in main
+    app = app_main.SmartGlass()
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/main.py", line 77, in __init__
+    self._camera = utils.CameraManager()
+                   ~~~~~~~~~~~~~~~~~~~^^
+  File "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/scripts/test_buttons_haptics.py", line 57, in __init__
+    self.frame = cv2.imread(str(sorted(PHOTO.glob("*.jpg"))[30]))
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+IndexError: list index out of range
