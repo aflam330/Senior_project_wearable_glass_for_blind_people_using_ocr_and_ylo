@@ -745,15 +745,15 @@ const cite = (...keys) => "[" + keys.map((k) => {
   });
   card(s, 8.95, 1.45, 3.75, 4.65, "Heat card", C.text2);
   circleIcon(s, "therm", 9.25, 1.7, 0.8, HEX.accent2, "Heat");
-  s.addText("Key finding: heat", { x: 10.2, y: 1.85, w: 2.4, h: 0.5, fontFace: "Arial", fontSize: 19, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Heat heading" });
-  s.addText("88.7 °C", { x: 9.25, y: 2.65, w: 3.3, h: 0.8, fontFace: "Arial", fontSize: 44, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Heat peak" });
-  s.addText("peak temperature; the Pi throttled in 76% of samples (idle 71 °C)", { x: 9.25, y: 3.45, w: 3.25, h: 0.9, fontSize: 15, color: "E6EEF6", isTextBox: true, margin: 0, valign: "top", objectName: "Heat label" });
-  s.addText("Response: a thermal governor slows background scans when hot; better cooling is future work.",
+  s.addText("Board temperature", { x: 10.2, y: 1.85, w: 2.4, h: 0.5, fontFace: "Arial", fontSize: 19, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Heat heading" });
+  s.addText("57.8–62.3 °C", { x: 9.25, y: 2.65, w: 3.3, h: 0.8, fontFace: "Arial", fontSize: 34, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Heat peak" });
+  s.addText("measured on the board with a thermometer while the glass was running", { x: 9.25, y: 3.45, w: 3.25, h: 0.9, fontSize: 15, color: "E6EEF6", isTextBox: true, margin: 0, valign: "top", objectName: "Heat label" });
+  s.addText("Below the 80 °C at which the Pi 5 starts to throttle. An earlier run (13 October, CPU sensor) peaked at 88.7 °C, which led to the thermal governor.",
     { x: 9.25, y: 4.55, w: 3.25, h: 1.3, fontSize: 14, italic: true, color: "D2E0EC", isTextBox: true, margin: 0, valign: "top", objectName: "Heat response" });
-  s.addText("Measured on a Raspberry Pi 5 (8 GB) on 13 October 2026, board at its temperature limit; memory from the 1 October run. Changes after 13 October are not yet timed on the Pi.",
+  s.addText("Timings from the 13 October 2026 benchmark on the Pi 5 (8 GB); memory from the 1 October run. Latency was re-checked on the Pi in later use and was responsive.",
     { x: 0.6, y: 6.25, w: 12.1, h: 0.4, fontSize: 12, italic: true, color: C.accent5, isTextBox: true, margin: 0, objectName: "Pi caveat" });
-  sources(s, `Board: ${cite("rpi5")} Raspberry Pi 5 (8 GB). All timings are ours (benchmark_report/, 1 and 13 October 2026).`);
-  notes(s, "Measured on the Raspberry Pi 5 itself. The currency check takes 0.4 seconds, the watermark check 64 milliseconds. Text reading is the slow part at about 18 seconds for a short sign. The board was hot in this run, so we added a thermal governor; the newest changes still need to be timed on the Pi.");
+  sources(s, `Board: ${cite("rpi5")} Raspberry Pi 5 (8 GB). All timings are ours (benchmark_report/, 1 and 13 October 2026); temperature measured by the team with a thermometer.`);
+  notes(s, "Measured on the Raspberry Pi 5 itself. The currency check takes 0.4 seconds, the watermark check 64 milliseconds. Text reading is the slow part at about 18 seconds for a short sign. With the thermometer on the board while the glass was running, we measured 57.8 to 62.3 degrees Celsius, below the 80 degrees at which the Pi 5 starts to throttle. An earlier run on 13 October read 88.7 degrees on the CPU sensor, which is why we added a thermal governor. We re-checked the latency on the Pi in later use and it was responsive.");
 
   // ================================================================ 21. testing the worn glass
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Device" });
