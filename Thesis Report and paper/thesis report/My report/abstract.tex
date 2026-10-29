@@ -13,7 +13,7 @@ For counterfeit notes we worked with the JaalTaka dataset (1,390 notes, six view
 
 For text reading we built a benchmark with correctly shaped Bangla and with separate phrases and fonts for validation and test. Keeping only the main block of text, tuning the detector and cleaning the output lowers the character error rate from 9.3\% to 2.4\% overall and from 11.9\% to 3.2\% for Bangla. On real street photographs of single words the error was 39\% for Bangla; a recogniser fine-tuned on real words and blended with the released weights lowers it to 29\% (Latin script 62\% to 51\%) without losing accuracy on printed text, but reading real signs remains the hardest part.
 
-On the Raspberry Pi~5 the currency check takes a median of 327~ms, and the system ran for 30~minutes within 1.5~GB of memory and without thermal throttling. Trial sessions with a visually impaired participant have started, supported by a voice-driven questionnaire. Every number in this thesis comes from a saved result file.
+On the Raspberry Pi~5 the currency check takes a median of 327~ms, and the system ran for 30~minutes within 1.5~GB of memory and without thermal throttling; in a third run text reading took 5.4~s for a 3-line sign, three times faster, while continuous load drove the processor to its soft temperature limit. Trial sessions with a visually impaired participant have started, supported by a voice-driven questionnaire. Every number in this thesis comes from a saved result file.
 
 \vspace{0.5cm}
 \noindent\textbf{Keywords:} Assistive Technology, Smart Glass, Visually Impaired, Raspberry Pi, Bangla OCR, YOLOv8, Bangladeshi Currency, Counterfeit Detection, Multi-View Learning, Watermark, Quotient Image, Selective Prediction, Edge AI

@@ -81,7 +81,7 @@ _DETECTOR_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "realtime_bangla_ta
 # CURRENCY_DETECTOR=v1 goes back to the earlier detector and its 0.60 threshold.
 # Since 29 October 2026 the Pi runs the same full-precision file as the laptop. The 8-bit copy lowers the confidence on
 # close-ups (hand-held validation at 0.75: 38.4 % right against 49.7 %, results/closeup_ft/handheld_int8.json), and in
-# the two app sessions on the Pi that day 8 of 10 currency presses stayed below its 0.80 threshold
+# the two app sessions on the Pi that day 7 of 10 currency presses stayed below its 0.80 threshold (1 found no note)
 # (benchmark_report/raw/field/). Cost on the Pi (29 October, earlier detector, same YOLOv8s): PyTorch 556 ms against
 # 261 ms for 8-bit. CURRENCY_DETECTOR=int8 goes back to the 8-bit file and its 0.80 threshold.
 _v1 = os.environ.get("CURRENCY_DETECTOR", "") == "v1"

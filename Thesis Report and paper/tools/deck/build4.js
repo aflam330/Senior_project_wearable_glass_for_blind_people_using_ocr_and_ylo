@@ -571,7 +571,7 @@ const cite = (...keys) => "[" + keys.map((k) => {
   ], { x: 7.9, y: 1.45, w: 4.8, h: 4.4, barDir: "col", barGapWidthPct: 60, chartColors: [HEX.accent5, HEX.accent1], showValue: true, dataLabelPosition: "outEnd",
     dataLabelFormatCode: "0.0\"%\"", valAxisMaxVal: 60, valAxisMinVal: 0, valAxisLabelFormatCode: "0\"%\"", showLegend: true, legendPos: "b",
     showTitle: true, title: "Right note value, real hand-held photos (NSTU, 1,127)", ...chartFrame, objectName: "Hand-held chart" });
-  s.addText("Right note value on the laptop. Trade-off: with 3 notes in view, the total is right 97.0% (was 99.2%).",
+  s.addText("Since 29 Oct the Pi runs the laptop's full-precision detector. Trade-off: with 3 notes in view, the total is right 97.0% (was 99.2%).",
     { x: 0.6, y: 5.65, w: 7.0, h: 0.8, fontSize: 14, italic: true, color: C.accent2, isTextBox: true, margin: 0, valign: "top", objectName: "Costs" });
   sources(s, `Sources: test photos ${cite("nstu")} Rafi et al., NSTU-BDTAKA, Data in Brief 2024; detector ${cite("yolo")} YOLOv8. Our results: paper_evidence/HANDHELD_FINETUNE.md.`);
   notes(s, "A blind user holds the note close, folded and under the fingers, and our training pictures showed whole notes in scenes. We generated six thousand hand-held close-ups from training notes only and fine-tuned the detector. On the independent NSTU hand-held test, the right value rises from 11.8 to 47.5 percent on the laptop and from 8.7 to 33.5 percent on the Pi. There are costs: one-taka notes are named more often by mistake (36.6 percent), and with three notes in view the total is right 97.0 percent of the time instead of 99.2.");
@@ -678,11 +678,11 @@ const cite = (...keys) => "[" + keys.map((k) => {
   stat(s, 0.6, 5.1, 3.6, "85.6%", "of 111 real UV photos of genuine notes accepted", "UV genuine");
   stat(s, 4.6, 5.1, 3.6, "88.6%", "of SIMULATED fibre-free sheets rejected (not real counterfeits)", "UV sheets", C.accent5);
   sources(s, `The glass's lamp emits 360-395 nm, covering the 365 nm used for banknote checks; banknote paper stays dark while its fibres glow ${cite("mutanen")}. Prior Taka UV work: ${cite("uvink")} (96.3%). Fibre check and photos are ours.`);
-  s.addText([{ text: "Prototype, off by default", options: { bold: true, fontSize: 18, breakLine: true } },
-    { text: "The rejection result is simulated; it must be validated on real counterfeit notes", options: { fontSize: 14 } }],
+  s.addText([{ text: "Speaks under the lamp", options: { bold: true, fontSize: 18, breakLine: true } },
+    { text: "\"Likely genuine\" or \"check by hand\", never \"counterfeit\". Not yet tested on real counterfeits or through the glass camera", options: { fontSize: 13 } }],
     { shape: pres.shapes.ROUNDED_RECTANGLE, x: 8.6, y: 5.0, w: 4.1, h: 1.4, rectRadius: 0.1, fill: { color: "FBE9EB" }, line: { color: HEX.accent2, width: 1.25 },
       color: HEX.accent2, isTextBox: true, margin: 12, valign: "middle", objectName: "UV caveat" });
-  notes(s, "Under a UV lamp, genuine 200, 500 and 1000 Taka notes show glowing security fibres. Our check removes the lamp's own blue light and counts thin glowing marks. It accepts 85.6 percent of real genuine photos and rejects 88.6 percent of simulated fibre-free sheets. It stays off by default until real counterfeits are tested.");
+  notes(s, "Under a UV lamp, genuine 200, 500 and 1000 Taka notes show glowing security fibres. Our check removes the lamp's own blue light and counts thin glowing marks. It accepts 85.6 percent of real genuine photos and rejects 88.6 percent of simulated fibre-free sheets. Since 29 October currency mode runs it whenever the picture is taken under the lamp, which it recognises from the colour: all 47 UV test photos were recognised and none of 2,282 ordinary photos were mistaken for one. It then says likely genuine or check by hand, never counterfeit, because no counterfeit note has been photographed under UV and it has not been tested through the glass camera.");
 
   // ================================================================ 18. text reading
   pres.addSection({ title: "Reading and voice" });
@@ -702,13 +702,14 @@ const cite = (...keys) => "[" + keys.map((k) => {
   s.addText([
     { text: "Reading the main text block only", options: { bullet: true, breakLine: true } },
     { text: "Tuned detector and clean-up", options: { bullet: true, breakLine: true } },
-    { text: "Recogniser fine-tuned on real words", options: { bullet: true } },
-  ], { x: 8.95, y: 1.95, w: 3.75, h: 2.2, fontSize: 17, color: C.text1, isTextBox: true, margin: 0, valign: "top", paraSpaceAfter: 8, objectName: "Helped list" });
+    { text: "Recogniser fine-tuned on real words", options: { bullet: true, breakLine: true } },
+    { text: "Sharpest frame of 1 s: shaken text 28.0% → 3.8%", options: { bullet: true } },
+  ], { x: 8.95, y: 1.95, w: 3.75, h: 2.3, fontSize: 15, color: C.text1, isTextBox: true, margin: 0, valign: "top", paraSpaceAfter: 8, objectName: "Helped list" });
   s.addText("What did not", { x: 8.95, y: 4.3, w: 3.75, h: 0.45, fontFace: "Arial", fontSize: 20, bold: true, color: C.text2, isTextBox: true, margin: 0, objectName: "Not heading" });
   s.addText("Binarisation, Tesseract, TrOCR, PaddleOCR, dictionaries",
     { x: 8.95, y: 4.8, w: 3.75, h: 1.3, fontSize: 17, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Not list" });
   sources(s, `Engine ${cite("easyocr")} EasyOCR with ${cite("craft")} CRAFT; real words from ${cite("mlt")} ICDAR 2019 MLT (1,000 test words). Every choice made on validation data.`);
-  notes(s, "On our rendered Bangla and English benchmark the error fell from 9.3 to 2.3 percent. Real street words are much harder: a recogniser fine-tuned on real words and blended with the original weights lowered the error from 39.2 to 28.7 percent for Bangla and from 62.5 to 50.6 percent for Latin script. What helped: reading only the main block of text, tuned detector settings with CLAHE and clean-up rules, and the recogniser fine-tuned on real words and blended fifty-fifty with the original weights. Binarisation, multi-scale reading, Tesseract, TrOCR, PaddleOCR, dictionaries, smaller pictures and a rotation retry did not help.");
+  notes(s, "On our rendered Bangla and English benchmark the error fell from 9.3 to 2.3 percent. Real street words are much harder: a recogniser fine-tuned on real words and blended with the original weights lowered the error from 39.2 to 28.7 percent for Bangla and from 62.5 to 50.6 percent for Latin script. What helped: reading only the main block of text, tuned detector settings with CLAHE and clean-up rules, and the recogniser fine-tuned on real words and blended fifty-fifty with the original weights. Binarisation, multi-scale reading, Tesseract, TrOCR, PaddleOCR, dictionaries, smaller pictures and a rotation retry did not help. For shaky hands, the glass now watches the camera for one second after a press and reads the sharpest frame; on validation text with simulated shake the error fell from 28.0 to 3.8 percent, and from 50.4 to 3.5 percent when the press itself shook the camera most.");
 
   // ================================================================ 19. voice
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Reading and voice" });
@@ -736,8 +737,8 @@ const cite = (...keys) => "[" + keys.map((k) => {
   pres.addSection({ title: "Device" });
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Device" });
   s.addText("Performance on the Raspberry Pi 5", { placeholder: "title" });
-  const pis = [["399 ms", "currency check, end to end"], ["64 ms", "watermark check"], ["562 ms", "object scan (YOLOv8s)"], ["680 ms", "emotion, face in view"],
-    ["18.3 s", "3-line sign, text found once"], ["1.48 GB", "peak memory, 30-minute run"]];
+  const pis = [["422 ms", "currency check, end to end"], ["51 ms", "watermark check"], ["462 ms", "object scan (YOLOv8s)"], ["536 ms", "emotion, face in view"],
+    ["5.4 s", "3-line sign (18.7 s on 1 October)"], ["2.76 GB", "peak memory of the app (of 8 GB)"]];
   pis.forEach(([v, l], i) => {
     const x = 0.6 + (i % 3) * 2.75, y = 1.45 + Math.floor(i / 3) * 2.45;
     card(s, x, y, 2.55, 2.2, "Pi stat " + (i + 1));
@@ -748,12 +749,12 @@ const cite = (...keys) => "[" + keys.map((k) => {
   s.addText("Board temperature", { x: 10.2, y: 1.85, w: 2.4, h: 0.5, fontFace: "Arial", fontSize: 19, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Heat heading" });
   s.addText("57.8–62.3 °C", { x: 9.25, y: 2.65, w: 3.3, h: 0.8, fontFace: "Arial", fontSize: 34, bold: true, color: "FFFFFF", isTextBox: true, margin: 0, objectName: "Heat peak" });
   s.addText("measured on the board with a thermometer while the glass was running", { x: 9.25, y: 3.45, w: 3.25, h: 0.9, fontSize: 15, color: "E6EEF6", isTextBox: true, margin: 0, valign: "top", objectName: "Heat label" });
-  s.addText("Below the 80 °C at which the Pi 5 starts to throttle. An earlier run (13 October, CPU sensor) peaked at 88.7 °C, which led to the thermal governor.",
+  s.addText("The processor's own sensor reads higher: in 30 minutes of non-stop load it peaked at 87.0 °C, with the soft limit active in 55% of samples.",
     { x: 9.25, y: 4.55, w: 3.25, h: 1.3, fontSize: 14, italic: true, color: "D2E0EC", isTextBox: true, margin: 0, valign: "top", objectName: "Heat response" });
-  s.addText("Timings from the 13 October 2026 benchmark on the Pi 5 (8 GB); memory from the 1 October run. Latency was re-checked on the Pi in later use and was responsive.",
+  s.addText("Timings from the 29 October 2026 benchmark on the Pi 5 (8 GB). The Pi now runs the full-precision note detector: about 0.3 s more per check, not yet timed.",
     { x: 0.6, y: 6.25, w: 12.1, h: 0.4, fontSize: 12, italic: true, color: C.accent5, isTextBox: true, margin: 0, objectName: "Pi caveat" });
-  sources(s, `Board: ${cite("rpi5")} Raspberry Pi 5 (8 GB). All timings are ours (benchmark_report/, 1 and 13 October 2026); temperature measured by the team with a thermometer.`);
-  notes(s, "Measured on the Raspberry Pi 5 itself. The currency check takes 0.4 seconds, the watermark check 64 milliseconds. Text reading is the slow part at about 18 seconds for a short sign. With the thermometer on the board while the glass was running, we measured 57.8 to 62.3 degrees Celsius, below the 80 degrees at which the Pi 5 starts to throttle. An earlier run on 13 October read 88.7 degrees on the CPU sensor, which is why we added a thermal governor. We re-checked the latency on the Pi in later use and it was responsive.");
+  sources(s, `Board: ${cite("rpi5")} Raspberry Pi 5 (8 GB), fan and heat sink, C270 webcam. All timings are ours (benchmark_report/2026-10-29/); board-surface temperature measured by the team with a thermometer.`);
+  notes(s, "Measured on the Raspberry Pi 5 itself on 29 October. The currency check takes 0.42 seconds, the watermark check 51 milliseconds, an object scan 0.46 seconds and emotion with a face 0.54 seconds. Text reading is now about three times faster than on 1 October: a three-line sign in 5.4 seconds, and on a twelve-line page the first line is spoken after 4.4 seconds. With a thermometer on the board while the glass was running, we measured 57.8 to 62.3 degrees Celsius on its surface. The processor's own sensor reads higher: in thirty minutes of non-stop load it peaked at 87 degrees and the soft temperature limit was active about half the time, so heat under continuous load is still a limit. Since that run the Pi uses the same full-precision note detector as the laptop, which costs about 0.3 seconds per check and has not been timed yet.");
 
   // ================================================================ 21. testing the worn glass
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Device" });

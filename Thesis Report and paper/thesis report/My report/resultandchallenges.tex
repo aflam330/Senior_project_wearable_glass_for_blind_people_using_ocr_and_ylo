@@ -802,7 +802,7 @@ Four things in this run are findings about the software, not about the heat.
     \item \textbf{A short sign paid for the text detector twice.} The line-by-line path ran the detector to count the lines, and for fewer than four lines the normal path ran it again: 34.0~s instead of 18.3~s. The detector now runs once per capture and both paths use its boxes; the text read is identical to before on the benchmark images.
     \item \textbf{A picture with no text was not answered with ``no text found''.} After 27.5~s the fall-back reader for handwritten letters returned 48 letters that were not there. A picture in which the detector finds nothing is now answered at once, and the handwritten-letter reader is not tried on it.
     \item \textbf{The emotion figure of the first run was a frame without a face.} With a face to classify, one answer takes 680~ms, not 48~ms.
-    \item \textbf{One pass of the text detector takes 11 to 18~s on this board}, with the full-precision ONNX detector and whatever is in the picture. The 8-bit detector, which costs 0.57 points of error on the rendered validation set and so does not meet the 0.5-point rule, was made the default on the Pi as a stated exception, for speed. Its speed on the Pi has not been measured yet. With the recogniser trained on real words (Table~\ref{tab:ocr_real}) the Pi's configuration scores 2.86\% on the rendered validation set, 0.28 points above the reference, so it is now inside the rule.
+    \item \textbf{One pass of the text detector takes 11 to 18~s on this board}, with the full-precision ONNX detector and whatever is in the picture. The 8-bit detector, which costs 0.57 points of error on the rendered validation set and so does not meet the 0.5-point rule, was made the default on the Pi as a stated exception, for speed. Its speed on the Pi was measured on 29 October: 2.5--3.0~s per pass (Section~\ref{sec:pi5_third}). With the recogniser trained on real words (Table~\ref{tab:ocr_real}) the Pi's configuration scores 2.86\% on the rendered validation set, 0.28 points above the reference, so it is now inside the rule.
 \end{enumerate}
 The application's own log of the two sessions before the benchmark agrees with the table: currency check 406~ms (8 checks), object scan and announcement 777~ms (10), one text capture 39.9~s, three UV fibre checks at 0.8 to 1.4~s. Speech adds almost nothing to the response time (under 30~ms to synthesise a sentence). Not repeated in this run: the 30-minute sustained test, and a run on a cool board.
 
@@ -829,6 +829,43 @@ The second prototype was then tried in a staged shop exchange by two team member
 
 \subsection*{Trial sessions with a visually impaired participant}
 After the first field test, trial sessions with the worn prototype were started with a visually impaired participant (Figure~\ref{fig:worn}), and a survey is being collected. The data from these sessions were not available when this chapter was written. No result from them is reported here, and none of the conclusions of this thesis rests on them; they will be added once the survey is complete.
+
+\section{Third Run on the Raspberry Pi~5 and Fixes from the Field Log (29 October 2026)}
+\label{sec:pi5_third}
+On 29 October 2026 the glass was benchmarked a third time on its own board, now with a fan and a heat sink and the Logitech C270 USB webcam, and the application was used twice with the real camera. Its field log (Section~\ref{sec:field_test}) showed why currency recognition on the glass was worse than on the laptop, and four changes followed the same day.
+
+\begin{table}[!htbp]
+\centering
+\caption{Third run on the Raspberry Pi~5 (29 October 2026, code as on the morning of that day)}
+\label{tab:pi5_third}
+\small
+\begin{tabular}{|L{7.6cm}|C{2.2cm}|C{2.2cm}|C{2.1cm}|}
+\hline
+\textbf{Part of the glass} & \textbf{Typical time (median)} & \textbf{Slow case (95th percentile)} & \textbf{Second run, 13 October} \\ \hline
+Currency mode, whole job & 422 ms & 519 ms & 399 ms \\ \hline
+Taka detector, hand-held, INT8 (Pi default when measured) & 339 ms & 551 ms & -- \\ \hline
+Taka detector, earlier model, PyTorch / INT8 & 607 / 279 ms & 798 / 457 ms & -- / 306 ms \\ \hline
+Watermark check, learned watermark finder & 51 ms & 63 ms & 64 ms \\ \hline
+Counterfeit safe-check, one crop & 37 ms & 51 ms & 43 ms \\ \hline
+Object scan as the application runs it (YOLOv8s) & 462 ms & 635 ms & 562 ms \\ \hline
+Emotion, with a face in view & 536 ms & 844 ms & 680 ms \\ \hline
+Text reading, 3-line sign, as the application runs it & 5.4 s & 5.7 s (slowest of 5) & 34.0 s \\ \hline
+Text reading, 12-line page: first line spoken / whole page & 4.4 s / 15.4 s & -- / 15.4 s & 16.4 s / 36.5 s \\ \hline
+\end{tabular}
+\end{table}
+
+\textbf{Speed and heat.} Text reading is now about three times faster than on 1 October (Table~\ref{tab:pi5_third}): one pass of the 8-bit text detector takes 2.5--3.0~s on the Pi against 9.9--11.2~s in full precision, and it made no character error on the test pictures. In the 30-minute sustained run the processor's own sensor averaged 82.8~$^\circ$C and peaked at 87.0~$^\circ$C; the soft temperature limit was active in 55\% of the samples, with the fan at full speed (on 1 October the same protocol peaked at 77.1~$^\circ$C). Room temperature and the position of the board were not logged on either day. A thermometer on the board surface, used by the team during normal use, read 57.8--62.3~$^\circ$C; the surface is cooler than the processor's sensor. The board drew 3.7~W at idle and 7.8~W under the sustained load.
+
+\textbf{What the field log showed.} In the two sessions with the application and the real camera, the 8-bit hand-held detector named a note in only 2 of 10 currency presses: in 7 its confidence stayed below its threshold of 0.80 (0.41--0.79) and the glass asked the user to hold the note closer, and in 1 it found no note. Quantisation lowers the confidence on close-ups; on hand-held validation photographs at 0.75 the 8-bit copy was right for 38.4\% against 49.7\% in full precision (Section~\ref{sec:handheld}; \texttt{results/closeup\_ft/handheld\_int8.json}). In addition, all 6 guided watermark checks timed out after 10~s (65 of 111 frames rejected as blurry, 46 with no note), and a button press during that time was ignored.
+
+\textbf{Four changes.}
+\begin{enumerate}[noitemsep]
+    \item \textbf{The same Taka detector on the Pi as on the laptop.} The Pi now loads the full-precision hand-held detector with its validation-chosen threshold of 0.75. By the timings above it costs about 0.3~s more per check than the 8-bit copy; it was not yet timed on the Pi in the application.
+    \item \textbf{Guided watermark step off by default.} Its frame-quality thresholds were set on JaalTaka photographs, not on the C270, so it is off on the Pi as it already was on the laptop until it can be calibrated on photographs from that camera.
+    \item \textbf{A spoken answer under the UV lamp.} The UV fibre check (Section~\ref{sec:uv_results}) had been switched off, so nothing was said under the lamp. Currency mode now recognises a picture taken under the lamp from its colour: its mean blue is more than 2.136 times its mean green. The threshold lies midway between the bluest of 2,212 ordinary validation photographs (2.101) and the least blue UV calibration photograph, whole or cut to a webcam frame (2.170). Read once on held-out data, the rule recognised all 47 UV test photographs and took none of 2,282 ordinary test photographs for a UV picture. The glass then counts the fibres in the note box and says ``UV marks found, likely genuine'' or ``check by hand''; it never says ``counterfeit''. On webcam-style frames of genuine notes it said ``likely genuine'' for 37 of 47 test photographs (83 of 118 in all). The note's value is not spoken under the lamp, because the detector named a wrong value for 6 of its 50 sure answers there.
+    \item \textbf{Steadier text reading.} After a press the glass looks at the camera for one second and reads the sharpest frame (variance of the Laplacian). On the 144 validation images with simulated hand shake, the character error rate fell from 50.4\% to 3.5\% when the press frame was the most shaken, and from 28.0\% to 3.8\% when every frame was shaken alike; always taking the least blurred frame would give 3.4\% and 3.6\%. With the laptop webcam the picked frame was sharper than the press frame in each logged press (for example 199.7 against 110.0).
+\end{enumerate}
+None of these changes has yet been measured on the glass itself: the UV rule and the fibre check on phone photographs, not through the C270; the shake by simulation; and no counterfeit note has been photographed under UV.
 
 \section{Corrections to Earlier Figures}
 \label{sec:corrections}
@@ -919,9 +956,9 @@ The results above should be read with the following scope in mind; each point is
     \item \textbf{Glass camera.} The accuracy figures come from datasets and a laptop webcam; the camera settings of the worn glass are being tuned, and a test set taken through it is planned.
     \item \textbf{User study.} Trial sessions with a visually impaired participant have started; their results will be added when the survey is complete.
     \item \textbf{Counterfeit data.} The unseen-print results rest on about 24 distinct counterfeit prints of one currency; a larger print-disjoint collection would sharpen the comparison between methods.
-    \item \textbf{Whole-note verdict.} On whole notes the safe policy mostly asks for a check by hand; the guided watermark check and a larger set of whole-note photographs are the way to confirm more genuine notes.
+    \item \textbf{Whole-note verdict.} On whole notes the safe policy mostly asks for a check by hand; the guided watermark check and a larger set of whole-note photographs are the way to confirm more genuine notes. With the C270 webcam all six guided watermark checks timed out, so that step is off until it is calibrated on photographs from this camera (Section~\ref{sec:pi5_third}).
     \item \textbf{Text reading.} On real street photographs the letter error is about 39\% for Bangla and 62\% for Latin script, against 2.5\% on the rendered benchmark (Section~\ref{sec:ocr_real}), and reading is the slowest mode on the Pi.
-    \item \textbf{UV check.} It accepts 85.6\% of the photographs of genuine notes and rejects about nine in ten simulated fibre-free sheets, but has not been tested on a real counterfeit note, on real printed paper under the lamp, or through the glass camera.
+    \item \textbf{UV check.} It accepts 85.6\% of the photographs of genuine notes and rejects about nine in ten simulated fibre-free sheets, but has not been tested on a real counterfeit note, on real printed paper under the lamp, or through the glass camera. Currency mode now answers with it when the picture is taken under the lamp (Section~\ref{sec:pi5_third}).
     \item \textbf{Objects.} With the model timed on the Pi (YOLOv8n) and small pictures, mAP@0.5 is 0.34 to 0.45; the classes are the 80 of COCO.
     \item \textbf{Other items.} Close-ups covered by fingers, objects outside the 80 COCO classes, a neural Bangla voice on the Pi, and battery life are left for future versions.
 \end{enumerate}

@@ -48,3 +48,14 @@
 - Fade transition on every slide.
 - Larger text: number labels 15 pt, main text mostly 15–20 pt.
 - Speaker notes keep the details that were taken off the slides.
+
+## 29 October 2026 (build4.js)
+
+The Pi benchmark of 29 October and the fixes made from that day's field log (`paper_evidence/PI_FIXES_2026-10-29.md`).
+
+| # | Slide | Change |
+|---|---|---|
+| 12 | Hand-held notes | Note under the chart: since 29 October the Pi runs the laptop's full-precision detector. The chart keeps the measured 8-bit result. |
+| 18 | UV security fibres | The box "Prototype, off by default" now reads "Speaks under the lamp": "likely genuine" or "check by hand", never "counterfeit"; not yet tested on real counterfeits or through the glass camera. Notes give the UV-picture rule (47 of 47 UV test photos recognised, 0 of 2,282 ordinary photos mistaken). |
+| 19 | Text recognition | New point under "What helped": sharpest frame of 1 s, shaken text 28.0% → 3.8% (validation, simulated shake). |
+| 21 | Performance on the Raspberry Pi 5 | Timings from the 29 October benchmark: currency 422 ms, watermark 51 ms, objects 462 ms, emotion 536 ms, 3-line sign 5.4 s (18.7 s on 1 October), app peak memory 2.76 GB. The thermometer reading 57.8–62.3 °C stays; the processor sensor's 30-minute peak (87.0 °C, soft limit active in 55% of samples) is added beside it. The line "latency was re-checked and was responsive" is replaced by the measured timings. |
