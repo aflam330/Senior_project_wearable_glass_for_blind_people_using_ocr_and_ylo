@@ -1,0 +1,63 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-10-29T17:22:13.389,0.003,session_start,ocr,,,,,,,,
+2,2026-10-29T17:23:46.137,92.752,action_press,ocr,,,,,,,,
+3,2026-10-29T17:24:53.020,159.634,action_ignored_busy,ocr,,,,,,,,
+4,2026-10-29T17:24:55.969,162.584,thermal_state,,,warm,,,,,,"{""from_state"": ""normal"", ""temp_c"": 72.0}"
+5,2026-10-29T17:25:11.811,178.425,result,ocr,85672.4,Done. Press READ to hear it again.,,,,,en,"{""press_event"": 2, ""press_to_result_ms"": 85673.4, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""maror drawbackol verticallarming howover quickly reducing tnetetdency cl the gsystem Single kght would requrefar more moveran rats Moviang cal armyina bat-has been developed One vanation on werucal Loperation_and won swellwnthin a sungle etrays allows tne piants to bovestLis not""}"
+6,2026-10-29T17:25:14.117,180.732,thermal_state,,,normal,,,,,,"{""from_state"": ""warm"", ""temp_c"": 69.2}"
+7,2026-10-29T17:25:30.849,197.463,voice_command,,,action,,,,,,
+8,2026-10-29T17:25:30.850,197.464,action_press,ocr,,,,,,,,
+9,2026-10-29T17:25:40.224,206.838,thermal_state,,,warm,,,,,,"{""from_state"": ""normal"", ""temp_c"": 72.4}"
+10,2026-10-29T17:26:18.741,245.356,action_ignored_busy,ocr,,,,,,,,
+11,2026-10-29T17:26:27.614,254.228,thermal_state,,,hot,,,,,,"{""from_state"": ""warm"", ""temp_c"": 77.0}"
+12,2026-10-29T17:26:32.643,259.257,thermal_state,,,warm,,,,,,"{""from_state"": ""hot"", ""temp_c"": 75.3}"
+13,2026-10-29T17:26:57.187,283.801,result,ocr,86336.9,Done. Press READ to hear it again.,,,,,en,"{""press_event"": 8, ""press_to_result_ms"": 86337.4, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""02""}"
+14,2026-10-29T17:27:01.825,288.44,read_press,ocr,,Reading: 02,,,,,,
+15,2026-10-29T17:27:03.937,290.552,thermal_state,,,normal,,,,,,"{""from_state"": ""warm"", ""temp_c"": 70.1}"
+16,2026-10-29T17:27:38.322,324.936,action_press,ocr,,,,,,,,
+17,2026-10-29T17:27:43.086,329.7,thermal_state,,,warm,,,,,,"{""from_state"": ""normal"", ""temp_c"": 72.5}"
+18,2026-10-29T17:27:54.076,340.69,result,ocr,15753.4,পড়া শেষ। আবার শুনতে রিড বাটন চাপুন,,,,,bn,"{""press_event"": 16, ""press_to_result_ms"": 15754.4, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""পলয পিযে যাষার বাড়ি যাই বড়ের নিনে মামার দেশে আাম বুড়াতে চ্াষের মধুর রসে রঙিন করি মুখI""}"
+19,2026-10-29T17:27:57.162,343.777,thermal_state,,,normal,,,,,,"{""from_state"": ""warm"", ""temp_c"": 69.7}"
+20,2026-10-29T17:28:12.359,358.974,read_press,ocr,,পড়া হচ্ছে: পলয পিযে যাষার বাড়ি যাই বড়ের নিনে মামার দেশে আাম বুড়াতে চ্াষের মধুর রসে রঙিন করি মুখI,,,,,,
+21,2026-10-29T17:28:53.297,399.911,action_press,ocr,,,,,,,,
+22,2026-10-29T17:28:59.547,406.162,thermal_state,,,warm,,,,,,"{""from_state"": ""normal"", ""temp_c"": 72.2}"
+23,2026-10-29T17:29:06.924,413.538,result,ocr,13626.1,পড়া শেষ। আবার শুনতে রিড বাটন চাপুন,,,,,bn,"{""press_event"": 21, ""press_to_result_ms"": 13627.0, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""ছেত্রো ফুলের তুপতে যাই ঝড়ের দিনো ড়া যাই মামার দেশে আাম কুড়াতে রঞ্তিজ্ ামের মধুর রসে ফরি মুখ""}"
+24,2026-10-29T17:29:09.716,416.33,thermal_state,,,normal,,,,,,"{""from_state"": ""warm"", ""temp_c"": 69.8}"
+25,2026-10-29T17:29:30.533,437.147,action_press,ocr,,,,,,,,
+26,2026-10-29T17:29:35.998,442.612,thermal_state,,,warm,,,,,,"{""from_state"": ""normal"", ""temp_c"": 72.8}"
+27,2026-10-29T17:29:50.263,456.877,result,ocr,19729.0,পড়া শেষ। আবার শুনতে রিড বাটন চাপুন,,,,,bn,"{""press_event"": 25, ""press_to_result_ms"": 19729.9, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""মামার ঝাড়ি যা৫I ঝড়ের পিনে মামার সেশে আাম বুড়াতে সুধ পাকা আ্ামের মধুর রসে রঙিন করি মুথ""}"
+28,2026-10-29T17:29:54.196,460.81,thermal_state,,,normal,,,,,,"{""from_state"": ""warm"", ""temp_c"": 70.5}"
+29,2026-10-29T17:30:05.371,471.986,action_press,ocr,,,,,,,,
+30,2026-10-29T17:30:07.272,473.887,thermal_state,,,warm,,,,,,"{""from_state"": ""normal"", ""temp_c"": 72.1}"
+31,2026-10-29T17:30:18.815,485.429,result,ocr,13442.5,পড়া শেষ। আবার শুনতে রিড বাটন চাপুন,,,,,bn,"{""press_event"": 29, ""press_to_result_ms"": 13443.3, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""আয় ছেপেরা আয় মেসেরো তুলিতে যাহ ফুলের মালা গলায় দিয়ে মামার বাড়়ি যাই ঝড়ের দিনে মামার দেশে আম কুড়াতে সুখ পাকা জামের মধুর রসে রঙিন করি মুখ""}"
+32,2026-10-29T17:30:23.387,490.001,thermal_state,,,normal,,,,,,"{""from_state"": ""warm"", ""temp_c"": 70.5}"
+33,2026-10-29T17:30:34.508,501.123,read_press,ocr,,পড়া হচ্ছে: আয় ছেপেরা আয় মেসেরো তুলিতে যাহ ফুলের মালা গলায় দিয়ে মামার বাড়়ি যাই ঝড়ের দিনে মামার দেশে আম কুড়াতে সুখ পাকা জামের মধুর রসে রঙিন করি মুখ,,,,,,
+34,2026-10-29T17:30:52.462,519.076,voice_command,,,mode:object,,,,,,
+35,2026-10-29T17:30:52.463,519.077,mode_switch,object,,object,,,,,,"{""from_mode"": ""ocr""}"
+36,2026-10-29T17:30:54.986,521.601,object_announce,object,952.7,সামনে আছে: মানুষ,,,,,,
+37,2026-10-29T17:31:02.155,528.769,object_announce,object,834.0,সামনে আছে: মানুষ,,,,,,
+38,2026-10-29T17:31:09.163,535.778,object_announce,object,844.5,সামনে আছে: মানুষ,,,,,,
+39,2026-10-29T17:31:13.790,540.405,object_announce,object,813.3,সামনে আছে: মোবাইল ফোন,,,,,,
+40,2026-10-29T17:31:17.286,543.9,mode_switch,currency,,currency,,,,,,"{""from_mode"": ""object""}"
+41,2026-10-29T17:32:05.567,592.181,action_press,currency,,,,,,,,
+42,2026-10-29T17:32:06.289,592.904,result,currency,722.2,নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।,1000_taka,0.4788,check_by_hand,0.7003,,"{""press_event"": 41, ""press_to_result_ms"": 722.6, ""waited_for_load_ms"": 0.0, ""boxes"": 2}"
+43,2026-10-29T17:32:08.170,594.784,thermal_state,,,warm,,,,,,"{""from_state"": ""normal"", ""temp_c"": 72.8}"
+44,2026-10-29T17:32:16.379,602.993,watermark_check,currency,10085.0,timeout,1000_taka,,timeout,,,"{""press_event"": 41, ""frames"": 16, ""rejected"": {""blurry"": 14, ""no_note"": 2}, ""condition"": ""guided""}"
+45,2026-10-29T17:32:25.345,611.959,thermal_state,,,normal,,,,,,"{""from_state"": ""warm"", ""temp_c"": 69.9}"
+46,2026-10-29T17:32:46.615,633.23,action_press,currency,,,,,,,,
+47,2026-10-29T17:32:47.260,633.874,result,currency,644.1,নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।,1000_taka,0.6306,check_by_hand,0.7732,,"{""press_event"": 46, ""press_to_result_ms"": 644.5, ""waited_for_load_ms"": 0.0, ""boxes"": 2}"
+48,2026-10-29T17:32:48.520,635.135,thermal_state,,,warm,,,,,,"{""from_state"": ""normal"", ""temp_c"": 72.3}"
+49,2026-10-29T17:32:55.579,642.193,thermal_state,,,hot,,,,,,"{""from_state"": ""warm"", ""temp_c"": 77.5}"
+50,2026-10-29T17:32:57.491,644.105,watermark_check,currency,10222.0,timeout,1000_taka,,timeout,,,"{""press_event"": 46, ""frames"": 18, ""rejected"": {""blurry"": 7, ""no_note"": 11}, ""condition"": ""guided""}"
+51,2026-10-29T17:32:58.587,645.201,thermal_state,,,warm,,,,,,"{""from_state"": ""hot"", ""temp_c"": 74.0}"
+52,2026-10-29T17:33:03.430,650.044,action_press,currency,,,,,,,,
+53,2026-10-29T17:33:04.123,650.738,result,currency,693.4,এক হাজার টাকার নোট। আসল কিনা হাতে যাচাই করুন,1000_taka,0.8329,check_by_hand,0.8622,,"{""press_event"": 52, ""press_to_result_ms"": 693.6, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+54,2026-10-29T17:33:08.647,655.261,thermal_state,,,hot,,,,,,"{""from_state"": ""warm"", ""temp_c"": 77.3}"
+55,2026-10-29T17:33:14.425,661.039,watermark_check,currency,10301.0,timeout,1000_taka,,timeout,,,"{""press_event"": 52, ""frames"": 19, ""rejected"": {""blurry"": 7, ""no_note"": 12}, ""condition"": ""guided""}"
+56,2026-10-29T17:33:15.703,662.318,thermal_state,,,warm,,,,,,"{""from_state"": ""hot"", ""temp_c"": 75.4}"
+57,2026-10-29T17:33:24.736,671.35,thermal_state,,,normal,,,,,,"{""from_state"": ""warm"", ""temp_c"": 70.2}"
+58,2026-10-29T17:34:01.763,708.377,action_press,currency,,,,,,,,
+59,2026-10-29T17:34:02.147,708.762,thermal_state,,,warm,,,,,,"{""from_state"": ""normal"", ""temp_c"": 72.2}"
+60,2026-10-29T17:34:02.496,709.111,result,currency,733.2,নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।,10_taka,0.5768,unknown,0.5,,"{""press_event"": 58, ""press_to_result_ms"": 733.8, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+61,2026-10-29T17:34:07.168,713.783,thermal_state,,,normal,,,,,,"{""from_state"": ""warm"", ""temp_c"": 70.1}"
+62,2026-10-29T17:34:22.906,729.521,session_end,,,,,,,,,

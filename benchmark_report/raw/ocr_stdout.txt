@@ -1,20 +1,31 @@
+/home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/ao/nn/quantized/dynamic/modules/rnn.py:162: UserWarning: torch.quantize_per_tensor, torch.quantize_per_channel and other quantized tensor creation functions that produce tensors with dtype torch.quint8, torch.qint8, and torch.qint32 are deprecated and will be removed in a future PyTorch release. Please see https://github.com/pytorch/pytorch/issues/184982 for more information. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/quantized/Quantizer.cpp:111.)
+  w_ih = torch.quantize_per_tensor(
+/home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
   super().__init__(loader)
-sign_en_3_lines        plain total  18.25 s  detect 14.48 s  recognise  3.70 s  first line -  CER 0.0  (4 runs, 83.15 C)
+sign_en_3_lines        plain total   6.41 s  detect  3.20 s  recognise  3.38 s  first line -  CER 0.0  (5 runs, 68.85 C)
+/home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
   super().__init__(loader)
-sign_en_3_lines        app   total  34.01 s  detect 30.13 s  recognise  3.95 s  first line -  CER 0.0  (3 runs, 83.15 C)
+sign_en_3_lines        app   total   6.45 s  detect  3.10 s  recognise  3.38 s  first line -  CER 0.0  (5 runs, 71.05 C)
+/home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
   super().__init__(loader)
-sign_bn_1_line         plain total  17.46 s  detect 16.24 s  recognise  1.21 s  first line -  CER 0.0  (4 runs, 84.25 C)
+sign_bn_1_line         plain total   3.55 s  detect  2.77 s  recognise  0.75 s  first line -  CER 0.0  (5 runs, 73.8 C)
+/home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
   super().__init__(loader)
-sign_bn_1_line         app   total  35.40 s  detect 32.97 s  recognise  1.02 s  first line -  CER 0.0  (3 runs, 84.8 C)
+sign_bn_1_line         app   total   3.42 s  detect  2.73 s  recognise  0.68 s  first line -  CER 0.0  (5 runs, 74.35 C)
+/home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
   super().__init__(loader)
-sign_bn_3_lines        plain total  16.56 s  detect 13.36 s  recognise  3.19 s  first line -  CER 0.0  (4 runs, 83.7 C)
+sign_bn_3_lines        plain total   5.17 s  detect  2.82 s  recognise  2.30 s  first line -  CER 0.0  (5 runs, 74.35 C)
+/home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
   super().__init__(loader)
-sign_bn_3_lines        app   total  38.55 s  detect 35.07 s  recognise  3.48 s  first line -  CER 0.0  (3 runs, 85.35 C)
+sign_bn_3_lines        app   total   5.05 s  detect  2.78 s  recognise  2.26 s  first line -  CER 0.0  (5 runs, 76.0 C)
+/home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
   super().__init__(loader)
-label_mixed_6_lines    app   total  21.79 s  detect 13.33 s  recognise  8.61 s  first line 15.07  CER 0.0101  (3 runs, 84.25 C)
+label_mixed_6_lines    app   total  10.25 s  detect  2.80 s  recognise  7.45 s  first line 4.28  CER 0.0  (5 runs, 74.9 C)
+/home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
   super().__init__(loader)
-page_12_lines_640      app   total  36.48 s  detect 14.22 s  recognise 22.34 s  first line 16.42  CER 0.0  (3 runs, 84.25 C)
+page_12_lines_640      app   total  15.57 s  detect  2.85 s  recognise 12.66 s  first line 4.22  CER 0.0  (4 runs, 76.0 C)
+/home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
   super().__init__(loader)
-page_12_lines_1280     app   total  28.01 s  detect 11.28 s  recognise 16.73 s  first line 13.08  CER 0.0  (3 runs, 84.25 C)
-no_text                app   total  27.52 s  detect 27.34 s  recognise  0.00 s  first line -  CER None  (3 runs, 85.35 C)
-wrote /home/memo/SARA UPDATE/SARA/benchmark_report/raw/ocr_response.json
+page_12_lines_1280     app   total  15.82 s  detect  2.39 s  recognise 13.41 s  first line 3.84  CER 0.0  (4 runs, 75.45 C)
+no_text                app   total   2.76 s  detect  2.74 s  recognise  0.00 s  first line -  CER None  (5 runs, 76.55 C)
+wrote /media/memo/7250-9755/Final SP/benchmark_report/raw/ocr_response.json

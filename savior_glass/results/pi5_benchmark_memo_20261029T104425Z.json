@@ -1,0 +1,187 @@
+{
+  "host": {
+    "hostname": "memo",
+    "device_model": "Raspberry Pi 5 Model B Rev 1.0",
+    "raspberry_pi_5": true,
+    "machine": "aarch64",
+    "os": "Linux-6.18.33+rpt-rpi-2712-aarch64-with-glibc2.41",
+    "python": "3.13.5",
+    "cpu_count": 4,
+    "utc": "2026-10-29T10:39:37.530072+00:00",
+    "torch": "2.14.1+cpu",
+    "torch_threads": 4,
+    "cuda_gpu": null,
+    "ultralytics": "8.4.170",
+    "onnxruntime": "1.30.0",
+    "easyocr": "1.7.2",
+    "cv2": "5.0.0",
+    "cpu_temp_c_start": 47.95,
+    "throttled_start": "0x0",
+    "cpu_temp_c_end": 69.95,
+    "throttled_end": "0x0"
+  },
+  "latency": {
+    "currency_mode_full": {
+      "median_ms": 367.41,
+      "p95_ms": 406.79,
+      "mean_ms": 372.71,
+      "fps_median": 2.72,
+      "iters": 30,
+      "rss_mb_after": 1400.356864,
+      "cpu_temp_c_after": 58.95,
+      "load_ms": 685.4
+    },
+    "taka_yolo_pt": {
+      "median_ms": 436.24,
+      "p95_ms": 451.64,
+      "mean_ms": 439.39,
+      "fps_median": 2.29,
+      "iters": 30,
+      "rss_mb_after": 1410.105344,
+      "cpu_temp_c_after": 61.15,
+      "load_ms": 384.9
+    },
+    "taka_yolo_onnx_fp32": {
+      "median_ms": 422.4,
+      "p95_ms": 447.21,
+      "mean_ms": 428.66,
+      "fps_median": 2.37,
+      "iters": 30,
+      "rss_mb_after": 1556.103168,
+      "cpu_temp_c_after": 66.1,
+      "load_ms": 0.7
+    },
+    "taka_yolo_onnx_int8": {
+      "median_ms": 224.0,
+      "p95_ms": 239.66,
+      "mean_ms": 225.11,
+      "fps_median": 4.46,
+      "iters": 30,
+      "rss_mb_after": 1638.301696,
+      "cpu_temp_c_after": 66.1,
+      "load_ms": 0.5
+    },
+    "watermark_int8_sift": {
+      "median_ms": 322.71,
+      "p95_ms": 327.32,
+      "mean_ms": 321.2,
+      "fps_median": 3.1,
+      "iters": 30,
+      "rss_mb_after": 1646.641152,
+      "cpu_temp_c_after": 57.85,
+      "load_ms": 644.9
+    },
+    "watermark_int8_localizer": {
+      "median_ms": 48.28,
+      "p95_ms": 58.24,
+      "mean_ms": 49.06,
+      "fps_median": 20.71,
+      "iters": 30,
+      "rss_mb_after": 1667.252224,
+      "cpu_temp_c_after": 62.8,
+      "load_ms": 577.8
+    },
+    "jaal_check_qduig": {
+      "median_ms": 34.4,
+      "p95_ms": 45.5,
+      "mean_ms": 36.16,
+      "fps_median": 29.07,
+      "iters": 30,
+      "rss_mb_after": 1667.956736,
+      "cpu_temp_c_after": 60.6,
+      "load_ms": 220.8
+    },
+    "prmvt_1view": {
+      "median_ms": 32.21,
+      "p95_ms": 36.69,
+      "mean_ms": 32.75,
+      "fps_median": 31.05,
+      "iters": 30,
+      "rss_mb_after": 1668.268032,
+      "cpu_temp_c_after": 60.6,
+      "load_ms": 260.8
+    },
+    "prmvt_2view": {
+      "median_ms": 47.37,
+      "p95_ms": 56.95,
+      "mean_ms": 48.32,
+      "fps_median": 21.11,
+      "iters": 30,
+      "rss_mb_after": 1669.726208,
+      "cpu_temp_c_after": 58.95,
+      "load_ms": 265.7
+    },
+    "prmvt_3view": {
+      "median_ms": 53.91,
+      "p95_ms": 67.75,
+      "mean_ms": 56.37,
+      "fps_median": 18.55,
+      "iters": 30,
+      "rss_mb_after": 1670.51264,
+      "cpu_temp_c_after": 60.05,
+      "load_ms": 267.1
+    },
+    "prmvt_4view": {
+      "median_ms": 62.18,
+      "p95_ms": 68.99,
+      "mean_ms": 63.34,
+      "fps_median": 16.08,
+      "iters": 30,
+      "rss_mb_after": 1671.90528,
+      "cpu_temp_c_after": 60.05,
+      "load_ms": 271.4
+    },
+    "prmvt_5view": {
+      "median_ms": 69.65,
+      "p95_ms": 77.38,
+      "mean_ms": 71.55,
+      "fps_median": 14.36,
+      "iters": 30,
+      "rss_mb_after": 1674.264576,
+      "cpu_temp_c_after": 60.05,
+      "load_ms": 296.4
+    },
+    "prmvt_6view": {
+      "median_ms": 77.79,
+      "p95_ms": 92.05,
+      "mean_ms": 79.81,
+      "fps_median": 12.86,
+      "iters": 30,
+      "rss_mb_after": 1667.432448,
+      "cpu_temp_c_after": 59.5,
+      "load_ms": 274.4
+    },
+    "object_mode": {
+      "median_ms": 447.9,
+      "p95_ms": 484.72,
+      "mean_ms": 452.21,
+      "fps_median": 2.23,
+      "iters": 30,
+      "rss_mb_after": 1670.643712,
+      "cpu_temp_c_after": 64.45,
+      "load_ms": 902.9
+    },
+    "ocr_mode": {
+      "median_ms": 5106.28,
+      "p95_ms": 5325.85,
+      "mean_ms": 5120.99,
+      "fps_median": 0.2,
+      "iters": 30,
+      "rss_mb_after": 2412.199936,
+      "cpu_temp_c_after": 74.35,
+      "load_ms": 14057.4
+    },
+    "emotion": {
+      "median_ms": 47.42,
+      "p95_ms": 47.93,
+      "mean_ms": 47.41,
+      "fps_median": 21.09,
+      "iters": 30,
+      "rss_mb_after": 2412.920832,
+      "cpu_temp_c_after": 69.95,
+      "load_ms": 3463.3
+    }
+  },
+  "skipped": {},
+  "peak_rss_mb": 2412.920832
+}

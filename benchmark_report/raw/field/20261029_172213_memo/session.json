@@ -1,0 +1,24 @@
+{
+ "start": "2026-10-29T17:22:13",
+ "host": "memo",
+ "machine": "aarch64",
+ "python": "3.13.5",
+ "device_model": "Raspberry Pi 5 Model B Rev 1.0\u0000",
+ "settings": {
+  "OCR_PIPELINE": "v2",
+  "OCR_CANVAS_SIZE": 2560,
+  "OCR_V2_MIN_CONF": 0.1,
+  "CURRENCY_ANNOUNCE_CONF": 0.8,
+  "JAAL_SAFE_POLICY_ENABLED": true,
+  "JAAL_SAFE_TAU": 0.9995918869972229,
+  "WATERMARK_CHECK_ENABLED": true,
+  "CAPTURE_GUIDE_ENABLED": true,
+  "STUDY_CONDITION": "guided",
+  "ESPEAK_SPEED": 135,
+  "ON_RASPBERRY_PI_5": true
+ },
+ "end": "2026-10-29T17:34:22",
+ "events_logged": 62,
+ "events_dropped": 0,
+ "frames_saved": 0
+}

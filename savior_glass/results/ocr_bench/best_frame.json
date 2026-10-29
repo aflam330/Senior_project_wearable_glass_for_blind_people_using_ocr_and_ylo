@@ -1,0 +1,45 @@
+{
+ "set": "ocr_bench val, seed 0",
+ "images": 144,
+ "burst": 8,
+ "press_shakier": {
+  "cer_press_frame": 0.5036,
+  "cer_picked": 0.0347,
+  "cer_least_blur": 0.0343,
+  "picked_is_least_blur": 113,
+  "by_cond": {
+   "clean": {
+    "press": 0.5615,
+    "picked": 0.0043
+   },
+   "wild": {
+    "press": 0.5489,
+    "picked": 0.0061
+   },
+   "scene": {
+    "press": 0.4003,
+    "picked": 0.0938
+   }
+  }
+ },
+ "same_shake": {
+  "cer_press_frame": 0.2803,
+  "cer_picked": 0.0376,
+  "cer_least_blur": 0.0357,
+  "picked_is_least_blur": 114,
+  "by_cond": {
+   "clean": {
+    "press": 0.3287,
+    "picked": 0.0087
+   },
+   "wild": {
+    "press": 0.2996,
+    "picked": 0.0115
+   },
+   "scene": {
+    "press": 0.2125,
+    "picked": 0.0926
+   }
+  }
+ }
+}

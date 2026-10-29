@@ -1,14 +1,16 @@
-Loading /home/memo/SARA UPDATE/SARA/realtime_bangla_taka_detection/models/best_int8.onnx for ONNX Runtime inference...
+Loading /media/memo/7250-9755/Final SP/realtime_bangla_taka_detection/models/best_handheld_int8.onnx for ONNX Runtime inference...
 Using ONNX Runtime 1.30.0 with CPUExecutionProvider
+2026-10-29 17:08:52 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Final SP/savior_glass/.lgd-nfy0, No such file or directory
+2026-10-29 17:08:53 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Final SP/savior_glass/.lgd-nfy0, No such file or directory
 {
  "host": "memo",
  "raspberry_pi_5": true,
  "python": "3.13.5",
  "watermark_check": true,
- "activate_first_ms": 2125.4,
- "warm_up_ms": 1530.4,
- "first_check_ms": 477.8,
- "steady_check_ms": 428.6,
+ "activate_first_ms": 3061.0,
+ "warm_up_ms": 2323.9,
+ "first_check_ms": 664.0,
+ "steady_check_ms": 482.3,
  "activate_again_ms": 0.0
 }
 [research_results] not recorded: 

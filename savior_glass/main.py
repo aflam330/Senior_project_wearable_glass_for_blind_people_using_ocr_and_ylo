@@ -313,10 +313,17 @@ class SmartGlass:
                             while not working.wait(config.OCR_PROGRESS_TICK_S):
                                 self._tts.tick()
                         threading.Thread(target=_ticks, daemon=True, name="ocr-progress").start()
+                src = frame
+                # text: read the sharpest frame of the next OCR_BEST_FRAME_S seconds, not the shaken press frame
+                if mode_idx == config.MODE_OCR and getattr(config, "OCR_BEST_FRAME_S", 0) > 0:
+                    from frame_pick import best_frame
+                    picked, pick = best_frame(frame, self._camera.get_frame, config.OCR_BEST_FRAME_S)
+                    src = frame if picked is None else picked
+                    logger.info("OCR best frame: %s", pick)
                 t0 = time.perf_counter()
                 try:
                     with self._model_lock:
-                        result = mode.process_frame(frame)
+                        result = mode.process_frame(src)
                 finally:
                     working.set()
                 infer_ms = (time.perf_counter() - t0) * 1000

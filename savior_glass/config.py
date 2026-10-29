@@ -380,6 +380,11 @@ PREVIEW_LIVE_BOXES = os.environ.get("PREVIEW_LIVE_BOXES", "1") == "1"
 PREVIEW_LIVE_INTERVAL_S = float(os.environ.get("PREVIEW_LIVE_INTERVAL_S", "1.5" if ON_RASPBERRY_PI_5 else "0.7"))
 PREVIEW_CAPTURE_BOX_S = 15.0   # how long the boxes of one capture (text, online picture) stay on screen
 OCR_SPEAK_ON_CAPTURE = os.environ.get("OCR_SPEAK_ON_CAPTURE", "1") == "1"
+# Steadier reading (frame_pick.py, since 29 October 2026): after ACTION in text mode, look for this many seconds and read
+# the sharpest frame. Validation phrases with simulated hand shake, 144 images (scripts/eval_best_frame.py,
+# results/ocr_bench/best_frame.json): press frame shakier than the rest, CER 50.4 % -> 3.5 %; every frame shaken alike,
+# 28.0 % -> 3.8 % (least blurred frame 3.4 / 3.6 %). Real camera shake not measured. 0 turns it off.
+OCR_BEST_FRAME_S = float(os.environ.get("OCR_BEST_FRAME_S", "1.0"))
 OCR_CONFIDENCE      = 0.4    # EasyOCR minimum confidence
 OBJECT_CONFIDENCE   = 0.50   # YOLO minimum confidence
 # Stricter minimum for animals only. In dim indoor tests (2026-10-06) the COCO model called dark clutter

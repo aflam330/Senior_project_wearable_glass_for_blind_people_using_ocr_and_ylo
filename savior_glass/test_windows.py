@@ -714,6 +714,11 @@ class SmartGlassWin:
             on = self._adaptive_on
         self._tts.speak(text, emotion=emo, adaptive=on)
 
+    def _latest_frame(self):
+        """A copy of the newest camera frame (more frames for the UV check)."""
+        with self._frame_lock:
+            return self._frame.copy() if self._frame is not None else None
+
     def _update_pose_from_currency(self, frame):
         mode = self._modes[MODE_CURRENCY]
         bbox = getattr(mode, "last_bbox", None)
@@ -766,7 +771,20 @@ class SmartGlassWin:
                         frame = self._frame.copy() if self._frame is not None else None
                     if frame is not None and not self._detecting:
                         try:
-                            hits = self._modes[MODE_CURRENCY].detect_live(frame)
+                            import config
+                            from modes.currency_mode import is_uv_frame
+                            cur = self._modes[MODE_CURRENCY]
+                            # the note is under the UV lamp: speak the UV fibre check once, as a press would (main.py)
+                            if getattr(config, "UV_FRAME_CHECK_ENABLED", False) and is_uv_frame(frame):
+                                if self._currency_spoken != "uv":
+                                    self._currency_spoken = "uv"
+                                    cur.frame_source = self._latest_frame
+                                    result = cur.process_frame(frame)
+                                    self._root.after(0, self._show_result, result)
+                                    self._speak(result)
+                                time.sleep(0.35)
+                                continue
+                            hits = cur.detect_live(frame)
                             with self._emo_lock:
                                 self._currency_hits = hits
                             if hits:
@@ -837,7 +855,16 @@ class SmartGlassWin:
 
         def _infer():
             try:
-                result = self._modes[mode].process_frame(frame)
+                src = frame
+                # text: read the sharpest frame of the next OCR_BEST_FRAME_S seconds, as main.py does
+                import config
+                secs = float(getattr(config, "OCR_BEST_FRAME_S", 0))
+                if mode == MODE_OCR and secs > 0:
+                    from frame_pick import best_frame
+                    picked, pick = best_frame(frame, self._latest_frame, secs)
+                    src = frame if picked is None else picked
+                    logger.info("OCR best frame: %s", pick)
+                result = self._modes[mode].process_frame(src)
                 msg    = result if result else "Nothing detected."
                 if mode == MODE_CURRENCY:
                     self._update_pose_from_currency(frame)

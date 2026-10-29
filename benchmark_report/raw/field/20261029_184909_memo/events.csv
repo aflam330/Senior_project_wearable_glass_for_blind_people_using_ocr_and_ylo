@@ -1,0 +1,38 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-10-29T18:49:09.856,0.003,session_start,ocr,,,,,,,,
+2,2026-10-29T18:51:14.533,124.68,action_press,ocr,,,,,,,,
+3,2026-10-29T18:51:29.992,140.138,result,ocr,15457.5,Done. Press READ to hear it again.,,,,,en,"{""press_event"": 2, ""press_to_result_ms"": 15458.3, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""Humpty Dumpty Suton wall Humpty Dumpty hod a great toll AlI the king s horses and Jll the king s men couldn t put Humpty together againi""}"
+4,2026-10-29T18:51:54.038,164.185,action_press,ocr,,,,,,,,
+5,2026-10-29T18:52:03.487,173.634,thermal_state,,,warm,,,,,,"{""from_state"": ""normal"", ""temp_c"": 72.1}"
+6,2026-10-29T18:52:07.613,177.76,result,ocr,13574.5,পড়া শেষ। আবার শুনতে রিড বাটন চাপুন,,,,,bn,"{""press_event"": 4, ""press_to_result_ms"": 13575.1, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""আয় ছেলেরা আয় মেয়েরা তুসিতে যাই. ফুলের মালা গলায় দিয়ে মামার বাড়ি যাই ঝড়ের দিনে মামার দেশে আম কুড়াতে সুখ পাকা জামের মধুর রসে""}"
+7,2026-10-29T18:52:09.512,179.658,thermal_state,,,normal,,,,,,"{""from_state"": ""warm"", ""temp_c"": 69.7}"
+8,2026-10-29T18:52:30.381,200.528,read_press,ocr,,পড়া হচ্ছে: আয় ছেলেরা আয় মেয়েরা তুসিতে যাই. ফুলের মালা গলায় দিয়ে মামার বাড়ি যাই ঝড়ের দিনে মামার দেশে আম কুড়াতে সুখ পাকা জামের মধুর রসে,,,,,,
+9,2026-10-29T18:52:46.846,216.993,mode_switch,object,,object,,,,,,"{""from_mode"": ""ocr""}"
+10,2026-10-29T18:52:52.106,222.252,object_announce,object,807.5,সামনে আছে: মানুষ,,,,,,
+11,2026-10-29T18:52:54.373,224.52,object_announce,object,756.7,সামনে আছে: মোবাইল ফোন,,,,,,
+12,2026-10-29T18:52:56.686,226.833,object_announce,object,806.6,সামনে আছে: মানুষ,,,,,,
+13,2026-10-29T18:53:01.309,231.456,object_announce,object,808.9,সামনে আছে: মানুষ,,,,,,
+14,2026-10-29T18:53:02.052,232.199,mode_switch,currency,,currency,,,,,,"{""from_mode"": ""object""}"
+15,2026-10-29T18:53:21.045,251.192,action_press,currency,,,,,,,,
+16,2026-10-29T18:53:21.698,251.845,result,currency,652.5,নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।,1000_taka,0.7855,check_by_hand,0.5119,,"{""press_event"": 15, ""press_to_result_ms"": 652.9, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+17,2026-10-29T18:53:26.946,257.092,thermal_state,,,warm,,,,,,"{""from_state"": ""normal"", ""temp_c"": 73.1}"
+18,2026-10-29T18:53:31.316,261.463,action_ignored_busy,currency,,,,,,,,
+19,2026-10-29T18:53:32.061,262.207,watermark_check,currency,10343.0,timeout,1000_taka,,timeout,,,"{""press_event"": 15, ""frames"": 18, ""rejected"": {""blurry"": 13, ""no_note"": 5}, ""condition"": ""guided""}"
+20,2026-10-29T18:53:34.976,265.123,thermal_state,,,normal,,,,,,"{""from_state"": ""warm"", ""temp_c"": 69.1}"
+21,2026-10-29T18:53:40.966,271.112,action_press,currency,,,,,,,,
+22,2026-10-29T18:53:41.622,271.769,result,currency,656.4,এক হাজার টাকার নোট। আসল কিনা হাতে যাচাই করুন,1000_taka,0.8366,check_by_hand,0.9713,,"{""press_event"": 21, ""press_to_result_ms"": 656.9, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+23,2026-10-29T18:53:46.032,276.179,thermal_state,,,warm,,,,,,"{""from_state"": ""normal"", ""temp_c"": 72.6}"
+24,2026-10-29T18:53:52.328,282.475,watermark_check,currency,10702.0,timeout,1000_taka,,timeout,,,"{""press_event"": 21, ""frames"": 20, ""rejected"": {""blurry"": 8, ""no_note"": 12}, ""condition"": ""guided""}"
+25,2026-10-29T18:53:57.122,287.269,thermal_state,,,normal,,,,,,"{""from_state"": ""warm"", ""temp_c"": 70.5}"
+26,2026-10-29T18:54:05.448,295.594,action_press,currency,,,,,,,,
+27,2026-10-29T18:54:06.097,296.244,result,currency,649.2,নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।,1000_taka,0.5052,check_by_hand,0.564,,"{""press_event"": 26, ""press_to_result_ms"": 649.6, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+28,2026-10-29T18:54:08.238,298.385,thermal_state,,,warm,,,,,,"{""from_state"": ""normal"", ""temp_c"": 72.2}"
+29,2026-10-29T18:54:16.110,306.257,watermark_check,currency,10013.0,timeout,1000_taka,,timeout,,,"{""press_event"": 26, ""frames"": 20, ""rejected"": {""blurry"": 16, ""no_note"": 4}, ""condition"": ""guided""}"
+30,2026-10-29T18:54:20.319,310.466,thermal_state,,,normal,,,,,,"{""from_state"": ""warm"", ""temp_c"": 70.3}"
+31,2026-10-29T18:54:39.889,330.036,action_press,currency,,,,,,,,
+32,2026-10-29T18:54:40.397,330.543,result,currency,503.6,নোট সনাক্ত করা যায়নি। ক্যামেরার সামনে ধরুন।,none,,,,,"{""press_event"": 31, ""press_to_result_ms"": 507.2, ""waited_for_load_ms"": 0.0}"
+33,2026-10-29T18:54:53.010,343.156,action_press,currency,,,,,,,,
+34,2026-10-29T18:54:53.509,343.656,result,currency,499.4,নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।,10_taka,0.4138,unknown,0.5,,"{""press_event"": 33, ""press_to_result_ms"": 499.7, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+35,2026-10-29T18:55:07.790,357.937,action_press,currency,,,,,,,,
+36,2026-10-29T18:55:08.541,358.688,result,currency,749.2,নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।,200_taka,0.7456,unknown,0.5,,"{""press_event"": 35, ""press_to_result_ms"": 750.5, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+37,2026-10-29T18:55:25.875,376.022,session_end,,,,,,,,,

@@ -3,9 +3,9 @@
  "raspberry_pi_5": true,
  "python": "3.13.5",
  "watermark_check": true,
- "activate_first_ms": 2125.4,
- "warm_up_ms": 1530.4,
- "first_check_ms": 477.8,
- "steady_check_ms": 428.6,
+ "activate_first_ms": 3061.0,
+ "warm_up_ms": 2323.9,
+ "first_check_ms": 664.0,
+ "steady_check_ms": 482.3,
  "activate_again_ms": 0.0
 }
