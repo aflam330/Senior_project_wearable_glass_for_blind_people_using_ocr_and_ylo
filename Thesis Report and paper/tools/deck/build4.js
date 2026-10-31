@@ -684,6 +684,54 @@ const cite = (...keys) => "[" + keys.map((k) => {
       color: HEX.accent2, isTextBox: true, margin: 12, valign: "middle", objectName: "UV caveat" });
   notes(s, "Under a UV lamp, genuine 200, 500 and 1000 Taka notes show glowing security fibres. Our check removes the lamp's own blue light and counts thin glowing marks. It accepts 85.6 percent of real genuine photos and rejects 88.6 percent of simulated fibre-free sheets. Currency mode runs it whenever the picture is taken under the lamp, which it recognises from the colour: all 47 UV test photos were recognised and none of 2,282 ordinary photos were mistaken for one. It then says likely genuine or check by hand, never counterfeit, because no counterfeit note has been photographed under UV and it has not been tested through the glass camera.");
 
+  // ================================================================ 17b. object detection
+  pres.addSection({ title: "Objects and emotion" });
+  s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Objects and emotion" });
+  s.addText("Object Detection", { placeholder: "title" });
+  circleIcon(s, "cube", 0.6, 1.45, 0.8, HEX.accent1, "Objects");
+  s.addText("How it works", { x: 1.6, y: 1.6, w: 4.5, h: 0.5, fontFace: "Arial", fontSize: 20, bold: true, color: C.text2, isTextBox: true, margin: 0, objectName: "Objects heading" });
+  s.addText([
+    { text: "Every 1.5 s a camera frame goes to YOLOv8s " + cite("yolo", "coco") + ": 80 everyday object types", options: { bullet: true, breakLine: true } },
+    { text: "Only new objects are spoken; the same object is not repeated within 4 s", options: { bullet: true, breakLine: true } },
+    { text: "ACTION announces at once", options: { bullet: true, breakLine: true } },
+    { text: "Animals need 65% confidence: in dim rooms, clutter was called \"cat\" or \"dog\"", options: { bullet: true } },
+  ], { x: 0.6, y: 2.4, w: 6.0, h: 2.3, fontSize: 16, color: C.text1, isTextBox: true, margin: 0, valign: "top", paraSpaceAfter: 8, objectName: "Objects list" });
+  bubble(s, "সামনে আছে: মানুষ, মোবাইল ফোন", 0.6, 4.85, 3.5, 0.75, HEX.accent1, "FFFFFF", "Objects example", BN);
+  s.addText("spoken by the glass in a test session", { x: 0.6, y: 5.7, w: 3.5, h: 0.3, fontSize: 12, italic: true, color: C.accent5, isTextBox: true, margin: 0, objectName: "Objects example note" });
+  stat(s, 4.45, 4.75, 2.3, "462 ms", "one scan on the Raspberry Pi 5", "Objects Pi");
+  s.addChart(pres.charts.BAR, [{ name: "mAP@0.5", labels: ["YOLOv8n", "YOLOv8s (used)", "YOLOv8m"], values: [0.453, 0.551, 0.607] }],
+    { x: 7.0, y: 1.45, w: 5.7, h: 4.3, barDir: "col", barGapWidthPct: 60, chartColors: [HEX.accent5, HEX.accent1, HEX.accent5], showValue: true,
+      dataLabelPosition: "outEnd", dataLabelFormatCode: "0.000", valAxisMinVal: 0, valAxisMaxVal: 0.7, valAxisLabelFormatCode: "0.0", showLegend: false,
+      showTitle: true, title: "mAP@0.5 on all 5,000 COCO validation photos", ...chartFrame, objectName: "Objects chart" });
+  s.addText("YOLOv8s balances accuracy and speed on the Pi. Through the glass's own path it scores 0.521.",
+    { x: 7.0, y: 5.85, w: 5.7, h: 0.6, fontSize: 13, italic: true, color: C.accent2, isTextBox: true, margin: 0, valign: "top", objectName: "Objects note" });
+  sources(s, `Detector ${cite("yolo")} Ultralytics YOLOv8, trained on ${cite("coco")} COCO. Results: savior_glass/results/object_coco_val2017_full.json, object_shrink_vs_full.json; Pi time from benchmark_report/.`);
+  notes(s, "The object mode looks at a camera frame every one and a half seconds and runs YOLOv8s, trained on the 80 everyday object types of COCO. It speaks only objects it has not just named, and does not repeat the same object within four seconds; the ACTION button announces at once. Animals need a higher confidence, because in dim rooms clutter was called a cat or a dog. On all 5,000 COCO validation photos YOLOv8s scores 0.551 mAP at 0.5, between the smaller YOLOv8n and the larger YOLOv8m; through the glass's own path, with the camera frame as it is, it scores 0.521. One scan takes 462 milliseconds on the Raspberry Pi 5.");
+
+  // ================================================================ 17c. facial expression
+  s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Objects and emotion" });
+  s.addText("Facial Expression Recognition", { placeholder: "title" });
+  circleIcon(s, "smile", 0.6, 1.45, 0.8, HEX.accent1, "Emotion");
+  s.addText("How it works", { x: 1.6, y: 1.6, w: 4.5, h: 0.5, fontFace: "Arial", fontSize: 20, bold: true, color: C.text2, isTextBox: true, margin: 0, objectName: "Emotion heading" });
+  s.addText([
+    { text: "Finds the largest face in the picture", options: { bullet: true, breakLine: true } },
+    { text: "EfficientNet-V2-S trained on RAF-DB " + cite("rafdb") + " (12,271 faces), blended 3 : 1 with FER+", options: { bullet: true, breakLine: true } },
+    { text: "Speaks one of 7 expressions in Bangla", options: { bullet: true } },
+  ], { x: 0.6, y: 2.4, w: 6.0, h: 1.9, fontSize: 16, color: C.text1, isTextBox: true, margin: 0, valign: "top", paraSpaceAfter: 8, objectName: "Emotion list" });
+  bubble(s, "সামনের মানুষটিকে খুশি দেখাচ্ছে", 0.6, 3.85, 3.7, 0.75, HEX.accent1, "FFFFFF", "Emotion example", BN);
+  s.addText("\"The person in front looks happy\"", { x: 0.6, y: 4.7, w: 3.7, h: 0.3, fontSize: 12, italic: true, color: C.accent5, isTextBox: true, margin: 0, objectName: "Emotion example note" });
+  stat(s, 0.6, 5.1, 3.0, "86.5%", "correct on the RAF-DB test (3,068 faces)", "Emotion accuracy");
+  stat(s, 3.9, 5.1, 2.9, "536 ms", "one answer on the Pi 5, face in view", "Emotion Pi");
+  s.addChart(pres.charts.BAR, [{ name: "Correct", labels: ["Happy", "Sad", "Angry", "Surprise", "Fear", "Disgust", "Neutral"],
+    values: [92.5, 83.9, 80.9, 87.2, 55.4, 58.8, 89.0] }],
+    { x: 7.0, y: 1.45, w: 5.7, h: 4.3, barDir: "col", barGapWidthPct: 45, chartColors: [HEX.accent1], showValue: true, dataLabelPosition: "outEnd",
+      dataLabelFormatCode: "0\"%\"", valAxisMinVal: 0, valAxisMaxVal: 100, valAxisLabelFormatCode: "0\"%\"", showLegend: false,
+      showTitle: true, title: "Correct per expression, RAF-DB official test", ...chartFrame, objectName: "Emotion chart" });
+  s.addText("Fear and disgust are hardest (fewest examples). Measured for the network; the blend on the glass was not tested separately.",
+    { x: 7.0, y: 5.85, w: 5.7, h: 0.6, fontSize: 13, italic: true, color: C.accent2, isTextBox: true, margin: 0, valign: "top", objectName: "Emotion note" });
+  sources(s, `Data ${cite("rafdb")} RAF-DB, official train / test split. Results: savior_glass/results/emotion_rafdb.json; Pi time from benchmark_report/.`);
+  notes(s, "The emotion mode finds the largest face in the picture and classifies its expression with an EfficientNet-V2-S network trained on 12,271 RAF-DB faces, blended three to one with the FER+ model. It then says, for example, the person in front looks happy. On the 3,068 faces of the official RAF-DB test set the network is right 86.5 percent of the time, with a macro F1 of 0.795. Happy, neutral and surprise are recognised best; fear and disgust are hardest, because they have the fewest examples. The blend that the glass uses was not tested separately. One answer takes 536 milliseconds on the Raspberry Pi 5 with a face in view.");
+
   // ================================================================ 18. text reading
   pres.addSection({ title: "Reading and voice" });
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Reading and voice" });
@@ -710,6 +758,37 @@ const cite = (...keys) => "[" + keys.map((k) => {
     { x: 8.95, y: 4.8, w: 3.75, h: 1.3, fontSize: 17, color: C.text1, isTextBox: true, margin: 0, valign: "top", objectName: "Not list" });
   sources(s, `Engine ${cite("easyocr")} EasyOCR with ${cite("craft")} CRAFT; real words from ${cite("mlt")} ICDAR 2019 MLT (1,000 test words). Every choice made on validation data.`);
   notes(s, "On our rendered Bangla and English benchmark the error fell from 9.3 to 2.3 percent. Real street words are much harder: a recogniser fine-tuned on real words and blended with the original weights lowered the error from 39.2 to 28.7 percent for Bangla and from 62.5 to 50.6 percent for Latin script. What helped: reading only the main block of text, tuned detector settings with CLAHE and clean-up rules, and the recogniser fine-tuned on real words and blended fifty-fifty with the original weights. Binarisation, multi-scale reading, Tesseract, TrOCR, PaddleOCR, dictionaries, smaller pictures and a rotation retry did not help. For shaky hands, the glass now watches the camera for one second after a press and reads the sharpest frame; on validation text with simulated shake the error fell from 28.0 to 3.8 percent, and from 50.4 to 3.5 percent when the press itself shook the camera most.");
+
+  // ================================================================ 18b. text-to-speech
+  s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Reading and voice" });
+  s.addText("Text-to-Speech: Spoken Answers", { placeholder: "title" });
+  circleIcon(s, "speak", 0.6, 1.45, 0.8, HEX.accent1, "Speech");
+  s.addText("How the glass speaks", { x: 1.6, y: 1.6, w: 5.0, h: 0.5, fontFace: "Arial", fontSize: 20, bold: true, color: C.text2, isTextBox: true, margin: 0, objectName: "Speech heading" });
+  s.addText([
+    { text: "Every answer becomes one Bangla or English sentence; the language is found per sentence", options: { bullet: true, breakLine: true } },
+    { text: "Piper neural voices " + cite("piper") + ", offline; eSpeak NG " + cite("espeak") + " as a fallback", options: { bullet: true, breakLine: true } },
+    { text: "Each sentence is made in full, then played; the next one is prepared meanwhile, so the sound does not break when the Pi is busy", options: { bullet: true, breakLine: true } },
+    { text: "Sentences stay whole (they used to be cut at every comma and digit)", options: { bullet: true } },
+  ], { x: 0.6, y: 2.4, w: 6.0, h: 2.9, fontSize: 16, color: C.text1, isTextBox: true, margin: 0, valign: "top", paraSpaceAfter: 8, objectName: "Speech list" });
+  stat(s, 0.6, 5.2, 2.9, "14 ms", "to make a short Bangla sentence on the Pi (eSpeak NG)", "Speech Pi");
+  stat(s, 3.7, 5.2, 2.9, "0.2–0.5 s", "for a Piper Bangla sentence (laptop)", "Speech Piper");
+  s.addText("Is the Bangla voice understood?", { x: 7.0, y: 1.5, w: 5.7, h: 0.5, fontFace: "Arial", fontSize: 16, bold: true, color: C.text2, isTextBox: true, margin: 0, objectName: "Listener heading" });
+  const heard = [
+    ["পাঁচশত টাকার নোট সম্ভবত আসল", "পাঁচশত টাকার নোট সম্ভবত আসল", "D9F2E3"],
+    ["ধূমপান নিষেধ", "ধূমপান নিষেধ", "D9F2E3"],
+    ["এক হাজার টাকার নোট", "1000 টাকা নোট", "FFF4D6"],
+    ["কোনো লেখা পাওয়া যায়নি", "কোন লেখা পাওয়া যায়নি", "FFF4D6"],
+    ["সামনে আছে চেয়ার টেবিল", "স্বামী আছে যে টেবিল", "FBE9EB"],
+    ["নোটটি আলোর সামনে ধরুন", "নটি আলু সামনে ধরুন", "FBE9EB"],
+  ];
+  const thd = (t) => ({ text: t, options: { bold: true, color: "FFFFFF", fill: { color: HEX.dk2 }, fontFace: "Arial", fontSize: 13 } });
+  s.addTable([[thd("The glass said"), thd("The listener heard")],
+    ...heard.map(([a, b, col]) => [a, b].map((t) => ({ text: t, options: { fontFace: BN, fontSize: 14, color: HEX.dk1, fill: { color: col } } })))],
+    { x: 7.0, y: 2.05, w: 5.7, colW: [2.85, 2.85], rowH: 0.5, border: { type: "solid", color: "FFFFFF", pt: 1.5 }, valign: "middle", margin: 0.06, objectName: "Listener table" });
+  s.addText("2 exact, 2 small differences, 2 with wrong words. A machine listener, not people.",
+    { x: 7.0, y: 5.65, w: 5.7, h: 0.6, fontSize: 13, italic: true, color: C.accent2, isTextBox: true, margin: 0, valign: "top", objectName: "Listener note" });
+  sources(s, `Voices ${cite("piper", "espeak")}. Results: savior_glass/results/speech_piper_bn_intelligibility.json (Google Web Speech, bn-BD, as the listener); Pi time from benchmark_report/.`);
+  notes(s, "Every answer of the glass becomes one sentence in Bangla or English, and the language is found sentence by sentence. The glass speaks with Piper neural voices, offline, with eSpeak NG as a fallback. Each sentence is made in full and then played, and the next one is prepared while the current one is heard, so the sound no longer breaks when the Pi is busy reading text; sentences also stay whole instead of being cut at every comma and digit. Making a short Bangla sentence takes 14 milliseconds on the Pi with eSpeak NG, and 0.2 to 0.5 seconds with the Piper voice on the laptop. To check whether the Bangla voice can be understood, six sentences were given to an online Bangla speech recogniser: two came back exactly, two with small differences, and two with wrong words. This is a machine listener, not people.");
 
   // ================================================================ 19. voice
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Reading and voice" });
