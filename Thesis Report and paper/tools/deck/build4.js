@@ -541,6 +541,13 @@ const cite = (...keys) => "[" + keys.map((k) => {
     color: "FFFFFF", fontSize: 13, bold: true, align: "center", valign: "middle", isTextBox: true, margin: 0, objectName: "V2 tag" });
   notes(s, "The first version put the board and fan on one temple: heavy on one side and loud by the ear. Version two moves the Raspberry Pi into a ventilated enclosure at the back of the head, keeps the camera and a small UV lamp on the front, puts five buttons along the frame and uses a bone-conduction earphone so the ears stay free for traffic sounds.");
 
+  // ================================================================ 9b. second prototype, labelled parts
+  s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Solution" });
+  s.addText("Second Prototype: Its Parts", { placeholder: "title" });
+  s.addImage({ path: AS + "v2_labelled.jpg", x: 2.33, y: 1.38, w: 8.67, h: 8.67 * 941 / 1672, objectName: "Second prototype, labelled parts" });
+  sources(s, "Photo: our second prototype (team photo, labels added by the team).");
+  notes(s, "This is the second prototype with its parts named. The Raspberry Pi 5 sits in the ventilated enclosure at the back and runs every model. The bone-conduction earphone speaks the answers while the ears stay free. The UV light at the front lights a note for the security-fibre check. The 3D-printed wearable frame carries the camera, and the five control buttons along the temple are MODE, ACTION, READ and volume up and down. A power bank supplies the board through USB-C.");
+
   // ================================================================ 10. Taka detection, synthetic data
   pres.addSection({ title: "Currency" });
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Currency" });
