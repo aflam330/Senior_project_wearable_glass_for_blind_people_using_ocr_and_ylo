@@ -531,19 +531,18 @@ const cite = (...keys) => "[" + keys.map((k) => {
   photo(s, AS + "test_10.jpg", 0.6, 1.45, 2.84, 4.62, "Prototype version 1");
   s.addText([{ text: "Version 1", options: { bold: true, fontSize: 16, color: HEX.dk2, breakLine: true } }, { text: "Board on one temple", options: { fontSize: 13, color: HEX.accent5 } }],
     { x: 0.6, y: 6.12, w: 2.84, h: 0.6, isTextBox: true, margin: 0, valign: "top", objectName: "V1 caption" });
-  const v2 = [["1_20.jpg", "Front", "Camera + UV lamp"], ["v2_side_portrait.jpg", "Side", "5 buttons, bone-conduction earphone"], ["1_23.jpg", "Rear", "Pi 5 in a ventilated case"]];
-  v2.forEach(([f, h, cap], i) => {
-    photo(s, AS + f, 3.69 + i * 3.09, 1.45, 2.84, 4.62, h + ": " + cap);
-    s.addText([{ text: h, options: { bold: true, fontSize: 16, color: HEX.dk2, breakLine: true } }, { text: cap, options: { fontSize: 13, color: HEX.accent5 } }],
-      { x: 3.69 + i * 3.09, y: 6.12, w: 2.84, h: 0.6, isTextBox: true, margin: 0, valign: "top", objectName: "V2 caption " + (i + 1) });
-  });
+  // version 2: one collage of three team photos (make_v2_collage.py): front with the UV lights on, front, rear enclosure
+  s.addImage({ path: AS + "v2_collage3.jpg", x: 3.69, y: 1.45, w: 9.02, h: 4.62, objectName: "Prototype version 2 collage" });
+  s.addText([{ text: "Version 2", options: { bold: true, fontSize: 16, color: HEX.dk2, breakLine: true } },
+    { text: "Camera and UV lights at the front, 5 buttons on the temple, Pi 5 in a ventilated case at the back", options: { fontSize: 13, color: HEX.accent5 } }],
+    { x: 3.69, y: 6.12, w: 9.02, h: 0.6, isTextBox: true, margin: 0, valign: "top", objectName: "V2 caption" });
   s.addText("Version 2", { shape: pres.shapes.ROUNDED_RECTANGLE, x: 3.84, y: 1.6, w: 1.2, h: 0.4, rectRadius: 0.08, fill: { color: HEX.accent1 }, line: { color: HEX.accent1 },
     color: "FFFFFF", fontSize: 13, bold: true, align: "center", valign: "middle", isTextBox: true, margin: 0, objectName: "V2 tag" });
   notes(s, "The first version put the board and fan on one temple: heavy on one side and loud by the ear. Version two moves the Raspberry Pi into a ventilated enclosure at the back of the head, keeps the camera and a small UV lamp on the front, puts five buttons along the frame and uses a bone-conduction earphone so the ears stay free for traffic sounds.");
 
   // ================================================================ 9b. second prototype, labelled parts
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Solution" });
-  s.addText("Second Prototype: Its Parts", { placeholder: "title" });
+  s.addText("Component Breakdown of the Device", { placeholder: "title" });
   s.addImage({ path: AS + "v2_labelled.jpg", x: 2.33, y: 1.38, w: 8.67, h: 8.67 * 941 / 1672, objectName: "Second prototype, labelled parts" });
   sources(s, "Photo: our second prototype (team photo, labels added by the team).");
   notes(s, "This is the second prototype with its parts named. The Raspberry Pi 5 sits in the ventilated enclosure at the back and runs every model. The bone-conduction earphone speaks the answers while the ears stay free. The UV light at the front lights a note for the security-fibre check. The 3D-printed wearable frame carries the camera, and the five control buttons along the temple are MODE, ACTION, READ and volume up and down. A power bank supplies the board through USB-C.");
