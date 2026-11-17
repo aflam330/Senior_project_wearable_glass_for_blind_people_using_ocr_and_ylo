@@ -42,6 +42,9 @@ CAMERA_INDEX  = int(os.environ.get("CAMERA_INDEX", "0"))
 CAMERA_WIDTH  = int(os.environ.get("CAMERA_WIDTH", "640"))
 CAMERA_HEIGHT = int(os.environ.get("CAMERA_HEIGHT", "480"))
 CAMERA_FPS    = 30
+# The C270 sits upside down on the glass: every frame is turned 180 degrees there. Off on Windows (laptop webcam);
+# CAMERA_ROTATE_180=0 or 1 overrides.
+CAMERA_ROTATE_180 = os.environ.get("CAMERA_ROTATE_180", "0" if os.name == "nt" else "1") == "1"
 FRAME_BUFFER_SIZE = 2  # deque maxlen — keep only the freshest frames
 
 # ---------------------------------------------------------------------------

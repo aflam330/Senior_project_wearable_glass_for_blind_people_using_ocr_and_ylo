@@ -64,6 +64,10 @@ def main() -> None:
         PYTHONIOENCODING="utf-8",
         PYTHONPATH=os.pathsep.join([str(ROOT), os.environ.get("PYTHONPATH", "")]).rstrip(os.pathsep),
     )
+    # Pi: the voice-command listener would hold the only microphone (a raw ALSA device opens once), and the study's
+    # recorder then fails with PaErrorCode -9985 "Device unavailable". The answers need the microphone.
+    if sys.platform != "win32":
+        env["VOICE_COMMANDS"] = "0"
     code = (
         "import sys; sys.path.insert(0, r'%s'); "
         "import config; " % str(ROOT)

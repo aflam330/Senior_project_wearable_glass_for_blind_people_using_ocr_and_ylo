@@ -114,10 +114,23 @@ class VoiceStudy:
         time.sleep(0.25)
 
     def _beep(self) -> None:
+        """"Speak now". On the Pi (no winsound) the same 880 Hz tone goes out through the glass's own player, which puts
+        a short silence first so a Bluetooth earphone is awake for it."""
         try:
             import winsound
             winsound.Beep(880, 180)
-        except Exception:  # noqa: BLE001  (not Windows: no beep)
+            return
+        except ImportError:
+            pass
+        except Exception:  # noqa: BLE001
+            time.sleep(0.1)
+            return
+        try:
+            t = np.arange(int(22050 * 0.18)) / 22050
+            tone = 0.35 * np.sin(2 * np.pi * 880 * t) * np.minimum(1.0, np.minimum(t, 0.18 - t) / 0.01)
+            self.app._tts._play((tone * 32767).astype(np.int16).tobytes(), 22050)
+            time.sleep(0.3)                     # Bluetooth plays late: let the beep end before the room noise is measured
+        except Exception:  # noqa: BLE001
             time.sleep(0.1)
 
     def _mic(self):

@@ -15,7 +15,7 @@ set -eu
 HERE="$(CDPATH= cd -- "$(dirname "$0")" && pwd)"
 
 echo "[1/3] System packages"
-PKGS="python3-venv python3-dev python3-picamera2 python3-lgpio espeak-ng espeak-ng-data alsa-utils libportaudio2 libopenblas-dev"
+PKGS="python3-venv python3-dev python3-picamera2 python3-lgpio espeak-ng espeak-ng-data alsa-utils libportaudio2 libopenblas-dev flac"
 if sudo -n true 2>/dev/null || [ -t 0 ]; then
     sudo apt update -qq && sudo apt install -y $PKGS || echo "   apt failed; continuing with what is installed"
 else

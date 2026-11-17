@@ -655,6 +655,8 @@ class CameraManager:
             else:
                 ret, frame = self._cap.read()
             if ret:
+                if config.CAMERA_ROTATE_180:
+                    frame = cv2.rotate(frame, cv2.ROTATE_180)
                 with self._lock:
                     self._buffer.append(frame)
             else:
