@@ -103,8 +103,14 @@ class CurrencyMode(BaseMode):
         self.uv_answered = False   # the last press was answered by the UV check (main.py skips the later checks)
         self.frame_source = None   # set by main.py: more frames for the UV check after the press
         self.verdict_enabled = bool(getattr(config, "JAAL_VERDICT_ENABLED", False))
+        self.bd_auth_enabled = bool(getattr(config, "BD_AUTH_ENABLED", False))
         # policy E: "likely genuine" or "check by hand", never "counterfeit" (see config)
-        self.safe_policy = (not self.verdict_enabled) and bool(getattr(config, "JAAL_SAFE_POLICY_ENABLED", False))
+        # BD auth takes priority for 200/500/1000 when weights load.
+        self.safe_policy = (
+            (not self.verdict_enabled)
+            and (not self.bd_auth_enabled)
+            and bool(getattr(config, "JAAL_SAFE_POLICY_ENABLED", False))
+        )
 
     # ------------------------------------------------------------------
     # Lifecycle
@@ -117,7 +123,7 @@ class CurrencyMode(BaseMode):
             self._load_yolo()
         if self._classifier is None:
             self._load_classifier()
-        if (self.verdict_enabled or self.safe_policy) and self._auth is None:
+        if (self.verdict_enabled or self.safe_policy or self.bd_auth_enabled) and self._auth is None:
             self._load_auth()
 
     def warm_up(self) -> None:
@@ -126,7 +132,9 @@ class CurrencyMode(BaseMode):
         try:
             if self._yolo is not None:
                 self._yolo.predict(dummy, conf=0.25, verbose=False, imgsz=640)
-            if self.safe_policy and self._auth is not None:
+            if self.bd_auth_enabled and self._auth is not None and self._auth_kind == "bd_counterfeit":
+                self._authenticity(dummy[100:380, 40:600])
+            elif self.safe_policy and self._auth is not None:
                 self._safe_check(dummy[100:380, 40:600])
             if getattr(config, "WATERMARK_CHECK_ENABLED", False):
                 if getattr(self, "_wm", None) is None:
@@ -172,9 +180,11 @@ class CurrencyMode(BaseMode):
             # a distinct vibration for the verdict: genuine (2 short), counterfeit (3 long)
             auth = hits[0].get("auth")
             self._buzz(auth if auth in ("genuine", "counterfeit") else "detect")
+            if self.bd_auth_enabled and auth in ("likely_genuine", "check_by_hand"):
+                return hits[0]["text"]
             if self.safe_policy and auth in ("likely_genuine", "check_by_hand"):
                 return hits[0]["text"]
-            if not self.verdict_enabled:
+            if not self.verdict_enabled and not self.bd_auth_enabled:
                 # say so, so that silence is not taken as "genuine"
                 return hits[0]["text"] + "। জাল যাচাই করা হয়নি"
             return hits[0]["text"]
@@ -300,6 +310,24 @@ class CurrencyMode(BaseMode):
         root = os.path.abspath(os.path.join(config.BASE_DIR, "..", "realtime_bangla_taka_detection"))
         if root not in sys.path:
             sys.path.insert(0, root)
+        # Prefer BD_Counterfeit EfficientNet (200/500/1000 real vs fake).
+        if self.bd_auth_enabled:
+            try:
+                from roboeye.bd_counterfeit_auth import BDCounterfeitAuth
+                weights = Path(getattr(config, "BD_AUTH_WEIGHTS", ""))
+                clf = BDCounterfeitAuth(
+                    weights=weights if weights.is_file() else None,
+                    min_conf=float(getattr(config, "BD_AUTH_MIN_CONF", 0.90)),
+                )
+                if clf.loaded:
+                    self._auth = clf
+                    self._auth_kind = "bd_counterfeit"
+                    logger.info("BD counterfeit auth loaded from %s", clf.weights)
+                    return
+                logger.warning("BD counterfeit weights missing at %s", weights)
+            except Exception as exc:
+                logger.warning("BD counterfeit auth failed: %s", exc)
+                self._auth = None
         ckpt = os.path.join(root, "results", "qduig", "prefix_ft", "seed42", "checkpoint.pt")
         try:
             if os.path.isfile(ckpt):
@@ -353,6 +381,15 @@ class CurrencyMode(BaseMode):
         if self._auth is None:
             return "unknown", 0.5
         try:
+            if self._auth_kind == "bd_counterfeit":
+                pred = self._auth.predict_bgr(crop)
+                genuine = float(pred.get("genuine_prob", 0.5))
+                if not np.isfinite(genuine):
+                    return "unknown", 0.5
+                # Glass-safe: REAL only when gated; otherwise check_by_hand (never speak জাল).
+                if pred.get("verdict") == "REAL":
+                    return "likely_genuine", genuine
+                return "check_by_hand", genuine
             if self._auth_kind == "qduig":
                 from PIL import Image
                 rgb = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
@@ -476,6 +513,23 @@ class CurrencyMode(BaseMode):
             elif label == "genuine":
                 hit["text"] = hit["text"] + "। আসল"
                 hit["auth_en"] = "REAL"
+        for hit in hits[:1] if self.bd_auth_enabled else ():
+            dens = getattr(config, "BD_AUTH_DENOMINATIONS", ("200_taka", "500_taka", "1000_taka"))
+            if hit["name"] not in dens or hit["conf"] < 0.35:
+                continue
+            x, y, w, h = hit["bbox"]
+            crop = frame[max(0, y):min(frame.shape[0], y + h), max(0, x):min(frame.shape[1], x + w)]
+            if crop.shape[0] < 24 or crop.shape[1] < 24:
+                continue
+            label, genuine = self._authenticity(crop)
+            hit["auth"] = label
+            hit["genuine_prob"] = genuine
+            if label == "likely_genuine":
+                hit["auth_en"] = "STRONG REAL" if genuine >= 0.95 else "LIKELY REAL"
+                hit["text"] = hit["text"] + "। সম্ভবত আসল"
+            else:
+                hit["auth_en"] = "CHECK BY HAND"
+                hit["text"] = hit["text"] + "। আসল কিনা হাতে যাচাই করুন"
         for hit in hits[:1] if self.safe_policy else ():
             if hit["name"] not in getattr(config, "JAAL_SAFE_DENOMINATIONS", ()) or hit["conf"] < 0.35:
                 continue

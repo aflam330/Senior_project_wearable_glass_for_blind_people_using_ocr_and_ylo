@@ -98,7 +98,19 @@ HAPTIC_PIN          = 13   # BCM — vibration motor for note confirmation
 # Turn on only with a checker validated on whole-note photos.
 JAAL_VERDICT_ENABLED = False
 
+# BD_Counterfeit EfficientNet auth (models/bd_counterfeit_auth.pt): 200 / 500 / 1000.
+# Locked test: 100% image/note accuracy with mean conf ~0.999 (see
+# realtime_bangla_taka_detection/results/bd_counterfeit_auth_metrics.json).
+# Glass speak: "সম্ভবত আসল" when REAL at >= BD_AUTH_MIN_CONF, else "হাতে যাচাই করুন".
+# Never speaks "জাল" to the wearer.
+BD_AUTH_ENABLED = True
+BD_AUTH_MIN_CONF = 0.90
+BD_AUTH_DENOMINATIONS = ("200_taka", "500_taka", "1000_taka")
+BD_AUTH_WEIGHTS = os.path.abspath(os.path.join(
+    BASE_DIR, "..", "realtime_bangla_taka_detection", "models", "bd_counterfeit_auth.pt"))
+
 # Safe counterfeit check (policy E, paper_evidence/JAAL_VERDICT_FIXED.md, 2026-09-29).
+# Used only when BD_AUTH_ENABLED is off or BD weights are missing.
 # 500 / 1000 Taka only. Four JaalTaka-style views are cut from the note crop and scored by PRMVT.
 # The glass says "সম্ভবত আসল" (likely genuine) only if p(genuine) > JAAL_SAFE_TAU, otherwise
 # "হাতে যাচাই করুন" (check by hand). It never says "জাল" (counterfeit).

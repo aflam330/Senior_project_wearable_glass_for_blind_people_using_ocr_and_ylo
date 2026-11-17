@@ -1,0 +1,33 @@
+{
+  "best_val": {
+    "val_note_acc": 1.0,
+    "image_acc": 1.0,
+    "note_acc": 1.0,
+    "fake_recall": 1.0,
+    "real_recall": 1.0,
+    "n_images": 310,
+    "n_notes": 62,
+    "mean_conf": 0.9992600837061482,
+    "epoch": 25
+  },
+  "test": {
+    "image_acc": 1.0,
+    "note_acc": 1.0,
+    "fake_recall": 1.0,
+    "real_recall": 1.0,
+    "n_images": 380,
+    "n_notes": 76,
+    "mean_conf": 0.9996449343468014
+  },
+  "gated": {
+    "min_conf": 0.9,
+    "accuracy_when_decided": 1.0,
+    "coverage": 1.0,
+    "abstain": 0,
+    "decided": 380
+  },
+  "weights": "E:\\Final SP\\realtime_bangla_taka_detection\\models\\bd_counterfeit_auth.pt",
+  "manifest": "E:\\Final SP\\data set\\BD_Auth_Combined\\manifest.csv",
+  "device": "cuda",
+  "note": "Target 95% is aspirational. Report these measured numbers. Glass should say check-by-hand when abstaining."
+}

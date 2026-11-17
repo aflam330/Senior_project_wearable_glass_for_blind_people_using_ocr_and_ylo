@@ -19,6 +19,9 @@ YOLO_DATA_DIR = DATA_SET / "currency_yolo_data"
 
 YOLO_WEIGHTS = MODELS_DIR / "best.pt"
 AUTH_WEIGHTS = MODELS_DIR / "authenticity_cnn_vit.pt"
+# EfficientNet real-vs-fake trained on BD_Counterfeit fakes + PaperCurrencyRaw reals
+BD_COUNTERFEIT_AUTH_WEIGHTS = MODELS_DIR / "bd_counterfeit_auth.pt"
+BD_COUNTERFEIT_DIR = DATA_SET / "BD_Counterfeit"
 DUAL_HEAD_WEIGHTS = MODELS_DIR / "dual_head_auth.pt"
 PROTO_WEIGHTS = MODELS_DIR / "authenticity_prototypes.pt"
 FER_ONNX = MODELS_DIR / "emotion-ferplus-8.onnx"
