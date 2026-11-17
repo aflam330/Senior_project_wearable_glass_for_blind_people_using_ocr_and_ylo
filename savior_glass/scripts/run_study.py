@@ -116,10 +116,25 @@ def main() -> None:
     stamp = dt.datetime.now().strftime("%Y%m%d_%H%M%S")
     session = STUDY / a.participant / f"{a.condition}_{stamp}"
     session.mkdir(parents=True, exist_ok=True)
-    env = dict(os.environ, STUDY_PARTICIPANT=a.participant, STUDY_CONDITION=a.condition, FIELD_LOG_ENABLED="1",
-               FIELD_LOG_SAVE_FRAMES="1", FIELD_LOG_DIR=str(session / "run"), WATERMARK_CHECK_ENABLED="1", PYTHONIOENCODING="utf-8",
-               SHOW_PREVIEW="0" if a.no_preview else os.environ.get("SHOW_PREVIEW", "1"), SHOW_ALGORITHMS="1" if a.algorithms else "0")
-    code = "import config; " + ("config.JAAL_VERDICT_ENABLED = True; " if a.verdict else "") + "import main; main.main()"
+    env = dict(
+        os.environ,
+        STUDY_PARTICIPANT=a.participant,
+        STUDY_CONDITION=a.condition,
+        FIELD_LOG_ENABLED="1",
+        FIELD_LOG_SAVE_FRAMES="1",
+        FIELD_LOG_DIR=str(session / "run"),
+        WATERMARK_CHECK_ENABLED="1",
+        PYTHONIOENCODING="utf-8",
+        SHOW_PREVIEW="0" if a.no_preview else os.environ.get("SHOW_PREVIEW", "1"),
+        SHOW_ALGORITHMS="1" if a.algorithms else "0",
+        PYTHONPATH=os.pathsep.join([str(ROOT), os.environ.get("PYTHONPATH", "")]).rstrip(os.pathsep),
+    )
+    code = (
+        "import sys; sys.path.insert(0, r'%s'); "
+        "import config; " % str(ROOT)
+        + ("config.JAAL_VERDICT_ENABLED = True; " if a.verdict else "")
+        + "import main; main.main()"
+    )
     events_log = ROOT / "logs" / "study_events.jsonl"
     before = events_log.stat().st_size if events_log.exists() else 0
     print(f"Study session: participant {a.participant}, condition {a.condition}. Close the app (Q in the preview or Ctrl+C) to finish.")

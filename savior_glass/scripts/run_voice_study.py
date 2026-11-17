@@ -51,9 +51,24 @@ def main() -> None:
         return
     os.environ.setdefault("CAMERA_WIDTH", "1280")
     os.environ.setdefault("CAMERA_HEIGHT", "720")
-    env = dict(os.environ, STUDY_VOICE="1", FIELD_LOG_ENABLED="1", FIELD_LOG_SAVE_FRAMES="1", FIELD_LOG_DIR=str(VOICE / "_runs"),
-               WATERMARK_CHECK_ENABLED="1", SHOW_PREVIEW="1", PYTHONIOENCODING="utf-8")
-    code = "import config; " + ("config.JAAL_VERDICT_ENABLED = True; " if "--verdict" in sys.argv else "") + "import main; main.main()"
+    # USB / weird cwd: python -c may not put cwd on sys.path — force package root.
+    env = dict(
+        os.environ,
+        STUDY_VOICE="1",
+        FIELD_LOG_ENABLED="1",
+        FIELD_LOG_SAVE_FRAMES="1",
+        FIELD_LOG_DIR=str(VOICE / "_runs"),
+        WATERMARK_CHECK_ENABLED="1",
+        SHOW_PREVIEW="1",
+        PYTHONIOENCODING="utf-8",
+        PYTHONPATH=os.pathsep.join([str(ROOT), os.environ.get("PYTHONPATH", "")]).rstrip(os.pathsep),
+    )
+    code = (
+        "import sys; sys.path.insert(0, r'%s'); "
+        "import config; " % str(ROOT)
+        + ("config.JAAL_VERDICT_ENABLED = True; " if "--verdict" in sys.argv else "")
+        + "import main; main.main()"
+    )
     subprocess.run([sys.executable, "-c", code], cwd=str(ROOT), env=env)
     if (VOICE / "responses.csv").exists():
         results()
