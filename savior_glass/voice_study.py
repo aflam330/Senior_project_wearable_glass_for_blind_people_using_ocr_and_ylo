@@ -28,6 +28,7 @@ import datetime as dt
 import json
 import logging
 import os
+import sys
 import threading
 import time
 import wave
@@ -121,30 +122,47 @@ class VoiceStudy:
 
     def _mic(self):
         """(device index, sample rate, channels). STUDY_MIC=<part of the name> picks a microphone (e.g. a headset).
-        On Windows the WASAPI entry of the microphone is used at its own sample rate: the default (MME) entry at
-        16 kHz cut speech off on the test laptop."""
+        Windows: prefer WASAPI (MME @ 16 kHz cut speech on the test laptop).
+        Linux / Pi: prefer PulseAudio, then ALSA; never require WASAPI."""
         import sounddevice as sd
         if self._mic_cfg is not None:
             return self._mic_cfg
         devs, apis = sd.query_devices(), sd.query_hostapis()
         want = os.environ.get("STUDY_MIC", "").strip().lower()
-        default = sd.query_devices(kind="input")
-        key = want or default["name"][:16].lower()
-        pick = None
+        try:
+            default = sd.query_devices(kind="input")
+        except Exception:  # noqa: BLE001
+            default = None
+        prefer = ("WASAPI", "Pulse", "ALSA", "JACK")
+        candidates = []
         for i, d in enumerate(devs):
-            if d["max_input_channels"] > 0 and "WASAPI" in apis[d["hostapi"]]["name"] and key in d["name"].lower():
-                pick = (i, int(d["default_samplerate"]), min(2, d["max_input_channels"]))
-                break
-        if pick is None and want:
-            for i, d in enumerate(devs):
-                if d["max_input_channels"] > 0 and want in d["name"].lower():
-                    pick = (i, int(d["default_samplerate"]), min(2, d["max_input_channels"]))
-                    break
-        if pick is None:
-            pick = (None, int(default["default_samplerate"]), min(2, default["max_input_channels"]))
+            if d.get("max_input_channels", 0) <= 0:
+                continue
+            api = apis[d["hostapi"]]["name"]
+            name = d["name"]
+            if want and want not in name.lower():
+                continue
+            # On Windows keep the old WASAPI-first behaviour unless STUDY_MIC forces another device.
+            if sys.platform == "win32" and "WASAPI" not in api and not want:
+                continue
+            rank = next((ri for ri, tag in enumerate(prefer) if tag.lower() in api.lower()), len(prefer))
+            rate = int(d.get("default_samplerate") or 16000)
+            ch = min(2, int(d["max_input_channels"]))
+            candidates.append((rank, i, rate, ch, name, api))
+        pick = None
+        if candidates:
+            candidates.sort(key=lambda t: (t[0], t[1]))
+            _rank, idx, rate, ch, name, api = candidates[0]
+            pick = (idx, rate, ch)
+            self.mic_name = f"{name} [{api}]"
+        elif default is not None:
+            pick = (None, int(default.get("default_samplerate") or 16000), min(2, int(default.get("max_input_channels") or 1)))
+            self.mic_name = default.get("name", "default")
+        else:
+            pick = (None, 16000, 1)
+            self.mic_name = "default"
         self._mic_cfg = pick
-        self.mic_name = devs[pick[0]]["name"] if pick[0] is not None else default["name"]
-        logger.info("study microphone: %s, %d Hz", self.mic_name, pick[1])
+        logger.info("study microphone: %s, %d Hz (index=%s)", self.mic_name, pick[1], pick[0])
         return pick
 
     def _record(self, max_seconds: float, path: str) -> np.ndarray:

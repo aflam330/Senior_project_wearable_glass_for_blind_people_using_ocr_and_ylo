@@ -45,9 +45,10 @@ def main() -> None:
         import sounddevice as sd
         apis = sd.query_hostapis()
         print("Microphones (start with  STUDY_MIC=<part of the name>  to choose one):")
-        for d in sd.query_devices():
-            if d["max_input_channels"] > 0 and "WASAPI" in apis[d["hostapi"]]["name"]:
-                print("  ", d["name"])
+        for i, d in enumerate(sd.query_devices()):
+            if d["max_input_channels"] > 0:
+                api = apis[d["hostapi"]]["name"]
+                print(f"  [{i}] {d['name']}  ({api}, {int(d['default_samplerate'])} Hz)")
         return
     os.environ.setdefault("CAMERA_WIDTH", "1280")
     os.environ.setdefault("CAMERA_HEIGHT", "720")
