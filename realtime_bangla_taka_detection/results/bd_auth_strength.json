@@ -1,0 +1,286 @@
+{
+  "weights": "E:\\Final SP\\realtime_bangla_taka_detection\\models\\bd_counterfeit_auth.pt",
+  "device": "cuda",
+  "n_test": 380,
+  "clean_image_acc": 1.0,
+  "worst_corruption": "bright",
+  "worst_image_acc": 0.9658,
+  "corruptions": [
+    {
+      "corruption": "clean",
+      "n_images": 380,
+      "n_notes": 76,
+      "image_acc": 1.0,
+      "note_acc": 1.0,
+      "fake_recall": 1.0,
+      "real_recall": 1.0,
+      "mean_conf": 0.9996,
+      "ece": 0.0004,
+      "latency_ms_median": 61.3
+    },
+    {
+      "corruption": "blur",
+      "n_images": 380,
+      "n_notes": 76,
+      "image_acc": 1.0,
+      "note_acc": 1.0,
+      "fake_recall": 1.0,
+      "real_recall": 1.0,
+      "mean_conf": 0.9998,
+      "ece": 0.0002,
+      "latency_ms_median": 65.38
+    },
+    {
+      "corruption": "jpeg",
+      "n_images": 380,
+      "n_notes": 76,
+      "image_acc": 1.0,
+      "note_acc": 1.0,
+      "fake_recall": 1.0,
+      "real_recall": 1.0,
+      "mean_conf": 0.999,
+      "ece": 0.001,
+      "latency_ms_median": 66.02
+    },
+    {
+      "corruption": "dark",
+      "n_images": 380,
+      "n_notes": 76,
+      "image_acc": 0.9868,
+      "note_acc": 0.9868,
+      "fake_recall": 1.0,
+      "real_recall": 0.9643,
+      "mean_conf": 0.9862,
+      "ece": 0.0062,
+      "latency_ms_median": 61.47
+    },
+    {
+      "corruption": "bright",
+      "n_images": 380,
+      "n_notes": 76,
+      "image_acc": 0.9658,
+      "note_acc": 0.9737,
+      "fake_recall": 0.9917,
+      "real_recall": 0.9214,
+      "mean_conf": 0.9654,
+      "ece": 0.0155,
+      "latency_ms_median": 57.75
+    },
+    {
+      "corruption": "noise",
+      "n_images": 380,
+      "n_notes": 76,
+      "image_acc": 1.0,
+      "note_acc": 1.0,
+      "fake_recall": 1.0,
+      "real_recall": 1.0,
+      "mean_conf": 0.9992,
+      "ece": 0.0008,
+      "latency_ms_median": 62.18
+    },
+    {
+      "corruption": "crop",
+      "n_images": 380,
+      "n_notes": 76,
+      "image_acc": 1.0,
+      "note_acc": 1.0,
+      "fake_recall": 1.0,
+      "real_recall": 1.0,
+      "mean_conf": 0.999,
+      "ece": 0.001,
+      "latency_ms_median": 58.02
+    },
+    {
+      "corruption": "rotate",
+      "n_images": 380,
+      "n_notes": 76,
+      "image_acc": 1.0,
+      "note_acc": 1.0,
+      "fake_recall": 1.0,
+      "real_recall": 1.0,
+      "mean_conf": 0.9995,
+      "ece": 0.0005,
+      "latency_ms_median": 57.89
+    }
+  ],
+  "gates": [
+    {
+      "tau": 0.5,
+      "coverage": 1.0,
+      "accuracy_when_decided": 1.0,
+      "abstain": 0,
+      "decided": 380,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 140,
+      "genuine_confirm_rate": 1.0
+    },
+    {
+      "tau": 0.7,
+      "coverage": 1.0,
+      "accuracy_when_decided": 1.0,
+      "abstain": 0,
+      "decided": 380,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 140,
+      "genuine_confirm_rate": 1.0
+    },
+    {
+      "tau": 0.8,
+      "coverage": 1.0,
+      "accuracy_when_decided": 1.0,
+      "abstain": 0,
+      "decided": 380,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 140,
+      "genuine_confirm_rate": 1.0
+    },
+    {
+      "tau": 0.9,
+      "coverage": 1.0,
+      "accuracy_when_decided": 1.0,
+      "abstain": 0,
+      "decided": 380,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 140,
+      "genuine_confirm_rate": 1.0
+    },
+    {
+      "tau": 0.95,
+      "coverage": 1.0,
+      "accuracy_when_decided": 1.0,
+      "abstain": 0,
+      "decided": 380,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 140,
+      "genuine_confirm_rate": 1.0
+    },
+    {
+      "tau": 0.99,
+      "coverage": 0.9868,
+      "accuracy_when_decided": 1.0,
+      "abstain": 5,
+      "decided": 375,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 140,
+      "genuine_confirm_rate": 1.0
+    }
+  ],
+  "glass_tau_0_90": [
+    {
+      "corruption": "clean",
+      "coverage": 1.0,
+      "accuracy_when_decided": 1.0,
+      "abstain": 0,
+      "decided": 380,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 140,
+      "genuine_confirm_rate": 1.0
+    },
+    {
+      "corruption": "blur",
+      "coverage": 1.0,
+      "accuracy_when_decided": 1.0,
+      "abstain": 0,
+      "decided": 380,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 140,
+      "genuine_confirm_rate": 1.0
+    },
+    {
+      "corruption": "jpeg",
+      "coverage": 1.0,
+      "accuracy_when_decided": 1.0,
+      "abstain": 0,
+      "decided": 380,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 140,
+      "genuine_confirm_rate": 1.0
+    },
+    {
+      "corruption": "dark",
+      "coverage": 0.9763,
+      "accuracy_when_decided": 0.9946,
+      "abstain": 9,
+      "decided": 371,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 130,
+      "genuine_confirm_rate": 0.9286
+    },
+    {
+      "corruption": "bright",
+      "coverage": 0.9,
+      "accuracy_when_decided": 1.0,
+      "abstain": 38,
+      "decided": 342,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 114,
+      "genuine_confirm_rate": 0.8143
+    },
+    {
+      "corruption": "noise",
+      "coverage": 1.0,
+      "accuracy_when_decided": 1.0,
+      "abstain": 0,
+      "decided": 380,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 140,
+      "genuine_confirm_rate": 1.0
+    },
+    {
+      "corruption": "crop",
+      "coverage": 0.9974,
+      "accuracy_when_decided": 1.0,
+      "abstain": 1,
+      "decided": 379,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 140,
+      "genuine_confirm_rate": 1.0
+    },
+    {
+      "corruption": "rotate",
+      "coverage": 1.0,
+      "accuracy_when_decided": 1.0,
+      "abstain": 0,
+      "decided": 380,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirmed": 140,
+      "genuine_confirm_rate": 1.0
+    }
+  ],
+  "baselines": {
+    "mobilenet_v3_small": {
+      "epochs": 2,
+      "train_n": 480,
+      "pretrained": false,
+      "image_acc": 0.3684,
+      "fake_recall": 0.0,
+      "real_recall": 1.0
+    },
+    "resnet18": {
+      "epochs": 2,
+      "train_n": 480,
+      "pretrained": false,
+      "image_acc": 0.6316,
+      "fake_recall": 1.0,
+      "real_recall": 0.0
+    }
+  },
+  "recommendation": {
+    "deploy_tau": 0.9,
+    "paper_claim": "Clean locked-test image accuracy 100.0%; worst stress (bright) 96.6%. Glass announces likely-genuine only when confidence >= 0.90."
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "weights": "E:\\Final SP\\realtime_bangla_taka_detection\\models\\bd_counterfeit_auth.pt",
+  "device": "cuda",
+  "policy": "announce REAL only if p_real >= tau else CHECK_BY_HAND; never speak counterfeit",
+  "per_tau": {
+    "0.8": {
+      "n": 380,
+      "real_announced": 140,
+      "check_by_hand": 240,
+      "coverage_real_announcements": 0.3684,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirm_rate": 1.0,
+      "latency_ms_median": 88.02,
+      "by_denom": {
+        "1000": {
+          "n": 125,
+          "false_real": 0,
+          "genuine_confirmed": 45,
+          "check_by_hand": 80
+        },
+        "200": {
+          "n": 135,
+          "false_real": 0,
+          "genuine_confirmed": 60,
+          "check_by_hand": 75
+        },
+        "500": {
+          "n": 120,
+          "false_real": 0,
+          "genuine_confirmed": 35,
+          "check_by_hand": 85
+        }
+      }
+    },
+    "0.9": {
+      "n": 380,
+      "real_announced": 140,
+      "check_by_hand": 240,
+      "coverage_real_announcements": 0.3684,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirm_rate": 1.0,
+      "latency_ms_median": 88.02,
+      "by_denom": {
+        "1000": {
+          "n": 125,
+          "false_real": 0,
+          "genuine_confirmed": 45,
+          "check_by_hand": 80
+        },
+        "200": {
+          "n": 135,
+          "false_real": 0,
+          "genuine_confirmed": 60,
+          "check_by_hand": 75
+        },
+        "500": {
+          "n": 120,
+          "false_real": 0,
+          "genuine_confirmed": 35,
+          "check_by_hand": 85
+        }
+      }
+    },
+    "0.95": {
+      "n": 380,
+      "real_announced": 140,
+      "check_by_hand": 240,
+      "coverage_real_announcements": 0.3684,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirm_rate": 1.0,
+      "latency_ms_median": 88.02,
+      "by_denom": {
+        "1000": {
+          "n": 125,
+          "false_real": 0,
+          "genuine_confirmed": 45,
+          "check_by_hand": 80
+        },
+        "200": {
+          "n": 135,
+          "false_real": 0,
+          "genuine_confirmed": 60,
+          "check_by_hand": 75
+        },
+        "500": {
+          "n": 120,
+          "false_real": 0,
+          "genuine_confirmed": 35,
+          "check_by_hand": 85
+        }
+      }
+    },
+    "0.99": {
+      "n": 380,
+      "real_announced": 140,
+      "check_by_hand": 240,
+      "coverage_real_announcements": 0.3684,
+      "false_real_on_fakes": 0,
+      "false_real_rate": 0.0,
+      "genuine_confirm_rate": 1.0,
+      "latency_ms_median": 88.02,
+      "by_denom": {
+        "1000": {
+          "n": 125,
+          "false_real": 0,
+          "genuine_confirmed": 45,
+          "check_by_hand": 80
+        },
+        "200": {
+          "n": 135,
+          "false_real": 0,
+          "genuine_confirmed": 60,
+          "check_by_hand": 75
+        },
+        "500": {
+          "n": 120,
+          "false_real": 0,
+          "genuine_confirmed": 35,
+          "check_by_hand": 85
+        }
+      }
+    }
+  },
+  "recommended_tau": 0.9,
+  "paper_claim": "At tau=0.90: false_REAL=0 (0.0% of fakes), genuine_confirm=100.0%, median latency 88.0 ms."
+}

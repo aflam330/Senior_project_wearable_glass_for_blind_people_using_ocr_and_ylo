@@ -104,10 +104,17 @@ JAAL_VERDICT_ENABLED = False
 # Glass speak: "সম্ভবত আসল" when REAL at >= BD_AUTH_MIN_CONF, else "হাতে যাচাই করুন".
 # Never speaks "জাল" to the wearer.
 BD_AUTH_ENABLED = True
-BD_AUTH_MIN_CONF = 0.90
+# Raised 0.90 → 0.95 after robust finetune + TTA (results/bd_auth_jump.json): fewer false REAL.
+BD_AUTH_MIN_CONF = 0.95
 BD_AUTH_DENOMINATIONS = ("200_taka", "500_taka", "1000_taka")
-BD_AUTH_WEIGHTS = os.path.abspath(os.path.join(
+_bd_main = os.path.abspath(os.path.join(
     BASE_DIR, "..", "realtime_bangla_taka_detection", "models", "bd_counterfeit_auth.pt"))
+_bd_robust = os.path.abspath(os.path.join(
+    BASE_DIR, "..", "realtime_bangla_taka_detection", "models", "bd_counterfeit_auth_robust.pt"))
+BD_AUTH_WEIGHTS = _bd_robust if os.path.isfile(_bd_robust) else _bd_main
+# SARA Trust Index: multi-signal blind-safe packet (reason + next action + stars). Never says জাল.
+SARA_TRUST_ENABLED = True
+SARA_TRUST_MIN_FOR_GENUINE = 80
 
 # Safe counterfeit check (policy E, paper_evidence/JAAL_VERDICT_FIXED.md, 2026-09-29).
 # Used only when BD_AUTH_ENABLED is off or BD weights are missing.

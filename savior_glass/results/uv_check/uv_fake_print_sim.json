@@ -1,0 +1,184 @@
+{
+  "lamp_model_from_genuine_uv": {
+    "a": 0.20408163964748383,
+    "b": 0.04477611929178238,
+    "blue_level": 111.0,
+    "noise_sigma_at_check_scale": 0.4044560492038727,
+    "photographs": 111
+  },
+  "genuine_uv_accept_rate": 0.8559,
+  "genuine_n": 111,
+  "fake_print_source": "E:\\Final SP\\data set\\BD_Counterfeit",
+  "fake_print_n": 120,
+  "thresholds": {
+    "deploy_default": {
+      "threshold": {
+        "tag": "deploy_default",
+        "min_fibres": 1,
+        "colour": 0.22,
+        "lum": 0.0
+      },
+      "conditions": {
+        "base": {
+          "n": 120,
+          "passed_as_genuine": 81,
+          "reject_rate": 0.325,
+          "pass_rate": 0.675,
+          "mean_fibres": 1.73,
+          "median_fibres": 1,
+          "name": "base",
+          "d": 0.0,
+          "sigma_mult": 1.0,
+          "jpeg": 85
+        },
+        "glow": {
+          "n": 120,
+          "passed_as_genuine": 89,
+          "reject_rate": 0.2583,
+          "pass_rate": 0.7417,
+          "mean_fibres": 2.38,
+          "median_fibres": 1,
+          "name": "glow",
+          "d": 0.05,
+          "sigma_mult": 1.0,
+          "jpeg": 85
+        },
+        "noisy": {
+          "n": 120,
+          "passed_as_genuine": 118,
+          "reject_rate": 0.0167,
+          "pass_rate": 0.9833,
+          "mean_fibres": 8.13,
+          "median_fibres": 8,
+          "name": "noisy",
+          "d": 0.05,
+          "sigma_mult": 2.0,
+          "jpeg": 60
+        },
+        "harsh_jpeg": {
+          "n": 120,
+          "passed_as_genuine": 120,
+          "reject_rate": 0.0,
+          "pass_rate": 1.0,
+          "mean_fibres": 17.5,
+          "median_fibres": 17,
+          "name": "harsh_jpeg",
+          "d": 0.08,
+          "sigma_mult": 1.5,
+          "jpeg": 35
+        }
+      }
+    },
+    "paper_strict": {
+      "threshold": {
+        "tag": "paper_strict",
+        "min_fibres": 6,
+        "colour": 0.22,
+        "lum": 0.0
+      },
+      "conditions": {
+        "base": {
+          "n": 120,
+          "passed_as_genuine": 7,
+          "reject_rate": 0.9417,
+          "pass_rate": 0.0583,
+          "mean_fibres": 1.73,
+          "median_fibres": 1,
+          "name": "base",
+          "d": 0.0,
+          "sigma_mult": 1.0,
+          "jpeg": 85
+        },
+        "glow": {
+          "n": 120,
+          "passed_as_genuine": 12,
+          "reject_rate": 0.9,
+          "pass_rate": 0.1,
+          "mean_fibres": 2.31,
+          "median_fibres": 2,
+          "name": "glow",
+          "d": 0.05,
+          "sigma_mult": 1.0,
+          "jpeg": 85
+        },
+        "noisy": {
+          "n": 120,
+          "passed_as_genuine": 81,
+          "reject_rate": 0.325,
+          "pass_rate": 0.675,
+          "mean_fibres": 8.44,
+          "median_fibres": 9,
+          "name": "noisy",
+          "d": 0.05,
+          "sigma_mult": 2.0,
+          "jpeg": 60
+        },
+        "harsh_jpeg": {
+          "n": 120,
+          "passed_as_genuine": 111,
+          "reject_rate": 0.075,
+          "pass_rate": 0.925,
+          "mean_fibres": 17.46,
+          "median_fibres": 16,
+          "name": "harsh_jpeg",
+          "d": 0.08,
+          "sigma_mult": 1.5,
+          "jpeg": 35
+        }
+      }
+    }
+  },
+  "uv_min_fibres_paper_strict": 6,
+  "conditions": {
+    "base": {
+      "n": 120,
+      "passed_as_genuine": 7,
+      "reject_rate": 0.9417,
+      "pass_rate": 0.0583,
+      "mean_fibres": 1.73,
+      "median_fibres": 1,
+      "name": "base",
+      "d": 0.0,
+      "sigma_mult": 1.0,
+      "jpeg": 85
+    },
+    "glow": {
+      "n": 120,
+      "passed_as_genuine": 12,
+      "reject_rate": 0.9,
+      "pass_rate": 0.1,
+      "mean_fibres": 2.31,
+      "median_fibres": 2,
+      "name": "glow",
+      "d": 0.05,
+      "sigma_mult": 1.0,
+      "jpeg": 85
+    },
+    "noisy": {
+      "n": 120,
+      "passed_as_genuine": 81,
+      "reject_rate": 0.325,
+      "pass_rate": 0.675,
+      "mean_fibres": 8.44,
+      "median_fibres": 9,
+      "name": "noisy",
+      "d": 0.05,
+      "sigma_mult": 2.0,
+      "jpeg": 60
+    },
+    "harsh_jpeg": {
+      "n": 120,
+      "passed_as_genuine": 111,
+      "reject_rate": 0.075,
+      "pass_rate": 0.925,
+      "mean_fibres": 17.46,
+      "median_fibres": 16,
+      "name": "harsh_jpeg",
+      "d": 0.08,
+      "sigma_mult": 1.5,
+      "jpeg": 35
+    }
+  },
+  "caveat": "Simulated UV lighting on real counterfeit print photographs. Not a substitute for real counterfeit-under-UV captures.",
+  "paper_claim": "On 120 real counterfeit prints under simulated UV (paper_strict min_fibres=6, colour=0.22), reject_rate(base)=94.2%; genuine UV accept_rate=85.6% (n=111)."
+}

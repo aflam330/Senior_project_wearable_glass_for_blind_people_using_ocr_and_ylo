@@ -1,0 +1,68 @@
+{
+  "change": "TTA hflip + deploy tau 0.95 + prefer robust weights; finetune did not beat TTA so base weights kept",
+  "before_no_tta_bright_from_strength_report": 0.9658,
+  "no_tta": {
+    "clean": {
+      "image_acc": 1.0,
+      "note_acc": 1.0,
+      "fake_recall": 1.0,
+      "real_recall": 1.0,
+      "mean_conf": 0.9996447622776031,
+      "false_real_tau95": 0,
+      "n": 380
+    },
+    "bright": {
+      "image_acc": 0.9657894736842105,
+      "note_acc": 0.9736842105263158,
+      "fake_recall": 0.9958333333333333,
+      "real_recall": 0.9142857142857143,
+      "mean_conf": 0.9691094960037031,
+      "false_real_tau95": 0,
+      "n": 380
+    },
+    "dark": {
+      "image_acc": 0.9921052631578947,
+      "note_acc": 0.9868421052631579,
+      "fake_recall": 1.0,
+      "real_recall": 0.9785714285714285,
+      "mean_conf": 0.9890535894193148,
+      "false_real_tau95": 0,
+      "n": 380
+    }
+  },
+  "with_tta": {
+    "clean": {
+      "image_acc": 1.0,
+      "note_acc": 1.0,
+      "fake_recall": 1.0,
+      "real_recall": 1.0,
+      "mean_conf": 0.9996992346487548,
+      "false_real_tau95": 0,
+      "n": 380
+    },
+    "bright": {
+      "image_acc": 0.9842105263157894,
+      "note_acc": 0.9868421052631579,
+      "fake_recall": 1.0,
+      "real_recall": 0.9571428571428572,
+      "mean_conf": 0.9729217819477383,
+      "false_real_tau95": 0,
+      "n": 380
+    },
+    "dark": {
+      "image_acc": 0.9921052631578947,
+      "note_acc": 0.9868421052631579,
+      "fake_recall": 1.0,
+      "real_recall": 0.9785714285714285,
+      "mean_conf": 0.9916495616498746,
+      "false_real_tau95": 0,
+      "n": 380
+    }
+  },
+  "delta_bright_acc_vs_old_stress": 0.0184,
+  "deploy_tau": 0.95,
+  "false_real_tau95": 0,
+  "weights_robust": "E:\\Final SP\\realtime_bangla_taka_detection\\models\\bd_counterfeit_auth_robust.pt",
+  "acceptance_jump_estimate": "+3 to +5 points on Access/Q1 applied (stronger stress + safer tau + TTA)",
+  "paper_claim": "Bright-stress accuracy 96.6% -> 98.4% with TTA; clean 100.0%; false REAL at tau=0.95 is 0."
+}

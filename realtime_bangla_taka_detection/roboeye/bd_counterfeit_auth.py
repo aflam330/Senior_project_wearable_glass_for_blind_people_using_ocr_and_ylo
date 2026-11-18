@@ -42,14 +42,19 @@ class BDCounterfeitAuth:
         self.device = device or DEVICE
         self.weights = Path(weights) if weights else BD_COUNTERFEIT_AUTH_WEIGHTS
         self.loaded = False
-        self.min_conf = 0.90 if min_conf is None else float(min_conf)
+        self.min_conf = 0.95 if min_conf is None else float(min_conf)
+        self.use_tta = True
         self.model = models.efficientnet_b0(weights=None)
         in_f = self.model.classifier[1].in_features
         self.model.classifier[1] = torch.nn.Linear(in_f, 2)
-        if self.weights.is_file():
-            blob = torch.load(self.weights, map_location=self.device, weights_only=False)
+        # Prefer robust finetune if present
+        robust = self.weights.with_name("bd_counterfeit_auth_robust.pt")
+        load_path = robust if robust.is_file() else self.weights
+        if load_path.is_file():
+            blob = torch.load(load_path, map_location=self.device, weights_only=False)
             state = blob["model"] if isinstance(blob, dict) and "model" in blob else blob
             self.model.load_state_dict(state)
+            self.weights = load_path
             if isinstance(blob, dict) and min_conf is None and "min_conf_default" in blob:
                 self.min_conf = float(blob["min_conf_default"])
             self.loaded = True
@@ -73,7 +78,10 @@ class BDCounterfeitAuth:
                 "confidence": 0.0,
                 "loaded": False,
             }
-        prob = F.softmax(self.model(x), dim=1)[0]
+        logits = self.model(x)
+        if self.use_tta:
+            logits = (logits + self.model(torch.flip(x, dims=[3]))) / 2.0
+        prob = F.softmax(logits, dim=1)[0]
         p_fake = float(prob[0].item())
         p_real = float(prob[1].item())
         conf = max(p_fake, p_real)
@@ -96,6 +104,7 @@ class BDCounterfeitAuth:
             "confidence": conf,
             "strong": strong,
             "min_conf": self.min_conf,
+            "tta": bool(self.use_tta),
             "loaded": True,
             # Glass-safe line: never speak the word counterfeit to the wearer.
             "glass_speak": "likely genuine" if (verdict == "REAL") else "check by hand",

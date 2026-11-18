@@ -1,0 +1,21 @@
+{
+  "device": "cuda",
+  "n": 380,
+  "n_fake": 240,
+  "n_real": 140,
+  "false_likely_genuine_on_fakes": 0,
+  "false_likely_genuine_rate": 0.0,
+  "genuine_confirm_rate": 0.5714,
+  "tickets_containing_counterfeit_word": 0,
+  "reason_histogram": {
+    "auth_uncertain": 116,
+    "bad_pose": 100,
+    "too_dark": 48,
+    "too_blurry": 36,
+    "high_trust": 80
+  },
+  "dark_stress_safe_or_flagged": 40,
+  "dark_stress_n": 40,
+  "unique_contract": "Never speaks counterfeit; emits Trust Index + Bangla next-action reason codes",
+  "paper_claim": "SARA Trust Index on 380 locked images: false LIKELY_GENUINE on fakes=0/240, genuine confirm=80/140, banned counterfeit-word tickets=0, dark-stress guided/safe=40/40."
+}

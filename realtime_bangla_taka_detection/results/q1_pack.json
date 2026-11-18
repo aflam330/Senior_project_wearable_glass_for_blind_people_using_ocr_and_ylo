@@ -1,0 +1,79 @@
+{
+  "weights": "E:\\Final SP\\realtime_bangla_taka_detection\\models\\bd_counterfeit_auth_robust.pt",
+  "n_test": 380,
+  "auth_tta_table": {
+    "clean_raw": 1.0,
+    "clean_tta": 1.0,
+    "bright_raw": 0.9657894736842105,
+    "bright_tta": 0.9842105263157894,
+    "mcnemar_bright_tta_vs_raw": {
+      "b01": 8,
+      "b10": 1,
+      "chi2_cc": 4.0,
+      "p_approx": 0.045500263896358396,
+      "n_discordant": 9
+    },
+    "mcnemar_clean_tta_vs_raw": {
+      "b01": 0,
+      "b10": 0,
+      "p_approx": 1.0,
+      "n_discordant": 0
+    }
+  },
+  "threshold_baseline_tau95": {
+    "false_real_rate": 0.0,
+    "genuine_confirm_rate": 1.0,
+    "note": "fixed: rates among class subset; p_real>=0.95 confirms all 140 reals and 0/240 fakes on this locked set"
+  },
+  "trust_ablations": {
+    "A_auth_only_neutral_quality": {
+      "false_likely_genuine_rate": 0.0,
+      "false_likely_genuine_ci95": [
+        0.0,
+        0.0
+      ],
+      "genuine_confirm_rate": 0.0,
+      "genuine_confirm_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_trust": 56.27,
+      "banned_fake_words": 0,
+      "n_fake": 240,
+      "n_real": 140
+    },
+    "B_auth_plus_quality": {
+      "false_likely_genuine_rate": 0.0,
+      "false_likely_genuine_ci95": [
+        0.0,
+        0.0
+      ],
+      "genuine_confirm_rate": 0.7357,
+      "genuine_confirm_ci95": [
+        0.6643,
+        0.8071
+      ],
+      "mean_trust": 60.7,
+      "banned_fake_words": 0,
+      "n_fake": 240,
+      "n_real": 140
+    },
+    "C_full_trust_packet": {
+      "false_likely_genuine_rate": 0.0,
+      "false_likely_genuine_ci95": [
+        0.0,
+        0.0
+      ],
+      "genuine_confirm_rate": 0.7357,
+      "genuine_confirm_ci95": [
+        0.6643,
+        0.8071
+      ],
+      "mean_trust": 65.7,
+      "banned_fake_words": 0,
+      "n_fake": 240,
+      "n_real": 140
+    }
+  },
+  "q1_contribution_one_liner": "A print-aware Bangla assistive authenticity stack with brightness-robust TTA, a never-speak-fake Trust Index (reason+next-action), and measured false-genuine rate 0 with bootstrap CIs and McNemar tests."
+}

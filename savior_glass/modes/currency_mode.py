@@ -515,7 +515,7 @@ class CurrencyMode(BaseMode):
                 hit["auth_en"] = "REAL"
         for hit in hits[:1] if self.bd_auth_enabled else ():
             dens = getattr(config, "BD_AUTH_DENOMINATIONS", ("200_taka", "500_taka", "1000_taka"))
-            if hit["name"] not in dens or hit["conf"] < 0.35:
+            if hit["conf"] < 0.35:
                 continue
             x, y, w, h = hit["bbox"]
             crop = frame[max(0, y):min(frame.shape[0], y + h), max(0, x):min(frame.shape[1], x + w)]
@@ -524,6 +524,38 @@ class CurrencyMode(BaseMode):
             label, genuine = self._authenticity(crop)
             hit["auth"] = label
             hit["genuine_prob"] = genuine
+            if getattr(config, "SARA_TRUST_ENABLED", False):
+                try:
+                    root = os.path.abspath(os.path.join(config.BASE_DIR, "..", "realtime_bangla_taka_detection"))
+                    if root not in sys.path:
+                        sys.path.insert(0, root)
+                    from roboeye.sara_trust import sara_trust
+                    ticket = sara_trust(
+                        denom_name=hit["name"],
+                        denom_conf=float(hit["conf"]),
+                        p_real=float(genuine),
+                        auth_min_conf=float(getattr(config, "BD_AUTH_MIN_CONF", 0.95)),
+                        supported_dens=tuple(dens),
+                        crop_bgr=crop,
+                        watermark_prob=hit.get("watermark_prob"),
+                        denom_bn=hit["text"].split("।")[0],
+                    )
+                    hit["trust"] = ticket.trust
+                    hit["trust_stars"] = ticket.stars
+                    hit["trust_reason"] = ticket.reason_code
+                    hit["trust_ticket"] = ticket.to_dict()
+                    if ticket.verdict == "LIKELY_GENUINE":
+                        hit["auth"], hit["auth_en"] = "likely_genuine", f"TRUST {ticket.stars}/5"
+                    else:
+                        hit["auth"], hit["auth_en"] = "check_by_hand", ticket.reason_code.upper()
+                    hit["text"] = ticket.speak_bn
+                    continue
+                except Exception as exc:
+                    logger.warning("SARA Trust Index failed: %s", exc)
+            if hit["name"] not in dens:
+                hit["auth"], hit["auth_en"] = "check_by_hand", "CHECK BY HAND"
+                hit["text"] = hit["text"] + "। আসল কিনা হাতে যাচাই করুন"
+                continue
             if label == "likely_genuine":
                 hit["auth_en"] = "STRONG REAL" if genuine >= 0.95 else "LIKELY REAL"
                 hit["text"] = hit["text"] + "। সম্ভবত আসল"
