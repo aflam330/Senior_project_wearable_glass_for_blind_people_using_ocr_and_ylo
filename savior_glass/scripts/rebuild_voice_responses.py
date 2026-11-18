@@ -28,7 +28,9 @@ COLS = [
     "would_use_daily",
     "answered_by_voice",
     "field_run",
+    "source",
 ]
+IMPORTED = VOICE / "imported" / "user_data.txt"   # rows without answers.json (see imported/README.txt); kept, marked "imported"
 QKEYS = [
     "easy_to_use",
     "speech_clear",
@@ -61,8 +63,12 @@ def main() -> int:
                 **{k: answers.get(k, "") for k in QKEYS},
                 "answered_by_voice": voice_n,
                 "field_run": rec.get("field_run", ""),
+                "source": "app",
             }
         )
+    if IMPORTED.is_file():
+        with IMPORTED.open(encoding="utf-8-sig", newline="") as f:
+            rows += [dict(zip(COLS, r), source="imported") for r in csv.reader(f) if r]
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     with OUT.open("w", newline="", encoding="utf-8-sig") as f:

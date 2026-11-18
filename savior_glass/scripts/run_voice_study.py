@@ -27,8 +27,12 @@ def results() -> None:
     if not p.exists():
         sys.exit("no answers saved yet")
     rows = list(csv.DictReader(open(p, encoding="utf-8-sig")))
-    keys = [k for k in rows[0] if k not in ("id", "name", "start", "end", "minutes", "field_run")]
-    print(f"{len(rows)} participants")
+    keys = [k for k in rows[0] if k not in ("id", "name", "start", "end", "minutes", "field_run", "source")]
+    by_src = {}
+    for r in rows:
+        by_src[r.get("source") or "app"] = by_src.get(r.get("source") or "app", 0) + 1
+    print(f"{len(rows)} participants (" + ", ".join(f"{n} {s}" for s, n in by_src.items())
+          + "; app = recorded by the glass app, imported = see study_data/voice/imported/README.txt)")
     for r in rows:
         print(f"  {r['id']}  {r['name'] or '(name in name.wav)':20s} {r['minutes']:>5s} min  " + "  ".join(f"{k}={r[k]}" for k in keys))
     print()

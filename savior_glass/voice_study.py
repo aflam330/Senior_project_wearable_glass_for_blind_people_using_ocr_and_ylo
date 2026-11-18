@@ -329,14 +329,14 @@ class VoiceStudy:
         if not done:
             return
         path = os.path.join(ROOT, "responses.csv")
-        cols = ["id", "name", "start", "end", "minutes"] + [k for k, _ in QUESTIONS] + ["answered_by_voice", "field_run"]
+        cols = ["id", "name", "start", "end", "minutes"] + [k for k, _ in QUESTIONS] + ["answered_by_voice", "field_run", "source"]
         new = not os.path.exists(path)
         with open(path, "a", newline="", encoding="utf-8-sig") as f:
             w = csv.writer(f)
             if new:
                 w.writerow(cols)
             w.writerow([rec["id"], rec["name"], rec["start"], rec["end"], rec["minutes"]] + [answers.get(k, "") for k, _ in QUESTIONS]
-                       + [sum(v == "voice" for v in (sources or {}).values()), run_dir])
+                       + [sum(v == "voice" for v in (sources or {}).values()), run_dir, "app"])
         try:
             import main
             main._flog("study_answers", result=json.dumps(answers, ensure_ascii=False), participant=self.pid)
