@@ -1,0 +1,4 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-11-18T04:04:53.866,0.003,session_start,ocr,,,,,,,,
+2,2026-11-18T04:06:49.467,115.604,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""no"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P003""}"
+3,2026-11-18T04:06:57.537,123.674,session_end,,,,,,,,,

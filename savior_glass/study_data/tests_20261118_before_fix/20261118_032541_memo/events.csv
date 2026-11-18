@@ -1,0 +1,3 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-11-18T03:25:41.804,0.004,session_start,ocr,,,,,,,,
+2,2026-11-18T03:27:56.914,135.114,session_end,,,,,,,,,

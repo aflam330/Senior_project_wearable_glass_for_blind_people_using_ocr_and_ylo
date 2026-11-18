@@ -1,0 +1,6 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-11-18T03:35:26.799,0.002,session_start,ocr,,,,,,,,
+2,2026-11-18T03:36:03.248,36.452,voice_command,,,action,,,,,,
+3,2026-11-18T03:36:03.250,36.453,action_press,ocr,,,,,,,,
+4,2026-11-18T03:36:07.738,40.941,result,ocr,3379.2,কোনো লেখা পাওয়া যায়নি,,,,,en,"{""press_event"": 3, ""press_to_result_ms"": 4488.3, ""waited_for_load_ms"": 0.0, ""ocr_text"": """"}"
+5,2026-11-18T03:37:01.620,94.823,session_end,,,,,,,,,

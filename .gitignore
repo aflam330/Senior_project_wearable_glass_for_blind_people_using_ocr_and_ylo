@@ -76,8 +76,7 @@ savior_glass/results/camera_check.jpg
 savior_glass/results/live_diag_check.png
 savior_glass/logs/laptop_test_run.log
 
-# User-study data: participant photos, answers and questionnaires. Never commit.
-savior_glass/study_data/
+# User-study data (savior_glass/study_data/: names, voice recordings, photos, answers) is committed: publication approved by the supervisor, 18 November 2026.
 
 # paper package (built by Thesis Report and paper/tools/paper_package/make_package.py)
 SARA_Paper_Package/

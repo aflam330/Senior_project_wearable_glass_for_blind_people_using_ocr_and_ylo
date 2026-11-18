@@ -1,0 +1,24 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-11-18T03:42:50.477,0.003,session_start,ocr,,,,,,,,
+2,2026-11-18T03:44:04.366,73.891,action_press,ocr,,,,,,,,
+3,2026-11-18T03:44:35.771,105.297,mode_switch,object,,object,,,,,,"{""from_mode"": ""ocr""}"
+4,2026-11-18T03:45:19.598,149.123,mode_switch,currency,,currency,,,,,,"{""from_mode"": ""object""}"
+5,2026-11-18T03:45:20.351,149.877,result,ocr,74870.7,Done. Press READ to hear it again.,,,,,en,"{""press_event"": 2, ""press_to_result_ms"": 75985.6, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""MODE TEXT OCR Volume ৪c%e WORKING pleasevait gleara insspeech hearas Lastpresses ASnow ckeyboerd 0s ago Glss said পডছি eose আপনাননামবলুনা টেপট নিরজ মোড pweaone savea as auator usina he MmadE Aa-tiami""}"
+6,2026-11-18T03:45:52.202,181.728,action_press,currency,,,,,,,,
+7,2026-11-18T03:45:53.480,183.006,result,currency,1278.1,নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।,1000_taka,0.4881,check_by_hand,0.0449,,"{""press_event"": 6, ""press_to_result_ms"": 1278.5, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+8,2026-11-18T03:45:54.921,184.447,action_ignored_busy,currency,,,,,,,,
+9,2026-11-18T03:45:59.157,188.683,watermark_check,currency,5664.0,likely_genuine,1000_taka,,likely_genuine,0.5723,,"{""press_event"": 6, ""frames"": 6, ""rejected"": {""blurry"": 3, ""no_note"": 2}, ""condition"": ""guided""}"
+10,2026-11-18T03:46:42.622,232.148,action_press,currency,,,,,,,,
+11,2026-11-18T03:46:43.609,233.135,result,currency,985.5,এক হাজার টাকার নোট। সম্ভবত আসল,1000_taka,0.855,likely_genuine,0.9501,,"{""press_event"": 10, ""press_to_result_ms"": 986.8, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+12,2026-11-18T03:46:44.997,234.523,watermark_check,currency,1388.0,likely_genuine,1000_taka,,likely_genuine,0.7802,,"{""press_event"": 10, ""frames"": 1, ""rejected"": {}, ""condition"": ""guided""}"
+13,2026-11-18T03:47:39.797,289.322,action_press,currency,,,,,,,,
+14,2026-11-18T03:47:40.687,290.213,result,currency,890.3,নোট নিশ্চিত করা যায়নি। আরও কাছে ধরুন।,1000_taka,0.3603,check_by_hand,0.741,,"{""press_event"": 13, ""press_to_result_ms"": 890.7, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+15,2026-11-18T03:47:41.483,291.008,watermark_check,currency,795.0,likely_genuine,1000_taka,,likely_genuine,0.6818,,"{""press_event"": 13, ""frames"": 1, ""rejected"": {}, ""condition"": ""guided""}"
+16,2026-11-18T03:47:52.806,302.332,mode_switch,claude,,claude,,,,,,"{""from_mode"": ""currency""}"
+17,2026-11-18T03:47:54.648,304.173,mode_switch,emotion,,emotion,,,,,,"{""from_mode"": ""claude""}"
+18,2026-11-18T03:48:34.859,344.385,mode_switch,ocr,,ocr,,,,,,"{""from_mode"": ""emotion""}"
+19,2026-11-18T03:50:14.366,443.892,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P001""}"
+20,2026-11-18T03:50:27.045,456.571,mode_switch,object,,object,,,,,,"{""from_mode"": ""ocr""}"
+21,2026-11-18T03:50:27.961,457.487,object_announce,object,879.8,সামনে আছে: মানুষ,,,,,,
+22,2026-11-18T03:50:32.727,462.252,object_announce,object,784.7,সামনে আছে: মানুষ,,,,,,
+23,2026-11-18T03:50:33.241,462.766,session_end,,,,,,,,,

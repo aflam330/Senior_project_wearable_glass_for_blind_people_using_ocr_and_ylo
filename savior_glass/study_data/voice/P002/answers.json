@@ -1,0 +1,42 @@
+{
+ "id": "P002",
+ "name": "সৌ",
+ "start": "2026-11-18T03:59:15",
+ "end": "2026-11-18T04:04:10",
+ "complete": true,
+ "minutes": 4.9,
+ "answers": {
+  "easy_to_use": "yes",
+  "speech_clear": "yes",
+  "helped_currency": "yes",
+  "helped_reading": "yes",
+  "trust": "yes",
+  "would_use_daily": "no"
+ },
+ "heard": {
+  "easy_to_use": "হ্যাঁ",
+  "speech_clear": "হ্যাঁ",
+  "helped_currency": "হ্যাঁ হ্যাঁ",
+  "helped_reading": "হ্যাঁ",
+  "trust": "হ্যাঁ",
+  "would_use_daily": "না"
+ },
+ "answered_by": {
+  "easy_to_use": "voice",
+  "speech_clear": "voice",
+  "helped_currency": "voice",
+  "helped_reading": "voice",
+  "trust": "voice",
+  "would_use_daily": "voice"
+ },
+ "microphone": "C270 HD WEBCAM: USB Audio (hw:2,0) [ALSA]",
+ "field_run": "20261118_035831_memo",
+ "questions": {
+  "easy_to_use": "চশমাটি ব্যবহার করা কি সহজ ছিল?",
+  "speech_clear": "চশমার কথা কি স্পষ্ট বোঝা গেছে?",
+  "helped_currency": "টাকার নোট চিনতে চশমাটি কি আপনাকে সাহায্য করেছে?",
+  "helped_reading": "লেখা পড়তে চশমাটি কি আপনাকে সাহায্য করেছে?",
+  "trust": "চশমার উত্তরের উপর কি আপনি ভরসা করতে পারেন?",
+  "would_use_daily": "আপনি কি প্রতিদিন এই চশমা ব্যবহার করতে চাইবেন?"
+ }
+}

@@ -1,0 +1,4 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-11-18T03:28:44.219,0.005,session_start,ocr,,,,,,,,
+2,2026-11-18T03:31:02.442,138.227,read_press,ocr,,কোনো লেখা সংরক্ষিত নেই। প্রথমে ক্যাপচার করুন,,,,,,
+3,2026-11-18T03:32:28.349,224.134,session_end,,,,,,,,,

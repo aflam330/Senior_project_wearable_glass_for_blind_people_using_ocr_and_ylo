@@ -1,0 +1,6 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-11-18T21:01:12.601,0.002,session_start,ocr,,,,,,,,
+2,2026-11-18T21:02:58.071,105.472,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""no"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P038""}"
+3,2026-11-18T21:09:29.311,496.712,study_answers,,,"{""easy_to_use"": ""unclear"", ""speech_clear"": ""unclear"", ""helped_currency"": ""unclear"", ""helped_reading"": ""unclear"", ""trust"": ""unclear"", ""would_use_daily"": ""unclear""}",,,,,,"{""participant"": ""P039""}"
+4,2026-11-18T21:11:23.924,611.326,study_answers,,,"{""easy_to_use"": ""unclear"", ""speech_clear"": ""unclear"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P040""}"
+5,2026-11-18T21:11:33.238,620.64,session_end,,,,,,,,,

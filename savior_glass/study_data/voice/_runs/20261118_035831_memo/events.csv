@@ -1,0 +1,26 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-11-18T03:58:31.582,0.004,session_start,ocr,,,,,,,,
+2,2026-11-18T04:00:26.926,115.348,action_press,ocr,,,,,,,,
+3,2026-11-18T04:00:59.670,148.092,result,ocr,31638.6,Done. Press READ to hear it again.,,,,,en,"{""press_event"": 2, ""press_to_result_ms"": 32744.2, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""Picavue Ta""}"
+4,2026-11-18T04:01:08.656,157.077,action_press,ocr,,,,,,,,
+5,2026-11-18T04:01:38.546,186.968,result,ocr,28777.8,Done. Press READ to hear it again.,,,,,en,"{""press_event"": 4, ""press_to_result_ms"": 29890.4, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""Smnecrh Mehammad Shidujaman PAD""}"
+6,2026-11-18T04:01:41.062,189.483,action_press,ocr,,,,,,,,
+7,2026-11-18T04:01:54.907,203.329,mode_switch,object,,object,,,,,,"{""from_mode"": ""ocr""}"
+8,2026-11-18T04:02:04.560,212.981,result,ocr,22394.6,Done. Press READ to hear it again.,,,,,en,"{""press_event"": 6, ""press_to_result_ms"": 23497.9, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""Mehammad Shidujaman PAD Lor Comporer Science and Engaecring""}"
+9,2026-11-18T04:02:05.421,213.843,object_announce,object,10438.8,"সামনে আছে: মানুষ, বোতল",,,,,,
+10,2026-11-18T04:02:09.829,218.251,object_announce,object,685.9,"সামনে আছে: মানুষ, বোতল",,,,,,
+11,2026-11-18T04:02:14.322,222.743,object_announce,object,778.2,"সামনে আছে: মানুষ, বোতল",,,,,,
+12,2026-11-18T04:02:18.792,227.213,object_announce,object,721.5,"সামনে আছে: মানুষ, বোতল",,,,,,
+13,2026-11-18T04:02:23.238,231.659,object_announce,object,702.2,"সামনে আছে: মানুষ, বোতল",,,,,,
+14,2026-11-18T04:02:27.683,236.105,object_announce,object,702.2,সামনে আছে: মানুষ,,,,,,
+15,2026-11-18T04:02:32.134,240.556,object_announce,object,721.7,"সামনে আছে: মানুষ, রিমোট",,,,,,
+16,2026-11-18T04:02:36.624,245.046,object_announce,object,716.1,সামনে আছে: মানুষ,,,,,,
+17,2026-11-18T04:02:38.846,247.268,object_announce,object,718.2,সামনে আছে: বোতল,,,,,,
+18,2026-11-18T04:02:41.054,249.476,object_announce,object,707.4,সামনে আছে: মানুষ,,,,,,
+19,2026-11-18T04:02:41.410,249.832,mode_switch,currency,,currency,,,,,,"{""from_mode"": ""object""}"
+20,2026-11-18T04:02:55.605,264.026,action_press,currency,,,,,,,,
+21,2026-11-18T04:02:56.767,265.189,result,currency,1161.6,বিশ টাকার নোট,20_taka,0.8669,unknown,0.5,,"{""press_event"": 20, ""press_to_result_ms"": 1162.1, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+22,2026-11-18T04:03:01.870,270.292,mode_switch,claude,,claude,,,,,,"{""from_mode"": ""currency""}"
+23,2026-11-18T04:03:03.869,272.291,mode_switch,emotion,,emotion,,,,,,"{""from_mode"": ""claude""}"
+24,2026-11-18T04:04:10.950,339.372,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""no""}",,,,,,"{""participant"": ""P002""}"
+25,2026-11-18T04:04:19.005,347.427,session_end,,,,,,,,,

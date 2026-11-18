@@ -1,0 +1,24 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-11-18T04:09:52.559,0.002,session_start,ocr,,,,,,,,
+2,2026-11-18T04:10:28.566,36.009,mode_switch,object,,object,,,,,,"{""from_mode"": ""ocr""}"
+3,2026-11-18T04:10:31.393,38.836,object_announce,object,1310.5,"সামনে আছে: মানুষ, বোতল",,,,,,
+4,2026-11-18T04:10:35.882,43.325,object_announce,object,744.3,"সামনে আছে: মানুষ, বোতল",,,,,,
+5,2026-11-18T04:10:40.420,47.862,object_announce,object,792.9,"সামনে আছে: মানুষ, বোতল",,,,,,
+6,2026-11-18T04:10:42.665,50.108,object_announce,object,744.7,সামনে আছে: মাউস,,,,,,
+7,2026-11-18T04:10:44.971,52.413,object_announce,object,801.9,"সামনে আছে: মানুষ, বোতল",,,,,,
+8,2026-11-18T04:10:47.444,54.887,object_announce,object,970.4,সামনে আছে: মাউস,,,,,,
+9,2026-11-18T04:10:48.971,56.413,mode_switch,currency,,currency,,,,,,"{""from_mode"": ""object""}"
+10,2026-11-18T04:10:53.293,60.736,mode_switch,claude,,claude,,,,,,"{""from_mode"": ""currency""}"
+11,2026-11-18T04:12:37.968,165.411,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P005""}"
+12,2026-11-18T04:14:40.080,287.523,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""no"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P006""}"
+13,2026-11-18T04:15:54.407,361.85,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P007""}"
+14,2026-11-18T04:17:50.027,477.47,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P008""}"
+15,2026-11-18T04:19:05.860,553.303,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P009""}"
+16,2026-11-18T04:20:47.953,655.396,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P010""}"
+17,2026-11-18T04:22:23.400,750.842,study_answers,,,"{""easy_to_use"": ""no"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P011""}"
+18,2026-11-18T04:23:47.226,834.669,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P012""}"
+19,2026-11-18T04:24:20.222,867.665,mode_switch,emotion,,emotion,,,,,,"{""from_mode"": ""claude""}"
+20,2026-11-18T04:25:23.280,930.723,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P013""}"
+21,2026-11-18T04:26:34.270,1001.713,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P014""}"
+22,2026-11-18T04:29:22.124,1169.567,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""unclear"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P015""}"
+23,2026-11-18T04:30:38.227,1245.67,session_end,,,,,,,,,
