@@ -1,0 +1,35 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-10-03T23:20:06.199,0.002,session_start,ocr,,,,,,,,
+2,2026-10-03T23:21:14.845,68.648,mode_switch,object,,object,,,,,,"{""from_mode"": ""ocr""}"
+3,2026-10-03T23:21:16.424,70.228,object_announce,object,28.2,সামনে আছে: মানুষ,,,,,,
+4,2026-10-03T23:21:21.299,75.102,object_announce,object,161.0,সামনে আছে: মানুষ,,,,,,
+5,2026-10-03T23:21:21.904,75.707,mode_switch,currency,,currency,,,,,,"{""from_mode"": ""object""}"
+6,2026-10-03T23:21:40.677,94.48,action_press,currency,,,,,,,,
+7,2026-10-03T23:21:41.094,94.898,result,currency,416.7,পাঁচশত টাকার নোট। আসল,500_taka,0.8291,genuine,0.6948,,"{""press_event"": 6, ""press_to_result_ms"": 417.6, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+8,2026-10-03T23:21:41.418,95.221,watermark_check,currency,321.0,likely_genuine,500_taka,,likely_genuine,0.8439,,"{""press_event"": 6, ""frames"": 3, ""rejected"": {""blurry"": 2}, ""condition"": ""guided""}"
+9,2026-10-03T23:21:48.454,102.258,mode_switch,claude,,claude,,,,,,"{""from_mode"": ""currency""}"
+10,2026-10-03T23:21:59.656,113.459,mode_switch,emotion,,emotion,,,,,,"{""from_mode"": ""claude""}"
+11,2026-10-03T23:22:04.340,118.144,action_press,emotion,,,,,,,,
+12,2026-10-03T23:22:04.580,118.383,result,emotion,238.3,সামনের মানুষটিকে খুশি দেখাচ্ছে,,0.8437,happiness,,,"{""press_event"": 11, ""press_to_result_ms"": 239.2, ""waited_for_load_ms"": 0.0, ""face_found"": true, ""backend"": ""rgb_mobilenet_blend""}"
+13,2026-10-03T23:22:09.887,123.691,action_press,emotion,,,,,,,,
+14,2026-10-03T23:22:10.104,123.907,result,emotion,215.4,সামনের মানুষটিকে স্বাভাবিক দেখাচ্ছে,,0.681,neutral,,,"{""press_event"": 13, ""press_to_result_ms"": 216.5, ""waited_for_load_ms"": 0.0, ""face_found"": true, ""backend"": ""rgb_mobilenet_blend""}"
+15,2026-10-03T23:22:14.802,128.605,action_press,emotion,,,,,,,,
+16,2026-10-03T23:22:15.031,128.835,result,emotion,228.5,সামনের মানুষটিকে রাগান্বিত দেখাচ্ছে,,0.4025,anger,,,"{""press_event"": 15, ""press_to_result_ms"": 229.4, ""waited_for_load_ms"": 0.0, ""face_found"": true, ""backend"": ""rgb_mobilenet_blend""}"
+17,2026-10-03T23:22:19.210,133.013,mode_switch,ocr,,ocr,,,,,,"{""from_mode"": ""emotion""}"
+18,2026-10-03T23:22:26.514,140.318,action_press,ocr,,,,,,,,
+19,2026-10-03T23:22:27.104,140.908,result,ocr,589.3,লেখা আছে: ষ্পববববববববববববববববববস্মববববববববববববববববববববববববব,,,,,bn,"{""press_event"": 18, ""press_to_result_ms"": 590.1, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""ষ্পববববববববববববববববববস্মববববববববববববববববববববববববব""}"
+20,2026-10-03T23:22:36.587,150.39,action_press,ocr,,,,,,,,
+21,2026-10-03T23:22:37.283,151.086,result,ocr,695.2,The text says: ,,,,,en,"{""press_event"": 20, ""press_to_result_ms"": 696.0, ""waited_for_load_ms"": 0.0, ""ocr_text"": """"}"
+22,2026-10-03T23:22:44.180,157.983,action_press,ocr,,,,,,,,
+23,2026-10-03T23:22:44.805,158.608,result,ocr,624.4,The text says: I_0,,,,,en,"{""press_event"": 22, ""press_to_result_ms"": 625.3, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""I_0""}"
+24,2026-10-03T23:22:50.236,164.04,mode_switch,object,,object,,,,,,"{""from_mode"": ""ocr""}"
+25,2026-10-03T23:22:50.455,164.258,object_announce,object,212.1,সামনে আছে: মানুষ,,,,,,
+26,2026-10-03T23:22:55.248,169.051,object_announce,object,93.6,সামনে আছে: মানুষ,,,,,,
+27,2026-10-03T23:23:00.148,173.951,object_announce,object,178.3,সামনে আছে: মানুষ,,,,,,
+28,2026-10-03T23:23:05.041,178.845,object_announce,object,163.1,সামনে আছে: মানুষ,,,,,,
+29,2026-10-03T23:23:09.780,183.584,object_announce,object,20.0,সামনে আছে: মানুষ,,,,,,
+30,2026-10-03T23:23:10.549,184.352,mode_switch,currency,,currency,,,,,,"{""from_mode"": ""object""}"
+31,2026-10-03T23:23:12.377,186.18,mode_switch,claude,,claude,,,,,,"{""from_mode"": ""currency""}"
+32,2026-10-03T23:23:14.026,187.83,mode_switch,emotion,,emotion,,,,,,"{""from_mode"": ""claude""}"
+33,2026-10-03T23:24:24.328,258.131,study_answers,,,"{""easy_to_use"": ""yes"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P003""}"
+34,2026-10-03T23:24:40.425,274.228,session_end,,,,,,,,,

@@ -1,0 +1,31 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-10-03T23:12:04.649,0.002,session_start,ocr,,,,,,,,
+2,2026-10-03T23:12:52.964,48.317,action_press,ocr,,,,,,,,
+3,2026-10-03T23:12:55.865,51.218,result,ocr,2900.8,লেখা আছে: বববববববববববববববববববববববববববববববববববববববববববব,,,,,bn,"{""press_event"": 2, ""press_to_result_ms"": 2901.7, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""বববববববববববববববববববববববববববববববববববববববববববব""}"
+4,2026-10-03T23:13:01.978,57.331,action_press,ocr,,,,,,,,
+5,2026-10-03T23:13:06.920,62.273,result,ocr,4940.7,The text says: Collins Grammar for IELTS Frona Aish Josromlinson,,,,,en,"{""press_event"": 4, ""press_to_result_ms"": 4941.6, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""Collins Grammar for IELTS Frona Aish Josromlinson""}"
+6,2026-10-03T23:13:09.846,65.199,action_press,ocr,,,,,,,,
+7,2026-10-03T23:13:14.588,69.941,result,ocr,4741.6,The text says: Collins Grammar for IELTS,,,,,en,"{""press_event"": 6, ""press_to_result_ms"": 4742.5, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""Collins Grammar for IELTS""}"
+8,2026-10-03T23:13:16.129,71.482,mode_switch,object,,object,,,,,,"{""from_mode"": ""ocr""}"
+9,2026-10-03T23:13:17.689,73.042,object_announce,object,44.2,"সামনে আছে: মানুষ, চেয়ার",,,,,,
+10,2026-10-03T23:13:22.544,77.897,object_announce,object,119.8,সামনে আছে: মানুষ,,,,,,
+11,2026-10-03T23:13:27.382,82.735,object_announce,object,79.4,"সামনে আছে: মানুষ, রিমোট",,,,,,
+12,2026-10-03T23:13:32.313,87.665,object_announce,object,204.6,সামনে আছে: মানুষ,,,,,,
+13,2026-10-03T23:13:32.328,87.681,action_press,object,,,,,,,,
+14,2026-10-03T23:13:33.833,89.186,object_announce,object,19.6,সামনে আছে: মানুষ,,,,,,
+15,2026-10-03T23:13:38.639,93.992,object_announce,object,36.6,সামনে আছে: মানুষ,,,,,,
+16,2026-10-03T23:13:39.681,95.034,mode_switch,currency,,currency,,,,,,"{""from_mode"": ""object""}"
+17,2026-10-03T23:13:55.461,110.814,action_press,currency,,,,,,,,
+18,2026-10-03T23:13:55.853,111.206,result,currency,390.9,বিশ টাকার নোট। আসল,20_taka,0.8706,genuine,0.9397,,"{""press_event"": 17, ""press_to_result_ms"": 391.8, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+19,2026-10-03T23:14:03.482,118.835,mode_switch,claude,,claude,,,,,,"{""from_mode"": ""currency""}"
+20,2026-10-03T23:14:04.017,119.37,mode_switch,emotion,,emotion,,,,,,"{""from_mode"": ""claude""}"
+21,2026-10-03T23:14:10.579,125.932,action_press,emotion,,,,,,,,
+22,2026-10-03T23:14:10.831,126.184,result,emotion,250.9,সামনের মানুষটিকে অবাক দেখাচ্ছে,,0.3289,surprise,,,"{""press_event"": 21, ""press_to_result_ms"": 251.8, ""waited_for_load_ms"": 0.0, ""face_found"": true, ""backend"": ""rgb_mobilenet_blend""}"
+23,2026-10-03T23:14:19.502,134.855,mode_switch,ocr,,ocr,,,,,,"{""from_mode"": ""emotion""}"
+24,2026-10-03T23:14:20.680,136.033,mode_switch,object,,object,,,,,,"{""from_mode"": ""ocr""}"
+25,2026-10-03T23:14:20.899,136.252,object_announce,object,187.9,সামনে আছে: মানুষ,,,,,,
+26,2026-10-03T23:14:21.315,136.668,mode_switch,currency,,currency,,,,,,"{""from_mode"": ""object""}"
+27,2026-10-03T23:14:21.737,137.09,mode_switch,claude,,claude,,,,,,"{""from_mode"": ""currency""}"
+28,2026-10-03T23:14:22.151,137.504,mode_switch,emotion,,emotion,,,,,,"{""from_mode"": ""claude""}"
+29,2026-10-03T23:16:17.475,252.828,study_answers,,,"{""easy_to_use"": ""unclear"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P002""}"
+30,2026-10-03T23:16:25.020,260.373,session_end,,,,,,,,,

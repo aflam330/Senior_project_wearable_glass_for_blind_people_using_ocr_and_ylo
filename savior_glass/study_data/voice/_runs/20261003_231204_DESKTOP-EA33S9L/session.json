@@ -1,0 +1,24 @@
+{
+ "start": "2026-10-03T23:12:04",
+ "host": "DESKTOP-EA33S9L",
+ "machine": "AMD64",
+ "python": "3.14.7",
+ "device_model": null,
+ "settings": {
+  "OCR_PIPELINE": "v2",
+  "OCR_CANVAS_SIZE": 2560,
+  "OCR_V2_MIN_CONF": 0.2,
+  "CURRENCY_ANNOUNCE_CONF": 0.6,
+  "JAAL_SAFE_POLICY_ENABLED": true,
+  "JAAL_SAFE_TAU": 0.9995918869972229,
+  "WATERMARK_CHECK_ENABLED": true,
+  "CAPTURE_GUIDE_ENABLED": true,
+  "STUDY_CONDITION": "guided",
+  "ESPEAK_SPEED": 135,
+  "ON_RASPBERRY_PI_5": false
+ },
+ "end": "2026-10-03T23:16:25",
+ "events_logged": 30,
+ "events_dropped": 0,
+ "frames_saved": 6
+}

@@ -1,0 +1,37 @@
+﻿event_id,time,t_s,event,mode,latency_ms,result,denomination,confidence,verdict,score,lang,detail
+1,2026-10-03T22:54:59.850,0.002,session_start,ocr,,,,,,,,
+2,2026-10-03T22:55:35.015,35.167,action_press,ocr,,,,,,,,
+3,2026-10-03T22:55:37.724,37.875,result,ocr,2707.7,লেখা আছে: ববববববববববববব,,,,,bn,"{""press_event"": 2, ""press_to_result_ms"": 2708.5, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""ববববববববববববব""}"
+4,2026-10-03T22:55:52.297,52.449,action_press,ocr,,,,,,,,
+5,2026-10-03T22:55:55.554,55.706,result,ocr,3256.0,The text says: Colhns Grammat for IELIS,,,,,en,"{""press_event"": 4, ""press_to_result_ms"": 3257.0, ""waited_for_load_ms"": 0.0, ""ocr_text"": ""Colhns Grammat for IELIS""}"
+6,2026-10-03T22:56:03.774,63.926,mode_switch,object,,object,,,,,,"{""from_mode"": ""ocr""}"
+7,2026-10-03T22:56:04.434,64.586,object_announce,object,581.3,সামনে আছে: মানুষ,,,,,,
+8,2026-10-03T22:56:05.963,66.115,object_announce,object,28.0,সামনে আছে: সুটকেস,,,,,,
+9,2026-10-03T22:56:09.160,69.312,object_announce,object,28.5,সামনে আছে: মানুষ,,,,,,
+10,2026-10-03T22:56:10.733,70.884,object_announce,object,71.3,"সামনে আছে: ছাতা, চেয়ার",,,,,,
+11,2026-10-03T22:56:13.947,74.099,object_announce,object,26.2,সামনে আছে: মানুষ,,,,,,
+12,2026-10-03T22:56:17.230,77.382,object_announce,object,212.4,সামনে আছে: ছাতা,,,,,,
+13,2026-10-03T22:56:18.761,78.913,object_announce,object,29.5,সামনে আছে: মানুষ,,,,,,
+14,2026-10-03T22:56:23.507,83.659,object_announce,object,18.3,সামনে আছে: চেয়ার,,,,,,
+15,2026-10-03T22:56:25.091,85.243,object_announce,object,82.8,সামনে আছে: মানুষ,,,,,,
+16,2026-10-03T22:56:28.284,88.436,object_announce,object,18.8,সামনে আছে: চেয়ার,,,,,,
+17,2026-10-03T22:56:29.865,90.017,object_announce,object,80.5,সামনে আছে: মানুষ,,,,,,
+18,2026-10-03T22:56:33.085,93.237,object_announce,object,18.5,সামনে আছে: চেয়ার,,,,,,
+19,2026-10-03T22:56:36.382,96.534,object_announce,object,208.9,সামনে আছে: মানুষ,,,,,,
+20,2026-10-03T22:56:37.799,97.951,mode_switch,currency,,currency,,,,,,"{""from_mode"": ""object""}"
+21,2026-10-03T22:56:43.405,103.556,action_press,currency,,,,,,,,
+22,2026-10-03T22:56:43.633,103.785,result,currency,227.9,নোট সনাক্ত করা যায়নি। ক্যামেরার সামনে ধরুন।,none,,,,,"{""press_event"": 21, ""press_to_result_ms"": 228.8, ""waited_for_load_ms"": 0.0}"
+23,2026-10-03T22:56:47.970,108.122,action_press,currency,,,,,,,,
+24,2026-10-03T22:56:48.352,108.504,result,currency,381.2,পাঁচশত টাকার নোট। আসল,500_taka,0.7891,genuine,0.9057,,"{""press_event"": 23, ""press_to_result_ms"": 382.0, ""waited_for_load_ms"": 0.0, ""boxes"": 1}"
+25,2026-10-03T22:56:56.116,116.268,watermark_check,currency,7751.0,likely_genuine,500_taka,,likely_genuine,0.9099,,"{""press_event"": 23, ""frames"": 98, ""rejected"": {""blurry"": 97}, ""condition"": ""guided""}"
+26,2026-10-03T22:57:15.467,135.619,mode_switch,claude,,claude,,,,,,"{""from_mode"": ""currency""}"
+27,2026-10-03T22:57:16.997,137.149,mode_switch,emotion,,emotion,,,,,,"{""from_mode"": ""claude""}"
+28,2026-10-03T22:57:20.162,140.314,action_press,emotion,,,,,,,,
+29,2026-10-03T22:57:20.411,140.563,result,emotion,248.1,সামনের মানুষটিকে স্বাভাবিক দেখাচ্ছে,,0.3753,neutral,,,"{""press_event"": 28, ""press_to_result_ms"": 248.9, ""waited_for_load_ms"": 0.0, ""face_found"": true, ""backend"": ""rgb_mobilenet_blend""}"
+30,2026-10-03T22:57:31.896,152.048,action_press,emotion,,,,,,,,
+31,2026-10-03T22:57:32.114,152.266,result,emotion,216.5,সামনের মানুষটিকে স্বাভাবিক দেখাচ্ছে,,0.5572,neutral,,,"{""press_event"": 30, ""press_to_result_ms"": 217.3, ""waited_for_load_ms"": 0.0, ""face_found"": true, ""backend"": ""rgb_mobilenet_blend""}"
+32,2026-10-03T22:57:38.243,158.395,action_press,emotion,,,,,,,,
+33,2026-10-03T22:57:38.465,158.617,result,emotion,221.5,সামনের মানুষটিকে খুশি দেখাচ্ছে,,0.4864,happiness,,,"{""press_event"": 32, ""press_to_result_ms"": 222.2, ""waited_for_load_ms"": 0.0, ""face_found"": true, ""backend"": ""rgb_mobilenet_blend""}"
+34,2026-10-03T22:57:44.265,164.417,mode_switch,ocr,,ocr,,,,,,"{""from_mode"": ""emotion""}"
+35,2026-10-03T22:59:05.020,245.172,study_answers,,,"{""easy_to_use"": ""unclear"", ""speech_clear"": ""yes"", ""helped_currency"": ""yes"", ""helped_reading"": ""yes"", ""trust"": ""yes"", ""would_use_daily"": ""yes""}",,,,,,"{""participant"": ""P001""}"
+36,2026-10-03T23:00:33.521,333.672,session_end,,,,,,,,,
