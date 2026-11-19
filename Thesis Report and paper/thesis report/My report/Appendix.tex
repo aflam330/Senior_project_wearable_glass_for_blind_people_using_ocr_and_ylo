@@ -52,7 +52,9 @@ OCR\_CANVAS\_SIZE & 2560 & Picture size used to find text; 640 is faster on the 
 OCR\_V2\_DECODER & greedy & How the reader turns its output into letters (greedy: the best letter at each step) \\ \hline
 OCR\_STREAM\_PAGES & on, 4 lines & Pages with at least 4 lines are spoken line by line \\ \hline
 CURRENCY\_ANNOUNCE\_CONF & 0.60 & A note is named only when the detector is at least this sure \\ \hline
-JAAL\_SAFE\_TAU & 0.99959 & The glass says ``likely genuine'' only above this score; otherwise ``check by hand'' \\ \hline
+BD\_AUTH\_MIN\_CONF & 0.95 & Second checker (Section~\ref{sec:bd_auth}): ``likely genuine'' only at or above this genuine score \\ \hline
+SARA\_TRUST\_MIN\_FOR\_GENUINE & 80 & Trust score (0--100) needed before ``likely genuine'' is spoken \\ \hline
+JAAL\_SAFE\_TAU & 0.99959 & JaalTaka checker, used only when the second checker is off: ``likely genuine'' only above this score \\ \hline
 WATERMARK\_CLEAR\_THRESHOLD & 0.5 & Score above which the watermark counts as present \\ \hline
 CAPTURE\_GUIDE\_MIN\_MEAN & 73.87 & A note photo held against light must be at least this bright (0--255) \\ \hline
 CAPTURE\_GUIDE\_MIN\_LAPVAR & 106.75 & The photo must be at least this sharp (Laplacian variance) \\ \hline

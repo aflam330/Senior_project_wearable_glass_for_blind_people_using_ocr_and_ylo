@@ -397,6 +397,8 @@ With the setting now in the glass: held-out sheets rejected & -- & 223 of 240; w
 
 The repaired check gives up seven points of genuine acceptance and, in the simulation, rejects about nine in ten fibre-free sheets. A single strongly coloured fibre decides, which is fragile; it is what these hand-held, already compressed phone photographs support. This is still not evidence about counterfeit notes: a real counterfeit's ink and paper may behave differently under the lamp, and none has been photographed.
 
+\textbf{Counterfeit prints under a simulated lamp (18 November 2026).} The same simulation was repeated with normal-light photographs of 120 real counterfeit notes from the counterfeit set of Section~\ref{sec:bd_auth} instead of genuine notes, with the lamp model measured on the 111 genuine UV photographs (\texttt{savior\_glass/results/uv\_check/uv\_fake\_print\_sim.json}). With the setting used in the glass (one coloured fibre is enough), 81 of the 120 counterfeit prints were passed as genuine (32.5\% rejected); with added glow 89 (25.8\% rejected), and with stronger noise or harsh JPEG compression nearly all of them (1.7\% and 0\% rejected), because noise and compression create false fibres. A stricter rule that needs at least 6 coloured fibres rejected 113 of 120 (94.2\%) without glow and 90.0\% with glow, but still only 32.5\% with noise and 7.5\% with harsh compression. The genuine acceptance of 85.6\% (95 of 111) belongs to the glass setting; the genuine acceptance of the stricter rule was not measured, and on these photographs a genuine note shows a median of only 5 strongly coloured fibres, so the stricter rule would reject many genuine notes. The result therefore shows that the check in the glass does not separate counterfeit prints from genuine notes, and that a simulated lamp is not a photograph of a counterfeit under a real lamp.
+
 \subsection{Capture Guide}
 The brightness and sharpness limits of the capture guide were set on validation photographs and checked on the 222 back-lit test photographs (Table~\ref{tab:guide}). Dark and defocused frames are rejected completely, and 96\% of the clean photographs pass. The limits come from JaalTaka photographs, not from the glass camera, and have to be set again for it.
 
@@ -477,6 +479,39 @@ Wrong answers in bad light, when too-dark or blurry photos are rejected first & 
 \end{table}
 
 The policy is safe on everything that was measured: no counterfeit was passed, and in 1,889 runs of the application the word ``counterfeit'' was never spoken. The price is usefulness. On close-up views it confirms 57.5\% of genuine notes, but on whole-note photographs taken by other people it confirms almost none (0.4--2.0\%) and sends nearly every note to a check by hand. The safety evidence on whole notes is also narrow: it rests on about four physical counterfeit notes, and the highest counterfeit score (0.99567) lies close to the threshold (0.99959). The glass is therefore safe but, for whole notes, seldom decisive. Without the quality gate, confidence alone is not enough under bad light: at a brightness factor of 0.35, 59 of 208 one-view verdicts were wrong; with the gate, none.
+
+\subsection{A Second Counterfeit Checker for 200, 500 and 1,000 Taka (November 2026)}
+\label{sec:bd_auth}
+Because the JaalTaka checker seldom confirmed whole notes, a second checker was trained on whole-note photographs: an ImageNet-pretrained EfficientNet-B0 with two classes, counterfeit and genuine. Counterfeits are 240 photographs of counterfeit 200, 500 and 1,000 Taka notes collected for this project (80 per value); genuine notes are 240 photographs from the raw BanglaTaka photographs (80 per value). Each photograph gives five images (unchanged and turned by $\pm15^\circ$ and $\pm30^\circ$), 2,400 in all, split by note into 1,710 training, 310 validation and 380 test images (76 test notes: 48 counterfeit, 28 genuine). The epoch was chosen on validation (\texttt{results/bd\_counterfeit\_auth\_metrics.json}). The model was then fine-tuned with strong light changes, and in the glass the score is averaged with that of the mirrored image. The glass says ``likely genuine'' only when the genuine score is at least 0.95; otherwise it says ``check by hand''. It never says ``counterfeit''.
+
+\begin{table}[!htbp]
+\centering
+\caption{Second counterfeit checker on 380 test images (76 notes). Accuracy per image; the last column counts counterfeit images called ``likely genuine'' at $\tau = 0.90$ for the first model and $\tau = 0.95$ for the model in the glass. Each run of the darker and brighter test draws its own random changes, so the two models are not compared on identical images.}
+\label{tab:bd_auth}
+\small
+\begin{tabular}{|L{4.9cm}|C{1.9cm}|C{2.1cm}|C{2.1cm}|C{2.6cm}|}
+\hline
+\textbf{Test images} & \textbf{Accuracy} & \textbf{Counterfeits caught} & \textbf{Genuine notes accepted} & \textbf{Counterfeits called ``likely genuine''} \\ \hline
+Unchanged & 100\% & 100\% & 100\% & 0 of 240 \\ \hline
+Blur, JPEG, noise, crop or rotation & 100\% & 100\% & 100\% & 0 of 240 \\ \hline
+Darker, first model & 98.7\% & 100\% & 96.4\% & 0 of 240 \\ \hline
+Brighter, first model & 96.6\% & 99.2\% & 92.1\% & 0 of 240 \\ \hline
+Brighter, glass model with mirrored copy & 98.4\% & 100\% & 95.7\% & 0 of 240 \\ \hline
+Darker, glass model with mirrored copy & 99.2\% & 100\% & 97.9\% & 0 of 240 \\ \hline
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:bd_auth} comes from \texttt{results/bd\_auth\_strength.json} (first model) and \texttt{results/bd\_auth\_jump.json} (the model in the glass). At every threshold from 0.80 to 0.99, the glass policy called none of the 240 counterfeit test images ``likely genuine'' and confirmed all 140 genuine ones (\texttt{results/glass\_auth\_bench.json}); one image took a median of 58--66~ms on the laptop GPU (88~ms with the policy). Its speed on the Pi was not measured.
+
+\textbf{These figures overstate how good the checker is.} An audit of the split for this thesis found three problems:
+\begin{itemize}[noitemsep]
+    \item \textbf{Repeated photographs.} 16 of the 48 counterfeit test notes are byte-for-byte the same photograph as a training image, and 29 photographs occur in more than one split. The counterfeit set contains repeated files.
+    \item \textbf{Seen prints.} Six of the seven counterfeit print groups in the test split also occur in training, so the test does not measure unseen prints (compare Section~\ref{sec:serial_split}).
+    \item \textbf{Two sources.} Every counterfeit comes from one collection and every genuine note from another, taken with other cameras, backgrounds and light. A model can reach 100\% by recognising the collection instead of the note.
+\end{itemize}
+The test also contains only 76 notes; 0 of 240 counterfeit images corresponds to 0 of 48 counterfeit notes, an upper bound of about 7.4\% (95\%, Wilson). The checker has not been tested on whole-note photographs from the other collections of Table~\ref{tab:jaal_deployed}, nor through the glass camera. Until it is tested on genuine and counterfeit notes photographed the same way, its 100\% is not evidence that it detects counterfeits. Its policy is the same as before, so a wrong answer costs a check by hand, not a false ``counterfeit''; the risk that remains is a counterfeit called ``likely genuine''.
+
+\textbf{SARA Trust Index.} On top of this checker the glass combines the detector's confidence, the genuine score and the image quality into a score from 0 to 100, and says ``likely genuine'' only at a score of at least 80; otherwise it speaks a reason and the next step in Bangla, such as more light, hold the note straight, or check by hand. On the same 380 test images (\texttt{results/sara\_trust\_eval.json}) it called 0 of 240 counterfeit images ``likely genuine'' and confirmed 80 of 140 genuine ones (57.1\%); the reasons given were: checker unsure 116, bad position 100, too dark 48, too blurred 36, and high trust 80. No spoken sentence contained the word ``counterfeit''. All 40 darkened test images were either flagged or answered safely. The limits of the split above apply here too.
 
 \subsection{Other Training Variants and Negative Results}
 Many other training variants were tried on the same split (Figure~\ref{fig:auth_views}); eighteen methods have all three seeds. Several of them reach 95--98\% at one view, for example a focal-style loss variant (NDAL) \cite{focalloss} with 98.1\% at one view, so the accuracy alone does not single out one algorithm; the common factor is that all of them see varying numbers of views during training. Some variants failed: a simulated federated version stayed at 74.0\% with one view and below the baseline from two views on, and one retrained variant became worse than its first version. We also tried learned policies that choose which view to capture next and when to stop (rules based on image quality, confidence, diversity and uncertainty, and a cost-aware rule). On PRMVT, averaged over three seeds, none of them beat simply taking the views in their fixed order (96.5\% with one view and 97.6--98.6\% with two to six): the learned rules picked a weaker first view and reached 89.3--90.2\% with one view, and the cost-aware rule with early stopping stopped after one view at 89.3\%. A prefix stopping rule on the fixed order reached 97.1\% with an average of 1.01 views, which is simply because PRMVT is already accurate with one view. Earlier, much lower figures for these policies (down to 42\%) were caused by evaluation faults that have since been fixed, not by the policies themselves. Values from a single seed also shrank when more seeds were added (one variant fell from 98.1\% to 96.8\% at one view), and about 110 training runs have read this test split, which is a further reason not to rank methods by small differences on it. These negative results are reported so that the method is not presented as better than it is.
@@ -827,8 +862,31 @@ The second prototype was then tried in a staged shop exchange by two team member
     \label{fig:v2_use}
 \end{figure}
 
-\subsection*{Trial sessions with a visually impaired participant}
-After the first field test, trial sessions with the worn prototype were started with a visually impaired participant (Figure~\ref{fig:worn}), and a survey is being collected. The data from these sessions were not available when this chapter was written. No result from them is reported here, and none of the conclusions of this thesis rests on them; they will be added once the survey is complete.
+\subsection{Voice Questionnaire after Using the Glass}
+\label{sec:voice_survey}
+After the first field test, trial sessions with the worn prototype were held (Figure~\ref{fig:worn}). After using the glass, each person answered the six yes/no questions of the voice study tool (Section~\ref{sec:impl_voice_study}) by voice or, when speech was not understood, with keys pressed by the experimenter. Table~\ref{tab:voice_survey} gives all 106 answer sets on file (file \texttt{voice\_responses\_anonymized.csv} in \texttt{savior\_glass/results/user\_study}, names removed).
+
+\begin{table}[!htbp]
+\centering
+\caption{Voice questionnaire: number of ``yes'' answers (no / unclear in brackets)}
+\label{tab:voice_survey}
+\small
+\begin{tabular}{|L{4.6cm}|C{3.0cm}|C{3.0cm}|C{3.0cm}|}
+\hline
+\textbf{Question} & \textbf{Recorded by the app (41)} & \textbf{Imported from a text file (65)} & \textbf{All (106)} \\ \hline
+Easy to use & 36 (1 / 4) & 26 (14 / 25) & 62 (58\%) \\ \hline
+Speech was clear & 38 (1 / 2) & 44 (10 / 11) & 82 (77\%) \\ \hline
+Helped with currency & 38 (1 / 2) & 40 (15 / 10) & 78 (74\%) \\ \hline
+Helped with reading & 36 (2 / 3) & 34 (16 / 15) & 70 (66\%) \\ \hline
+Would trust it & 39 (0 / 2) & 40 (15 / 10) & 79 (75\%) \\ \hline
+Would use it daily & 38 (1 / 2) & 32 (19 / 14) & 70 (66\%) \\ \hline
+All six answered ``yes'' & 28 & 2 & 30 (28\%) \\ \hline
+\end{tabular}
+\end{table}
+
+\textbf{Where the answers come from.} 38 sessions were recorded by the application on the Raspberry Pi~5 on 18~November 2026 and 3 on the laptop on 3~October 2026; for these 41, the recordings, the recognised text and the field log are kept. 117 of the 228 answers of the Pi sessions were recognised from speech; the others were entered with keys. Two further Pi sessions were not finished and are not counted. The other 65 answer sets (6--9~October 2026) were collected on the laptop and later added from a text file; they have no recordings or logs and could not be checked.
+
+\textbf{What this does and does not show.} The two groups differ strongly: in the recorded sessions almost every answer is ``yes'' (28 of 41 said yes to all six), in the imported ones only 2 of 65 did. Whether the participants could see, how long they had used the glass and which tasks they did were not recorded, and the Pi sessions lasted a median of 1.1~minutes, including the questions. There was no comparison condition, and people tend to answer ``yes'' to the developers of a device they have just tried. These answers are first impressions, not the controlled study with visually impaired participants described in Section~\ref{sec:future_user_study}, and no conclusion of this thesis rests on them.
 
 \section{Third Run on the Raspberry Pi~5 and Fixes from the Field Log (29 October 2026)}
 \label{sec:pi5_third}
