@@ -7,7 +7,7 @@ Run on 23 November 2026 from 07:10 to 08:37 local time (87 minutes), on the glas
 | What | Median | 95th percentile |
 |---|---:|---:|
 | Currency check, end to end | 662 ms | 933 ms |
-| Taka detector, hand-held INT8 (Pi default when measured) | 280 ms | 456 ms |
+| Taka detector, hand-held INT8 (CURRENCY_DETECTOR=int8) | 280 ms | 456 ms |
 | Watermark check, learned localizer (used) | 47.5 ms | 72.5 ms |
 | Counterfeit safe-check, one crop | 198 ms | 307 ms |
 | Object scan, as the app runs it (YOLOv8s) | 446 ms | 629 ms |
@@ -55,7 +55,7 @@ Each row is 100 timed calls after 3 warm-up calls, from `scripts/benchmark_pi5.p
 | Group | Benchmark | Median | 95th pct | Mean | Calls/s | Load | Memory after | Temp after |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | Currency | Currency check, end to end | 662 ms | 933 ms | 687 ms | 1.51 | 587 ms | 1.28 GB | 68.3 °C |
-| Currency | Taka detector, hand-held INT8 (Pi default when measured) | 280 ms | 456 ms | 298 ms | 3.58 | 0.5 ms | 1.57 GB | 82.6 °C |
+| Currency | Taka detector, hand-held INT8 (CURRENCY_DETECTOR=int8) | 280 ms | 456 ms | 298 ms | 3.58 | 0.5 ms | 1.57 GB | 82.6 °C |
 | Currency | Taka detector, earlier INT8 (v1) | 224 ms | 356 ms | 237 ms | 4.46 | 9.6 ms | 1.48 GB | 81.5 °C |
 | Currency | Taka detector (earlier model), ONNX FP32 | 428 ms | 737 ms | 481 ms | 2.34 | 32.7 ms | 1.39 GB | 79.3 °C |
 | Currency | Taka detector (earlier model), PyTorch | 563 ms | 779 ms | 571 ms | 1.78 | 282 ms | 1.30 GB | 73.2 °C |
@@ -73,7 +73,7 @@ Each row is 100 timed calls after 3 warm-up calls, from `scripts/benchmark_pi5.p
 
 Load is the time to build the model object in that process; the ONNX detectors are read from disk on their first call, so their load is near zero. Memory is the whole benchmark process after that row, not the size of one model.
 
-- **Currency.** The note rows cycle through the 4 note pictures on the Pi (the 500 and 1,000 Taka templates and the two pictures in `samples/`). In the code measured here, currency mode on the Pi loads the hand-held 8-bit detector (`best_handheld_int8.onnx`, the Pi default from 15 to 29 October; since commit `a349cfe` the Pi loads `best_handheld.pt`, which this run did not time). The earlier INT8 detector is timed for comparison.
+- **Currency.** The note rows cycle through the 4 note pictures on the Pi (the 500 and 1,000 Taka templates and the two pictures in `samples/`). In the code measured here, currency mode on the Pi loads the hand-held full-precision detector (`best_handheld.pt`, since commit `a349cfe`), so the end-to-end row times it; the hand-held 8-bit copy (`CURRENCY_DETECTOR=int8`) and the earlier detectors are timed alone for comparison.
 - **Emotion.** `benchmark_pi5.py` has no face pictures on the Pi, so its row is a frame with no face (46.6 ms, the face search alone). With a face in view (the astronaut test picture, classifier `rgb_mobilenet_blend`) one answer takes 542 ms.
 - **Objects.** The app uses YOLOv8s (446 ms per scan as the app runs it); YOLOv8n would take 193 ms. No COCO pictures are on the Pi, so the scan is timed on the note pictures; the detector does the same work on any picture.
 
@@ -84,7 +84,7 @@ Load is the time to build the model object in that process; the ONNX detectors a
 | Benchmark | 1 Oct | 13 Oct | 23 Nov | Change from 1 Oct | Change from 13 Oct |
 |---|---:|---:|---:|---:|---:|
 | Currency check, end to end | 327 ms | 399 ms | **662 ms** | +103% | +66% |
-| Taka detector, hand-held INT8 (Pi default when measured) | – | – | **280 ms** | – | – |
+| Taka detector, hand-held INT8 (CURRENCY_DETECTOR=int8) | – | – | **280 ms** | – | – |
 | Taka detector, earlier INT8 (v1) | 254 ms | 306 ms | **224 ms** | -12% | -27% |
 | Taka detector (earlier model), ONNX FP32 | 485 ms | 583 ms | **428 ms** | -12% | -27% |
 | Taka detector (earlier model), PyTorch | 507 ms | 534 ms | **563 ms** | +11% | +5% |
@@ -109,7 +109,7 @@ Load is the time to build the model object in that process; the ONNX detectors a
 | Model | Calls | Median, first 5 min | Median, last 5 min | Drift | Slowest call | Median in the timing pass |
 |---|---:|---:|---:|---:|---:|---:|
 | Currency check, end to end | 207 | 644 ms | 646 ms | +0% | 953 ms | 662 ms |
-| Taka detector, hand-held INT8 (Pi default when measured) | 207 | 281 ms | 277 ms | -1% | 607 ms | 280 ms |
+| Taka detector, hand-held INT8 (CURRENCY_DETECTOR=int8) | 207 | 281 ms | 277 ms | -1% | 607 ms | 280 ms |
 | Taka detector, earlier INT8 (v1) | 207 | 223 ms | 226 ms | +1% | 559 ms | 224 ms |
 | Taka detector (earlier model), ONNX FP32 | 207 | 417 ms | 418 ms | +0% | 841 ms | 428 ms |
 | Taka detector (earlier model), PyTorch | 207 | 444 ms | 444 ms | +0% | 843 ms | 563 ms |
@@ -187,14 +187,25 @@ What the glass read (default settings, app path, last run of each capture):
 
 Notes seen: none; objects announced: {'সামনে আছে: মানুষ': 9, 'সামনে আছে: মোবাইল ফোন': 1, 'সামনে আছে: মানুষ, মোবাইল ফোন': 1, 'সামনে আছে: কুকুর': 2}; faces: {'no_face': 5, 'rgb_mobilenet_blend': 3}. The run was unattended, so nothing was held up to the camera; this measures speed on real camera frames, not accuracy.
 
-## The app itself, used earlier today
+## The app after the run
 
-`python main.py` with the real camera and buttons, before this benchmark (`20261123_070935_memo`, 07:09–07:10; currency threshold 0.75, watermark step off). These are the latencies the app's own field log recorded, from button press to the spoken answer being queued.
+`python main.py` with the real camera and buttons, after this benchmark, on the code checked out then (`20261123_092211_memo`, 09:22–09:23, `20261123_092445_memo`, 09:24–09:28; currency threshold 0.75, watermark step off). These are the latencies the app's own field log recorded, from button press to the spoken answer being queued.
 
 | What | Times | Median | Range |
 |---|---:|---:|---:|
+| Text reading: one capture | 3 | 17.79 s | 13.75 s – 22.38 s |
+| Object scan and announcement | 1 | 722 ms | – |
+| Currency check | 1 | 1,474 ms | – |
 
-The app logged 59.0 to 60.0 °C. It held up to 1.77 GB of memory with all modes loaded and the camera open.
+The glass named the note on 1 of 1 currency presses (detector confidence at or above the threshold); on the others it asked for the note to be held closer, or found none. The app logged 52.4 to 66.1 °C. It held up to 2.73 GB of memory with all modes loaded and the camera open.
+
+What those text captures read. They were photos of printed pages, longer than the 3-line sign, so their times compare with the label and page rows of the text-reading section:
+
+| Language | Characters read | Time | Text the glass read |
+|---|---:|---:|---|
+| Bangla | 140 | 13.75 s | আায় ছেলেরা আয় মেয়েরা তুলিতে যাই ফুলের মালা গলায় দিয়ে মামার বাড়ি যাই ঝড়ের দিনে মামার দেশে আম কুড়াতে সুখ. ভামের মধুর রসে রপতিন করি মুখ |
+| Bangla | 17 | 22.38 s | ববববববববববববববববব |
+| English | 13 | 17.79 s | Mompty Oumpty |
 
 ## Loading, speech and camera
 

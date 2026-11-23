@@ -13,6 +13,7 @@ import csv
 import json
 import re
 import statistics
+import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -452,6 +453,13 @@ def main() -> None:
     ocr_s = {cfg: stats(lambda r, c=cfg: r["group"] == STEP_LABELS[f"ocr_{c[0]}_{c[1]}"]) for cfg in [c[:2] for c in OCR_CONFIGS]}
     started = datetime.fromtimestamp(tl[0]["epoch"]) if tl else datetime.fromisoformat(host["utc"]).astimezone()
     ended = datetime.fromtimestamp(tl[-1]["epoch"]) if tl else None
+    env = (RAW / "environment.txt").read_text(encoding="utf-8", errors="ignore").splitlines() if (RAW / "environment.txt").is_file() else []
+    commit = next((env[i + 1].split()[0][:7] for i, ln in enumerate(env[:-1]) if ln == "--- git" and env[i + 1].strip()), None)
+    # a349cfe moved the Pi from best_handheld_int8.onnx to best_handheld.pt
+    pt_default = bool(commit) and subprocess.run(["git", "-C", str(BR), "merge-base", "--is-ancestor", "a349cfe", commit],
+                                                 capture_output=True).returncode == 0
+    if pt_default:
+        NAMES["taka_yolo_handheld_int8"] = "Taka detector, hand-held INT8 (CURRENCY_DETECTOR=int8)"
 
     g = {"latency": graph_latency(lat, iters),
          "runs": graph_runs(lat, [("1 Oct (cool board)", ref1, BLUE_LIGHT), ("13 Oct (board at its limit)", ref13, BLUE)]),
@@ -475,8 +483,6 @@ def main() -> None:
     L: list[str] = []
     w = L.append
     duration = f"{(tl[-1]['epoch'] - tl[0]['epoch']) / 60:.0f} minutes" if tl else ""
-    env = (RAW / "environment.txt").read_text(encoding="utf-8", errors="ignore").splitlines() if (RAW / "environment.txt").is_file() else []
-    commit = next((env[i + 1].split()[0][:7] for i, ln in enumerate(env[:-1]) if ln == "--- git" and env[i + 1].strip()), None)
     w(f"# SARA on the Raspberry Pi 5: benchmark report, {started:%-d %B %Y}")
     w("")
     w(f"Run on {started:%d %B %Y} from {started:%H:%M} to {ended:%H:%M} local time ({duration}), on the glass's own board "
@@ -605,9 +611,14 @@ def main() -> None:
         notes_frames = int(m.group(1))
     if notes_frames:
         w(f"- **Currency.** The note rows cycle through the {notes_frames} note pictures on the Pi (the 500 and 1,000 Taka templates "
-          "and the two pictures in `samples/`). In the code measured here, currency mode on the Pi loads the hand-held 8-bit "
-          "detector (`best_handheld_int8.onnx`, the Pi default from 15 to 29 October; since commit `a349cfe` the Pi loads "
-          "`best_handheld.pt`, which this run did not time). The earlier INT8 detector is timed for comparison.")
+          "and the two pictures in `samples/`). "
+          + ("In the code measured here, currency mode on the Pi loads the hand-held full-precision detector "
+             "(`best_handheld.pt`, since commit `a349cfe`), so the end-to-end row times it; the hand-held 8-bit copy "
+             "(`CURRENCY_DETECTOR=int8`) and the earlier detectors are timed alone for comparison."
+             if pt_default else
+             "In the code measured here, currency mode on the Pi loads the hand-held 8-bit detector "
+             "(`best_handheld_int8.onnx`, the Pi default from 15 to 29 October; since commit `a349cfe` the Pi loads "
+             "`best_handheld.pt`, which this run did not time). The earlier INT8 detector is timed for comparison."))
     if "emotion_with_face" in lat and "emotion" in lat:
         e = lat["emotion_with_face"]
         w(f"- **Emotion.** `benchmark_pi5.py` has no face pictures on the Pi, so its row is a frame with no face "
@@ -829,6 +840,8 @@ def main() -> None:
         except (KeyError, ValueError):
             continue
         s = {"name": name, "meta": meta, "events": read_csv(folder / "events.csv"), "system": read_csv(folder / "system.csv")}
+        if not any(e.get("latency_ms") for e in s["events"]):
+            continue   # started and stopped without a press (a start-up check): nothing to report
         if begun < run_start:
             before.append(s)
         elif begun > run_end:
@@ -1028,7 +1041,13 @@ def main() -> None:
            "th,td{padding:6px 10px;border-bottom:1px solid #e6e5e0;text-align:left;vertical-align:top}"
            "th{color:#52514e;font-weight:600;border-bottom:2px solid #c9c8c2}td[style*=right],th[style*=right]{text-align:right;"
            "font-variant-numeric:tabular-nums;white-space:nowrap}code{background:#f1f0ec;padding:1px 5px;border-radius:4px;"
-           "font-size:.9em}li{margin:6px 0}")
+           "font-size:.9em}li{margin:6px 0}"
+           # on paper a scrolling table loses its right-hand columns: fit every table to the page width instead
+           "@media print{@page{size:A4;margin:12mm}body{max-width:none;padding:0;font-size:11px;background:#fff}"
+           "h1{font-size:20px}h2{font-size:15px;margin-top:22px;break-after:avoid}"
+           "table{display:table;width:100%;overflow:visible;font-size:8.5px;table-layout:auto}"
+           "th,td{padding:3px 4px}td[style*=right],th[style*=right]{white-space:normal}"
+           "tr,img{break-inside:avoid}code{font-size:.85em}}")
     (RUN / "REPORT.html").write_text(
         f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
         f"<title>SARA Pi 5 benchmark, {THIS}</title><style>{css}</style></head><body>{body}</body></html>", encoding="utf-8")

@@ -1,0 +1,127 @@
+{
+ "n": 20,
+ "default_same": 20,
+ "same": 20,
+ "cpu_ms_median": 583.4,
+ "cpu_ms_p95": 668.9,
+ "hailo_ms_median": 12.7,
+ "hailo_ms_p95": 13.9,
+ "pictures": [
+  {
+   "name": "bus.jpg",
+   "cpu": [
+    "bus",
+    "person"
+   ],
+   "hailo": [
+    "bus",
+    "person"
+   ]
+  },
+  {
+   "name": "zidane.jpg",
+   "cpu": [
+    "person",
+    "tie"
+   ],
+   "hailo": [
+    "person",
+    "tie"
+   ]
+  },
+  {
+   "name": "emotion_input_face.png",
+   "cpu": [
+    "person"
+   ],
+   "hailo": [
+    "person"
+   ]
+  },
+  {
+   "name": "ocr_input_label_mixed_6_lines.png",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "ocr_input_no_text.png",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "ocr_input_page_12_lines_1280.png",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "ocr_input_page_12_lines_640.png",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "ocr_input_sign_bn_1_line.png",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "ocr_input_sign_bn_3_lines.png",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "ocr_input_sign_en_3_lines.png",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "webcam_0",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "webcam_1",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "webcam_2",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "webcam_3",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "webcam_4",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "webcam_5",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "webcam_6",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "webcam_7",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "webcam_8",
+   "cpu": [],
+   "hailo": []
+  },
+  {
+   "name": "webcam_9",
+   "cpu": [],
+   "hailo": []
+  }
+ ]
+}

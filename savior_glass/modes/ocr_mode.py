@@ -117,6 +117,9 @@ class OCRMode(BaseMode):
                 if not use_gpu:
                     from ocr_detector_onnx import install
                     install(self._reader)      # ONNX Runtime text detector when its file is present (config.OCR_DETECTOR)
+                    if config.OCR_DETECTOR == "hailo":
+                        import hailo_text_detector
+                        hailo_text_detector.install(self._reader)   # text found on the AI HAT; CPU detector kept behind it
                 import ocr_recognizer_ft
                 ocr_recognizer_ft.install(self._reader)   # fine-tuned letter recogniser when config names one
                 logger.info("EasyOCR ready")
@@ -129,6 +132,9 @@ class OCRMode(BaseMode):
         logger.info("OCR mode deactivated")
 
     def cleanup(self) -> None:
+        det = getattr(self._reader, "_hailo_det", None) if self._reader is not None else None
+        if det is not None:
+            det.close()
         self._reader = None
         self._ekush = None
 

@@ -28,6 +28,7 @@ class ObjectMode(BaseMode):
 
     def __init__(self) -> None:
         self._model = None
+        self._hailo = None   # hailo_yolo.HailoYolo when OBJECT_BACKEND=hailo and the AI HAT answers
         self._labels_bn: dict[str, str] = {}
         self._last_announced: dict[str, float] = {}
         self._force_announce = False
@@ -47,13 +48,16 @@ class ObjectMode(BaseMode):
 
     def cleanup(self) -> None:
         self._model = None
+        if self._hailo is not None:
+            self._hailo.close()
+            self._hailo = None
 
     # ------------------------------------------------------------------
     # Core processing  (called by detection_thread on a timer)
     # ------------------------------------------------------------------
 
     def process_frame(self, frame: np.ndarray) -> Optional[str]:
-        if self._model is None or frame is None:
+        if (self._model is None and self._hailo is None) or frame is None:
             return None
 
         # The frame goes to the detector as it is. It used to be shrunk to 320x240 first "for fast inference", but the
@@ -65,35 +69,19 @@ class ObjectMode(BaseMode):
         if frame.shape[1] > 640:
             small = cv2.resize(frame, (640, int(frame.shape[0] * 640 / frame.shape[1])), interpolation=cv2.INTER_AREA)
 
-        try:
-            with torch.no_grad():
-                results = self._model.predict(
-                    small,
-                    conf=config.OBJECT_CONFIDENCE,
-                    verbose=False,
-                    stream=False,
-                )
-        except Exception as exc:
-            logger.warning("YOLO inference error: %s", exc)
-            return None
-
-        if not results:
+        found = self.detect(small)
+        if found is None:
             return None
 
         # Collect detections sorted by confidence desc
         detections: list[tuple[str, float]] = []
         sx, sy = frame.shape[1] / small.shape[1], frame.shape[0] / small.shape[0]
         boxes = []
-        for r in results:
-            for box in r.boxes:
-                cls_id = int(box.cls[0])
-                conf   = float(box.conf[0])
-                name   = self._model.names.get(cls_id, "unknown")
-                if conf < getattr(config, "OBJECT_CLASS_CONFIDENCE", {}).get(name, 0.0):
-                    continue
-                detections.append((name, conf))
-                x1, y1, x2, y2 = (float(v) for v in box.xyxy[0])
-                boxes.append((int(x1 * sx), int(y1 * sy), int(x2 * sx), int(y2 * sy), name, conf))
+        for name, conf, x1, y1, x2, y2 in found:
+            if conf < getattr(config, "OBJECT_CLASS_CONFIDENCE", {}).get(name, 0.0):
+                continue
+            detections.append((name, conf))
+            boxes.append((int(x1 * sx), int(y1 * sy), int(x2 * sx), int(y2 * sy), name, conf))
         self.last_boxes = boxes  # drawn by the preview window (preview.py)
 
         detections.sort(key=lambda x: x[1], reverse=True)
@@ -124,6 +112,37 @@ class ObjectMode(BaseMode):
         logger.info("Objects: %s", announcement)
         return announcement
 
+    def detect(self, frame: np.ndarray) -> Optional[list[tuple[str, float, int, int, int, int]]]:
+        """[(name, conf, x1, y1, x2, y2)] at OBJECT_CONFIDENCE, in frame pixels; None when the detector failed."""
+        if self._hailo is not None:
+            try:
+                return self._hailo.detect(frame, config.OBJECT_CONFIDENCE)
+            except Exception as exc:
+                logger.warning("Hailo object detector failed (%s); falling back to the CPU model", exc)
+                self._hailo.close()
+                self._hailo = None
+                self._load_cpu_model()
+                return None
+        if self._model is None:
+            return None
+        try:
+            with torch.no_grad():
+                results = self._model.predict(
+                    frame,
+                    conf=config.OBJECT_CONFIDENCE,
+                    verbose=False,
+                    stream=False,
+                )
+        except Exception as exc:
+            logger.warning("YOLO inference error: %s", exc)
+            return None
+        found = []
+        for r in results:
+            for box in r.boxes:
+                x1, y1, x2, y2 = (float(v) for v in box.xyxy[0])
+                found.append((self._model.names.get(int(box.cls[0]), "unknown"), float(box.conf[0]), x1, y1, x2, y2))
+        return found
+
     def force_announce_now(self) -> None:
         """Called by ACTION button press — ignores cooldown timers."""
         self._force_announce = True
@@ -133,8 +152,20 @@ class ObjectMode(BaseMode):
     # ------------------------------------------------------------------
 
     def _load_model(self) -> None:
-        if self._model is not None:
+        if self._model is not None or self._hailo is not None:
             return
+        if getattr(config, "OBJECT_BACKEND", "cpu") == "hailo":
+            try:
+                from hailo_yolo import HailoYolo
+                self._hailo = HailoYolo(config.HAILO_YOLO_HEF)
+                logger.info("YOLO object model on the Hailo AI HAT: %s", config.HAILO_YOLO_HEF)
+                return
+            except Exception as exc:
+                logger.warning("Hailo AI HAT not usable (%s); object mode uses the CPU model", exc)
+                self._hailo = None
+        self._load_cpu_model()
+
+    def _load_cpu_model(self) -> None:
         candidates = [
             getattr(config, "YOLO_MODEL_PATH", ""),
             getattr(config, "YOLO_MODEL_FALLBACK", ""),

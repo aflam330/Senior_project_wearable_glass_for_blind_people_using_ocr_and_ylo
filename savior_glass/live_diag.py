@@ -140,16 +140,13 @@ class LiveDiagnostics:
 
         # 5. objects
         obj = self.app._modes[config.MODE_OBJECT]
-        if obj._model is None:
+        if obj._model is None and obj._hailo is None:
             obj.activate()
-        if obj._model is not None:
+        if obj._model is not None or obj._hailo is not None:
             t0 = time.perf_counter()
-            r = obj._model.predict(frame, conf=float(config.OBJECT_CONFIDENCE), verbose=False)[0]
-            items = []
-            if r.boxes is not None:
-                for i in range(min(len(r.boxes), 6)):
-                    x1, y1, x2, y2 = (int(v) for v in r.boxes.xyxy[i].tolist())
-                    items.append({"name": str(r.names[int(r.boxes.cls[i])]), "conf": float(r.boxes.conf[i]), "box": [x1, y1, x2, y2]})
+            found = obj.detect(frame) or []
+            items = [{"name": str(name), "conf": float(conf), "box": [int(x1), int(y1), int(x2), int(y2)]}
+                     for name, conf, x1, y1, x2, y2 in found[:6]]
             st["objects"] = {"ms": _ms(t0), "boxes": items}
         else:
             st["objects"] = {"missing": True}

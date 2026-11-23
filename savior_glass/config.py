@@ -77,6 +77,14 @@ OBJECT_PROFILE = os.environ.get("OBJECT_PROFILE", "accurate")
 YOLO_MODEL_PATH     = os.path.join(BASE_DIR, "models", os.environ.get(
     "YOLO_MODEL", "yolov8n.pt" if OBJECT_PROFILE == "fast" else "yolov8s.pt"))
 YOLO_MODEL_FALLBACK = os.path.join(BASE_DIR, "models", "yolov8n.pt")
+# OBJECT_BACKEND=hailo runs the object detector on a Raspberry Pi AI HAT (Hailo-8): Hailo's compile of the same COCO
+# YOLOv8s (hailo_yolo.py), about 12 ms a picture on the chip against about 450 ms for yolov8s.pt on the CPU. Off by
+# default; when the chip or the HEF is missing, or the chip fails while running, object mode falls back to the CPU model.
+# AI_HAT=1 turns on every AI HAT path at once (object detector, text detector); each still falls back to the CPU on
+# its own when the chip can't be used. OBJECT_BACKEND / OCR_DETECTOR set explicitly win over it.
+AI_HAT = os.environ.get("AI_HAT", "0") == "1"
+OBJECT_BACKEND = os.environ.get("OBJECT_BACKEND", "hailo" if AI_HAT else "cpu").strip().lower()
+HAILO_YOLO_HEF = os.environ.get("HAILO_YOLO_HEF", "/usr/share/hailo-models/yolov8s_h8.hef")
 CURRENCY_MODEL_PATH = os.path.join(BASE_DIR, "models", "currency_mobilenet.pt")
 # On a Pi 5 the measured device model is the 18 MB INT8 detector. Elsewhere keep the
 # PyTorch weights; ONNX is slower to start when onnxruntime is missing.
@@ -393,9 +401,16 @@ OCR_READ_WIDTH = int(os.environ.get("OCR_READ_WIDTH", "1200"))
 # version on the same board. Cost, measured on the laptop with the settings now in use: rendered validation CER
 # 3.15 % against 2.58 % (+0.57 points; results/ocr_bench/detector_int8_variants.json). The speed of the 8-bit text
 # detector on the Pi itself has NOT been measured yet. To go back: OCR_DETECTOR=onnx.
-OCR_DETECTOR = os.environ.get("OCR_DETECTOR", "onnx_int8" if ON_RASPBERRY_PI_5 else "auto")
+OCR_DETECTOR = os.environ.get("OCR_DETECTOR", "hailo" if AI_HAT else ("onnx_int8" if ON_RASPBERRY_PI_5 else "auto"))
 OCR_DETECTOR_ONNX = os.path.join(BASE_DIR, "models", "craft_fp32.onnx")
 OCR_DETECTOR_ONNX_INT8 = os.path.join(BASE_DIR, "models", "craft_int8_minmax128.onnx")   # MinMax calibration, 128 images
+# OCR_DETECTOR=hailo (opt-in, see hailo_text_detector.py): text is FOUND on the Raspberry Pi AI HAT by Hailo's stock
+# PP-OCRv5 mobile detector; SARA's letter recogniser still reads it on the CPU. If the chip can't be used, the CPU
+# detector below (OCR_HAILO_CPU_FALLBACK) is used instead. OCR_HAILO_MODE: "tile" (picture at its own size, 4 windows)
+# or "resize" (one window).
+HAILO_OCR_DET_HEF = os.environ.get("HAILO_OCR_DET_HEF", os.path.join(BASE_DIR, "models", "hailo", "paddle_ocr_v5_mobile_detection.hef"))
+OCR_HAILO_MODE = os.environ.get("OCR_HAILO_MODE", "tile")
+OCR_HAILO_CPU_FALLBACK = os.environ.get("OCR_HAILO_CPU_FALLBACK", "onnx_int8" if ON_RASPBERRY_PI_5 else "auto")
 # Pages: when the main text block holds at least OCR_STREAM_MIN_LINES lines, each line is spoken as soon as it is
 # read, while the rest of the page is still being read. Measured (results/ocr_bench/page_streaming.json, same 4-thread
 # laptop): first line after 5.5 s on a 12-line page; validation error unchanged (2.14 %, 432 images). Fewer lines

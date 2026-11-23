@@ -43,6 +43,8 @@ class OrtDetector:
 def install(reader) -> str:
     """Use the ONNX detector in this EasyOCR reader if config and files allow. Returns what is in use."""
     choice = getattr(config, "OCR_DETECTOR", "auto")
+    if choice == "hailo":                               # the CPU detector kept behind the AI HAT one (hailo_text_detector.py)
+        choice = getattr(config, "OCR_HAILO_CPU_FALLBACK", "auto")
     if choice == "torch" or getattr(reader, "device", "cpu") != "cpu":
         return "pytorch"
     path = config.OCR_DETECTOR_ONNX_INT8 if choice == "onnx_int8" else config.OCR_DETECTOR_ONNX
