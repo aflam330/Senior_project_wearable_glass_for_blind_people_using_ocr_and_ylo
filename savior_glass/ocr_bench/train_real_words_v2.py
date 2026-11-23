@@ -1,6 +1,7 @@
 """Recogniser fine-tune, version 2 (2026-11-23). Same data split and checkpoint rule as train_real_words.py; changes:
   * all upright Latin-script training words the recogniser can spell (version 1: 8,000), all Bangla training words;
-  * batch 32 (8 Bangla real, 8 Latin real, 16 rendered) instead of 16, 6,000 steps instead of 3,000;
+  * 8,000 steps instead of 3,000 (batch 16 as before: 4 Bangla real, 4 Latin real, 8 rendered; a batch of 32 did
+    not fit the 4 GB GPU);
   * augmentation that copies the glass's path: the word is shrunk and enlarged again (low resolution), JPEG
     compressed, blurred, tilted a little, its contrast enhanced (CLAHE) or lowered.
 TEST words (real_words.py, seed 0) are never loaded. The checkpoint is chosen on the real VALIDATION crops, only among
@@ -51,7 +52,7 @@ def augment(im, rng):
 def main() -> None:
     import easyocr
     seed = int(sys.argv[1]) if len(sys.argv) > 1 else 42
-    steps = int(sys.argv[2]) if len(sys.argv) > 2 else 6000
+    steps = int(sys.argv[2]) if len(sys.argv) > 2 else 8000
     random.seed(seed); np.random.seed(seed); torch.manual_seed(seed)
     reader = easyocr.Reader(["bn", "en"], gpu=DEV.type == "cuda", verbose=False)
     model = reader.recognizer.module if hasattr(reader.recognizer, "module") else reader.recognizer
@@ -85,9 +86,9 @@ def main() -> None:
     best = (base_real, 0, None)
     for step in range(1, steps + 1):
         texts, imgs = [], []
-        for j in range(32):
-            if j < 16:
-                pool = bn if j < 8 else en
+        for j in range(16):
+            if j < 8:
+                pool = bn if j < 4 else en
                 t, im = pool[rng.randrange(len(pool))]
                 texts.append(t); imgs.append(augment(im, rng))
             else:
@@ -117,7 +118,7 @@ def main() -> None:
     (T7.OUT / f"real_ft_v2_seed{seed}.json").write_text(json.dumps({
         "date": "2026-11-23", "seed": seed, "steps": steps, "best_step": best[1], "best_real_val_crop_cer": best[0],
         "pretrained": hist[0], "history": hist, "train_real_words": {"bn": len(bn), "en": len(en)},
-        "real_val_words": len(real_val), "batch": "16 real (8 Bangla, 8 Latin) + 16 rendered"}, indent=1), encoding="utf-8")
+        "real_val_words": len(real_val), "batch": "8 real (4 Bangla, 4 Latin) + 8 rendered"}, indent=1), encoding="utf-8")
     print("best step", best[1], "real val crop CER", best[0], "pretrained", base_real)
 
 

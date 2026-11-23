@@ -1,7 +1,8 @@
 """Checks of the text reader after the single-detector-pass change (needs EasyOCR and its models; about a minute).
 
   * the glass path (one detector pass, then recognition) gives the same text as EasyOCR's readtext on benchmark images;
-  * the text detector is called once per capture, for a short sign, a blank picture and a page;
+  * the text detector is called once per capture for a short sign and a page; for a blank picture once, plus exactly
+    one second-pass run when OCR_SECOND_PASS is on (since 2026-11-23, ocr_bench/ocr_v4_eval.py);
   * a blank picture answers "no text found" and does not invent letters;
   * a page is spoken line by line.
 
@@ -57,7 +58,8 @@ assert calls["n"] == 1, f"short sign: detector ran {calls['n']} times"
 blank = np.full((480, 640, 3), 128, np.uint8)
 calls["n"] = 0
 t = time.perf_counter(); out = m.process_frame(blank); t_blank = time.perf_counter() - t
-assert calls["n"] == 1 and m._stored_text is None and "পাওয়া যায়নি" in out, (calls, out, m._stored_text)
+blank_calls = 1 + (config.OCR_SECOND_PASS is not None)       # the second pass runs only when the first finds nothing
+assert calls["n"] == blank_calls and m._stored_text is None and "পাওয়া যায়নি" in out, (calls, out, m._stored_text)
 
 page, gt = make_page(1, 1280, 720)
 spoken.clear(); calls["n"] = 0

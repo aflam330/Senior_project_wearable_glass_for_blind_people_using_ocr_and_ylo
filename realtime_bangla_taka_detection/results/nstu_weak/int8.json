@@ -1,0 +1,74 @@
+{
+ "date": "2026-11-23",
+ "deployed_int8": {
+  "weights": "models/best_handheld_int8.onnx",
+  "size_mb": 25.7,
+  "tau": 0.8,
+  "nstu_test": {
+   "known": 1127,
+   "correct": 378,
+   "wrong": 59,
+   "no_answer": 690,
+   "correct_rate": 0.3354,
+   "correct_minus_wrong": 319,
+   "found_any_box": 0.9858
+  },
+  "bangla_money": {
+   "known": 1536,
+   "correct": 1346,
+   "wrong": 10,
+   "no_answer": 180,
+   "correct_rate": 0.8763,
+   "correct_minus_wrong": 1336,
+   "found_any_box": 0.9993,
+   "unknown": 101,
+   "unknown_announced": 9,
+   "unknown_announced_rate": 0.0891
+  },
+  "laptop_cpu_latency_ms_median": 347.0
+ },
+ "nstu_int8": {
+  "weights": "models/best_nstu_int8.onnx",
+  "size_mb": 25.8,
+  "validation_at_tau": {
+   "tau": 0.9,
+   "known_n": 1634,
+   "known_correct": 1488,
+   "known_wrong": 17,
+   "known_abstain": 129,
+   "known_correct_rate": 0.9106487148102815,
+   "known_wrong_rate_of_answered": 0.011295681063122924,
+   "unknown_n": 900,
+   "unknown_announced": 370,
+   "unknown_announced_rate": 0.4111111111111111,
+   "unknown_announced_wilson95": [
+    0.37940877131358053,
+    0.44356906020025977
+   ],
+   "utility_correct_minus_wrong": 1101
+  },
+  "tau": 0.9,
+  "nstu_test": {
+   "known": 1127,
+   "correct": 1000,
+   "wrong": 19,
+   "no_answer": 108,
+   "correct_rate": 0.8873,
+   "correct_minus_wrong": 981,
+   "found_any_box": 1.0
+  },
+  "bangla_money": {
+   "known": 1536,
+   "correct": 1404,
+   "wrong": 10,
+   "no_answer": 122,
+   "correct_rate": 0.9141,
+   "correct_minus_wrong": 1394,
+   "found_any_box": 1.0,
+   "unknown": 101,
+   "unknown_announced": 8,
+   "unknown_announced_rate": 0.0792
+  },
+  "laptop_cpu_latency_ms_median": 128.6
+ }
+}

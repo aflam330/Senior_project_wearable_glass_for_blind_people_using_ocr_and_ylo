@@ -1,0 +1,305 @@
+{
+ "rule": "the candidate with the highest (1) among those whose (2) is at least H's minus 0.005.",
+ "devices": {
+  "laptop": {
+   "models": {
+    "H": [
+     "handheld",
+     0.75
+    ],
+    "N": [
+     "nstu",
+     0.85
+    ]
+   },
+   "validation": {
+    "H only": {
+     "val_pool": {
+      "known": 1634,
+      "correct": 819,
+      "wrong": 187,
+      "no_answer": 628,
+      "correct_rate": 0.5012,
+      "unknown": 900,
+      "unknown_announced": 253,
+      "utility": 379
+     },
+     "synthetic_val": {
+      "known": 600,
+      "correct": 591,
+      "wrong": 3,
+      "no_answer": 6,
+      "correct_rate": 0.985
+     }
+    },
+    "N only": {
+     "val_pool": {
+      "known": 1634,
+      "correct": 1557,
+      "wrong": 5,
+      "no_answer": 72,
+      "correct_rate": 0.9529,
+      "unknown": 900,
+      "unknown_announced": 425,
+      "utility": 1127
+     },
+     "synthetic_val": {
+      "known": 600,
+      "correct": 522,
+      "wrong": 2,
+      "no_answer": 76,
+      "correct_rate": 0.87
+     }
+    },
+    "H then N": {
+     "val_pool": {
+      "known": 1634,
+      "correct": 1390,
+      "wrong": 189,
+      "no_answer": 55,
+      "correct_rate": 0.8507,
+      "unknown": 900,
+      "unknown_announced": 425,
+      "utility": 776
+     },
+     "synthetic_val": {
+      "known": 600,
+      "correct": 591,
+      "wrong": 3,
+      "no_answer": 6,
+      "correct_rate": 0.985
+     }
+    },
+    "N then H": {
+     "val_pool": {
+      "known": 1634,
+      "correct": 1569,
+      "wrong": 10,
+      "no_answer": 55,
+      "correct_rate": 0.9602,
+      "unknown": 900,
+      "unknown_announced": 425,
+      "utility": 1134
+     },
+     "synthetic_val": {
+      "known": 600,
+      "correct": 591,
+      "wrong": 3,
+      "no_answer": 6,
+      "correct_rate": 0.985
+     }
+    }
+   },
+   "admissible": [
+    "H only",
+    "H then N",
+    "N then H"
+   ],
+   "chosen": "N then H",
+   "test": {
+    "H only": {
+     "nstu_test": {
+      "known": 1127,
+      "correct": 535,
+      "wrong": 141,
+      "no_answer": 451,
+      "correct_rate": 0.4747
+     },
+     "bangla_money": {
+      "known": 1536,
+      "correct": 1446,
+      "wrong": 17,
+      "no_answer": 73,
+      "correct_rate": 0.9414,
+      "unknown": 101,
+      "unknown_announced": 37,
+      "utility": 1392
+     },
+     "flat_notes": {
+      "known": 225,
+      "correct": 214,
+      "wrong": 1,
+      "no_answer": 10,
+      "correct_rate": 0.9511
+     }
+    },
+    "N then H": {
+     "nstu_test": {
+      "known": 1127,
+      "correct": 1079,
+      "wrong": 5,
+      "no_answer": 43,
+      "correct_rate": 0.9574
+     },
+     "bangla_money": {
+      "known": 1536,
+      "correct": 1471,
+      "wrong": 16,
+      "no_answer": 49,
+      "correct_rate": 0.9577,
+      "unknown": 101,
+      "unknown_announced": 38,
+      "utility": 1417
+     },
+     "flat_notes": {
+      "known": 225,
+      "correct": 214,
+      "wrong": 1,
+      "no_answer": 10,
+      "correct_rate": 0.9511
+     }
+    }
+   }
+  },
+  "pi": {
+   "models": {
+    "H": [
+     "handheld",
+     0.75
+    ],
+    "N": [
+     "nstu_int8",
+     0.9
+    ]
+   },
+   "validation": {
+    "H only": {
+     "val_pool": {
+      "known": 1634,
+      "correct": 819,
+      "wrong": 187,
+      "no_answer": 628,
+      "correct_rate": 0.5012,
+      "unknown": 900,
+      "unknown_announced": 253,
+      "utility": 379
+     },
+     "synthetic_val": {
+      "known": 600,
+      "correct": 591,
+      "wrong": 3,
+      "no_answer": 6,
+      "correct_rate": 0.985
+     }
+    },
+    "N only": {
+     "val_pool": {
+      "known": 1634,
+      "correct": 1488,
+      "wrong": 17,
+      "no_answer": 129,
+      "correct_rate": 0.9106,
+      "unknown": 900,
+      "unknown_announced": 370,
+      "utility": 1101
+     },
+     "synthetic_val": {
+      "known": 600,
+      "correct": 218,
+      "wrong": 0,
+      "no_answer": 382,
+      "correct_rate": 0.3633
+     }
+    },
+    "H then N": {
+     "val_pool": {
+      "known": 1634,
+      "correct": 1341,
+      "wrong": 197,
+      "no_answer": 96,
+      "correct_rate": 0.8207,
+      "unknown": 900,
+      "unknown_announced": 461,
+      "utility": 683
+     },
+     "synthetic_val": {
+      "known": 600,
+      "correct": 591,
+      "wrong": 3,
+      "no_answer": 6,
+      "correct_rate": 0.985
+     }
+    },
+    "N then H": {
+     "val_pool": {
+      "known": 1634,
+      "correct": 1513,
+      "wrong": 25,
+      "no_answer": 96,
+      "correct_rate": 0.9259,
+      "unknown": 900,
+      "unknown_announced": 461,
+      "utility": 1027
+     },
+     "synthetic_val": {
+      "known": 600,
+      "correct": 591,
+      "wrong": 3,
+      "no_answer": 6,
+      "correct_rate": 0.985
+     }
+    }
+   },
+   "admissible": [
+    "H only",
+    "H then N",
+    "N then H"
+   ],
+   "chosen": "N then H",
+   "test": {
+    "H only": {
+     "nstu_test": {
+      "known": 1127,
+      "correct": 535,
+      "wrong": 141,
+      "no_answer": 451,
+      "correct_rate": 0.4747
+     },
+     "bangla_money": {
+      "known": 1536,
+      "correct": 1446,
+      "wrong": 17,
+      "no_answer": 73,
+      "correct_rate": 0.9414,
+      "unknown": 101,
+      "unknown_announced": 37,
+      "utility": 1392
+     },
+     "flat_notes": {
+      "known": 225,
+      "correct": 214,
+      "wrong": 1,
+      "no_answer": 10,
+      "correct_rate": 0.9511
+     }
+    },
+    "N then H": {
+     "nstu_test": {
+      "known": 1127,
+      "correct": 1017,
+      "wrong": 33,
+      "no_answer": 77,
+      "correct_rate": 0.9024
+     },
+     "bangla_money": {
+      "known": 1536,
+      "correct": 1492,
+      "wrong": 19,
+      "no_answer": 25,
+      "correct_rate": 0.9714,
+      "unknown": 101,
+      "unknown_announced": 42,
+      "utility": 1431
+     },
+     "flat_notes": {
+      "known": 225,
+      "correct": 213,
+      "wrong": 2,
+      "no_answer": 10,
+      "correct_rate": 0.9467
+     }
+    }
+   }
+  }
+ }
+}

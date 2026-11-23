@@ -17,17 +17,20 @@ def hit(name, conf, box):
 
 
 D = CurrencyMode.distinct_notes
+# confidences relative to the announce threshold of the detector in use (0.60 to 0.90 depending on the detector)
+T = config.CURRENCY_ANNOUNCE_CONF
+HI, MID = min(0.99, T + 0.08), min(0.98, T + 0.04)
 # two separate notes, both sure
-n = D([hit("500_taka", 0.9, (0, 0, 100, 50)), hit("100_taka", 0.8, (200, 0, 100, 50))])
+n = D([hit("500_taka", HI, (0, 0, 100, 50)), hit("100_taka", MID, (200, 0, 100, 50))])
 assert [x["name"] for x in n] == ["500_taka", "100_taka"]
 # the same note seen twice with two values: the surer one is kept
-n = D([hit("1000_taka", 0.7, (0, 0, 100, 50)), hit("500_taka", 0.9, (5, 2, 100, 50))])
+n = D([hit("1000_taka", MID, (0, 0, 100, 50)), hit("500_taka", HI, (5, 2, 100, 50))])
 assert [x["name"] for x in n] == ["500_taka"]
 # a note the detector is not sure about is not counted
-n = D([hit("500_taka", 0.9, (0, 0, 100, 50)), hit("5_taka", config.CURRENCY_ANNOUNCE_CONF - 0.01, (200, 0, 100, 50))])
+n = D([hit("500_taka", HI, (0, 0, 100, 50)), hit("5_taka", T - 0.01, (200, 0, 100, 50))])
 assert len(n) == 1
 # notes that touch but overlap little are two notes
-n = D([hit("50_taka", 0.9, (0, 0, 100, 50)), hit("50_taka", 0.9, (90, 0, 100, 50))])
+n = D([hit("50_taka", HI, (0, 0, 100, 50)), hit("50_taka", HI, (90, 0, 100, 50))])
 assert len(n) == 2
 assert D([]) == []
 

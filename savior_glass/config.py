@@ -91,9 +91,43 @@ _DETECTOR_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "realtime_bangla_ta
 # the two app sessions on the Pi that day 7 of 10 currency presses stayed below its 0.80 threshold (1 found no note)
 # (benchmark_report/raw/field/). Cost on the Pi (29 October, earlier detector, same YOLOv8s): PyTorch 556 ms against
 # 261 ms for 8-bit. CURRENCY_DETECTOR=int8 goes back to the 8-bit file and its 0.80 threshold.
-_v1 = os.environ.get("CURRENCY_DETECTOR", "") == "v1"
-_int8 = ON_RASPBERRY_PI_5 and os.environ.get("CURRENCY_DETECTOR", "") == "int8"
-_cur_file = ("best_int8.onnx" if ON_RASPBERRY_PI_5 else "best.pt") if _v1 else     ("best_handheld_int8.onnx" if _int8 else "best_handheld.pt")
+# Since 23 November 2026 (default "nstu"): the hand-held detector re-trained with NSTU-BDTAKA train photos
+# (realtime_bangla_taka_detection/scripts/dataset/make_nstu_weak.py; epoch and threshold chosen on validation by
+# eval_nstu_weak.py, the 8-bit copy by eval_nstu_int8.py; test read once). NSTU hand-held test, right answers:
+# laptop 47.5 % -> 94.7 % (best_nstu.pt, 0.85), Pi 8-bit 88.7 % (best_nstu_int8.onnx, 0.90; the 8-bit copy of the
+# earlier detector 33.5 %). Bangla Money: 94.1 % -> 85.9 % (laptop file), 91.4 % (8-bit file). The Pi uses the 8-bit
+# file: better than the earlier full-precision Pi detector on NSTU (88.7 % against 47.5 %), 2.7 points lower on Bangla
+# Money, about half the time. CURRENCY_DETECTOR=handheld (earlier full-precision file, 0.75), int8 (its 8-bit copy,
+# 0.80), nstu_fp32 (best_nstu.pt on the Pi too) or v1 go back.
+# Default since 23 November 2026, "cascade": the NSTU re-trained detector answers when it is sure (laptop best_nstu.pt
+# at 0.85, Pi best_nstu_int8.onnx at 0.90), otherwise the earlier hand-held detector answers at its own 0.75. Chosen
+# on validation by realtime_bangla_taka_detection/scripts/eval/eval_detector_cascade.py (results/nstu_weak/
+# cascade.json); test read once, right answers: NSTU hand-held 47.5 % -> 95.7 % laptop / 90.2 % Pi; Bangla Money
+# 94.1 % -> 95.8 % / 97.1 %; whole flat BanglaTaka photos 95.1 % -> 95.1 % / 94.7 %. Either model alone loses on one
+# kind of picture (the NSTU one alone answers only about half of the whole flat notes).
+_det = os.environ.get("CURRENCY_DETECTOR", "cascade")
+_cascade = _det == "cascade"
+if _cascade:
+    _first = "best_nstu_int8.onnx" if ON_RASPBERRY_PI_5 else "best_nstu.pt"
+    if os.path.isfile(os.path.join(_DETECTOR_DIR, _first)) and os.path.isfile(os.path.join(_DETECTOR_DIR, "best_handheld.pt")):
+        CURRENCY_FIRST_PATH = os.path.join(_DETECTOR_DIR, _first)
+        CURRENCY_FIRST_CONF = 0.90 if ON_RASPBERRY_PI_5 else 0.85
+    else:                                                              # files not pulled yet: the hand-held one alone
+        _cascade = False
+    _det = "handheld"
+if not _cascade:
+    CURRENCY_FIRST_PATH, CURRENCY_FIRST_CONF = "", 1.0
+_v1 = _det == "v1"
+_int8 = ON_RASPBERRY_PI_5 and _det == "int8"
+_nstu = _det in ("nstu", "nstu_fp32")
+_nstu_int8 = _det == "nstu" and ON_RASPBERRY_PI_5
+if _nstu:
+    _cur_file = "best_nstu_int8.onnx" if _nstu_int8 else "best_nstu.pt"
+else:
+    _cur_file = ("best_int8.onnx" if ON_RASPBERRY_PI_5 else "best.pt") if _v1 else \
+        ("best_handheld_int8.onnx" if _int8 else "best_handheld.pt")
+if _nstu and not os.path.isfile(os.path.join(_DETECTOR_DIR, _cur_file)):   # new file not pulled yet: the hand-held one
+    _nstu, _nstu_int8, _cur_file = False, False, "best_handheld.pt"
 if not os.path.isfile(os.path.join(_DETECTOR_DIR, _cur_file)):          # new file not pulled yet: the earlier one
     _v1, _cur_file = True, ("best_int8.onnx" if ON_RASPBERRY_PI_5 else "best.pt")
 CURRENCY_YOLO_PATH = os.path.join(_DETECTOR_DIR, _cur_file)
@@ -220,7 +254,7 @@ JAAL_VIEW_WINDOWS = (
 # Threshold of the detector in use, each chosen by the same open-set rule on the same validation pool
 # (eval_open_set.py, eval_closeup_ft.py tau, eval_handheld_int8.py): earlier detector 0.60; hand-held detector 0.75
 # (full precision) and 0.80 (8-bit, Pi).
-CURRENCY_ANNOUNCE_CONF = 0.60 if _v1 else (0.80 if _int8 else 0.75)
+CURRENCY_ANNOUNCE_CONF = 0.60 if _v1 else (0.90 if _nstu_int8 else 0.85 if _nstu else 0.80 if _int8 else 0.75)
 # Several notes in one picture: count the sure ones and speak the total ("3 notes: ..., total 650 Taka").
 # Both numbers were fixed before the test (the announce confidence above and an overlap of 0.5 for "same note");
 # measured in scripts/eval_multi_note.py, results/multi_note_total.json. Counterfeit checks stay single-note.
@@ -361,13 +395,24 @@ OCR_ROTATE_LOWCONF = float(os.environ.get("OCR_ROTATE_LOWCONF", "0"))
 # Margin EasyOCR adds around each text box before recognising it, as a fraction of the box height (EasyOCR's own
 # default 0.1). Candidate of ocr_bench/ocr_v3_eval.py.
 OCR_ADD_MARGIN = float(os.environ.get("OCR_ADD_MARGIN", "0.1"))
+# Second text-detection pass when the first keeps nothing (ocr_mode._second_pass); None = off. Detector settings
+# that replace the first pass's, and the mean recogniser confidence the reading needs to be kept.
+# Since 23 November 2026 on (candidate S/SV of ocr_bench/ocr_v4_eval.py, chosen on validation): picture at half size,
+# text 0.6, low-text 0.25, kept if the mean confidence is >= 0.2. OCR_SECOND_PASS=0 turns it off.
+OCR_SECOND_PASS = (None if os.environ.get("OCR_SECOND_PASS", "1") == "0"
+                   else {"mag_ratio": 0.5, "text_threshold": 0.6, "low_text": 0.25})
+OCR_SECOND_PASS_MIN_CONF = float(os.environ.get("OCR_SECOND_PASS_MIN_CONF", "0.2"))
 # Letter recogniser (ocr_recognizer_ft.py). Since 14 October 2026: EasyOCR's recogniser fine-tuned on real word
 # photographs (ICDAR 2019 MLT) and blended half and half with the released weights (seed 44), chosen on validation by
 # the rule in ocr_bench/real_ft_eval.py. Test, read once: real words Bangla CER 39.2 -> 28.7 %, Latin script
 # 62.5 -> 50.6 %; rendered test 2.46 -> 2.27 %. Same network, same speed. paper_evidence/OCR_REAL_IMPROVED.md.
 # Fully fine-tuned models were better on real words but worse on printed English, over the 0.5-point rule.
+# Since 23 November 2026: version 2 (ocr_bench/train_real_words_v2.py: all training words, 8,000 steps, augmentation
+# copying the glass's path), blended the same way, chosen with the second pass as candidate SV of
+# ocr_bench/ocr_v4_eval.py (validation mean CER 36.5 -> 25.9 %); shipped by ocr_bench/ship_v4.py. The October blend
+# is still in models/ocr_recognizer_real_blend.
 # OCR_RECOGNIZER_PATH="" gives EasyOCR's released weights back.
-OCR_RECOGNIZER_PATH = os.environ.get("OCR_RECOGNIZER_PATH", os.path.join(BASE_DIR, "models", "ocr_recognizer_real_blend"))
+OCR_RECOGNIZER_PATH = os.environ.get("OCR_RECOGNIZER_PATH", os.path.join(BASE_DIR, "models", "ocr_recognizer_real_v2_blend"))
 # Decoder for pipeline v2. Whole-page benchmark (ocr_bench/page_bench.py, laptop CPU limited to 4 threads like the
 # Pi, results/ocr_bench/page_speed_compare.json, 2026-10-11): greedy reads a 12-line page in 6.5 s against 8.9 s
 # for beam search, with the same validation error (48 val phrases x 3 seeds: 2.14 % vs 2.18 %; Bangla 1.59 vs

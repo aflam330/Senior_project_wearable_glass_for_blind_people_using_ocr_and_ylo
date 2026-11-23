@@ -1,0 +1,348 @@
+{
+ "failed_val_words": {
+  "bn": 14,
+  "en": 49
+ },
+ "mag0.5": {
+  "conf>=0.0": {
+   "bn": {
+    "cer_on_failed": 0.6845,
+    "recovered": 9
+   },
+   "en": {
+    "cer_on_failed": 0.6585,
+    "recovered": 26
+   },
+   "scenes_with_invented_text": 7
+  },
+  "conf>=0.2": {
+   "bn": {
+    "cer_on_failed": 0.7143,
+    "recovered": 6
+   },
+   "en": {
+    "cer_on_failed": 0.681,
+    "recovered": 21
+   },
+   "scenes_with_invented_text": 5
+  },
+  "conf>=0.3": {
+   "bn": {
+    "cer_on_failed": 0.75,
+    "recovered": 4
+   },
+   "en": {
+    "cer_on_failed": 0.7517,
+    "recovered": 15
+   },
+   "scenes_with_invented_text": 5
+  },
+  "conf>=0.4": {
+   "bn": {
+    "cer_on_failed": 0.8214,
+    "recovered": 3
+   },
+   "en": {
+    "cer_on_failed": 0.7653,
+    "recovered": 13
+   },
+   "scenes_with_invented_text": 5
+  },
+  "conf>=0.5": {
+   "bn": {
+    "cer_on_failed": 0.8214,
+    "recovered": 3
+   },
+   "en": {
+    "cer_on_failed": 0.7653,
+    "recovered": 13
+   },
+   "scenes_with_invented_text": 5
+  }
+ },
+ "mag0.5_low": {
+  "conf>=0.0": {
+   "bn": {
+    "cer_on_failed": 0.5845,
+    "recovered": 11
+   },
+   "en": {
+    "cer_on_failed": 0.6647,
+    "recovered": 31
+   },
+   "scenes_with_invented_text": 6
+  },
+  "conf>=0.2": {
+   "bn": {
+    "cer_on_failed": 0.5964,
+    "recovered": 10
+   },
+   "en": {
+    "cer_on_failed": 0.6973,
+    "recovered": 25
+   },
+   "scenes_with_invented_text": 5
+  },
+  "conf>=0.3": {
+   "bn": {
+    "cer_on_failed": 0.7262,
+    "recovered": 6
+   },
+   "en": {
+    "cer_on_failed": 0.7381,
+    "recovered": 19
+   },
+   "scenes_with_invented_text": 5
+  },
+  "conf>=0.4": {
+   "bn": {
+    "cer_on_failed": 0.8333,
+    "recovered": 4
+   },
+   "en": {
+    "cer_on_failed": 0.7585,
+    "recovered": 17
+   },
+   "scenes_with_invented_text": 5
+  },
+  "conf>=0.5": {
+   "bn": {
+    "cer_on_failed": 0.8571,
+    "recovered": 3
+   },
+   "en": {
+    "cer_on_failed": 0.7857,
+    "recovered": 13
+   },
+   "scenes_with_invented_text": 5
+  }
+ },
+ "low": {
+  "conf>=0.0": {
+   "bn": {
+    "cer_on_failed": 0.9345,
+    "recovered": 6
+   },
+   "en": {
+    "cer_on_failed": 0.9476,
+    "recovered": 16
+   },
+   "scenes_with_invented_text": 9
+  },
+  "conf>=0.2": {
+   "bn": {
+    "cer_on_failed": 0.9464,
+    "recovered": 4
+   },
+   "en": {
+    "cer_on_failed": 0.9546,
+    "recovered": 8
+   },
+   "scenes_with_invented_text": 8
+  },
+  "conf>=0.3": {
+   "bn": {
+    "cer_on_failed": 0.9821,
+    "recovered": 3
+   },
+   "en": {
+    "cer_on_failed": 0.983,
+    "recovered": 3
+   },
+   "scenes_with_invented_text": 8
+  },
+  "conf>=0.4": {
+   "bn": {
+    "cer_on_failed": 0.9821,
+    "recovered": 3
+   },
+   "en": {
+    "cer_on_failed": 1.0,
+    "recovered": 1
+   },
+   "scenes_with_invented_text": 7
+  },
+  "conf>=0.5": {
+   "bn": {
+    "cer_on_failed": 0.9464,
+    "recovered": 1
+   },
+   "en": {
+    "cer_on_failed": 1.0,
+    "recovered": 1
+   },
+   "scenes_with_invented_text": 6
+  }
+ },
+ "mag1.5_low": {
+  "conf>=0.0": {
+   "bn": {
+    "cer_on_failed": 0.9393,
+    "recovered": 4
+   },
+   "en": {
+    "cer_on_failed": 0.9558,
+    "recovered": 8
+   },
+   "scenes_with_invented_text": 9
+  },
+  "conf>=0.2": {
+   "bn": {
+    "cer_on_failed": 0.9393,
+    "recovered": 2
+   },
+   "en": {
+    "cer_on_failed": 0.9645,
+    "recovered": 6
+   },
+   "scenes_with_invented_text": 8
+  },
+  "conf>=0.3": {
+   "bn": {
+    "cer_on_failed": 0.9393,
+    "recovered": 2
+   },
+   "en": {
+    "cer_on_failed": 0.9883,
+    "recovered": 3
+   },
+   "scenes_with_invented_text": 7
+  },
+  "conf>=0.4": {
+   "bn": {
+    "cer_on_failed": 0.9393,
+    "recovered": 2
+   },
+   "en": {
+    "cer_on_failed": 1.0,
+    "recovered": 1
+   },
+   "scenes_with_invented_text": 6
+  },
+  "conf>=0.5": {
+   "bn": {
+    "cer_on_failed": 0.9393,
+    "recovered": 2
+   },
+   "en": {
+    "cer_on_failed": 1.0,
+    "recovered": 1
+   },
+   "scenes_with_invented_text": 6
+  }
+ },
+ "native_res": {
+  "conf>=0.0": {
+   "bn": {
+    "cer_on_failed": 0.6607,
+    "recovered": 7
+   },
+   "en": {
+    "cer_on_failed": 0.6621,
+    "recovered": 25
+   },
+   "scenes_with_invented_text": 7
+  },
+  "conf>=0.2": {
+   "bn": {
+    "cer_on_failed": 0.6726,
+    "recovered": 6
+   },
+   "en": {
+    "cer_on_failed": 0.6924,
+    "recovered": 21
+   },
+   "scenes_with_invented_text": 7
+  },
+  "conf>=0.3": {
+   "bn": {
+    "cer_on_failed": 0.7143,
+    "recovered": 5
+   },
+   "en": {
+    "cer_on_failed": 0.7245,
+    "recovered": 18
+   },
+   "scenes_with_invented_text": 6
+  },
+  "conf>=0.4": {
+   "bn": {
+    "cer_on_failed": 0.7857,
+    "recovered": 4
+   },
+   "en": {
+    "cer_on_failed": 0.7347,
+    "recovered": 16
+   },
+   "scenes_with_invented_text": 6
+  },
+  "conf>=0.5": {
+   "bn": {
+    "cer_on_failed": 0.8214,
+    "recovered": 3
+   },
+   "en": {
+    "cer_on_failed": 0.7653,
+    "recovered": 13
+   },
+   "scenes_with_invented_text": 4
+  }
+ },
+ "native_res_low": {
+  "conf>=0.0": {
+   "bn": {
+    "cer_on_failed": 0.631,
+    "recovered": 9
+   },
+   "en": {
+    "cer_on_failed": 0.6461,
+    "recovered": 36
+   },
+   "scenes_with_invented_text": 6
+  },
+  "conf>=0.2": {
+   "bn": {
+    "cer_on_failed": 0.631,
+    "recovered": 7
+   },
+   "en": {
+    "cer_on_failed": 0.6762,
+    "recovered": 27
+   },
+   "scenes_with_invented_text": 5
+  },
+  "conf>=0.3": {
+   "bn": {
+    "cer_on_failed": 0.6667,
+    "recovered": 6
+   },
+   "en": {
+    "cer_on_failed": 0.7109,
+    "recovered": 22
+   },
+   "scenes_with_invented_text": 4
+  },
+  "conf>=0.4": {
+   "bn": {
+    "cer_on_failed": 0.7381,
+    "recovered": 5
+   },
+   "en": {
+    "cer_on_failed": 0.7313,
+    "recovered": 19
+   },
+   "scenes_with_invented_text": 4
+  },
+  "conf>=0.5": {
+   "bn": {
+    "cer_on_failed": 0.7738,
+    "recovered": 4
+   },
+   "en": {
+    "cer_on_failed": 0.7517,
+    "recovered": 16
+   },
+   "scenes_with_invented_text": 4
+  }
+ }
+}

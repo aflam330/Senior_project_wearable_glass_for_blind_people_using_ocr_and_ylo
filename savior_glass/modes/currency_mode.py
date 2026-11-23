@@ -89,6 +89,30 @@ def is_uv_frame(frame: np.ndarray) -> bool:
     return blue_green_ratio(frame) > float(getattr(config, "UV_FRAME_BG_RATIO", 2.136))
 
 
+class CascadeDetector:
+    """Two note detectors with one predict(): the first one's result when its top box reaches first_conf, otherwise the
+    second one's (whose own announce threshold, config.CURRENCY_ANNOUNCE_CONF, then applies downstream). The second
+    detector runs only when the first is not sure. config.CURRENCY_DETECTOR=cascade; chosen in
+    realtime_bangla_taka_detection/scripts/eval/eval_detector_cascade.py."""
+
+    def __init__(self, first, first_conf: float, second) -> None:
+        self.first, self.first_conf, self.second = first, first_conf, second
+        self.last_used = None
+
+    @property
+    def names(self):
+        return self.second.names
+
+    def predict(self, *args, **kwargs):
+        r = self.first.predict(*args, **kwargs)
+        b = r[0].boxes
+        if b is not None and len(b) and float(b.conf.max()) >= self.first_conf:
+            self.last_used = "first"
+            return r
+        self.last_used = "second"
+        return self.second.predict(*args, **kwargs)
+
+
 class CurrencyMode(BaseMode):
 
     def __init__(self) -> None:
@@ -300,6 +324,14 @@ class CurrencyMode(BaseMode):
                 from ultralytics import YOLO
                 self._yolo = YOLO(path)
                 logger.info("Currency YOLO loaded from %s", path)
+                first = getattr(config, "CURRENCY_FIRST_PATH", "")
+                if first and os.path.isfile(first):
+                    try:
+                        self._yolo = CascadeDetector(YOLO(first, task="detect"), float(config.CURRENCY_FIRST_CONF), self._yolo)
+                        logger.info("Currency detector cascade: %s first (sure at %.2f), then %s",
+                                    os.path.basename(first), config.CURRENCY_FIRST_CONF, os.path.basename(path))
+                    except Exception as exc:  # noqa: BLE001
+                        logger.warning("Cascade first detector %s not loaded (%s); %s alone", first, exc, path)
                 return
             except Exception as exc:
                 logger.warning("Failed to load currency YOLO %s: %s", path, exc)
