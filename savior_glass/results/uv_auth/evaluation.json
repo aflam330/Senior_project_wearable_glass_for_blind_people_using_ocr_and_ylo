@@ -1,65 +1,73 @@
 {
  "manifest": "E:\\Final SP\\data set\\uv_auth\\manifest.csv",
- "n_images": 118,
+ "n_images": 154,
  "n_unreadable": 0,
- "n_groups": 118,
+ "n_groups": 148,
  "class_counts": {
-  "genuine": 118
+  "genuine": 118,
+  "counterfeit": 36
  },
  "per_denomination": {
   "1000 genuine": 30,
   "200 genuine": 48,
-  "500 genuine": 40
+  "500 genuine": 40,
+  "200 counterfeit": 12,
+  "500 counterfeit": 13,
+  "1000 counterfeit": 11
  },
  "physical_note_ids_recorded": false,
  "split": "60/20/20 by group, seed 0",
  "quality": {
-  "blurry": 85,
+  "blurry": 99,
   "bad_exposure": 104,
-  "uv_response_missing": 0
+  "uv_response_missing": 16
  },
  "baselines": {
   "UV-only": {
    "all (no fitting)": {
-    "n": 118,
+    "n": 154,
     "n_genuine": 118,
-    "n_counterfeit": 0,
-    "genuine_acceptance": 0.8389830508474576,
-    "false_rejection_rate": 0.16101694915254236,
-    "accuracy": "not computable: no counterfeit images",
-    "precision": "not computable: no counterfeit images",
-    "recall": "not computable: no counterfeit images",
-    "f1": "not computable: no counterfeit images",
-    "auroc": "not computable: no counterfeit images",
-    "auprc": "not computable: no counterfeit images",
-    "false_acceptance_rate": "not computable: no counterfeit images"
+    "n_counterfeit": 36,
+    "genuine_acceptance": 0.788135593220339,
+    "false_rejection_rate": 0.211864406779661,
+    "accuracy": 0.8311688311688312,
+    "precision": 0.9893617021276596,
+    "recall": 0.788135593220339,
+    "f1": 0.8773584905660378,
+    "auroc": 0.3020244821092279,
+    "auprc": 0.7180038389300935,
+    "false_acceptance_rate": 0.027777777777777776
    },
    "test split": {
-    "n": 23,
-    "n_genuine": 23,
-    "n_counterfeit": 0,
-    "genuine_acceptance": 0.8695652173913043,
-    "false_rejection_rate": 0.13043478260869565,
-    "accuracy": "not computable: no counterfeit images",
-    "precision": "not computable: no counterfeit images",
-    "recall": "not computable: no counterfeit images",
-    "f1": "not computable: no counterfeit images",
-    "auroc": "not computable: no counterfeit images",
-    "auprc": "not computable: no counterfeit images",
-    "false_acceptance_rate": "not computable: no counterfeit images"
+    "n": 29,
+    "n_genuine": 27,
+    "n_counterfeit": 2,
+    "genuine_acceptance": 0.8888888888888888,
+    "false_rejection_rate": 0.1111111111111111,
+    "accuracy": 0.896551724137931,
+    "precision": 1.0,
+    "recall": 0.8888888888888888,
+    "f1": 0.9411764705882353,
+    "auroc": 0.2037037037037037,
+    "auprc": 0.9085516087431795,
+    "false_acceptance_rate": 0.0
    },
    "confusion_by_denomination": {
     "1000": {
-     "genuine->accepted": 21,
-     "genuine->rejected": 9
+     "counterfeit->rejected": 11,
+     "genuine->accepted": 17,
+     "genuine->rejected": 13
     },
     "200": {
+     "counterfeit->rejected": 12,
      "genuine->accepted": 47,
      "genuine->rejected": 1
     },
     "500": {
-     "genuine->accepted": 31,
-     "genuine->rejected": 9
+     "counterfeit->accepted": 1,
+     "counterfeit->rejected": 12,
+     "genuine->accepted": 29,
+     "genuine->rejected": 11
     }
    }
   },
@@ -68,7 +76,7 @@
  },
  "warning": "the manifest does not record which physical note each photo shows (note_id_known = 0), so photos of one note could sit in different splits; record note ids for new photos",
  "split_sizes": {
-  "all (no fitting)": 118,
-  "test split": 23
+  "all (no fitting)": 154,
+  "test split": 29
  }
 }

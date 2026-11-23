@@ -1,0 +1,164 @@
+{
+ "date": "2026-11-24",
+ "n": 154,
+ "n_genuine": 118,
+ "n_counterfeit": 36,
+ "n_groups": 148,
+ "per_class": {
+  "genuine": {
+   "fibres": {
+    "n": 118,
+    "min": 0,
+    "median": 3.0,
+    "max": 65
+   },
+   "paper_gb": {
+    "n": 118,
+    "min": 0.047,
+    "median": 0.205,
+    "max": 0.382
+   },
+   "paper_rb": {
+    "n": 118,
+    "min": 0.0,
+    "median": 0.045,
+    "max": 0.369
+   },
+   "brightness": {
+    "n": 118,
+    "min": 77.433,
+    "median": 119.958,
+    "max": 168.723
+   },
+   "saturation": {
+    "n": 118,
+    "min": 163.651,
+    "median": 239.99,
+    "max": 247.814
+   }
+  },
+  "counterfeit": {
+   "fibres": {
+    "n": 36,
+    "min": 9,
+    "median": 97.0,
+    "max": 301
+   },
+   "paper_gb": {
+    "n": 36,
+    "min": 0.229,
+    "median": 0.388,
+    "max": 0.52
+   },
+   "paper_rb": {
+    "n": 36,
+    "min": 0.347,
+    "median": 0.427,
+    "max": 0.571
+   },
+   "brightness": {
+    "n": 36,
+    "min": 136.438,
+    "median": 171.576,
+    "max": 201.09
+   },
+   "saturation": {
+    "n": 36,
+    "min": 108.412,
+    "median": 144.729,
+    "max": 167.588
+   }
+  }
+ },
+ "deployed_rule": {
+  "rule": "fibres >= 1",
+  "genuine_accepted": "99/118",
+  "counterfeits_accepted": "36/36"
+ },
+ "two_sided_fibre_rule_cv": {
+  "genuine_accepted": "94/118",
+  "genuine_acceptance": 0.7966,
+  "counterfeits_accepted": "2/36",
+  "false_acceptance_rate": 0.0556,
+  "per_fold_threshold": [
+   {
+    "threshold": 36.0,
+    "accept": "between"
+   },
+   {
+    "threshold": 40.0,
+    "accept": "between"
+   },
+   {
+    "threshold": 40.0,
+    "accept": "between"
+   },
+   {
+    "threshold": 40.0,
+    "accept": "between"
+   },
+   {
+    "threshold": 37.0,
+    "accept": "between"
+   }
+  ]
+ },
+ "capture_source_check_cv": {
+  "brightness": {
+   "genuine_accepted": "113/118",
+   "genuine_acceptance": 0.9576,
+   "counterfeits_accepted": "7/36",
+   "false_acceptance_rate": 0.1944,
+   "per_fold_threshold": [
+    {
+     "threshold": 156.797,
+     "accept": "below"
+    },
+    {
+     "threshold": 152.119,
+     "accept": "below"
+    },
+    {
+     "threshold": 158.539,
+     "accept": "below"
+    },
+    {
+     "threshold": 158.539,
+     "accept": "below"
+    },
+    {
+     "threshold": 158.539,
+     "accept": "below"
+    }
+   ]
+  },
+  "saturation": {
+   "genuine_accepted": "117/118",
+   "genuine_acceptance": 0.9915,
+   "counterfeits_accepted": "1/36",
+   "false_acceptance_rate": 0.0278,
+   "per_fold_threshold": [
+    {
+     "threshold": 166.448,
+     "accept": "above"
+    },
+    {
+     "threshold": 163.651,
+     "accept": "above"
+    },
+    {
+     "threshold": 163.651,
+     "accept": "above"
+    },
+    {
+     "threshold": 163.651,
+     "accept": "above"
+    },
+    {
+     "threshold": 163.651,
+     "accept": "above"
+    }
+   ]
+  }
+ }
+}

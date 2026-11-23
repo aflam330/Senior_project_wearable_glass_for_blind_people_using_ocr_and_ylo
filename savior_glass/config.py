@@ -224,6 +224,16 @@ UV_MIN_FIBRES = int(os.environ.get("UV_MIN_FIBRES", "1"))       # see above; set
 UV_REL_THRESHOLD = 0.12                                        # fibre brightness relative to the local lamp level
 UV_COLOUR_THRESHOLD = float(os.environ.get("UV_COLOUR_THRESHOLD", "0.22"))   # how much less blue than the paper a fibre must be
 UV_LUM_THRESHOLD = 0.0                                         # brightness condition: tried, no gain, off
+# 2026-11-24, the first REAL counterfeit notes under UV (36 pictures, 12 serials, data set/fake_bd_cur/uv_fake_cur; the
+# notes carry no fibres): the check above accepted all 36 - glowing printed ink (letters, guilloche, outlines) was
+# counted as fibres. Such marks lie close together; a genuine fibre lies on its own. Now only ISOLATED fibres count
+# (no other candidate mark within UV_ISOLATION_PX at 600 px width), and a picture with more than UV_MAX_CLUSTERED
+# non-isolated fibres is not accepted. Chosen on train + validation notes by scripts/uv_fibre_v2.py
+# (results/uv_auth/fibre_v2.json): test, read once - genuine 20/23 accepted as before, counterfeits 6/6 -> 1/6; with
+# each class given the other's colours, 20/23 and 0/6 (a colour shortcut fell to 0/23 and 6/6). The counterfeits were
+# CamScanner scans, the genuine notes glass-camera photos. UV_ISOLATION_PX=0 gives the earlier check back.
+UV_ISOLATION_PX = float(os.environ.get("UV_ISOLATION_PX", "10"))
+UV_MAX_CLUSTERED = int(os.environ.get("UV_MAX_CLUSTERED", "20"))
 _uv_pin = os.environ.get("UV_LIGHT_PIN", "")
 UV_LIGHT_PIN = int(_uv_pin) if _uv_pin else None               # BCM pin that switches the lamp; None = lamp switched by hand
 UV_SETTLE_S = 0.4
