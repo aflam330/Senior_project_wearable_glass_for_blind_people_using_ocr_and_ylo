@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import json
 import random
+import os
 import time
 import unicodedata
 from pathlib import Path
@@ -31,7 +32,7 @@ ROOT = HERE.parent
 WS = ROOT.parent
 FONTS = HERE / "fonts"
 WIN = Path(r"C:\Windows\Fonts")
-COCO = WS / "data set" / "coco2017" / "val2017"
+COCO = Path(os.environ.get("SARA_COCO_DIR") or WS / "data set" / "coco2017" / "val2017")   # scene backgrounds
 CACHE = HERE / "cache"
 
 BN_FONT = {
@@ -110,7 +111,11 @@ def wer(gt: str, hyp: str) -> float:
 
 
 def _text_image(text, lang, split, rng, ink=None, bg=None):
-    from .shaped_text import render_mask  # needs uharfbuzz; only for building new sets
+    try:
+        from .shaped_text import render_mask  # needs uharfbuzz; only for building new sets
+    except ModuleNotFoundError as exc:
+        raise MissingBenchData(f"rebuilding a benchmark set needs {exc.name} (pip install uharfbuzz), "
+                               f"or copy the cached set into {CACHE}") from exc
     fonts = (BN_FONT if lang == "bn" else EN_FONT)["val" if split == "val" else "train" if split == "train" else "test"]
     path, idx = fonts[rng.integers(len(fonts))]
     size = int(rng.integers(30, 46))
@@ -164,6 +169,10 @@ def make_image(text, lang, split, cond, rng, coco_paths):
     return out, font
 
 
+class MissingBenchData(FileNotFoundError):
+    """The cached benchmark set is absent and the data needed to rebuild it is not on this machine."""
+
+
 def build(name: str, seed: int):
     """Images of phrase set `name` for one seed: every phrase x condition. Cached on disk."""
     CACHE.mkdir(parents=True, exist_ok=True)
@@ -174,6 +183,10 @@ def build(name: str, seed: int):
     split = "val" if name == "val" else "test"
     coco = sorted(COCO.glob("*.jpg"))
     coco = coco[: len(coco) // 2] if split == "val" else coco[len(coco) // 2:]
+    if not coco and "scene" in CONDITIONS:
+        # the scene images paste the text onto real COCO photos; without them the set cannot be rebuilt
+        raise MissingBenchData(f"{f.name} is not in {CACHE} and no COCO val2017 photos are in {COCO} "
+                               f"(set SARA_COCO_DIR, or copy the cached set)")
     rng = np.random.default_rng(10_000 * (1 + list(PHRASES).index(name)) + seed)
     items = []
     for lang in ("bn", "en"):

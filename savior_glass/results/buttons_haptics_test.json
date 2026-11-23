@@ -63,12 +63,12 @@
     },
     "action_currency": {
       "pass": true,
-      "spoken": "একশত টাকার নোট। জাল যাচাই করা হয়নি",
-      "verdict": "not_checked",
-      "press_to_speech_ms": 93,
+      "spoken": "একশত টাকার নোট। এই মানের জাল-পরীক্ষা নেই। হাতে যাচাই করুন।",
+      "verdict": "check_by_hand",
+      "press_to_speech_ms": 223,
       "vibration_pulses_ms[start,on]": [
         [
-          93,
+          223,
           50
         ]
       ],
@@ -92,8 +92,8 @@
         "pass": true,
         "pulses": [
           [
-            0,
-            221
+            1,
+            220
           ],
           [
             301,
@@ -101,7 +101,7 @@
           ],
           [
             602,
-            220
+            221
           ]
         ]
       },
@@ -110,7 +110,7 @@
         "pulses": [
           [
             0,
-            50
+            51
           ]
         ]
       }

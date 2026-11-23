@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import torch
@@ -11,7 +12,7 @@ WORKSPACE = ROOT.parent
 MODELS_DIR = ROOT / "models"
 DATA_SET = WORKSPACE / "data set"
 
-JAALTAKA_DIR = DATA_SET / "JaalTaka"
+JAALTAKA_DIR = Path(os.environ.get("SARA_JAALTAKA_DIR") or DATA_SET / "JaalTaka")   # real_notes/ and fake_notes/
 COUNTERFEIT_DIR = DATA_SET / "Bangladeshi Counterfeit Currency Image Dataset"
 BANGATAKA_DIR = DATA_SET / "Bangladeshi_Paper_Currency_Raw" / "Bangladeshi_Paper_Currency_Raw"
 COCO_VAL = DATA_SET / "coco2017" / "val2017"

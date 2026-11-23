@@ -6,7 +6,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-REPO = Path(r"E:\Final SP")
+REPO = Path(__file__).resolve().parents[1]   # the repository, on the laptop and on the Pi
 sys.path.insert(0, str(REPO))
 from research_results import hooks, results_db as DB
 

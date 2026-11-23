@@ -42,8 +42,20 @@ class LiveDiagnostics:
             self.state = {}
         return self.enabled
 
-    def close(self) -> None:
+    def close(self, timeout: float = 30.0) -> bool:
+        """Stop the loop and wait until a model call in progress has finished.
+
+        The thread is a daemon: if Python exits while it is inside ONNX Runtime or PyTorch, the native
+        thread pool is torn down under it and the process aborts ("terminate called without an active
+        exception", exit 134). Joining here prevents that. Returns False if the thread did not stop in time."""
+        self.enabled = False
         self._stop.set()
+        if self._thread.is_alive() and self._thread is not threading.current_thread():
+            self._thread.join(timeout)
+        if self._thread.is_alive():
+            logger.warning("live diagnostics thread still running after %.0f s", timeout)
+            return False
+        return True
 
     def _loop(self) -> None:
         while not self._stop.is_set():

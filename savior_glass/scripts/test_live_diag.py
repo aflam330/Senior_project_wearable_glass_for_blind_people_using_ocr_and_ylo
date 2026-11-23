@@ -44,13 +44,27 @@ def main() -> None:
     app = app_main.SmartGlass()
     app._camera.get_frame = lambda: img.copy()
     view = preview.Preview(app)
+    try:
+        check(app, view, img)
+    finally:
+        # Stop the live-panel thread before exit: it is a daemon, and if it is still inside a model call when
+        # Python shuts down the process aborts (exit 134). Then release the camera, speech and GPIO.
+        stopped = view._diag.close()
+        view.close()
+        app._tts.stop_current()
+        app._camera.stop()
+        app._buttons.cleanup()
+        assert stopped, "live panel thread did not stop"
+
+
+def check(app, view, img) -> None:
     t0 = time.time()
     with app._model_lock:
         state = view._diag._run(img)          # loads the models on first use
     load_s = time.time() - t0
     with app._model_lock:
         state = view._diag._run(img)          # second pass: steady-state times
-    view._diag.state, view._diag.enabled = state, True
+    view._diag.state = state          # draw this state; the background loop stays off
     frame = img.copy()
     view._draw_diag(frame)
     out = np.hstack([frame, view._diag_panel(frame.shape[0])])

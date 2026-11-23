@@ -1,0 +1,74 @@
+{
+ "manifest": "E:\\Final SP\\data set\\uv_auth\\manifest.csv",
+ "n_images": 118,
+ "n_unreadable": 0,
+ "n_groups": 118,
+ "class_counts": {
+  "genuine": 118
+ },
+ "per_denomination": {
+  "1000 genuine": 30,
+  "200 genuine": 48,
+  "500 genuine": 40
+ },
+ "physical_note_ids_recorded": false,
+ "split": "60/20/20 by group, seed 0",
+ "quality": {
+  "blurry": 85,
+  "bad_exposure": 104,
+  "uv_response_missing": 0
+ },
+ "baselines": {
+  "UV-only": {
+   "all (no fitting)": {
+    "n": 118,
+    "n_genuine": 118,
+    "n_counterfeit": 0,
+    "genuine_acceptance": 0.8389830508474576,
+    "false_rejection_rate": 0.16101694915254236,
+    "accuracy": "not computable: no counterfeit images",
+    "precision": "not computable: no counterfeit images",
+    "recall": "not computable: no counterfeit images",
+    "f1": "not computable: no counterfeit images",
+    "auroc": "not computable: no counterfeit images",
+    "auprc": "not computable: no counterfeit images",
+    "false_acceptance_rate": "not computable: no counterfeit images"
+   },
+   "test split": {
+    "n": 23,
+    "n_genuine": 23,
+    "n_counterfeit": 0,
+    "genuine_acceptance": 0.8695652173913043,
+    "false_rejection_rate": 0.13043478260869565,
+    "accuracy": "not computable: no counterfeit images",
+    "precision": "not computable: no counterfeit images",
+    "recall": "not computable: no counterfeit images",
+    "f1": "not computable: no counterfeit images",
+    "auroc": "not computable: no counterfeit images",
+    "auprc": "not computable: no counterfeit images",
+    "false_acceptance_rate": "not computable: no counterfeit images"
+   },
+   "confusion_by_denomination": {
+    "1000": {
+     "genuine->accepted": 21,
+     "genuine->rejected": 9
+    },
+    "200": {
+     "genuine->accepted": 47,
+     "genuine->rejected": 1
+    },
+    "500": {
+     "genuine->accepted": 31,
+     "genuine->rejected": 9
+    }
+   }
+  },
+  "visible-only": "not computable: no images for this input",
+  "visible + UV": "not computable: needs visible and UV photos of the same notes, of both classes"
+ },
+ "warning": "the manifest does not record which physical note each photo shows (note_id_known = 0), so photos of one note could sit in different splits; record note ids for new photos",
+ "split_sizes": {
+  "all (no fitting)": 118,
+  "test split": 23
+ }
+}

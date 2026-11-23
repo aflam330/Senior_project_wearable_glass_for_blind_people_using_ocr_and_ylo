@@ -1,42 +1,42 @@
 {
- "at": 1791660340.0777647,
+ "at": 1795375875.7562976,
  "frame": [
   1280,
   720
  ],
  "detector": {
-  "ms": 14.8,
+  "ms": 15.0,
   "boxes": [
    {
     "name": "500_taka",
-    "conf": 0.8801236152648926,
+    "conf": 0.9110371470451355,
     "box": [
-     29,
-     55,
-     802,
-     391
+     35,
+     53,
+     804,
+     384
     ]
    }
   ],
-  "announce_conf": 0.6
+  "announce_conf": 0.75
  },
  "safe": {
-  "ms": 28.0,
-  "p_genuine": 0.03747853636741638,
+  "ms": 0.0,
+  "p_genuine": null,
   "tau": 0.9995918869972229,
-  "verdict": "check by hand"
+  "verdict": null
  },
  "guide": {
-  "ms": 1.4,
+  "ms": 1.3,
   "status": "ok",
-  "mean": 200.70586206896553,
-  "lap_var": 3963.512001320353,
+  "mean": 202.96155523255814,
+  "lap_var": 4200.17694888263,
   "min_mean": 73.87,
   "min_lapvar": 106.75
  },
  "watermark": {
-  "ms": 21.7,
-  "p_genuine": 0.6976051330566406,
+  "ms": 39.4,
+  "p_genuine": 0.6020448207855225,
   "path": "learned localizer",
   "quad": [
    [
@@ -44,22 +44,22 @@
     175
    ],
    [
-    560,
-    170
+    563,
+    169
    ],
    [
-    585,
-    326
+    591,
+    327
    ],
    [
-    312,
-    326
+    320,
+    328
    ]
   ],
   "threshold": 0.5
  },
  "objects": {
-  "ms": 19.0,
+  "ms": 17.5,
   "boxes": [
    {
     "name": "person",
@@ -84,7 +84,7 @@
   ]
  },
  "emotion": {
-  "ms": 269.9,
+  "ms": 215.8,
   "face": [
    886,
    278,
@@ -100,5 +100,5 @@
   "pipeline": "v2",
   "last_text": null
  },
- "first_pass_seconds_including_model_loading": 4.7
+ "first_pass_seconds_including_model_loading": 4.3
 }

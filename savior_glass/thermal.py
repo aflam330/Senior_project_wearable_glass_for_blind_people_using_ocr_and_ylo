@@ -12,7 +12,11 @@ without making it slower, so the governor works on the load that repeats without
   hot        77 to 81 °C, or soft limit    4 times slower               off
   critical   81 °C and above               paused (ACTION still works)  off
 
-A button press or voice command is never delayed or refused. The thresholds sit below the firmware's soft limit
+Cooling down, the governor resumes gradually: one state at a time, and only after THERMAL_RESUME_STEP_S seconds
+in the current state (default 30 s), so a short dip does not restart every scan at once. Heating up is never delayed.
+
+A button press or voice command is never delayed or refused, and the currency check (detector, counterfeit checker,
+SARA Trust Index) always runs in full when ACTION is pressed: only the automatic, repeating work is slowed. The thresholds sit below the firmware's soft limit
 (80 °C on the Pi 5) so that the governor acts before the firmware lowers the clock. Each change of state is logged
 (and written to the field log), so a field run shows how long the board spent in each state.
 
@@ -74,6 +78,7 @@ class ThermalGovernor:
         self.peak: float | None = None
         self.seconds_in: dict = {s: 0.0 for s in STATES}
         self._thr: int | None = None
+        self._since_change = 0.0          # seconds in the current state (gradual resume)
         self._stop = threading.Event()
         self._thread = threading.Thread(target=self._run, daemon=True, name="thermal")
         self.enabled = config.THERMAL_GOVERNOR and reader() is not None
@@ -95,7 +100,12 @@ class ThermalGovernor:
         self.peak = temp if self.peak is None else max(self.peak, temp)
         new = classify(self.temp, throttled, self.state)
         self.seconds_in[self.state] += dt
+        self._since_change += dt
+        lvl, cur = STATES.index(new), STATES.index(self.state)
+        if lvl < cur:                                  # cooling: one state down, and only after the dwell time
+            new = STATES[cur - 1] if self._since_change >= config.THERMAL_RESUME_STEP_S else self.state
         if new != self.state:
+            self._since_change = 0.0
             old, self.state = self.state, new
             logger.info("Thermal state %s -> %s (%.1f °C)", old, new, self.temp)
             if self.on_change:

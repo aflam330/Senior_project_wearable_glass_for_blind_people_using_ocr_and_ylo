@@ -33,7 +33,12 @@ def counting_detect(*a, **k):
 
 m._reader.detect = counting_detect
 old = reader_fn(m, 1200, 1, config.OCR_V2_DECODER)            # EasyOCR's readtext, as the benchmark has always scored it
-items = [it for it in B.build("val", 0)][::9]                 # 16 images: clean, distorted and photo scenes, both scripts
+try:
+    VAL = B.build("val", 0)                                   # cached in ocr_bench/cache/val_seed0.npz
+except B.MissingBenchData as exc:
+    print(f"SKIP: {exc}")
+    sys.exit(77)                                              # exit code the benchmark runner reports as SKIP
+items = VAL[::9]                                              # 16 images: clean, distorted and photo scenes, both scripts
 same = 0
 for it in items:
     img = B.decode(it)
@@ -42,7 +47,7 @@ for it in items:
     same += int(new == old(img))
 assert same == len(items), f"glass path differs from readtext on {len(items) - same} of {len(items)} images"
 
-sign = B.decode(next(it for it in B.build("val", 0) if it["cond"] == "scene"))
+sign = B.decode(next(it for it in VAL if it["cond"] == "scene"))
 spoken = []
 m.speak_line = spoken.append                                  # as in the glass: the line-by-line path is armed
 calls["n"] = 0

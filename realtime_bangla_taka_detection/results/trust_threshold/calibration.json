@@ -1,0 +1,497 @@
+{
+ "data": "E:\\Final SP\\data set\\BD_Auth_Combined\\manifest.csv",
+ "n_val": 310,
+ "n_test": 380,
+ "note_overlap_between_splits": {
+  "train&val": 0,
+  "train&test": 0,
+  "val&test": 0
+ },
+ "selection_rule": "smallest tau above the highest p(genuine) of any VALIDATION counterfeit (so 0 validation counterfeits pass), never below the deployed 0.95; ties broken toward the larger tau",
+ "max_validation_counterfeit_p": 0.004645421169698238,
+ "selected_tau": 0.95,
+ "deployed_tau": 0.95,
+ "selected_on_test": {
+  "trust_policy": {
+   "tau": 0.95,
+   "counterfeits": 240,
+   "genuine": 140,
+   "counterfeit_accepted": 0,
+   "FAR": 0.0,
+   "FAR_upper95": 0.012404638050409015,
+   "genuine_accepted": 103,
+   "GAR": 0.7357142857142858,
+   "FRR": 0.26428571428571423,
+   "manual_coverage": 0.7289473684210527
+  },
+  "classifier_only": {
+   "tau": 0.95,
+   "counterfeits": 240,
+   "genuine": 140,
+   "counterfeit_accepted": 0,
+   "FAR": 0.0,
+   "FAR_upper95": 0.012404638050409015,
+   "genuine_accepted": 140,
+   "GAR": 1.0,
+   "FRR": 0.0,
+   "manual_coverage": 0.631578947368421
+  }
+ },
+ "deployed_on_test": {
+  "trust_policy": {
+   "tau": 0.95,
+   "counterfeits": 240,
+   "genuine": 140,
+   "counterfeit_accepted": 0,
+   "FAR": 0.0,
+   "FAR_upper95": 0.012404638050409015,
+   "genuine_accepted": 103,
+   "GAR": 0.7357142857142858,
+   "FRR": 0.26428571428571423,
+   "manual_coverage": 0.7289473684210527
+  },
+  "classifier_only": {
+   "tau": 0.95,
+   "counterfeits": 240,
+   "genuine": 140,
+   "counterfeit_accepted": 0,
+   "FAR": 0.0,
+   "FAR_upper95": 0.012404638050409015,
+   "genuine_accepted": 140,
+   "GAR": 1.0,
+   "FRR": 0.0,
+   "manual_coverage": 0.631578947368421
+  }
+ },
+ "calibration": {
+  "temperature_fitted_on_val": 0.25,
+  "ECE_val_raw": 0.0003991064731092127,
+  "ECE_test_raw": 0.00030076828289301384,
+  "ECE_val_scaled": 6.729830588170667e-08,
+  "ECE_test_scaled": 1.2552892457264976e-09,
+  "note": "temperature scaling keeps the ranking, so FAR/GAR at a matched threshold do not change"
+ },
+ "table": {
+  "val": {
+   "0.5": {
+    "trust_policy": {
+     "tau": 0.5,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 94,
+     "GAR": 0.6266666666666667,
+     "FRR": 0.3733333333333333,
+     "manual_coverage": 0.6967741935483871
+    },
+    "classifier_only": {
+     "tau": 0.5,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 150,
+     "GAR": 1.0,
+     "FRR": 0.0,
+     "manual_coverage": 0.5161290322580645
+    }
+   },
+   "0.8": {
+    "trust_policy": {
+     "tau": 0.8,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 94,
+     "GAR": 0.6266666666666667,
+     "FRR": 0.3733333333333333,
+     "manual_coverage": 0.6967741935483871
+    },
+    "classifier_only": {
+     "tau": 0.8,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 150,
+     "GAR": 1.0,
+     "FRR": 0.0,
+     "manual_coverage": 0.5161290322580645
+    }
+   },
+   "0.9": {
+    "trust_policy": {
+     "tau": 0.9,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 94,
+     "GAR": 0.6266666666666667,
+     "FRR": 0.3733333333333333,
+     "manual_coverage": 0.6967741935483871
+    },
+    "classifier_only": {
+     "tau": 0.9,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 150,
+     "GAR": 1.0,
+     "FRR": 0.0,
+     "manual_coverage": 0.5161290322580645
+    }
+   },
+   "0.95": {
+    "trust_policy": {
+     "tau": 0.95,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 94,
+     "GAR": 0.6266666666666667,
+     "FRR": 0.3733333333333333,
+     "manual_coverage": 0.6967741935483871
+    },
+    "classifier_only": {
+     "tau": 0.95,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 149,
+     "GAR": 0.9933333333333333,
+     "FRR": 0.00666666666666671,
+     "manual_coverage": 0.5193548387096775
+    }
+   },
+   "0.97": {
+    "trust_policy": {
+     "tau": 0.97,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 94,
+     "GAR": 0.6266666666666667,
+     "FRR": 0.3733333333333333,
+     "manual_coverage": 0.6967741935483871
+    },
+    "classifier_only": {
+     "tau": 0.97,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 149,
+     "GAR": 0.9933333333333333,
+     "FRR": 0.00666666666666671,
+     "manual_coverage": 0.5193548387096775
+    }
+   },
+   "0.99": {
+    "trust_policy": {
+     "tau": 0.99,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 93,
+     "GAR": 0.62,
+     "FRR": 0.38,
+     "manual_coverage": 0.7
+    },
+    "classifier_only": {
+     "tau": 0.99,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 147,
+     "GAR": 0.98,
+     "FRR": 0.020000000000000018,
+     "manual_coverage": 0.5258064516129032
+    }
+   },
+   "0.995": {
+    "trust_policy": {
+     "tau": 0.995,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 93,
+     "GAR": 0.62,
+     "FRR": 0.38,
+     "manual_coverage": 0.7
+    },
+    "classifier_only": {
+     "tau": 0.995,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 147,
+     "GAR": 0.98,
+     "FRR": 0.020000000000000018,
+     "manual_coverage": 0.5258064516129032
+    }
+   },
+   "0.999": {
+    "trust_policy": {
+     "tau": 0.999,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 92,
+     "GAR": 0.6133333333333333,
+     "FRR": 0.3866666666666667,
+     "manual_coverage": 0.7032258064516129
+    },
+    "classifier_only": {
+     "tau": 0.999,
+     "counterfeits": 160,
+     "genuine": 150,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.018549134077503755,
+     "genuine_accepted": 145,
+     "GAR": 0.9666666666666667,
+     "FRR": 0.033333333333333326,
+     "manual_coverage": 0.532258064516129
+    }
+   }
+  },
+  "test": {
+   "0.5": {
+    "trust_policy": {
+     "tau": 0.5,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 103,
+     "GAR": 0.7357142857142858,
+     "FRR": 0.26428571428571423,
+     "manual_coverage": 0.7289473684210527
+    },
+    "classifier_only": {
+     "tau": 0.5,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 140,
+     "GAR": 1.0,
+     "FRR": 0.0,
+     "manual_coverage": 0.631578947368421
+    }
+   },
+   "0.8": {
+    "trust_policy": {
+     "tau": 0.8,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 103,
+     "GAR": 0.7357142857142858,
+     "FRR": 0.26428571428571423,
+     "manual_coverage": 0.7289473684210527
+    },
+    "classifier_only": {
+     "tau": 0.8,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 140,
+     "GAR": 1.0,
+     "FRR": 0.0,
+     "manual_coverage": 0.631578947368421
+    }
+   },
+   "0.9": {
+    "trust_policy": {
+     "tau": 0.9,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 103,
+     "GAR": 0.7357142857142858,
+     "FRR": 0.26428571428571423,
+     "manual_coverage": 0.7289473684210527
+    },
+    "classifier_only": {
+     "tau": 0.9,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 140,
+     "GAR": 1.0,
+     "FRR": 0.0,
+     "manual_coverage": 0.631578947368421
+    }
+   },
+   "0.95": {
+    "trust_policy": {
+     "tau": 0.95,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 103,
+     "GAR": 0.7357142857142858,
+     "FRR": 0.26428571428571423,
+     "manual_coverage": 0.7289473684210527
+    },
+    "classifier_only": {
+     "tau": 0.95,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 140,
+     "GAR": 1.0,
+     "FRR": 0.0,
+     "manual_coverage": 0.631578947368421
+    }
+   },
+   "0.97": {
+    "trust_policy": {
+     "tau": 0.97,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 103,
+     "GAR": 0.7357142857142858,
+     "FRR": 0.26428571428571423,
+     "manual_coverage": 0.7289473684210527
+    },
+    "classifier_only": {
+     "tau": 0.97,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 140,
+     "GAR": 1.0,
+     "FRR": 0.0,
+     "manual_coverage": 0.631578947368421
+    }
+   },
+   "0.99": {
+    "trust_policy": {
+     "tau": 0.99,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 103,
+     "GAR": 0.7357142857142858,
+     "FRR": 0.26428571428571423,
+     "manual_coverage": 0.7289473684210527
+    },
+    "classifier_only": {
+     "tau": 0.99,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 140,
+     "GAR": 1.0,
+     "FRR": 0.0,
+     "manual_coverage": 0.631578947368421
+    }
+   },
+   "0.995": {
+    "trust_policy": {
+     "tau": 0.995,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 103,
+     "GAR": 0.7357142857142858,
+     "FRR": 0.26428571428571423,
+     "manual_coverage": 0.7289473684210527
+    },
+    "classifier_only": {
+     "tau": 0.995,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 140,
+     "GAR": 1.0,
+     "FRR": 0.0,
+     "manual_coverage": 0.631578947368421
+    }
+   },
+   "0.999": {
+    "trust_policy": {
+     "tau": 0.999,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 103,
+     "GAR": 0.7357142857142858,
+     "FRR": 0.26428571428571423,
+     "manual_coverage": 0.7289473684210527
+    },
+    "classifier_only": {
+     "tau": 0.999,
+     "counterfeits": 240,
+     "genuine": 140,
+     "counterfeit_accepted": 0,
+     "FAR": 0.0,
+     "FAR_upper95": 0.012404638050409015,
+     "genuine_accepted": 139,
+     "GAR": 0.9928571428571429,
+     "FRR": 0.0071428571428571175,
+     "manual_coverage": 0.6342105263157894
+    }
+   }
+  }
+ },
+ "data_limit": "genuine and counterfeit come from different sources; views are rotations of one photo"
+}

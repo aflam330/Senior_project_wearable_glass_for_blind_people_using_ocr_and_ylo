@@ -1,0 +1,23 @@
+{
+ "nstu_train_originals": 9067,
+ "dropped_same_id_in_val_or_test": 191,
+ "dropped_near_duplicate_of_val_or_test": 1163,
+ "nstu_train_kept": 7713,
+ "nstu_val_originals": 1611,
+ "nstu_test_originals_locked": 1127,
+ "per_class_kept": {
+  "1000_taka": 1051,
+  "100_taka": 1048,
+  "10_taka": 804,
+  "200_taka": 850,
+  "20_taka": 772,
+  "2_taka": 623,
+  "500_taka": 834,
+  "50_taka": 754,
+  "5_taka": 977
+ },
+ "box_from_detector": 9306,
+ "box_whole_image": 18,
+ "added_currency_yolo_data": 4000,
+ "added_currency_closeups": 2000
+}

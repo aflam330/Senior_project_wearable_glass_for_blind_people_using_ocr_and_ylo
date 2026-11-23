@@ -221,6 +221,7 @@ class Preview:
         return True
 
     def close(self) -> None:
+        self._diag.close()
         if self._open:
             cv2.destroyAllWindows()
             cv2.waitKey(1)

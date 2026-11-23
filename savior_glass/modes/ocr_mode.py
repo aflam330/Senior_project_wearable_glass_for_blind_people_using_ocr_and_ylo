@@ -284,6 +284,10 @@ class OCRMode(BaseMode):
         # three-line sign took 34 s instead of 18 s (benchmark_report/REPORT.md, 13 October 2026).
         det_kw = {k: kw[k] for k in ("text_threshold", "low_text", "link_threshold", "canvas_size", "mag_ratio", "slope_ths")
                   if k in kw}
+        # margin EasyOCR adds around each detected box before cutting the word out (its default is 0.1 of the
+        # box height); a larger margin keeps the first and last letter when the detector box is tight
+        det_kw["add_margin"] = float(getattr(config, "OCR_ADD_MARGIN", 0.1))
+        kw["add_margin"] = det_kw["add_margin"]
         rec_kw = {k: kw[k] for k in ("decoder", "beamWidth", "contrast_ths", "adjust_contrast") if k in kw}
         self.no_text_boxes = False
         try:
@@ -310,10 +314,13 @@ class OCRMode(BaseMode):
         self.last_boxes = [[int(b["x0"] * s), int(b["y0"] * s), int(b["x1"] * s), int(b["y1"] * s), b["c"],
                             (b["x0"], b["y0"]) in kept] for b in _text_boxes(det)]
         text = order_lines(block)
-        if not text and getattr(config, "OCR_ROTATE_FALLBACK", False):
-            # nothing read: the text may stand on its side (a vertical sign, a packet held sideways). Try the picture
-            # turned by 90 degrees each way and keep the more confident reading. Costs time only when nothing was read.
-            best = (0.0, "")
+        conf = float(np.mean([b["c"] for b in block])) if block else 0.0
+        low = float(getattr(config, "OCR_ROTATE_LOWCONF", 0.0))
+        if (not text and (getattr(config, "OCR_ROTATE_FALLBACK", False) or low > 0)) or (text and conf < low):
+            # nothing read, or read with low confidence: the text may stand on its side (a vertical sign, a packet
+            # held sideways). Try the picture turned by 90 degrees each way and keep the most confident reading,
+            # the upright one included. Costs time only in those cases.
+            best = (conf, text) if text else (0.0, "")
             for turn in (cv2.ROTATE_90_CLOCKWISE, cv2.ROTATE_90_COUNTERCLOCKWISE):
                 try:
                     det2 = self._reader.readtext(cv2.rotate(gray, turn), detail=1, paragraph=False, width_ths=0.7,
@@ -328,7 +335,36 @@ class OCRMode(BaseMode):
                     if c2 > best[0]:
                         best = (c2, t2)
             text = best[1]
+        if os.environ.get("OCR_DEBUG_DIR"):
+            self._save_debug(frame, gray, det, block, text)
         return [text] if text else []
+
+    def _save_debug(self, frame, gray, det, block, text) -> None:
+        """OCR_DEBUG_DIR=<folder>: keep what the reader saw for one capture (for testing, never on by default):
+        original.jpg, boxes.jpg (green = main text block that is spoken, red = other boxes), crops/NN.png and
+        result.json (every box with its text and confidence, and the final text). Never raises."""
+        try:
+            import json
+            d = os.path.join(os.environ["OCR_DEBUG_DIR"], time.strftime("%Y%m%d_%H%M%S") + f"_{int(time.time() * 1000) % 1000:03d}")
+            os.makedirs(os.path.join(d, "crops"), exist_ok=True)
+            cv2.imwrite(os.path.join(d, "original.jpg"), frame)
+            vis = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
+            kept = {(b["x0"], b["y0"]) for b in block}
+            rows = []
+            for i, b in enumerate(_text_boxes(det)):
+                x0, y0, x1, y1 = (int(v) for v in (b["x0"], b["y0"], b["x1"], b["y1"]))
+                main = (b["x0"], b["y0"]) in kept
+                cv2.rectangle(vis, (x0, y0), (x1, y1), (0, 200, 0) if main else (0, 0, 255), 2)
+                crop = gray[max(y0, 0):max(y1, 0), max(x0, 0):max(x1, 0)]
+                if crop.size:
+                    cv2.imwrite(os.path.join(d, "crops", f"{i:02d}.png"), crop)
+                rows.append({"i": i, "box": [x0, y0, x1, y1], "text": b["t"], "conf": round(float(b["c"]), 4), "main_block": main})
+            cv2.imwrite(os.path.join(d, "boxes.jpg"), vis)
+            with open(os.path.join(d, "result.json"), "w", encoding="utf-8") as f:
+                json.dump({"text": text, "boxes": rows, "settings": {"add_margin": getattr(config, "OCR_ADD_MARGIN", 0.1),
+                           "rotate_lowconf": getattr(config, "OCR_ROTATE_LOWCONF", 0.0)}}, f, ensure_ascii=False, indent=1)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("OCR debug save failed: %s", exc)
 
     def _read_page_streaming(self, gray: np.ndarray, kw: dict, w0: int, boxes: list):
         """Whole pages: read and speak the text line by line in reading order. boxes are the text detector's

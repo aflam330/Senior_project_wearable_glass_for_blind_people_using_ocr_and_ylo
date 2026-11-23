@@ -12,6 +12,7 @@ import config  # noqa: E402
 import thermal  # noqa: E402
 
 config.THERMAL_GOVERNOR = True
+config.THERMAL_RESUME_STEP_S = 0          # checks 1-6: resume at once, as before
 changes = []
 g = thermal.ThermalGovernor(reader=lambda: 60.0, throttle_reader=lambda: 0, on_change=lambda o, n, t: changes.append((o, n)))
 
@@ -51,4 +52,30 @@ assert g3.state == "hot" and g3.scan_interval(1.5) == 6.0
 # 6. off the Pi (no sensor) the governor stays off and never pauses anything
 g4 = thermal.ThermalGovernor(reader=lambda: None, throttle_reader=lambda: None)
 assert not g4.enabled and g4.scan_interval(1.5) == 1.5
+# 7. gradual resume: from critical, a cool board steps down one state at a time, each after the dwell time
+config.THERMAL_RESUME_STEP_S = 30
+g5 = thermal.ThermalGovernor(reader=lambda: 60.0, throttle_reader=lambda: 0)
+for _ in range(15):
+    g5.step(84.0, 0)
+assert g5.state == "critical"
+seen = []
+for _ in range(120):                       # 2 minutes at 60 °C, one reading a second
+    g5.step(60.0, 0)
+    if not seen or seen[-1][1] != g5.state:
+        seen.append((round(g5._since_change), g5.state))
+states = [s for _, s in seen]
+assert states == ["critical", "hot", "warm", "normal"], seen
+
+# never faster than one state per 30 s, and heating is still immediate
+g6 = thermal.ThermalGovernor(reader=lambda: 60.0, throttle_reader=lambda: 0)
+for _ in range(15):
+    g6.step(84.0, 0)
+n = 0
+while g6.state == "critical":
+    g6.step(60.0, 0)
+    n += 1
+assert g6.seconds_in["critical"] >= 30 and n < 30, (g6.seconds_in, n)   # 30 s in critical in all, counted from entering it
+for _ in range(15):
+    g6.step(84.0, 0)
+assert g6.state == "critical"
 print("thermal governor: all checks pass")

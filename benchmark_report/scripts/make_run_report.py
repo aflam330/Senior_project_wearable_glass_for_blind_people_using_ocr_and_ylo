@@ -955,7 +955,9 @@ def main() -> None:
             lines = [ln.strip() for ln in path.read_text(encoding="utf-8", errors="ignore").splitlines() if ln.strip()] if path.is_file() else []
             last = (lines[-1] if lines else "").replace("|", "\\|")
             last = last if len(last) <= 110 else last[:107] + "…"
-            w(f"| `{t['test']}` | {'pass' if t['exit_code'] == '0' else 'FAIL (exit ' + t['exit_code'] + ')'} | "
+            # exit 77 = the test could not run here (a dataset is missing) and says why on a "SKIP:" line
+            status = {"0": "pass", "77": "SKIP"}.get(t["exit_code"], "FAIL (exit " + t["exit_code"] + ")")
+            w(f"| `{t['test']}` | {status} | "
               f"{float(t['seconds']):.0f} s | {last} |")
         w("")
         w("<!-- TESTS -->")

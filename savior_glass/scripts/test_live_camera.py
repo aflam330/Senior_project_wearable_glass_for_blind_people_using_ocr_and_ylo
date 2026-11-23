@@ -32,6 +32,8 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--index", type=int, default=0)
     ap.add_argument("--seconds", type=float, default=20)
+    ap.add_argument("--object-every", type=int, default=1, help="run object detection on every Nth frame (protocol: 1)")
+    ap.add_argument("--emotion-every", type=int, default=5, help="run emotion on every Nth frame (protocol: 5)")
     args = ap.parse_args()
     import torch
     from assistive import EmotionDetector
@@ -74,19 +76,20 @@ def main() -> None:
         brightness.append(float(frame.mean()))
         hits = cur.detect_live(frame)
         t2 = time.perf_counter()
-        said = obj.process_frame(frame)
+        said = obj.process_frame(frame) if frames % args.object_every == 0 else None
         t3 = time.perf_counter()
         for h in hits:
             notes[h["name"]] = notes.get(h["name"], 0) + 1
         if said:
             objects[said] = objects.get(said, 0) + 1
-        if frames % 5 == 0:
+        if frames % args.emotion_every == 0:
             e = emo.predict(frame)
             lat["emotion"].append((time.perf_counter() - t3) * 1000)
             emotions[e["backend"]] = emotions.get(e["backend"], 0) + 1
         lat["capture"].append((t1 - t0) * 1000)
         lat["currency_detect_and_jaal"].append((t2 - t1) * 1000)
-        lat["object_mode"].append((t3 - t2) * 1000)
+        if frames % args.object_every == 0:
+            lat["object_mode"].append((t3 - t2) * 1000)
         lat["frame_total"].append((time.perf_counter() - t0) * 1000)
     elapsed = time.time() - t_start
     cap.release()
@@ -95,6 +98,7 @@ def main() -> None:
         "camera": {"index": args.index, "resolution": list(frame.shape[:2][::-1]) if frames else None,
                    "mean_brightness_0_255": round(statistics.fmean(brightness), 1) if brightness else None},
         "device": torch.cuda.get_device_name(0) if torch.cuda.is_available() else "cpu",
+        "profile": {"object_every": args.object_every, "emotion_every": args.emotion_every},
         "seconds": round(elapsed, 1), "frames_processed": frames, "loop_fps": round(frames / elapsed, 2),
         "latency": {k: stats(v) for k, v in lat.items()},
         "notes_detected": notes, "object_announcements": objects, "emotion_backend_counts": emotions,

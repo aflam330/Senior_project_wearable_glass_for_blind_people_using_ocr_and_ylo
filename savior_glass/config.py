@@ -71,7 +71,11 @@ MODE_NAMES_BN = [
 # Object model. YOLOv8s is more accurate (mAP@0.5 0.551 against 0.453 for YOLOv8n on all of COCO val2017) and slower:
 # on the Raspberry Pi 5, 562 ms against 227 ms per scan (benchmark_report/REPORT.md, 13 October 2026, a hot board).
 # YOLO_MODEL=yolov8n.pt chooses the faster one, for example when the board runs hot.
-YOLO_MODEL_PATH     = os.path.join(BASE_DIR, "models", os.environ.get("YOLO_MODEL", "yolov8s.pt"))
+# OBJECT_PROFILE=fast uses YOLOv8n (Pi 5: 195 ms a scan against 468 ms; COCO mAP@0.5 lower, see the thesis table),
+# OBJECT_PROFILE=accurate (default) YOLOv8s. YOLO_MODEL names a file directly and wins over the profile.
+OBJECT_PROFILE = os.environ.get("OBJECT_PROFILE", "accurate")
+YOLO_MODEL_PATH     = os.path.join(BASE_DIR, "models", os.environ.get(
+    "YOLO_MODEL", "yolov8n.pt" if OBJECT_PROFILE == "fast" else "yolov8s.pt"))
 YOLO_MODEL_FALLBACK = os.path.join(BASE_DIR, "models", "yolov8n.pt")
 CURRENCY_MODEL_PATH = os.path.join(BASE_DIR, "models", "currency_mobilenet.pt")
 # On a Pi 5 the measured device model is the 18 MB INT8 detector. Elsewhere keep the
@@ -351,6 +355,12 @@ OCR_V2_MIN_CONF = 0.1
 # 14 October 2026 (ocr_bench/real_ft_eval.py, step 2): fewer Latin-script words left unread (32.7 -> 28.7 %) but the
 # same real-validation CER (36.65 %), and the rule asked for a lower CER. Off.
 OCR_ROTATE_FALLBACK = os.environ.get("OCR_ROTATE_FALLBACK", "0") == "1"
+# Also retry turned by 90 degrees when the main block's mean confidence is below this (0 = off), keeping the most
+# confident reading. Candidate of ocr_bench/ocr_v3_eval.py; see the decision there before changing it.
+OCR_ROTATE_LOWCONF = float(os.environ.get("OCR_ROTATE_LOWCONF", "0"))
+# Margin EasyOCR adds around each text box before recognising it, as a fraction of the box height (EasyOCR's own
+# default 0.1). Candidate of ocr_bench/ocr_v3_eval.py.
+OCR_ADD_MARGIN = float(os.environ.get("OCR_ADD_MARGIN", "0.1"))
 # Letter recogniser (ocr_recognizer_ft.py). Since 14 October 2026: EasyOCR's recogniser fine-tuned on real word
 # photographs (ICDAR 2019 MLT) and blended half and half with the released weights (seed 44), chosen on validation by
 # the rule in ocr_bench/real_ft_eval.py. Test, read once: real words Bangla CER 39.2 -> 28.7 %, Latin script
@@ -426,6 +436,8 @@ THERMAL_GOVERNOR = os.environ.get("THERMAL_GOVERNOR", "1") == "1"
 THERMAL_WARM_C = float(os.environ.get("THERMAL_WARM_C", "72"))
 THERMAL_HOT_C = float(os.environ.get("THERMAL_HOT_C", "77"))
 THERMAL_CRITICAL_C = float(os.environ.get("THERMAL_CRITICAL_C", "81"))
+# Cooling down, the governor goes back one state at a time, each after this many seconds in the current state.
+THERMAL_RESUME_STEP_S = float(os.environ.get("THERMAL_RESUME_STEP_S", "30"))
 OBJECT_ANNOUNCE_COOLDOWN  = 4.0   # Per-class cooldown to avoid repetition
 DETECTION_THREAD_SLEEP    = 0.1   # Main loop sleep when not in object mode
 

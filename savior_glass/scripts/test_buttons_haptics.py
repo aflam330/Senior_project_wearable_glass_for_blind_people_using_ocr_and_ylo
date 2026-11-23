@@ -11,6 +11,7 @@ Writes results/buttons_haptics_test.json.
 from __future__ import annotations
 
 import json
+import os
 import sys
 import time
 import types
@@ -20,7 +21,15 @@ import cv2
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-PHOTO = ROOT.parent / "data set" / "Bangladeshi_Paper_Currency_Raw" / "Bangladeshi_Paper_Currency_Raw" / "100"
+# A real 100 Taka photo (BanglaTaka, the 31st of the folder). SARA_TEST_NOTE_PHOTO points to another copy.
+PHOTO = Path(os.environ.get("SARA_TEST_NOTE_PHOTO") or ROOT.parent / "data set" / "Bangladeshi_Paper_Currency_Raw"
+             / "Bangladeshi_Paper_Currency_Raw" / "100" / "100  Taka_031.jpg")
+SKIP = 77   # exit code the benchmark runner reports as SKIP
+
+
+def skip(reason: str) -> None:
+    print(f"SKIP: {reason}")
+    sys.exit(SKIP)
 
 
 class FakeGPIO(types.ModuleType):
@@ -54,7 +63,9 @@ class FakeTTS:
 
 class FakeCamera:
     def __init__(self):
-        self.frame = cv2.imread(str(sorted(PHOTO.glob("*.jpg"))[30]))
+        self.frame = cv2.imread(str(PHOTO))
+        if self.frame is None:
+            raise RuntimeError(f"cannot read {PHOTO}")
     def start(self): pass
     def stop(self): pass
     def get_frame(self): return self.frame.copy()
@@ -75,6 +86,8 @@ def pulses(writes, pin, t0):
 
 
 def main() -> None:
+    if not PHOTO.is_file():
+        skip(f"the 100 Taka test photo is not on this machine: {PHOTO} (set SARA_TEST_NOTE_PHOTO)")
     gpio = FakeGPIO()
     rpi = types.ModuleType("RPi")
     rpi.GPIO = gpio
@@ -174,6 +187,11 @@ def main() -> None:
     res["summary"]["haptic_patterns"] = all(v["pass"] for v in patterns.values())
     (ROOT / "results" / "buttons_haptics_test.json").write_text(json.dumps(res, indent=2, ensure_ascii=False), encoding="utf-8")
     print(json.dumps(res, indent=2, ensure_ascii=False))
+    failed = [k for k, v in res["summary"].items() if v is False]
+    if failed:
+        print("buttons and haptics: FAILED " + ", ".join(failed))
+        sys.exit(1)
+    print("buttons and haptics: all checks pass")
 
 
 if __name__ == "__main__":

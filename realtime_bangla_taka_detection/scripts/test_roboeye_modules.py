@@ -14,7 +14,7 @@ import numpy as np
 from roboeye.asr import parse_command
 from roboeye.authenticity import AuthenticityClassifier, list_jaaltaka_notes
 from roboeye.clip_zero_shot import PrototypeAuthenticator
-from roboeye.config import YOLO_WEIGHTS
+from roboeye.config import JAALTAKA_DIR, YOLO_WEIGHTS
 from roboeye.fer_emotion import EmotionDetector, tts_style_for_emotion
 from roboeye.haptics import HapticEngine
 from roboeye.pose import estimate_pose
@@ -22,9 +22,14 @@ from roboeye.vlm import NoteDescriber
 
 
 def main():
+    if not JAALTAKA_DIR.is_dir():
+        print(f"SKIP: the JaalTaka dataset is not installed at {JAALTAKA_DIR} (set SARA_JAALTAKA_DIR)")
+        sys.exit(77)                                          # exit code the benchmark runner reports as SKIP
     notes = list_jaaltaka_notes()
-    print(f"JaalTaka notes: {len(notes)}")
-    assert notes, "JaalTaka missing"
+    n_real, n_fake = sum(l == 1 for _, l in notes), sum(l == 0 for _, l in notes)
+    print(f"JaalTaka notes: {len(notes)} ({n_real} genuine, {n_fake} counterfeit) in {JAALTAKA_DIR}")
+    # the folder exists, so an empty or one-sided listing is a real fault of the dataset or the loader
+    assert n_real and n_fake, f"JaalTaka at {JAALTAKA_DIR} has no genuine or no counterfeit notes with images"
     note_dir, label = notes[0]
     img_path = next(p for p in note_dir.iterdir() if p.suffix.lower() == ".jpg")
     crop = cv2.imread(str(img_path))
@@ -36,7 +41,11 @@ def main():
 
     proto = PrototypeAuthenticator()
     if not proto.loaded:
-        print("building prototypes (small)...")
+        # build a small set in a temporary file: build() would otherwise overwrite models/authenticity_prototypes.pt
+        import tempfile
+        import roboeye.clip_zero_shot as czs
+        czs.PROTO_WEIGHTS = Path(tempfile.mkdtemp()) / "authenticity_prototypes.pt"
+        print(f"saved prototypes not usable here ({proto.load_error}); building a small set in {czs.PROTO_WEIGHTS}")
         proto.build(max_notes_per_class=12, views_per_note=1)
     print("prototypes", proto.predict(crop), "backend", proto.backend)
 
