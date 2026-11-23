@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "camera": {
+    "index": 0,
+    "resolution": [
+      640,
+      480
+    ],
+    "mean_brightness_0_255": 55.8
+  },
+  "device": "cpu",
+  "profile": {
+    "object_every": 1,
+    "emotion_every": 5
+  },
+  "seconds": 60.1,
+  "frames_processed": 41,
+  "loop_fps": 0.68,
+  "latency": {
+    "capture": {
+      "n": 41,
+      "median_ms": 1.7,
+      "p95_ms": 1.8
+    },
+    "currency_detect_and_jaal": {
+      "n": 41,
+      "median_ms": 904.3,
+      "p95_ms": 1115.9
+    },
+    "object_mode": {
+      "n": 41,
+      "median_ms": 450.1,
+      "p95_ms": 538.8
+    },
+    "emotion": {
+      "n": 8,
+      "median_ms": 47.2,
+      "p95_ms": 568.2
+    },
+    "frame_total": {
+      "n": 41,
+      "median_ms": 1383.4,
+      "p95_ms": 1902.9
+    }
+  },
+  "notes_detected": {},
+  "object_announcements": {
+    "সামনে আছে: মানুষ": 9,
+    "সামনে আছে: মোবাইল ফোন": 1,
+    "সামনে আছে: মানুষ, মোবাইল ফোন": 1,
+    "সামনে আছে: কুকুর": 2
+  },
+  "emotion_backend_counts": {
+    "no_face": 5,
+    "rgb_mobilenet_blend": 3
+  },
+  "saved_media": "none (privacy)",
+  "note_accuracy_on_live_notes": "NOT_MEASURED (no note was held in front of the camera during an unattended run)"
+}

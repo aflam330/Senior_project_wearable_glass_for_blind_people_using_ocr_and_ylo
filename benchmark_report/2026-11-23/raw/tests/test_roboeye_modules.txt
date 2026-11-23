@@ -1,0 +1,1 @@
+SKIP: the JaalTaka dataset is not installed at /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/data set/JaalTaka (set SARA_JAALTAKA_DIR)

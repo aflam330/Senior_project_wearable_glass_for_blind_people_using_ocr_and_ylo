@@ -1,0 +1,151 @@
+{
+  "host": {
+    "hostname": "memo",
+    "device_model": "Raspberry Pi 5 Model B Rev 1.0",
+    "raspberry_pi_5": true,
+    "machine": "aarch64",
+    "os": "Linux-6.18.33+rpt-rpi-2712-aarch64-with-glibc2.41",
+    "python": "3.13.5",
+    "cpu_count": 4,
+    "utc": "2026-11-23T01:13:13.195800+00:00",
+    "torch": "2.14.1+cpu",
+    "torch_threads": 4,
+    "cuda_gpu": null,
+    "ultralytics": "8.4.170",
+    "onnxruntime": "1.30.0",
+    "easyocr": "1.7.2",
+    "cv2": "5.0.0",
+    "cpu_temp_c_start": 57.3,
+    "throttled_start": "0x0",
+    "cpu_temp_c_end": 76.55,
+    "throttled_end": "0xe0000"
+  },
+  "latency": {
+    "currency_mode_full": {
+      "median_ms": 662.19,
+      "p95_ms": 932.94,
+      "mean_ms": 687.22,
+      "fps_median": 1.51,
+      "iters": 100,
+      "rss_mb_after": 1284.702208,
+      "cpu_temp_c_after": 68.3,
+      "load_ms": 586.8
+    },
+    "taka_yolo_pt": {
+      "median_ms": 562.88,
+      "p95_ms": 778.67,
+      "mean_ms": 570.85,
+      "fps_median": 1.78,
+      "iters": 100,
+      "rss_mb_after": 1303.609344,
+      "cpu_temp_c_after": 73.25,
+      "load_ms": 282.5
+    },
+    "taka_yolo_onnx_fp32": {
+      "median_ms": 427.65,
+      "p95_ms": 737.01,
+      "mean_ms": 481.18,
+      "fps_median": 2.34,
+      "iters": 100,
+      "rss_mb_after": 1394.262016,
+      "cpu_temp_c_after": 79.3,
+      "load_ms": 32.7
+    },
+    "taka_yolo_onnx_int8": {
+      "median_ms": 224.1,
+      "p95_ms": 356.49,
+      "mean_ms": 236.7,
+      "fps_median": 4.46,
+      "iters": 100,
+      "rss_mb_after": 1482.457088,
+      "cpu_temp_c_after": 81.5,
+      "load_ms": 9.6
+    },
+    "taka_yolo_handheld_int8": {
+      "median_ms": 279.6,
+      "p95_ms": 455.71,
+      "mean_ms": 298.16,
+      "fps_median": 3.58,
+      "iters": 100,
+      "rss_mb_after": 1567.997952,
+      "cpu_temp_c_after": 82.6,
+      "load_ms": 0.5
+    },
+    "watermark_int8_sift": {
+      "median_ms": 371.13,
+      "p95_ms": 836.46,
+      "mean_ms": 464.36,
+      "fps_median": 2.69,
+      "iters": 100,
+      "rss_mb_after": 1579.024384,
+      "cpu_temp_c_after": 71.05,
+      "load_ms": 587.9
+    },
+    "watermark_int8_localizer": {
+      "median_ms": 47.52,
+      "p95_ms": 72.54,
+      "mean_ms": 48.99,
+      "fps_median": 21.04,
+      "iters": 100,
+      "rss_mb_after": 1599.275008,
+      "cpu_temp_c_after": 77.1,
+      "load_ms": 563.2
+    },
+    "jaal_check_qduig": {
+      "median_ms": 197.59,
+      "p95_ms": 307.11,
+      "mean_ms": 209.12,
+      "fps_median": 5.06,
+      "iters": 100,
+      "rss_mb_after": 1603.305472,
+      "cpu_temp_c_after": 72.7,
+      "load_ms": 216.4
+    },
+    "object_mode": {
+      "median_ms": 446.16,
+      "p95_ms": 629.41,
+      "mean_ms": 468.02,
+      "fps_median": 2.24,
+      "iters": 100,
+      "rss_mb_after": 1626.308608,
+      "cpu_temp_c_after": 77.65,
+      "load_ms": 615.3
+    },
+    "ocr_mode": {
+      "median_ms": 5741.06,
+      "p95_ms": 5965.83,
+      "mean_ms": 5739.65,
+      "fps_median": 0.17,
+      "iters": 100,
+      "rss_mb_after": 2361.933824,
+      "cpu_temp_c_after": 82.6,
+      "load_ms": 7821.9
+    },
+    "emotion": {
+      "median_ms": 46.59,
+      "p95_ms": 48.54,
+      "mean_ms": 47.01,
+      "fps_median": 21.46,
+      "iters": 100,
+      "rss_mb_after": 2362.65472,
+      "cpu_temp_c_after": 74.35,
+      "load_ms": 1240.9
+    }
+  },
+  "skipped": {
+    "prmvt_1view": "RuntimeError: PRMVT (Q-DUIG) checkpoint not found",
+    "prmvt_2view": "RuntimeError: PRMVT (Q-DUIG) checkpoint not found",
+    "prmvt_3view": "RuntimeError: PRMVT (Q-DUIG) checkpoint not found",
+    "prmvt_4view": "RuntimeError: PRMVT (Q-DUIG) checkpoint not found",
+    "prmvt_5view": "RuntimeError: PRMVT (Q-DUIG) checkpoint not found",
+    "prmvt_6view": "RuntimeError: PRMVT (Q-DUIG) checkpoint not found"
+  },
+  "peak_rss_mb": 2362.65472,
+  "sustained": {
+    "minutes": 30.0,
+    "calls": 2276,
+    "max_cpu_temp_c": 82.6,
+    "final_throttled": "0xe0000",
+    "csv": "pi5_benchmark_memo_20261123T012923Z.csv"
+  }
+}

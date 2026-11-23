@@ -1,0 +1,75 @@
+date: 2026-11-23T07:10:18+06:00
+Linux memo 6.18.33+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.18.33-1+rpt1 (2026-06-01) aarch64 GNU/Linux
+Raspberry Pi 5 Model B Rev 1.0
+2026/05/11 12:20:02 
+Copyright (c) 2012 Broadcom
+version 66f33f7e (release) (embedded)
+throttled=0x0
+temp=59.3'C
+governor: ondemand
+max freq: 2400000 kHz
+               total        used        free      shared  buff/cache   available
+Mem:            8062        2698        1409         149        4191        5363
+Swap:           2047        1492         555
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        59G   11G   48G  19% /media/memo/7250-9755
+/dev/mmcblk0p2   58G   41G   15G  75% /
+--- top processes at start
+%CPU %MEM   RSS COMMAND
+63.4  3.3 275952 git
+15.3  3.4 281024 code
+12.2  3.9 328000 code
+ 9.8  1.1 92736 code
+ 6.8  2.9 241984 code
+ 3.8  3.6 304048 claude
+ 3.4  3.0 252752 chromium
+ 2.4  1.9 160320 code
+ 2.4  0.9 76144 code
+ 2.2  1.6 133456 code
+ 2.1  1.4 121856 chromium
+ 1.9  1.3 112336 chromium
+ 1.4  0.5 42992 Xorg
+ 1.2  0.6 51456 chromium
+--- python packages
+easyocr                          1.7.2
+numpy                            2.5.2
+onnxruntime                      1.30.0
+opencv                           4.10.0
+psutil                           7.2.2
+torch                            2.14.1+cpu
+ultralytics                      8.4.170
+--- camera
+pispbe (platform:1000880000.pisp_be):
+	/dev/video20
+	/dev/video21
+	/dev/video22
+	/dev/video23
+	/dev/video24
+	/dev/video25
+	/dev/video26
+	/dev/video27
+	/dev/video28
+	/dev/video29
+	/dev/video30
+	/dev/video31
+	/dev/video32
+	/dev/video33
+	/dev/video34
+	/dev/video35
+	/dev/media0
+	/dev/media3
+
+rp1-cfe (platform:1f00110000.csi):
+	/dev/media2
+
+rpi-hevc-dec (platform:rpi-hevc-dec):
+	/dev/video19
+	/dev/media1
+
+C270 HD WEBCAM (usb-xhci-hcd.1-1):
+	/dev/video0
+	/dev/video1
+	/dev/media4
+--- git
+6b5ad1e80301574a918182a5a71d13ffcd442609 Mon Nov 23 06:36:07 2026 +0600 Fix the five failing Pi tests; evaluate the counterfeit threshold, hand-held detector, OCR, thermal policy and UV pipeline.
+?? benchmark_report/2026-11-23/

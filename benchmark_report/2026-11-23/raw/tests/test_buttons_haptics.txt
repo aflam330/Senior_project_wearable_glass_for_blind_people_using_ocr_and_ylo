@@ -1,0 +1,1 @@
+SKIP: the 100 Taka test photo is not on this machine: /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/data set/Bangladeshi_Paper_Currency_Raw/Bangladeshi_Paper_Currency_Raw/100/100  Taka_031.jpg (set SARA_TEST_NOTE_PHOTO)

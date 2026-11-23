@@ -1,0 +1,692 @@
+{
+ "host": {
+  "hostname": "memo",
+  "device_model": "Raspberry Pi 5 Model B Rev 1.0",
+  "raspberry_pi_5": true,
+  "machine": "aarch64",
+  "os": "Linux-6.18.33+rpt-rpi-2712-aarch64-with-glibc2.41",
+  "python": "3.13.5",
+  "cpu_count": 4,
+  "utc": "2026-11-23T02:19:47.517467+00:00",
+  "torch": "2.14.1+cpu",
+  "torch_threads": 4,
+  "cuda_gpu": null,
+  "ultralytics": "8.4.170",
+  "onnxruntime": "1.30.0",
+  "easyocr": "1.7.2",
+  "cv2": "5.0.0"
+ },
+ "settings": {
+  "OCR_PIPELINE": "v2",
+  "OCR_V2_DECODER": "greedy",
+  "OCR_CANVAS_SIZE": 2560,
+  "OCR_DETECTOR": "onnx",
+  "detector_class": "OrtDetector",
+  "OCR_STREAM_PAGES": true,
+  "OCR_STREAM_MIN_LINES": 4,
+  "OCR_RECOGNIZER_PATH": "/media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/models/ocr_recognizer_real_blend",
+  "torch_threads": 4
+ },
+ "load_ms": 9626.5,
+ "first_capture_after_load_ms": 13003.1,
+ "peak_rss_mb": 2442.821632,
+ "results": [
+  {
+   "case": "sign_en_3_lines",
+   "label": "English sign, 3 lines (640x480)",
+   "path": "plain",
+   "reps": 5,
+   "frame": "640x480",
+   "total_ms_median": 12980.1,
+   "total_ms_min": 12952.8,
+   "total_ms_max": 13167.0,
+   "detect_ms_median": 10554.6,
+   "recognize_ms_median": 2391.6,
+   "other_ms_median": 7.3,
+   "first_line_ms_median": null,
+   "streamed": false,
+   "detect_calls": 1,
+   "recognize_calls": 1,
+   "text_boxes": 3,
+   "truth": "EXIT 12 Bus Stop Main Entrance",
+   "read": "EXIT 12 Bus Stop Main Entrance",
+   "cer": 0.0,
+   "cpu_temp_c_after": 78.2,
+   "throttled_after": "0xe0000",
+   "runs": [
+    {
+     "total_ms": 12952.8,
+     "detect_ms": 10554.6,
+     "recognize_ms": 2391.6,
+     "other_ms": 6.7,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 13065.7,
+     "detect_ms": 10457.3,
+     "recognize_ms": 2601.1,
+     "other_ms": 7.3,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 12980.1,
+     "detect_ms": 10352.1,
+     "recognize_ms": 2619.2,
+     "other_ms": 8.7,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 12974.7,
+     "detect_ms": 10641.4,
+     "recognize_ms": 2326.0,
+     "other_ms": 7.3,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 13167.0,
+     "detect_ms": 10803.3,
+     "recognize_ms": 2357.0,
+     "other_ms": 6.7,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    }
+   ],
+   "note": "the frame scripts/benchmark_pi5.py uses"
+  },
+  {
+   "case": "sign_en_3_lines",
+   "label": "English sign, 3 lines (640x480)",
+   "path": "app",
+   "reps": 5,
+   "frame": "640x480",
+   "total_ms_median": 12858.8,
+   "total_ms_min": 12815.6,
+   "total_ms_max": 13018.3,
+   "detect_ms_median": 10504.0,
+   "recognize_ms_median": 2336.8,
+   "other_ms_median": 8.2,
+   "first_line_ms_median": null,
+   "streamed": false,
+   "detect_calls": 1,
+   "recognize_calls": 1,
+   "text_boxes": 3,
+   "truth": "EXIT 12 Bus Stop Main Entrance",
+   "read": "EXIT 12 Bus Stop Main Entrance",
+   "cer": 0.0,
+   "cpu_temp_c_after": 79.85,
+   "throttled_after": "0xe0000",
+   "runs": [
+    {
+     "total_ms": 12842.5,
+     "detect_ms": 10522.3,
+     "recognize_ms": 2313.0,
+     "other_ms": 7.2,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 13014.1,
+     "detect_ms": 10437.5,
+     "recognize_ms": 2568.4,
+     "other_ms": 8.2,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 13018.3,
+     "detect_ms": 10491.4,
+     "recognize_ms": 2518.3,
+     "other_ms": 8.6,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 12858.8,
+     "detect_ms": 10514.5,
+     "recognize_ms": 2336.8,
+     "other_ms": 7.4,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 12815.6,
+     "detect_ms": 10504.0,
+     "recognize_ms": 2303.2,
+     "other_ms": 8.4,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    }
+   ],
+   "note": "the frame scripts/benchmark_pi5.py uses"
+  },
+  {
+   "case": "sign_bn_1_line",
+   "label": "Bangla sign, 1 line (640x480)",
+   "path": "plain",
+   "reps": 5,
+   "frame": "640x480",
+   "total_ms_median": 11242.6,
+   "total_ms_min": 11075.4,
+   "total_ms_max": 11336.5,
+   "detect_ms_median": 10576.9,
+   "recognize_ms_median": 648.7,
+   "other_ms_median": 7.9,
+   "first_line_ms_median": null,
+   "streamed": false,
+   "detect_calls": 1,
+   "recognize_calls": 1,
+   "text_boxes": 1,
+   "truth": "ধূমপান নিষেধ",
+   "read": "ধূমপান নিষেধ",
+   "cer": 0.0,
+   "cpu_temp_c_after": 80.95,
+   "throttled_after": "0xe0000",
+   "runs": [
+    {
+     "total_ms": 11133.7,
+     "detect_ms": 10496.4,
+     "recognize_ms": 631.1,
+     "other_ms": 6.2,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 11075.4,
+     "detect_ms": 10420.5,
+     "recognize_ms": 648.7,
+     "other_ms": 6.2,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 11284.9,
+     "detect_ms": 10616.6,
+     "recognize_ms": 660.4,
+     "other_ms": 7.9,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 11336.5,
+     "detect_ms": 10693.7,
+     "recognize_ms": 634.8,
+     "other_ms": 8.1,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 11242.6,
+     "detect_ms": 10576.9,
+     "recognize_ms": 657.4,
+     "other_ms": 8.4,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    }
+   ]
+  },
+  {
+   "case": "sign_bn_1_line",
+   "label": "Bangla sign, 1 line (640x480)",
+   "path": "app",
+   "reps": 5,
+   "frame": "640x480",
+   "total_ms_median": 11318.2,
+   "total_ms_min": 11199.9,
+   "total_ms_max": 11509.3,
+   "detect_ms_median": 10552.6,
+   "recognize_ms_median": 646.3,
+   "other_ms_median": 7.4,
+   "first_line_ms_median": null,
+   "streamed": false,
+   "detect_calls": 1,
+   "recognize_calls": 1,
+   "text_boxes": 1,
+   "truth": "ধূমপান নিষেধ",
+   "read": "ধূমপান নিষেধ",
+   "cer": 0.0,
+   "cpu_temp_c_after": 79.3,
+   "throttled_after": "0xe0000",
+   "runs": [
+    {
+     "total_ms": 11199.9,
+     "detect_ms": 10552.5,
+     "recognize_ms": 641.1,
+     "other_ms": 6.4,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 11243.3,
+     "detect_ms": 10590.6,
+     "recognize_ms": 646.3,
+     "other_ms": 6.3,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 11318.2,
+     "detect_ms": 10667.3,
+     "recognize_ms": 643.1,
+     "other_ms": 7.7,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 11422.6,
+     "detect_ms": 10552.6,
+     "recognize_ms": 862.1,
+     "other_ms": 7.9,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 11509.3,
+     "detect_ms": 10519.5,
+     "recognize_ms": 982.4,
+     "other_ms": 7.4,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    }
+   ]
+  },
+  {
+   "case": "sign_bn_3_lines",
+   "label": "Bangla sign, 3 lines (640x480)",
+   "path": "plain",
+   "reps": 5,
+   "frame": "640x480",
+   "total_ms_median": 13007.2,
+   "total_ms_min": 12884.8,
+   "total_ms_max": 13241.3,
+   "detect_ms_median": 10711.5,
+   "recognize_ms_median": 2250.0,
+   "other_ms_median": 8.0,
+   "first_line_ms_median": null,
+   "streamed": false,
+   "detect_calls": 1,
+   "recognize_calls": 1,
+   "text_boxes": 3,
+   "truth": "ধূমপান নিষেধ ডাকঘর নিরাপদ পানীয় জল",
+   "read": "ধূমপান নিষেধ ডাকঘর নিরাপদ পানীয় জল",
+   "cer": 0.0,
+   "cpu_temp_c_after": 82.05,
+   "throttled_after": "0xe0008",
+   "runs": [
+    {
+     "total_ms": 13007.2,
+     "detect_ms": 10576.8,
+     "recognize_ms": 2420.7,
+     "other_ms": 9.8,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 12884.8,
+     "detect_ms": 10634.8,
+     "recognize_ms": 2242.1,
+     "other_ms": 8.0,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 12918.2,
+     "detect_ms": 10711.5,
+     "recognize_ms": 2199.9,
+     "other_ms": 6.8,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 13022.8,
+     "detect_ms": 10766.3,
+     "recognize_ms": 2250.0,
+     "other_ms": 6.4,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 13241.3,
+     "detect_ms": 10724.4,
+     "recognize_ms": 2508.4,
+     "other_ms": 8.5,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    }
+   ]
+  },
+  {
+   "case": "sign_bn_3_lines",
+   "label": "Bangla sign, 3 lines (640x480)",
+   "path": "app",
+   "reps": 5,
+   "frame": "640x480",
+   "total_ms_median": 13096.3,
+   "total_ms_min": 12914.8,
+   "total_ms_max": 13335.8,
+   "detect_ms_median": 10775.1,
+   "recognize_ms_median": 2263.2,
+   "other_ms_median": 8.7,
+   "first_line_ms_median": null,
+   "streamed": false,
+   "detect_calls": 1,
+   "recognize_calls": 1,
+   "text_boxes": 3,
+   "truth": "ধূমপান নিষেধ ডাকঘর নিরাপদ পানীয় জল",
+   "read": "ধূমপান নিষেধ ডাকঘর নিরাপদ পানীয় জল",
+   "cer": 0.0,
+   "cpu_temp_c_after": 82.05,
+   "throttled_after": "0xe0000",
+   "runs": [
+    {
+     "total_ms": 12914.8,
+     "detect_ms": 10657.0,
+     "recognize_ms": 2249.1,
+     "other_ms": 8.7,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 12997.9,
+     "detect_ms": 10775.1,
+     "recognize_ms": 2215.2,
+     "other_ms": 7.6,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 13335.8,
+     "detect_ms": 10781.8,
+     "recognize_ms": 2545.4,
+     "other_ms": 8.7,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 13096.3,
+     "detect_ms": 10663.4,
+     "recognize_ms": 2424.3,
+     "other_ms": 8.7,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    },
+    {
+     "total_ms": 13297.2,
+     "detect_ms": 11022.4,
+     "recognize_ms": 2263.2,
+     "other_ms": 11.7,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 1
+    }
+   ]
+  },
+  {
+   "case": "label_mixed_6_lines",
+   "label": "Label, 6 lines Bangla + English (640x480)",
+   "path": "app",
+   "reps": 4,
+   "frame": "640x480",
+   "total_ms_median": 17667.3,
+   "total_ms_min": 17309.5,
+   "total_ms_max": 17825.3,
+   "detect_ms_median": 10849.0,
+   "recognize_ms_median": 6792.4,
+   "other_ms_median": 7.6,
+   "first_line_ms_median": 12213.5,
+   "streamed": true,
+   "detect_calls": 1,
+   "recognize_calls": 6,
+   "text_boxes": 6,
+   "truth": "Paracetamol 500 mg মেয়াদ উত্তীর্ণের তারিখ Best Before 2027 দাম ৮৫ টাকা Price 120 Taka চিনি এক কেজি",
+   "read": "Paracetamol 500 mg মেয়াদ উত্তীর্ণের তারিখ Best Before 2027 দাম ৮৫ টাকা Price 120 Taka চিনি এক কেজি",
+   "cer": 0.0,
+   "cpu_temp_c_after": 80.4,
+   "throttled_after": "0xe0000",
+   "runs": [
+    {
+     "total_ms": 17514.7,
+     "detect_ms": 10842.1,
+     "recognize_ms": 6664.5,
+     "other_ms": 8.0,
+     "first_line_ms": 12167.4,
+     "detect_calls": 1,
+     "recognize_calls": 6
+    },
+    {
+     "total_ms": 17309.5,
+     "detect_ms": 10727.1,
+     "recognize_ms": 6573.5,
+     "other_ms": 8.9,
+     "first_line_ms": 12052.3,
+     "detect_calls": 1,
+     "recognize_calls": 6
+    },
+    {
+     "total_ms": 17825.3,
+     "detect_ms": 10897.9,
+     "recognize_ms": 6920.3,
+     "other_ms": 7.1,
+     "first_line_ms": 12259.6,
+     "detect_calls": 1,
+     "recognize_calls": 6
+    },
+    {
+     "total_ms": 17819.9,
+     "detect_ms": 10855.9,
+     "recognize_ms": 6956.7,
+     "other_ms": 7.3,
+     "first_line_ms": 12451.6,
+     "detect_calls": 1,
+     "recognize_calls": 6
+    }
+   ]
+  },
+  {
+   "case": "page_12_lines_640",
+   "label": "Page, 12 lines Bangla + English (640x480)",
+   "path": "app",
+   "reps": 3,
+   "frame": "640x480",
+   "total_ms_median": 23734.8,
+   "total_ms_min": 23547.1,
+   "total_ms_max": 23985.3,
+   "detect_ms_median": 10792.0,
+   "recognize_ms_median": 12782.9,
+   "other_ms_median": 8.1,
+   "first_line_ms_median": 12251.4,
+   "streamed": true,
+   "detect_calls": 1,
+   "recognize_calls": 12,
+   "text_boxes": 12,
+   "truth": "সরকারি প্রাথমিক বিদ্যালয় Emergency Room জুতা খুলে প্রবেশ করুন Closed on Monday ঢাকা মেডিকেল কলেজ Drinking Water রক্ত পরীক্ষা কেন্দ্র Electricity Bill শিশুদের খেলার মাঠ Train Schedule ভাড়া দেওয়া হবে Cash Counter",
+   "read": "সরকারি প্রাথমিক বিদ্যালয় Emergency Room জুতা খুলে প্রবেশ করুন Closed on Monday ঢাকা মেডিকেল কলেজ Drinking Water রক্ত পরীক্ষা কেন্দ্র Electricity Bill শিশুদের খেলার মাঠ Train Schedule ভাড়া দেওয়া হবে Cash Counter",
+   "cer": 0.0,
+   "cpu_temp_c_after": 80.95,
+   "throttled_after": "0xe0000",
+   "runs": [
+    {
+     "total_ms": 23734.8,
+     "detect_ms": 10729.6,
+     "recognize_ms": 12997.4,
+     "other_ms": 7.9,
+     "first_line_ms": 12251.4,
+     "detect_calls": 1,
+     "recognize_calls": 12
+    },
+    {
+     "total_ms": 23985.3,
+     "detect_ms": 11192.9,
+     "recognize_ms": 12782.9,
+     "other_ms": 9.5,
+     "first_line_ms": 12514.5,
+     "detect_calls": 1,
+     "recognize_calls": 12
+    },
+    {
+     "total_ms": 23547.1,
+     "detect_ms": 10792.0,
+     "recognize_ms": 12747.1,
+     "other_ms": 8.1,
+     "first_line_ms": 12096.7,
+     "detect_calls": 1,
+     "recognize_calls": 12
+    }
+   ]
+  },
+  {
+   "case": "page_12_lines_1280",
+   "label": "Page, 12 lines Bangla + English (1280x720)",
+   "path": "app",
+   "reps": 3,
+   "frame": "1280x720",
+   "total_ms_median": 21549.2,
+   "total_ms_min": 21490.1,
+   "total_ms_max": 21557.0,
+   "detect_ms_median": 8959.1,
+   "recognize_ms_median": 12526.0,
+   "other_ms_median": 5.0,
+   "first_line_ms_median": 10323.2,
+   "streamed": true,
+   "detect_calls": 1,
+   "recognize_calls": 12,
+   "text_boxes": 12,
+   "truth": "সরকারি প্রাথমিক বিদ্যালয় Emergency Room জুতা খুলে প্রবেশ করুন Closed on Monday ঢাকা মেডিকেল কলেজ Drinking Water রক্ত পরীক্ষা কেন্দ্র Electricity Bill শিশুদের খেলার মাঠ Train Schedule ভাড়া দেওয়া হবে Cash Counter",
+   "read": "সরকারি প্রাথমিক বিদ্যালয় Emergency Room জুতা খুলে প্রবেশ করুন Closed on Monday ঢাকা মেডিকেল কলেজ Drinking Water রক্ত পরীক্ষা কেন্দ্র Electricity Bill শিশুদের খেলার মাঠ Train Schedule ভাড়া দেওয়া হবে Cash Counter",
+   "cer": 0.0,
+   "cpu_temp_c_after": 82.6,
+   "throttled_after": "0xe0008",
+   "runs": [
+    {
+     "total_ms": 21490.1,
+     "detect_ms": 8959.1,
+     "recognize_ms": 12526.0,
+     "other_ms": 5.0,
+     "first_line_ms": 10323.2,
+     "detect_calls": 1,
+     "recognize_calls": 12
+    },
+    {
+     "total_ms": 21549.2,
+     "detect_ms": 9097.6,
+     "recognize_ms": 12446.5,
+     "other_ms": 5.1,
+     "first_line_ms": 10424.5,
+     "detect_calls": 1,
+     "recognize_calls": 12
+    },
+    {
+     "total_ms": 21557.0,
+     "detect_ms": 8703.5,
+     "recognize_ms": 12849.1,
+     "other_ms": 4.4,
+     "first_line_ms": 10205.7,
+     "detect_calls": 1,
+     "recognize_calls": 12
+    }
+   ]
+  },
+  {
+   "case": "no_text",
+   "label": "No text in view (640x480)",
+   "path": "app",
+   "reps": 5,
+   "frame": "640x480",
+   "total_ms_median": 10842.0,
+   "total_ms_min": 10692.3,
+   "total_ms_max": 10870.3,
+   "detect_ms_median": 10823.9,
+   "recognize_ms_median": 0.0,
+   "other_ms_median": 11.3,
+   "first_line_ms_median": null,
+   "streamed": false,
+   "detect_calls": 1,
+   "recognize_calls": 0,
+   "text_boxes": 0,
+   "truth": null,
+   "read": "",
+   "cer": null,
+   "cpu_temp_c_after": 81.5,
+   "throttled_after": "0xe0000",
+   "runs": [
+    {
+     "total_ms": 10773.8,
+     "detect_ms": 10765.8,
+     "recognize_ms": 0.0,
+     "other_ms": 7.9,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 0
+    },
+    {
+     "total_ms": 10853.2,
+     "detect_ms": 10841.9,
+     "recognize_ms": 0.0,
+     "other_ms": 11.3,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 0
+    },
+    {
+     "total_ms": 10842.0,
+     "detect_ms": 10823.9,
+     "recognize_ms": 0.0,
+     "other_ms": 18.1,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 0
+    },
+    {
+     "total_ms": 10870.3,
+     "detect_ms": 10859.0,
+     "recognize_ms": 0.0,
+     "other_ms": 11.3,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 0
+    },
+    {
+     "total_ms": 10692.3,
+     "detect_ms": 10679.6,
+     "recognize_ms": 0.0,
+     "other_ms": 12.7,
+     "first_line_ms": null,
+     "detect_calls": 1,
+     "recognize_calls": 0
+    }
+   ]
+  }
+ ]
+}

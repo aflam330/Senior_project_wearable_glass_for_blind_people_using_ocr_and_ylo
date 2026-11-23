@@ -1,0 +1,13 @@
+1795399194.483955 2026-11-23 07:59:54 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1795399194.933565 {
+1795399194.933642  "host": "memo",
+1795399194.933668  "raspberry_pi_5": true,
+1795399194.933691  "python": "3.13.5",
+1795399194.933714  "watermark_check": false,
+1795399194.933736  "activate_first_ms": 2490.4,
+1795399194.933757  "warm_up_ms": 755.8,
+1795399194.933780  "first_check_ms": 473.4,
+1795399194.933803  "steady_check_ms": 458.0,
+1795399194.933828  "activate_again_ms": 0.0
+1795399194.933846 }
+1795399194.935798 2026-11-23 07:59:54 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory

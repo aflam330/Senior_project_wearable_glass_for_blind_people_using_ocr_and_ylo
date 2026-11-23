@@ -1,0 +1,11 @@
+{
+ "host": "memo",
+ "raspberry_pi_5": true,
+ "python": "3.13.5",
+ "watermark_check": false,
+ "activate_first_ms": 2490.4,
+ "warm_up_ms": 755.8,
+ "first_check_ms": 473.4,
+ "steady_check_ms": 458.0,
+ "activate_again_ms": 0.0
+}

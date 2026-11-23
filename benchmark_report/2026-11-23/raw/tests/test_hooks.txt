@@ -1,0 +1,6 @@
+inbox records: 20
+{'system_performance': 17, 'ocr': 1, 'field_test': 1, 'counterfeit_detection': 1}
+collected: 19 rejected: [] problems: []
+largest record bytes: 1742
+example field record keys: ['comparison', 'comparison_group', 'configuration', 'evidence', 'experiment_name', 'hardware', 'mode', 'performance', 'raw_measurements', 'software_environment', 'status', 'task', 'test_conditions', 'timestamp', 'verification', 'versioning']
+hooks: all checks pass; real master untouched: True

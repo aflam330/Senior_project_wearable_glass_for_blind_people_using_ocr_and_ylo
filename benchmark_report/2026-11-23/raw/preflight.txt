@@ -1,0 +1,10 @@
+1795396340.470821 ok  watermark INT8  2.62 MB
+1795396340.470920 ok  watermark localizer  4.32 MB
+1795396340.470955 ok  note detector INT8  25.74 MB
+1795396340.470989 ok  earlier note detector INT8 (CURRENCY_DETECTOR=v1)  17.99 MB
+1795396340.471017 ok  safe-check checkpoint  16.62 MB
+1795396340.471041 ok  500 template  0.61 MB
+1795396340.471063 ok  1000 template  0.60 MB
+1795396341.410641 ok  INT8 watermark, watermark localizer and INT8 detector graphs each ran one dummy input
+1795396343.286962 capture guide: all checks pass
+1795396343.865821 Latency is not measured here. On the Pi: python scripts/benchmark_pi5.py --iters 100 --sustained 30

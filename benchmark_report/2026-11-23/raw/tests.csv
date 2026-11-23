@@ -1,0 +1,15 @@
+test,exit_code,seconds
+test_thermal,0,0.1
+test_multi_note,0,1.9
+test_capture_guide,0,1.9
+test_field_log,0,1.1
+test_tts_queue,0,4.9
+test_uv_check,0,2.6
+test_voice_commands,0,4.6
+test_buttons_haptics,77,0.2
+test_live_diag,0,13.0
+test_ocr_single_pass,77,14.2
+test_hooks,0,0.4
+test_results_db,0,0.3
+test_roboeye_modules,77,3.5
+test_print_capture,0,0.3
