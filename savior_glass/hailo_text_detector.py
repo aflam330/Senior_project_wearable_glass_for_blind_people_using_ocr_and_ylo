@@ -154,7 +154,10 @@ def install(reader) -> str:
     def detect(img, min_size=20, text_threshold=0.7, low_text=0.4, link_threshold=0.4, canvas_size=2560,
                mag_ratio=1., slope_ths=0.1, ycenter_ths=0.5, height_ths=0.5, width_ths=0.5, add_margin=0.1,
                reformat=True, optimal_num_chars=None, **rest):
-        if reader.__dict__.get("_hailo_det") is None:
+        # A pass that asks CRAFT for another picture size (mag_ratio, e.g. text mode's second pass at half size for
+        # large blurred letters, config.OCR_SECOND_PASS) is a CRAFT setting the chip model has no equivalent for:
+        # it goes to the CPU detector, so that pass works exactly as it does without the AI HAT.
+        if reader.__dict__.get("_hailo_det") is None or abs(float(mag_ratio) - 1.0) > 1e-6:
             return cpu_detect(img, min_size, text_threshold, low_text, link_threshold, canvas_size, mag_ratio,
                               slope_ths, ycenter_ths, height_ths, width_ths, add_margin, reformat, optimal_num_chars,
                               **rest)
