@@ -1,0 +1,402 @@
+{
+ "date": "2026-11-24",
+ "rule_family": "Rule family, fixed before any test picture was read:\n\n  candidate marks = every component of the deployed fibre-pixel mask (modes/uv_check.fibre_mask), at 600 px width\n  isolated fibre  = a fibre-shaped component with no other candidate mark (fibre-shaped or not) within r px\n  R0              deployed: fibres >= 1\n  R1(r, a)        isolated fibres >= a                                  r in {10,15,20,30,40}, a in {1,2,3}\n  R2(r, a, b)     isolated fibres >= a and non-isolated fibres <= b     b in {2,5,10,20,40}\n  S (shortcut)    one threshold on colour saturation (not a UV feature), direction chosen - for the robustness check",
+ "split_sizes": {
+  "train": {
+   "genuine": 71,
+   "counterfeit": 23
+  },
+  "val": {
+   "genuine": 24,
+   "counterfeit": 7
+  },
+  "test": {
+   "genuine": 23,
+   "counterfeit": 6
+  }
+ },
+ "n_candidates": 91,
+ "chosen": "R2 iso10>=1, rest<=20",
+ "saturation_shortcut": "S sat>=163.7",
+ "train_val": {
+  "R0 fibres>=1": {
+   "genuine_accepted": "69/95",
+   "gar": 0.7263,
+   "counterfeits_accepted": "30/30",
+   "far": 1.0
+  },
+  "R2 iso10>=1, rest<=20": {
+   "genuine_accepted": "68/95",
+   "gar": 0.7158,
+   "counterfeits_accepted": "0/30",
+   "far": 0.0
+  },
+  "S sat>=163.7": {
+   "genuine_accepted": "95/95",
+   "gar": 1.0,
+   "counterfeits_accepted": "0/30",
+   "far": 0.0
+  }
+ },
+ "test": {
+  "R0 fibres>=1": {
+   "genuine_accepted": "20/23",
+   "gar": 0.8696,
+   "counterfeits_accepted": "6/6",
+   "far": 1.0
+  },
+  "R2 iso10>=1, rest<=20": {
+   "genuine_accepted": "20/23",
+   "gar": 0.8696,
+   "counterfeits_accepted": "1/6",
+   "far": 0.1667
+  },
+  "S sat>=163.7": {
+   "genuine_accepted": "23/23",
+   "gar": 1.0,
+   "counterfeits_accepted": "1/6",
+   "far": 0.1667
+  }
+ },
+ "test_colour_swapped": {
+  "R0 fibres>=1": {
+   "genuine_accepted": "23/23",
+   "gar": 1.0,
+   "counterfeits_accepted": "6/6",
+   "far": 1.0
+  },
+  "R2 iso10>=1, rest<=20": {
+   "genuine_accepted": "20/23",
+   "gar": 0.8696,
+   "counterfeits_accepted": "0/6",
+   "far": 0.0
+  },
+  "S sat>=163.7": {
+   "genuine_accepted": "0/23",
+   "gar": 0.0,
+   "counterfeits_accepted": "6/6",
+   "far": 1.0
+  }
+ },
+ "per_picture_test": [
+  {
+   "path": "uv_notes\\1000\\uv_1000_006.png",
+   "genuine": true,
+   "n": 1,
+   "saturation": 242.49274895872776,
+   "iso10": 1,
+   "iso15": 1,
+   "iso20": 1,
+   "iso30": 1,
+   "iso40": 1
+  },
+  {
+   "path": "uv_notes\\1000\\uv_1000_013.png",
+   "genuine": true,
+   "n": 0,
+   "saturation": 238.74233833340438,
+   "iso10": 0,
+   "iso15": 0,
+   "iso20": 0,
+   "iso30": 0,
+   "iso40": 0
+  },
+  {
+   "path": "uv_notes\\1000\\uv_1000_018.png",
+   "genuine": true,
+   "n": 3,
+   "saturation": 239.43225428465604,
+   "iso10": 1,
+   "iso15": 1,
+   "iso20": 0,
+   "iso30": 0,
+   "iso40": 0
+  },
+  {
+   "path": "uv_notes\\1000\\uv_1000_028.png",
+   "genuine": true,
+   "n": 6,
+   "saturation": 212.23181004653384,
+   "iso10": 5,
+   "iso15": 4,
+   "iso20": 4,
+   "iso30": 1,
+   "iso40": 1
+  },
+  {
+   "path": "uv_notes\\200\\uv_200_004.png",
+   "genuine": true,
+   "n": 3,
+   "saturation": 219.9321784557087,
+   "iso10": 3,
+   "iso15": 3,
+   "iso20": 2,
+   "iso30": 2,
+   "iso40": 1
+  },
+  {
+   "path": "uv_notes\\200\\uv_200_007.png",
+   "genuine": true,
+   "n": 2,
+   "saturation": 242.0189049226497,
+   "iso10": 2,
+   "iso15": 2,
+   "iso20": 2,
+   "iso30": 2,
+   "iso40": 2
+  },
+  {
+   "path": "uv_notes\\200\\uv_200_009.png",
+   "genuine": true,
+   "n": 2,
+   "saturation": 243.35187356016303,
+   "iso10": 2,
+   "iso15": 2,
+   "iso20": 2,
+   "iso30": 2,
+   "iso40": 2
+  },
+  {
+   "path": "uv_notes\\200\\uv_200_016.png",
+   "genuine": true,
+   "n": 1,
+   "saturation": 240.77773324844335,
+   "iso10": 1,
+   "iso15": 1,
+   "iso20": 1,
+   "iso30": 1,
+   "iso40": 1
+  },
+  {
+   "path": "uv_notes\\200\\uv_200_020.png",
+   "genuine": true,
+   "n": 2,
+   "saturation": 240.3531948005958,
+   "iso10": 2,
+   "iso15": 2,
+   "iso20": 2,
+   "iso30": 2,
+   "iso40": 1
+  },
+  {
+   "path": "uv_notes\\200\\uv_200_022.png",
+   "genuine": true,
+   "n": 2,
+   "saturation": 235.3080067001675,
+   "iso10": 2,
+   "iso15": 2,
+   "iso20": 2,
+   "iso30": 2,
+   "iso40": 2
+  },
+  {
+   "path": "uv_notes\\200\\uv_200_024.png",
+   "genuine": true,
+   "n": 1,
+   "saturation": 239.95934463223668,
+   "iso10": 1,
+   "iso15": 1,
+   "iso20": 1,
+   "iso30": 1,
+   "iso40": 1
+  },
+  {
+   "path": "uv_notes\\200\\uv_200_032.png",
+   "genuine": true,
+   "n": 7,
+   "saturation": 244.21980480132024,
+   "iso10": 6,
+   "iso15": 5,
+   "iso20": 4,
+   "iso30": 3,
+   "iso40": 3
+  },
+  {
+   "path": "uv_notes\\200\\uv_200_033.png",
+   "genuine": true,
+   "n": 12,
+   "saturation": 245.45718354476364,
+   "iso10": 10,
+   "iso15": 7,
+   "iso20": 7,
+   "iso30": 4,
+   "iso40": 3
+  },
+  {
+   "path": "uv_notes\\200\\uv_200_035.png",
+   "genuine": true,
+   "n": 14,
+   "saturation": 244.27782601991544,
+   "iso10": 5,
+   "iso15": 3,
+   "iso20": 3,
+   "iso30": 0,
+   "iso40": 0
+  },
+  {
+   "path": "uv_notes\\200\\uv_200_036.png",
+   "genuine": true,
+   "n": 4,
+   "saturation": 244.336548166119,
+   "iso10": 3,
+   "iso15": 2,
+   "iso20": 2,
+   "iso30": 2,
+   "iso40": 2
+  },
+  {
+   "path": "uv_notes\\200\\uv_200_045.png",
+   "genuine": true,
+   "n": 4,
+   "saturation": 241.52212394519975,
+   "iso10": 2,
+   "iso15": 2,
+   "iso20": 2,
+   "iso30": 2,
+   "iso40": 2
+  },
+  {
+   "path": "uv_notes\\500\\uv_500_019.png",
+   "genuine": true,
+   "n": 1,
+   "saturation": 243.54543186909765,
+   "iso10": 1,
+   "iso15": 1,
+   "iso20": 0,
+   "iso30": 0,
+   "iso40": 0
+  },
+  {
+   "path": "uv_notes\\500\\uv_500_020.png",
+   "genuine": true,
+   "n": 1,
+   "saturation": 241.44029696697189,
+   "iso10": 1,
+   "iso15": 1,
+   "iso20": 1,
+   "iso30": 1,
+   "iso40": 1
+  },
+  {
+   "path": "uv_notes\\500\\uv_500_022.png",
+   "genuine": true,
+   "n": 0,
+   "saturation": 242.15551691216584,
+   "iso10": 0,
+   "iso15": 0,
+   "iso20": 0,
+   "iso30": 0,
+   "iso40": 0
+  },
+  {
+   "path": "uv_notes\\500\\uv_500_023.png",
+   "genuine": true,
+   "n": 0,
+   "saturation": 241.58891523972198,
+   "iso10": 0,
+   "iso15": 0,
+   "iso20": 0,
+   "iso30": 0,
+   "iso40": 0
+  },
+  {
+   "path": "uv_notes\\500\\uv_500_029.png",
+   "genuine": true,
+   "n": 10,
+   "saturation": 245.54041011429342,
+   "iso10": 5,
+   "iso15": 1,
+   "iso20": 1,
+   "iso30": 1,
+   "iso40": 1
+  },
+  {
+   "path": "uv_notes\\500\\uv_500_031.png",
+   "genuine": true,
+   "n": 8,
+   "saturation": 237.70944782168186,
+   "iso10": 6,
+   "iso15": 3,
+   "iso20": 2,
+   "iso30": 2,
+   "iso40": 2
+  },
+  {
+   "path": "uv_notes\\500\\uv_500_036.png",
+   "genuine": true,
+   "n": 3,
+   "saturation": 236.5457876925817,
+   "iso10": 2,
+   "iso15": 2,
+   "iso20": 2,
+   "iso30": 2,
+   "iso40": 2
+  },
+  {
+   "path": "fake_bd_cur\\uv_fake_cur\\CamScanner 11-23-2026 23.24_2.jpg",
+   "genuine": false,
+   "n": 146,
+   "saturation": 135.2549726999727,
+   "iso10": 27,
+   "iso15": 3,
+   "iso20": 1,
+   "iso30": 0,
+   "iso40": 0
+  },
+  {
+   "path": "fake_bd_cur\\uv_fake_cur\\CamScanner 11-23-2026 23.24_10.jpg",
+   "genuine": false,
+   "n": 96,
+   "saturation": 167.58813787375416,
+   "iso10": 9,
+   "iso15": 1,
+   "iso20": 0,
+   "iso30": 0,
+   "iso40": 0
+  },
+  {
+   "path": "fake_bd_cur\\uv_fake_cur\\CamScanner 11-23-2026 23.24_19.jpg",
+   "genuine": false,
+   "n": 9,
+   "saturation": 149.38553093187159,
+   "iso10": 2,
+   "iso15": 0,
+   "iso20": 0,
+   "iso30": 0,
+   "iso40": 0
+  },
+  {
+   "path": "fake_bd_cur\\uv_fake_cur\\CamScanner 11-23-2026 23.24_25.jpg",
+   "genuine": false,
+   "n": 121,
+   "saturation": 141.03943720349562,
+   "iso10": 7,
+   "iso15": 1,
+   "iso20": 1,
+   "iso30": 0,
+   "iso40": 0
+  },
+  {
+   "path": "fake_bd_cur\\uv_fake_cur\\CamScanner 11-23-2026 23.24_32.jpg",
+   "genuine": false,
+   "n": 64,
+   "saturation": 147.74425185735512,
+   "iso10": 5,
+   "iso15": 0,
+   "iso20": 0,
+   "iso30": 0,
+   "iso40": 0
+  },
+  {
+   "path": "fake_bd_cur\\uv_fake_cur\\CamScanner 11-23-2026 23.24_34.jpg",
+   "genuine": false,
+   "n": 216,
+   "saturation": 122.45116020864381,
+   "iso10": 46,
+   "iso15": 14,
+   "iso20": 2,
+   "iso30": 0,
+   "iso40": 0
+  }
+ ]
+}

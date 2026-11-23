@@ -303,6 +303,9 @@ class OCRMode(BaseMode):
             return []
         boxes, free = (list(hl[0]) if hl else []), (list(fl[0]) if fl else [])
         if not boxes and not free:
+            second = self._second_pass(gray, kw)
+            if second:
+                return [second]
             self.no_text_boxes = True          # nothing that looks like text: say so at once (process_frame)
             return []
         if self.speak_line is not None and getattr(config, "OCR_STREAM_PAGES", False):
@@ -341,9 +344,32 @@ class OCRMode(BaseMode):
                     if c2 > best[0]:
                         best = (c2, t2)
             text = best[1]
+        if not text:
+            text = self._second_pass(gray, kw)
         if os.environ.get("OCR_DEBUG_DIR"):
             self._save_debug(frame, gray, det, block, text)
         return [text] if text else []
+
+    def _second_pass(self, gray, kw) -> str:
+        """config.OCR_SECOND_PASS (None = off): when the first pass keeps no text, look again with other detector
+        settings (for example the picture at half size, which finds large blurred letters) and keep the reading only
+        if its mean confidence reaches OCR_SECOND_PASS_MIN_CONF, so a text-free scene stays "no text found".
+        Costs time only when nothing was read. Chosen by ocr_bench/probe_second_pass.py and ocr_v4_eval.py."""
+        p = getattr(config, "OCR_SECOND_PASS", None)
+        if not p:
+            return ""
+        kw2 = dict(kw)
+        kw2.update(p)
+        try:
+            det2 = self._reader.readtext(gray, detail=1, paragraph=False, width_ths=0.7, height_ths=0.7, **kw2)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("EasyOCR inference error (second pass): %s", exc)
+            return ""
+        block2 = dominant_block(det2, getattr(config, "OCR_V2_MIN_CONF", 0.2))
+        if not block2:
+            return ""
+        c2 = float(np.mean([b["c"] for b in block2]))
+        return order_lines(block2) if c2 >= float(getattr(config, "OCR_SECOND_PASS_MIN_CONF", 0.5)) else ""
 
     def _save_debug(self, frame, gray, det, block, text) -> None:
         """OCR_DEBUG_DIR=<folder>: keep what the reader saw for one capture (for testing, never on by default):

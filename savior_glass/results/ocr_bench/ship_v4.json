@@ -1,0 +1,56 @@
+{
+ "date": "2026-11-23",
+ "shipped, as evaluated": {
+  "real_val": {
+   "bn": {
+    "n_images": 150,
+    "n_words": 150,
+    "cer": 0.1667,
+    "wer": 0.44,
+    "cer_without_zero_width": 0.1667,
+    "nothing_read": 0.02,
+    "word_exact": 0.5933,
+    "latency_ms_median": 2774.1
+   },
+   "en": {
+    "n_images": 150,
+    "n_words": 150,
+    "cer": 0.3458,
+    "wer": 0.5533,
+    "cer_without_zero_width": 0.3458,
+    "nothing_read": 0.14,
+    "word_exact": 0.4467,
+    "latency_ms_median": 2879.0
+   },
+   "mean_cer": 0.2562
+  },
+  "rendered_val_cer": 0.0259
+ },
+ "Pi: shipped, 8-bit detector, width 1200": {
+  "real_val": {
+   "bn": {
+    "n_images": 150,
+    "n_words": 150,
+    "cer": 0.1746,
+    "wer": 0.4267,
+    "cer_without_zero_width": 0.1746,
+    "nothing_read": 0.0333,
+    "word_exact": 0.5867,
+    "latency_ms_median": 1265.7
+   },
+   "en": {
+    "n_images": 150,
+    "n_words": 150,
+    "cer": 0.3324,
+    "wer": 0.5533,
+    "cer_without_zero_width": 0.3324,
+    "nothing_read": 0.1733,
+    "word_exact": 0.4467,
+    "latency_ms_median": 1388.8
+   },
+   "mean_cer": 0.2535
+  },
+  "rendered_val_cer": 0.0279
+ },
+ "matches_evaluated": true
+}

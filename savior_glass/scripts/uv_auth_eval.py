@@ -62,6 +62,16 @@ def build():
         rows.append({"physical_note_id": p.stem, "denomination": p.parent.name, "genuine_or_counterfeit": "genuine",
                      "uv_path": str(p.relative_to(DS)), "visible_path": "", "capture_session": "uv_notes_2026-10-12",
                      "counterfeit_print_id": "", "note_box": box, "note_id_known": "0"})
+    # Counterfeits under UV (added 2026-11-24): 36 CamScanner pictures, fake_bd_cur/uv_fake_cur/notes.csv records the
+    # denomination, side and the serial read from each front (12 serials). Fronts are grouped by serial; a back shows no
+    # serial, so each back is its own group (note_id_known = 0). The pictures are already cropped to the note.
+    fk = DS / "fake_bd_cur" / "uv_fake_cur"
+    for n in csv.DictReader((fk / "notes.csv").open(encoding="utf-8")) if (fk / "notes.csv").is_file() else []:
+        p = next(fk.glob(f"* {n['photo']}.jpg"), None) or next(fk.glob(f"*_{n['photo']}.jpg"))
+        rows.append({"physical_note_id": f"fake_uv_{n['photo']}" if not n["serial"] else f"fake_{n['serial']}",
+                     "denomination": n["denomination"], "genuine_or_counterfeit": "counterfeit",
+                     "uv_path": str(p.relative_to(DS)), "visible_path": "", "capture_session": "camscanner_fake_uv_2026-11-23",
+                     "counterfeit_print_id": n["serial"], "note_box": "", "note_id_known": "1" if n["serial"] else "0"})
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     with MANIFEST.open("w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, COLS)

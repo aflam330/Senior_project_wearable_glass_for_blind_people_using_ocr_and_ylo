@@ -1,0 +1,346 @@
+{
+ "date": "2026-11-23",
+ "validation": {
+  "A": {
+   "real_val": {
+    "bn": {
+     "n_images": 150,
+     "n_words": 150,
+     "cer": 0.2392,
+     "wer": 0.5267,
+     "cer_without_zero_width": 0.2392,
+     "nothing_read": 0.0933,
+     "word_exact": 0.4933,
+     "latency_ms_median": 4847.9
+    },
+    "en": {
+     "n_images": 150,
+     "n_words": 150,
+     "cer": 0.4902,
+     "wer": 0.7067,
+     "cer_without_zero_width": 0.4902,
+     "nothing_read": 0.3267,
+     "word_exact": 0.2933,
+     "latency_ms_median": 4987.4
+    },
+    "mean_cer": 0.3647
+   },
+   "rendered_val_cer": 0.0254,
+   "rendered_val_wer": 0.0444,
+   "coco_scenes_with_spoken_text": 7
+  },
+  "S": {
+   "real_val": {
+    "bn": {
+     "n_images": 150,
+     "n_words": 150,
+     "cer": 0.2015,
+     "wer": 0.5067,
+     "cer_without_zero_width": 0.2015,
+     "nothing_read": 0.0267,
+     "word_exact": 0.5133,
+     "latency_ms_median": 3270.6
+    },
+    "en": {
+     "n_images": 150,
+     "n_words": 150,
+     "cer": 0.398,
+     "wer": 0.6267,
+     "cer_without_zero_width": 0.398,
+     "nothing_read": 0.1667,
+     "word_exact": 0.3733,
+     "latency_ms_median": 3329.0
+    },
+    "mean_cer": 0.2998
+   },
+   "rendered_val_cer": 0.0254,
+   "rendered_val_wer": 0.0444,
+   "coco_scenes_with_spoken_text": 7
+  },
+  "V": {
+   "real_val": {
+    "bn": {
+     "n_images": 150,
+     "n_words": 150,
+     "cer": 0.2112,
+     "wer": 0.4867,
+     "cer_without_zero_width": 0.2112,
+     "nothing_read": 0.0667,
+     "word_exact": 0.5467,
+     "latency_ms_median": 3641.1
+    },
+    "en": {
+     "n_images": 150,
+     "n_words": 150,
+     "cer": 0.4536,
+     "wer": 0.6533,
+     "cer_without_zero_width": 0.4536,
+     "nothing_read": 0.3067,
+     "word_exact": 0.3467,
+     "latency_ms_median": 3641.4
+    },
+    "mean_cer": 0.3324
+   },
+   "rendered_val_cer": 0.0273,
+   "rendered_val_wer": 0.0444,
+   "coco_scenes_with_spoken_text": 6
+  },
+  "SV": {
+   "real_val": {
+    "bn": {
+     "n_images": 150,
+     "n_words": 150,
+     "cer": 0.1746,
+     "wer": 0.4533,
+     "cer_without_zero_width": 0.1746,
+     "nothing_read": 0.0267,
+     "word_exact": 0.58,
+     "latency_ms_median": 3674.2
+    },
+    "en": {
+     "n_images": 150,
+     "n_words": 150,
+     "cer": 0.3436,
+     "wer": 0.5533,
+     "cer_without_zero_width": 0.3436,
+     "nothing_read": 0.1333,
+     "word_exact": 0.4467,
+     "latency_ms_median": 3750.0
+    },
+    "mean_cer": 0.2591
+   },
+   "rendered_val_cer": 0.0261,
+   "rendered_val_wer": 0.0444,
+   "coco_scenes_with_spoken_text": 6
+  }
+ },
+ "decision": {
+  "candidates": [
+   "A",
+   "S",
+   "V",
+   "SV"
+  ],
+  "admissible": [
+   "A",
+   "S",
+   "V",
+   "SV"
+  ],
+  "chosen": "SV"
+ },
+ "test": {
+  "A": {
+   "real_words": {
+    "bn": {
+     "n_images": 500,
+     "n_words": 500,
+     "cer": 0.2886,
+     "wer": 0.538,
+     "cer_without_zero_width": 0.2883,
+     "nothing_read": 0.122,
+     "word_exact": 0.474,
+     "latency_ms_median": 3670.2
+    },
+    "en": {
+     "n_images": 500,
+     "n_words": 500,
+     "cer": 0.5056,
+     "wer": 0.718,
+     "cer_without_zero_width": 0.5056,
+     "nothing_read": 0.324,
+     "word_exact": 0.316,
+     "latency_ms_median": 3686.0
+    },
+    "mean_cer": 0.3971
+   },
+   "rendered": {
+    "cer": 0.0227,
+    "cer_bn": 0.0298,
+    "cer_en": 0.0156,
+    "wer": 0.0637,
+    "n_images": 432
+   },
+   "error_examples": [
+    {
+     "lang": "bn",
+     "gt": "গিফ্ট",
+     "hyp": "সামsr পmsi",
+     "cer": 2.0
+    },
+    {
+     "lang": "bn",
+     "gt": "পদযাত্রা",
+     "hyp": "যুর মিংটন বেলা-২টা",
+     "cer": 2.0
+    },
+    {
+     "lang": "en",
+     "gt": "P",
+     "hyp": "P4H",
+     "cer": 2.0
+    },
+    {
+     "lang": "en",
+     "gt": "M",
+     "hyp": "oV",
+     "cer": 2.0
+    },
+    {
+     "lang": "bn",
+     "gt": "বঃ",
+     "hyp": "0 0",
+     "cer": 1.5
+    },
+    {
+     "lang": "en",
+     "gt": "Crines",
+     "hyp": "D E SIG N",
+     "cer": 1.5
+    },
+    {
+     "lang": "en",
+     "gt": "L'Atelier",
+     "hyp": "Ateler SIEUEE",
+     "cer": 1.111
+    },
+    {
+     "lang": "bn",
+     "gt": "না",
+     "hyp": "1",
+     "cer": 1.0
+    },
+    {
+     "lang": "bn",
+     "gt": "ডল",
+     "hyp": "",
+     "cer": 1.0
+    },
+    {
+     "lang": "bn",
+     "gt": "স্টোর্স",
+     "hyp": "",
+     "cer": 1.0
+    },
+    {
+     "lang": "bn",
+     "gt": "৪৯",
+     "hyp": "",
+     "cer": 1.0
+    },
+    {
+     "lang": "bn",
+     "gt": "নং",
+     "hyp": "",
+     "cer": 1.0
+    }
+   ]
+  },
+  "SV": {
+   "real_words": {
+    "bn": {
+     "n_images": 500,
+     "n_words": 500,
+     "cer": 0.2106,
+     "wer": 0.436,
+     "cer_without_zero_width": 0.2103,
+     "nothing_read": 0.042,
+     "word_exact": 0.572,
+     "latency_ms_median": 3697.6
+    },
+    "en": {
+     "n_images": 500,
+     "n_words": 500,
+     "cer": 0.3808,
+     "wer": 0.628,
+     "cer_without_zero_width": 0.3808,
+     "nothing_read": 0.172,
+     "word_exact": 0.406,
+     "latency_ms_median": 3720.0
+    },
+    "mean_cer": 0.2957
+   },
+   "rendered": {
+    "cer": 0.0142,
+    "cer_bn": 0.015,
+    "cer_en": 0.0135,
+    "wer": 0.0417,
+    "n_images": 432
+   },
+   "error_examples": [
+    {
+     "lang": "bn",
+     "gt": "ও",
+     "hyp": "12",
+     "cer": 2.0
+    },
+    {
+     "lang": "bn",
+     "gt": "পদযাত্রা",
+     "hyp": "যুর নিংটন-বেলা-২টা",
+     "cer": 2.0
+    },
+    {
+     "lang": "en",
+     "gt": "P",
+     "hyp": "P4H",
+     "cer": 2.0
+    },
+    {
+     "lang": "en",
+     "gt": "M",
+     "hyp": "oV",
+     "cer": 2.0
+    },
+    {
+     "lang": "bn",
+     "gt": "গিফ্ট",
+     "hyp": "সামsা পsn",
+     "cer": 1.8
+    },
+    {
+     "lang": "bn",
+     "gt": "বঃ",
+     "hyp": "0 0",
+     "cer": 1.5
+    },
+    {
+     "lang": "en",
+     "gt": "it",
+     "hyp": "ffE",
+     "cer": 1.5
+    },
+    {
+     "lang": "en",
+     "gt": "on",
+     "hyp": "I77",
+     "cer": 1.5
+    },
+    {
+     "lang": "bn",
+     "gt": "ডল",
+     "hyp": "",
+     "cer": 1.0
+    },
+    {
+     "lang": "bn",
+     "gt": "নং",
+     "hyp": "",
+     "cer": 1.0
+    },
+    {
+     "lang": "bn",
+     "gt": "জা",
+     "hyp": "",
+     "cer": 1.0
+    },
+    {
+     "lang": "bn",
+     "gt": "ও",
+     "hyp": "",
+     "cer": 1.0
+    }
+   ]
+  }
+ }
+}

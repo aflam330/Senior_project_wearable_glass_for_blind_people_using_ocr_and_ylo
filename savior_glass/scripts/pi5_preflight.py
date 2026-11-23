@@ -23,7 +23,12 @@ TEMPLATES = WS / "data set" / "Bangladeshi_Paper_Currency_Raw" / "Bangladeshi_Pa
 REQUIRED = {
     "watermark INT8": MODELS / "watermark_mobilenetv2_int8.onnx",
     "watermark localizer": MODELS / "watermark_localizer_seed42.onnx",
-    "note detector INT8": MODELS / "best_handheld_int8.onnx",
+    "note detector INT8": MODELS / "best_nstu_int8.onnx",          # the Pi default since 23 November 2026
+    "note detector, full precision (laptop)": MODELS / "best_nstu.pt",
+    "earlier hand-held detector (second stage of the cascade)": MODELS / "best_handheld.pt",
+    "OCR letter recogniser v2 (since 23 November 2026)": ROOT / "models" / "ocr_recognizer_real_v2_blend" / "part1.pth",
+    "OCR letter recogniser v2, part 2": ROOT / "models" / "ocr_recognizer_real_v2_blend" / "part2.pth",
+    "earlier hand-held detector INT8 (CURRENCY_DETECTOR=int8)": MODELS / "best_handheld_int8.onnx",
     "earlier note detector INT8 (CURRENCY_DETECTOR=v1)": MODELS / "best_int8.onnx",
     "safe-check checkpoint": WS / "realtime_bangla_taka_detection" / "results" / "qduig" / "prefix_ft" / "seed42" / "checkpoint.pt",
     "500 template": TEMPLATES / "500" / "500 Taka_0001.jpg",

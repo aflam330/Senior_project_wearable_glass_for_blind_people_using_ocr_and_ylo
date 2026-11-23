@@ -46,7 +46,7 @@ def paper_ratios(bgr: np.ndarray) -> Optional[tuple]:
 
 
 def fibre_mask(bgr: np.ndarray, rel_threshold: Optional[float] = None, lum_threshold: Optional[float] = None,
-               colour_threshold: Optional[float] = None):
+               colour_threshold: Optional[float] = None, return_parts: bool = False):
     """(mask of fibres at WIDTH px, number of fibres, (a, b)) for one note crop; (None, 0, None) if too dark.
 
     lum_threshold: a fibre must also be brighter than its surroundings in overall brightness by this share.
@@ -54,7 +54,7 @@ def fibre_mask(bgr: np.ndarray, rel_threshold: Optional[float] = None, lum_thres
     colour but not the brightness, and without this condition it was counted as fibres (scripts/uv_stress_sim.py)."""
     ab = paper_ratios(bgr)
     if ab is None:
-        return None, 0, None
+        return (None, 0, None, None) if return_parts else (None, 0, None)
     thr = float(getattr(config, "UV_REL_THRESHOLD", 0.12) if rel_threshold is None else rel_threshold)
     lum_thr = float(getattr(config, "UV_LUM_THRESHOLD", 0.0) if lum_threshold is None else lum_threshold)
     col_thr = float(getattr(config, "UV_COLOUR_THRESHOLD", 0.0) if colour_threshold is None else colour_threshold)
@@ -75,16 +75,36 @@ def fibre_mask(bgr: np.ndarray, rel_threshold: Optional[float] = None, lum_thres
         excess = np.maximum(G - ab[0] * B, R - ab[1] * B) / np.maximum(B, 1.0)
         keep_px &= (excess > col_thr) & (B > 0.5 * float(np.median(B[B > 25])))
     raw = keep_px.astype(np.uint8)
-    n, lab, st, _ = cv2.connectedComponentsWithStats(raw, 8)
+    n, lab, st, cen = cv2.connectedComponentsWithStats(raw, 8)
     keep, count = np.zeros_like(raw), 0
+    fib = []
     for i in range(1, n):
-        w, h, area = st[i, 2], st[i, 3], st[i, 4]
-        length = max(w, h)
-        # a fibre is 5-70 px long at this scale and thin: it fills little of its bounding box
-        if 5 <= length <= 70 and area >= 5 and area <= 0.45 * w * h + 3.0 * length:
+        if _fibre_shaped(st[i]):
             keep[lab == i] = 1
             count += 1
+            fib.append(i)
+    if return_parts:
+        return keep, count, ab, {"fibre_centres": cen[fib], "other_centres": cen[[i for i in range(1, n) if i not in set(fib)]],
+                                 "other_areas": st[[i for i in range(1, n) if i not in set(fib)], 4]}
     return keep, count, ab
+
+
+def _fibre_shaped(stat) -> bool:
+    w, h, area = stat[2], stat[3], stat[4]
+    length = max(w, h)
+    # a fibre is 5-70 px long at this scale and thin: it fills little of its bounding box
+    return 5 <= length <= 70 and area >= 5 and area <= 0.45 * w * h + 3.0 * length
+
+
+def isolated(parts: dict, radius: float) -> int:
+    """Number of fibre-shaped marks with no other candidate mark (fibre-shaped or not) within `radius` px."""
+    fc = parts["fibre_centres"]
+    if not len(fc):
+        return 0
+    allc = np.vstack([fc, parts["other_centres"]]) if len(parts["other_centres"]) else fc
+    d = np.sqrt(((fc[:, None, :] - allc[None, :, :]) ** 2).sum(-1))
+    d[np.arange(len(fc)), np.arange(len(fc))] = np.inf
+    return int((d.min(1) > radius).sum())
 
 
 def inner(bgr: np.ndarray) -> np.ndarray:
@@ -103,11 +123,18 @@ class UVChecker:
     def check(self, note_bgr: Optional[np.ndarray]) -> dict:
         if note_bgr is None or note_bgr.size == 0:
             return {"outcome": "no_note", "fibres": 0}
-        _, count, ab = fibre_mask(inner(note_bgr))
+        _, count, ab, parts = fibre_mask(inner(note_bgr), return_parts=True)
         if ab is None:
             return {"outcome": "too_dark", "fibres": 0}
-        out = "uv_marks_found" if count >= self.min_fibres else "uv_marks_not_found"
-        return {"outcome": out, "fibres": int(count), "paper_gb": round(ab[0], 4), "paper_rb": round(ab[1], 4)}
+        r = float(getattr(config, "UV_ISOLATION_PX", 0))
+        clustered = 0
+        if r > 0:
+            # printed ink that glows comes in clusters of marks; a genuine fibre lies on its own (config.UV_ISOLATION_PX)
+            iso = isolated(parts, r)
+            clustered, count = count - iso, iso
+        ok = count >= self.min_fibres and clustered <= int(getattr(config, "UV_MAX_CLUSTERED", 10 ** 6))
+        return {"outcome": "uv_marks_found" if ok else "uv_marks_not_found", "fibres": int(count),
+                "clustered_marks": int(clustered), "paper_gb": round(ab[0], 4), "paper_rb": round(ab[1], 4)}
 
     @staticmethod
     def sentence(result: dict) -> str:
