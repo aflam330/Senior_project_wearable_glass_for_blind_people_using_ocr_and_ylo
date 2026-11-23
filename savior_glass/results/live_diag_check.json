@@ -1,30 +1,30 @@
 {
- "at": 1795426454.3306148,
+ "at": 1795460158.3473666,
  "frame": [
   1280,
   720
  ],
  "detector": {
-  "ms": 14.5,
+  "ms": 439.2,
   "boxes": [
    {
     "name": "500_taka",
-    "conf": 0.9168720245361328,
+    "conf": 0.9136941432952881,
     "box": [
-     46,
+     41,
      59,
-     801,
-     381
+     799,
+     378
     ]
    },
    {
-    "name": "500_taka",
-    "conf": 0.3310910165309906,
+    "name": "2_taka",
+    "conf": 0.321898877620697,
     "box": [
-     897,
-     383,
-     1197,
-     680
+     835,
+     0,
+     1276,
+     1
     ]
    }
   ],
@@ -37,78 +37,63 @@
   "verdict": null
  },
  "guide": {
-  "ms": 1.4,
+  "ms": 2.0,
   "status": "ok",
-  "mean": 206.51239766081872,
-  "lap_var": 3974.2664195000166,
+  "mean": 206.55239583333332,
+  "lap_var": 3822.2086307555182,
   "min_mean": 73.87,
   "min_lapvar": 106.75
  },
  "watermark": {
-  "ms": 23.8,
-  "p_genuine": 0.6308572888374329,
+  "ms": 75.8,
+  "p_genuine": 0.6382230520248413,
   "path": "learned localizer",
   "quad": [
    [
-    292,
-    175
+    285,
+    172
    ],
    [
-    565,
-    170
+    564,
+    167
    ],
    [
-    594,
-    326
+    593,
+    328
    ],
    [
-    329,
-    326
+    314,
+    330
    ]
   ],
   "threshold": 0.5
  },
  "objects": {
-  "ms": 19.2,
+  "ms": 21.0,
   "boxes": [
    {
     "name": "person",
-    "conf": 0.9063188433647156,
+    "conf": 0.6830695271492004,
     "box": [
-     901,
-     381,
-     1198,
-     676
-    ]
-   },
-   {
-    "name": "person",
-    "conf": 0.6485486030578613,
-    "box": [
-     172,
-     130,
-     341,
-     338
+     171,
+     132,
+     340,
+     336
     ]
    }
   ]
  },
  "emotion": {
-  "ms": 239.7,
-  "face": [
-   886,
-   278,
-   311,
-   412
-  ],
+  "ms": 155.0,
+  "face": null,
   "label": "neutral",
-  "prob": 0.7368841171264648,
-  "backend": "rgb_mobilenet_blend"
+  "prob": 0.0,
+  "backend": "no_face"
  },
  "ocr": {
   "loaded": false,
   "pipeline": "v2",
   "last_text": null
  },
- "first_pass_seconds_including_model_loading": 4.3
+ "first_pass_seconds_including_model_loading": 5.7
 }

@@ -1,0 +1,1 @@
+{"model": "best_int8.onnx (Taka detector, earlier INT8 v1)", "calls_per_block": 40, "median_ms": {"without_ai_hat": 229.9, "ai_hat_models_open_idle": 232.4, "ai_hat_just_used": 229.1, "after_closing_ai_hat": 228.0}, "run_after": "the benchmark, board at about 58 C"}

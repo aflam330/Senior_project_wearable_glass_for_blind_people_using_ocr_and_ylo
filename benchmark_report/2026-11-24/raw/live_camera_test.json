@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "camera": {
+    "index": 0,
+    "resolution": [
+      640,
+      480
+    ],
+    "mean_brightness_0_255": 99.4
+  },
+  "device": "cpu",
+  "profile": {
+    "object_every": 1,
+    "emotion_every": 5
+  },
+  "seconds": 60.7,
+  "frames_processed": 75,
+  "loop_fps": 1.23,
+  "latency": {
+    "capture": {
+      "n": 75,
+      "median_ms": 1.8,
+      "p95_ms": 1.9
+    },
+    "currency_detect_and_jaal": {
+      "n": 75,
+      "median_ms": 769.6,
+      "p95_ms": 836.7
+    },
+    "object_mode": {
+      "n": 75,
+      "median_ms": 12.6,
+      "p95_ms": 12.9
+    },
+    "emotion": {
+      "n": 15,
+      "median_ms": 47.3,
+      "p95_ms": 49.0
+    },
+    "frame_total": {
+      "n": 75,
+      "median_ms": 787.6,
+      "p95_ms": 897.7
+    }
+  },
+  "notes_detected": {},
+  "object_announcements": {
+    "সামনে আছে: পাখি": 10
+  },
+  "emotion_backend_counts": {
+    "no_face": 15
+  },
+  "saved_media": "none (privacy)",
+  "note_accuracy_on_live_notes": "NOT_MEASURED (no note was held in front of the camera during an unattended run)"
+}

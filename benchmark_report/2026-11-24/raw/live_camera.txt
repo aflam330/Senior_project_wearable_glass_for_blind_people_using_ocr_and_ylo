@@ -1,0 +1,58 @@
+1795462883.444717 [ WARN:0@3.679] global net_impl_backend.cpp:345 setPreferableTarget Targets are not supported by the new graph engine for now
+1795462886.525462 Loading /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/realtime_bangla_taka_detection/models/best_nstu_int8.onnx for ONNX Runtime inference...
+1795462886.526861 Using ONNX Runtime 1.30.0 with CPUExecutionProvider
+1795462947.121796 {
+1795462947.121868   "status": "ok",
+1795462947.121898   "camera": {
+1795462947.121921     "index": 0,
+1795462947.121945     "resolution": [
+1795462947.121962       640,
+1795462947.121977       480
+1795462947.121991     ],
+1795462947.122013     "mean_brightness_0_255": 99.4
+1795462947.122027   },
+1795462947.122044   "device": "cpu",
+1795462947.122060   "profile": {
+1795462947.122078     "object_every": 1,
+1795462947.122097     "emotion_every": 5
+1795462947.122110   },
+1795462947.122127   "seconds": 60.7,
+1795462947.122146   "frames_processed": 75,
+1795462947.122164   "loop_fps": 1.23,
+1795462947.122180   "latency": {
+1795462947.122197     "capture": {
+1795462947.122213       "n": 75,
+1795462947.122231       "median_ms": 1.8,
+1795462947.122248       "p95_ms": 1.9
+1795462947.122262     },
+1795462947.122283     "currency_detect_and_jaal": {
+1795462947.122300       "n": 75,
+1795462947.122318       "median_ms": 769.6,
+1795462947.122336       "p95_ms": 836.7
+1795462947.122350     },
+1795462947.122368     "object_mode": {
+1795462947.122384       "n": 75,
+1795462947.122403       "median_ms": 12.6,
+1795462947.122421       "p95_ms": 12.9
+1795462947.122435     },
+1795462947.122451     "emotion": {
+1795462947.122467       "n": 15,
+1795462947.122486       "median_ms": 47.3,
+1795462947.122504       "p95_ms": 49.0
+1795462947.122518     },
+1795462947.122535     "frame_total": {
+1795462947.122551       "n": 75,
+1795462947.122570       "median_ms": 787.6,
+1795462947.122588       "p95_ms": 897.7
+1795462947.122601     }
+1795462947.122614   },
+1795462947.122635   "notes_detected": {},
+1795462947.122655   "object_announcements": {
+1795462947.122687     "সামনে আছে: পাখি": 10
+1795462947.122706   },
+1795462947.122726   "emotion_backend_counts": {
+1795462947.122749     "no_face": 15
+1795462947.122764   },
+1795462947.122786   "saved_media": "none (privacy)",
+1795462947.122831   "note_accuracy_on_live_notes": "NOT_MEASURED (no note was held in front of the camera during an unattended run)"
+1795462947.122847 }

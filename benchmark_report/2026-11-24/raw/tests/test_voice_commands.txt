@@ -1,0 +1,2 @@
+voice commands: parsing and dispatch checks pass
+voice commands: a spoken command is recognised, an ordinary sentence is not; the wake word is required

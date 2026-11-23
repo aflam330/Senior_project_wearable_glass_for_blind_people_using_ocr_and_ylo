@@ -16,6 +16,7 @@ import json
 import statistics
 import subprocess
 import sys
+import os
 import time
 from pathlib import Path
 
@@ -88,6 +89,21 @@ def main() -> None:
             print(f"object_{name}", r["median_ms"], "ms", flush=True)
         except Exception as exc:  # noqa: BLE001
             skipped[f"object_{name}"] = f"{type(exc).__name__}: {exc}"[:300]
+
+    # the same YOLOv8s on the Raspberry Pi AI HAT (hailo_yolo.py), when the chip and its HEF are there
+    if wanted("object") and os.path.isfile(getattr(config, "HAILO_YOLO_HEF", "")):
+        try:
+            from hailo_yolo import HailoYolo
+            t0 = time.perf_counter()
+            hy = HailoYolo(config.HAILO_YOLO_HEF)
+            load_ms = (time.perf_counter() - t0) * 1000.0
+            r = time_fn(lambda f: hy.detect(f, config.OBJECT_CONFIDENCE), scene, WARMUP, ITERS)
+            r["load_ms"] = round(load_ms, 1)
+            res["object_yolov8s_hailo"] = r
+            print("object_yolov8s_hailo", r["median_ms"], "ms", flush=True)
+            hy.close()
+        except Exception as exc:  # noqa: BLE001
+            skipped["object_yolov8s_hailo"] = f"{type(exc).__name__}: {exc}"[:300]
 
     set_phase("extras_speech")
     sentences = {

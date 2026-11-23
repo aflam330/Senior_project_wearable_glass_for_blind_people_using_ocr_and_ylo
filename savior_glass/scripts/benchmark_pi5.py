@@ -237,7 +237,7 @@ def build_benchmarks() -> dict:
         from modes.object_mode import ObjectMode
         m = ObjectMode()
         m.activate()
-        if m._model is None:
+        if m._model is None and getattr(m, "_hailo", None) is None:   # CPU model, or the AI HAT one (AI_HAT=1)
             raise RuntimeError("no YOLOv8 COCO weights")
         return m.process_frame
 

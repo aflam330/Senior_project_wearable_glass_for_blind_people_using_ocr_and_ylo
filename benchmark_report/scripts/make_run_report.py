@@ -31,28 +31,35 @@ OCT1 = GLASS / "results" / "pi5_benchmark_memo_20261001T111325Z.json"
 OCT13_RAW = BR / "archive" / "2026-10-13" / "raw"   # benchmark_report/raw/ holds a later run since 0d7f575
 OCT13 = OCT13_RAW / "pi5_benchmark_memo_20261013T173438Z.json"
 OCT13_EXTRAS, OCT13_OCR = OCT13_RAW / "extras.json", OCT13_RAW / "ocr_response.json"
+NOV23_RAW = BR / "2026-11-23" / "raw"   # the last run before the AI HAT (everything on the CPU)
 BANK_WH, BANK_EFF, OVERHEAD = 37.0, 0.85, 0.30   # the defaults of savior_glass/scripts/power_log.py
 THIS = datetime.strptime(RUN.name, "%Y-%m-%d").strftime("%-d %b")
 
 NAMES = {**OLD_NAMES,
          "taka_yolo_handheld_int8": "Taka detector, hand-held INT8 (Pi default when measured)",
          "taka_yolo_onnx_int8": "Taka detector, earlier INT8 (v1)",
-         "ocr_mode": "Text reading, 3-line sign (benchmark frame)"}
+         "ocr_mode": "Text reading, 3-line sign (benchmark frame)",
+         "object_yolov8s_hailo": "Object detector YOLOv8s on the AI HAT alone",
+         "taka_yolo_nstu_int8": "Taka detector, NSTU INT8 (cascade step 1, Pi default)",
+         "taka_yolo_handheld_pt": "Taka detector, hand-held full precision (cascade step 2)"}
 GROUPS = [
-    ("Currency", ["currency_mode_full", "taka_yolo_handheld_int8", "taka_yolo_onnx_int8", "taka_yolo_onnx_fp32", "taka_yolo_pt"]),
+    ("Currency", ["currency_mode_full", "taka_yolo_nstu_int8", "taka_yolo_handheld_pt", "taka_yolo_handheld_int8", "taka_yolo_onnx_int8", "taka_yolo_onnx_fp32", "taka_yolo_pt"]),
     ("Watermark", ["watermark_int8_localizer", "watermark_int8_sift"]),
     ("Counterfeit check", ["jaal_check_qduig"] + [f"prmvt_{k}view" for k in range(1, 7)]),
-    ("Objects", ["object_mode", "object_yolov8s", "object_yolov8n"]),
+    ("Objects", ["object_mode", "object_yolov8s_hailo", "object_yolov8s", "object_yolov8n"]),
     ("Emotion", ["emotion_with_face", "emotion"]),
 ]
-OCR_CONFIGS = [("onnx_int8", 1200, "8-bit detector, width 1,200 (the Pi default)"),
-               ("onnx", 1200, "full-precision detector, width 1,200"),
-               ("onnx_int8", 880, "8-bit detector, width 880"),
-               ("onnx", 880, "full-precision detector, width 880")]
-CONFIG_COLOURS = [BLUE, ORANGE, AQUA, "#8a6bd1"]
+OCR_CONFIGS = [("hailo", 1200, "AI HAT detector, width 1,200 (AI_HAT=1)"),
+               ("onnx_int8", 1200, "8-bit CPU detector, width 1,200 (the Pi's CPU default)"),
+               ("onnx", 1200, "full-precision CPU detector, width 1,200"),
+               ("hailo", 880, "AI HAT detector, width 880"),
+               ("onnx_int8", 880, "8-bit CPU detector, width 880"),
+               ("onnx", 880, "full-precision CPU detector, width 880")]
+CONFIG_COLOURS = [BLUE, ORANGE, AQUA, "#1f4e8c", "#e8a33d", "#8a6bd1"]
+DET_NAME = {"hailo": "AI HAT", "onnx_int8": "8-bit", "onnx": "FP32"}
 STEP_LABELS = {"idle_before": "Idle", "idle_after": "Idle", "tests": "Tests", "main_benchmark": "Mode benchmark",
                "mode_switch": "Extras", "extras": "Extras", "live_camera": "Extras",
-               **{f"ocr_{d}_{w}": f"OCR {'8-bit' if d == 'onnx_int8' else 'FP32'} {w}" for d, w, _ in OCR_CONFIGS}}
+               **{f"ocr_{d}_{w}": f"OCR {DET_NAME[d]} {w}" for d, w, _ in OCR_CONFIGS}}
 FIELD_NAMES = {("ocr", "result"): "Text reading: one capture", ("object", "object_announce"): "Object scan and announcement",
                ("currency", "result"): "Currency check",
                ("currency", "watermark_check"): "Watermark check (guided, several frames)",
@@ -165,7 +172,7 @@ def graph_runs(lat: dict, runs: list[tuple[str, dict, str]]) -> str | None:
     ax.set_xlim(0, hi * 1.2)
     ax.set_xlabel("Median time per call (ms)")
     legend_above(fig, [Patch(color=c, label=lbl) for lbl, _, c in every], n)
-    header(fig, "This run against the 1 and 13 October runs",
+    header(fig, "This run against the earlier runs",
            "Same script (scripts/benchmark_pi5.py), same board. A missing bar means that row was not timed in that run.")
     return save(fig, "02_against_earlier_runs.png")
 
@@ -230,12 +237,12 @@ def graph_timeline(tl: list[dict]) -> str | None:
     return save(fig, "03_thermal_power_timeline.png")
 
 
-def graph_sustained(today: list[dict], ref: list[dict]) -> str | None:
+def graph_sustained(today: list[dict], ref: list[dict], name: str = "04_sustained_30_min.png") -> str | None:
     if not today:
         return None
     fig, axes = plt.subplots(3, 1, figsize=(10.5, 8.2), sharex=True, gridspec_kw={"hspace": 0.4, "height_ratios": [1.3, 1, 1]})
     fig.subplots_adjust(left=0.09, right=0.97, top=top_margin(fig, 1.35), bottom=0.07)
-    series = [("1 Oct", ref, BLUE), (f"{THIS} (this run)", today, ORANGE)]
+    series = [("1 Oct", ref, BLUE_LIGHT), (f"{THIS} (this run)", today, BLUE if not ref else ORANGE)]
     for lbl, rows, colour in series:
         if not rows:
             continue
@@ -253,8 +260,9 @@ def graph_sustained(today: list[dict], ref: list[dict]) -> str | None:
         ax.set_ylim(bottom=0 if ax is not axes[0] else None)
     axes[-1].set_xlabel("Minutes into the 30-minute run")
     legend_above(fig, [Patch(color=c, label=lbl) for lbl, rows, c in series if rows], 2)
-    header(fig, "30 minutes of non-stop use", "Every model in turn, round after round, as in scripts/benchmark_pi5.py --sustained 30.")
-    return save(fig, "04_sustained_30_min.png")
+    header(fig, "30 minutes of non-stop use" + (": against 1 October" if ref else ""),
+           "Every model in turn, round after round, as in scripts/benchmark_pi5.py --sustained 30.")
+    return save(fig, name)
 
 
 def graph_ocr_configs(ocr: dict) -> str | None:
@@ -286,11 +294,11 @@ def graph_ocr_configs(ocr: dict) -> str | None:
     ax.set_xlabel("Seconds from the capture button to the full text (median), as the app runs it")
     legend_above(fig, [Patch(color=c, label=lbl) for _, _, lbl, c in cfgs], 2)
     fig.subplots_adjust(top=top_margin(fig, 1.55))
-    header(fig, "Text reading: the four detector settings", "OCRMode.process_frame() as main.py calls it, 3 to 5 captures per picture.")
+    header(fig, f"Text reading: the {len(cfgs)} detector settings", "OCRMode.process_frame() as main.py calls it, 3 to 5 captures per picture.")
     return save(fig, "05_ocr_settings.png")
 
 
-def graph_ocr_breakdown(rows: list[dict], title_cfg: str) -> str | None:
+def graph_ocr_breakdown(rows: list[dict], title_cfg: str, det_label: str = "CRAFT detector") -> str | None:
     rows = [r for r in rows if r["path"] == "app"]
     if not rows:
         return None
@@ -312,9 +320,9 @@ def graph_ocr_breakdown(rows: list[dict], title_cfg: str) -> str | None:
     ax.grid(axis="y", visible=False)
     ax.set_xlim(0, max(r["total_ms_median"] for r in rows) / 1000 * 1.14)
     ax.set_xlabel("Seconds from the capture button to the full text (median)")
-    legend_above(fig, [Patch(color=BLUE, label="Finding the text (CRAFT detector)"), Patch(color=ORANGE, label="Reading the letters (CRNN)"),
+    legend_above(fig, [Patch(color=BLUE, label=f"Finding the text ({det_label})"), Patch(color=ORANGE, label="Reading the letters (CRNN)"),
                         Line2D([], [], color=INK, marker="D", markersize=7, lw=0, label="First line handed to speech")], 3)
-    header(fig, "Text reading with the Pi's default settings: where the time goes", f"{title_cfg}. Everything outside the two steps is under 0.2 s.")
+    header(fig, "Text reading as the glass runs it: where the time goes", f"{title_cfg}. Everything outside the two steps is under 0.2 s.")
     return save(fig, "06_ocr_breakdown.png")
 
 
@@ -360,6 +368,33 @@ def graph_loads(items: list[tuple[str, float]]) -> str | None:
     return save(fig, "08_model_load_times.png")
 
 
+def graph_pairs(rows: list[tuple[str, float | None, float | None]], labels: tuple[str, str], title: str, sub: str,
+                name: str, unit: str = "ms") -> str | None:
+    """Two bars per row (a = grey, b = blue), e.g. CPU against AI HAT, or an earlier run against this one."""
+    rows = [r for r in rows if r[1] is not None or r[2] is not None]
+    if not rows:
+        return None
+    k = 1000.0 if unit == "s" else 1.0
+    fig, ax = plt.subplots(figsize=(10.5, 0.8 * len(rows) + 1.8))
+    fig.subplots_adjust(left=0.37, right=0.97, top=top_margin(fig, 1.25), bottom=0.6 / fig.get_figheight() + 0.02)
+    hi = max(v for r in rows for v in r[1:] if v is not None) / k
+    for y, (lbl, a, b) in enumerate(rows):
+        for off, v, colour, bold in ((-0.2, a, "#9aa5b1", False), (0.2, b, BLUE, True)):
+            if v is None:
+                continue
+            ax.barh(y + off, v / k, height=0.38, color=colour)
+            ax.annotate(sec(v) if unit == "s" else ms(v), (v / k, y + off), xytext=(5, 0), textcoords="offset points",
+                        va="center", fontsize=8.5, fontweight="bold" if bold else "normal")
+    ax.set_yticks(range(len(rows)), [r[0] for r in rows])
+    ax.invert_yaxis()
+    ax.grid(axis="y", visible=False)
+    ax.set_xlim(0, hi * 1.2)
+    ax.set_xlabel(("Seconds" if unit == "s" else "Milliseconds") + " (median) – shorter is faster")
+    legend_above(fig, [Patch(color="#9aa5b1", label=labels[0]), Patch(color=BLUE, label=labels[1])], 2)
+    header(fig, title, sub)
+    return save(fig, name)
+
+
 # ---------------------------------------------------------------- report
 def main() -> None:
     bench_path = sorted(RAW.glob("pi5_benchmark_*.json"))[-1]
@@ -377,13 +412,28 @@ def main() -> None:
         if r and not r.get("partial"):
             ocr[(d, w)] = r["results"]
     ocr_meta = {(d, w): load(RAW / f"ocr_response_{d}_{w}.json") for d, w, _ in OCR_CONFIGS}
-    default_cfg = ("onnx_int8", 1200)
+    env_text = (RAW / "environment.txt").read_text(encoding="utf-8", errors="ignore") if (RAW / "environment.txt").is_file() else ""
+    env_text = env_text.replace("\x00", "")   # hailortcli pads the board name with NUL bytes
+    ai_hat = "AI_HAT=1" in env_text
+    default_cfg = ("hailo", 1200) if ai_hat and ("hailo", 1200) in ocr else ("onnx_int8", 1200)
+    default_label = next(lbl for d, wd, lbl in OCR_CONFIGS if (d, wd) == default_cfg)
     ocr_rows = ocr.get(default_cfg, [])
+    cpu_rows = ocr.get(("onnx_int8", 1200), [])
+    if ai_hat:
+        NAMES["object_mode"] = "Object scan, as the app runs it (YOLOv8s on the AI HAT)"
+    nov23_files = sorted(NOV23_RAW.glob("pi5_benchmark_*.json"))
+    nov23 = load(nov23_files[-1]) if nov23_files else None
+    nov23_extras = load(NOV23_RAW / "extras.json") or {"results": {}}
+    nov23_ocr = (load(NOV23_RAW / "ocr_response_onnx_int8_1200.json") or {}).get("results", [])
 
     lat = dict(bench["latency"])
-    for k in ("emotion_with_face", "object_yolov8n", "object_yolov8s"):
+    for k in ("emotion_with_face", "object_yolov8n", "object_yolov8s", "object_yolov8s_hailo"):
         if k in extras["results"]:
             lat[k] = extras["results"][k]
+    ref23 = dict(nov23["latency"]) if nov23 else {}
+    for k in ("emotion_with_face", "object_yolov8n", "object_yolov8s"):
+        if k in nov23_extras["results"]:
+            ref23[k] = nov23_extras["results"][k]
     ref1 = dict(oct1["latency"]) if oct1 else {}
     ref13 = dict(oct13["latency"]) if oct13 else {}
     for k in ("emotion_with_face", "object_yolov8n", "object_yolov8s"):
@@ -453,7 +503,7 @@ def main() -> None:
     ocr_s = {cfg: stats(lambda r, c=cfg: r["group"] == STEP_LABELS[f"ocr_{c[0]}_{c[1]}"]) for cfg in [c[:2] for c in OCR_CONFIGS]}
     started = datetime.fromtimestamp(tl[0]["epoch"]) if tl else datetime.fromisoformat(host["utc"]).astimezone()
     ended = datetime.fromtimestamp(tl[-1]["epoch"]) if tl else None
-    env = (RAW / "environment.txt").read_text(encoding="utf-8", errors="ignore").splitlines() if (RAW / "environment.txt").is_file() else []
+    env = env_text.splitlines()
     commit = next((env[i + 1].split()[0][:7] for i, ln in enumerate(env[:-1]) if ln == "--- git" and env[i + 1].strip()), None)
     # a349cfe moved the Pi from best_handheld_int8.onnx to best_handheld.pt
     pt_default = bool(commit) and subprocess.run(["git", "-C", str(BR), "merge-base", "--is-ancestor", "a349cfe", commit],
@@ -461,20 +511,54 @@ def main() -> None:
     if pt_default:
         NAMES["taka_yolo_handheld_int8"] = "Taka detector, hand-held INT8 (CURRENCY_DETECTOR=int8)"
 
+    def by(rows, case, path="app"):
+        return next((r for r in rows if r["case"] == case and r["path"] == path), None)
+
+    def tot(rows, case, key="total_ms_median"):
+        r = by(rows, case)
+        return r.get(key) if r else None
+
+    app_cases = [r for r in ocr_rows if r["path"] == "app"]
     g = {"latency": graph_latency(lat, iters),
-         "runs": graph_runs(lat, [("1 Oct (cool board)", ref1, BLUE_LIGHT), ("13 Oct (board at its limit)", ref13, BLUE)]),
-         "timeline": graph_timeline(tl), "sustained": graph_sustained(sus, sus_ref),
+         "runs": graph_runs(lat, [("1 Oct (cool board)", ref1, "#cfd8e3"), ("13 Oct (board at its limit)", ref13, BLUE_LIGHT),
+                                  ("23 Nov (CPU only, before the AI HAT)", ref23, "#9aa5b1")]),
+         "timeline": graph_timeline(tl), "sustained": graph_sustained(sus, []),
+         "sustained_cmp": graph_sustained(sus, sus_ref, "13_sustained_against_1_oct.png") if sus_ref else None,
          "ocr_cfg": graph_ocr_configs(ocr),
-         "ocr": graph_ocr_breakdown(ocr_rows, OCR_CONFIGS[0][2]) if ocr_rows else None}
+         "ocr": graph_ocr_breakdown(ocr_rows, default_label, "AI HAT detector" if default_cfg[0] == "hailo" else "CRAFT detector")
+         if ocr_rows else None}
+    if ai_hat:
+        hat_rows = [("Object detector YOLOv8s (one picture)", lat.get("object_yolov8s", {}).get("median_ms"),
+                     lat.get("object_yolov8s_hailo", {}).get("median_ms"))]
+        hat_rows += [(f"Text: finding the text, {r['label'].replace(' (640x480)', '')}", tot(cpu_rows, r["case"], "detect_ms_median"),
+                      r["detect_ms_median"]) for r in app_cases[:1]]
+        g["hat_ms"] = graph_pairs(hat_rows, ("CPU", "AI HAT"), "The steps that run on the AI HAT, this run",
+                                  "Same board, same run: the CPU model against its AI HAT copy.", "09_ai_hat_steps.png")
+        g["hat_ocr"] = graph_pairs([(r["label"].replace(" (640x480)", ""), tot(cpu_rows, r["case"]), r["total_ms_median"])
+                                    for r in app_cases],
+                                   ("8-bit CPU detector (the Pi's CPU default)", "AI HAT detector (AI_HAT=1)"),
+                                   "Text reading, whole capture: AI HAT against CPU, this run",
+                                   "OCRMode.process_frame() with line-by-line speech on pages, width 1,200; only the detector differs.",
+                                   "10_ai_hat_ocr.png", "s")
+    g["cmp_ocr"] = graph_pairs([(r["label"].replace(" (640x480)", ""), tot(nov23_ocr, r["case"]), r["total_ms_median"])
+                                for r in app_cases], ("23 Nov (CPU, 8-bit detector)", f"{THIS} (this run, {default_label.split(',')[0]})"),
+                               "Text reading against 23 November", "Whole capture, same pictures and script.",
+                               "11_ocr_against_23_nov.png", "s") if nov23_ocr else None
+    cmp_keys = [k for k in ("currency_mode_full", "taka_yolo_handheld_int8", "jaal_check_qduig", "watermark_int8_localizer",
+                            "object_mode", "emotion_with_face", "emotion") if k in lat and k in ref23]
+    g["cmp_23"] = graph_pairs([(NAMES[k], ref23[k]["median_ms"], lat[k]["median_ms"]) for k in cmp_keys],
+                              ("23 Nov (CPU only)", f"{THIS} (this run)"), "Every mode against 23 November",
+                              "Same script, same board; this run with the merged code and AI_HAT=1.",
+                              "12_modes_against_23_nov.png") if cmp_keys else None
     power_groups = [("Idle (desktop open)", idle_s), ("Tests", tests_s), ("Mode benchmark", main_s), ("Sustained 30 min", sus_s),
                     ("Extras and camera", extras_s)] + [(f"Text reading, {lbl}", ocr_s.get((d, w))) for d, w, lbl in OCR_CONFIGS]
     g["power"] = graph_power(power_groups)
     default_meta = ocr_meta.get(default_cfg) or {}
-    loads = [("Text reader (EasyOCR + 8-bit detector)", default_meta.get("load_ms")),
+    loads = [(f"Text reader (EasyOCR + {DET_NAME[default_cfg[0]]} detector)", default_meta.get("load_ms")),
              ("Currency mode, first switch into it", switch.get("activate_first_ms")),
              ("Currency mode, warm-up pass", switch.get("warm_up_ms")),
              ("Emotion detector", extras["results"].get("emotion_with_face", {}).get("load_ms")),
-             ("Object mode (YOLOv8s)", lat.get("object_mode", {}).get("load_ms")),
+             ("Object mode (YOLOv8s" + (", AI HAT)" if ai_hat else ")"), lat.get("object_mode", {}).get("load_ms")),
              ("Watermark checker", lat.get("watermark_int8_localizer", {}).get("load_ms")),
              ("Multi-view authenticator", lat.get("prmvt_1view", {}).get("load_ms")),
              ("Camera, open to first frame", extras["results"].get("camera", {}).get("open_to_first_frame_ms"))]
@@ -488,7 +572,9 @@ def main() -> None:
     w(f"Run on {started:%d %B %Y} from {started:%H:%M} to {ended:%H:%M} local time ({duration}), on the glass's own board "
       f"({host['device_model']}, {host['cpu_count']} cores, Python {host['python']}, torch {host.get('torch')}, "
       f"ONNX Runtime {host.get('onnxruntime')}, EasyOCR {host.get('easyocr')}, Ultralytics {host.get('ultralytics')}). "
-      f"No GPU; everything runs on the CPU. Camera: {camera_name()}."
+      + ("No GPU. Run with `AI_HAT=1`: the object detector and the step that finds text ran on the Raspberry Pi AI HAT+ "
+         "(Hailo-8, 26 TOPS); every other model on the CPU. " if ai_hat else "No GPU; everything runs on the CPU. ")
+      + f"Camera: {camera_name()}."
       + (f" Code: commit `{commit}`, with the benchmark-script changes listed in `raw/environment.txt`." if commit else ""))
     w("")
 
@@ -501,7 +587,7 @@ def main() -> None:
     w("")
     w("| What | Median | 95th percentile |")
     w("|---|---:|---:|")
-    for k in ("currency_mode_full", "taka_yolo_handheld_int8", "watermark_int8_localizer", "jaal_check_qduig", "object_mode",
+    for k in ("currency_mode_full", "taka_yolo_nstu_int8" if "taka_yolo_nstu_int8" in lat else "taka_yolo_handheld_int8", "watermark_int8_localizer", "jaal_check_qduig", "object_mode",
               "emotion_with_face"):
         if k in lat:
             w(f"| {NAMES[k]} | {ms(lat[k]['median_ms'])} | {ms(lat[k]['p95_ms'])} |")
@@ -533,6 +619,47 @@ def main() -> None:
         w("")
     w("<!-- FINDINGS -->")
     w("")
+
+    # ---- the AI HAT, measured in this run against the CPU
+    if ai_hat:
+        hat_id = re.search(r"Board Name: (.+)", env_text)
+        fw = re.search(r"Firmware Version: ([^ ]+)", env_text)
+        w("## The Raspberry Pi AI HAT")
+        w("")
+        w(f"This run used the app's AI HAT paths (`AI_HAT=1`): the board reported **{hat_id.group(1).strip() if hat_id else 'Hailo-8'}**"
+          + (f", firmware {fw.group(1)}" if fw else "") + ". Two steps run on the chip with models Hailo compiled itself: the "
+          "object detector (COCO YOLOv8s, the same network object mode uses on the CPU) and the step that finds text "
+          "(PaddleOCR PP-OCRv5 mobile detector; SARA's own Bangla + English recogniser still reads the letters on the CPU). "
+          "Currency, counterfeit, watermark and emotion models are SARA's own and run on the CPU: they need Hailo's Dataflow "
+          "Compiler (x86 PC only) before they can run on the chip. Both sides of every comparison below were measured in this run.")
+        w("")
+        if g.get("hat_ms"):
+            w(f"![The steps that run on the AI HAT]({g['hat_ms']})")
+            w("")
+        w("| Step | CPU | AI HAT | Faster by |")
+        w("|---|---:|---:|---:|")
+        oc, oh = lat.get("object_yolov8s", {}).get("median_ms"), lat.get("object_yolov8s_hailo", {}).get("median_ms")
+        if oc and oh:
+            w(f"| Object detector YOLOv8s, one picture | {ms(oc)} | **{ms(oh)}** | {oc / oh:.0f}× |")
+        if "object_mode" in lat:
+            w(f"| Object scan as the app runs it (AI HAT) | – | **{ms(lat['object_mode']['median_ms'])}** | – |")
+        for r in app_cases:
+            c = by(cpu_rows, r["case"])
+            if c:
+                w(f"| Text: {r['label']}, whole capture | {sec(c['total_ms_median'])} | **{sec(r['total_ms_median'])}** | "
+                  f"{c['total_ms_median'] / r['total_ms_median']:.1f}× |")
+        if app_cases and cpu_rows:
+            dh = statistics.median(r["detect_ms_median"] for r in app_cases)
+            dc = statistics.median(r["detect_ms_median"] for r in cpu_rows if r["path"] == "app")
+            w(f"| Text: finding the text, median over the captures | {sec(dc)} | **{sec(dh)}** | {dc / dh:.1f}× |")
+        w("")
+        if g.get("hat_ocr"):
+            w(f"![Text reading, AI HAT against CPU]({g['hat_ocr']})")
+            w("")
+        w("Reading the letters stays on the CPU, so long pages gain least; short signs and 'no text in view' gain most. "
+          "Accuracy of the AI HAT text detector, measured before this run on 60 signs and labels: 1.1 % character error "
+          "against 5.2 % with the CPU detector (`benchmark_report/2026-11-23_ai_hat/`).")
+        w("")
 
     # ---- temperature and power
     w("## Temperature, clock and power")
@@ -612,7 +739,13 @@ def main() -> None:
     if notes_frames:
         w(f"- **Currency.** The note rows cycle through the {notes_frames} note pictures on the Pi (the 500 and 1,000 Taka templates "
           "and the two pictures in `samples/`). "
-          + ("In the code measured here, currency mode on the Pi loads the hand-held full-precision detector "
+          + ("In the code measured here, currency mode on the Pi runs the detector cascade (master `634afff`): the NSTU "
+             "re-trained 8-bit detector (`best_nstu_int8.onnx`) answers when it is sure (0.90), otherwise the hand-held "
+             "full-precision detector (`best_handheld.pt`) looks again. The end-to-end row includes both steps where the first "
+             "is unsure; the two detectors are timed alone above it, the earlier detectors for comparison. Both run on the "
+             "CPU: they are SARA's own models and have no AI HAT compile."
+             if "taka_yolo_nstu_int8" in lat else
+             "In the code measured here, currency mode on the Pi loads the hand-held full-precision detector "
              "(`best_handheld.pt`, since commit `a349cfe`), so the end-to-end row times it; the hand-held 8-bit copy "
              "(`CURRENCY_DETECTOR=int8`) and the earlier detectors are timed alone for comparison."
              if pt_default else
@@ -625,8 +758,10 @@ def main() -> None:
           f"({ms(lat['emotion']['median_ms'])}, the face search alone). With a face in view (the astronaut test picture, classifier "
           f"`{e.get('backend')}`) one answer takes {ms(e['median_ms'])}.")
     if "object_yolov8n" in lat:
-        w(f"- **Objects.** The app uses YOLOv8s ({ms(lat['object_mode']['median_ms'])} per scan as the app runs it); YOLOv8n would "
-          f"take {ms(lat['object_yolov8n']['median_ms'])}. No COCO pictures are on the Pi, so the scan is timed on the note pictures; "
+        w(f"- **Objects.** The app uses YOLOv8s ({ms(lat['object_mode']['median_ms'])} per scan as the app runs it"
+          + (", on the AI HAT; " + f"the same detector on the CPU takes {ms(lat['object_yolov8s']['median_ms'])}"
+             if ai_hat and "object_yolov8s" in lat else "")
+          + f"); YOLOv8n on the CPU would take {ms(lat['object_yolov8n']['median_ms'])}. No COCO pictures are on the Pi, so the scan is timed on the note pictures; "
           "the detector does the same work on any picture.")
     w("")
     if cur_now:
@@ -641,29 +776,6 @@ def main() -> None:
           f"{ms(lat.get('currency_mode_full', {}).get('median_ms'))} |")
         w(f"| Taka detector, hand-held, full precision (`best_handheld.pt`) | {ms(det['median_ms'])} | {ms(det['p95_ms'])} | "
           f"{det['fps_median']:.2f} | {ms(lat.get('taka_yolo_handheld_int8', {}).get('median_ms'))} (8-bit) |")
-        w("")
-
-    # ---- against earlier runs
-    if g["runs"]:
-        w("## Against the 1 and 13 October runs")
-        w("")
-        w(f"![This run against the 1 and 13 October runs]({g['runs']})")
-        w("")
-        w(f"| Benchmark | 1 Oct | 13 Oct | {THIS} | Change from 1 Oct | Change from 13 Oct |")
-        w("|---|---:|---:|---:|---:|---:|")
-        for _, keys in GROUPS + [("Text", ["ocr_mode"])]:
-            for k in keys:
-                if k not in lat:
-                    continue
-                n_ = lat[k]["median_ms"]
-                o1, o13 = ref1.get(k, {}).get("median_ms"), ref13.get(k, {}).get("median_ms")
-                w(f"| {NAMES[k]} | {fmt_any(o1)} | {fmt_any(o13)} | **{fmt_any(n_)}** | {pct(n_, o1) if o1 else '–'} | "
-                  f"{pct(n_, o13) if o13 else '–'} |")
-        w("")
-        w(f"1 October: 100 calls a row, board cool (flag `{oct1['host']['throttled_end']}` at the end). 13 October: 30 calls a row, "
-          f"board at its temperature limit (flag `{oct13['host']['throttled_end']}`). This run: {iters} calls a row. The code "
-          "changed between the runs too (hand-held detector, OCR pipeline v2 with one detector pass, 8-bit text detector on the "
-          "Pi, YOLOv8s), so a row whose model changed is not a like-for-like speed comparison.")
         w("")
 
     # ---- sustained
@@ -737,12 +849,12 @@ def main() -> None:
         w(f"`OCRMode.process_frame()`, the call `main.py` makes when ACTION is pressed in text mode, on rendered signs and pages "
           f"whose text is known; 3 to 5 captures per picture. Pipeline `{s0.get('OCR_PIPELINE')}`, decoder "
           f"`{s0.get('OCR_V2_DECODER')}`, canvas {s0.get('OCR_CANVAS_SIZE')}, {s0.get('torch_threads')} threads. "
-          "`config.py` sets the 8-bit text detector as the Pi default and notes that its speed on the Pi had not been measured; "
-          "this run times it against the full-precision detector, each at the two read widths "
-          "(the four settings of `scripts/pi_check_all.sh`), with a cool-down before each.")
+          + ("The text detector is timed in every setting the glass can use: on the AI HAT (`AI_HAT=1`), the 8-bit CPU "
+             "detector (the Pi's default without the AI HAT) and the full-precision CPU detector, each at the two read widths, "
+             "with a cool-down before each. The letter recogniser is the same in all of them."))
         w("")
         if g["ocr_cfg"]:
-            w(f"![Text reading: the four detector settings]({g['ocr_cfg']})")
+            w(f"![Text reading: every detector setting]({g['ocr_cfg']})")
             w("")
         cfgs = [c for c in OCR_CONFIGS if c[:2] in ocr]
         w("| Capture | " + " | ".join(lbl for _, _, lbl in cfgs) + " |")
@@ -768,29 +880,26 @@ def main() -> None:
           "project's accuracy numbers for each setting are the validation results in `config.py`.")
         w("")
         if g["ocr"]:
-            w(f"![Text reading with the Pi's default settings]({g['ocr']})")
+            w(f"![Text reading as the glass runs it]({g['ocr']})")
             w("")
-        w(f"With the Pi's default settings ({OCR_CONFIGS[0][2]}):")
+        w(f"As the glass runs it in this run ({default_label}):")
         w("")
-        w("| Capture | Runs | Total | Range | Finding text | Reading letters | Rest | First line spoken | Detector passes | Character errors | 13 Oct total |")
-        w("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|")
-        old_rows = (oct13_ocr or {}).get("results", [])
+        w("| Capture | Runs | Total | Range | Finding text | Reading letters | Rest | First line spoken | Detector passes | Character errors |")
+        w("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|")
         for r in [r for r in ocr_rows if r["path"] == "app"]:
-            o = by_case(r["case"], "app", old_rows)
             w(f"| {r['label']} | {r['reps']} | **{sec(r['total_ms_median'])}** | {sec(r['total_ms_min'])} – {sec(r['total_ms_max'])} | "
               f"{sec(r['detect_ms_median'])} | {sec(r['recognize_ms_median'])} | {sec(r['other_ms_median'])} | "
-              f"{sec(r['first_line_ms_median'])} | {r['detect_calls']} | {'–' if r['cer'] is None else f'{100 * r['cer']:.1f}%'} | "
-              f"{sec(o['total_ms_median']) if o else '–'} |")
+              f"{sec(r['first_line_ms_median'])} | {r['detect_calls']} | {'–' if r['cer'] is None else f'{100 * r['cer']:.1f}%'} |")
         w("")
         blank = by_case("no_text")
         if blank:
             w(f"- **No text in view:** {sec(blank['total_ms_median'])}, answer "
               + (f"\"{blank['read']}\" — the reader still invents letters on a blank frame." if blank["read"] else
-                 "empty (the glass says no text was found). On 13 October it returned 48 made-up letters here."))
+                 "empty (the glass says no text was found)."))
         w(f"- Loading the text reader took {sec(default_meta.get('load_ms'))}; the first capture after loading took "
           f"{sec(default_meta.get('first_capture_after_load_ms'))}.")
         w("")
-        w("What the glass read (default settings, app path, last run of each capture):")
+        w(f"What the glass read ({default_label}, app path, last run of each capture):")
         w("")
         w("| Capture | Text on the picture | Text the glass read |")
         w("|---|---|---|")
@@ -853,11 +962,16 @@ def main() -> None:
         settings = [s["meta"].get("settings", {}) for s in sessions]
         taus = sorted({st["CURRENCY_ANNOUNCE_CONF"] for st in settings if st.get("CURRENCY_ANNOUNCE_CONF") is not None})
         wm = {st.get("WATERMARK_CHECK_ENABLED") for st in settings} - {None}
-        w(f"`python main.py` with the real camera and buttons, {when} "
+        driven = when.startswith("after") and (RAW / "app_session.txt").is_file()
+        w(("The app itself (`main.SmartGlass`, headless as on the glass, `AI_HAT=1`), " if driven else
+           "`python main.py` with the real camera and buttons, ") + f"{when} "
           f"({', '.join('`' + s['name'] + '`, ' + s['meta']['start'][11:16] + '–' + s['meta'].get('end', '')[11:16] for s in sessions)}"
           + (f"; currency threshold {' / '.join(f'{t:.2f}' for t in taus)}" if taus else "")
           + (f", watermark step {'on' if wm == {True} else 'off' if wm == {False} else 'on in some, off in others'}" if wm else "")
-          + "). These are the latencies the app's own field log recorded, from button press to the spoken answer being queued.")
+          + "). These are the latencies the app's own field log recorded, from button press to the spoken answer being queued."
+          + (" The buttons were pressed by `benchmark_report/scripts/app_session_driver.py` through the app's own MODE and "
+             "ACTION handlers (4 presses in each mode). Nobody was at the glass, so the camera saw the room: no note, no text "
+             "and no face, which is why those answers are quick and empty (`raw/app_session.txt`)." if driven else ""))
         w("")
         w("| What | Times | Median | Range |")
         w("|---|---:|---:|---:|")
@@ -954,6 +1068,59 @@ def main() -> None:
       "the listener still has to hear the sentence out.")
     w("")
 
+    # ---- comparison graphs (previous runs); the sections above show this run only
+    w("# Comparison with the earlier benchmarks")
+    w("")
+    w("Everything above is this run alone. This part sets it against the earlier runs on the same board.")
+    w("")
+    if g.get("cmp_23"):
+        w("## Against 23 November (the last run before the AI HAT)")
+        w("")
+        w(f"![Every mode against 23 November]({g['cmp_23']})")
+        w("")
+    if g.get("cmp_ocr"):
+        w(f"![Text reading against 23 November]({g['cmp_ocr']})")
+        w("")
+        w(f"| Capture | 23 Nov (CPU) | {THIS} | Change | First line spoken, 23 Nov → {THIS} |")
+        w("|---|---:|---:|---:|---:|")
+        for r in app_cases:
+            o = by(nov23_ocr, r["case"])
+            if o:
+                w(f"| {r['label']} | {sec(o['total_ms_median'])} | **{sec(r['total_ms_median'])}** | "
+                  f"{pct(r['total_ms_median'], o['total_ms_median'])} | "
+                  f"{sec(o['first_line_ms_median'])} → {sec(r['first_line_ms_median'])} |")
+        w("")
+    # ---- against earlier runs
+    if g["runs"]:
+        w("## Every row against the earlier runs")
+        w("")
+        w(f"![This run against the earlier runs]({g['runs']})")
+        w("")
+        w(f"| Benchmark | 1 Oct | 13 Oct | 23 Nov | {THIS} | Change from 1 Oct | Change from 23 Nov |")
+        w("|---|---:|---:|---:|---:|---:|---:|")
+        for _, keys in GROUPS + [("Text", ["ocr_mode"])]:
+            for k in keys:
+                if k not in lat:
+                    continue
+                n_ = lat[k]["median_ms"]
+                o1, o13, o23 = (ref1.get(k, {}).get("median_ms"), ref13.get(k, {}).get("median_ms"),
+                                ref23.get(k, {}).get("median_ms"))
+                w(f"| {NAMES[k]} | {fmt_any(o1)} | {fmt_any(o13)} | {fmt_any(o23)} | **{fmt_any(n_)}** | {pct(n_, o1) if o1 else '–'} | "
+                  f"{pct(n_, o23) if o23 else '–'} |")
+        w("")
+        w(f"1 October: 100 calls a row, board cool (flag `{oct1['host']['throttled_end']}` at the end). 13 October: 30 calls a row, "
+          f"board at its temperature limit (flag `{oct13['host']['throttled_end']}`). 23 November: 100 calls a row, everything on the "
+          f"CPU. This run: {iters} calls a row" + (", with the AI HAT" if ai_hat else "") + ". The code changed between the runs "
+          "too (hand-held detector, OCR pipeline v2, 8-bit text detector on the Pi, YOLOv8s; since 23 November the detector "
+          "cascade, OCR v4 and the AI HAT), so a row whose model or hardware changed is not a like-for-like comparison.")
+        w("")
+
+    if g.get("sustained_cmp"):
+        w("## 30 minutes of non-stop use against 1 October")
+        w("")
+        w(f"![30 minutes against 1 October]({g['sustained_cmp']})")
+        w("")
+
     # ---- tests
     tests = read_csv(RAW / "tests.csv")
     if tests:
@@ -990,12 +1157,15 @@ def main() -> None:
       "board power every 2 s (`raw/system_timeline.csv`). Between the heavy steps the script waited until the board was back "
       "under 63 °C (at most 10 minutes).")
     w("")
+    if ai_hat:
+        w("The whole script ran with `AI_HAT=1` exported, so every app path that can use the AI HAT did.")
+        w("")
     w("1. 2 minutes idle, then `scripts/pi5_preflight.py` and the test scripts.")
     w(f"2. `scripts/benchmark_pi5.py --iters {iters} --warmup 3 --sustained 30`, the protocol in `HOW_TO_RUN.md` "
       f"(`raw/{bench_path.name}` and the `.csv` of the sustained run; the script also keeps a copy in `savior_glass/results/`).")
     w("3. `scripts/measure_mode_switch.py`, `benchmark_report/scripts/extras_bench.py` (emotion with a face, both object "
-      "detectors, speech, camera) and `scripts/test_live_camera.py --seconds 60` (real webcam frames).")
-    w("4. `benchmark_report/scripts/ocr_response_bench.py` once for each of the four text-detector settings.")
+      "detectors on the CPU and YOLOv8s on the AI HAT, speech, camera) and `scripts/test_live_camera.py --seconds 60` (real webcam frames).")
+    w(f"4. `benchmark_report/scripts/ocr_response_bench.py` once for each of the {len(ocr)} text-detector settings.")
     w("5. 3 minutes idle.")
     if (RAW / "safecheck_after_onnx.json").is_file():
         w("6. Afterwards, from a cool board: `benchmark_report/scripts/safecheck_after_onnx.py` (the safe-check after the ONNX "

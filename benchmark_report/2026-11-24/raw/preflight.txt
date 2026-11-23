@@ -1,0 +1,15 @@
+1795460129.558197 ok  watermark INT8  2.62 MB
+1795460129.558304 ok  watermark localizer  4.32 MB
+1795460129.558340 ok  note detector INT8  25.75 MB
+1795460129.558377 ok  note detector, full precision (laptop)  22.54 MB
+1795460129.558417 ok  earlier hand-held detector (second stage of the cascade)  22.54 MB
+1795460129.558456 ok  OCR letter recogniser v2 (since 23 November 2026)  56.07 MB
+1795460129.558486 ok  OCR letter recogniser v2, part 2  51.65 MB
+1795460129.558520 ok  earlier hand-held detector INT8 (CURRENCY_DETECTOR=int8)  25.74 MB
+1795460129.558558 ok  earlier note detector INT8 (CURRENCY_DETECTOR=v1)  17.99 MB
+1795460129.558583 ok  safe-check checkpoint  16.62 MB
+1795460129.558604 ok  500 template  0.61 MB
+1795460129.558624 ok  1000 template  0.60 MB
+1795460130.331681 ok  INT8 watermark, watermark localizer and INT8 detector graphs each ran one dummy input
+1795460131.940884 capture guide: all checks pass
+1795460132.469702 Latency is not measured here. On the Pi: python scripts/benchmark_pi5.py --iters 100 --sustained 30

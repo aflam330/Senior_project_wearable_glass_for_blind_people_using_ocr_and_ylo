@@ -17,6 +17,9 @@ RUN="$REPO/benchmark_report/$(date +%Y-%m-%d)"
 OUT="$RUN/raw"
 COOL_C="${COOL_C:-63}"
 export PYTHONUNBUFFERED=1 PYTHONIOENCODING=utf-8
+# AI_HAT=1 bash run_full_benchmark.sh: the app's AI HAT paths (objects, text-finding) are used wherever the app would
+# use them; the OCR settings below always include the AI HAT text detector ("hailo") next to the CPU ones.
+export AI_HAT="${AI_HAT:-0}"
 mkdir -p "$OUT/tests"
 PHASE="$OUT/phase.txt"
 STEPS="$OUT/steps.csv"
@@ -34,6 +37,7 @@ stamp() { while IFS= read -r l; do printf '%s %s\n' "$EPOCHREALTIME" "$l"; done;
     echo "--- top processes at start"; ps -eo pcpu,pmem,rss,comm --sort=-pcpu | head -15
     echo "--- python packages"; "$PY" -m pip list 2>/dev/null | grep -iE "^(torch|onnxruntime|opencv|easyocr|ultralytics|numpy|psutil) "
     echo "--- camera"; v4l2-ctl --list-devices 2>/dev/null
+    echo "AI_HAT=$AI_HAT"; echo "--- AI HAT"; hailortcli fw-control identify 2>/dev/null | head -6
     echo "--- git"; git -C "$REPO" log -1 --format='%H %cd %s'; git -C "$REPO" status --short
 } > "$OUT/environment.txt" 2>&1
 
@@ -113,7 +117,7 @@ step extras "$PY" "$REPO/benchmark_report/scripts/extras_bench.py" "$OUT/extras.
 step live_camera "$PY" scripts/test_live_camera.py --seconds 60
 cp results/live_camera_test.json "$OUT/" 2>/dev/null
 
-for cfg in "onnx_int8 1200" "onnx 1200" "onnx_int8 880" "onnx 880"; do
+for cfg in "hailo 1200" "onnx_int8 1200" "onnx 1200" "hailo 880" "onnx_int8 880" "onnx 880"; do
     set -- $cfg
     cool
     step "ocr_$1_$2" env OCR_DETECTOR="$1" OCR_READ_WIDTH="$2" "$PY" "$REPO/benchmark_report/scripts/ocr_response_bench.py" \

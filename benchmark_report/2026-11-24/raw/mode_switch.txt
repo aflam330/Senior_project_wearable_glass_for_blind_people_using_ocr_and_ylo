@@ -1,0 +1,15 @@
+1795462809.899351 Loading /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/realtime_bangla_taka_detection/models/best_nstu_int8.onnx for ONNX Runtime inference...
+1795462809.901392 Using ONNX Runtime 1.30.0 with CPUExecutionProvider
+1795462812.170072 2026-11-24 01:40:12 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory
+1795462812.946965 {
+1795462812.947039  "host": "memo",
+1795462812.947067  "raspberry_pi_5": true,
+1795462812.947086  "python": "3.13.5",
+1795462812.947107  "watermark_check": false,
+1795462812.947128  "activate_first_ms": 2373.2,
+1795462812.947149  "warm_up_ms": 1436.7,
+1795462812.947171  "first_check_ms": 843.4,
+1795462812.947193  "steady_check_ms": 782.4,
+1795462812.947216  "activate_again_ms": 0.0
+1795462812.947231 }
+1795462812.948779 2026-11-24 01:40:12 xCreatePipe: Can't set permissions (436) for /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/.lgd-nfy0, No such file or directory

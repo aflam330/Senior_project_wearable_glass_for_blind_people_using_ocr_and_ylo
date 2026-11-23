@@ -1,0 +1,56 @@
+{
+ "experiment_name": "Currency mode switch timing on memo",
+ "task": "system_performance",
+ "mode": "currency",
+ "status": "partially_verified",
+ "verification": {
+  "method": "recorded automatically by the evaluation script; not yet reviewed"
+ },
+ "performance": {
+  "activate_first_ms": 2373.2,
+  "warm_up_ms": 1436.7,
+  "first_check_ms": 843.4,
+  "steady_check_ms": 782.4,
+  "activate_again_ms": 0.0
+ },
+ "configuration": {
+  "watermark_check": false,
+  "raspberry_pi_5": true
+ },
+ "comparison_group": {
+  "id": "DEVICE_BEHAVIOUR",
+  "name": "Glass interaction behaviour",
+  "purpose": ""
+ },
+ "comparison": {
+  "variant": "mode switch on memo"
+ },
+ "evidence": [
+  {
+   "type": "benchmark_output",
+   "file": "benchmark_report/2026-11-24/raw/mode_switch_currency.json",
+   "sha256": "2c3132f92e300e74f07af1e135bb51e4b43280b16d985092ba1353de51e5729d"
+  }
+ ],
+ "timestamp": "2026-11-24T01:40:12+06:00",
+ "software_environment": {
+  "os": "Linux-6.18.33+rpt-rpi-2712-aarch64-with-glibc2.41",
+  "python": "3.13.5",
+  "framework_versions": {
+   "torch": "2.14.1+cpu",
+   "torchvision": "0.29.1+cpu",
+   "ultralytics": "8.4.170",
+   "onnxruntime": "1.30.0",
+   "cv2": "5.0.0",
+   "numpy": "2.5.2"
+  }
+ },
+ "hardware": {
+  "device": "memo",
+  "cpu": "aarch64",
+  "device_model": "Raspberry Pi 5 Model B Rev 1.0"
+ },
+ "versioning": {
+  "code_commit": "25cf53d25dc78cbbc35cd923659d805986a562bd"
+ }
+}

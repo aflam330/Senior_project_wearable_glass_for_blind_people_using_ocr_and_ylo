@@ -1,0 +1,82 @@
+2026-11-24 02:26:31 [INFO] smart_glass.main: === Smart Glass starting ===
+2026-11-24 02:26:33 [INFO] smart_glass.utils: Piper voice loaded: bn_BD-google-medium.onnx
+[5:13:08.639053075] [261511]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[5:13:09.441562486] [261549]  INFO Camera camera_manager.cpp:223 Adding camera '/base/axi/pcie@1000120000/rp1/usb@300000-1:1.0-046d:0825' for pipeline handler uvcvideo
+2026-11-24 02:26:34 [INFO] smart_glass.ocr_mode: OCR mode deactivated
+2026-11-24 02:26:34 [INFO] smart_glass.currency_mode: Currency detection mode activated
+2026-11-24 02:26:34 [INFO] smart_glass.main: Mode → কারেন্সি ডিটেকশন মোড
+2026-11-24 02:26:35 [INFO] smart_glass.currency_mode: Currency YOLO loaded from /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/realtime_bangla_taka_detection/models/best_handheld.pt
+2026-11-24 02:26:35 [INFO] smart_glass.currency_mode: Currency detector cascade: best_nstu_int8.onnx first (sure at 0.90), then best_handheld.pt
+2026-11-24 02:26:35 [INFO] smart_glass.utils: Camera started (opencv index 0): 640x480 @ 30 fps
+2026-11-24 02:26:35 [INFO] smart_glass.button_handler: GPIO buttons initialised on pins [17, 27, 24, 22, 23]
+2026-11-24 02:26:36 [INFO] smart_glass.currency_mode: Currency classifier loaded from /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/savior_glass/models/currency_mobilenet.pt
+2026-11-24 02:26:37 [INFO] smart_glass.currency_mode: BD counterfeit auth loaded from /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/realtime_bangla_taka_detection/models/bd_counterfeit_auth_robust.pt
+Loading /media/memo/7250-9755/Senior_project_wearable_glass_for_blind_people_using_ocr_and_ylo/realtime_bangla_taka_detection/models/best_nstu_int8.onnx for ONNX Runtime inference...
+Using ONNX Runtime 1.30.0 with CPUExecutionProvider
+== currency: ready
+2026-11-24 02:26:39 [INFO] smart_glass.currency_mode: Currency detection mode activated
+2026-11-24 02:26:39 [INFO] smart_glass.thermal: Thermal governor on (warm 72, hot 77, critical 81 °C)
+2026-11-24 02:26:39 [INFO] smart_glass.main: Startup complete. Current mode: কারেন্সি ডিটেকশন মোড
+2026-11-24 02:26:44 [INFO] smart_glass.utils: Piper voice loaded: en_US-amy-low.onnx
+2026-11-24 02:26:44 [INFO] smart_glass.voice_commands: voice commands: listening (C270 HD WEBCAM: USB Audio (hw:2,0), 16000 Hz)
+   currency: ACTION 1 answered
+   currency: ACTION 2 answered
+   currency: ACTION 3 answered
+   currency: ACTION 4 answered
+2026-11-24 02:27:04 [INFO] smart_glass.currency_mode: Currency detection mode deactivated
+2026-11-24 02:27:04 [INFO] smart_glass.ocr_mode: OCR mode activated
+2026-11-24 02:27:04 [INFO] smart_glass.main: Mode → টেক্সট রিডিং মোড
+2026-11-24 02:27:04 [INFO] smart_glass.ocr_mode: Loading EasyOCR model (Bangla + English) — first use…
+/home/memo/.venvs/savior_glass/lib/python3.13/site-packages/torch/ao/nn/quantized/dynamic/modules/rnn.py:162: UserWarning: torch.quantize_per_tensor, torch.quantize_per_channel and other quantized tensor creation functions that produce tensors with dtype torch.quint8, torch.qint8, and torch.qint32 are deprecated and will be removed in a future PyTorch release. Please see https://github.com/pytorch/pytorch/issues/184982 for more information. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/quantized/Quantizer.cpp:111.)
+  w_ih = torch.quantize_per_tensor(
+2026-11-24 02:27:10 [INFO] smart_glass.ocr_mode: EasyOCR on CPU
+2026-11-24 02:27:10 [INFO] smart_glass.ocr: Text detector: ONNX Runtime (craft_int8_minmax128.onnx)
+2026-11-24 02:27:11 [INFO] smart_glass.ocr: Text detector: Hailo AI HAT (paddle_ocr_v5_mobile_detection.hef, tile)
+2026-11-24 02:27:12 [INFO] smart_glass.ocr: Letter recogniser: fine-tuned weights (ocr_recognizer_real_v2_blend)
+2026-11-24 02:27:12 [INFO] smart_glass.ocr_mode: EasyOCR ready
+2026-11-24 02:27:12 [INFO] smart_glass.ekush: Ekush CNN ready (122 classes)
+== text: ready
+2026-11-24 02:27:15 [INFO] smart_glass.main: OCR best frame: {'frames': 11, 'picked': 9, 'sharpness': 39.2, 'press_sharpness': 38.9}
+   text: ACTION 1 answered
+2026-11-24 02:27:21 [INFO] smart_glass.main: OCR best frame: {'frames': 11, 'picked': 2, 'sharpness': 39.1, 'press_sharpness': 38.6}
+   text: ACTION 2 answered
+2026-11-24 02:27:27 [INFO] smart_glass.main: OCR best frame: {'frames': 11, 'picked': 2, 'sharpness': 40.1, 'press_sharpness': 39.2}
+   text: ACTION 3 answered
+2026-11-24 02:27:34 [INFO] smart_glass.main: OCR best frame: {'frames': 11, 'picked': 8, 'sharpness': 39.6, 'press_sharpness': 39.2}
+   text: ACTION 4 answered
+2026-11-24 02:27:39 [INFO] smart_glass.ocr_mode: OCR mode deactivated
+2026-11-24 02:27:39 [INFO] smart_glass.object_mode: Object detection mode activated
+2026-11-24 02:27:39 [INFO] smart_glass.main: Mode → অবজেক্ট ডিটেকশন মোড
+2026-11-24 02:27:39 [INFO] smart_glass.object_mode: YOLO object model on the Hailo AI HAT: /usr/share/hailo-models/yolov8s_h8.hef
+2026-11-24 02:27:39 [INFO] smart_glass.object_mode: Loaded 80 Bangla labels
+== objects: ready
+   objects: ACTION 1 answered
+2026-11-24 02:27:42 [INFO] smart_glass.object_mode: Objects: সামনে আছে: বিছানা
+2026-11-24 02:27:43 [INFO] smart_glass.object_mode: Objects: সামনে আছে: সোফা
+   objects: ACTION 2 answered
+   objects: ACTION 3 answered
+2026-11-24 02:27:46 [INFO] smart_glass.object_mode: Objects: সামনে আছে: বিছানা
+2026-11-24 02:27:48 [INFO] smart_glass.object_mode: Objects: সামনে আছে: বিছানা
+   objects: ACTION 4 answered
+2026-11-24 02:27:52 [INFO] smart_glass.object_mode: Objects: সামনে আছে: বিছানা
+2026-11-24 02:27:57 [INFO] smart_glass.object_mode: Objects: সামনে আছে: বিছানা
+2026-11-24 02:28:01 [INFO] smart_glass.object_mode: Objects: সামনে আছে: বিছানা
+2026-11-24 02:28:06 [INFO] smart_glass.object_mode: Objects: সামনে আছে: বিছানা
+2026-11-24 02:28:14 [INFO] smart_glass.object_mode: Objects: সামনে আছে: বিছানা
+2026-11-24 02:28:18 [INFO] smart_glass.object_mode: Objects: সামনে আছে: বিছানা
+2026-11-24 02:28:20 [INFO] smart_glass.object_mode: Object detection mode deactivated
+2026-11-24 02:28:20 [INFO] smart_glass.emotion_mode: Emotion mode activated
+2026-11-24 02:28:20 [INFO] smart_glass.main: Mode → ইমোশন ডিটেকশন মোড
+[ WARN:0@110.695] global net_impl_backend.cpp:345 setPreferableTarget Targets are not supported by the new graph engine for now
+2026-11-24 02:28:22 [INFO] smart_glass.emotion_mode: Emotion detector ready: face detector yunet, classifier RAF-DB EfficientNetV2-S (models/emotion_faces.pt)
+== emotion: ready
+   emotion: ACTION 1 answered
+   emotion: ACTION 2 answered
+   emotion: ACTION 3 answered
+   emotion: ACTION 4 answered
+2026-11-24 02:28:41 [INFO] smart_glass.main: Shutting down…
+2026-11-24 02:28:41 [INFO] smart_glass.main: Thermal: peak 61.1 °C; seconds per state {'normal': 118, 'warm': 0, 'hot': 0, 'critical': 0}
+2026-11-24 02:28:44 [INFO] smart_glass.emotion_mode: Emotion mode deactivated
+2026-11-24 02:28:44 [INFO] smart_glass.button_handler: GPIO cleaned up
+2026-11-24 02:28:44 [INFO] smart_glass.main: Shutdown complete
+session done
